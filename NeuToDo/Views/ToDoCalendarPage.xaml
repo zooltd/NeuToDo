@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:NeuToDo.ViewModels;assembly=NeuToDo"
+             mc:Ignorable="d"
+             xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+             x:Class="NeuToDo.Views.ToDoCalendarPage"
+             xmlns:controls="clr-namespace:NeuToDo.Controls;assembly=NeuToDo"
+             Title="{Binding Title}">
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding TodayCommand}" Text="Today" />
+    </ContentPage.ToolbarItems>
+
+    <ContentPage.BindingContext>
+        <local:ToDoCalendarPageViewModel />
+    </ContentPage.BindingContext>
+
+    <plugin:Calendar
+        Padding="10,0"
+        AnimateCalendar="True"
+        Events="{Binding Events}"
+        HorizontalOptions="FillAndExpand"
+        MonthYear="{Binding MonthYear}"
+        SelectedDate="{Binding SelectedDate}"
+        SelectedDateTextFormat="ddd, MMM dd yyyy"
+        SwipeLeftCommand="{Binding SwipeLeftCommand}"
+        SwipeRightCommand="{Binding SwipeRightCommand}"
+        SwipeUpCommand="{Binding SwipeUpCommand}"
+        VerticalOptions="FillAndExpand">
+
+        <plugin:Calendar.HeaderSectionTemplate>
+            <controls:CalendarHeader />
+        </plugin:Calendar.HeaderSectionTemplate>
+
+        <plugin:Calendar.FooterSectionTemplate>
+            <DataTemplate>
+                <controls:CalendarFooter />
+            </DataTemplate>
+        </plugin:Calendar.FooterSectionTemplate>
+
+
+        <plugin:Calendar.EventTemplate>
+            <DataTemplate>
+                <controls:CalenderEvent />
+            </DataTemplate>
+        </plugin:Calendar.EventTemplate>
+
+        <plugin:Calendar.EmptyTemplate>
+            <DataTemplate>
+                <StackLayout>
+                    <Label Text="NO EVENTS FOR THE SELECTED DATE" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
+                </StackLayout>
+            </DataTemplate>
+        </plugin:Calendar.EmptyTemplate>
+    </plugin:Calendar>
+
+</ContentPage>
