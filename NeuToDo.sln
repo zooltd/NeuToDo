@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuToDo.UWP", "NeuToDo.UWP\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuToDo.Android", "NeuToDo.Android\NeuToDo.Android.csproj", "{F9086E48-F538-47DA-8CD0-DA020FC07C55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NeuToDo", "NeuToDo\NeuToDo.csproj", "{B89D840D-5C42-4028-9BCE-B5B39DF57B4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NeuToDo", "NeuToDo\NeuToDo.csproj", "{B89D840D-5C42-4028-9BCE-B5B39DF57B4E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
