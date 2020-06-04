@@ -27,6 +27,7 @@ namespace NeuToDo.Models
         /// 课表, key: 星期x; value: 星期x的计划
         /// </summary>
         public Dictionary<DayOfWeek, DaySchedule> Schedule;
+
     }
 
     public class DaySchedule
@@ -34,6 +35,8 @@ namespace NeuToDo.Models
         public ClassTime ClassTime;
 
         public string Weeks;
+
+        public int StartingClassTime;
     }
 
     /// <summary>

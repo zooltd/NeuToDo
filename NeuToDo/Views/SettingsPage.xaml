@@ -5,15 +5,66 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="NeuToDo.Views.SettingsPage">
+             x:Class="NeuToDo.Views.SettingsPage"
+             BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="{Binding Title}">
 
-   
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding TestCommand}" Text="Test" />
+    </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Constructing..."
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+    <CollectionView ItemsSource="{Binding Settings}"
+                    IsGrouped="true"
+                    Margin="5,10,5,0">
+        <CollectionView.GroupHeaderTemplate>
+            <DataTemplate>
+                <Label Text="{Binding Name}"
+                       BackgroundColor="LightGray"
+                       FontSize="Large"
+                       FontAttributes="Bold" />
+            </DataTemplate>
+        </CollectionView.GroupHeaderTemplate>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Grid RowSpacing="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40" />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0"
+                           Grid.Column="0"
+                           Text="{Binding Name}"
+                           VerticalOptions="CenterAndExpand"
+                           FontAttributes="Bold" />
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Text="{Binding Detail}"
+                           FontAttributes="Italic"
+                           VerticalOptions="End" />
+                    <Button Grid.Row="0"
+                            Grid.Column="1"
+                            Text="{Binding Button1Text}"
+                            Clicked="Button1_OnClicked"
+                            IsEnabled="{Binding Button1Status}" />
+                    <Button Grid.Row="0"
+                            Grid.Column="2"
+                            Text="{Binding Button2Text}"
+                            Command="{Binding Command2}"
+                            IsEnabled="{Binding Button2Status}" />
+                </Grid>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+        <!-- <CollectionView.GroupFooterTemplate> -->
+        <!--     <DataTemplate> -->
+        <!--         <Label Text="{Binding Count, StringFormat='Total: {0:D}'}" -->
+        <!--                Margin="0,0,0,10" /> -->
+        <!--     </DataTemplate> -->
+        <!-- </CollectionView.GroupFooterTemplate> -->
+    </CollectionView>
+
 </ContentPage>

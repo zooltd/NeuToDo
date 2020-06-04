@@ -8,8 +8,8 @@
              xmlns:calendar="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
-             Title="{Binding Title}"
-             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="{Binding Title}">
 
 
     <ContentPage.ToolbarItems>

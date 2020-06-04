@@ -136,7 +136,7 @@ namespace NeuToDo.Services
                     course = new Course()
                     {
                         CourseId = courseId,
-                        CourseName = textSegmentGroups[3].Value,
+                        CourseName = textSegmentGroups[3].Value.Split(new[] {'(', ')'})[0],
                         RoomId = textSegmentGroups[4].Value,
                         RoomName = textSegmentGroups[5].Value,
                         TeacherList = new List<Teacher>(),
@@ -162,15 +162,19 @@ namespace NeuToDo.Services
                 string timeTable = textSegmentGroups[7].Value;
                 var lessonOfDay = ClassTime.None;
                 var day = DayOfWeek.Sunday; //DayOfWeek.None
+
                 foreach (Match timeTableSegment in Regex.Matches(timeTable, timeTablePattern))
                 {
                     var timeTableSegmentGroups = timeTableSegment.Groups;
-                    day = (DayOfWeek) (int.Parse(timeTableSegmentGroups[1].Value) + 1); //TODO
+
+                    day = (DayOfWeek) (int.Parse(timeTableSegmentGroups[1].Value) + 1);
+
                     var lessonNo = (ClassTime) (1 << int.Parse(timeTableSegmentGroups[2].Value));
                     lessonOfDay |= lessonNo;
                 }
 
-                course.Schedule[day] = new DaySchedule() {ClassTime = lessonOfDay, Weeks = weeks};
+                course.Schedule[day] = new DaySchedule()
+                    {ClassTime = lessonOfDay, Weeks = weeks};
                 Syllabus[courseId] = course;
             }
         }
