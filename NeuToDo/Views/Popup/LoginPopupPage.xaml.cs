@@ -42,6 +42,7 @@ namespace NeuToDo.Views.Popup
             await PopupNavigation.Instance.PushAsync(loadingPage);
             var userName = UsernameEntry.Text;
             var password = PasswordEntry.Text;
+            SecureStorage.RemoveAll();
             await SecureStorage.SetAsync("NeuId", userName);
             await SecureStorage.SetAsync("NeuPd", password);
 
