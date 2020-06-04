@@ -1,12 +1,12 @@
 ﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NeuToDo.Controls
+namespace NeuToDo.Components
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CalendarHeader : DataTemplate
+    public partial class CalendarFooter : ContentView
     {
-        public CalendarHeader()
+        public CalendarFooter()
         {
             InitializeComponent();
         }

@@ -19,13 +19,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Controls\CalendarFooter.xaml">
+    <EmbeddedResource Update="Components\CalendarFooter.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CalendarHeader.xaml">
+    <EmbeddedResource Update="Components\CalendarHeader.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Controls\CalenderEvent.xaml">
+    <EmbeddedResource Update="Components\CalenderEvent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">

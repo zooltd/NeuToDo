@@ -3,7 +3,7 @@ using NeuToDo.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace NeuToDo.Controls
+namespace NeuToDo.Components
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CalenderEvent : ContentView

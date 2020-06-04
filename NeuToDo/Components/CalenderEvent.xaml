@@ -5,7 +5,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="NeuToDo.Controls.CalenderEvent">
+             x:Class="NeuToDo.Components.CalenderEvent">
     <ContentView.Content>
         <StackLayout
             Padding="15,0,0,0"

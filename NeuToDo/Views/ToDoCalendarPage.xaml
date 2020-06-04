@@ -4,11 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:local="clr-namespace:NeuToDo.ViewModels;assembly=NeuToDo"
              mc:Ignorable="d"
-             xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+             xmlns:calendar="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
+             xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
-             xmlns:controls="clr-namespace:NeuToDo.Controls;assembly=NeuToDo"
              Title="{Binding Title}"
              BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}">
 
@@ -21,7 +20,7 @@
     <!--     <local:ToDoCalendarPageViewModel /> -->
     <!-- </ContentPage.BindingContext> -->
 
-    <plugin:Calendar
+    <calendar:Calendar
         Padding="10,0"
         AnimateCalendar="True"
         Events="{Binding Events}"
@@ -34,30 +33,29 @@
         SwipeUpCommand="{Binding SwipeUpCommand}"
         VerticalOptions="FillAndExpand">
 
-        <plugin:Calendar.HeaderSectionTemplate>
-            <controls:CalendarHeader />
-        </plugin:Calendar.HeaderSectionTemplate>
+        <calendar:Calendar.HeaderSectionTemplate>
+            <components:CalendarHeader />
+        </calendar:Calendar.HeaderSectionTemplate>
 
-        <plugin:Calendar.FooterSectionTemplate>
+        <calendar:Calendar.FooterSectionTemplate>
             <DataTemplate>
-                <controls:CalendarFooter />
+                <components:CalendarFooter />
             </DataTemplate>
-        </plugin:Calendar.FooterSectionTemplate>
+        </calendar:Calendar.FooterSectionTemplate>
 
-
-        <plugin:Calendar.EventTemplate>
+        <calendar:Calendar.EventTemplate>
             <DataTemplate>
-                <controls:CalenderEvent />
+                <components:CalenderEvent />
             </DataTemplate>
-        </plugin:Calendar.EventTemplate>
+        </calendar:Calendar.EventTemplate>
 
-        <plugin:Calendar.EmptyTemplate>
+        <calendar:Calendar.EmptyTemplate>
             <DataTemplate>
                 <StackLayout>
                     <Label Text="NO EVENTS FOR THE SELECTED DATE" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
                 </StackLayout>
             </DataTemplate>
-        </plugin:Calendar.EmptyTemplate>
-    </plugin:Calendar>
+        </calendar:Calendar.EmptyTemplate>
+    </calendar:Calendar>
 
 </ContentPage>

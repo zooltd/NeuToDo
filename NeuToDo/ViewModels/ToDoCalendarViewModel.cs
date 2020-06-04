@@ -28,7 +28,7 @@ namespace NeuToDo.ViewModels
                         Starting = DateTime.Now
                     }
                 },
-                [DateTime.Now] = new List<EventModel>
+                [DateTime.Today] = new List<EventModel>
                 {
                     new EventModel
                     {
@@ -51,10 +51,7 @@ namespace NeuToDo.ViewModels
         private RelayCommand _todayCommand;
 
         public RelayCommand TodayCommand =>
-            _todayCommand ?? (_todayCommand = new RelayCommand((() =>
-            {
-                SelectedDate = DateTime.Today;
-            })));
+            _todayCommand ?? (_todayCommand = new RelayCommand((() => { SelectedDate = DateTime.Today; })));
 
         private RelayCommand _swipeLeftCommand;
 
