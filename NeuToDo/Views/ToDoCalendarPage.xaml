@@ -9,16 +9,17 @@
              xmlns:plugin="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
              xmlns:controls="clr-namespace:NeuToDo.Controls;assembly=NeuToDo"
-             Title="{Binding Title}">
+             Title="{Binding Title}"
+             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}">
 
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding TodayCommand}" Text="Today" />
     </ContentPage.ToolbarItems>
 
-    <ContentPage.BindingContext>
-        <local:ToDoCalendarPageViewModel />
-    </ContentPage.BindingContext>
+    <!-- <ContentPage.BindingContext> -->
+    <!--     <local:ToDoCalendarPageViewModel /> -->
+    <!-- </ContentPage.BindingContext> -->
 
     <plugin:Calendar
         Padding="10,0"
