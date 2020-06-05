@@ -35,7 +35,6 @@ namespace NeuToDo.ViewModels
             await getter.WebCrawler();
             //TODO FIXME
             SimpleIoc.Default.GetInstance<ToDoCalendarViewModel>().UpdateEvents();//TEST
-            // new ViewModelLocator().ToDoCalendarViewModel.UpdateEvents();
             var successPage = new LoginSuccessPopupPage();
             await PopupNavigation.Instance.PushAsync(successPage);
             await Task.Delay(1500);
