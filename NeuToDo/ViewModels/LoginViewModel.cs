@@ -3,6 +3,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Services;
 using NeuToDo.Views.Popup;
 using Rg.Plugins.Popup.Services;
@@ -32,10 +33,12 @@ namespace NeuToDo.ViewModels
             await PopupNavigation.Instance.PushAsync(loadingPage);
             var getter = new NeuSyllabusGetter(UserName, Password);
             await getter.WebCrawler();
-            new ViewModelLocator().ToDoCalendarViewModel.UpdateEvents();
+            //TODO FIXME
+            SimpleIoc.Default.GetInstance<ToDoCalendarViewModel>().UpdateEvents();//TEST
+            // new ViewModelLocator().ToDoCalendarViewModel.UpdateEvents();
             var successPage = new LoginSuccessPopupPage();
             await PopupNavigation.Instance.PushAsync(successPage);
-            await Task.Delay(2000);
+            await Task.Delay(1500);
             try
             {
                 await SecureStorage.SetAsync("NeuId", UserName);
