@@ -47,15 +47,15 @@ namespace NeuToDo.ViewModels
             };
         }
 
+
+        #region 绑定方法
+
         private RelayCommand _testCommand;
 
         public RelayCommand TestCommand =>
-            _testCommand ?? (_testCommand = new RelayCommand((() =>
-            {
-                Settings[0][0].Name = "NEU";
-                Settings = Settings;
-            })));
+            _testCommand ?? (_testCommand = new RelayCommand((() => { })));
 
+        #endregion
 
         #region 绑定属性
 

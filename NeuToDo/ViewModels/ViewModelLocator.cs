@@ -11,10 +11,14 @@ namespace NeuToDo.ViewModels
         public SettingsViewModel SettingsViewModel =>
             SimpleIoc.Default.GetInstance<SettingsViewModel>();
 
+        public LoginViewModel LoginViewModel =>
+            SimpleIoc.Default.GetInstance<LoginViewModel>();
+
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<ToDoCalendarViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
+            SimpleIoc.Default.Register<LoginViewModel>();
         }
     }
 }

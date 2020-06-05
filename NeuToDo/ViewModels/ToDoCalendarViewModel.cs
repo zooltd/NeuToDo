@@ -24,15 +24,15 @@ namespace NeuToDo.ViewModels
             Title = "NEU To Do";
             Events = new EventCollection
             {
-                // [DateTime.Today.AddDays(-1)] = new List<EventModel>
-                // {
-                //     new EventModel
-                //     {
-                //         Name = "event1",
-                //         Description = "This is event1's description!",
-                //         Starting = DateTime.Now
-                //     }
-                // },
+                [DateTime.Today.AddDays(-1)] = new List<EventModel>
+                {
+                    new EventModel
+                    {
+                        Name = "event1",
+                        Description = "This is event1's description!",
+                        Starting = DateTime.Now
+                    }
+                },
                 // [DateTime.Today] = new List<EventModel>
                 // {
                 //     new EventModel
@@ -105,12 +105,8 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        public async Task UpdateEvents()
+        public void UpdateEvents()
         {
-            var userName = await SecureStorage.GetAsync("NeuId");
-            var password = await SecureStorage.GetAsync("NeuPd");
-            var getter = new NeuSyllabusGetter(userName, password);
-            await getter.WebCrawler();
             var date = DateTime.Today;
             var currentDay = date.DayOfWeek;
             var currentWeek = NeuSyllabusGetter.TeachingTime.TeachingWeek;

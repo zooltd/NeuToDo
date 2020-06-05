@@ -14,20 +14,5 @@ namespace NeuToDo.Views.Popup
         {
             InitializeComponent();
         }
-
-        protected override void OnAppearing()
-        {
-            base.OnAppearing();
-
-            HidePopup();
-        }
-
-        private async void HidePopup()
-        {
-            await Task.Delay(4000);
-
-            if (PopupNavigation.Instance.PopupStack.Contains(this))
-                await PopupNavigation.Instance.RemovePageAsync(this);
-        }
     }
 }
