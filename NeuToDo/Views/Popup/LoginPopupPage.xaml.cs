@@ -18,42 +18,7 @@ namespace NeuToDo.Views.Popup
         public LoginPopupPage()
         {
             InitializeComponent();
-            // var task = TryGet();
-            // task.Wait();
         }
-
-        //TODO 放在viewmodel属性的get里
-        // private async Task TryGet()
-        // {
-        //     try
-        //     {
-        //         var userName = await SecureStorage.GetAsync("NeuId");
-        //         var password = await SecureStorage.GetAsync("NeuPd");
-        //         UsernameEntry.Text = userName;
-        //         PasswordEntry.Text = password;
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         // ignored
-        //     }
-        // }
-        //
-        // private async void OnLogin(object sender, EventArgs e)
-        // {
-        //     var loadingPage = new LoadingPopupPage();
-        //     await PopupNavigation.Instance.PushAsync(loadingPage);
-        //     var userName = UsernameEntry.Text;
-        //     var password = PasswordEntry.Text;
-        //     SecureStorage.RemoveAll();
-        //     await SecureStorage.SetAsync("NeuId", userName);
-        //     await SecureStorage.SetAsync("NeuPd", password);
-        //
-        //     await new ViewModelLocator().ToDoCalendarViewModel.UpdateEvents();
-        //
-        //     await PopupNavigation.Instance.RemovePageAsync(loadingPage);
-        //     await PopupNavigation.Instance.RemovePageAsync(this);
-        //     // await PopupNavigation.Instance.PushAsync(new LoginSuccessPopupPage(), true);
-        // }
 
         protected override void OnAppearingAnimationBegin()
         {
