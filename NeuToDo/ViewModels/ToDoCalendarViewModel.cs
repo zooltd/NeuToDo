@@ -12,8 +12,17 @@ using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
 {
-    public class ToDoCalendarViewModel : ViewModelBase
-    {
+    public class ToDoCalendarViewModel : ViewModelBase {
+        private IxxxService _xxxService;
+
+        public ToDoCalendarViewModel(IxxxService xxxService) {
+            _xxxService = xxxService;
+            _xxxService.GotData += (sender, args) => {
+                _xxxService.GetData();
+            };
+        }
+        
+        
         /// <remarks>
         /// 注意有坑 Events无法添加多个属于一天的DataTime
         /// </remarks>
