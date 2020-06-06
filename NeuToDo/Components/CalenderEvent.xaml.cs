@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
+using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

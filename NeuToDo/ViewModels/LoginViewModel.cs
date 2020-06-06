@@ -1,22 +1,19 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
-using NeuToDo.Views.Popup;
 using Rg.Plugins.Popup.Services;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Essentials;
-using Xamarin.Forms;
-using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
         private ILoginService _loginService;
+        private readonly ServerType _type;
 
         [PreferredConstructor]
         public LoginViewModel()
@@ -26,6 +23,7 @@ namespace NeuToDo.ViewModels
 
         public LoginViewModel(ServerType type)
         {
+            _type = type;
             FetchSecureStorage();
             SetProperties(type);
         }
@@ -51,7 +49,7 @@ namespace NeuToDo.ViewModels
                 case ServerType.Mooc:
                     PicUrl =
                         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1591468918403&di=6959d42be7b1926277d777f76a06ec96&imgtype=0&src=http%3A%2F%2Fa0.att.hudong.com%2F73%2F52%2F20300542724313140971526245341.jpg";
-                        _loginService = new MoocLoginService();
+                    _loginService = new MoocLoginService();
                     break;
                 case ServerType.Blackboard:
                     PicUrl =
@@ -66,8 +64,8 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await SecureStorage.SetAsync("NeuId", UserName);
-                await SecureStorage.SetAsync("NeuPd", Password);
+                await SecureStorage.SetAsync(_type + "Id", UserName);
+                await SecureStorage.SetAsync(_type + "Pd", Password);
             }
             catch (Exception e)
             {
@@ -85,6 +83,7 @@ namespace NeuToDo.ViewModels
             await PopupPageNavigationService.Loading();
             // var getter = new NeuSyllabusGetter(UserName, Password);
             // await getter.WebCrawler();
+
             var loginTask = _loginService.LoginTask(UserName, Password);
             var res = await loginTask;
 
@@ -94,11 +93,15 @@ namespace NeuToDo.ViewModels
             if (res)
             {
                 await PopupPageNavigationService.SuccessMessage();
-                await Task.Delay(1500);
+                await UpdateSecureStorage();
+            }
+            else
+            {
+                await PopupPageNavigationService.ErrorMessage();
             }
 
+            await Task.Delay(1500);
 
-            // await PopupNavigation.Instance.RemovePageAsync(loadingPage);
             await PopupNavigation.Instance.PopAllAsync();
         })));
 
@@ -137,7 +140,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                UserName = await SecureStorage.GetAsync("NueId");
+                UserName = await SecureStorage.GetAsync(_type + "Id");
             }
             catch (Exception e)
             {
@@ -150,7 +153,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                Password = await SecureStorage.GetAsync("NuePd");
+                Password = await SecureStorage.GetAsync(_type + "Pd");
             }
             catch (Exception e)
             {

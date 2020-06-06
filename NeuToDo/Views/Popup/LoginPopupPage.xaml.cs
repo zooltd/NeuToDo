@@ -1,14 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using NeuToDo.Services;
-using NeuToDo.ViewModels;
-using Rg.Plugins.Popup.Extensions;
-using Rg.Plugins.Popup.Pages;
+﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
-using Xamarin.Essentials;
+using System;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.Views.Popup
 {

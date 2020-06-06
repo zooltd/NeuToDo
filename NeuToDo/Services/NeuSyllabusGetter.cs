@@ -1,10 +1,10 @@
-﻿using System;
+﻿using NeuToDo.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using NeuToDo.Models;
 
 namespace NeuToDo.Services
 {
@@ -77,13 +77,13 @@ namespace NeuToDo.Services
 
             const string studentInfoPattern = "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
             var studentInfoList = Regex.Match(responseBody, studentInfoPattern).Groups[1].Value
-                .Split(new char[] {'(', ')'});
-            User = new User() {Id = studentInfoList[1], Name = studentInfoList[0]};
+                .Split(new char[] { '(', ')' });
+            User = new User() { Id = studentInfoList[1], Name = studentInfoList[0] };
             const string teachingTimePattern = "id=\"teach-week\">[\\s]*(.*)[\\s]*<font[\\s\\S]*?>(.*)<\\/font>";
             var teachingTimeGroups = Regex.Match(responseBody, teachingTimePattern).Groups;
             var semester = teachingTimeGroups[1].Value.Replace('第', ',');
             TeachingTime = new TeachingTime()
-                {Semester = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
+            { Semester = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value) };
         }
 
         private static async Task GetCourseInfo()
@@ -124,7 +124,7 @@ namespace NeuToDo.Services
                 var courseExist = false;
                 var textSegmentGroups = textSegment.Groups;
                 string teacherInfo = textSegmentGroups[1].Value;
-                string courseId = textSegmentGroups[2].Value.Split(new char[] {'(', ')'})[1];
+                string courseId = textSegmentGroups[2].Value.Split(new char[] { '(', ')' })[1];
 
                 if (Syllabus.ContainsKey(courseId))
                 {
@@ -136,7 +136,7 @@ namespace NeuToDo.Services
                     course = new Course()
                     {
                         CourseId = courseId,
-                        CourseName = textSegmentGroups[3].Value.Split(new[] {'(', ')'})[0],
+                        CourseName = textSegmentGroups[3].Value.Split(new[] { '(', ')' })[0],
                         RoomId = textSegmentGroups[4].Value,
                         RoomName = textSegmentGroups[5].Value,
                         TeacherList = new List<Teacher>(),
@@ -167,14 +167,14 @@ namespace NeuToDo.Services
                 {
                     var timeTableSegmentGroups = timeTableSegment.Groups;
 
-                    day = (DayOfWeek) (int.Parse(timeTableSegmentGroups[1].Value) + 1);
+                    day = (DayOfWeek)(int.Parse(timeTableSegmentGroups[1].Value) + 1);
 
-                    var lessonNo = (ClassTime) (1 << int.Parse(timeTableSegmentGroups[2].Value));
+                    var lessonNo = (ClassTime)(1 << int.Parse(timeTableSegmentGroups[2].Value));
                     lessonOfDay |= lessonNo;
                 }
 
                 course.Schedule[day] = new DaySchedule()
-                    {ClassTime = lessonOfDay, Weeks = weeks};
+                { ClassTime = lessonOfDay, Weeks = weeks };
                 Syllabus[courseId] = course;
             }
         }

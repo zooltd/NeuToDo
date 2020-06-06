@@ -17,7 +17,7 @@ namespace NeuToDo.Services
         {
             CookieContainer = new CookieContainer();
             ClientHandler = new HttpClientHandler
-                {AllowAutoRedirect = allowAutoRedirect, UseCookies = true, CookieContainer = CookieContainer};
+            { AllowAutoRedirect = allowAutoRedirect, UseCookies = true, CookieContainer = CookieContainer };
             Client = new HttpClient(ClientHandler);
         }
 
@@ -26,7 +26,7 @@ namespace NeuToDo.Services
             ClientHandler.Dispose();
             Client.Dispose();
             ClientHandler = new HttpClientHandler()
-                {AllowAutoRedirect = allowAutoRedirect, UseCookies = true, CookieContainer = CookieContainer};
+            { AllowAutoRedirect = allowAutoRedirect, UseCookies = true, CookieContainer = CookieContainer };
             Client = new HttpClient(ClientHandler);
         }
     }

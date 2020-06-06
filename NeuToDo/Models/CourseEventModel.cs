@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace NeuToDo.Models
+﻿namespace NeuToDo.Models
 {
     /// <summary>
     /// 课程ToDo事件

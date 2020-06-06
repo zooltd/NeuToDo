@@ -1,9 +1,9 @@
-﻿using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.ViewModels;
 using NeuToDo.Views.Popup;
 using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
@@ -24,6 +24,11 @@ namespace NeuToDo.Services
         public static async Task SuccessMessage()
         {
             await PopupNavigation.Instance.PushAsync(new LoginSuccessPopupPage());
+        }
+
+        public static async Task ErrorMessage()
+        {
+            await PopupNavigation.Instance.PushAsync(new LoginErrorPopupPage());
         }
     }
 }

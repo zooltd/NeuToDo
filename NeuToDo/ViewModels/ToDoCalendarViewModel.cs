@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
-using Xamarin.Essentials;
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
 {
-    public class ToDoCalendarViewModel : ViewModelBase {
+    public class ToDoCalendarViewModel : ViewModelBase
+    {
         // private IxxxService _xxxService;
         //
         // public ToDoCalendarViewModel(IxxxService xxxService) {
@@ -21,8 +19,8 @@ namespace NeuToDo.ViewModels
         //         _xxxService.GetData();
         //     };
         // }
-        
-        
+
+
         /// <remarks>
         /// 注意有坑 Events无法添加多个属于一天的DataTime
         /// </remarks>
@@ -126,7 +124,7 @@ namespace NeuToDo.ViewModels
                 foreach (var day in courseSchedule.Keys)
                 {
                     var weekIndexes = FindAllIndexes(courseSchedule[day].Weeks, '1');
-                    var daySpan = (int) day - (int) currentDay;
+                    var daySpan = (int)day - (int)currentDay;
                     foreach (var weekIndex in weekIndexes)
                     {
                         //weekIndex: 第weekIndex周
