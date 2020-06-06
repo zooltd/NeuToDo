@@ -16,15 +16,5 @@ namespace NeuToDo.Views
         {
             InitializeComponent();
         }
-
-        /// <summary>
-        /// TODO 删了我
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private async void Button1_OnClicked(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.PushAsync(new LoginPopupPage(), true);
-        }
     }
 }

@@ -1,0 +1,29 @@
+﻿using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
+using NeuToDo.Models.SettingsModels;
+using NeuToDo.ViewModels;
+using NeuToDo.Views.Popup;
+using Rg.Plugins.Popup.Services;
+
+namespace NeuToDo.Services
+{
+    public class PopupPageNavigationService
+    {
+        public async Task Login(ServerType type)
+        {
+            SimpleIoc.Default.Unregister<LoginViewModel>();
+            SimpleIoc.Default.Register(() => new LoginViewModel(type));
+            await PopupNavigation.Instance.PushAsync(new LoginPopupPage());
+        }
+
+        public static async Task Loading()
+        {
+            await PopupNavigation.Instance.PushAsync(new LoadingPopupPage());
+        }
+
+        public static async Task SuccessMessage()
+        {
+            await PopupNavigation.Instance.PushAsync(new LoginSuccessPopupPage());
+        }
+    }
+}

@@ -15,7 +15,8 @@
 
     <CollectionView ItemsSource="{Binding Settings}"
                     IsGrouped="true"
-                    Margin="5,10,5,0">
+                    Margin="5,10,5,0"
+                    x:Name="CollectionView">
         <CollectionView.GroupHeaderTemplate>
             <DataTemplate>
                 <Label Text="{Binding Name}"
@@ -49,13 +50,12 @@
                     <Button Grid.Row="0"
                             Grid.Column="1"
                             Text="{Binding Button1Text}"
-                            Clicked="Button1_OnClicked"
-                            IsEnabled="{Binding Button1Status}" />
+                            Command="{Binding Path = BindingContext.Command1, Source={x:Reference CollectionView}}"
+                            CommandParameter="{Binding ServerType}" />
                     <Button Grid.Row="0"
                             Grid.Column="2"
                             Text="{Binding Button2Text}"
-                            Command="{Binding Command2}"
-                            IsEnabled="{Binding Button2Status}" />
+                            Command="{Binding Command2}" />
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

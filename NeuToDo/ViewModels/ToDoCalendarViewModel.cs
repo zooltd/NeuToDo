@@ -13,14 +13,14 @@ using Xamarin.Plugin.Calendar.Models;
 namespace NeuToDo.ViewModels
 {
     public class ToDoCalendarViewModel : ViewModelBase {
-        private IxxxService _xxxService;
-
-        public ToDoCalendarViewModel(IxxxService xxxService) {
-            _xxxService = xxxService;
-            _xxxService.GotData += (sender, args) => {
-                _xxxService.GetData();
-            };
-        }
+        // private IxxxService _xxxService;
+        //
+        // public ToDoCalendarViewModel(IxxxService xxxService) {
+        //     _xxxService = xxxService;
+        //     _xxxService.GotData += (sender, args) => {
+        //         _xxxService.GetData();
+        //     };
+        // }
         
         
         /// <remarks>

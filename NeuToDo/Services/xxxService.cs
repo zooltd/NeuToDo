@@ -10,5 +10,9 @@ namespace NeuToDo.Services {
         }
 
         public event EventHandler GotData;
+        public int GetData()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

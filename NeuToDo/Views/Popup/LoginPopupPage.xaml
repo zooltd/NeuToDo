@@ -45,7 +45,7 @@
                            Margin="10"
                            HeightRequest="150"
                            WidthRequest="150"
-                           Source="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1591288208899&amp;di=8d9bf77623295ba88adb4b9120128375&amp;imgtype=0&amp;src=http%3A%2F%2Fimg.ccutu.com%2Fupload%2Fimages%2F2017-6%2Fp00027076.png">
+                           Source="{Binding PicUrl}">
                         <!-- <Image.Source> -->
                         <!--     <OnPlatform -->
                         <!--         x:TypeArguments="ImageSource" -->

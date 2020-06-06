@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models.SettingsModels;
+using NeuToDo.Services;
 
 namespace NeuToDo.ViewModels
 {
@@ -17,31 +19,31 @@ namespace NeuToDo.ViewModels
                 {
                     new SettingItem
                     {
-                        Name = "东北大学教务处", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除", Button1Status = true,
-                        Button2Status = false
+                        Name = "东北大学教务处", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除",
+                        Button1Status = true, Button2Status = false, ServerType = ServerType.Neu
                     },
                     new SettingItem
                     {
                         Name = "中国大学MOOC", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除",
-                        Button1Status = false, Button2Status = false
+                        Button1Status = false, Button2Status = false, ServerType = ServerType.Mooc
                     },
                     new SettingItem
                     {
                         Name = "东北大学Blackboard", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除",
-                        Button1Status = false, Button2Status = false
+                        Button1Status = false, Button2Status = false, ServerType = ServerType.Blackboard
                     },
                 }),
                 new SettingItemGroup("同步设置", new List<SettingItem>
                 {
                     new SettingItem
                     {
-                        Name = "WebDAV", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除", Button1Status = false,
-                        Button2Status = false
+                        Name = "WebDAV", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除",
+                        Button1Status = false, Button2Status = false, ServerType = ServerType.WebDav
                     },
                     new SettingItem
                     {
-                        Name = "Github", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除", Button1Status = false,
-                        Button2Status = false
+                        Name = "Github", Detail = "未绑定", Button1Text = "关联", Button2Text = "解除",
+                        Button1Status = false, Button2Status = false, ServerType = ServerType.Github
                     },
                 })
             };
@@ -54,6 +56,15 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand TestCommand =>
             _testCommand ?? (_testCommand = new RelayCommand((() => { })));
+
+        private RelayCommand<ServerType> _command1;
+
+        public RelayCommand<ServerType> Command1 =>
+            _command1 ?? (_command1 = new RelayCommand<ServerType>((async s =>
+            {
+                PopupPageNavigationService popupService = new PopupPageNavigationService();
+                await popupService.Login(s);
+            })));
 
         #endregion
 

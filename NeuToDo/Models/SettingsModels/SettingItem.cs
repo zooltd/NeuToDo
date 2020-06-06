@@ -51,5 +51,23 @@ namespace NeuToDo.Models.SettingsModels
             get => _button2Status;
             set => Set(nameof(Button2Status), ref _button2Status, value);
         }
+
+        private ServerType _serverType;
+
+        public ServerType ServerType
+        {
+            get => _serverType;
+            set => Set(nameof(ServerType), ref _serverType, value);
+        }
+
+    }
+
+    public enum ServerType
+    {
+        Neu,
+        Mooc,
+        Blackboard,
+        WebDav,
+        Github
     }
 }
