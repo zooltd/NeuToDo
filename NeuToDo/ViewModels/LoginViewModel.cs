@@ -88,7 +88,8 @@ namespace NeuToDo.ViewModels
             var res = await loginTask;
 
             //TODO FIXME
-            SimpleIoc.Default.GetInstance<ToDoCalendarViewModel>().UpdateEvents(); //TEST
+            // SimpleIoc.Default.GetInstance<ToDoCalendarViewModel>().UpdateEvents(); //TEST
+
 
             if (res)
             {

@@ -35,8 +35,8 @@ namespace NeuToDo.ViewModels
                 {
                     new EventModel
                     {
-                        Name = "event1",
-                        Description = "This is event1's description!",
+                        Title = "event1",
+                        Detail = "This is event1's description!",
                         Starting = DateTime.Now
                     }
                 },
@@ -44,14 +44,14 @@ namespace NeuToDo.ViewModels
                 // {
                 //     new EventModel
                 //     {
-                //         Name = "event1",
-                //         Description = "This is event1's description!",
+                //         Title = "event1",
+                //         Detail = "This is event1's description!",
                 //         Starting = DateTime.Now
                 //     },
                 //     new EventModel
                 //     {
-                //         Name = "event2",
-                //         Description = "This is event2's description!",
+                //         Title = "event2",
+                //         Detail = "This is event2's description!",
                 //         Starting = DateTime.Now
                 //     }
                 // }
@@ -112,91 +112,91 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        public void UpdateEvents()
-        {
-            var date = DateTime.Today;
-            var currentDay = date.DayOfWeek;
-            var currentWeek = NeuSyllabusGetter.TeachingTime.TeachingWeek;
-            var syllabus = NeuSyllabusGetter.Syllabus;
-            foreach (var course in syllabus.Values)
-            {
-                var courseSchedule = course.Schedule;
-                foreach (var day in courseSchedule.Keys)
-                {
-                    var weekIndexes = FindAllIndexes(courseSchedule[day].Weeks, '1');
-                    var daySpan = (int)day - (int)currentDay;
-                    foreach (var weekIndex in weekIndexes)
-                    {
-                        //weekIndex: 第weekIndex周
-                        var offsetWeek = weekIndex - currentWeek;
-                        var offsetDay = offsetWeek * 7 + daySpan;
-                        var d = DateTime.Today.AddDays(offsetDay);
-                        var startingTime = GetStartingTime(d, courseSchedule[day].ClassTime.ToString());
-                        if (Events.ContainsKey(d))
-                        {
-                            Events[d] = new ArrayList(Events[d])
-                            {
-                                new EventModel()
-                                {
-                                    Name = course.CourseName,
-                                    Description = courseSchedule[day].ClassTime.ToString() + "," + course.RoomName +
-                                                  "," + course.TeacherList[0].TeacherName,
-                                    Starting = startingTime
-                                }
-                            };
-                        }
-                        else
-                        {
-                            Events.Add(d, new List<EventModel>()
-                            {
-                                new EventModel()
-                                {
-                                    Name = course.CourseName,
-                                    Description = courseSchedule[day].ClassTime.ToString() + " " + course.RoomName +
-                                                  "," + course.TeacherList[0].TeacherName,
-                                    Starting = startingTime
-                                }
-                            });
-                        }
-                    }
-                }
-            }
-        }
+        // public void UpdateEvents()
+        // {
+        //     var date = DateTime.Today;
+        //     var currentDay = date.DayOfWeek;
+        //     var currentWeek = NeuSyllabusGetter.TeachingTime.TeachingWeek;
+        //     var syllabus = NeuSyllabusGetter.Syllabus;
+        //     foreach (var course in syllabus.Values)
+        //     {
+        //         var courseSchedule = course.Schedule;
+        //         foreach (var day in courseSchedule.Keys)
+        //         {
+        //             var weekIndexes = FindAllIndexes(courseSchedule[day].Weeks, '1');
+        //             var daySpan = (int)day - (int)currentDay;
+        //             foreach (var weekIndex in weekIndexes)
+        //             {
+        //                 //weekIndex: 第weekIndex周
+        //                 var offsetWeek = weekIndex - currentWeek;
+        //                 var offsetDay = offsetWeek * 7 + daySpan;
+        //                 var d = DateTime.Today.AddDays(offsetDay);
+        //                 var startingTime = GetStartingTime(d, courseSchedule[day].ClassTime.ToString());
+        //                 if (Events.ContainsKey(d))
+        //                 {
+        //                     Events[d] = new ArrayList(Events[d])
+        //                     {
+        //                         new EventModel()
+        //                         {
+        //                             Title = course.CourseName,
+        //                             Detail = courseSchedule[day].ClassTime.ToString() + "," + course.RoomName +
+        //                                           "," + course.TeacherList[0].TeacherName,
+        //                             Starting = startingTime
+        //                         }
+        //                     };
+        //                 }
+        //                 else
+        //                 {
+        //                     Events.Add(d, new List<EventModel>()
+        //                     {
+        //                         new EventModel()
+        //                         {
+        //                             Title = course.CourseName,
+        //                             Detail = courseSchedule[day].ClassTime.ToString() + " " + course.RoomName +
+        //                                           "," + course.TeacherList[0].TeacherName,
+        //                             Starting = startingTime
+        //                         }
+        //                     });
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
 
-        private static IEnumerable<int> FindAllIndexes(string source, char key)
-        {
-            var i = source.IndexOf(key);
-            var indexes = new List<int>();
-            while (i != -1)
-            {
-                indexes.Add(i);
-                i = source.IndexOf(key, i + 1);
-            }
-
-            return indexes;
-        }
-
-        private static DateTime GetStartingTime(DateTime date, string classTime)
-        {
-            if (classTime.Contains("First"))
-                return new DateTime(date.Year, date.Month, date.Day, 8, 30, 0);
-
-            if (classTime.Contains("Third"))
-                return new DateTime(date.Year, date.Month, date.Day, 10, 40, 0);
-
-            if (classTime.Contains("Fifth"))
-                return new DateTime(date.Year, date.Month, date.Day, 14, 0, 0);
-
-            if (classTime.Contains("Seventh"))
-                return new DateTime(date.Year, date.Month, date.Day, 16, 10, 0);
-
-            if (classTime.Contains("Ninth"))
-                return new DateTime(date.Year, date.Month, date.Day, 18, 30, 0);
-
-            if (classTime.Contains("Eleventh"))
-                return new DateTime(date.Year, date.Month, date.Day, 20, 30, 0);
-
-            return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-        }
+        // private static IEnumerable<int> FindAllIndexes(string source, char key)
+        // {
+        //     var i = source.IndexOf(key);
+        //     var indexes = new List<int>();
+        //     while (i != -1)
+        //     {
+        //         indexes.Add(i);
+        //         i = source.IndexOf(key, i + 1);
+        //     }
+        //
+        //     return indexes;
+        // }
+        //
+        // private static DateTime GetStartingTime(DateTime date, string classTime)
+        // {
+        //     if (classTime.Contains("First"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 8, 30, 0);
+        //
+        //     if (classTime.Contains("Third"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 10, 40, 0);
+        //
+        //     if (classTime.Contains("Fifth"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 14, 0, 0);
+        //
+        //     if (classTime.Contains("Seventh"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 16, 10, 0);
+        //
+        //     if (classTime.Contains("Ninth"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 18, 30, 0);
+        //
+        //     if (classTime.Contains("Eleventh"))
+        //         return new DateTime(date.Year, date.Month, date.Day, 20, 30, 0);
+        //
+        //     return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+        // }
     }
 }
