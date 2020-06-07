@@ -4,6 +4,7 @@ using NeuToDo.ViewModels;
 using NeuToDo.Views.Popup;
 using Rg.Plugins.Popup.Services;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
@@ -13,6 +14,7 @@ namespace NeuToDo.Services
         {
             SimpleIoc.Default.Unregister<LoginViewModel>();
             SimpleIoc.Default.Register(() => new LoginViewModel(type));
+            //TODO UWP下有问题
             await PopupNavigation.Instance.PushAsync(new LoginPopupPage());
         }
 

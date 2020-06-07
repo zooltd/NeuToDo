@@ -32,23 +32,25 @@ namespace NeuToDo.ViewModels
         public ToDoCalendarViewModel()
         {
             Title = "NEU To Do";
+            //TODO 启动时加载数据
         }
 
         private async Task UpdateData()
         {
-            var eventList =  await StorageService.GetAll();
+            var eventList = await StorageService.GetAll();
             Add(eventList);
         }
+
         public void Add(EventModel e)
         {
             var dateOfEvent = e.Starting.Date;
             if (Events.ContainsKey(dateOfEvent))
             {
-                Events[dateOfEvent] = new ArrayList(Events[dateOfEvent]) { e };
+                Events[dateOfEvent] = new ArrayList(Events[dateOfEvent]) {e};
             }
             else
             {
-                Events.Add(dateOfEvent, new List<EventModel> { e });
+                Events.Add(dateOfEvent, new List<EventModel> {e});
             }
         }
 
