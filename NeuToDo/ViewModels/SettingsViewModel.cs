@@ -8,6 +8,8 @@ namespace NeuToDo.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
+        public PopupPageNavigationService PopupService { get; } = new PopupPageNavigationService();
+        
         public SettingsViewModel()
         {
             Title = "Neu To Do";
@@ -60,8 +62,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand<ServerType> Command1 =>
             _command1 ?? (_command1 = new RelayCommand<ServerType>((async s =>
             {
-                PopupPageNavigationService popupService = new PopupPageNavigationService();
-                await popupService.Login(s);
+                await PopupService.Login(s);
             })));
 
         #endregion

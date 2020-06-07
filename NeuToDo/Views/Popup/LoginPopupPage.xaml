@@ -10,6 +10,7 @@
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
                  BackgroundColor="Transparent"
                  BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}">
+    <!-- TODO 加了BindingContext  UWP中无法正常显示-->
 
     <popup:PopupPage.Resources>
         <ResourceDictionary>

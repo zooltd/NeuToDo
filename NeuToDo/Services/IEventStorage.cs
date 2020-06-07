@@ -15,7 +15,7 @@ namespace NeuToDo.Services
 
         Task InsertAll(IList<EventModel> eventList);
 
-        bool IsInitialized();
+        Task<List<EventModel>> GetAll();
 
     }
 }

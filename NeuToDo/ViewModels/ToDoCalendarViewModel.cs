@@ -5,6 +5,7 @@ using NeuToDo.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -24,38 +25,39 @@ namespace NeuToDo.ViewModels
         /// <remarks>
         /// 注意有坑 Events无法添加多个属于一天的DataTime
         /// </remarks>
-        public EventCollection Events { get; set; }
+        public EventCollection Events { get; set; } = new EventCollection();
+
+        public IEventStorage StorageService { get; private set; } = new CourseEventStorage();
 
         public ToDoCalendarViewModel()
         {
             Title = "NEU To Do";
-            Events = new EventCollection
+        }
+
+        private async Task UpdateData()
+        {
+            var eventList =  await StorageService.GetAll();
+            Add(eventList);
+        }
+        public void Add(EventModel e)
+        {
+            var dateOfEvent = e.Starting.Date;
+            if (Events.ContainsKey(dateOfEvent))
             {
-                [DateTime.Today.AddDays(-1)] = new List<EventModel>
-                {
-                    new EventModel
-                    {
-                        Title = "event1",
-                        Detail = "This is event1's description!",
-                        Starting = DateTime.Now
-                    }
-                },
-                // [DateTime.Today] = new List<EventModel>
-                // {
-                //     new EventModel
-                //     {
-                //         Title = "event1",
-                //         Detail = "This is event1's description!",
-                //         Starting = DateTime.Now
-                //     },
-                //     new EventModel
-                //     {
-                //         Title = "event2",
-                //         Detail = "This is event2's description!",
-                //         Starting = DateTime.Now
-                //     }
-                // }
-            };
+                Events[dateOfEvent] = new ArrayList(Events[dateOfEvent]) { e };
+            }
+            else
+            {
+                Events.Add(dateOfEvent, new List<EventModel> { e });
+            }
+        }
+
+        public void Add(IEnumerable<EventModel> eventList)
+        {
+            foreach (var e in eventList)
+            {
+                Add(e);
+            }
         }
 
         #region 绑定命令

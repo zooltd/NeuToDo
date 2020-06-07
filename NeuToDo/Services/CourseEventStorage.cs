@@ -11,6 +11,8 @@ namespace NeuToDo.Services
     {
         private SQLiteAsyncConnection _connection = null;
 
+        public SQLiteAsyncConnection Connection => _connection ?? (_connection = new SQLiteAsyncConnection(DbPath));
+
         private const string DbName = "events.sqlite3";
 
         private static readonly string DbPath = Path.Combine(
@@ -19,29 +21,28 @@ namespace NeuToDo.Services
 
         public async Task CreateDatabase()
         {
-            _connection = new SQLiteAsyncConnection(DbPath);
-            await _connection.CreateTableAsync<CourseEventModel>();
+            await Connection.CreateTableAsync<CourseEventModel>();
         }
-
 
         public async Task ClearDatabase()
         {
-            await _connection.DeleteAllAsync<CourseEventModel>();
+            await Connection.DeleteAllAsync<CourseEventModel>();
         }
 
         public async Task Insert(EventModel e)
         {
-            await _connection.InsertAsync(e);
+            await Connection.InsertAsync(e);
         }
 
         public async Task InsertAll(IList<EventModel> eventList)
         {
-            await _connection.InsertAllAsync(eventList);
+            await Connection.InsertAllAsync(eventList);
         }
 
-        public bool IsInitialized()
+        public async Task<List<EventModel>> GetAll()
         {
-            throw new NotImplementedException();
+            var temp = await Connection.Table<CourseEventModel>().ToListAsync();
+            return temp.ConvertAll(x => (EventModel) x);
         }
     }
 }

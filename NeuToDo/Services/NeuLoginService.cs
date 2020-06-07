@@ -20,8 +20,10 @@ namespace NeuToDo.Services
                 await getter.WebCrawler();
                 await StorageService.CreateDatabase();
                 await StorageService.ClearDatabase();
-                await StorageService.InsertAll(NeuSyllabusGetter.EventList.ConvertAll(x => (EventModel)x));
-
+                foreach (var courseEvent in NeuSyllabusGetter.EventList)
+                {
+                    await StorageService.Insert(courseEvent);
+                }
 
                 return true;
             }
