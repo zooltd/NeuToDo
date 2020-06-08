@@ -15,7 +15,7 @@ namespace NeuToDo.Services
 
         private const string DbName = "events.sqlite3";
 
-        private static readonly string DbPath = Path.Combine(
+        public static readonly string DbPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbName);
 
 

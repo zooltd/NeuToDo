@@ -33,6 +33,9 @@ namespace NeuToDo.ViewModels
         {
             Title = "NEU To Do";
             //TODO 启动时加载数据
+            // StorageService.CreateDatabase();
+            // var task =  UpdateData();
+            // task.Wait();
         }
 
         private async Task UpdateData()
