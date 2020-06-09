@@ -21,7 +21,7 @@ namespace NeuToDo.Services
 
         private static int CurrWeekIndex { get; set; }
 
-        public static List<CourseEventModel> EventList;
+        public static List<EventModel> EventList;
 
         public NeuSyllabusGetter(string userName, string password)
         {
@@ -112,7 +112,7 @@ namespace NeuToDo.Services
         private static async Task GetCourseInfo()
         {
             // Syllabus = new Dictionary<string, Course>();
-            EventList = new List<CourseEventModel>();
+            EventList = new List<EventModel>();
 
             var res = await Client.GetAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
@@ -165,11 +165,11 @@ namespace NeuToDo.Services
                 foreach (var weekIndex in weekIndexes)
                 {
                     var offset = GetOffsetMinutes(firstClass);
-                    EventList.Add(new CourseEventModel
+                    EventList.Add(new EventModel
                     {
                         Title = courseName,
                         Detail = eventDetail,
-                        CourseId = courseId,
+                        Code = courseId,
                         Starting = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex)).AddMinutes(offset),
                         IsDone = false
                     });

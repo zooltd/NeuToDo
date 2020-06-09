@@ -17,5 +17,6 @@ namespace NeuToDo.Services
 
         Task<List<EventModel>> GetAll();
 
+        bool DbExist();
     }
 }

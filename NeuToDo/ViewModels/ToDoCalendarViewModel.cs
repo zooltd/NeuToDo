@@ -5,67 +5,67 @@ using NeuToDo.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Data;
+using System.Threading;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
 {
     public class ToDoCalendarViewModel : ViewModelBase
     {
-        // private IxxxService _xxxService;
-        //
-        // public ToDoCalendarViewModel(IxxxService xxxService) {
-        //     _xxxService = xxxService;
-        //     _xxxService.GotData += (sender, args) => {
-        //         _xxxService.GetData();
-        //     };
-        // }
-
-
         /// <remarks>
         /// 注意有坑 Events无法添加多个属于一天的DataTime
+        /// 赋值操作无法触发Notify
         /// </remarks>
         public EventCollection Events { get; set; } = new EventCollection();
 
-        public IEventStorage StorageService { get; private set; } = new CourseEventStorage();
+        public IUpdateCalendar UpdateCalendar { get; private set; } = new UpdateCalendar();
 
+        /// <remarks>
+        /// Events赋值操作阻塞，会影响UI渲染线程，造成死锁？ 😟 × 赋值操作无法触发Notify
+        /// </remarks>
+        // [PreferredConstructor]
+        // public ToDoCalendarViewModel()
+        // {
+        //     Title = "NEU To Do";
+        //     Task.Run((async () => { Events = await UpdateCalendar.GetData() ?? new EventCollection(); }));
+        //     Console.WriteLine("hello");
+        // }
+
+        //TODO SQLite需配置 时间+12:00
         public ToDoCalendarViewModel()
         {
             Title = "NEU To Do";
-            //TODO 启动时加载数据
-            // StorageService.CreateDatabase();
-            // var task =  UpdateData();
-            // task.Wait();
-        }
-
-        private async Task UpdateData()
-        {
-            var eventList = await StorageService.GetAll();
-            Add(eventList);
-        }
-
-        public void Add(EventModel e)
-        {
-            var dateOfEvent = e.Starting.Date;
-            if (Events.ContainsKey(dateOfEvent))
+            Task.Run((async () =>
             {
-                Events[dateOfEvent] = new ArrayList(Events[dateOfEvent]) {e};
-            }
-            else
-            {
-                Events.Add(dateOfEvent, new List<EventModel> {e});
-            }
-        }
-
-        public void Add(IEnumerable<EventModel> eventList)
-        {
-            foreach (var e in eventList)
-            {
-                Add(e);
-            }
+                var temp = await UpdateCalendar.GetData() ?? new EventCollection();
+                foreach (var pair in temp)
+                {
+                    Events.Add(pair.Key, pair.Value);
+                }
+            }));
         }
 
         #region 绑定命令
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private RelayCommand _updateCommand;
+
+        public RelayCommand UpdateCommand =>
+            _updateCommand ?? (_updateCommand = new RelayCommand((async () =>
+            {
+                var temp = await UpdateCalendar.GetData() ?? new EventCollection();
+                foreach (var VARIABLE in temp)
+                {
+                    Events.Add(VARIABLE.Key, VARIABLE.Value);
+                }
+
+                Console.WriteLine("debug");
+            })));
 
         private RelayCommand _todayCommand;
 
@@ -118,92 +118,5 @@ namespace NeuToDo.ViewModels
         }
 
         #endregion
-
-        // public void UpdateEvents()
-        // {
-        //     var date = DateTime.Today;
-        //     var currentDay = date.DayOfWeek;
-        //     var currentWeek = NeuSyllabusGetter.TeachingTime.TeachingWeek;
-        //     var syllabus = NeuSyllabusGetter.Syllabus;
-        //     foreach (var course in syllabus.Values)
-        //     {
-        //         var courseSchedule = course.Schedule;
-        //         foreach (var day in courseSchedule.Keys)
-        //         {
-        //             var weekIndexes = FindAllIndexes(courseSchedule[day].Weeks, '1');
-        //             var daySpan = (int)day - (int)currentDay;
-        //             foreach (var weekIndex in weekIndexes)
-        //             {
-        //                 //weekIndex: 第weekIndex周
-        //                 var offsetWeek = weekIndex - currentWeek;
-        //                 var offsetDay = offsetWeek * 7 + daySpan;
-        //                 var d = DateTime.Today.AddDays(offsetDay);
-        //                 var startingTime = GetStartingTime(d, courseSchedule[day].ClassTime.ToString());
-        //                 if (Events.ContainsKey(d))
-        //                 {
-        //                     Events[d] = new ArrayList(Events[d])
-        //                     {
-        //                         new EventModel()
-        //                         {
-        //                             Title = course.CourseName,
-        //                             Detail = courseSchedule[day].ClassTime.ToString() + "," + course.RoomName +
-        //                                           "," + course.TeacherList[0].TeacherName,
-        //                             Starting = startingTime
-        //                         }
-        //                     };
-        //                 }
-        //                 else
-        //                 {
-        //                     Events.Add(d, new List<EventModel>()
-        //                     {
-        //                         new EventModel()
-        //                         {
-        //                             Title = course.CourseName,
-        //                             Detail = courseSchedule[day].ClassTime.ToString() + " " + course.RoomName +
-        //                                           "," + course.TeacherList[0].TeacherName,
-        //                             Starting = startingTime
-        //                         }
-        //                     });
-        //                 }
-        //             }
-        //         }
-        //     }
-        // }
-
-        // private static IEnumerable<int> FindAllIndexes(string source, char key)
-        // {
-        //     var i = source.IndexOf(key);
-        //     var indexes = new List<int>();
-        //     while (i != -1)
-        //     {
-        //         indexes.Add(i);
-        //         i = source.IndexOf(key, i + 1);
-        //     }
-        //
-        //     return indexes;
-        // }
-        //
-        // private static DateTime GetStartingTime(DateTime date, string classTime)
-        // {
-        //     if (classTime.Contains("First"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 8, 30, 0);
-        //
-        //     if (classTime.Contains("Third"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 10, 40, 0);
-        //
-        //     if (classTime.Contains("Fifth"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 14, 0, 0);
-        //
-        //     if (classTime.Contains("Seventh"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 16, 10, 0);
-        //
-        //     if (classTime.Contains("Ninth"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 18, 30, 0);
-        //
-        //     if (classTime.Contains("Eleventh"))
-        //         return new DateTime(date.Year, date.Month, date.Day, 20, 30, 0);
-        //
-        //     return new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
-        // }
     }
 }

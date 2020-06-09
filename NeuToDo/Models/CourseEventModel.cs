@@ -4,7 +4,10 @@ using SQLite;
 namespace NeuToDo.Models
 {
     /// <summary>
-    /// TODO 继承？  : EventModel
+    /// 已弃用
+    /// TODO 继承？
+    /// 继承的话会有近一倍的冗余
+    /// 不继承的话拓展性差
     /// </summary>
     [SQLite.Table("courses")]
     public class CourseEventModel : EventModel
@@ -28,7 +31,7 @@ namespace NeuToDo.Models
         [SQLite.Column("is_done")]
         public new bool IsDone { get; set; }
 
-        [SQLite.Column("course_id")]
-        public string CourseId { get; set; }
+        [SQLite.Column("code")]
+        public new string Code { get; set; }
     }
 }

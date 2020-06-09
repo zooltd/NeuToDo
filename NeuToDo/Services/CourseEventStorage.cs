@@ -15,18 +15,20 @@ namespace NeuToDo.Services
 
         private const string DbName = "events.sqlite3";
 
+        private const string TableName = "courses";
+
         public static readonly string DbPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbName);
 
 
         public async Task CreateDatabase()
         {
-            await Connection.CreateTableAsync<CourseEventModel>();
+            await Connection.CreateTableAsync<EventModel>();
         }
 
         public async Task ClearDatabase()
         {
-            await Connection.DeleteAllAsync<CourseEventModel>();
+            await Connection.DeleteAllAsync<EventModel>();
         }
 
         public async Task Insert(EventModel e)
@@ -39,10 +41,17 @@ namespace NeuToDo.Services
             await Connection.InsertAllAsync(eventList);
         }
 
-        public async Task<List<EventModel>> GetAll()
+        public async Task<List<EventModel>> GetAll() => await Connection.Table<EventModel>().ToListAsync();
+
+        /// <summary>
+        /// TODO Table Exist?
+        /// </summary>
+        /// <returns></returns>
+        public bool DbExist()
         {
-            var temp = await Connection.Table<CourseEventModel>().ToListAsync();
-            return temp.ConvertAll(x => (EventModel) x);
+            // var tableExistsQuery = $"SELECT name FROM sqlite_master WHERE type='table' AND name='{TableName}';";
+
+            return File.Exists(DbPath);
         }
     }
 }
