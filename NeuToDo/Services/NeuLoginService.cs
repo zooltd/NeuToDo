@@ -7,7 +7,13 @@ namespace NeuToDo.Services
 {
     public class NeuLoginService : ILoginService
     {
-        public IEventStorage StorageService { get; private set; } = new CourseEventStorage();
+        private readonly IEventModelStorage<NeuEventModel> _eventModelStorage;
+
+        public NeuLoginService(IEventModelStorageProvider eventModelStorageProvider)
+        {
+            _eventModelStorage = eventModelStorageProvider.GetNeuEventModelStorage();
+        }
+        // public IEventStorage StorageService { get; private set; } = new CourseEventStorage();
 
         public event EventHandler UpdateData;
 
@@ -18,12 +24,9 @@ namespace NeuToDo.Services
             try
             {
                 await getter.WebCrawler();
-                await StorageService.CreateDatabase();
-                await StorageService.ClearDatabase();
-                foreach (var courseEvent in NeuSyllabusGetter.EventList)
-                {
-                    await StorageService.Insert(courseEvent);
-                }
+                await _eventModelStorage.CreateTableAsync();
+                await _eventModelStorage.ClearTableAsync();
+                await _eventModelStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
 
                 return true;
             }

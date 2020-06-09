@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace NeuToDo.Views.Popup
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginErrorPopupPage : PopupPage
+    public partial class ErrorPopupPage : PopupPage
     {
-        public LoginErrorPopupPage()
+        public ErrorPopupPage()
         {
             InitializeComponent();
         }

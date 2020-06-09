@@ -1,4 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using NeuToDo.Services;
 
 namespace NeuToDo.Models.SettingsModels
 {
@@ -60,14 +62,12 @@ namespace NeuToDo.Models.SettingsModels
             set => Set(nameof(ServerType), ref _serverType, value);
         }
 
-    }
+        private string _picUrl;
 
-    public enum ServerType
-    {
-        Neu,
-        Mooc,
-        Blackboard,
-        WebDav,
-        Github
+        public string PicUrl
+        {
+            get => _picUrl;
+            set => Set(nameof(PicUrl), ref _picUrl, value);
+        }
     }
 }

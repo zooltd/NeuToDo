@@ -7,7 +7,7 @@
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SettingsPage"
              BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="{Binding Title}">
+             Title="Neu To Do">
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding TestCommand}" Text="Test" />
@@ -51,7 +51,7 @@
                             Grid.Column="1"
                             Text="{Binding Button1Text}"
                             Command="{Binding Path = BindingContext.Command1, Source={x:Reference CollectionView}}"
-                            CommandParameter="{Binding ServerType}" />
+                            CommandParameter="{Binding}" />
                     <Button Grid.Row="0"
                             Grid.Column="2"
                             Text="{Binding Button2Text}"

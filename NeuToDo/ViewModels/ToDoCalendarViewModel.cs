@@ -19,9 +19,9 @@ namespace NeuToDo.ViewModels
         /// 注意有坑 Events无法添加多个属于一天的DataTime
         /// 赋值操作无法触发Notify
         /// </remarks>
-        public EventCollection Events { get; set; } = new EventCollection();
+        public EventCollection Events { get; private set; } = new EventCollection();
 
-        public IUpdateCalendar UpdateCalendar { get; private set; } = new UpdateCalendar();
+        // public IUpdateCalendar UpdateCalendar { get; private set; } = new UpdateCalendar();
 
         /// <remarks>
         /// Events赋值操作阻塞，会影响UI渲染线程，造成死锁？ 😟 × 赋值操作无法触发Notify
@@ -34,38 +34,20 @@ namespace NeuToDo.ViewModels
         //     Console.WriteLine("hello");
         // }
 
-        //TODO SQLite需配置 时间+12:00
+        //TODO  时间+12:00
         public ToDoCalendarViewModel()
         {
-            Title = "NEU To Do";
-            Task.Run((async () =>
-            {
-                var temp = await UpdateCalendar.GetData() ?? new EventCollection();
-                foreach (var pair in temp)
-                {
-                    Events.Add(pair.Key, pair.Value);
-                }
-            }));
         }
 
         #region 绑定命令
 
         /// <summary>
-        /// 
+        /// test
         /// </summary>
         private RelayCommand _updateCommand;
 
         public RelayCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new RelayCommand((async () =>
-            {
-                var temp = await UpdateCalendar.GetData() ?? new EventCollection();
-                foreach (var VARIABLE in temp)
-                {
-                    Events.Add(VARIABLE.Key, VARIABLE.Value);
-                }
-
-                Console.WriteLine("debug");
-            })));
+            _updateCommand ?? (_updateCommand = new RelayCommand(() => { }));
 
         private RelayCommand _todayCommand;
 
@@ -92,14 +74,6 @@ namespace NeuToDo.ViewModels
         #endregion
 
         #region 绑定属性
-
-        private string _title = string.Empty;
-
-        public string Title
-        {
-            get => _title;
-            set => Set(nameof(Title), ref _title, value);
-        }
 
         private DateTime _selectedDate = DateTime.Today;
 

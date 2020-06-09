@@ -28,8 +28,14 @@
     <Compile Update="Views\Popup\LoadingPopupPage.xaml.cs">
       <DependentUpon>a</DependentUpon>
     </Compile>
+    <Compile Update="Views\Popup\ErrorPopupPage.xaml.cs">
+      <DependentUpon>ErrorPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Popup\LoginPopupPage.xaml.cs">
       <DependentUpon>LoginPopupPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\Popup\SuccessPopupPage.xaml.cs">
+      <DependentUpon>SuccessPopupPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 
@@ -43,13 +49,13 @@
     <EmbeddedResource Update="Components\CalenderEvent.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\LoginErrorPopupPage.xaml">
+    <EmbeddedResource Update="Views\Popup\ErrorPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\LoginPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\Popup\LoginSuccessPopupPage.xaml">
+    <EmbeddedResource Update="Views\Popup\SuccessPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\SettingsPage.xaml">

@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
+using NeuToDo.Services;
 
 namespace NeuToDo.ViewModels
 {
@@ -18,6 +19,9 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<ToDoCalendarViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<INavigationService, NavigationService>();
+            SimpleIoc.Default.Register<IPageActivationService, PageActivationService>();
+            SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
         }
     }
 }

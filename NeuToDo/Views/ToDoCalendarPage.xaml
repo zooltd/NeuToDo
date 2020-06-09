@@ -9,7 +9,7 @@
              xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
              BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="{Binding Title}">
+             Title="Neu To Do">
 
 
     <ContentPage.ToolbarItems>
@@ -53,7 +53,7 @@
         <calendar:Calendar.EmptyTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Label Text="NO EVENTS FOR THE SELECTED DATE" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
+                    <Label Text="今日无事" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
                 </StackLayout>
             </DataTemplate>
         </calendar:Calendar.EmptyTemplate>

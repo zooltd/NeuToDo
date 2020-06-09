@@ -4,9 +4,9 @@ using Xamarin.Forms.Xaml;
 namespace NeuToDo.Views.Popup
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LoginSuccessPopupPage : PopupPage
+    public partial class SuccessPopupPage : PopupPage
     {
-        public LoginSuccessPopupPage()
+        public SuccessPopupPage()
         {
             InitializeComponent();
         }
