@@ -16,7 +16,7 @@ namespace NeuToDo.Models {
         public string Detail { get; set; }
 
         [SQLite.Column("starting")] 
-        public DateTime Starting { get; set; }
+        public DateTimeOffset Starting { get; set; }
 
         /// <summary>
         /// 是否已完成

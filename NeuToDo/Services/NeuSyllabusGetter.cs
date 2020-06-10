@@ -84,7 +84,7 @@ namespace NeuToDo.Services
 
             const string studentInfoPattern = "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
             var studentInfoList = Regex.Match(responseBody, studentInfoPattern).Groups[1].Value
-                .Split(new char[] { '(', ')' });
+                .Split(new char[] {'(', ')'});
 
             // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
 
@@ -159,17 +159,18 @@ namespace NeuToDo.Services
                 var classTimeStr = classTime.classTimeStr;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
-                var baseDate = currDate.AddDays((int)day - (int)currDate.DayOfWeek); //本周星期day的日期
+                var baseDate = currDate.AddDays((int) day - (int) currDate.DayOfWeek); //本周星期day的日期
 
                 foreach (var weekIndex in weekIndexes)
                 {
                     var offset = GetOffsetMinutes(firstClass);
+                    var localTime = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex) + 1).AddMinutes(offset);
                     EventList.Add(new NeuEventModel
                     {
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
-                        Starting = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex)).AddMinutes(offset),
+                        Starting = new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime)),
                         IsDone = false
                     });
                 }
@@ -228,7 +229,7 @@ namespace NeuToDo.Services
         {
             const string timeTablePattern = "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
-            DayOfWeek day = (DayOfWeek)(int.Parse(segments[0].Groups[1].Value) + 1);
+            DayOfWeek day = (DayOfWeek) (int.Parse(segments[0].Groups[1].Value) + 1);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;
