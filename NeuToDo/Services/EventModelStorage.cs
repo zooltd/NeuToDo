@@ -7,7 +7,7 @@ using SQLite;
 
 namespace NeuToDo.Services
 {
-    public class NewEventModelStorage<T> : IEventModelStorage<T> where T : EventModel, new()
+    public class EventModelStorage<T> : IEventModelStorage<T> where T : EventModel, new()
     {
         private SQLiteAsyncConnection _connection;
 

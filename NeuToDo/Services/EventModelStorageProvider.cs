@@ -4,6 +4,6 @@ namespace NeuToDo.Services
 {
     public class EventModelStorageProvider : IEventModelStorageProvider
     {
-        public IEventModelStorage<NeuEventModel> GetNeuEventModelStorage() => new NewEventModelStorage<NeuEventModel>();
+        public IEventModelStorage<NeuEventModel> GetNeuEventModelStorage() => new EventModelStorage<NeuEventModel>();
     }
 }
