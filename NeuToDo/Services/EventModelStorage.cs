@@ -6,7 +6,7 @@ using NeuToDo.Models;
 using SQLite;
 
 namespace NeuToDo.Services
-{
+{ //TODO 单例
     public class EventModelStorage<T> : IEventModelStorage<T> where T : EventModel, new()
     {
         private SQLiteAsyncConnection _connection;
@@ -39,5 +39,7 @@ namespace NeuToDo.Services
         }
 
         public async Task<IList<T>> GetAllAsync() => await Connection.Table<T>().ToListAsync();
+
+        public async Task CloseAsync() => await Connection.CloseAsync();
     }
 }

@@ -15,5 +15,7 @@ namespace NeuToDo.Services
         Task ClearTableAsync();
 
         Task<IList<T>> GetAllAsync();
+
+        Task CloseAsync();
     }
 }
