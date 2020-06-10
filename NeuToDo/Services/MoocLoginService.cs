@@ -4,7 +4,7 @@ namespace NeuToDo.Services
 {
     public class MoocLoginService : ILoginService
     {
-        public async Task<bool> LoginTask(string userId, string password)
+        public async Task<bool> LoginAndFetchDataAsync(string userId, string password)
         {
             throw new System.NotImplementedException();
         }

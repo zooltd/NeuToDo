@@ -55,16 +55,26 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand OnLogin => _onLogin ?? (_onLogin = new RelayCommand((async () =>
         {
-            await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.LoginPopupPage);
+            await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
             switch (SettingItem.ServerType)
             {
                 case ServerType.Neu:
                     _loginService = new NeuLoginService(_eventModelStorageProvider);
                     break;
+                case ServerType.Mooc:
+                    break;
+                case ServerType.Blackboard:
+                    break;
+                case ServerType.WebDav:
+                    break;
+                case ServerType.Github:
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            var res = await _loginService.LoginTask(UserName, Password);
+            var res = await _loginService.LoginAndFetchDataAsync(UserName, Password);
 
             if (res)
             {

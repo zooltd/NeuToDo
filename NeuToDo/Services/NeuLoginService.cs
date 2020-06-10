@@ -13,13 +13,11 @@ namespace NeuToDo.Services
         {
             _eventModelStorage = eventModelStorageProvider.GetNeuEventModelStorage();
         }
-        // public IEventStorage StorageService { get; private set; } = new CourseEventStorage();
 
         public event EventHandler UpdateData;
 
-        public async Task<bool> LoginTask(string userId, string password)
+        public async Task<bool> LoginAndFetchDataAsync(string userId, string password)
         {
-            //ToDO do something
             var getter = new NeuSyllabusGetter(userId, password);
             try
             {

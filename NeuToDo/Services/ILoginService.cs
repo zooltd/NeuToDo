@@ -4,7 +4,7 @@ namespace NeuToDo.Services
 {
     public interface ILoginService
     {
-        Task<bool> LoginTask(string userId, string password);
+        Task<bool> LoginAndFetchDataAsync(string userId, string password);
 
     }
 }
