@@ -10,7 +10,7 @@ using NeuToDo.Models;
 using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
-{
+{ //TODO FIXME 不显示图片
     public class LoginViewModel : ViewModelBase
     {
         private ILoginService _loginService;
@@ -24,30 +24,7 @@ namespace NeuToDo.ViewModels
         {
             _navigationService = navigationService;
             _eventModelStorageProvider = eventModelStorageProvider;
-            // FetchSecureStorage();
-            // SetProperties(Type);
         }
-        //
-        // private void FetchSecureStorage()
-        // {
-        //     var getUserName = TryGetUserName();
-        //     getUserName.Wait();
-        //     var getPassword = TryGetPassword();
-        //     getPassword.Wait();
-        // }
-
-        // private async Task UpdateSecureStorage()
-        // {
-        //     try
-        //     {
-        //         await SecureStorage.SetAsync(_type + "Id", UserName);
-        //         await SecureStorage.SetAsync(_type + "Pd", Password);
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         //ignored
-        //     }
-        // }
 
         #region 绑定方法
 
@@ -79,7 +56,7 @@ namespace NeuToDo.ViewModels
             if (res)
             {
                 await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.SuccessPopupPage);
-                // await UpdateSecureStorage();
+                await UpdateSecureStorage();
             }
             else
             {
@@ -103,7 +80,11 @@ namespace NeuToDo.ViewModels
             set
             {
                 Set(nameof(Type), ref _settingItem, value);
-                Console.WriteLine("debug");
+                if (SettingItem == null) return;
+                var t1 = TryGetUserNameAsync(SettingItem.ServerType + "Id");
+                var t2 = TryGetPasswordAsync(SettingItem.ServerType + "Pd");
+                t1.Wait();
+                t2.Wait();
             }
         }
 
@@ -125,30 +106,44 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        // private async Task TryGetUserName()
-        // {
-        //     try
-        //     {
-        //         UserName = await SecureStorage.GetAsync(_type + "Id");
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         // ignored
-        //         UserName = string.Empty;
-        //     }
-        // }
+        private async Task TryGetUserNameAsync(string key)
+        {
+            try
+            {
+                UserName = await SecureStorage.GetAsync(key);
+            }
+            catch (Exception e)
+            {
+                // ignored
+                UserName = string.Empty;
+            }
+        }
+
         //
-        // private async Task TryGetPassword()
-        // {
-        //     try
-        //     {
-        //         Password = await SecureStorage.GetAsync(_type + "Pd");
-        //     }
-        //     catch (Exception e)
-        //     {
-        //         // ignored
-        //         Password = string.Empty;
-        //     }
-        // }
+        private async Task TryGetPasswordAsync(string key)
+        {
+            try
+            {
+                Password = await SecureStorage.GetAsync(key);
+            }
+            catch (Exception e)
+            {
+                // ignored
+                Password = string.Empty;
+            }
+        }
+
+        private async Task UpdateSecureStorage()
+        {
+            try
+            {
+                await SecureStorage.SetAsync(SettingItem.ServerType + "Id", UserName);
+                await SecureStorage.SetAsync(SettingItem.ServerType + "Pd", Password);
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+        }
     }
 }

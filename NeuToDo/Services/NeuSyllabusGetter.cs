@@ -157,7 +157,6 @@ namespace NeuToDo.Services
                 var day = classTime.day;
                 var firstClass = classTime.firstClass;
                 var classTimeStr = classTime.classTimeStr;
-                // string eventTitle = courseName;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
                 var baseDate = currDate.AddDays((int)day - (int)currDate.DayOfWeek); //本周星期day的日期
@@ -252,99 +251,5 @@ namespace NeuToDo.Services
             classTimeStr += lastClassIndex;
             return (day, firstClass, classTimeStr);
         }
-
-
-        // private static async Task GetCourseInfo()
-        // {
-        //     Syllabus = new Dictionary<string, Course>();
-        //
-        //     var res = await Client.GetAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
-        //     res.EnsureSuccessStatusCode();
-        //     var responseBody = await res.Content.ReadAsStringAsync();
-        //     var id = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToArray()[0].Split(';')[0]
-        //         .Split('=')[1];
-        //
-        //     const string idsPattern =
-        //         "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
-        //     var ids = Regex.Match(responseBody, idsPattern).Groups[1].Value;
-        //
-        //     var formData = new Dictionary<string, string>
-        //     {
-        //         {"ignoreHead", "1"}, {"showPrintAndExport", "1"}, {"setting.kind", "std"},
-        //         {"startWeek", string.Empty}, {"semester.id", id.ToString()}, {"ids", ids}
-        //     };
-        //
-        //     res = await Client.PostAsync(
-        //         "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd!courseTable.action",
-        //         new FormUrlEncodedContent(formData));
-        //     res.EnsureSuccessStatusCode();
-        //     responseBody = await res.Content.ReadAsStringAsync();
-        //     // await File.WriteAllTextAsync(".\\courseTable.html", responseBody);
-        //
-        //     const string textSplitPattern =
-        //         "(var teachers =[\\s\\S]*?;)[\\s\\S]*?TaskActivity\\(actTeacherId.join\\(','\\),actTeacherName.join\\(','\\),\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",null,null,assistantName,\"\",\"\"\\);((?:\\s*index =\\d+\\*unitCount\\+\\d+;\\s*.*\\s)*)";
-        //     const string teacherInfoPattern = "{id:([\\d]*),name:\\\"([\\s\\S]*?)\\\",lab:([\\w]*)}";
-        //     const string timeTablePattern = "index =(\\d)\\*unitCount\\+([\\d]+);";
-        //
-        //     foreach (Match textSegment in Regex.Matches(responseBody, textSplitPattern))
-        //     {
-        //         Course course;
-        //         var courseExist = false;
-        //         var textSegmentGroups = textSegment.Groups;
-        //         string teacherInfo = textSegmentGroups[1].Value;
-        //         string courseId = textSegmentGroups[2].Value.Split(new char[] {'(', ')'})[1];
-        //
-        //         if (Syllabus.ContainsKey(courseId))
-        //         {
-        //             course = Syllabus[courseId];
-        //             courseExist = true;
-        //         }
-        //         else
-        //         {
-        //             course = new Course()
-        //             {
-        //                 CourseId = courseId,
-        //                 CourseName = textSegmentGroups[3].Value.Split(new[] {'(', ')'})[0],
-        //                 RoomId = textSegmentGroups[4].Value,
-        //                 RoomName = textSegmentGroups[5].Value,
-        //                 TeacherList = new List<Teacher>(),
-        //                 Schedule = new Dictionary<DayOfWeek, DaySchedule>()
-        //             };
-        //         }
-        //
-        //         if (!courseExist)
-        //         {
-        //             foreach (Match teacherInfoSegment in Regex.Matches(teacherInfo, teacherInfoPattern))
-        //             {
-        //                 var teacherInfoSegmentGroups = teacherInfoSegment.Groups;
-        //                 course.TeacherList.Add(new Teacher()
-        //                 {
-        //                     IsLab = teacherInfoSegmentGroups[3].Value == "true",
-        //                     TeacherId = teacherInfoSegmentGroups[1].Value,
-        //                     TeacherName = teacherInfoSegmentGroups[2].Value
-        //                 });
-        //             }
-        //         }
-        //
-        //         string weeks = textSegmentGroups[6].Value;
-        //         string timeTable = textSegmentGroups[7].Value;
-        //         var lessonOfDay = ClassTime.None;
-        //         var day = DayOfWeek.Sunday; //DayOfWeek.None
-        //
-        //         foreach (Match timeTableSegment in Regex.Matches(timeTable, timeTablePattern))
-        //         {
-        //             var timeTableSegmentGroups = timeTableSegment.Groups;
-        //
-        //             day = (DayOfWeek) (int.Parse(timeTableSegmentGroups[1].Value) + 1);
-        //
-        //             var lessonNo = (ClassTime) (1 << int.Parse(timeTableSegmentGroups[2].Value));
-        //             lessonOfDay |= lessonNo;
-        //         }
-        //
-        //         course.Schedule[day] = new DaySchedule()
-        //             {ClassTime = lessonOfDay, Weeks = weeks};
-        //         Syllabus[courseId] = course;
-        //     }
-        // }
     }
 }

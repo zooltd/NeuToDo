@@ -12,8 +12,7 @@
                  BackgroundColor="Transparent"
                  BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
                  services:NavigationContext.NavigationParameter="{Binding SettingItem}">
-    <!-- TODO 加了BindingContext  UWP中无法正常显示-->
-    <!--TODO 不显示图片-->
+
     <popup:PopupPage.Resources>
         <ResourceDictionary>
             <Style x:Key="EntryStyle" TargetType="Entry">
@@ -49,6 +48,7 @@
                            HeightRequest="150"
                            WidthRequest="150"
                            Source="{Binding SettingItem.PicUrl}">
+
                         <!-- <Image.Source> -->
                         <!--     <OnPlatform -->
                         <!--         x:TypeArguments="ImageSource" -->
@@ -57,6 +57,8 @@
                         <!--         WinPhone="Assets/github_octocat.png" /> -->
                         <!-- </Image.Source> -->
                     </Image>
+
+                    <Label Text="{Binding SettingItem.Name}" />
                     <Entry Text="{Binding UserName}"
                            HorizontalOptions="Center"
                            x:Name="UsernameEntry"
@@ -74,9 +76,9 @@
                             x:Name="LoginButton"
                             Text="Login"
                             Command="{Binding OnLogin}">
-                        <Button.HeightRequest>
-                            <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="30" />
-                        </Button.HeightRequest>
+                        <!-- <Button.HeightRequest> -->
+                        <!--     <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="30" /> -->
+                        <!-- </Button.HeightRequest> -->
                     </Button>
                 </StackLayout>
             </Frame>

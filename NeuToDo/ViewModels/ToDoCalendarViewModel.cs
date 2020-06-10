@@ -6,9 +6,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
+using Xamarin.Forms.Internals;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -16,10 +18,12 @@ namespace NeuToDo.ViewModels
     public class ToDoCalendarViewModel : ViewModelBase
     {
         /// <remarks>
-        /// 注意有坑 Events无法添加多个属于一天的DataTime
+        /// 注意有坑 Events无法添加多个属于一天的DateTime
         /// 赋值操作无法触发Notify
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
+
+        private readonly IEventModelStorage<NeuEventModel> _eventModelStorage;
 
         // public IUpdateCalendar UpdateCalendar { get; private set; } = new UpdateCalendar();
 
@@ -35,11 +39,36 @@ namespace NeuToDo.ViewModels
         // }
 
         //TODO  时间+12:00
-        public ToDoCalendarViewModel()
+        public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
+            _eventModelStorage = eventModelStorageProvider.GetNeuEventModelStorage();
         }
 
         #region 绑定命令
+
+        private RelayCommand _pageAppearingCommand;
+
+        public RelayCommand PageAppearingCommand
+            => _pageAppearingCommand ?? (_pageAppearingCommand = new RelayCommand(async () =>
+                await PageAppearingCommandFunction()));
+
+        //TODO 需要检查是否已有DateTime
+        private async Task PageAppearingCommandFunction()
+        {
+            try
+            {
+                var eventList = await _eventModelStorage.GetAllAsync();
+                var eventDict = eventList.GroupBy(e => e.Starting.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in eventDict)
+                {
+                    Events.Add(pair.Key, pair.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+        }
 
         /// <summary>
         /// test
