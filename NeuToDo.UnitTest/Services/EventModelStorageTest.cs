@@ -6,6 +6,7 @@ using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.UnitTest.Helpers;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace NeuToDo.UnitTest.Services
 {
@@ -14,23 +15,23 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile() => EventModelStorageHelper.RemoveDatabaseFile();
 
+
         [Test]
         public async Task TestCreateTableAsync()
         {
             Assert.IsFalse(File.Exists(EventModelStorageHelper.DbPath));
 
-            var neuEventModelStorage = new EventModelStorage<NeuEventModel>();
-            await neuEventModelStorage.CreateTableAsync();
-            await neuEventModelStorage.CloseAsync();
-
+            var neuEventModelStorage =
+                await EventModelStorageHelper.StorageProvider.GetDatabaseConnection<NeuEventModel>();
             Assert.IsTrue(File.Exists(EventModelStorageHelper.DbPath));
+            await neuEventModelStorage.CloseAsync();
         }
 
         [Test]
         public async Task TestCrud()
         {
-            var neuEventModelStorage = new EventModelStorage<NeuEventModel>();
-            await neuEventModelStorage.CreateTableAsync();
+            var neuEventModelStorage =
+                await EventModelStorageHelper.StorageProvider.GetDatabaseConnection<NeuEventModel>();
             var eventList = new List<NeuEventModel>
             {
                 new NeuEventModel

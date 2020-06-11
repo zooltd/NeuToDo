@@ -19,7 +19,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<ToDoCalendarViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
-            SimpleIoc.Default.Register<INavigationService, NavigationService>();
+            SimpleIoc.Default.Register<IContentNavigationService, ContentNavigationService>();
             SimpleIoc.Default.Register<IPageActivationService, PageActivationService>();
             SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
         }

@@ -7,11 +7,9 @@ namespace NeuToDo.UnitTest.Helpers
 {
     public class EventModelStorageHelper
     {
-        public static readonly string DbPath = EventModelStorage<NeuEventModel>.DbPath;
+        public static readonly string DbPath = EventModelStorageProvider.DbPath;
 
-        private static IEventModelStorageProvider _storageProvider = new EventModelStorageProvider();
-
-        public static IEventModelStorage<NeuEventModel> GetNeuEventModelStorage() => new EventModelStorage<NeuEventModel>();
+        public static readonly IEventModelStorageProvider StorageProvider = new EventModelStorageProvider();
 
         public static void RemoveDatabaseFile() => File.Delete(DbPath);
     }

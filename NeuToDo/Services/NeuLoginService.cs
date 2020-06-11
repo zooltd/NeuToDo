@@ -11,7 +11,9 @@ namespace NeuToDo.Services
 
         public NeuLoginService(IEventModelStorageProvider eventModelStorageProvider)
         {
-            _eventModelStorage = eventModelStorageProvider.GetNeuEventModelStorage();
+            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEventModel>();
+            task.Wait();
+            _eventModelStorage = task.Result;
         }
 
         public event EventHandler UpdateData;
@@ -22,7 +24,6 @@ namespace NeuToDo.Services
             try
             {
                 await getter.WebCrawler();
-                await _eventModelStorage.CreateTableAsync();
                 await _eventModelStorage.ClearTableAsync();
                 await _eventModelStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
 

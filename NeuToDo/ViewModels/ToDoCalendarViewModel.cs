@@ -41,7 +41,9 @@ namespace NeuToDo.ViewModels
         //TODO  时间+12:00
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
-            _eventModelStorage = eventModelStorageProvider.GetNeuEventModelStorage();
+            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEventModel>();
+            task.Wait();
+            _eventModelStorage = task.Result;
         }
 
         #region 绑定命令
@@ -49,8 +51,8 @@ namespace NeuToDo.ViewModels
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand
-            => _pageAppearingCommand ?? (_pageAppearingCommand = new RelayCommand(async () =>
-                await PageAppearingCommandFunction()));
+            => _pageAppearingCommand ??= new RelayCommand(async () =>
+                await PageAppearingCommandFunction());
 
         //TODO 需要检查是否已有DateTime
         private async Task PageAppearingCommandFunction()

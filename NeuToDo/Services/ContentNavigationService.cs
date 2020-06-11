@@ -6,7 +6,7 @@ using NeuToDo.Services;
 
 namespace NeuToDo.Services
 {
-    public class NavigationService : INavigationService
+    public class ContentNavigationService : IContentNavigationService
     {
         private MainPage _mainPage;
 
@@ -15,30 +15,21 @@ namespace NeuToDo.Services
 
         private readonly IPageActivationService _pageActivationService;
 
-        public NavigationService(IPageActivationService pageActivationService)
+        public ContentNavigationService(IPageActivationService pageActivationService)
         {
             _pageActivationService = pageActivationService;
         }
 
-        public async Task NavigateToContentPageAsync(string pageKey) =>
+        public async Task PushAsync(string pageKey)
+        {
             await MainPage.Navigation.PushAsync(_pageActivationService.ActivateContentPage(pageKey));
+        }
 
-
-        public async Task NavigateToPopupPageAsync(string pageKey) =>
-            await PopupNavigation.Instance.PushAsync(_pageActivationService.ActivatePopupPage(pageKey));
-
-        public async Task NavigateToContentPageAsync(string pageKey, object parameter)
+        public async Task PushAsync(string pageKey, object parameter)
         {
             var page = _pageActivationService.ActivateContentPage(pageKey);
             NavigationContext.SetParameter(page, parameter);
             await MainPage.Navigation.PushAsync(page);
-        }
-
-        public async Task NavigateToPopupPageAsync(string pageKey, object parameter)
-        {
-            var page = _pageActivationService.ActivatePopupPage(pageKey);
-            NavigationContext.SetParameter(page, parameter);
-            await PopupNavigation.Instance.PushAsync(page);
         }
     }
 }

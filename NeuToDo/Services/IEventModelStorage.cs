@@ -6,11 +6,9 @@ namespace NeuToDo.Services
 {
     public interface IEventModelStorage<T> where T : EventModel
     {
-        Task CreateTableAsync();
-
         Task InsertAsync(T t);
 
-        Task InsertAllAsync(IList<T> eventList);
+        Task InsertAllAsync(IEnumerable<T> eventList);
 
         Task ClearTableAsync();
 

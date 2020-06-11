@@ -10,11 +10,11 @@ namespace NeuToDo.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
-        private readonly INavigationService _navigationService;
+        private readonly IPopupNavigationService _popupNavigationService;
 
-        public SettingsViewModel(INavigationService navigationService)
+        public SettingsViewModel(IPopupNavigationService popupNavigationService)
         {
-            _navigationService = navigationService;
+            _popupNavigationService = popupNavigationService;
 
             Settings = new List<SettingItemGroup>
             {
@@ -79,7 +79,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand<SettingItem> Command1 =>
             _command1 ?? (_command1 = new RelayCommand<SettingItem>((item) =>
             {
-                _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.LoginPopupPage, item);
+                _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item);
             }));
 
         private RelayCommand _command2;

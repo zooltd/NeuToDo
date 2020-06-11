@@ -1,9 +1,10 @@
-﻿using NeuToDo.Models;
+﻿using System.Threading.Tasks;
+using NeuToDo.Models;
 
 namespace NeuToDo.Services
 {
     public interface IEventModelStorageProvider
     {
-        IEventModelStorage<NeuEventModel> GetNeuEventModelStorage();
+        Task<IEventModelStorage<T>> GetDatabaseConnection<T>() where T : EventModel, new();
     }
 }

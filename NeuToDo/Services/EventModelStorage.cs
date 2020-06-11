@@ -9,18 +9,11 @@ namespace NeuToDo.Services
 { //TODO 单例
     public class EventModelStorage<T> : IEventModelStorage<T> where T : EventModel, new()
     {
-        private SQLiteAsyncConnection _connection;
+        private readonly SQLiteAsyncConnection _connection;
 
-        private SQLiteAsyncConnection Connection => _connection ?? (_connection = new SQLiteAsyncConnection(DbPath));
-
-        private const string DbName = "events.sqlite3";
-
-        public static readonly string DbPath =
-            Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), DbName);
-
-        public async Task CreateTableAsync()
+        public EventModelStorage(SQLiteAsyncConnection connection)
         {
-            await Connection.CreateTableAsync<T>();
+            _connection = connection;
         }
 
         public async Task InsertAsync(T t)
@@ -28,18 +21,18 @@ namespace NeuToDo.Services
             await _connection.InsertAsync(t);
         }
 
-        public async Task InsertAllAsync(IList<T> eventList)
+        public async Task InsertAllAsync(IEnumerable<T> eventList)
         {
-            await Connection.InsertAllAsync(eventList);
+            await _connection.InsertAllAsync(eventList);
         }
 
         public async Task ClearTableAsync()
         {
-            await Connection.DeleteAllAsync<T>();
+            await _connection.DeleteAllAsync<T>();
         }
 
-        public async Task<IList<T>> GetAllAsync() => await Connection.Table<T>().ToListAsync();
+        public async Task<IList<T>> GetAllAsync() => await _connection.Table<T>().ToListAsync();
 
-        public async Task CloseAsync() => await Connection.CloseAsync();
+        public async Task CloseAsync() => await _connection.CloseAsync();
     }
 }

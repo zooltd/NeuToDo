@@ -2,39 +2,17 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NeuToDo.Views.Popup;
+using Rg.Plugins.Popup.Contracts;
 
 namespace NeuToDo.Services
 {
-    /// <summary>
-    /// 内容导航服务接口。
-    /// </summary>
-    public interface INavigationService
+    public interface IPopupNavigationService
     {
-        /// <summary>
-        /// 导航到页面。
-        /// </summary>
-        /// <param name="pageKey">页面键。</param>
-        Task NavigateToContentPageAsync(string pageKey);
+        Task PushAsync(string pageKey);
 
-        /// <summary>
-        /// 导航到弹出页。
-        /// </summary>
-        /// <param name="pageKey">页面键。</param>
-        Task NavigateToPopupPageAsync(string pageKey);
+        Task PushAsync(string pageKey, object parameter);
 
-        /// <summary>
-        /// 导航到页面。
-        /// </summary>
-        /// <param name="pageKey">页面键。</param>
-        /// <param name="parameter">参数。</param>
-        Task NavigateToContentPageAsync(string pageKey, object parameter);
-
-        /// <summary>
-        /// 导航到弹出页。
-        /// </summary>
-        /// <param name="pageKey">页面键。</param>
-        /// <param name="parameter">参数。</param>
-        Task NavigateToPopupPageAsync(string pageKey, object parameter);
+        Task PopAllAsync();
     }
 
     /// <summary>

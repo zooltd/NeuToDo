@@ -15,14 +15,14 @@ namespace NeuToDo.ViewModels
     {
         private ILoginService _loginService;
 
-        private readonly INavigationService _navigationService;
+        private readonly IPopupNavigationService _popupNavigationService;
 
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
-        public LoginViewModel(INavigationService navigationService,
+        public LoginViewModel(IPopupNavigationService popupNavigationService,
             IEventModelStorageProvider eventModelStorageProvider)
         {
-            _navigationService = navigationService;
+            _popupNavigationService = popupNavigationService;
             _eventModelStorageProvider = eventModelStorageProvider;
         }
 
@@ -32,7 +32,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand OnLogin => _onLogin ?? (_onLogin = new RelayCommand((async () =>
         {
-            await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.LoadingPopupPage);
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
             switch (SettingItem.ServerType)
             {
@@ -55,12 +55,12 @@ namespace NeuToDo.ViewModels
 
             if (res)
             {
-                await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
                 await UpdateSecureStorage();
             }
             else
             {
-                await _navigationService.NavigateToPopupPageAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.ErrorPopupPage);
             }
 
             await Task.Delay(1500);
