@@ -6,7 +6,7 @@ using NeuToDo.Models;
 using SQLite;
 
 namespace NeuToDo.Services
-{ //TODO 单例
+{
     public class EventModelStorage<T> : IEventModelStorage<T> where T : EventModel, new()
     {
         private readonly SQLiteAsyncConnection _connection;

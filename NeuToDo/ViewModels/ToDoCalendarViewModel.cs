@@ -25,20 +25,6 @@ namespace NeuToDo.ViewModels
 
         private readonly IEventModelStorage<NeuEventModel> _eventModelStorage;
 
-        // public IUpdateCalendar UpdateCalendar { get; private set; } = new UpdateCalendar();
-
-        /// <remarks>
-        /// Events赋值操作阻塞，会影响UI渲染线程，造成死锁？ 😟 × 赋值操作无法触发Notify
-        /// </remarks>
-        // [PreferredConstructor]
-        // public ToDoCalendarViewModel()
-        // {
-        //     Title = "NEU To Do";
-        //     Task.Run((async () => { Events = await UpdateCalendar.GetData() ?? new EventCollection(); }));
-        //     Console.WriteLine("hello");
-        // }
-
-        //TODO  时间+12:00
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
             var task = eventModelStorageProvider.GetDatabaseConnection<NeuEventModel>();
@@ -78,29 +64,27 @@ namespace NeuToDo.ViewModels
         private RelayCommand _updateCommand;
 
         public RelayCommand UpdateCommand =>
-            _updateCommand ?? (_updateCommand = new RelayCommand(() => { }));
+            _updateCommand ??= new RelayCommand(() => { });
 
         private RelayCommand _todayCommand;
 
         public RelayCommand TodayCommand =>
-            _todayCommand ?? (_todayCommand = new RelayCommand((() => { SelectedDate = DateTime.Today; })));
+            _todayCommand ??= new RelayCommand((() => { SelectedDate = DateTime.Today; }));
 
         private RelayCommand _swipeLeftCommand;
 
         public RelayCommand SwipeLeftCommand =>
-            _swipeLeftCommand ??
-            (_swipeLeftCommand = new RelayCommand((() => { MonthYear = MonthYear.AddMonths(2); })));
+            _swipeLeftCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(2); }));
 
         private RelayCommand _swipeRightCommand;
 
         public RelayCommand SwipeRightCommand =>
-            _swipeRightCommand ??
-            (_swipeRightCommand = new RelayCommand((() => { MonthYear = MonthYear.AddMonths(-2); })));
+            _swipeRightCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(-2); }));
 
         private RelayCommand _swipeUpCommand;
 
         public RelayCommand SwipeUpCommand =>
-            _swipeUpCommand ?? (_swipeUpCommand = new RelayCommand((() => { MonthYear = DateTime.Today; })));
+            _swipeUpCommand ??= new RelayCommand((() => { MonthYear = DateTime.Today; }));
 
         #endregion
 

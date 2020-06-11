@@ -5,9 +5,10 @@ using System.Threading.Tasks;
 using NeuToDo.Models;
 using SQLite;
 
-namespace NeuToDo.Services {
-    //TODO 存在用意
-    public class EventModelStorageProvider : IEventModelStorageProvider {
+namespace NeuToDo.Services
+{
+    public class EventModelStorageProvider : IEventModelStorageProvider
+    {
         public const string DbName = "events.sqlite3";
 
         public static readonly string DbPath = Path.Combine(
@@ -19,9 +20,11 @@ namespace NeuToDo.Services {
                 new SQLiteAsyncConnection(DbPath));
 
         public async Task<IEventModelStorage<T>> GetDatabaseConnection<T>()
-            where T : EventModel, new() {
+            where T : EventModel, new()
+        {
             if (_databaseConnection.Value.TableMappings.All(x =>
-                x.MappedType.Name != typeof(T).Name)) {
+                x.MappedType.Name != typeof(T).Name))
+            {
                 await _databaseConnection.Value
                     .CreateTablesAsync(CreateFlags.None, typeof(T))
                     .ConfigureAwait(false);

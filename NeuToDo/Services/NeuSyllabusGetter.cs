@@ -15,10 +15,6 @@ namespace NeuToDo.Services
 
         private readonly string _password;
 
-        // public static User User { get; set; }
-        // public static TeachingTime TeachingTime { get; set; }
-        // public static Dictionary<string, Course> Syllabus { get; set; }
-
         private static int CurrWeekIndex { get; set; }
 
         public static List<NeuEventModel> EventList;

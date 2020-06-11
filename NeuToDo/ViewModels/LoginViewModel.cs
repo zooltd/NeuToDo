@@ -10,7 +10,7 @@ using NeuToDo.Models;
 using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
-{ //TODO FIXME 不显示图片
+{
     public class LoginViewModel : ViewModelBase
     {
         private ILoginService _loginService;
