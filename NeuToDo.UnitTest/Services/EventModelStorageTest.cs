@@ -44,6 +44,12 @@ namespace NeuToDo.UnitTest.Services
 
             Assert.AreEqual(eventListFromStorage.Count, eventList.Count + 1);
 
+            await neuEventModelStorage.ClearTableAsync();
+
+            var emptyEventList = await neuEventModelStorage.GetAllAsync();
+
+            Assert.AreEqual(emptyEventList.Count, 0);
+
             await neuEventModelStorage.CloseConnectionAsync();
         }
     }

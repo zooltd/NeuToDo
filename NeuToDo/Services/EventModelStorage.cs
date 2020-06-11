@@ -33,5 +33,6 @@ namespace NeuToDo.Services
         public async Task<IList<T>> GetAllAsync() => await _connection.Table<T>().ToListAsync();
 
         public async Task CloseConnectionAsync() => await _connection.CloseAsync();
+
     }
 }
