@@ -91,7 +91,7 @@ namespace NeuToDo.ViewModels
         private RelayCommand _testCommand;
 
         public RelayCommand TestCommand =>
-            _testCommand ?? (_testCommand = new RelayCommand((() => { })));
+            _testCommand ??= new RelayCommand((() => { }));
 
         // private RelayCommand<ServerType> _command1;
         //
@@ -104,16 +104,16 @@ namespace NeuToDo.ViewModels
         private RelayCommand<SettingItem> _command1;
 
         public RelayCommand<SettingItem> Command1 =>
-            _command1 ?? (_command1 = new RelayCommand<SettingItem>((item) =>
+            _command1 ??= new RelayCommand<SettingItem>((item) =>
             {
                 _popupNavigationService.PushAsync(
                     PopupPageNavigationConstants.LoginPopupPage, item);
-            }));
+            });
 
         private RelayCommand _command2;
 
         public RelayCommand Command2 =>
-            _command2 ?? (_command2 = new RelayCommand(() => { }));
+            _command2 ??= new RelayCommand(() => { });
 
         #endregion
 
