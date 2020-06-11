@@ -79,7 +79,7 @@ namespace NeuToDo.ViewModels
             get => _settingItem;
             set
             {
-                Set(nameof(Type), ref _settingItem, value);
+                Set(nameof(SettingItem), ref _settingItem, value);
                 if (SettingItem == null) return;
                 var t1 = TryGetUserNameAsync(SettingItem.ServerType + "Id");
                 var t2 = TryGetPasswordAsync(SettingItem.ServerType + "Pd");
