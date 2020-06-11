@@ -17,11 +17,11 @@ namespace NeuToDo.ViewModels
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
 
-        private readonly IEventModelStorage<NeuEventModel> _eventModelStorage;
+        private readonly IEventModelStorage<NeuEvent> _eventModelStorage;
 
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
-            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEventModel>();
+            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEvent>();
             task.Wait();
             _eventModelStorage = task.Result;
         }

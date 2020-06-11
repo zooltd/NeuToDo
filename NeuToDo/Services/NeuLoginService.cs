@@ -6,11 +6,11 @@ namespace NeuToDo.Services
 {
     public class NeuLoginService : ILoginService
     {
-        private readonly IEventModelStorage<NeuEventModel> _eventModelStorage;
+        private readonly IEventModelStorage<NeuEvent> _eventModelStorage;
 
         public NeuLoginService(IEventModelStorageProvider eventModelStorageProvider)
         {
-            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEventModel>();
+            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEvent>();
             task.Wait();
             _eventModelStorage = task.Result;
         }

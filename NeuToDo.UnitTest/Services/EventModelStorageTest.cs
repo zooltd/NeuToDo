@@ -19,21 +19,21 @@ namespace NeuToDo.UnitTest.Services
         {
             IEventModelStorageProvider storageProvider = new EventModelStorageProvider();
 
-            var neuEventModelStorage = await storageProvider.GetDatabaseConnection<NeuEventModel>();
-            var eventList = new List<NeuEventModel>
+            var neuEventModelStorage = await storageProvider.GetDatabaseConnection<NeuEvent>();
+            var eventList = new List<NeuEvent>
             {
-                new NeuEventModel
+                new NeuEvent
                 {
                     Id = 1, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
                     Starting = DateTimeOffset.Now
                 },
-                new NeuEventModel
+                new NeuEvent
                 {
                     Id = 2, Code = "A102", Title = "A102", Detail = "A102", IsDone = false,
                     Starting = DateTimeOffset.Now
                 },
             };
-            var e = new NeuEventModel
+            var e = new NeuEvent
                 {Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Starting = DateTimeOffset.Now};
 
             await neuEventModelStorage.InsertAsync(e);

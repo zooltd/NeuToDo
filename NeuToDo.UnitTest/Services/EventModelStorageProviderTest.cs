@@ -17,7 +17,7 @@ namespace NeuToDo.UnitTest.Services
             Assert.IsFalse(File.Exists(EventModelStorageProvider.DbPath));
 
             var storageProvider = new EventModelStorageProvider();
-            await storageProvider.GetDatabaseConnection<NeuEventModel>();
+            await storageProvider.GetDatabaseConnection<NeuEvent>();
 
             Assert.IsTrue(File.Exists(EventModelStorageProvider.DbPath));
 
