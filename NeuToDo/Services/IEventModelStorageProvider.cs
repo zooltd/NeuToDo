@@ -7,5 +7,7 @@ namespace NeuToDo.Services
     {
         Task<IEventModelStorage<T>> GetDatabaseConnection<T>()
             where T : EventModel, new();
+
+        Task CloseConnectionAsync();
     }
 }

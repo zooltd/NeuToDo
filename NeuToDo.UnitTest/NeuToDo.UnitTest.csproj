@@ -16,4 +16,8 @@
     <ProjectReference Include="..\NeuToDo\NeuToDo.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Helpers\" />
+  </ItemGroup>
+
 </Project>

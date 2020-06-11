@@ -1,4 +1,5 @@
-﻿using NeuToDo.Models;
+﻿using System;
+using NeuToDo.Models;
 using SQLite;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -31,6 +32,6 @@ namespace NeuToDo.Services
 
         public async Task<IList<T>> GetAllAsync() => await _connection.Table<T>().ToListAsync();
 
-        public async Task CloseAsync() => await _connection.CloseAsync();
+        public async Task CloseConnectionAsync() => await _connection.CloseAsync();
     }
 }

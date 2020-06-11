@@ -9,7 +9,7 @@ namespace NeuToDo.Services
 {
     public class EventModelStorageProvider : IEventModelStorageProvider
     {
-        public const string DbName = "events.sqlite3";
+        private const string DbName = "events.sqlite3";
 
         public static readonly string DbPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder
@@ -31,6 +31,11 @@ namespace NeuToDo.Services
             }
 
             return new EventModelStorage<T>(_databaseConnection.Value);
+        }
+
+        public async Task CloseConnectionAsync()
+        {
+            await _databaseConnection.Value.CloseAsync();
         }
     }
 }

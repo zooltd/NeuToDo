@@ -14,6 +14,6 @@ namespace NeuToDo.Services
 
         Task<IList<T>> GetAllAsync();
 
-        Task CloseAsync();
+        Task CloseConnectionAsync();
     }
 }
