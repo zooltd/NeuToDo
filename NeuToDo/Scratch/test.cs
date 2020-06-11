@@ -1,8 +1,8 @@
-﻿using System;
+﻿using SQLite;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using SQLite;
 
 namespace NeuToDo.Scratch
 {
@@ -67,7 +67,7 @@ namespace NeuToDo.Scratch
         public static bool TableExists(String tableName, SQLiteConnection connection)
         {
             var cmd = connection.CreateCommand("SELECT name FROM sqlite_master WHERE type = 'table' AND name = @name",
-                new object[] {tableName});
+                new object[] { tableName });
             //cmd.CommandText = "SELECT * FROM sqlite_master WHERE type = 'table' AND name = @name";
             //cmd.Parameters.Add("@name", DbType.String).Value = tableName;
 

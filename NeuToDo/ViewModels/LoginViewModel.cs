@@ -1,12 +1,11 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using GalaSoft.MvvmLight.Ioc;
+using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
-using NeuToDo.Models;
 using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels

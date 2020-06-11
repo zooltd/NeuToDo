@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using Rg.Plugins.Popup.Services;
+﻿using Rg.Plugins.Popup.Services;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {

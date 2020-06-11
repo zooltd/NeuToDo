@@ -3,14 +3,8 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Threading;
 using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Ioc;
-using Xamarin.Forms.Internals;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels

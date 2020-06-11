@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using SQLite;
+﻿using SQLite;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Scratch
 {

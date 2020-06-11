@@ -1,6 +1,4 @@
 ﻿using GalaSoft.MvvmLight;
-using GalaSoft.MvvmLight.Command;
-using NeuToDo.Services;
 
 namespace NeuToDo.Models.SettingsModels
 {

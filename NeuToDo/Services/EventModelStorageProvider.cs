@@ -1,9 +1,9 @@
-﻿using System;
+﻿using NeuToDo.Models;
+using SQLite;
+using System;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using NeuToDo.Models;
-using SQLite;
 
 namespace NeuToDo.Services
 {

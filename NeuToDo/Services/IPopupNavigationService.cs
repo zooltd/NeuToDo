@@ -1,8 +1,7 @@
-﻿using System;
+﻿using NeuToDo.Views.Popup;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NeuToDo.Views.Popup;
-using Rg.Plugins.Popup.Contracts;
 
 namespace NeuToDo.Services
 {

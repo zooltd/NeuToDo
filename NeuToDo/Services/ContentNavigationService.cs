@@ -1,8 +1,6 @@
-﻿using System.Threading.Tasks;
-using NeuToDo.Views;
-using Rg.Plugins.Popup.Services;
+﻿using NeuToDo.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
-using NeuToDo.Services;
 
 namespace NeuToDo.Services
 {

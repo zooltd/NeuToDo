@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NeuToDo.Models;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using NeuToDo.Models;
 
 namespace NeuToDo.Services
 {
