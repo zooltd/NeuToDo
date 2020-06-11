@@ -27,9 +27,22 @@ namespace NeuToDo.ViewModels
 
         #region 绑定方法
 
+        private RelayCommand _pageAppearingCommand;
+
+        public RelayCommand PageAppearingCommand
+            => _pageAppearingCommand ??= new RelayCommand(async () =>
+                await PageAppearingCommandFunction());
+
+        private async Task PageAppearingCommandFunction()
+        {
+            if (SettingItem == null) return;
+            await TryGetUserNameAsync(SettingItem.ServerType + "Id");
+            await TryGetPasswordAsync(SettingItem.ServerType + "Pd");
+        }
+
         private RelayCommand _onLogin;
 
-        public RelayCommand OnLogin => _onLogin ?? (_onLogin = new RelayCommand((async () =>
+        public RelayCommand OnLogin => _onLogin ??= new RelayCommand((async () =>
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
@@ -65,7 +78,7 @@ namespace NeuToDo.ViewModels
             await Task.Delay(1500);
 
             await PopupNavigation.Instance.PopAllAsync();
-        })));
+        }));
 
         #endregion
 
@@ -76,15 +89,7 @@ namespace NeuToDo.ViewModels
         public SettingItem SettingItem
         {
             get => _settingItem;
-            set
-            {
-                Set(nameof(SettingItem), ref _settingItem, value);
-                if (SettingItem == null) return;
-                var t1 = TryGetUserNameAsync(SettingItem.ServerType + "Id");
-                var t2 = TryGetPasswordAsync(SettingItem.ServerType + "Pd");
-                t1.Wait();
-                t2.Wait();
-            }
+            set => Set(nameof(SettingItem), ref _settingItem, value);
         }
 
         private static string _userName;

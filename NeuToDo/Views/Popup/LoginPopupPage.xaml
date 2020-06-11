@@ -8,10 +8,19 @@
                  x:Class="NeuToDo.Views.Popup.LoginPopupPage"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-                 xmlns:services="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
+                 xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
                  BackgroundColor="Transparent"
+                 xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
                  BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
-                 services:NavigationContext.NavigationParameter="{Binding SettingItem}">
+                 ls:NavigationContext.NavigationParameter="{Binding SettingItem}">
+
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
 
     <popup:PopupPage.Resources>
         <ResourceDictionary>
@@ -21,6 +30,7 @@
             </Style>
         </ResourceDictionary>
     </popup:PopupPage.Resources>
+
     <popup:PopupPage.Animation>
         <animations:ScaleAnimation
             PositionIn="Bottom"
@@ -45,9 +55,10 @@
                     <Image HorizontalOptions="Center"
                            x:Name="LogoImage"
                            Margin="10"
-                           HeightRequest="150"
-                           WidthRequest="150"
-                           Source="{Binding SettingItem.PicUrl}">
+                           HeightRequest="120"
+                           WidthRequest="120"
+                           Source="{Binding SettingItem.PicUrl}"
+                           d:Source="http://5b0988e595225.cdn.sohucs.com/images/20171020/ce9240ffb60c40678b24489e366ead24.jpeg">
 
                         <!-- <Image.Source> -->
                         <!--     <OnPlatform -->
@@ -58,27 +69,48 @@
                         <!-- </Image.Source> -->
                     </Image>
 
-                    <Label Text="{Binding SettingItem.Name}" />
+                    <Label Text="{Binding SettingItem.Name}"
+                           d:Text="NEU"
+                           HorizontalOptions="Center" />
                     <Entry Text="{Binding UserName}"
                            HorizontalOptions="Center"
                            x:Name="UsernameEntry"
                            Style="{StaticResource EntryStyle}"
-                           Placeholder="Username" />
+                           Placeholder="Username"
+                           Margin="0,10,0,0">
+                        <Entry.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="UWP" Value="120" />
+                                <On Platform="Android" Value="110" />
+                            </OnPlatform>
+                        </Entry.WidthRequest>
+                    </Entry>
                     <Entry Text="{Binding Password}"
                            HorizontalOptions="Center"
                            x:Name="PasswordEntry"
                            Style="{StaticResource EntryStyle}"
                            Placeholder="Password"
-                           IsPassword="True" />
+                           IsPassword="True">
+                        <Entry.WidthRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="UWP" Value="120" />
+                                <On Platform="Android" Value="110" />
+                            </OnPlatform>
+                        </Entry.WidthRequest>
+                    </Entry>
                     <Button Margin="10, 5"
                             BackgroundColor="#7dbbe6"
                             HorizontalOptions="Fill"
                             x:Name="LoginButton"
                             Text="Login"
                             Command="{Binding OnLogin}">
-                        <!-- <Button.HeightRequest> -->
-                        <!--     <OnPlatform x:TypeArguments="x:Double" Android="50" iOS="30" /> -->
-                        <!-- </Button.HeightRequest> -->
+                        <Button.HeightRequest>
+                            <OnPlatform x:TypeArguments="x:Double">
+                                <On Platform="iOS" Value="30" />
+                                <On Platform="Android" Value="40" />
+                                <On Platform="UWP" Value="40" />
+                            </OnPlatform>
+                        </Button.HeightRequest>
                     </Button>
                 </StackLayout>
             </Frame>
