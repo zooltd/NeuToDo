@@ -8,17 +8,21 @@
              xmlns:calendar="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
-             Title="{Binding Title}"
-             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}">
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
+             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="Neu To Do">
 
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding TodayCommand}" Text="Today" />
     </ContentPage.ToolbarItems>
-
-    <!-- <ContentPage.BindingContext> -->
-    <!--     <local:ToDoCalendarPageViewModel /> -->
-    <!-- </ContentPage.BindingContext> -->
 
     <calendar:Calendar
         Padding="10,0"
@@ -52,7 +56,7 @@
         <calendar:Calendar.EmptyTemplate>
             <DataTemplate>
                 <StackLayout>
-                    <Label Text="NO EVENTS FOR THE SELECTED DATE" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
+                    <Label Text="今日无事" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
                 </StackLayout>
             </DataTemplate>
         </calendar:Calendar.EmptyTemplate>

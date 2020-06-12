@@ -1,8 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
+using NeuToDo.Services;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -10,77 +12,77 @@ namespace NeuToDo.ViewModels
     public class ToDoCalendarViewModel : ViewModelBase
     {
         /// <remarks>
-        /// 注意有坑 Events无法添加多个属于一天的DataTime
+        /// 注意有坑 Events无法添加多个属于一天的DateTime
+        /// 赋值操作无法触发Notify
         /// </remarks>
-        public EventCollection Events { get; set; }
+        public EventCollection Events { get; private set; } = new EventCollection();
 
-        public ToDoCalendarViewModel()
+        private readonly IEventModelStorage<NeuEvent> _eventModelStorage;
+
+        public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
-            Title = "NEU To Do";
-            Events = new EventCollection
-            {
-                [DateTime.Today.AddDays(-1)] = new List<EventModel>
-                {
-                    new EventModel
-                    {
-                        Name = "event1",
-                        Description = "This is event1's description!",
-                        Starting = DateTime.Now
-                    }
-                },
-                [DateTime.Today] = new List<EventModel>
-                {
-                    new EventModel
-                    {
-                        Name = "event1",
-                        Description = "This is event1's description!",
-                        Starting = DateTime.Now
-                    },
-                    new EventModel
-                    {
-                        Name = "event2",
-                        Description = "This is event2's description!",
-                        Starting = DateTime.Now
-                    }
-                }
-            };
+            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEvent>();
+            task.Wait();
+            _eventModelStorage = task.Result;
         }
 
         #region 绑定命令
 
+        private RelayCommand _pageAppearingCommand;
+
+        public RelayCommand PageAppearingCommand
+            => _pageAppearingCommand ??= new RelayCommand(async () =>
+                await PageAppearingCommandFunction());
+
+        //TODO 需要检查是否已有DateTime
+        private async Task PageAppearingCommandFunction()
+        {
+            try
+            {
+                var eventList = await _eventModelStorage.GetAllAsync();
+                var eventDict = eventList.GroupBy(e => e.Starting.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in eventDict)
+                {
+                    Events.Add(pair.Key, pair.Value);
+                }
+            }
+            catch (Exception e)
+            {
+                // ignored
+            }
+        }
+
+        /// <summary>
+        /// test
+        /// </summary>
+        private RelayCommand _updateCommand;
+
+        public RelayCommand UpdateCommand =>
+            _updateCommand ??= new RelayCommand(() => { });
+
         private RelayCommand _todayCommand;
 
         public RelayCommand TodayCommand =>
-            _todayCommand ?? (_todayCommand = new RelayCommand((() => { SelectedDate = DateTime.Today; })));
+            _todayCommand ??= new RelayCommand((() => { SelectedDate = DateTime.Today; }));
 
         private RelayCommand _swipeLeftCommand;
 
         public RelayCommand SwipeLeftCommand =>
-            _swipeLeftCommand ??
-            (_swipeLeftCommand = new RelayCommand((() => { MonthYear = MonthYear.AddMonths(2); })));
+            _swipeLeftCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(2); }));
 
         private RelayCommand _swipeRightCommand;
 
         public RelayCommand SwipeRightCommand =>
-            _swipeRightCommand ??
-            (_swipeRightCommand = new RelayCommand((() => { MonthYear = MonthYear.AddMonths(-2); })));
+            _swipeRightCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(-2); }));
 
         private RelayCommand _swipeUpCommand;
 
         public RelayCommand SwipeUpCommand =>
-            _swipeUpCommand ?? (_swipeUpCommand = new RelayCommand((() => { MonthYear = DateTime.Today; })));
+            _swipeUpCommand ??= new RelayCommand((() => { MonthYear = DateTime.Today; }));
 
         #endregion
 
         #region 绑定属性
-
-        private string _title = string.Empty;
-
-        public string Title
-        {
-            get => _title;
-            set => Set(nameof(Title), ref _title, value);
-        }
 
         private DateTime _selectedDate = DateTime.Today;
 
