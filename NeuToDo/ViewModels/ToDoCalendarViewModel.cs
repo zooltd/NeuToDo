@@ -5,6 +5,7 @@ using NeuToDo.Services;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -52,13 +53,25 @@ namespace NeuToDo.ViewModels
             }
         }
 
+
         /// <summary>
         /// test
         /// </summary>
-        private RelayCommand _updateCommand;
+        private RelayCommand<object> _eventSelectedCommand;
 
-        public RelayCommand UpdateCommand =>
-            _updateCommand ??= new RelayCommand(() => { });
+        public RelayCommand<object> EventSelectedCommand => _eventSelectedCommand ??=
+            new RelayCommand<object>(async (item) => await ExecuteEventSelectedCommand(item));
+
+        private async Task ExecuteEventSelectedCommand(object item)
+        {
+            if (item is EventModel eventModel)
+            {
+                var title = $"Selected: {eventModel.Title}";
+                var message = $"Starts: {eventModel.Starting:HH:mm}{Environment.NewLine}Details: {eventModel.Starting}";
+                await Application.Current.MainPage.DisplayAlert(title, message, "Ok");
+                Console.WriteLine(message);
+            }
+        }
 
         private RelayCommand _todayCommand;
 

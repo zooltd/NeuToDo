@@ -10,6 +10,7 @@
              x:Class="NeuToDo.Views.ToDoCalendarPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
+             x:Name="toDoCalendarPage"
              Title="Neu To Do">
 
     <ContentPage.Behaviors>
@@ -49,7 +50,7 @@
 
         <calendar:Calendar.EventTemplate>
             <DataTemplate>
-                <components:CalenderEvent />
+                <components:CalenderEvent CalenderEventCommand="{Binding BindingContext.EventSelectedCommand, Source={x:Reference toDoCalendarPage}}"/>
             </DataTemplate>
         </calendar:Calendar.EventTemplate>
 
