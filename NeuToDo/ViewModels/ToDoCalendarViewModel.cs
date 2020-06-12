@@ -21,7 +21,7 @@ namespace NeuToDo.ViewModels
 
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
-            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEvent>();
+            var task = eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
             task.Wait();
             _eventModelStorage = task.Result;
         }

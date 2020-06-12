@@ -10,7 +10,7 @@ namespace NeuToDo.Services
 
         public NeuLoginService(IEventModelStorageProvider eventModelStorageProvider)
         {
-            var task = eventModelStorageProvider.GetDatabaseConnection<NeuEvent>();
+            var task = eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
             task.Wait();
             _eventModelStorage = task.Result;
         }

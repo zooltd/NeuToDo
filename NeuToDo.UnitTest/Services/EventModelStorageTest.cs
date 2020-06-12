@@ -12,14 +12,16 @@ namespace NeuToDo.UnitTest.Services
     public class EventModelStorageTest
     {
         [SetUp, TearDown]
-        public static void RemoveDatabaseFile() => File.Delete(EventModelStorageProvider.DbPath);
+        public static void RemoveDatabaseFile() {
+            File.Delete(EventModelStorageProvider.DbPath);
+        }
 
         [Test]
         public async Task TestCrud()
         {
-            IEventModelStorageProvider storageProvider = new EventModelStorageProvider();
+            EventModelStorageProvider storageProvider = new EventModelStorageProvider();
 
-            var neuEventModelStorage = await storageProvider.GetDatabaseConnection<NeuEvent>();
+            var neuEventModelStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             var eventList = new List<NeuEvent>
             {
                 new NeuEvent
@@ -50,7 +52,7 @@ namespace NeuToDo.UnitTest.Services
 
             Assert.AreEqual(emptyEventList.Count, 0);
 
-            await neuEventModelStorage.CloseConnectionAsync();
+            await storageProvider.CloseConnectionAsync();
         }
     }
 }

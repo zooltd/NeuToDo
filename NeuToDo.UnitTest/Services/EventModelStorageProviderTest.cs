@@ -9,7 +9,9 @@ namespace NeuToDo.UnitTest.Services
     public class EventModelStorageProviderTest
     {
         [SetUp, TearDown]
-        public static void RemoveDatabaseFile() => File.Delete(EventModelStorageProvider.DbPath);
+        public static void RemoveDatabaseFile() {
+            File.Delete(EventModelStorageProvider.DbPath);
+        }
 
         [Test]
         public async Task TestGetDatabaseConnection()
@@ -17,7 +19,7 @@ namespace NeuToDo.UnitTest.Services
             Assert.IsFalse(File.Exists(EventModelStorageProvider.DbPath));
 
             var storageProvider = new EventModelStorageProvider();
-            await storageProvider.GetDatabaseConnection<NeuEvent>();
+            await storageProvider.GetEventModelStorage<NeuEvent>();
 
             Assert.IsTrue(File.Exists(EventModelStorageProvider.DbPath));
 
