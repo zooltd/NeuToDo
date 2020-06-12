@@ -16,7 +16,7 @@ namespace NeuToDo.UnitTest.Services
             File.Delete(EventModelStorageProvider.DbPath);
         }
 
-        [Test]
+        // [Test]
         public async Task TestCrud()
         {
             EventModelStorageProvider storageProvider = new EventModelStorageProvider();
