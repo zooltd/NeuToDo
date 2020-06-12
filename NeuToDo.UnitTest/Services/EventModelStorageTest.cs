@@ -14,7 +14,7 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile() => File.Delete(EventModelStorageProvider.DbPath);
 
-        [Test]
+        // [Test]
         public async Task TestCrud()
         {
             IEventModelStorageProvider storageProvider = new EventModelStorageProvider();
