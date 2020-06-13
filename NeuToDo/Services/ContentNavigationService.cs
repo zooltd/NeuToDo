@@ -6,10 +6,10 @@ namespace NeuToDo.Services
 {
     public class ContentNavigationService : IContentNavigationService
     {
-        private MainPage _mainPage;
+        private Page _actionPage;
 
-        public MainPage MainPage =>
-            _mainPage ??= Application.Current.MainPage as MainPage;
+        public Page ActionPage =>
+            _actionPage ??= Application.Current.MainPage.InternalChildren[0] as NavigationPage;
 
         private readonly IPageActivationService _pageActivationService;
 
@@ -20,14 +20,14 @@ namespace NeuToDo.Services
 
         public async Task PushAsync(string pageKey)
         {
-            await MainPage.Navigation.PushAsync(_pageActivationService.ActivateContentPage(pageKey));
+            await ActionPage.Navigation.PushAsync(_pageActivationService.ActivateContentPage(pageKey));
         }
 
         public async Task PushAsync(string pageKey, object parameter)
         {
             var page = _pageActivationService.ActivateContentPage(pageKey);
             NavigationContext.SetParameter(page, parameter);
-            await MainPage.Navigation.PushAsync(page);
+            await ActionPage.Navigation.PushAsync(page);
         }
     }
 }

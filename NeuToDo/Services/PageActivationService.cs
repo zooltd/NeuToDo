@@ -13,11 +13,11 @@ namespace NeuToDo.Services
         public ContentPage ActivateContentPage(string pageKey) => _contentPageCache.ContainsKey(pageKey)
             ? _contentPageCache[pageKey]
             : _contentPageCache[pageKey] =
-                (ContentPage)Activator.CreateInstance(PopupPageNavigationConstants.PageKeyTypeDictionary[pageKey]);
+                (ContentPage) Activator.CreateInstance(ContentNavigationConstants.PageKeyTypeDictionary[pageKey]);
 
         public PopupPage ActivatePopupPage(string pageKey) => _popupPageCache.ContainsKey(pageKey)
             ? _popupPageCache[pageKey]
             : _popupPageCache[pageKey] =
-                (PopupPage)Activator.CreateInstance(PopupPageNavigationConstants.PageKeyTypeDictionary[pageKey]);
+                (PopupPage) Activator.CreateInstance(PopupPageNavigationConstants.PageKeyTypeDictionary[pageKey]);
     }
 }

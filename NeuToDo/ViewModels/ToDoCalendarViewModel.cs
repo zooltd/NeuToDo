@@ -69,12 +69,10 @@ namespace NeuToDo.ViewModels
 
         private async Task ExecuteEventSelectedCommand(object item)
         {
+            //TODO 要导航到哪个page？
             if (item is EventModel eventModel)
             {
-                var title = $"Selected: {eventModel.Title}";
-                var message = $"Starts: {eventModel.Starting:HH:mm}{Environment.NewLine}Details: {eventModel.Starting}";
-                await Application.Current.MainPage.DisplayAlert(title, message, "Ok");
-                Console.WriteLine(message);
+                await _contentNavigationService.PushAsync(ContentNavigationConstants.EventDetailPage,item);
             }
         }
 

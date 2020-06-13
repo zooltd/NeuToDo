@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NeuToDo.Views;
 
 namespace NeuToDo.Services
 {
@@ -28,11 +29,14 @@ namespace NeuToDo.Services
     /// </summary>
     public static class ContentNavigationConstants
     {
+        public const string EventDetailPage = nameof(Views.EventDetailPage);
+
         /// <summary>
         /// 页面键-页面类型字典。
         /// </summary>
         public static readonly Dictionary<string, Type> PageKeyTypeDictionary = new Dictionary<string, Type>
         {
+            {EventDetailPage, typeof(EventDetailPage)}
         };
     }
 }
