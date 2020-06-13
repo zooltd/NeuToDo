@@ -16,32 +16,32 @@ namespace NeuToDo.Services {
         private readonly Lazy<SQLiteAsyncConnection> _databaseConnection =
             new Lazy<SQLiteAsyncConnection>(() =>
                 new SQLiteAsyncConnection(DbPath));
-
-        public async Task<IEventModelStorage<T>> GetEventModelStorage<T>()
-            where T : EventModel, new()
-        {
-            if (_databaseConnection.Value.TableMappings.All(x =>
-                x.MappedType.Name != typeof(T).Name))
-            {
-                await _databaseConnection.Value
-                    .CreateTablesAsync(CreateFlags.None, typeof(T))
-                    .ConfigureAwait(false);
-            }
-
-            return new EventModelStorage<T>(_databaseConnection.Value);
-        }
-
+        //
         // public async Task<IEventModelStorage<T>> GetEventModelStorage<T>()
         //     where T : EventModel, new()
         // {
-        //     if (!await TableExists(typeof(T).Name, _databaseConnection.Value))
+        //     if (_databaseConnection.Value.TableMappings.All(x =>
+        //         x.MappedType.Name != typeof(T).Name))
         //     {
         //         await _databaseConnection.Value
-        //             .CreateTablesAsync(CreateFlags.None, typeof(T));
+        //             .CreateTablesAsync(CreateFlags.None, typeof(T))
+        //             .ConfigureAwait(false);
         //     }
         //
         //     return new EventModelStorage<T>(_databaseConnection.Value);
         // }
+
+        public async Task<IEventModelStorage<T>> GetEventModelStorage<T>()
+            where T : EventModel, new()
+        {
+            if (!await TableExists(typeof(T).Name, _databaseConnection.Value))
+            {
+                await _databaseConnection.Value
+                    .CreateTablesAsync(CreateFlags.None, typeof(T));
+            }
+        
+            return new EventModelStorage<T>(_databaseConnection.Value);
+        }
 
         public async Task CloseConnectionAsync() {
             await _databaseConnection.Value.CloseAsync();

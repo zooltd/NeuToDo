@@ -18,13 +18,17 @@ namespace NeuToDo.ViewModels
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
 
-        private readonly IEventModelStorage<NeuEvent> _eventModelStorage;
+        private IEventModelStorage<NeuEvent> _eventModelStorage;
 
-        public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider)
+        private readonly IContentNavigationService _contentNavigationService;
+
+        private readonly IEventModelStorageProvider _eventModelStorageProvider;
+
+        public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
+            IContentNavigationService contentNavigationService)
         {
-            var task = eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-            task.Wait();
-            _eventModelStorage = task.Result;
+            _contentNavigationService = contentNavigationService;
+            _eventModelStorageProvider = eventModelStorageProvider;
         }
 
         #region 绑定命令
@@ -40,6 +44,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
+                _eventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 var eventList = await _eventModelStorage.GetAllAsync();
                 var eventDict = eventList.GroupBy(e => e.Starting.Date).ToDictionary(g => g.Key, g => g.ToList());
                 foreach (var pair in eventDict)

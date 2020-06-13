@@ -9,7 +9,7 @@ namespace NeuToDo.Services
         private MainPage _mainPage;
 
         public MainPage MainPage =>
-            _mainPage ?? (_mainPage = Application.Current.MainPage as MainPage);
+            _mainPage ??= Application.Current.MainPage as MainPage;
 
         private readonly IPageActivationService _pageActivationService;
 

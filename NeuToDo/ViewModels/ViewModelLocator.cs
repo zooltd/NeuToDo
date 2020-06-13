@@ -14,12 +14,17 @@ namespace NeuToDo.ViewModels
         public LoginViewModel LoginViewModel =>
             SimpleIoc.Default.GetInstance<LoginViewModel>();
 
+        public EventDetailViewModel EventDetailViewModel =>
+            SimpleIoc.Default.GetInstance<EventDetailViewModel>();
+
         public ViewModelLocator()
         {
             SimpleIoc.Default.Register<ToDoCalendarViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
+            SimpleIoc.Default.Register<EventDetailViewModel>();
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
+            SimpleIoc.Default.Register<IContentNavigationService, ContentNavigationService>();
             SimpleIoc.Default.Register<IPageActivationService, PageActivationService>();
             SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
         }
