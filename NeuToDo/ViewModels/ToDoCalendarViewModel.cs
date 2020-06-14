@@ -72,7 +72,7 @@ namespace NeuToDo.ViewModels
             //TODO 要导航到哪个page？
             if (item is EventModel eventModel)
             {
-                await _contentNavigationService.PushAsync(ContentNavigationConstants.EventDetailPage,item);
+                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage, ContentNavigationConstants.EventDetailPage,item);
             }
         }
 

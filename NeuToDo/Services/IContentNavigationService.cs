@@ -14,14 +14,28 @@ namespace NeuToDo.Services
         /// 导航到页面。
         /// </summary>
         /// <param name="pageKey">页面键。</param>
-        Task PushAsync(string pageKey);
+        Task PushAsync(string sourceKey, string pageKey);
 
         /// <summary>
         /// 导航到页面。
         /// </summary>
+        /// <param name="key"></param>
         /// <param name="pageKey">页面键。</param>
         /// <param name="parameter">参数。</param>
-        Task PushAsync(string pageKey, object parameter);
+        Task PushAsync(string sourceKey, string pageKey, object parameter);
+    }
+
+    public static class TabbedPageConstants
+    {
+        public const string ToDoCalendarPage = nameof(Views.ToDoCalendarPage);
+
+        /// <summary>
+        /// 页面键-页面类型字典。
+        /// </summary>
+        public static readonly Dictionary<string, int> PageIndexDictionary = new Dictionary<string, int>
+        {
+            {ToDoCalendarPage, 0}
+        };
     }
 
     /// <summary>
