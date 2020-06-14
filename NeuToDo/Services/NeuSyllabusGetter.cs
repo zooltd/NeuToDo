@@ -166,7 +166,7 @@ namespace NeuToDo.Services
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
-                        Starting = new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime)),
+                        Time = new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime)),
                         IsDone = false
                     });
                 }

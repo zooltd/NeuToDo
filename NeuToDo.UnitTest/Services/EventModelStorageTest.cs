@@ -27,16 +27,16 @@ namespace NeuToDo.UnitTest.Services
                 new NeuEvent
                 {
                     Id = 1, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Starting = DateTimeOffset.Now
+                    Time = DateTimeOffset.Now
                 },
                 new NeuEvent
                 {
                     Id = 2, Code = "A102", Title = "A102", Detail = "A102", IsDone = false,
-                    Starting = DateTimeOffset.Now
+                    Time = DateTimeOffset.Now
                 },
             };
             var e = new NeuEvent
-                {Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Starting = DateTimeOffset.Now};
+                {Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Time = DateTimeOffset.Now};
 
             await neuEventModelStorage.InsertAsync(e);
 

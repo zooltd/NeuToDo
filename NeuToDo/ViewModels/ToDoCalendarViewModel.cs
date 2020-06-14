@@ -46,7 +46,7 @@ namespace NeuToDo.ViewModels
             {
                 _eventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 var eventList = await _eventModelStorage.GetAllAsync();
-                var eventDict = eventList.GroupBy(e => e.Starting.Date).ToDictionary(g => g.Key, g => g.ToList());
+                var eventDict = eventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
                 foreach (var pair in eventDict)
                 {
                     Events.Add(pair.Key, pair.Value);

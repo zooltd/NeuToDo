@@ -35,10 +35,10 @@
         <!-- <EntryCell Label="开始时间" -->
         <!--            Text="{Binding Event.Starting}" /> -->
         <DatePicker x:Name="endDatePicker"
-                    Date="{Binding Event.Starting.Date}"
+                    Date="{Binding Event.Time.Date}"
                     Format="D" />
         <TimePicker x:Name="_timePicker"
-                    Time="{Binding Event.Starting.TimeOfDay}"
+                    Time="{Binding Event.Time.TimeOfDay}"
                     Format="T" />
         <Switch IsToggled="{Binding Event.IsDone}" />
     </StackLayout>
