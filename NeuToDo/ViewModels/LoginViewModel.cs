@@ -12,17 +12,15 @@ namespace NeuToDo.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private ILoginService _loginService;
+        private readonly ILoginServiceProvider _loginServiceProvider;
 
         private readonly IPopupNavigationService _popupNavigationService;
 
-        private readonly IEventModelStorageProvider _eventModelStorageProvider;
-
         public LoginViewModel(IPopupNavigationService popupNavigationService,
-            IEventModelStorageProvider eventModelStorageProvider)
+            ILoginServiceProvider loginServiceProvider)
         {
             _popupNavigationService = popupNavigationService;
-            _eventModelStorageProvider = eventModelStorageProvider;
+            _loginServiceProvider = loginServiceProvider;
         }
 
         #region 绑定方法
@@ -46,24 +44,9 @@ namespace NeuToDo.ViewModels
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
-            switch (SettingItem.ServerType)
-            {
-                case ServerType.Neu:
-                    _loginService = new NeuLoginService(_eventModelStorageProvider);
-                    break;
-                case ServerType.Mooc:
-                    break;
-                case ServerType.Blackboard:
-                    break;
-                case ServerType.WebDav:
-                    break;
-                case ServerType.Github:
-                    break;
-                default:
-                    throw new ArgumentOutOfRangeException();
-            }
+            var loginService = await _loginServiceProvider.GetLoginService(SettingItem.ServerType);
 
-            var res = await _loginService.LoginAndFetchDataAsync(UserName, Password);
+            var res = await loginService.LoginAndFetchDataAsync(UserName, Password);
 
             if (res)
             {

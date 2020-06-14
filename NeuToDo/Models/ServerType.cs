@@ -4,7 +4,7 @@
     {
         Neu,
         Mooc,
-        Blackboard,
+        Bb,
         WebDav,
         Github
     }

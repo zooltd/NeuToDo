@@ -26,20 +26,21 @@
     <!--                HorizontalOptions="CenterAndExpand" /> -->
     <!--     </StackLayout> -->
     <!-- </ContentPage.Content> -->
-    <TableView Intent="Data">
-        <TableRoot>
-            <TableSection Title="基本信息">
-                <EntryCell Label="名称"
-                           Text="{Binding Event.Title}"
-                           d:Text="人机交互" />
-                <EntryCell Label="描述"
-                           Text="{Binding Event.Detail}"
-                           d:Text="1-2, 赵.., 东北大学" />
-                <EntryCell Label="开始时间"
-                           Text="{Binding Event.Starting}" />
-                <SwitchCell Text="已完成"
-                            On="{Binding Event.IsDone}" />
-            </TableSection>
-        </TableRoot>
-    </TableView>
+    <StackLayout>
+
+        <Entry Text="{Binding Event.Title}"
+               d:Text="人机交互" />
+        <Entry Text="{Binding Event.Detail}"
+               d:Text="1-2, 赵.., 东北大学" />
+        <!-- <EntryCell Label="开始时间" -->
+        <!--            Text="{Binding Event.Starting}" /> -->
+        <DatePicker x:Name="endDatePicker"
+                    Date="{Binding Event.Starting.Date}"
+                    Format="D" />
+        <TimePicker x:Name="_timePicker"
+                    Time="{Binding Event.Starting.TimeOfDay}"
+                    Format="T" />
+        <Switch IsToggled="{Binding Event.IsDone}" />
+    </StackLayout>
+
 </ContentPage>

@@ -53,7 +53,7 @@ namespace NeuToDo.ViewModels
                             Button2Text = "解除",
                             Button1Status = false,
                             Button2Status = false,
-                            ServerType = ServerType.Blackboard,
+                            ServerType = ServerType.Bb,
                             PicUrl =
                                 "http://5b0988e595225.cdn.sohucs.com/images/20171020/ce9240ffb60c40678b24489e366ead24.jpeg"
                         },

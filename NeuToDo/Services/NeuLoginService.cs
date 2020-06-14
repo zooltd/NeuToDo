@@ -8,11 +8,9 @@ namespace NeuToDo.Services
     {
         private readonly IEventModelStorage<NeuEvent> _eventModelStorage;
 
-        public NeuLoginService(IEventModelStorageProvider eventModelStorageProvider)
+        public NeuLoginService(IEventModelStorage<NeuEvent> eventModelStorage)
         {
-            var task = eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-            task.Wait();
-            _eventModelStorage = task.Result;
+            _eventModelStorage = eventModelStorage;
         }
 
         public event EventHandler UpdateData;
