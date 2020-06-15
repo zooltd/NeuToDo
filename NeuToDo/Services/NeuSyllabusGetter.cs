@@ -80,7 +80,7 @@ namespace NeuToDo.Services
 
             const string studentInfoPattern = "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
             var studentInfoList = Regex.Match(responseBody, studentInfoPattern).Groups[1].Value
-                .Split(new char[] { '(', ')' });
+                .Split(new char[] {'(', ')'});
 
             // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
 
@@ -155,43 +155,36 @@ namespace NeuToDo.Services
                 var classTimeStr = classTime.classTimeStr;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
-                var baseDate = currDate.AddDays((int)day - (int)currDate.DayOfWeek); //本周星期day的日期
+                var baseDate = currDate.AddDays((int) day - (int) currDate.DayOfWeek); //本周星期day的日期
 
                 foreach (var weekIndex in weekIndexes)
                 {
                     var offset = GetOffsetMinutes(firstClass);
-                    var localTime = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex) + 1).AddMinutes(offset);
+                    var localTime = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex)).AddMinutes(offset);
                     EventList.Add(new NeuEvent
                     {
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
-                        Time = new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime)),
+                        Time = localTime,
                         IsDone = false
                     });
                 }
             }
         }
-
+        //new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime))
         private static double GetOffsetMinutes(int firstClass)
         {
-            switch (firstClass)
+            return firstClass switch
             {
-                case 1:
-                    return -210;
-                case 3:
-                    return -80;
-                case 5:
-                    return 120;
-                case 7:
-                    return 250;
-                case 9:
-                    return 390;
-                case 11:
-                    return 510;
-            }
-
-            return 0;
+                1 => 60 * 8.5,
+                3 => 10 * 60 + 40,
+                5 => 14 * 60,
+                7 => 16 * 60 + 10,
+                9 => 18.5 * 60,
+                11 => 21.5 * 60,
+                _ => 0
+            };
         }
 
         private static string GetTeacherName(string teacherInfo)
@@ -225,7 +218,7 @@ namespace NeuToDo.Services
         {
             const string timeTablePattern = "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
-            DayOfWeek day = (DayOfWeek)(int.Parse(segments[0].Groups[1].Value) + 1);
+            DayOfWeek day = (DayOfWeek) (int.Parse(segments[0].Groups[1].Value) + 1);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;
