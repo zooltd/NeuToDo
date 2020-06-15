@@ -5,15 +5,9 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
-    public class PageActivationService : IPageActivationService
+    public class PopupActivationService : IPopupActivationService
     {
-        private readonly Dictionary<string, ContentPage> _contentPageCache = new Dictionary<string, ContentPage>();
         private readonly Dictionary<string, PopupPage> _popupPageCache = new Dictionary<string, PopupPage>();
-
-        public ContentPage ActivateContentPage(string pageKey) => _contentPageCache.ContainsKey(pageKey)
-            ? _contentPageCache[pageKey]
-            : _contentPageCache[pageKey] =
-                (ContentPage) Activator.CreateInstance(ContentNavigationConstants.PageKeyTypeDictionary[pageKey]);
 
         public PopupPage ActivatePopupPage(string pageKey) => _popupPageCache.ContainsKey(pageKey)
             ? _popupPageCache[pageKey]

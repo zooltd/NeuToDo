@@ -18,20 +18,6 @@ namespace NeuToDo.UnitTest.Services {
     public class ContentNavigationTest {
         [Test]
         public async Task TestPushAsync() {
-            var pageActivationMock = new Mock<IPageActivationService>();
-            var mockPageActivation = pageActivationMock.Object;
-            var testKey = PopupPageNavigationConstants.LoginPopupPage;
-            pageActivationMock.Setup(p => p.ActivateContentPage(testKey))
-                .Returns(
-                    (ContentPage) Activator.CreateInstance(typeof(PopupPage)));
-            // var contentNavigation =
-            //     new ContentNavigationService(mockPageActivation);
-            // await contentNavigation.PushAsync(PopupPageNavigationConstants
-            //     .LoginPopupPage);
-            //
-            // pageActivationMock.Verify(
-            //     p => p.ActivateContentPage(PopupPageNavigationConstants
-            //         .LoginPopupPage), Times.Once);
         }
     }
 }

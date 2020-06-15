@@ -20,12 +20,12 @@ namespace NeuToDo.ViewModels
 
         private IEventModelStorage<NeuEvent> _eventModelStorage;
 
-        private readonly IContentNavigationService _contentNavigationService;
+        private readonly IEventDetailNavigationService _contentNavigationService;
 
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
-            IContentNavigationService contentNavigationService)
+            IEventDetailNavigationService contentNavigationService)
         {
             _contentNavigationService = contentNavigationService;
             _eventModelStorageProvider = eventModelStorageProvider;
@@ -69,10 +69,9 @@ namespace NeuToDo.ViewModels
 
         private async Task ExecuteEventSelectedCommand(object item)
         {
-            //TODO 要导航到哪个page？
             if (item is EventModel eventModel)
             {
-                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage, ContentNavigationConstants.EventDetailPage,item);
+                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage,item);
             }
         }
 

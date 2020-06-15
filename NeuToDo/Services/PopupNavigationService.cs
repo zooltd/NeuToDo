@@ -5,9 +5,9 @@ namespace NeuToDo.Services
 {
     public class PopupNavigationService : IPopupNavigationService
     {
-        private readonly IPageActivationService _pageActivationService;
+        private readonly IPopupActivationService _pageActivationService;
 
-        public PopupNavigationService(IPageActivationService pageActivationService)
+        public PopupNavigationService(IPopupActivationService pageActivationService)
         {
             _pageActivationService = pageActivationService;
         }
