@@ -8,7 +8,7 @@ namespace NeuToDo
         public App()
         {
             InitializeComponent();
-
+            Device.SetFlags(new[] { "Expander_Experimental" });
             MainPage = new MainPage();
         }
     }
