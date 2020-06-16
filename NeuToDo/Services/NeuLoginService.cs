@@ -1,6 +1,7 @@
 ﻿using NeuToDo.Models;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace NeuToDo.Services
 {
@@ -17,10 +18,12 @@ namespace NeuToDo.Services
 
         public async Task<bool> LoginAndFetchDataAsync(string userId, string password)
         {
-            var getter = new NeuSyllabusGetter(userId, password);
+            // var getter = new NeuSyllabusGetter(userId, password);
+            var getter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
             try
             {
-                await getter.WebCrawler();
+                // await getter.WebCrawler();
+                await getter.WebCrawler(userId, password);
                 await _eventModelStorage.ClearTableAsync();
                 await _eventModelStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
 

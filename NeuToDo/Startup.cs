@@ -9,35 +9,24 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using NeuToDo.Services;
 using Xamarin.Essentials;
 
 namespace NeuToDo {
     public class Startup {
-        public static App Init(Action<HostBuilderContext, IServiceCollection> nativeConfigureServices)
+        public static IServiceProvider ServiceProvider { get; set; }
+        public static CookieContainer CookieContainer = new CookieContainer();
+
+        public static void Init()
         {
             var a = Assembly.GetExecutingAssembly();
-            using var stream = a.GetManifestResourceStream("NeuToDo.appsettings.json");
+            using var stream = a.GetManifestResourceStream("appsettings.json");
 
             var host = new HostBuilder()
-                .ConfigureHostConfiguration(c =>
-                {
-                    c.AddCommandLine(new string[] { $"ContentRoot={FileSystem.AppDataDirectory}" });
-                    c.AddJsonStream(stream);
-                })
-                .ConfigureServices((c, x) =>
-                {
-                    nativeConfigureServices(c, x);
-                    ConfigureServices(x);
-                })
-                .ConfigureLogging(l => l.AddConsole(o =>
-                {
-                    o.DisableColors = true;
-                }))
+                .ConfigureServices(ConfigureServices)
                 .Build();
 
-            App.ServiceProvider = host.Services;
-
-            return App.ServiceProvider.GetService<App>();
+            ServiceProvider = host.Services;
         }
 
         public static void ConfigureServices(IServiceCollection services) {
@@ -51,6 +40,24 @@ namespace NeuToDo {
                     UseCookies = true,
                     CookieContainer = new CookieContainer()
                 }));
+            services.AddHttpClient("neu1", config => { })
+                .ConfigurePrimaryHttpMessageHandler((() =>
+                    new HttpClientHandler() {
+                        AllowAutoRedirect = false,
+                        UseCookies = true,
+                        CookieContainer = CookieContainer
+                    }));
+            services.AddHttpClient("neu2", config => { })
+                .ConfigurePrimaryHttpMessageHandler((() =>
+                    new HttpClientHandler()
+                    {
+                        AllowAutoRedirect = true,
+                        UseCookies = true,
+                        CookieContainer = CookieContainer
+                    }));
+            services.AddHttpClient();
+
+            services.AddSingleton<NeuSyllabusGetter>();
         }
     }
 }

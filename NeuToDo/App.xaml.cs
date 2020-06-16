@@ -11,6 +11,7 @@ namespace NeuToDo
         public App()
         {
             InitializeComponent();
+            Startup.Init();
             Device.SetFlags(new[] { "Expander_Experimental" });
             MainPage = new MainPage();
         }

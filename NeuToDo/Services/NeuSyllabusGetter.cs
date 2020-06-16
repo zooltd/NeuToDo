@@ -9,38 +9,51 @@ using Xamarin.Essentials;
 
 namespace NeuToDo.Services
 {
-    public class NeuSyllabusGetter : ResourcesManagement
+    public class NeuSyllabusGetter
     {
-        private readonly string _userName;
+        private static string _userName;
 
-        private readonly string _password;
+        private static string _password;
 
         private static int CurrWeekIndex { get; set; }
 
         public static List<NeuEvent> EventList;
 
-        public NeuSyllabusGetter(string userName, string password)
+        private static HttpClient Client1;
+        private static HttpClient Client2;
+
+        
+
+        // public NeuSyllabusGetter(string userName, string password, IHttpClientFactory httpClientFactory)
+        // {
+        //     _userName = userName;
+        //     _password = password;
+        //     Client1 = httpClientFactory.CreateClient("neu1");
+        //     Client2 = httpClientFactory.CreateClient("neu2");
+        // }
+
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
         {
-            _userName = userName;
-            _password = password;
+            Client1 = httpClientFactory.CreateClient("neu1");
+            Client2 = httpClientFactory.CreateClient("neu2");
         }
 
-        public async Task WebCrawler()
+        public async Task WebCrawler(string userId, string password)
         {
             var vpnUrl =
                 "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
-            InitSources(false);
-            var formData = await CollectFormData(vpnUrl);
+            // InitSources(false);
+            var formData = await CollectFormData(vpnUrl, userId, password);
             vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'), ";" + formData["jsessionid"]);
             var deanUri = await LoginWebVpn(vpnUrl, formData);
-            ReallocateSources(true);
+            // ReallocateSources(true);
             await LoginDean(deanUri);
             await GetCourseInfo();
         }
 
-        private async Task<Dictionary<string, string>> CollectFormData(string vpnUrl)
+        private async Task<Dictionary<string, string>> CollectFormData(string vpnUrl, string userId, string password)
         {
-            var response = await Client.GetAsync(vpnUrl);
+            var response = await Client1.GetAsync(vpnUrl);
             response.EnsureSuccessStatusCode(); //TODO: Exception
             var jsessionid =
                 response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToArray()[1]
@@ -52,10 +65,10 @@ namespace NeuToDo.Services
             var lt = Regex.Match(responseBody, ltPattern).Groups[1].Value; //TODO: Exception
             var execution = Regex.Match(responseBody, executionPattern).Groups[1].Value;
             var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1].Value;
-            var rsa = _userName + _password + lt;
+            var rsa = userId + password + lt;
             var formData = new Dictionary<string, string>
             {
-                {"rsa", rsa}, {"ul", _userName.Length.ToString()}, {"pl", _password.Length.ToString()}, {"lt", lt},
+                {"rsa", rsa}, {"ul", password.Length.ToString()}, {"pl", password.Length.ToString()}, {"lt", lt},
                 {"execution", execution}, {"_eventId", eventId}, {"jsessionid", jsessionid}
             };
             return formData;
@@ -63,7 +76,7 @@ namespace NeuToDo.Services
 
         private async Task<Uri> LoginWebVpn(string vpnUrl, IEnumerable<KeyValuePair<string, string>> formData)
         {
-            var response = await Client.PostAsync(vpnUrl, new FormUrlEncodedContent(formData));
+            var response = await Client1.PostAsync(vpnUrl, new FormUrlEncodedContent(formData));
             // Ensure code == HttpStatusCode.Redirect 
             var redirectUri = response.Headers.Location;
             return redirectUri;
@@ -71,10 +84,10 @@ namespace NeuToDo.Services
 
         private static async Task LoginDean(Uri deanUri)
         {
-            var response = await Client.GetAsync(deanUri);
+            var response = await Client2.GetAsync(deanUri);
             response.EnsureSuccessStatusCode();
             const string deanOfficeUrl = "https://219-216-96-4.webvpn.neu.edu.cn/eams/homeExt.action";
-            response = await Client.GetAsync(deanOfficeUrl);
+            response = await Client2.GetAsync(deanOfficeUrl);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
@@ -110,7 +123,7 @@ namespace NeuToDo.Services
             // Syllabus = new Dictionary<string, Course>();
             EventList = new List<NeuEvent>();
 
-            var res = await Client.GetAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
+            var res = await Client2.GetAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
             var responseBody = await res.Content.ReadAsStringAsync();
             var id = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToArray()[0].Split(';')[0]
@@ -126,7 +139,7 @@ namespace NeuToDo.Services
                 {"startWeek", string.Empty}, {"semester.id", id.ToString()}, {"ids", ids}
             };
 
-            res = await Client.PostAsync(
+            res = await Client2.PostAsync(
                 "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd!courseTable.action",
                 new FormUrlEncodedContent(formData));
             res.EnsureSuccessStatusCode();

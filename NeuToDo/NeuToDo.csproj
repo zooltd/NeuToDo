@@ -32,12 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic">
-      <HintPath>C:\Program Files (x86)\Microsoft SDKs\UWPNuGetPackages\microsoft.netcore.universalwindowsplatform\6.2.10\ref\uap10.0.15138\Microsoft.VisualBasic.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Views\Popup\LoadingPopupPage.xaml.cs">
       <DependentUpon>a</DependentUpon>
     </Compile>
