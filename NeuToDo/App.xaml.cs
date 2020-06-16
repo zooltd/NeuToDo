@@ -1,10 +1,13 @@
-﻿using NeuToDo.Views;
+﻿using System;
+using NeuToDo.Views;
 using Xamarin.Forms;
 
 namespace NeuToDo
 {
     public partial class App : Application
     {
+        public static IServiceProvider ServiceProvider { get; set; }
+
         public App()
         {
             InitializeComponent();
