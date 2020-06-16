@@ -18,8 +18,6 @@ namespace NeuToDo.ViewModels
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
 
-        private IEventModelStorage<NeuEvent> _eventModelStorage;
-
         private readonly IEventDetailNavigationService _contentNavigationService;
 
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
@@ -44,10 +42,10 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                _eventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-                var eventList = await _eventModelStorage.GetAllAsync();
-                var eventDict = eventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                foreach (var pair in eventDict)
+                var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
+                var neuEventList = await neuStorage.GetAllAsync();
+                var neuEventDict = neuEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in neuEventDict)
                 {
                     Events.Add(pair.Key, pair.Value);
                 }

@@ -7,8 +7,17 @@
              mc:Ignorable="d"
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="NeuToDo.Views.ToDoListPage"
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding ToDoListViewModel, Source={StaticResource ViewModelLocator}}"
              Title="Neu To Do">
+
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
 
     <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
@@ -67,7 +76,7 @@
 
         <CollectionView Grid.Row="2" Margin="25,-5,25,0" HorizontalOptions="FillAndExpand"
                         VerticalOptions="FillAndExpand"
-                        SelectionMode="None" ItemsSource="{Binding MyAgenda}">
+                        SelectionMode="None" ItemsSource="{Binding WeeklyAgenda}">
             <CollectionView.Header>
                 <Label Text="本周计划" TextColor="Black" FontSize="17" />
             </CollectionView.Header>
@@ -123,9 +132,9 @@
                                             <BoxView Grid.Column="1" BackgroundColor="#F2F4F8" WidthRequest="1"
                                                      HorizontalOptions="Start"
                                                      VerticalOptions="FillAndExpand" />
-                                            <CollectionView Grid.Column="2" ItemsSource="{Binding Speakers}"
-                                                         HorizontalOptions="Start" VerticalOptions="Center"
-                                                         Margin="20,0,0,20" HeightRequest="60">
+                                            <CollectionView Grid.Column="2" ItemsSource="{Binding EventList}"
+                                                            HorizontalOptions="Start" VerticalOptions="Center"
+                                                            Margin="20,0,0,20" HeightRequest="{Binding HeightRequest}">
                                                 <!-- TODO: HeightRequest绑定，能否在XAML中运算？  -->
                                                 <CollectionView.ItemTemplate>
                                                     <DataTemplate>
@@ -133,9 +142,9 @@
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
-                                                                        <Span Text="{Binding Time}" />
+                                                                        <Span Text="{Binding Time, StringFormat='{0:HH\\:mm}'}" />
                                                                         <Span Text=" - " />
-                                                                        <Span Text="{Binding Name}"
+                                                                        <Span Text="{Binding Title}"
                                                                               FontAttributes="Bold" />
                                                                     </FormattedString.Spans>
                                                                 </FormattedString>
