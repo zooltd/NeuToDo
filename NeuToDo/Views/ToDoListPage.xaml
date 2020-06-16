@@ -9,7 +9,7 @@
              x:Class="NeuToDo.Views.ToDoListPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding ToDoListViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Neu To Do">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
@@ -21,28 +21,19 @@
 
     <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120" />
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
+
         <Grid BackgroundColor="#455399" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout Margin="0,-40,0,0" HorizontalOptions="Center" VerticalOptions="Center">
-                <Label TextColor="White" FontSize="40" HorizontalTextAlignment="Center">
-                    <Label.FormattedText>
-                        <FormattedString>
-                            <FormattedString.Spans>
-                                <Span Text="第16周" FontSize="25" FontAttributes="Bold" />
-                            </FormattedString.Spans>
-                        </FormattedString>
-                    </Label.FormattedText>
-                </Label>
-                <Label Text="本周你有5个作业，所谓债多不压身" TextColor="White" FontSize="15" HorizontalTextAlignment="Center"
-                       Margin="0,2,0,0" />
+            <StackLayout Margin="0,-30,0,0" HorizontalOptions="Center" VerticalOptions="Center">
+                <Label Text="第16周" TextColor="White" HorizontalTextAlignment="Center" FontSize="25" />
+                <Label Text="本周你有5个作业，所谓债多不压身" TextColor="White" FontSize="15" HorizontalTextAlignment="Center" />
             </StackLayout>
         </Grid>
 
-        <pv:PancakeView Grid.Row="1" HasShadow="True" HeightRequest="50" Margin="0,-30,0,0"
-                        HorizontalOptions="Center">
+        <pv:PancakeView Grid.Row="1" HasShadow="True" HeightRequest="50" Margin="0,-30,0,0" HorizontalOptions="Center">
             <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -142,7 +133,8 @@
                                                             <Label.FormattedText>
                                                                 <FormattedString>
                                                                     <FormattedString.Spans>
-                                                                        <Span Text="{Binding Time, StringFormat='{0:HH\\:mm}'}" />
+                                                                        <Span
+                                                                            Text="{Binding Time, StringFormat='{0:HH\\:mm}'}" />
                                                                         <Span Text=" - " />
                                                                         <Span Text="{Binding Title}"
                                                                               FontAttributes="Bold" />

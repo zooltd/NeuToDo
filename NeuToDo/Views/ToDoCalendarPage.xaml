@@ -11,7 +11,7 @@
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
              x:Name="toDoCalendarPage"
-             Title="Neu To Do">
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
@@ -21,9 +21,9 @@
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding TodayCommand}" Text="Today" />
-    </ContentPage.ToolbarItems>
+    <!-- <ContentPage.ToolbarItems> -->
+    <!--     <ToolbarItem Command="{Binding TodayCommand}" Text="Today" /> -->
+    <!-- </ContentPage.ToolbarItems> -->
 
     <calendar:Calendar
         Padding="10,0"

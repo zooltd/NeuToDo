@@ -8,12 +8,11 @@
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SettingsPage"
              BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
-             Title="Neu To Do">
+             NavigationPage.HasNavigationBar="False">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding TestCommand}"
-                     Text="Test" />
-    </ContentPage.ToolbarItems>
+    <!-- <ContentPage.ToolbarItems> -->
+    <!--     <ToolbarItem Command="{Binding TestCommand}" Text="Test" /> -->
+    <!-- </ContentPage.ToolbarItems> -->
 
     <CollectionView ItemsSource="{Binding Settings}"
                     IsGrouped="true"

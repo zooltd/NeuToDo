@@ -8,36 +8,20 @@
             xmlns:views="clr-namespace:NeuToDo.Views"
             x:Class="NeuToDo.Views.MainPage">
 
-
     <TabbedPage.Children>
-        <NavigationPage Title="To Do Calendar">
-            <!-- <NavigationPage.Icon> -->
-            <!--     <OnPlatform x:TypeArguments="FileImageSource"> -->
-            <!--         <On Platform="iOS" Value="tab_feed.png" /> -->
-            <!--     </OnPlatform> -->
-            <!-- </NavigationPage.Icon> -->
+        <NavigationPage Title="Calendar" IconImageSource="calendar.png">
             <x:Arguments>
                 <views:ToDoCalendarPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="To Do List">
-            <!-- <NavigationPage.Icon> -->
-            <!--     <OnPlatform x:TypeArguments="FileImageSource"> -->
-            <!--         <On Platform="iOS" Value="tab_about.png" /> -->
-            <!--     </OnPlatform> -->
-            <!-- </NavigationPage.Icon> -->
+        <NavigationPage Title="Planner" IconImageSource="list.png">
             <x:Arguments>
                 <views:ToDoListPage />
             </x:Arguments>
         </NavigationPage>
 
-        <NavigationPage Title="Settings">
-            <!-- <NavigationPage.Icon> -->
-            <!--     <OnPlatform x:TypeArguments="FileImageSource"> -->
-            <!--         <On Platform="iOS" Value="tab_setting.png" /> -->
-            <!--     </OnPlatform> -->
-            <!-- </NavigationPage.Icon> -->
+        <NavigationPage Title="Settings" IconImageSource="settings.png">
             <x:Arguments>
                 <views:SettingsPage />
             </x:Arguments>

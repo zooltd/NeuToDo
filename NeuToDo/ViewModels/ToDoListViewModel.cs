@@ -5,9 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NeuToDo.Models;
 using NeuToDo.Services;
 
-namespace NeuToDo.Models
+namespace NeuToDo.ViewModels
 {
     public class ToDoListViewModel : ViewModelBase
     {
