@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -41,6 +42,11 @@ namespace NeuToDo.ViewModels
                 {
                     WeeklyAgenda.Add(new DailyAgenda(pair.Key, pair.Value));
                 }
+
+                //shuffle
+                var rand = new Random();
+                WeeklyAgenda =
+                    new ObservableCollection<DailyAgenda>(WeeklyAgenda.OrderBy(agenda => rand.Next()).ToList().Take(7));
             }
             catch (Exception e)
             {
@@ -72,7 +78,7 @@ namespace NeuToDo.ViewModels
                 Date = date;
                 EventList = new ObservableCollection<EventModel>(eventList);
                 Color = DayColor[date.DayOfWeek];
-                HeightRequest = eventList.Count * 20;
+                HeightRequest = eventList.Count * 35 + 15;
             }
         }
 
@@ -84,7 +90,7 @@ namespace NeuToDo.ViewModels
             {DayOfWeek.Wednesday, "#F75355"},
             {DayOfWeek.Thursday, "#00C6AE"},
             {DayOfWeek.Friday, "#455399"},
-            {DayOfWeek.Saturday, "#B96CBD"},
+            {DayOfWeek.Saturday, "#FFA500"},
         };
     }
 }

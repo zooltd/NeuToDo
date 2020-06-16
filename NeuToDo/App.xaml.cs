@@ -1,4 +1,6 @@
-﻿using NeuToDo.Views;
+﻿using System.Collections.Generic;
+using System.Reflection;
+using NeuToDo.Views;
 using Xamarin.Forms;
 
 namespace NeuToDo
