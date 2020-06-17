@@ -58,6 +58,7 @@ namespace NeuToDo {
             services.AddHttpClient();
 
             services.AddSingleton<NeuSyllabusGetter>();
+            services.AddSingleton<MoocInfoGetter>();
         }
     }
 }

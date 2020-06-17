@@ -13,18 +13,18 @@ using Newtonsoft.Json;
 namespace NeuToDo.Services {
     public class MoocInfoGetter {
         private const string LoginUrl =
-            "https://www.icourse163.org/passport/reg/icourseLogin.do";
+            "/passport/reg/icourseLogin.do";
 
-        private const string GetTokenUrl = "https://icourse163.org/";
+        private const string GetTokenUrl = "/";
 
         private const string GetOnGoingCoursesUrl =
-            "https://www.icourse163.org/web/j/learnerCourseRpcBean.getMyLearnedCoursePanelList.rpc";
+            "/web/j/learnerCourseRpcBean.getMyLearnedCoursePanelList.rpc";
 
         private const string CourseDetailUrl =
-            "https://www.icourse163.org/learn/";
+            "/learn/";
 
         private const string GetCourseTestInfoUrl =
-            "https://www.icourse163.org/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
+            "/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
 
         private static HttpClient _client;
         private static string _token = "";
@@ -240,7 +240,7 @@ namespace NeuToDo.Services {
             }
         }
 
-        public static async Task WebCrawler(string userName, string password) {
+        public async Task WebCrawler(string userName, string password) {
             await Login(userName, password);
             var courses = await GetOnGoingCourses(_token);
             EventList = new List<MoocEvent>();

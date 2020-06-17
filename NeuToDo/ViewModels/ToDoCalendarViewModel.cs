@@ -18,7 +18,8 @@ namespace NeuToDo.ViewModels
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
 
-        private IEventModelStorage<NeuEvent> _eventModelStorage;
+        private IEventModelStorage<NeuEvent> _neuEventModelStorage;
+        private IEventModelStorage<MoocEvent> _moocEventModelStorage;
 
         private readonly IEventDetailNavigationService _contentNavigationService;
 
@@ -44,10 +45,19 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                _eventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-                var eventList = await _eventModelStorage.GetAllAsync();
-                var eventDict = eventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                foreach (var pair in eventDict)
+                _neuEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
+                var neuEventList = await _neuEventModelStorage.GetAllAsync();
+                var neuEventDict = neuEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in neuEventDict)
+                {
+                    Events.Add(pair.Key, pair.Value);
+                }
+
+                //TODO fix
+                _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
+                var moocEventList = await _moocEventModelStorage.GetAllAsync();
+                var moocEventDict = moocEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in moocEventDict)
                 {
                     Events.Add(pair.Key, pair.Value);
                 }

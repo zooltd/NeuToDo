@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NeuToDo.Models;
 
 namespace NeuToDo.Services
@@ -14,7 +16,20 @@ namespace NeuToDo.Services
 
         public async Task<bool> LoginAndFetchDataAsync(string userId, string password)
         {
-            throw new System.NotImplementedException();
+            var getter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
+            try
+            {
+                await getter.WebCrawler(userId, password);
+                await _eventModelStorage.ClearTableAsync();
+                await _eventModelStorage.InsertAllAsync(MoocInfoGetter.EventList);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                return false;
+            }
         }
     }
 }
