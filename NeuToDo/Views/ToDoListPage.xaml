@@ -34,9 +34,9 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="第" FontSize="15" />
-                                    <Span Text="{Binding WeekNo}" FontSize="20" FontAttributes="Bold"/>
-                                    <Span Text="周" FontSize="15" />
+                                    <Span Text="第" FontSize="20" />
+                                    <Span Text="{Binding WeekNo}" FontSize="30" FontAttributes="Bold"/>
+                                    <Span Text="周" FontSize="20" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
