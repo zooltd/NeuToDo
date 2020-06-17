@@ -40,14 +40,14 @@ namespace NeuToDo {
                     UseCookies = true,
                     CookieContainer = new CookieContainer()
                 }));
-            services.AddHttpClient("neu1", config => { })
+            services.AddHttpClient("neuInit", config => { })
                 .ConfigurePrimaryHttpMessageHandler((() =>
                     new HttpClientHandler() {
                         AllowAutoRedirect = false,
                         UseCookies = true,
                         CookieContainer = CookieContainer
                     }));
-            services.AddHttpClient("neu2", config => { })
+            services.AddHttpClient("neuReallocate", config => { })
                 .ConfigurePrimaryHttpMessageHandler((() =>
                     new HttpClientHandler()
                     {

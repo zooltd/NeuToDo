@@ -7,101 +7,96 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace NeuToDo.Services
-{
-    public class NeuSyllabusGetter
-    {
-        private static string _userName;
-
-        private static string _password;
-
+namespace NeuToDo.Services {
+    public class NeuSyllabusGetter {
         private static int CurrWeekIndex { get; set; }
+
+        private static HttpClient _initClient;
+        private static HttpClient _reallocateClient;
 
         public static List<NeuEvent> EventList;
 
-        private static HttpClient Client1;
-        private static HttpClient Client2;
-
-        
-
-        // public NeuSyllabusGetter(string userName, string password, IHttpClientFactory httpClientFactory)
-        // {
-        //     _userName = userName;
-        //     _password = password;
-        //     Client1 = httpClientFactory.CreateClient("neu1");
-        //     Client2 = httpClientFactory.CreateClient("neu2");
-        // }
-
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
-        {
-            Client1 = httpClientFactory.CreateClient("neu1");
-            Client2 = httpClientFactory.CreateClient("neu2");
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory) {
+            _initClient = httpClientFactory.CreateClient("neuInit");
+            _reallocateClient = httpClientFactory.CreateClient("neuReallocate");
         }
 
-        public async Task WebCrawler(string userId, string password)
-        {
+        public async Task WebCrawler(string userId, string password) {
             var vpnUrl =
                 "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
             // InitSources(false);
             var formData = await CollectFormData(vpnUrl, userId, password);
-            vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'), ";" + formData["jsessionid"]);
+            vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'),
+                ";" + formData["jsessionid"]);
             var deanUri = await LoginWebVpn(vpnUrl, formData);
             // ReallocateSources(true);
             await LoginDean(deanUri);
             await GetCourseInfo();
         }
 
-        private async Task<Dictionary<string, string>> CollectFormData(string vpnUrl, string userId, string password)
-        {
-            var response = await Client1.GetAsync(vpnUrl);
+        private async Task<Dictionary<string, string>> CollectFormData(
+            string vpnUrl, string userId, string password) {
+            var response = await _initClient.GetAsync(vpnUrl);
             response.EnsureSuccessStatusCode(); //TODO: Exception
             var jsessionid =
-                response.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToArray()[1]
-                    .Split(';')[0]; //TODO: Exception
+                response.Headers
+                    .SingleOrDefault(header => header.Key == "Set-Cookie").Value
+                    .ToArray()[1].Split(';')[0]; //TODO: Exception
             var responseBody = await response.Content.ReadAsStringAsync();
             const string ltPattern = "name=\"lt\" value=\"(.*)\"";
             const string executionPattern = "name=\"execution\" value=\"(.*)\"";
             const string eventIdPattern = "name=\"_eventId\" value=\"(.*)\"";
-            var lt = Regex.Match(responseBody, ltPattern).Groups[1].Value; //TODO: Exception
-            var execution = Regex.Match(responseBody, executionPattern).Groups[1].Value;
-            var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1].Value;
+            var lt = Regex.Match(responseBody, ltPattern).Groups[1]
+                .Value; //TODO: Exception
+            var execution = Regex.Match(responseBody, executionPattern)
+                .Groups[1].Value;
+            var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1]
+                .Value;
             var rsa = userId + password + lt;
-            var formData = new Dictionary<string, string>
-            {
-                {"rsa", rsa}, {"ul", password.Length.ToString()}, {"pl", password.Length.ToString()}, {"lt", lt},
-                {"execution", execution}, {"_eventId", eventId}, {"jsessionid", jsessionid}
+            var formData = new Dictionary<string, string> {
+                {"rsa", rsa},
+                {"ul", password.Length.ToString()},
+                {"pl", password.Length.ToString()},
+                {"lt", lt},
+                {"execution", execution},
+                {"_eventId", eventId},
+                {"jsessionid", jsessionid}
             };
             return formData;
         }
 
-        private async Task<Uri> LoginWebVpn(string vpnUrl, IEnumerable<KeyValuePair<string, string>> formData)
-        {
-            var response = await Client1.PostAsync(vpnUrl, new FormUrlEncodedContent(formData));
+        private async Task<Uri> LoginWebVpn(string vpnUrl,
+            IEnumerable<KeyValuePair<string, string>> formData) {
+            var response = await _initClient.PostAsync(vpnUrl,
+                new FormUrlEncodedContent(formData));
             // Ensure code == HttpStatusCode.Redirect 
             var redirectUri = response.Headers.Location;
             return redirectUri;
         }
 
-        private static async Task LoginDean(Uri deanUri)
-        {
-            var response = await Client2.GetAsync(deanUri);
+        private static async Task LoginDean(Uri deanUri) {
+            var response = await _reallocateClient.GetAsync(deanUri);
             response.EnsureSuccessStatusCode();
-            const string deanOfficeUrl = "https://219-216-96-4.webvpn.neu.edu.cn/eams/homeExt.action";
-            response = await Client2.GetAsync(deanOfficeUrl);
+            const string deanOfficeUrl =
+                "https://219-216-96-4.webvpn.neu.edu.cn/eams/homeExt.action";
+            response = await _reallocateClient.GetAsync(deanOfficeUrl);
             response.EnsureSuccessStatusCode();
             var responseBody = await response.Content.ReadAsStringAsync();
 
-            const string studentInfoPattern = "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
-            var studentInfoList = Regex.Match(responseBody, studentInfoPattern).Groups[1].Value
-                .Split(new char[] {'(', ')'});
+            const string studentInfoPattern =
+                "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
+            var studentInfoList = Regex.Match(responseBody, studentInfoPattern)
+                .Groups[1].Value.Split(new char[] {'(', ')'});
 
             // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
 
             string stuName = studentInfoList[0];
             string stuId = studentInfoList[1];
 
-            const string teachingTimePattern = "id=\"teach-week\">[\\s]*(.*)[\\s]*<font[\\s\\S]*?>(.*)<\\/font>";
-            var teachingTimeGroups = Regex.Match(responseBody, teachingTimePattern).Groups;
+            const string teachingTimePattern =
+                "id=\"teach-week\">[\\s]*(.*)[\\s]*<font[\\s\\S]*?>(.*)<\\/font>";
+            var teachingTimeGroups =
+                Regex.Match(responseBody, teachingTimePattern).Groups;
 
             var semester = teachingTimeGroups[1].Value.Replace('第', ',');
             int weekIndex = int.Parse(teachingTimeGroups[2].Value);
@@ -118,28 +113,33 @@ namespace NeuToDo.Services
             Preferences.Set("semester", semester);
         }
 
-        private static async Task GetCourseInfo()
-        {
+        private static async Task GetCourseInfo() {
             // Syllabus = new Dictionary<string, Course>();
             EventList = new List<NeuEvent>();
 
-            var res = await Client2.GetAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
+            var res = await _reallocateClient.GetAsync(
+                "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
             var responseBody = await res.Content.ReadAsStringAsync();
-            var id = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToArray()[0].Split(';')[0]
-                .Split('=')[1];
+            var id =
+                res.Headers
+                    .SingleOrDefault(header => header.Key == "Set-Cookie").Value
+                    .ToArray()[0].Split(';')[0].Split('=')[1];
 
             const string idsPattern =
                 "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
             var ids = Regex.Match(responseBody, idsPattern).Groups[1].Value;
 
-            var formData = new Dictionary<string, string>
-            {
-                {"ignoreHead", "1"}, {"showPrintAndExport", "1"}, {"setting.kind", "std"},
-                {"startWeek", string.Empty}, {"semester.id", id.ToString()}, {"ids", ids}
+            var formData = new Dictionary<string, string> {
+                {"ignoreHead", "1"},
+                {"showPrintAndExport", "1"},
+                {"setting.kind", "std"},
+                {"startWeek", string.Empty},
+                {"semester.id", id.ToString()},
+                {"ids", ids}
             };
 
-            res = await Client2.PostAsync(
+            res = await _reallocateClient.PostAsync(
                 "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd!courseTable.action",
                 new FormUrlEncodedContent(formData));
             res.EnsureSuccessStatusCode();
@@ -151,12 +151,13 @@ namespace NeuToDo.Services
 
             var currDate = DateTime.Today;
 
-            foreach (Match textSegment in Regex.Matches(responseBody, textSplitPattern))
-            {
+            foreach (Match textSegment in Regex.Matches(responseBody,
+                textSplitPattern)) {
                 var textSegmentGroups = textSegment.Groups;
                 string teacherInfo = textSegmentGroups[1].Value;
                 string courseId = textSegmentGroups[2].Value.Split('(', ')')[1];
-                string courseName = textSegmentGroups[3].Value.Split('(', ')')[0];
+                string courseName =
+                    textSegmentGroups[3].Value.Split('(', ')')[0];
                 string roomName = textSegmentGroups[5].Value;
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;
@@ -166,16 +167,19 @@ namespace NeuToDo.Services
                 var day = classTime.day;
                 var firstClass = classTime.firstClass;
                 var classTimeStr = classTime.classTimeStr;
-                string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
+                string eventDetail = classTimeStr + ", " + teacherName + ", " +
+                    roomName;
 
-                var baseDate = currDate.AddDays((int) day - (int) currDate.DayOfWeek); //本周星期day的日期
+                var baseDate =
+                    currDate.AddDays((int) day -
+                        (int) currDate.DayOfWeek); //本周星期day的日期
 
-                foreach (var weekIndex in weekIndexes)
-                {
+                foreach (var weekIndex in weekIndexes) {
                     var offset = GetOffsetMinutes(firstClass);
-                    var localTime = baseDate.AddDays(7 * (weekIndex - CurrWeekIndex)).AddMinutes(offset);
-                    EventList.Add(new NeuEvent
-                    {
+                    var localTime = baseDate
+                        .AddDays(7 * (weekIndex - CurrWeekIndex))
+                        .AddMinutes(offset);
+                    EventList.Add(new NeuEvent {
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
@@ -185,11 +189,10 @@ namespace NeuToDo.Services
                 }
             }
         }
+
         //new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime))
-        private static double GetOffsetMinutes(int firstClass)
-        {
-            return firstClass switch
-            {
+        private static double GetOffsetMinutes(int firstClass) {
+            return firstClass switch {
                 1 => 60 * 8.5,
                 3 => 10 * 60 + 40,
                 5 => 14 * 60,
@@ -200,12 +203,12 @@ namespace NeuToDo.Services
             };
         }
 
-        private static string GetTeacherName(string teacherInfo)
-        {
+        private static string GetTeacherName(string teacherInfo) {
             string teacherName = string.Empty;
-            const string teacherInfoPattern = "{id:([\\d]*),name:\\\"([\\s\\S]*?)\\\",lab:([\\w]*)}";
-            foreach (Match teacherInfoSegment in Regex.Matches(teacherInfo, teacherInfoPattern))
-            {
+            const string teacherInfoPattern =
+                "{id:([\\d]*),name:\\\"([\\s\\S]*?)\\\",lab:([\\w]*)}";
+            foreach (Match teacherInfoSegment in Regex.Matches(teacherInfo,
+                teacherInfoPattern)) {
                 var teacherInfoSegmentGroups = teacherInfoSegment.Groups;
                 teacherName += (teacherInfoSegmentGroups[2].Value + ",");
             }
@@ -214,12 +217,10 @@ namespace NeuToDo.Services
             return teacherName;
         }
 
-        private static IList<int> FindAllIndexes(string source, char key)
-        {
+        private static IList<int> FindAllIndexes(string source, char key) {
             var i = source.IndexOf(key);
             var indexes = new List<int>();
-            while (i != -1)
-            {
+            while (i != -1) {
                 indexes.Add(i);
                 i = source.IndexOf(key, i + 1);
             }
@@ -227,25 +228,23 @@ namespace NeuToDo.Services
             return indexes;
         }
 
-        private static (DayOfWeek day, int firstClass, string classTimeStr) GetClassTime(string timeTable)
-        {
-            const string timeTablePattern = "index =(\\d)\\*unitCount\\+([\\d]+);";
+        private static (DayOfWeek day, int firstClass, string classTimeStr)
+            GetClassTime(string timeTable) {
+            const string timeTablePattern =
+                "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
-            DayOfWeek day = (DayOfWeek) (int.Parse(segments[0].Groups[1].Value) + 1);
+            DayOfWeek day =
+                (DayOfWeek) (int.Parse(segments[0].Groups[1].Value) + 1);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;
-            for (int i = 1; i < segments.Count; i++)
-            {
+            for (int i = 1; i < segments.Count; i++) {
                 var segmentGroups = segments[i].Groups;
                 int classIndex = int.Parse(segmentGroups[2].Value) + 1;
 
-                if (lastClassIndex + 1 == classIndex)
-                {
+                if (lastClassIndex + 1 == classIndex) {
                     lastClassIndex = classIndex;
-                }
-                else
-                {
+                } else {
                     classTimeStr += (lastClassIndex + ", " + classIndex + "-");
                     lastClassIndex = classIndex;
                 }
