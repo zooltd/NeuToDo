@@ -74,7 +74,7 @@ namespace NeuToDo.ViewModels
         {
             if (item is EventModel eventModel)
             {
-                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage, item);
+                await _contentNavigationService.PushAsync(item);
             }
         }
 
@@ -96,7 +96,7 @@ namespace NeuToDo.ViewModels
         private RelayCommand _swipeUpCommand;
 
         public RelayCommand SwipeUpCommand =>
-            _swipeUpCommand ??= new RelayCommand((() => { MonthYear = DateTime.Today; }));
+            _swipeUpCommand ??= new RelayCommand((() => { }));
 
         #endregion
 

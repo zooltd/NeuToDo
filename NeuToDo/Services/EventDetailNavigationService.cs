@@ -15,12 +15,12 @@ namespace NeuToDo.Services
 
         public MainPage MainPage => _mainPage ??= Application.Current.MainPage as MainPage;
 
-        public async Task PushAsync(string sourceKey)
+        public async Task PushAsync()
         {
             await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
         }
 
-        public async Task PushAsync(string sourceKey, object parameter)
+        public async Task PushAsync(object parameter)
         {
             NavigationContext.SetParameter(EventDetailPage, parameter);
             await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
