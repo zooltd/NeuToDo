@@ -23,8 +23,8 @@
         <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="600" />
-                <!-- <RowDefinition Height="Auto" /> -->
+                <RowDefinition Height="590" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
@@ -35,39 +35,39 @@
                 </StackLayout>
             </Grid>
 
-            <!-- <pv:PancakeView Grid.Row="1" HasShadow="True" HeightRequest="55" Margin="0,-30,0,0" -->
-            <!--                 HorizontalOptions="Center"> -->
-            <!--     <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand"> -->
-            <!--         <Grid.ColumnDefinitions> -->
-            <!--             <ColumnDefinition Width="*" /> -->
-            <!--             <ColumnDefinition Width="*" /> -->
-            <!--         </Grid.ColumnDefinitions> -->
-            <!--         <Grid.RowDefinitions> -->
-            <!--             <RowDefinition Height="*" /> -->
-            <!--             <RowDefinition Height="Auto" /> -->
-            <!--         </Grid.RowDefinitions> -->
-            <!--         <BoxView Grid.RowSpan="2" WidthRequest="60" BackgroundColor="#00C6AE" /> -->
-            <!--         <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" WidthRequest="60" BackgroundColor="White" /> -->
-            <!--         <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center"> -->
-            <!--             <Label Text="23" TextColor="White" FontSize="15" HorizontalOptions="Center" /> -->
-            <!--             <Label Text="MARCH" TextColor="White" FontSize="8" HorizontalOptions="Center" Margin="0,-6,0,0" /> -->
-            <!--         </StackLayout> -->
-            <!--         <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center"> -->
-            <!--             <Label Text="28" TextColor="#455399" FontSize="15" HorizontalOptions="Center" /> -->
-            <!--             <Label Text="MARCH" TextColor="#455399" FontSize="8" HorizontalOptions="Center" -->
-            <!--                    Margin="0,-6,0,0" /> -->
-            <!--         </StackLayout> -->
-            <!--         <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" WidthRequest="55" HeightRequest="1" -->
-            <!--                  BackgroundColor="#F1F3F7" -->
-            <!--                  HorizontalOptions="Center" VerticalOptions="Center" /> -->
-            <!--         <pv:PancakeView Grid.Row="1" Grid.Column="0" HeightRequest="7" WidthRequest="7" BorderThickness="2" -->
-            <!--                         BorderColor="#F1F3F7" CornerRadius="3.5" HorizontalOptions="Center" -->
-            <!--                         VerticalOptions="Center" Margin="7" /> -->
-            <!--         <pv:PancakeView Grid.Row="1" Grid.Column="1" HeightRequest="7" WidthRequest="7" BorderThickness="2" -->
-            <!--                         BorderColor="#C9D6EF" CornerRadius="3.5" HorizontalOptions="Center" -->
-            <!--                         BackgroundColor="#C9D6EF" VerticalOptions="Center" Margin="7" /> -->
-            <!--     </Grid> -->
-            <!-- </pv:PancakeView> -->
+            <pv:PancakeView Grid.Row="1" HasShadow="True" HeightRequest="55" Margin="0,-30,0,0"
+                            HorizontalOptions="Center">
+                <Grid ColumnSpacing="0" HorizontalOptions="FillAndExpand">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <BoxView Grid.RowSpan="2" WidthRequest="60" BackgroundColor="#00C6AE" />
+                    <BoxView Grid.Column="1" Grid.Row="0" Grid.RowSpan="2" WidthRequest="60" BackgroundColor="White" />
+                    <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="23" TextColor="White" FontSize="15" HorizontalOptions="Center" />
+                        <Label Text="MARCH" TextColor="White" FontSize="8" HorizontalOptions="Center" Margin="0,-6,0,0" />
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" VerticalOptions="Center">
+                        <Label Text="28" TextColor="#455399" FontSize="15" HorizontalOptions="Center" />
+                        <Label Text="MARCH" TextColor="#455399" FontSize="8" HorizontalOptions="Center"
+                               Margin="0,-6,0,0" />
+                    </StackLayout>
+                    <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" WidthRequest="55" HeightRequest="1"
+                             BackgroundColor="#F1F3F7"
+                             HorizontalOptions="Center" VerticalOptions="Center" />
+                    <pv:PancakeView Grid.Row="1" Grid.Column="0" HeightRequest="7" WidthRequest="7" BorderThickness="2"
+                                    BorderColor="#F1F3F7" CornerRadius="3.5" HorizontalOptions="Center"
+                                    VerticalOptions="Center" Margin="7" />
+                    <pv:PancakeView Grid.Row="1" Grid.Column="1" HeightRequest="7" WidthRequest="7" BorderThickness="2"
+                                    BorderColor="#C9D6EF" CornerRadius="3.5" HorizontalOptions="Center"
+                                    BackgroundColor="#C9D6EF" VerticalOptions="Center" Margin="7" />
+                </Grid>
+            </pv:PancakeView>
 
             <StackLayout Grid.Row="2" Margin="20" BindableLayout.ItemsSource="{Binding WeeklyAgenda}">
                 <BindableLayout.ItemTemplate>

@@ -58,6 +58,16 @@ namespace NeuToDo.ViewModels
             }
         }
 
+        // //TODO 放在App.xaml.cs中
+        // private double _screenHeight = Application.Current.MainPage.Width;
+        //
+        // public double ScreenHeight
+        // {
+        //     get => _screenHeight;
+        //     set => Set(nameof(ScreenHeight), ref _screenHeight, value);
+        // }
+
+
         private ObservableCollection<DailyAgenda> _weeklyAgenda;
 
         public ObservableCollection<DailyAgenda> WeeklyAgenda
@@ -73,6 +83,7 @@ namespace NeuToDo.ViewModels
             public DateTime Date { get; set; }
             public ObservableCollection<EventModel> EventList { get; set; }
             public string Color { get; set; }
+
             public DailyAgenda(DateTime date, List<NeuEvent> eventList)
             {
                 Topic = "今日计划";
