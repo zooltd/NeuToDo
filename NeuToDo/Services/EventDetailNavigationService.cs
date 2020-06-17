@@ -7,28 +7,23 @@ namespace NeuToDo.Services
 {
     public class EventDetailNavigationService : IEventDetailNavigationService
     {
-        private ObservableCollection<Element> _tabbedPages;
-
-        public ObservableCollection<Element> TabbedPages =>
-            _tabbedPages ??= Application.Current.MainPage.InternalChildren;
-
         private ContentPage _eventDetailPage;
 
         public ContentPage EventDetailPage => _eventDetailPage ??= new EventDetailPage();
 
+        private MainPage _mainPage;
+
+        public MainPage MainPage => _mainPage ??= Application.Current.MainPage as MainPage;
+
         public async Task PushAsync(string sourceKey)
         {
-            if (TabbedPages[TabbedPageConstants.PageIndexDictionary[sourceKey]] is NavigationPage page)
-                await page.Navigation.PushAsync(EventDetailPage);
+            await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
         }
 
         public async Task PushAsync(string sourceKey, object parameter)
         {
-            if (TabbedPages[TabbedPageConstants.PageIndexDictionary[sourceKey]] is NavigationPage page)
-            {
-                NavigationContext.SetParameter(EventDetailPage, parameter);
-                await page.Navigation.PushAsync(EventDetailPage);
-            }
+            NavigationContext.SetParameter(EventDetailPage, parameter);
+            await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
         }
     }
 }

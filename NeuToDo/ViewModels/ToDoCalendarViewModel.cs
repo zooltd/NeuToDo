@@ -22,6 +22,8 @@ namespace NeuToDo.ViewModels
 
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
+        private bool _isLoaded;
+
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IEventDetailNavigationService contentNavigationService)
         {
@@ -40,6 +42,7 @@ namespace NeuToDo.ViewModels
         //TODO 需要检查是否已有DateTime
         private async Task PageAppearingCommandFunction()
         {
+            if (_isLoaded) return;
             try
             {
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -49,6 +52,8 @@ namespace NeuToDo.ViewModels
                 {
                     Events.Add(pair.Key, pair.Value);
                 }
+
+                _isLoaded = true;
             }
             catch (Exception e)
             {
@@ -69,7 +74,7 @@ namespace NeuToDo.ViewModels
         {
             if (item is EventModel eventModel)
             {
-                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage,item);
+                await _contentNavigationService.PushAsync(TabbedPageConstants.ToDoCalendarPage, item);
             }
         }
 
