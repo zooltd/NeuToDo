@@ -36,7 +36,7 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
-                try
+            try
             {
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 var neuEventList = await neuStorage.GetAllAsync();
@@ -73,8 +73,6 @@ namespace NeuToDo.ViewModels
             public DateTime Date { get; set; }
             public ObservableCollection<EventModel> EventList { get; set; }
             public string Color { get; set; }
-            public int HeightRequest { get; set; }
-
             public DailyAgenda(DateTime date, List<NeuEvent> eventList)
             {
                 Topic = "今日计划";
@@ -82,7 +80,6 @@ namespace NeuToDo.ViewModels
                 Date = date;
                 EventList = new ObservableCollection<EventModel>(eventList);
                 Color = DayColor[date.DayOfWeek];
-                HeightRequest = eventList.Count * 35 + 15;
             }
         }
 
