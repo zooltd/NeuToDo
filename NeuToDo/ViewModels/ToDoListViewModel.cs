@@ -15,6 +15,8 @@ namespace NeuToDo.ViewModels
     {
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
+        private bool _isLoaded;
+
         public ToDoListViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
             _eventModelStorageProvider = eventModelStorageProvider;
@@ -33,7 +35,8 @@ namespace NeuToDo.ViewModels
 
         private async Task PageAppearingCommandFunction()
         {
-            try
+            if (_isLoaded) return;
+                try
             {
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 var neuEventList = await neuStorage.GetAllAsync();
@@ -47,6 +50,7 @@ namespace NeuToDo.ViewModels
                 var rand = new Random();
                 WeeklyAgenda =
                     new ObservableCollection<DailyAgenda>(WeeklyAgenda.OrderBy(agenda => rand.Next()).ToList().Take(7));
+                _isLoaded = true;
             }
             catch (Exception e)
             {
