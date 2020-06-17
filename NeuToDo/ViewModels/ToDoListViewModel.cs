@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
@@ -36,6 +38,14 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
+            //TODO 更好的方案？
+            var lastUpdateWeekNo = Preferences.Get("weekNo", 0);
+            var lastUpdateDate = Preferences.Get("updateDate", DateTime.Today);
+            var today = DateTime.Today;
+            var daySpan = (today - lastUpdateDate).Days - (int) today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
+            var weekSpan = daySpan / 7;
+            WeekNo = lastUpdateWeekNo + weekSpan;
+
             try
             {
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -67,6 +77,14 @@ namespace NeuToDo.ViewModels
         //     set => Set(nameof(ScreenHeight), ref _screenHeight, value);
         // }
 
+
+        private int _weekNo;
+
+        public int WeekNo
+        {
+            get => _weekNo;
+            set => Set(nameof(WeekNo), ref _weekNo, value);
+        }
 
         private ObservableCollection<DailyAgenda> _weeklyAgenda;
 

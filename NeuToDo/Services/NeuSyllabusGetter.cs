@@ -91,18 +91,19 @@ namespace NeuToDo.Services
             var teachingTimeGroups = Regex.Match(responseBody, teachingTimePattern).Groups;
 
             var semester = teachingTimeGroups[1].Value.Replace('第', ',');
-            int weekIndex = int.Parse(teachingTimeGroups[2].Value);
+            int weekNo = int.Parse(teachingTimeGroups[2].Value);
 
             // TeachingTime = new TeachingTime()
             //     {Semester = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
 
-            CurrWeekIndex = weekIndex;
+            CurrWeekIndex = weekNo;
 
             //TODO 正则 查看是否符合标准
             Preferences.Set("stuName", stuName);
             Preferences.Set("stuId", stuId);
-            Preferences.Set("weekIndex", weekIndex);
+            Preferences.Set("weekNo", weekNo);
             Preferences.Set("semester", semester);
+            Preferences.Set("updateDate", DateTime.Today);
         }
 
         private static async Task GetCourseInfo()
