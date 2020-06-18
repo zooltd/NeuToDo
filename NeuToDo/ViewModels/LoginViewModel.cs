@@ -5,7 +5,6 @@ using NeuToDo.Services;
 using Rg.Plugins.Popup.Services;
 using System;
 using System.Threading.Tasks;
-using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
 {
@@ -15,11 +14,15 @@ namespace NeuToDo.ViewModels
 
         private readonly IPopupNavigationService _popupNavigationService;
 
+        private readonly ISecureStorageProvider _secureStorageProvider;
+
         public LoginViewModel(IPopupNavigationService popupNavigationService,
-            ILoginAndFetchDataService loginAndFetchDataService)
+            ILoginAndFetchDataService loginAndFetchDataService,
+            ISecureStorageProvider secureStorageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _loginAndFetchDataService = loginAndFetchDataService;
+            _secureStorageProvider = secureStorageProvider;
         }
 
         #region 绑定方法
@@ -27,10 +30,9 @@ namespace NeuToDo.ViewModels
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand
-            => _pageAppearingCommand ??= new RelayCommand(async () =>
-                await PageAppearingCommandFunction());
+            => _pageAppearingCommand ??= new RelayCommand(async () => await PageAppearingCommandFunction());
 
-        private async Task PageAppearingCommandFunction()
+        public async Task PageAppearingCommandFunction()
         {
             if (SettingItem == null) return;
             await TryGetUserNameAsync(SettingItem.ServerType + "Id");
@@ -45,7 +47,8 @@ namespace NeuToDo.ViewModels
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
-            var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName, Password);
+            var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
+                Password);
 
             if (res)
             {
@@ -96,7 +99,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                UserName = await SecureStorage.GetAsync(key);
+                UserName = await _secureStorageProvider.GetAsync(key);
             }
             catch (Exception e)
             {
@@ -110,7 +113,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                Password = await SecureStorage.GetAsync(key);
+                Password = await _secureStorageProvider.GetAsync(key);
             }
             catch (Exception e)
             {
@@ -123,8 +126,8 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await SecureStorage.SetAsync(SettingItem.ServerType + "Id", UserName);
-                await SecureStorage.SetAsync(SettingItem.ServerType + "Pd", Password);
+                await _secureStorageProvider.SetAsync(SettingItem.ServerType + "Id", UserName);
+                await _secureStorageProvider.SetAsync(SettingItem.ServerType + "Pd", Password);
             }
             catch (Exception e)
             {

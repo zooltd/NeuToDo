@@ -32,6 +32,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();
             SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
             SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
+            SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
         }
     }
 }
