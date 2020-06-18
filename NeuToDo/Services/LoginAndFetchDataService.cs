@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using NeuToDo.Models;
 
 namespace NeuToDo.Services
@@ -20,11 +21,11 @@ namespace NeuToDo.Services
             switch (serverType)
             {
                 case ServerType.Neu:
-                    var getter = new NeuSyllabusGetter(userId, password);
+                    var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                     try
                     {
-                        await getter.WebCrawler();
+                        await neuGetter.WebCrawler(userId, password);
                         await neuStorage.ClearTableAsync();
                         await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
                         OnGetData();
@@ -32,10 +33,25 @@ namespace NeuToDo.Services
                     }
                     catch (Exception e)
                     {
+                        Console.WriteLine(e);
                         return false;
                     }
                 case ServerType.Mooc:
-                    break;
+                    var moocGetter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
+                    var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    try
+                    {
+                        await moocGetter.WebCrawler(userId, password);
+                        await moocStorage.ClearTableAsync();
+                        await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
+
+                        return true;
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                        return false;
+                    }
                 case ServerType.Bb:
                     break;
                 default:
