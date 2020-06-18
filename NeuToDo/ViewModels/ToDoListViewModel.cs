@@ -53,15 +53,16 @@ namespace NeuToDo.ViewModels
         {
             ThisWeekSaturday = ThisWeekSaturday.AddDays(-7);
             ThisWeekSunday = ThisWeekSunday.AddDays(-7);
+            WeekNo = WeekNo <= 1 ?  0 : WeekNo - 1 ;
             GetWeeklyAgenda();
         }));
-
 
         private RelayCommand _toNextWeek;
         public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand((() =>
         {
             ThisWeekSaturday = ThisWeekSaturday.AddDays(7);
             ThisWeekSunday = ThisWeekSunday.AddDays(7);
+            WeekNo++;
             GetWeeklyAgenda();
         }));
 
