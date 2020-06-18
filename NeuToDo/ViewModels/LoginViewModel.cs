@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using Rg.Plugins.Popup.Services;
@@ -12,15 +11,15 @@ namespace NeuToDo.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly ILoginServiceProvider _loginServiceProvider;
+        private readonly ILoginAndFetchDataService _loginAndFetchDataService;
 
         private readonly IPopupNavigationService _popupNavigationService;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
-            ILoginServiceProvider loginServiceProvider)
+            ILoginAndFetchDataService loginAndFetchDataService)
         {
             _popupNavigationService = popupNavigationService;
-            _loginServiceProvider = loginServiceProvider;
+            _loginAndFetchDataService = loginAndFetchDataService;
         }
 
         #region 绑定方法
@@ -44,9 +43,8 @@ namespace NeuToDo.ViewModels
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
-            var loginService = await _loginServiceProvider.GetLoginService(SettingItem.ServerType);
-
-            var res = await loginService.LoginAndFetchDataAsync(UserName, Password);
+            var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
+                Password);
 
             if (res)
             {

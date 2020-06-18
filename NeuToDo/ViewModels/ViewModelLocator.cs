@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
-using NeuToDo.Models;
 using NeuToDo.Services;
 
 namespace NeuToDo.ViewModels
@@ -32,7 +31,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
             SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();
             SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
-            SimpleIoc.Default.Register<ILoginServiceProvider,LoginServiceProvider>();
+            SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
         }
     }
 }

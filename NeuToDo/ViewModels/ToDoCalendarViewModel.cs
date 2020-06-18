@@ -25,10 +25,12 @@ namespace NeuToDo.ViewModels
         private bool _isLoaded;
 
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
-            IEventDetailNavigationService contentNavigationService)
+            IEventDetailNavigationService contentNavigationService,
+            ILoginAndFetchDataService loginAndFetchDataService)
         {
             _contentNavigationService = contentNavigationService;
             _eventModelStorageProvider = eventModelStorageProvider;
+            loginAndFetchDataService.GetData += OnGetData;
         }
 
         #region 绑定命令
@@ -39,10 +41,16 @@ namespace NeuToDo.ViewModels
             => _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction());
 
-        //TODO 需要检查是否已有DateTime
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
+            await LoadDataFromDb();
+            _isLoaded = true;
+        }
+
+        //TODO 需要检查是否已有DateTime
+        private async Task LoadDataFromDb()
+        {
             try
             {
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -52,15 +60,18 @@ namespace NeuToDo.ViewModels
                 {
                     Events.Add(pair.Key, pair.Value);
                 }
-
-                _isLoaded = true;
             }
             catch (Exception e)
             {
-                // ignored
+                Console.WriteLine(e);
+                throw;
             }
         }
 
+        private async void OnGetData(object sender, EventArgs e)
+        {
+            await LoadDataFromDb();
+        }
 
         /// <summary>
         /// test

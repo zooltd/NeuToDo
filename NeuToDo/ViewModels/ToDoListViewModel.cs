@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
@@ -9,7 +8,6 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using Xamarin.Essentials;
-using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -19,10 +17,12 @@ namespace NeuToDo.ViewModels
 
         private bool _isLoaded;
 
-        public ToDoListViewModel(IEventModelStorageProvider eventModelStorageProvider)
+        public ToDoListViewModel(IEventModelStorageProvider eventModelStorageProvider,
+            ILoginAndFetchDataService loginAndFetchDataService)
         {
             _eventModelStorageProvider = eventModelStorageProvider;
             WeeklyAgenda = new ObservableCollection<DailyAgenda>();
+            loginAndFetchDataService.GetData += OnGetData;
         }
 
         #region 绑定命令
@@ -35,19 +35,30 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
+        private async void OnGetData(object sender, EventArgs e)
+        {
+            await LoadData();
+        }
+
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
-            //TODO 更好的方案？
-            var lastUpdateWeekNo = Preferences.Get("weekNo", 0);
-            var lastUpdateDate = Preferences.Get("updateDate", DateTime.Today);
-            var today = DateTime.Today;
-            var daySpan = (today - lastUpdateDate).Days - (int) today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
-            var weekSpan = daySpan / 7;
-            WeekNo = lastUpdateWeekNo + weekSpan;
+            await LoadData();
+            _isLoaded = true;
+        }
 
+        //TODO 更好的方案？
+        private async Task LoadData()
+        {
             try
             {
+                var lastUpdateWeekNo = Preferences.Get("weekNo", 0);
+                var lastUpdateDate = Preferences.Get("updateDate", DateTime.Today);
+                var today = DateTime.Today;
+                var daySpan = (today - lastUpdateDate).Days - (int) today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
+                var weekSpan = daySpan / 7;
+                WeekNo = lastUpdateWeekNo + weekSpan;
+
                 var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 var neuEventList = await neuStorage.GetAllAsync();
                 var neuEventDict = neuEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
@@ -60,13 +71,14 @@ namespace NeuToDo.ViewModels
                 var rand = new Random();
                 WeeklyAgenda =
                     new ObservableCollection<DailyAgenda>(WeeklyAgenda.OrderBy(agenda => rand.Next()).ToList().Take(7));
-                _isLoaded = true;
             }
             catch (Exception e)
             {
-                // ignored
+                Console.WriteLine(e);
+                throw;
             }
         }
+
 
         // //TODO 放在App.xaml.cs中
         // private double _screenHeight = Application.Current.MainPage.Width;
