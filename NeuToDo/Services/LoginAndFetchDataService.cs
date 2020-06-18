@@ -44,7 +44,7 @@ namespace NeuToDo.Services
                         await moocGetter.WebCrawler(userId, password);
                         await moocStorage.ClearTableAsync();
                         await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
-
+                        OnGetData();
                         return true;
                     }
                     catch (Exception e)

@@ -58,6 +58,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
+                Events.Clear();
                 _neuEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
                 _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
                 var neuEventList = await _neuEventModelStorage.GetAllAsync();
