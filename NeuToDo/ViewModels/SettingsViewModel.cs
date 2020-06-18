@@ -48,14 +48,6 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(Settings), ref _settings, value);
         }
 
-        private string _title = string.Empty;
-
-        public string Title
-        {
-            get => _title;
-            set => Set(nameof(Title), ref _title, value);
-        }
-
         #endregion
     }
 }
