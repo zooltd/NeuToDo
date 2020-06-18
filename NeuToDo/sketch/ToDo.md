@@ -1,2 +1,3 @@
 ﻿### 项目ToDo：
-1. 观察者模式 需要修改LoginService, LoginProvider
+1. 重复登陆× 资源未释放
+2. UWP图片不显示
