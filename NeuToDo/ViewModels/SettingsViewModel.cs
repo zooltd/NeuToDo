@@ -39,7 +39,7 @@ namespace NeuToDo.ViewModels
                             Detail = "未绑定",
                             Button1Text = "关联",
                             Button2Text = "解除",
-                            Button1Status = false,
+                            Button1Status = true,
                             Button2Status = false,
                             ServerType = ServerType.Mooc,
                             PicUrl =
