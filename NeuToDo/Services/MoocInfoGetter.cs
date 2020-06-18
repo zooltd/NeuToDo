@@ -12,22 +12,20 @@ using Newtonsoft.Json;
 
 namespace NeuToDo.Services {
     public class MoocInfoGetter {
-        private const string LoginUrl =
-            "/passport/reg/icourseLogin.do";
+        private const string LoginUrl = "/passport/reg/icourseLogin.do";
 
         private const string GetTokenUrl = "/";
 
         private const string GetOnGoingCoursesUrl =
             "/web/j/learnerCourseRpcBean.getMyLearnedCoursePanelList.rpc";
 
-        private const string CourseDetailUrl =
-            "/learn/";
+        private const string CourseDetailUrl = "/learn/";
 
         private const string GetCourseTestInfoUrl =
             "/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
 
         private static HttpClient _client;
-        private static string _token = "";
+        private static string _token;
 
         public static List<MoocEvent> EventList;
 
@@ -36,10 +34,12 @@ namespace NeuToDo.Services {
         /// </summary>
         /// <param name="response">HttpResponseMessage。</param>
         /// <returns></returns>
-        private static string GetToken(HttpResponseMessage response) =>
-            response.Headers
+        private static string GetToken(HttpResponseMessage response) {
+            var token = response.Headers
                 .SingleOrDefault(header => header.Key == "Set-Cookie").Value
                 .ToArray()[0].Split('=', ';')[1];
+            return token;
+        }
 
         /// <summary>
         /// 登录。
@@ -61,7 +61,7 @@ namespace NeuToDo.Services {
                 response.EnsureSuccessStatusCode();
 
                 response = await _client.GetAsync(GetTokenUrl);
-                string token = GetToken(response);
+                var token = GetToken(response);
                 _token = token;
                 // var doc = new HtmlDocument();
                 // doc.LoadHtml(response.Content.ToString());
@@ -90,8 +90,6 @@ namespace NeuToDo.Services {
             string json = await response.Content.ReadAsStringAsync();
 
             Root root = JsonConvert.DeserializeObject<Root>(json);
-
-            Console.WriteLine(root.result.result[1].name);
 
             var length = root.result.result.Count;
 
@@ -244,53 +242,17 @@ namespace NeuToDo.Services {
             await Login(userName, password);
             var courses = await GetOnGoingCourses(_token);
             EventList = new List<MoocEvent>();
-            foreach (var course in courses)
-            {
+            foreach (var course in courses) {
                 await GetTestInfo(course);
             }
+            _client.Dispose();
         }
 
         public MoocInfoGetter(IHttpClientFactory httpClientFactory) {
+            _client = new HttpClient();
+            _token = string.Empty;
             _client = httpClientFactory.CreateClient("mooc");
             EventList = new List<MoocEvent>();
         }
-    }
-
-    public class TermPanel {
-        public int id { get; set; }
-
-        public int courseId { get; set; }
-    }
-
-    public class SchoolPanel {
-        public int id { get; set; }
-
-        /// <summary>
-        /// 学校名。
-        /// </summary>
-        public string name { get; set; }
-
-        public string shortName { get; set; }
-    }
-
-    public class ResultItem {
-        public int id { get; set; }
-
-        public TermPanel termPanel { get; set; }
-
-        public SchoolPanel schoolPanel { get; set; }
-
-        /// <summary>
-        /// 课程名。
-        /// </summary>
-        public string name { get; set; }
-    }
-
-    public class Result {
-        public List<ResultItem> result { get; set; }
-    }
-
-    public class Root {
-        public Result result { get; set; }
     }
 }

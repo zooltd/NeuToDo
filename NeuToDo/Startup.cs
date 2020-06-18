@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Reflection;
 using System.Text;
+using System.Threading;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -33,11 +34,7 @@ namespace NeuToDo {
                 config.DefaultRequestHeaders.Add("User-Agent",
                     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.61 Safari/537.36");
             }).ConfigurePrimaryHttpMessageHandler((() =>
-                new HttpClientHandler() {
-                    AllowAutoRedirect = true,
-                    UseCookies = true,
-                    CookieContainer = new CookieContainer()
-                }));
+                new HttpClientHandler() {AllowAutoRedirect = true}));
             services.AddHttpClient("neuInit", config => { })
                 .ConfigurePrimaryHttpMessageHandler((() =>
                     new HttpClientHandler() {
@@ -52,10 +49,9 @@ namespace NeuToDo {
                         UseCookies = true,
                         CookieContainer = CookieContainer
                     }));
-            services.AddHttpClient();
 
-            services.AddSingleton<NeuSyllabusGetter>();
-            services.AddSingleton<MoocInfoGetter>();
+            services.AddTransient<NeuSyllabusGetter>();
+            services.AddTransient<MoocInfoGetter>();
         }
     }
 }
