@@ -17,14 +17,12 @@ namespace NeuToDo {
         public static IServiceProvider ServiceProvider { get; set; }
         public static CookieContainer CookieContainer = new CookieContainer();
 
-        public static void Init()
-        {
-            var a = Assembly.GetExecutingAssembly();
-            using var stream = a.GetManifestResourceStream("appsettings.json");
-
-            var host = new HostBuilder()
-                .ConfigureServices(ConfigureServices)
-                .Build();
+        public static void Init() {
+            var host = new HostBuilder().ConfigureHostConfiguration(c => {
+                c.AddCommandLine(new string[] {
+                    $"ContentRoot={FileSystem.AppDataDirectory}"
+                });
+            }).ConfigureServices(Startup.ConfigureServices).Build();
 
             ServiceProvider = host.Services;
         }
@@ -49,8 +47,7 @@ namespace NeuToDo {
                     }));
             services.AddHttpClient("neuReallocate", config => { })
                 .ConfigurePrimaryHttpMessageHandler((() =>
-                    new HttpClientHandler()
-                    {
+                    new HttpClientHandler() {
                         AllowAutoRedirect = true,
                         UseCookies = true,
                         CookieContainer = CookieContainer
