@@ -18,10 +18,11 @@ namespace NeuToDo.ViewModels
         /// 注意有坑 Events无法添加多个属于一天的DateTime
         /// 赋值操作无法触发Notify
         /// </remarks>
-        public EventCollection Events { get; private set; } = new EventCollection();
 
-        private IEventModelStorage<NeuEvent> _neuEventModelStorage;
-        private IEventModelStorage<MoocEvent> _moocEventModelStorage;
+        public EventCollection EventCollection { get; } = new EventCollection();
+
+        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
+            new Dictionary<DateTime, List<EventModel>>();
 
         private readonly IEventDetailNavigationService _contentNavigationService;
 
@@ -58,27 +59,16 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                Events.Clear();
-                _neuEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-                _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
-                var neuEventList = await _neuEventModelStorage.GetAllAsync();
-                var moocEventList = await _moocEventModelStorage.GetAllAsync();
-                var neuEventDict = neuEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                var moocEventDict = moocEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                var eventDict = neuEventDict;
-                foreach (var item in moocEventDict) {
-                    if (eventDict.ContainsKey(item.Key)) {
-                        foreach (var eventModel in item.Value) {
-                            eventDict[item.Key].Add(eventModel);
-                        }
-                    } else {
-                        eventDict.Add(item.Key, item.Value);
-                    }
-                }
-
-                foreach (var pair in eventDict)
+                EventCollection.Clear();
+                var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
+                var moocStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
+                var totalEventList = new List<EventModel>();
+                totalEventList.AddRange(await neuStorage.GetAllAsync());
+                totalEventList.AddRange(await moocStorage.GetAllAsync());
+                EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                foreach (var pair in EventDict)
                 {
-                    Events.Add(pair.Key, pair.Value);
+                    EventCollection.Add(pair.Key, pair.Value);
                 }
             }
             catch (Exception e)

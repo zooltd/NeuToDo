@@ -28,7 +28,7 @@
     <calendar:Calendar
         Padding="10,0"
         AnimateCalendar="True"
-        Events="{Binding Events}"
+        Events="{Binding EventCollection}"
         HorizontalOptions="FillAndExpand"
         MonthYear="{Binding MonthYear}"
         SelectedDate="{Binding SelectedDate}"
