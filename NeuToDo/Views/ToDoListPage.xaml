@@ -34,14 +34,14 @@
                         <Label.FormattedText>
                             <FormattedString>
                                 <FormattedString.Spans>
-                                    <Span Text="第" FontSize="20" />
+                                    <Span Text="第 " FontSize="20" />
                                     <Span Text="{Binding WeekNo}" FontSize="30" FontAttributes="Bold"/>
-                                    <Span Text="周" FontSize="20" />
+                                    <Span Text=" 周" FontSize="20" />
                                 </FormattedString.Spans>
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="本周你有5个作业, 所谓债多不压身" TextColor="White" FontSize="15" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding WeeklySummary}" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" />
                 </StackLayout>
             </Grid>
 
@@ -55,7 +55,7 @@
                 <Frame Grid.Column="0" BackgroundColor="Transparent">
                     <Image Source="left.png" Aspect="AspectFill" />
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding }" />
+                        <TapGestureRecognizer Command="{Binding ToLastWeek}" />
                     </Frame.GestureRecognizers>
                 </Frame>
 
@@ -74,13 +74,13 @@
                                  BackgroundColor="White" />
                         <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand" Margin="0,2,0,0" Spacing="0">
-                            <Label Text="25" TextColor="White" FontSize="16" HorizontalOptions="Center" />
-                            <Label Text="MARCH" TextColor="White" FontSize="12" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisWeekSunday.Day}" TextColor="White" FontSize="16" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisWeekSunday, StringFormat='{0:MMMM}'}" TextColor="White" FontSize="12" HorizontalOptions="Center" />
                         </StackLayout>
                         <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand" Margin="0,2,0,0" Spacing="0">
-                            <Label Text="31" TextColor="#455399" FontSize="16" HorizontalOptions="Center" />
-                            <Label Text="MARCH" TextColor="#455399" FontSize="12" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisWeekSaturday.Day}" TextColor="#455399" FontSize="16" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisWeekSaturday, StringFormat='{0:MMMM}'}" TextColor="#455399" FontSize="12" HorizontalOptions="Center" />
                         </StackLayout>
                         <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" WidthRequest="55" HeightRequest="1"
                                  BackgroundColor="#F1F3F7"
@@ -99,7 +99,7 @@
                 <Frame Grid.Column="2" BackgroundColor="Transparent">
                     <Image Source="right.png" Aspect="AspectFill" />
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding }" />
+                        <TapGestureRecognizer Command="{Binding ToNextWeek}" />
                     </Frame.GestureRecognizers>
                 </Frame>
 
