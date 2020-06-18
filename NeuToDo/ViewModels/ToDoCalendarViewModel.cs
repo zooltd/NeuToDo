@@ -3,6 +3,8 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -46,18 +48,23 @@ namespace NeuToDo.ViewModels
             try
             {
                 _neuEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
+                _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
                 var neuEventList = await _neuEventModelStorage.GetAllAsync();
-                var neuEventDict = neuEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                foreach (var pair in neuEventDict)
-                {
-                    Events.Add(pair.Key, pair.Value);
+                var moocEventList = await _moocEventModelStorage.GetAllAsync();
+                var neuEventDict = neuEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                var moocEventDict = moocEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                var eventDict = neuEventDict;
+                foreach (var item in moocEventDict) {
+                    if (eventDict.ContainsKey(item.Key)) {
+                        foreach (var eventModel in item.Value) {
+                            eventDict[item.Key].Add(eventModel);
+                        }
+                    } else {
+                        eventDict.Add(item.Key, item.Value);
+                    }
                 }
 
-                //TODO fix
-                _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
-                var moocEventList = await _moocEventModelStorage.GetAllAsync();
-                var moocEventDict = moocEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                foreach (var pair in moocEventDict)
+                foreach (var pair in eventDict)
                 {
                     Events.Add(pair.Key, pair.Value);
                 }
