@@ -91,8 +91,6 @@ namespace NeuToDo.Services {
 
             Root root = JsonConvert.DeserializeObject<Root>(json);
 
-            Console.WriteLine(root.result.result[1].name);
-
             var length = root.result.result.Count;
 
             var courses = new Dictionary<string, string>();
