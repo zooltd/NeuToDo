@@ -55,7 +55,7 @@ namespace NeuToDo.Services {
             var rsa = userId + password + lt;
             var formData = new Dictionary<string, string> {
                 {"rsa", rsa},
-                {"ul", password.Length.ToString()},
+                {"ul", userId.Length.ToString()},
                 {"pl", password.Length.ToString()},
                 {"lt", lt},
                 {"execution", execution},
