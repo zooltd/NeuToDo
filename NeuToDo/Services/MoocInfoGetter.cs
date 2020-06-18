@@ -53,8 +53,8 @@ namespace NeuToDo.Services {
                     new Dictionary<string, string>();
                 postParams.Add("saveLogin", "true");
                 postParams.Add("oauthType", "");
-                postParams.Add("username", "1013913478@qq.com");
-                postParams.Add("passwd", "QQzzp0847");
+                postParams.Add("username", userName);
+                postParams.Add("passwd", password);
 
                 var response = await _client.PostAsync(LoginUrl,
                     new FormUrlEncodedContent(postParams));
