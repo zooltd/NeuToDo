@@ -39,12 +39,13 @@ namespace NeuToDo.ViewModels
 
         private RelayCommand _onLogin;
 
-        public RelayCommand OnLogin => _onLogin ??= new RelayCommand((async () =>
+        public RelayCommand OnLogin => _onLogin ??= new RelayCommand((async () => { await OnLoginFunction(); }));
+
+        public async Task OnLoginFunction()
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
-            var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
-                Password);
+            var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName, Password);
 
             if (res)
             {
@@ -59,7 +60,7 @@ namespace NeuToDo.ViewModels
             await Task.Delay(1500);
 
             await PopupNavigation.Instance.PopAllAsync();
-        }));
+        }
 
         #endregion
 

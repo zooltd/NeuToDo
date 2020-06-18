@@ -25,7 +25,7 @@ namespace NeuToDo.Services {
             await _connection.DeleteAllAsync<T>();
         }
 
-        public async Task<IList<T>> GetAllAsync() =>
+        public async Task<List<T>> GetAllAsync() =>
             await _connection.Table<T>().ToListAsync();
     }
 }
