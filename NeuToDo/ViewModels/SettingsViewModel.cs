@@ -24,11 +24,12 @@ namespace NeuToDo.ViewModels
         private RelayCommand<SettingItem> _command1;
 
         public RelayCommand<SettingItem> Command1 =>
-            _command1 ??= new RelayCommand<SettingItem>((item) =>
-            {
-                _popupNavigationService.PushAsync(
-                    PopupPageNavigationConstants.LoginPopupPage, item);
-            });
+            _command1 ??= new RelayCommand<SettingItem>(Command1Function);
+
+        public void Command1Function(SettingItem item)
+        {
+            _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item);
+        }
 
         private RelayCommand _command2;
 

@@ -9,8 +9,5 @@ using NUnit.Framework;
 
 namespace NeuToDo.UnitTest.ViewModels
 {
-    [TestFixture]
-    public class ToDoCalendarViewModelTest
-    {
-    }
+  
 }
