@@ -3,6 +3,8 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Forms;
@@ -17,6 +19,9 @@ namespace NeuToDo.ViewModels
         /// 赋值操作无法触发Notify
         /// </remarks>
         public EventCollection Events { get; private set; } = new EventCollection();
+
+        private IEventModelStorage<NeuEvent> _neuEventModelStorage;
+        private IEventModelStorage<MoocEvent> _moocEventModelStorage;
 
         private readonly IEventDetailNavigationService _contentNavigationService;
 
@@ -53,10 +58,24 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-                var neuEventList = await neuStorage.GetAllAsync();
-                var neuEventDict = neuEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-                foreach (var pair in neuEventDict)
+                _neuEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
+                _moocEventModelStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
+                var neuEventList = await _neuEventModelStorage.GetAllAsync();
+                var moocEventList = await _moocEventModelStorage.GetAllAsync();
+                var neuEventDict = neuEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                var moocEventDict = moocEventList.Cast<EventModel>().GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+                var eventDict = neuEventDict;
+                foreach (var item in moocEventDict) {
+                    if (eventDict.ContainsKey(item.Key)) {
+                        foreach (var eventModel in item.Value) {
+                            eventDict[item.Key].Add(eventModel);
+                        }
+                    } else {
+                        eventDict.Add(item.Key, item.Value);
+                    }
+                }
+
+                foreach (var pair in eventDict)
                 {
                     Events.Add(pair.Key, pair.Value);
                 }
