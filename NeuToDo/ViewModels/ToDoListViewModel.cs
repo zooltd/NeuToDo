@@ -189,7 +189,7 @@ namespace NeuToDo.ViewModels
             {DayOfWeek.Wednesday, "#F75355"},
             {DayOfWeek.Thursday, "#00C6AE"},
             {DayOfWeek.Friday, "#455399"},
-            {DayOfWeek.Saturday, "#FFA500"},
+            {DayOfWeek.Saturday, "#FFD700"},
         };
     }
 }
