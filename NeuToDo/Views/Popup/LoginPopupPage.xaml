@@ -48,18 +48,13 @@
                    Margin="15"
                    HorizontalOptions="Center"
                    BackgroundColor="White">
-                <StackLayout
-                    IsClippedToBounds="True"
-                    Padding="10, 5"
-                    Spacing="3">
+                <StackLayout IsClippedToBounds="True"
+                             Spacing="3">
                     <Image HorizontalOptions="Center"
-                           x:Name="LogoImage"
-                           Margin="10"
-                           HeightRequest="120"
-                           WidthRequest="120"
-                           Source="{Binding SettingItem.PicUrl}"
-                           d:Source="http://5b0988e595225.cdn.sohucs.com/images/20171020/ce9240ffb60c40678b24489e366ead24.jpeg">
-
+                           Margin="15"
+                           HeightRequest="140"
+                           WidthRequest="140"
+                           Source="{Binding SettingItem.PicUrl}">
                         <!-- <Image.Source> -->
                         <!--     <OnPlatform -->
                         <!--         x:TypeArguments="ImageSource" -->
@@ -68,20 +63,16 @@
                         <!--         WinPhone="Assets/github_octocat.png" /> -->
                         <!-- </Image.Source> -->
                     </Image>
-
-                    <Label Text="{Binding SettingItem.Name}"
-                           d:Text="NEU"
-                           HorizontalOptions="Center" />
                     <Entry Text="{Binding UserName}"
                            HorizontalOptions="Center"
                            x:Name="UsernameEntry"
                            Style="{StaticResource EntryStyle}"
                            Placeholder="Username"
-                           Margin="0,10,0,0">
+                           Margin="0,-10,0,0">
                         <Entry.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="UWP" Value="120" />
-                                <On Platform="Android" Value="110" />
+                                <On Platform="UWP" Value="135" />
+                                <On Platform="Android" Value="150" />
                             </OnPlatform>
                         </Entry.WidthRequest>
                     </Entry>
@@ -93,12 +84,12 @@
                            IsPassword="True">
                         <Entry.WidthRequest>
                             <OnPlatform x:TypeArguments="x:Double">
-                                <On Platform="UWP" Value="120" />
-                                <On Platform="Android" Value="110" />
+                                <On Platform="UWP" Value="135" />
+                                <On Platform="Android" Value="150" />
                             </OnPlatform>
                         </Entry.WidthRequest>
                     </Entry>
-                    <Button Margin="10, 5"
+                    <Button Margin="10,15"
                             BackgroundColor="#7dbbe6"
                             HorizontalOptions="Fill"
                             x:Name="LoginButton"
