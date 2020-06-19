@@ -1,9 +1,12 @@
-﻿using GalaSoft.MvvmLight;
+﻿using System;
+using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NeuToDo.ViewModels
 {
@@ -11,15 +14,36 @@ namespace NeuToDo.ViewModels
     {
         private readonly IPopupNavigationService _popupNavigationService;
 
-        public SettingsViewModel(IPopupNavigationService popupNavigationService)
+        private readonly ISecureStorageProvider _secureStorageProvider;
+        public SettingsViewModel(IPopupNavigationService popupNavigationService,
+            ISecureStorageProvider secureStorageProvider)
         {
             _popupNavigationService = popupNavigationService;
-
+            _secureStorageProvider = secureStorageProvider;
             Settings = SettingItemGroup.SettingGroup;
         }
 
 
         #region 绑定方法
+
+       
+        private RelayCommand _pageAppearingCommand;
+
+        public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
+            new RelayCommand(async () => await PageAppearingCommandFunction());
+
+        private async Task PageAppearingCommandFunction()
+        {
+            foreach (var settingItem in Settings.SelectMany(settingItemGroup => settingItemGroup))
+            {
+                string itemId;
+                if ((itemId = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Id"))!=null)
+                {
+                    settingItem.Detail = $"已关联用户名{itemId}";
+                    settingItem.Button1Text = "更新";
+                }
+            }
+        }
 
         private RelayCommand<SettingItem> _command1;
 

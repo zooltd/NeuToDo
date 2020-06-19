@@ -7,12 +7,18 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SettingsPage"
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
              NavigationPage.HasNavigationBar="False">
 
-    <!-- <ContentPage.ToolbarItems> -->
-    <!--     <ToolbarItem Command="{Binding TestCommand}" Text="Test" /> -->
-    <!-- </ContentPage.ToolbarItems> -->
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
 
     <CollectionView ItemsSource="{Binding Settings}"
                     IsGrouped="true"

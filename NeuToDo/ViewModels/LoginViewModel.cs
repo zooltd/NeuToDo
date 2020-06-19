@@ -52,8 +52,11 @@ namespace NeuToDo.ViewModels
 
             if (res)
             {
-                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
                 await UpdateSecureStorage();
+                SettingItem.Detail = $"已关联用户名{UserName}";
+                SettingItem.Button1Text = "更新";
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                
             }
             else
             {
