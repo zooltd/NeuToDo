@@ -64,6 +64,7 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await moocStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
             UpdateCalendarData();
+            UpdateTeachingWeekNo();
             UpdateListData();
         }
 
@@ -76,14 +77,17 @@ namespace NeuToDo.ViewModels
             }
         }
 
-        private void UpdateListData()
+        private void UpdateTeachingWeekNo()
         {
             var lastUpdateWeekNo = _preferenceStorageProvider.Get("weekNo", 0);
             var lastUpdateDate = _preferenceStorageProvider.Get("updateDate", DateTime.Today);
             var daySpan = (_today - lastUpdateDate).Days - (int) _today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
             var weekSpan = daySpan / 7;
             WeekNo = lastUpdateWeekNo + weekSpan; //TODO 更好的方案？
+        }
 
+        private void UpdateListData()
+        {
             var cnt = 0;
             WeeklyAgenda.Clear();
             for (var i = 0; i < 7; i++)
