@@ -8,7 +8,7 @@
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="NeuToDo.Views.ToDoListPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
-             BindingContext="{Binding ToDoListViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
@@ -74,13 +74,13 @@
                                  BackgroundColor="White" />
                         <StackLayout Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand" Margin="0,2,0,0" Spacing="0">
-                            <Label Text="{Binding ThisWeekSunday.Day}" TextColor="White" FontSize="16" HorizontalOptions="Center" />
-                            <Label Text="{Binding ThisWeekSunday, StringFormat='{0:MMMM}'}" TextColor="White" FontSize="12" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisSunday.Day}" TextColor="White" FontSize="16" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisSunday, StringFormat='{0:MMMM}'}" TextColor="White" FontSize="12" HorizontalOptions="Center" />
                         </StackLayout>
                         <StackLayout Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"
                                      VerticalOptions="CenterAndExpand" Margin="0,2,0,0" Spacing="0">
-                            <Label Text="{Binding ThisWeekSaturday.Day}" TextColor="#455399" FontSize="16" HorizontalOptions="Center" />
-                            <Label Text="{Binding ThisWeekSaturday, StringFormat='{0:MMMM}'}" TextColor="#455399" FontSize="12" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisSaturday.Day}" TextColor="#455399" FontSize="16" HorizontalOptions="Center" />
+                            <Label Text="{Binding ThisSaturday, StringFormat='{0:MMMM}'}" TextColor="#455399" FontSize="12" HorizontalOptions="Center" />
                         </StackLayout>
                         <BoxView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" WidthRequest="55" HeightRequest="1"
                                  BackgroundColor="#F1F3F7"

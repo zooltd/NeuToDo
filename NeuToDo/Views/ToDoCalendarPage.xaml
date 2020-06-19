@@ -9,7 +9,7 @@
              xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
-             BindingContext="{Binding ToDoCalendarViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
              x:Name="toDoCalendarPage"
              NavigationPage.HasNavigationBar="False">
 
