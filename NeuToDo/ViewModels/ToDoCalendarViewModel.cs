@@ -39,6 +39,11 @@ namespace NeuToDo.ViewModels
 
         #region CalendarPage绑定命令
 
+        private RelayCommand _monthYearTappedCommand;
+
+        public RelayCommand MonthYearTappedCommand =>
+            _monthYearTappedCommand ??= new RelayCommand((() => { SelectedDate = DateTime.Today; }));
+
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand

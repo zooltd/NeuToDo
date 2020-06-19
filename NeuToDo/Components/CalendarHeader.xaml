@@ -5,12 +5,11 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <Grid
-        Margin="0,2"
-        Padding="0"
-        HorizontalOptions="FillAndExpand"
-        IsVisible="{Binding ShowMonthPicker}"
-        VerticalOptions="Start">
+    <Grid Margin="0,2"
+          Padding="0"
+          HorizontalOptions="FillAndExpand"
+          IsVisible="{Binding ShowMonthPicker}"
+          VerticalOptions="Start">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -44,10 +43,23 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <DatePicker Grid.Column="1" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"
-                    TextColor="{Binding MonthLabelColor}" VerticalOptions="Center" Date="{Binding SelectedDate}">
-            <DatePicker.Format>yyyy/MM/dd</DatePicker.Format>
-        </DatePicker>
+        <Label Grid.Column="1"
+               FontAttributes="Bold"
+               FontSize="Medium"
+               HorizontalOptions="Center"
+               TextColor="{Binding MonthLabelColor}"
+               VerticalOptions="Center">
+            <Label.FormattedText>
+                <FormattedString>
+                    <Span Text="{Binding MonthText, Mode=TwoWay}" />
+                    <Span Text=", " />
+                    <Span Text="{Binding Year, Mode=TwoWay}" />
+                </FormattedString>
+            </Label.FormattedText>
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BindingContext.MonthYearTappedCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
 
         <Frame Grid.Column="2"
                Padding="0"
