@@ -14,22 +14,6 @@ namespace NeuToDo.ViewModels
 {
     public class ToDoCalendarViewModel : ViewModelBase
     {
-        /// <remarks>
-        /// 注意有坑 Events无法添加多个属于一天的DateTime
-        /// 赋值操作无法触发Notify
-        /// </remarks>
-
-        public EventCollection EventCollection { get; } = new EventCollection();
-
-        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
-            new Dictionary<DateTime, List<EventModel>>();
-
-        private readonly IEventDetailNavigationService _eventDetailNavigationService;
-
-        private readonly IEventModelStorageProvider _eventModelStorageProvider;
-
-        private bool _isLoaded;
-
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService)
@@ -39,7 +23,21 @@ namespace NeuToDo.ViewModels
             loginAndFetchDataService.GetData += OnGetData;
         }
 
-        #region 绑定命令
+        #region CalendarPage私有变量
+
+        private readonly IEventDetailNavigationService _eventDetailNavigationService;
+
+        private readonly IEventModelStorageProvider _eventModelStorageProvider;
+
+        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
+            new Dictionary<DateTime, List<EventModel>>();
+
+        private bool _isLoaded;
+
+        #endregion
+
+
+        #region CalendarPage绑定命令
 
         private RelayCommand _pageAppearingCommand;
 
@@ -54,7 +52,6 @@ namespace NeuToDo.ViewModels
             _isLoaded = true;
         }
 
-        //TODO 需要检查是否已有DateTime
         private async Task LoadDataFromDb()
         {
             try
@@ -101,7 +98,13 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        #region 绑定属性
+        #region CalendarPage绑定属性
+
+        /// <remarks>
+        /// 注意有坑 Events无法添加多个属于一天的DateTime
+        /// 赋值操作无法触发Notify
+        /// </remarks>
+        public EventCollection EventCollection { get; } = new EventCollection();
 
         private DateTime _selectedDate = DateTime.Today;
 

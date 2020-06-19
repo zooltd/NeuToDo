@@ -13,17 +13,6 @@ namespace NeuToDo.ViewModels
 {
     public class ToDoListViewModel : ViewModelBase
     {
-        private readonly IEventModelStorageProvider _eventModelStorageProvider;
-
-        private readonly IEventDetailNavigationService _eventDetailNavigationService;
-
-        private bool _isLoaded;
-
-        private DateTime _today = DateTime.Today;
-
-        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
-            new Dictionary<DateTime, List<EventModel>>();
-
         public ToDoListViewModel(IEventModelStorageProvider eventModelStorageProvider,
             ILoginAndFetchDataService loginAndFetchDataService,
             IEventDetailNavigationService eventDetailNavigationService)
@@ -36,24 +25,31 @@ namespace NeuToDo.ViewModels
             ThisWeekSaturday = ThisWeekSunday.AddDays(6);
         }
 
-        // //TODO 放在App.xaml.cs中
-        // private double _screenHeight = Application.Current.MainPage.Width;
-        //
-        // public double ScreenHeight
-        // {
-        //     get => _screenHeight;
-        //     set => Set(nameof(ScreenHeight), ref _screenHeight, value);
-        // }
+        #region List私有变量
+
+        private readonly IEventModelStorageProvider _eventModelStorageProvider;
+
+        private readonly IEventDetailNavigationService _eventDetailNavigationService;
+
+        private bool _isLoaded;
+
+        private DateTime _today = DateTime.Today;
+
+        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
+            new Dictionary<DateTime, List<EventModel>>();
+
+        #endregion
 
         #region 绑定命令
 
-
         private RelayCommand<EventModel> _eventTappedCommand;
-        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(((e) =>
-        {
-            Console.WriteLine(e.ToString());
-            _eventDetailNavigationService.PushAsync(e);
-        }));
+
+        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
+            ((e) =>
+            {
+                Console.WriteLine(e.ToString());
+                _eventDetailNavigationService.PushAsync(e);
+            }));
 
         private RelayCommand _pageAppearingCommand;
 
@@ -181,34 +177,5 @@ namespace NeuToDo.ViewModels
 
             WeeklySummary = $"你本周有{cnt}个ToDo事项, 所谓债多不压身";
         }
-
-        public class DailyAgenda
-        {
-            public string Topic { get; set; }
-            public string Duration { get; set; }
-            public DateTime Date { get; set; }
-            public ObservableCollection<EventModel> EventList { get; set; }
-            public string Color { get; set; }
-
-            public DailyAgenda(DateTime date, List<EventModel> eventList)
-            {
-                Topic = eventList.Count == 0 ? "本日无事" : "本日计划";
-                Duration = "00:00 - 24:00"; //TODO
-                Date = date;
-                EventList = new ObservableCollection<EventModel>(eventList);
-                Color = DayColor[date.DayOfWeek];
-            }
-        }
-
-        public static readonly Dictionary<DayOfWeek, string> DayColor = new Dictionary<DayOfWeek, string>
-        {
-            {DayOfWeek.Sunday, "#B96CBD"},
-            {DayOfWeek.Monday, "#49A24D"},
-            {DayOfWeek.Tuesday, "#FDA838"},
-            {DayOfWeek.Wednesday, "#F75355"},
-            {DayOfWeek.Thursday, "#00C6AE"},
-            {DayOfWeek.Friday, "#455399"},
-            {DayOfWeek.Saturday, "#FFD700"},
-        };
     }
 }
