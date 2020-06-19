@@ -33,9 +33,6 @@
         MonthYear="{Binding MonthYear}"
         SelectedDate="{Binding SelectedDate}"
         SelectedDateTextFormat="ddd, MMM dd yyyy"
-        SwipeLeftCommand="{Binding SwipeLeftCommand}"
-        SwipeRightCommand="{Binding SwipeRightCommand}"
-        SwipeUpCommand="{Binding SwipeUpCommand}"
         VerticalOptions="FillAndExpand">
 
         <calendar:Calendar.HeaderSectionTemplate>

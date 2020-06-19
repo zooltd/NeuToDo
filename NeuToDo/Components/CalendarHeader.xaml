@@ -44,22 +44,10 @@
             </Frame.GestureRecognizers>
         </Frame>
 
-        <Label
-            Grid.Column="1"
-            FontAttributes="Bold"
-            FontSize="Medium"
-            HorizontalOptions="Center"
-            TextColor="{Binding MonthLabelColor}"
-            VerticalOptions="Center">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="{Binding MonthText, Mode=TwoWay}" />
-                    <Span Text=", " />
-                    <Span Text="{Binding Year, Mode=TwoWay}" />
-                </FormattedString>
-            </Label.FormattedText>
-
-        </Label>
+        <DatePicker Grid.Column="1" FontAttributes="Bold" FontSize="Medium" HorizontalOptions="Center"
+                    TextColor="{Binding MonthLabelColor}" VerticalOptions="Center" Date="{Binding SelectedDate}">
+            <DatePicker.Format>yyyy/MM/dd</DatePicker.Format>
+        </DatePicker>
 
         <Frame Grid.Column="2"
                Padding="0"

@@ -99,26 +99,6 @@ namespace NeuToDo.ViewModels
             }
         }
 
-        private RelayCommand _todayCommand;
-
-        public RelayCommand TodayCommand =>
-            _todayCommand ??= new RelayCommand((() => { SelectedDate = DateTime.Today; }));
-
-        private RelayCommand _swipeLeftCommand;
-
-        public RelayCommand SwipeLeftCommand =>
-            _swipeLeftCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(2); }));
-
-        private RelayCommand _swipeRightCommand;
-
-        public RelayCommand SwipeRightCommand =>
-            _swipeRightCommand ??= new RelayCommand((() => { MonthYear = MonthYear.AddMonths(-2); }));
-
-        private RelayCommand _swipeUpCommand;
-
-        public RelayCommand SwipeUpCommand =>
-            _swipeUpCommand ??= new RelayCommand((() => { }));
-
         #endregion
 
         #region 绑定属性
