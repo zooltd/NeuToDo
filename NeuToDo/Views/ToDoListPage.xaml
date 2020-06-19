@@ -19,7 +19,7 @@
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
-    <ScrollView>
+    <ScrollView x:Name="ScrollView">
         <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
@@ -175,6 +175,9 @@
                                                                         </FormattedString.Spans>
                                                                     </FormattedString>
                                                                 </Label.FormattedText>
+                                                                <Label.GestureRecognizers>
+                                                                    <TapGestureRecognizer Command="{Binding BindingContext.EventTappedCommand, Source={x:Reference ScrollView}}" CommandParameter="{Binding}"/>
+                                                                </Label.GestureRecognizers>
                                                             </Label>
                                                         </Grid>
                                                     </DataTemplate>

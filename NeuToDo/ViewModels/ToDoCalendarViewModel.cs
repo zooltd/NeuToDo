@@ -24,17 +24,17 @@ namespace NeuToDo.ViewModels
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
 
-        private readonly IEventDetailNavigationService _contentNavigationService;
+        private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
         private bool _isLoaded;
 
         public ToDoCalendarViewModel(IEventModelStorageProvider eventModelStorageProvider,
-            IEventDetailNavigationService contentNavigationService,
+            IEventDetailNavigationService eventDetailNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService)
         {
-            _contentNavigationService = contentNavigationService;
+            _eventDetailNavigationService = eventDetailNavigationService;
             _eventModelStorageProvider = eventModelStorageProvider;
             loginAndFetchDataService.GetData += OnGetData;
         }
@@ -95,7 +95,7 @@ namespace NeuToDo.ViewModels
         {
             if (item is EventModel eventModel)
             {
-                await _contentNavigationService.PushAsync(item);
+                await _eventDetailNavigationService.PushAsync(item);
             }
         }
 

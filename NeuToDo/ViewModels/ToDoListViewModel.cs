@@ -15,6 +15,8 @@ namespace NeuToDo.ViewModels
     {
         private readonly IEventModelStorageProvider _eventModelStorageProvider;
 
+        private readonly IEventDetailNavigationService _eventDetailNavigationService;
+
         private bool _isLoaded;
 
         private DateTime _today = DateTime.Today;
@@ -23,9 +25,11 @@ namespace NeuToDo.ViewModels
             new Dictionary<DateTime, List<EventModel>>();
 
         public ToDoListViewModel(IEventModelStorageProvider eventModelStorageProvider,
-            ILoginAndFetchDataService loginAndFetchDataService)
+            ILoginAndFetchDataService loginAndFetchDataService,
+            IEventDetailNavigationService eventDetailNavigationService)
         {
             _eventModelStorageProvider = eventModelStorageProvider;
+            _eventDetailNavigationService = eventDetailNavigationService;
             loginAndFetchDataService.GetData += OnGetData;
             WeeklyAgenda = new ObservableCollection<DailyAgenda>();
             ThisWeekSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -42,6 +46,14 @@ namespace NeuToDo.ViewModels
         // }
 
         #region 绑定命令
+
+
+        private RelayCommand<EventModel> _eventTappedCommand;
+        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(((e) =>
+        {
+            Console.WriteLine(e.ToString());
+            _eventDetailNavigationService.PushAsync(e);
+        }));
 
         private RelayCommand _pageAppearingCommand;
 
