@@ -23,7 +23,7 @@
         <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
-                <RowDefinition Height="590" />
+                <RowDefinition Height="603" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
