@@ -24,40 +24,65 @@
     <!-- <ContentPage.ToolbarItems> -->
     <!--     <ToolbarItem Command="{Binding TodayCommand}" Text="Today" /> -->
     <!-- </ContentPage.ToolbarItems> -->
+    <AbsoluteLayout>
+        <calendar:Calendar
+            Padding="10,0"
+            AnimateCalendar="True"
+            Events="{Binding EventCollection}"
+            HorizontalOptions="FillAndExpand"
+            MonthYear="{Binding MonthYear}"
+            SelectedDate="{Binding SelectedDate}"
+            SelectedDateTextFormat="ddd, MMM dd yyyy"
+            VerticalOptions="FillAndExpand">
 
-    <calendar:Calendar
-        Padding="10,0"
-        AnimateCalendar="True"
-        Events="{Binding EventCollection}"
-        HorizontalOptions="FillAndExpand"
-        MonthYear="{Binding MonthYear}"
-        SelectedDate="{Binding SelectedDate}"
-        SelectedDateTextFormat="ddd, MMM dd yyyy"
-        VerticalOptions="FillAndExpand">
+            <calendar:Calendar.HeaderSectionTemplate>
+                <components:CalendarHeader />
+            </calendar:Calendar.HeaderSectionTemplate>
 
-        <calendar:Calendar.HeaderSectionTemplate>
-            <components:CalendarHeader />
-        </calendar:Calendar.HeaderSectionTemplate>
+            <calendar:Calendar.FooterSectionTemplate>
+                <DataTemplate>
+                    <components:CalendarFooter />
+                </DataTemplate>
+            </calendar:Calendar.FooterSectionTemplate>
 
-        <calendar:Calendar.FooterSectionTemplate>
-            <DataTemplate>
-                <components:CalendarFooter />
-            </DataTemplate>
-        </calendar:Calendar.FooterSectionTemplate>
+            <calendar:Calendar.EventTemplate>
+                <DataTemplate>
+                    <components:CalenderEvent
+                        CalenderEventCommand="{Binding BindingContext.EventSelectedCommand, Source={x:Reference toDoCalendarPage}}" />
+                </DataTemplate>
+            </calendar:Calendar.EventTemplate>
 
-        <calendar:Calendar.EventTemplate>
-            <DataTemplate>
-                <components:CalenderEvent CalenderEventCommand="{Binding BindingContext.EventSelectedCommand, Source={x:Reference toDoCalendarPage}}"/>
-            </DataTemplate>
-        </calendar:Calendar.EventTemplate>
+            <calendar:Calendar.EmptyTemplate>
+                <DataTemplate>
+                    <StackLayout>
+                        <Label Text="今日无事" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
+                    </StackLayout>
+                </DataTemplate>
+            </calendar:Calendar.EmptyTemplate>
+        </calendar:Calendar>
+        <ImageButton Source="CalendarAdd.png"
+                     BackgroundColor="Transparent"
+                     AbsoluteLayout.LayoutFlags="PositionProportional"
+                     AbsoluteLayout.LayoutBounds=".95,.95, 50, 50"
+                     Command="{Binding AddEventCommand}" >
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                                    Value="1" />
+                        </VisualState.Setters>
+                    </VisualState>
 
-        <calendar:Calendar.EmptyTemplate>
-            <DataTemplate>
-                <StackLayout>
-                    <Label Text="今日无事" HorizontalTextAlignment="Center" Margin="0,5,0,5" />
-                </StackLayout>
-            </DataTemplate>
-        </calendar:Calendar.EmptyTemplate>
-    </calendar:Calendar>
+                    <VisualState x:Name="Pressed">
+                        <VisualState.Setters>
+                            <Setter Property="Scale"
+                                    Value="0.8" />
+                        </VisualState.Setters>
+                    </VisualState>
 
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+        </ImageButton>
+    </AbsoluteLayout>
 </ContentPage>

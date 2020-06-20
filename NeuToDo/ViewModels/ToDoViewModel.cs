@@ -121,6 +121,11 @@ namespace NeuToDo.ViewModels
 
         #region 共有绑定命令
 
+        private RelayCommand _addEventCommand;
+
+        public RelayCommand AddEventCommand => _addEventCommand ??=
+            new RelayCommand((() => { _eventDetailNavigationService.PushAsync(); }));
+
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
