@@ -10,22 +10,31 @@
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              ls:NavigationContext.NavigationParameter="{Binding Event}"
              Title="编辑">
-   
-    <StackLayout>
-
-        <Entry Text="{Binding Event.Title}"
-               d:Text="人机交互" />
-        <Entry Text="{Binding Event.Detail}"
-               d:Text="1-2, 赵.., 东北大学" />
-        <!-- <EntryCell Label="开始时间" -->
-        <!--            Text="{Binding Event.Starting}" /> -->
-        <DatePicker x:Name="endDatePicker"
-                    Date="{Binding Event.Time.Date}"
-                    Format="D" />
-        <TimePicker x:Name="_timePicker"
-                    Time="{Binding Event.Time.TimeOfDay}"
-                    Format="T" />
-        <Switch IsToggled="{Binding Event.IsDone}" />
-    </StackLayout>
+    <TableView Intent="Data" HasUnevenRows="true">
+        <TableRoot>
+            <TableSection Title="ToDo事件信息">
+                <EntryCell Label="名称"
+                           Text="{Binding Event.Title}" />
+                <EntryCell Label="备注"
+                           Text="{Binding Event.Detail}" />
+            </TableSection>
+            <TableSection Title="ToDo时间信息">
+                <ViewCell>
+                    <Grid Margin="15,10">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <DatePicker Date="{Binding Event.Time.Date}"
+                                    Format="D" />
+                        <TimePicker Grid.Column="1"
+                                    Time="{Binding Event.Time.TimeOfDay}" />
+                    </Grid>
+                </ViewCell>
+                <SwitchCell Text="是否为周期性事件" />
+            </TableSection>
+            <TableSection Title="重复事件选择" />
+        </TableRoot>
+    </TableView>
 
 </ContentPage>
