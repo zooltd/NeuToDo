@@ -17,8 +17,8 @@ namespace NeuToDo.Services {
         public static List<NeuEvent> EventList;
 
         public NeuSyllabusGetter(IHttpClientFactory httpClientFactory) {
-            _initClient = httpClientFactory.CreateClient("neuInit");
-            _reallocateClient = httpClientFactory.CreateClient("neuReallocate");
+            _initClient = httpClientFactory.NeuInitClient();
+            _reallocateClient = httpClientFactory.NeuReallocateClient();
         }
 
         public async Task WebCrawler(string userId, string password) {

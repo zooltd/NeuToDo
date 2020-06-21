@@ -8,10 +8,12 @@ namespace NeuToDo.Services
     public class LoginAndFetchDataService : ILoginAndFetchDataService
     {
         private readonly IEventModelStorageProvider _storageProvider;
+        private static IHttpClientFactory _httpClientFactory;
 
-        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider)
+        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider, IHttpClientFactory httpClientFactory)
         {
             _storageProvider = eventModelStorageProvider;
+            _httpClientFactory = httpClientFactory;
         }
 
         public event EventHandler GetData;
@@ -21,7 +23,8 @@ namespace NeuToDo.Services
             switch (serverType)
             {
                 case ServerType.Neu:
-                    var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
+                    // var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
+                    var neuGetter = new NeuSyllabusGetter(_httpClientFactory);
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                     try
                     {
@@ -37,7 +40,8 @@ namespace NeuToDo.Services
                         return false;
                     }
                 case ServerType.Mooc:
-                    var moocGetter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
+                    // var moocGetter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
+                    var moocGetter = new MoocInfoGetter(_httpClientFactory);
                     var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
                     try
                     {
