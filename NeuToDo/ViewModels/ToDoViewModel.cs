@@ -102,14 +102,6 @@ namespace NeuToDo.ViewModels
             WeeklySummary = $"你本周有{cnt}个ToDo事项, 所谓债多不压身";
         }
 
-        private async Task EventSelectedFunction(object item)
-        {
-            if (item is EventModel eventModel)
-            {
-                await _eventDetailNavigationService.PushAsync(item);
-            }
-        }
-
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
@@ -128,17 +120,20 @@ namespace NeuToDo.ViewModels
             get => _selectedEvent;
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
+
         #endregion
 
         #region 共有绑定命令
 
         private RelayCommand<EventModel> _eventTappedCommand;
 
-        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(((e) =>
-        {
-            SelectedEvent = e;
-            _eventDetailNavigationService.PushAsync();
-        }));
+        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
+            ((e) =>
+            {
+                SelectedEvent = e;
+                IsRepeat = false || e.GetType() == typeof(NeuEvent);
+                _eventDetailNavigationService.PushAsync();
+            }));
 
         private RelayCommand _addEventCommand;
 
@@ -246,6 +241,18 @@ namespace NeuToDo.ViewModels
         {
             get => _weeklySummary;
             set => Set(nameof(WeeklySummary), ref _weeklySummary, value);
+        }
+
+        #endregion
+
+        #region Detail绑定属性
+
+        private bool _isRepeat;
+
+        public bool IsRepeat
+        {
+            get => _isRepeat;
+            set => Set(nameof(IsRepeat), ref _isRepeat, value);
         }
 
         #endregion
