@@ -19,11 +19,5 @@ namespace NeuToDo.Services
         {
             await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
         }
-
-        public async Task PushAsync(object parameter)
-        {
-            NavigationContext.SetParameter(EventDetailPage, parameter);
-            await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
-        }
     }
 }

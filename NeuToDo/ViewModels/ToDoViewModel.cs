@@ -113,12 +113,21 @@ namespace NeuToDo.ViewModels
 
         #region 共有绑定属性
 
-        private EventModel _selectedEvent;
+        //
+        // private EventModel _selectedEvent;
+        //
+        // public EventModel SelectedEvent
+        // {
+        //     get => _selectedEvent;
+        //     set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
+        // }
 
-        public EventModel SelectedEvent
+        private EventDetail _eventDetail;
+
+        public EventDetail EventDetail
         {
-            get => _selectedEvent;
-            set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
+            get => _eventDetail;
+            set => Set(nameof(EventDetail), ref _eventDetail, value);
         }
 
         #endregion
@@ -130,8 +139,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
             ((e) =>
             {
-                SelectedEvent = e;
-                IsRepeat = false || e.GetType() == typeof(NeuEvent);
+                EventDetail = new EventDetail(e);
                 _eventDetailNavigationService.PushAsync();
             }));
 
@@ -140,7 +148,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand AddEventCommand => _addEventCommand ??=
             new RelayCommand((() =>
             {
-                SelectedEvent = new UserEvent();
+                EventDetail = new EventDetail(new UserEvent());
                 _eventDetailNavigationService.PushAsync();
             }));
 
@@ -241,18 +249,6 @@ namespace NeuToDo.ViewModels
         {
             get => _weeklySummary;
             set => Set(nameof(WeeklySummary), ref _weeklySummary, value);
-        }
-
-        #endregion
-
-        #region Detail绑定属性
-
-        private bool _isRepeat;
-
-        public bool IsRepeat
-        {
-            get => _isRepeat;
-            set => Set(nameof(IsRepeat), ref _isRepeat, value);
         }
 
         #endregion

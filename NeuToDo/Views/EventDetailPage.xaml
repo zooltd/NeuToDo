@@ -4,39 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:lc="clr-namespace:NeuToDo.Converters;assembly=NeuToDo"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage"
              BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
              Title="编辑">
 
-    <ContentPage.Resources>
-        <lc:TypeNameConverter x:Key="TypeName" />
-    </ContentPage.Resources>
 
-    <StackLayout Padding="20,0,20,0">
+    <StackLayout Padding="20,10,20,0">
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="9*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent,Converter={StaticResource TypeName}}"
-                   d:Text="NeuEvent" />
-            <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
-                   VerticalOptions="CenterAndExpand" />
-            <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
-                   VerticalOptions="CenterAndExpand" />
-            <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
-                   VerticalOptions="CenterAndExpand" />
-            <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding SelectedEvent.Detail}"
-                   VerticalOptions="CenterAndExpand" />
-        </Grid>
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
@@ -47,15 +22,42 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="9*" />
             </Grid.ColumnDefinitions>
+            <Label Grid.ColumnSpan="2" Text="{Binding EventDetail.TypeName}"
+                   d:Text="NeuEvent" />
+            <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding EventDetail.Event.Title}"
+                   VerticalOptions="CenterAndExpand" />
+            <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding EventDetail.Event.Detail}"
+                   VerticalOptions="CenterAndExpand" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9*" />
+            </Grid.ColumnDefinitions>
             <Label Grid.Row="0" Grid.ColumnSpan="2" Text="时间段" />
             <Image Grid.Column="0" Grid.Row="1" Source="date.png" WidthRequest="30" HeightRequest="30"
                    VerticalOptions="CenterAndExpand" />
-            <DatePicker Grid.Column="1" Grid.Row="1" Date="{Binding SelectedEvent.Time.Date}"
+            <DatePicker Grid.Column="1" Grid.Row="1" Date="{Binding EventDetail.Event.Time.Date}"
                         VerticalOptions="CenterAndExpand" />
             <Image Grid.Column="0" Grid.Row="2" Source="time.png" WidthRequest="30" HeightRequest="30"
                    VerticalOptions="CenterAndExpand" />
-            <TimePicker Grid.Column="1" Grid.Row="2" Time="{Binding SelectedEvent.Time.TimeOfDay}"
+            <TimePicker Grid.Column="1" Grid.Row="2" Time="{Binding EventDetail.Event.Time.TimeOfDay}"
                         VerticalOptions="CenterAndExpand" />
+            <Image Grid.Column="0" Grid.Row="3" Source="repeat.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand"
+                   IsVisible="{Binding EventDetail.ShowSwitchCell}" />
+            <Switch Grid.Column="1" Grid.Row="3" IsToggled="{Binding EventDetail.IsRepeat}" HorizontalOptions="Start"
+                    IsVisible="{Binding EventDetail.ShowSwitchCell}" />
         </Grid>
 
     </StackLayout>
