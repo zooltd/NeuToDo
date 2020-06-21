@@ -48,7 +48,7 @@
             <calendar:Calendar.EventTemplate>
                 <DataTemplate>
                     <components:CalenderEvent
-                        CalenderEventCommand="{Binding BindingContext.EventSelectedCommand, Source={x:Reference toDoCalendarPage}}" />
+                        CalenderEventCommand="{Binding BindingContext.EventTappedCommand, Source={x:Reference toDoCalendarPage}}" />
                 </DataTemplate>
             </calendar:Calendar.EventTemplate>
 

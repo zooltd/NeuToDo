@@ -119,22 +119,40 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
+        #region 共有绑定属性
+
+        private EventModel _selectedEvent;
+
+        public EventModel SelectedEvent
+        {
+            get => _selectedEvent;
+            set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
+        }
+        #endregion
+
         #region 共有绑定命令
+
+        private RelayCommand<EventModel> _eventTappedCommand;
+
+        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(((e) =>
+        {
+            SelectedEvent = e;
+            _eventDetailNavigationService.PushAsync();
+        }));
 
         private RelayCommand _addEventCommand;
 
         public RelayCommand AddEventCommand => _addEventCommand ??=
-            new RelayCommand((() => { _eventDetailNavigationService.PushAsync(); }));
+            new RelayCommand((() =>
+            {
+                SelectedEvent = new UserEvent();
+                _eventDetailNavigationService.PushAsync();
+            }));
 
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
             new RelayCommand(async () => await PageAppearingCommandFunction());
-
-        private RelayCommand<EventModel> _eventSelectedCommand;
-
-        public RelayCommand<EventModel> EventSelectedCommand => _eventSelectedCommand ??=
-            new RelayCommand<EventModel>(async (e) => await EventSelectedFunction(e));
 
         #endregion
 

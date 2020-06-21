@@ -6,17 +6,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage"
-             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
-             ls:NavigationContext.NavigationParameter="{Binding Event}"
              Title="编辑">
     <TableView Intent="Data" HasUnevenRows="true">
         <TableRoot>
             <TableSection Title="ToDo事件信息">
                 <EntryCell Label="名称"
-                           Text="{Binding Event.Title}" />
+                           Text="{Binding SelectedEvent.Title}" />
                 <EntryCell Label="备注"
-                           Text="{Binding Event.Detail}" />
+                           Text="{Binding SelectedEvent.Detail}" />
             </TableSection>
             <TableSection Title="ToDo时间信息">
                 <ViewCell>
@@ -25,10 +24,10 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <DatePicker Date="{Binding Event.Time.Date}"
+                        <DatePicker Date="{Binding SelectedEvent.Time.Date}"
                                     Format="D" />
                         <TimePicker Grid.Column="1"
-                                    Time="{Binding Event.Time.TimeOfDay}" />
+                                    Time="{Binding SelectedEvent.Time.TimeOfDay}" />
                     </Grid>
                 </ViewCell>
                 <SwitchCell Text="是否为周期性事件" />
