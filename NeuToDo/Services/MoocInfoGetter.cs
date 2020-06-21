@@ -12,17 +12,17 @@ using Newtonsoft.Json;
 
 namespace NeuToDo.Services {
     public class MoocInfoGetter {
-        private const string LoginUrl = "/passport/reg/icourseLogin.do";
+        private const string LoginUrl = "https://www.icourse163.org/passport/reg/icourseLogin.do";
 
-        private const string GetTokenUrl = "/";
+        private const string GetTokenUrl = "https://www.icourse163.org/";
 
         private const string GetOnGoingCoursesUrl =
-            "/web/j/learnerCourseRpcBean.getMyLearnedCoursePanelList.rpc";
+            "https://www.icourse163.org/web/j/learnerCourseRpcBean.getMyLearnedCoursePanelList.rpc";
 
-        private const string CourseDetailUrl = "/learn/";
+        private const string CourseDetailUrl = "https://www.icourse163.org/learn/";
 
         private const string GetCourseTestInfoUrl =
-            "/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
+            "https://www.icourse163.org/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
 
         private static HttpClient _client;
         private static string _token;
@@ -165,7 +165,6 @@ namespace NeuToDo.Services {
                         .ConvertTimeFromUtc(new DateTime(1970, 1, 1),
                             TimeZoneInfo.Local).AddMilliseconds(unixTime);
                     quizDeadline.Add(time);
-                    Console.WriteLine(time);
                 } catch (Exception e) {
                     quizName.RemoveAt(quizName.Count - 1);
                 }
@@ -210,7 +209,6 @@ namespace NeuToDo.Services {
                         .ConvertTimeFromUtc(new DateTime(1970, 1, 1),
                             TimeZoneInfo.Local).AddMilliseconds(unixTime);
                     homeworkDeadline.Add(time);
-                    Console.WriteLine(time);
                 } catch (Exception e) {
                     homeworkName.RemoveAt(homeworkName.Count - 1);
                 }
@@ -222,7 +220,7 @@ namespace NeuToDo.Services {
                     Title = "Mooc " + course.Value,
                     Detail = quizName[i],
                     Code = course.Key,
-                    Time = (DateTime) quizDeadline[i],
+                    Time = quizDeadline[i],
                     IsDone = false
                 });
             }
@@ -230,9 +228,9 @@ namespace NeuToDo.Services {
             for (var i = 0; i < homeworkName.Count; i++) {
                 EventList.Add(new MoocEvent {
                     Title = "Mooc " + course.Value,
-                    Detail = (string) homeworkName[i],
+                    Detail = homeworkName[i],
                     Code = course.Key,
-                    Time = (DateTime) homeworkDeadline[i],
+                    Time = homeworkDeadline[i],
                     IsDone = false
                 });
             }
@@ -241,7 +239,6 @@ namespace NeuToDo.Services {
         public async Task WebCrawler(string userName, string password) {
             await Login(userName, password);
             var courses = await GetOnGoingCourses(_token);
-            EventList = new List<MoocEvent>();
             foreach (var course in courses) {
                 await GetTestInfo(course);
             }
@@ -249,9 +246,8 @@ namespace NeuToDo.Services {
         }
 
         public MoocInfoGetter(IHttpClientFactory httpClientFactory) {
-            _client = new HttpClient();
             _token = string.Empty;
-            _client = httpClientFactory.CreateClient("mooc");
+            _client = httpClientFactory.MoocClient();
             EventList = new List<MoocEvent>();
         }
     }
