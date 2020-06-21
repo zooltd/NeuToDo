@@ -4,36 +4,60 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:lc="clr-namespace:NeuToDo.Converters;assembly=NeuToDo"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage"
              BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
-             xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              Title="编辑">
-    <TableView Intent="Data" HasUnevenRows="true">
-        <TableRoot>
-            <TableSection Title="ToDo事件信息">
-                <EntryCell Label="名称"
-                           Text="{Binding SelectedEvent.Title}" />
-                <EntryCell Label="备注"
-                           Text="{Binding SelectedEvent.Detail}" />
-            </TableSection>
-            <TableSection Title="ToDo时间信息">
-                <ViewCell>
-                    <Grid Margin="15,10">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <DatePicker Date="{Binding SelectedEvent.Time.Date}"
-                                    Format="D" />
-                        <TimePicker Grid.Column="1"
-                                    Time="{Binding SelectedEvent.Time.TimeOfDay}" />
-                    </Grid>
-                </ViewCell>
-                <SwitchCell Text="是否为周期性事件" />
-            </TableSection>
-            <TableSection Title="重复事件选择" />
-        </TableRoot>
-    </TableView>
+
+    <ContentPage.Resources>
+        <lc:TypeNameConverter x:Key="TypeName" />
+    </ContentPage.Resources>
+
+    <StackLayout Padding="20,0,20,0">
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent,Converter={StaticResource TypeName}}"
+                   d:Text="NeuEvent" />
+            <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                   VerticalOptions="CenterAndExpand" />
+            <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding SelectedEvent.Detail}"
+                   VerticalOptions="CenterAndExpand" />
+        </Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="9*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Row="0" Grid.ColumnSpan="2" Text="时间段" />
+            <Image Grid.Column="0" Grid.Row="1" Source="date.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <DatePicker Grid.Column="1" Grid.Row="1" Date="{Binding SelectedEvent.Time.Date}"
+                        VerticalOptions="CenterAndExpand" />
+            <Image Grid.Column="0" Grid.Row="2" Source="time.png" WidthRequest="30" HeightRequest="30"
+                   VerticalOptions="CenterAndExpand" />
+            <TimePicker Grid.Column="1" Grid.Row="2" Time="{Binding SelectedEvent.Time.TimeOfDay}"
+                        VerticalOptions="CenterAndExpand" />
+        </Grid>
+
+    </StackLayout>
 
 </ContentPage>
