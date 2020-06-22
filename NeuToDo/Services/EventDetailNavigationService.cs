@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
+using NeuToDo.Models;
 using NeuToDo.Views;
 using Xamarin.Forms;
 
@@ -7,23 +8,22 @@ namespace NeuToDo.Services
 {
     public class EventDetailNavigationService : IEventDetailNavigationService
     {
-        private ContentPage _eventDetailPage;
+        private readonly IEventDetailPageActivationService _eventDetailPageActivationService;
 
-        public ContentPage EventDetailPage => _eventDetailPage ??= new EventDetailPage();
+        public EventDetailNavigationService(IEventDetailPageActivationService eventDetailPageActivationService)
+        {
+            _eventDetailPageActivationService = eventDetailPageActivationService;
+        }
 
         private MainPage _mainPage;
 
         public MainPage MainPage => _mainPage ??= Application.Current.MainPage as MainPage;
 
-        public async Task PushAsync()
+        public async Task PushAsync(EventModel e)
         {
-            await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
-        }
-
-        public async Task PushAsync(object parameter)
-        {
-            NavigationContext.SetParameter(EventDetailPage, parameter);
-            await MainPage.CurrentPage.Navigation.PushAsync(EventDetailPage);
+            var page = _eventDetailPageActivationService.Activate(e.GetType().Name);
+            NavigationContext.SetParameter(page, e);
+            await MainPage.CurrentPage.Navigation.PushAsync(page);
         }
     }
 }

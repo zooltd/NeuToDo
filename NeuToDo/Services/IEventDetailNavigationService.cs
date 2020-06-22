@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NeuToDo.Models;
 using NeuToDo.Views;
 
 namespace NeuToDo.Services
@@ -13,14 +14,7 @@ namespace NeuToDo.Services
         /// <summary>
         /// 导航到页面。
         /// </summary>
-        /// <param name="sourceKey">来源页面键。</param>
-        Task PushAsync();
-        
-        /// <summary>
-        /// 导航到页面。
-        /// </summary>
-        /// <param name="sourceKey">来源页面键。</param>
-        /// <param name="parameter">参数。</param>
-        Task PushAsync(object parameter);
+        /// <param name="e"></param>
+        Task PushAsync(EventModel e);
     }
 }

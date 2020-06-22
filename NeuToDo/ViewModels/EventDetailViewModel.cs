@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
@@ -25,14 +27,13 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
-        private EventDetail _eventDetail;
+        private ObservableCollection<TimeTable> _eventPeriod;
 
-        public EventDetail EventDetail
+        public ObservableCollection<TimeTable> EventPeriod
         {
-            get => _eventDetail;
-            set => Set(nameof(EventDetail), ref _eventDetail, value);
+            get => _eventPeriod;
+            set => Set(nameof(EventPeriod), ref _eventPeriod, value);
         }
-
 
         private RelayCommand _pageAppearingCommand;
 
@@ -43,24 +44,24 @@ namespace NeuToDo.ViewModels
 
         private async Task PageAppearingCommandFunction()
         {
-            EventDetail = new EventDetail(SelectedEvent);
-            if (EventDetail.TypeName == nameof(NeuEvent))
+            EventPeriod = new ObservableCollection<TimeTable>();
+            if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
-                var neuEvents = await neuStorage.GetAllAsync(EventDetail.Code);
-                var groups = neuEvents.Select(e => new {e.Day, e.Week}).GroupBy(e => e.Day, e => e.Week)
+                var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
+                var courseDict = courses.Select(c => new {c.Day, c.Week}).GroupBy(c => c.Day, c => c.Week)
                     .ToDictionary(g => g.Key, g => g.ToList());
-
-                foreach (var group in groups)
+                foreach (var pair in courseDict)
                 {
-                    var weekNo = string.Empty;
-                    var day = (DayOfWeek) group.Key;
-                    weekNo = @group.Value.Aggregate(weekNo, (current, i) => current + (i + ","));
-                    weekNo = weekNo.TrimEnd(',');
-                    EventDetail.RepeatList.Add(new TimeTable {Day = day, WeekNo = weekNo});
+                    EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
                 }
             }
-            Console.WriteLine("debug");
         }
     }
+
+    public class TimeTable
+    {
+        public DayOfWeek Day { get; set; }
+        public string WeekNo { get; set; }
+    };
 }

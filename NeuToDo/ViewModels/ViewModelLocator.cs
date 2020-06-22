@@ -22,6 +22,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
             SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();
+            SimpleIoc.Default.Register<IEventDetailPageActivationService,EventDetailPageActivationService>();
             SimpleIoc.Default.Register<IEventModelStorageProvider, EventModelStorageProvider>();
             SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();

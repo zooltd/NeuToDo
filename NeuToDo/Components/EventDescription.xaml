@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
-<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -8,7 +9,27 @@
 
     <ContentView.Content>
       <StackLayout>
-          <Label Text="Hello Xamarin.Forms!" />
+          <Grid>
+              <Grid.RowDefinitions>
+                  <RowDefinition Height="Auto" />
+                  <RowDefinition />
+                  <RowDefinition />
+              </Grid.RowDefinitions>
+              <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*" />
+                  <ColumnDefinition Width="9*" />
+              </Grid.ColumnDefinitions>
+              <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent.TypeName}"
+                     d:Text="NeuEvent" />
+              <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
+                     VerticalOptions="CenterAndExpand" />
+              <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                     VerticalOptions="CenterAndExpand" />
+              <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
+                     VerticalOptions="CenterAndExpand" />
+              <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding SelectedEvent.Detail}"
+                     VerticalOptions="CenterAndExpand" />
+          </Grid>
       </StackLayout>
-  </ContentView.Content>
+    </ContentView.Content>
 </ContentView>
