@@ -48,23 +48,19 @@ namespace NeuToDo.ViewModels
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
                 var neuEvents = await neuStorage.GetAllAsync(EventDetail.Code);
-                var groups = neuEvents.Select(e => new {e.Day, e.Week}).GroupBy(e => e.Day, e => e.Week).ToDictionary(g=>g.Key,g=>g.ToList());
-               
+                var groups = neuEvents.Select(e => new {e.Day, e.Week}).GroupBy(e => e.Day, e => e.Week)
+                    .ToDictionary(g => g.Key, g => g.ToList());
+
                 foreach (var group in groups)
                 {
                     var weekNo = string.Empty;
                     var day = (DayOfWeek) group.Key;
-                    foreach (var i in group.Value)
-                    {
-                        weekNo += (i + ",");
-                    }
-
+                    weekNo = @group.Value.Aggregate(weekNo, (current, i) => current + (i + ","));
                     weekNo = weekNo.TrimEnd(',');
-                    EventDetail.RepeatList.Add(new TimeTable{Day = day,WeekNo = weekNo});
+                    EventDetail.RepeatList.Add(new TimeTable {Day = day, WeekNo = weekNo});
                 }
             }
-
-            
+            Console.WriteLine("debug");
         }
     }
 }
