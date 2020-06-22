@@ -19,8 +19,7 @@
                   <ColumnDefinition Width="*" />
                   <ColumnDefinition Width="9*" />
               </Grid.ColumnDefinitions>
-              <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent.TypeName}"
-                     d:Text="NeuEvent" />
+              <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent}"/>
               <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
                      VerticalOptions="CenterAndExpand" />
               <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"

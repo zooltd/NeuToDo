@@ -19,6 +19,14 @@ namespace NeuToDo.ViewModels
             _eventStorage = eventModelStorageProvider;
         }
 
+        private string _eventTypeName;
+
+        public string EventTypeName
+        {
+            get => _eventTypeName;
+            set => Set(nameof(EventTypeName), ref _eventTypeName, value);
+        }
+
         private EventModel _selectedEvent;
 
         public EventModel SelectedEvent
@@ -45,12 +53,13 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             EventPeriod = new ObservableCollection<TimeTable>();
+            EventTypeName = SelectedEvent.GetType().Name;
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
                 var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
-                var courseDict = courses.Select(c => new {c.Day, c.Week}).GroupBy(c => c.Day, c => c.Week)
-                    .ToDictionary(g => g.Key, g => g.ToList());
+                var courseDict = courses.GroupBy(c => c.Day)
+                    .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
                 foreach (var pair in courseDict)
                 {
                     EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
