@@ -52,7 +52,15 @@ namespace NeuToDo.ViewModels
                
                 foreach (var group in groups)
                 {
+                    var weekNo = string.Empty;
                     var day = (DayOfWeek) group.Key;
+                    foreach (var i in group.Value)
+                    {
+                        weekNo += (i + ",");
+                    }
+
+                    weekNo = weekNo.TrimEnd(',');
+                    EventDetail.RepeatList.Add(new TimeTable{Day = day,WeekNo = weekNo});
                 }
             }
 
