@@ -19,13 +19,16 @@
                         <DataTemplate>
                             <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
-                                    <ColumnDefinition />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="4*" />
                                 </Grid.ColumnDefinitions>
-                                <Image Source="period.png" />
-                                <Entry Grid.Column="1" Text="{Binding Day}" />
-                                <Entry Grid.Column="2" Text="{Binding WeekNo}" />
+                                <Image Source="period.png" WidthRequest="30" HeightRequest="30"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Column="1" Text="{Binding Day}" VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
+                                <Entry Grid.Column="2" Text="{Binding WeekNo}" VerticalOptions="Center"
+                                       HorizontalOptions="StartAndExpand" />
 
                             </Grid>
                         </DataTemplate>

@@ -8,27 +8,27 @@
              x:Class="NeuToDo.Components.EventDescription">
 
     <ContentView.Content>
-      <StackLayout>
-          <Grid>
-              <Grid.RowDefinitions>
-                  <RowDefinition Height="Auto" />
-                  <RowDefinition />
-                  <RowDefinition />
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*" />
-                  <ColumnDefinition Width="9*" />
-              </Grid.ColumnDefinitions>
-              <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent}"/>
-              <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
-                     VerticalOptions="CenterAndExpand" />
-              <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
-                     VerticalOptions="CenterAndExpand" />
-              <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
-                     VerticalOptions="CenterAndExpand" />
-              <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding SelectedEvent.Detail}"
-                     VerticalOptions="CenterAndExpand" />
-          </Grid>
-      </StackLayout>
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="8*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.ColumnSpan="2" Text="{Binding EventTypeName}" />
+                <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
+                       VerticalOptions="Center" />
+                <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                       VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                <Image Grid.Column="0" Grid.Row="2" Source="detail.png" WidthRequest="30" HeightRequest="30"
+                       VerticalOptions="Center" />
+                <Entry Grid.Column="1" Grid.Row="2" Placeholder="备注" Text="{Binding SelectedEvent.Detail}"
+                       VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+            </Grid>
+        </StackLayout>
     </ContentView.Content>
 </ContentView>

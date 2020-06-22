@@ -53,7 +53,7 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             EventPeriod = new ObservableCollection<TimeTable>();
-            EventTypeName = SelectedEvent.GetType().Name;
+            EventTypeName = TypeToName.Dict[SelectedEvent.GetType().Name];
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
@@ -73,4 +73,14 @@ namespace NeuToDo.ViewModels
         public DayOfWeek Day { get; set; }
         public string WeekNo { get; set; }
     };
+
+    public class TypeToName
+    {
+        public static Dictionary<string, string> Dict = new Dictionary<string, string>
+        {
+            {nameof(NeuEvent), "Neu ToDo"},
+            {nameof(MoocEvent), "Mooc ToDo"},
+            {nameof(UserEvent), "自定义ToDo"}
+        };
+    }
 }

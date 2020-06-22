@@ -16,17 +16,17 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="9*" />
+                    <ColumnDefinition Width="8*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.ColumnSpan="2" Text="时间段" />
                 <Image Grid.Row="1" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"
-                       VerticalOptions="CenterAndExpand" />
+                       VerticalOptions="Center" />
                 <DatePicker Grid.Row="1" Grid.Column="1" Date="{Binding SelectedEvent.Time.Date}"
-                            VerticalOptions="CenterAndExpand" />
+                            VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
                 <Image Grid.Row="2" Grid.Column="0" Source="time.png" WidthRequest="30" HeightRequest="30"
-                       VerticalOptions="CenterAndExpand" />
+                       VerticalOptions="Center" />
                 <TimePicker Grid.Row="2" Grid.Column="1" Time="{Binding SelectedEvent.Time.TimeOfDay}"
-                            VerticalOptions="CenterAndExpand" />
+                            VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
             </Grid>
         </StackLayout>
     </ContentView.Content>
