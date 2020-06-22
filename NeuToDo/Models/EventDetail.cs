@@ -5,15 +5,15 @@ namespace NeuToDo.Models
 {
     public class EventDetail : EventModel
     {
-        public string TypeName;
+        public string TypeName { get; set; }
 
-        public bool CanRepeat;
+        public bool CanRepeat { get; set; }
 
-        public bool ShowSwitchCell;
+        public bool ShowSwitchCell { get; set; }
 
-        public bool IsRepeat;
+        public bool IsRepeat { get; set; }
 
-        public List<Dictionary<DayOfWeek, string>> RepeatList;
+        public List<TimeTable> RepeatList { get; set; }
 
         public EventDetail(EventModel e)
         {
@@ -40,7 +40,14 @@ namespace NeuToDo.Models
                     IsRepeat = false;
                     break;
             }
-            RepeatList = new List<Dictionary<DayOfWeek, string>>();
+
+            RepeatList = new List<TimeTable>();
         }
+    }
+
+    public class TimeTable
+    {
+        public DayOfWeek Day { get; set; }
+        public string WeekNo { get; set; }
     }
 }

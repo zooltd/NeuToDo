@@ -13,5 +13,7 @@ namespace NeuToDo.Services
         Task ClearTableAsync();
 
         Task<List<T>> GetAllAsync();
+
+        Task<List<T>> GetAllAsync(string code);
     }
 }
