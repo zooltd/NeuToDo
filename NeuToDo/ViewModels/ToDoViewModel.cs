@@ -121,14 +121,14 @@ namespace NeuToDo.ViewModels
         //     get => _selectedEvent;
         //     set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         // }
-
-        private EventDetail _eventDetail;
-
-        public EventDetail EventDetail
-        {
-            get => _eventDetail;
-            set => Set(nameof(EventDetail), ref _eventDetail, value);
-        }
+        //
+        // private EventDetail _eventDetail;
+        //
+        // public EventDetail EventDetail
+        // {
+        //     get => _eventDetail;
+        //     set => Set(nameof(EventDetail), ref _eventDetail, value);
+        // }
 
         #endregion
 
@@ -139,8 +139,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
             ((e) =>
             {
-                EventDetail = new EventDetail(e);
-                _eventDetailNavigationService.PushAsync();
+                _eventDetailNavigationService.PushAsync(e);
             }));
 
         private RelayCommand _addEventCommand;
@@ -148,8 +147,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand AddEventCommand => _addEventCommand ??=
             new RelayCommand((() =>
             {
-                EventDetail = new EventDetail(new UserEvent());
-                _eventDetailNavigationService.PushAsync();
+                _eventDetailNavigationService.PushAsync(new UserEvent());
             }));
 
         private RelayCommand _pageAppearingCommand;
