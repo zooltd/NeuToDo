@@ -7,8 +7,10 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 
-namespace NeuToDo.Services {
-    public class NeuSyllabusGetter {
+namespace NeuToDo.Services
+{
+    public class NeuSyllabusGetter
+    {
         private static int CurrWeekIndex { get; set; }
 
         private static HttpClient _initClient;
@@ -16,12 +18,14 @@ namespace NeuToDo.Services {
 
         public static List<NeuEvent> EventList;
 
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory) {
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
+        {
             _initClient = httpClientFactory.NeuInitClient();
             _reallocateClient = httpClientFactory.NeuReallocateClient();
         }
 
-        public async Task WebCrawler(string userId, string password) {
+        public async Task WebCrawler(string userId, string password)
+        {
             var vpnUrl =
                 "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
             // InitSources(false);
@@ -35,7 +39,8 @@ namespace NeuToDo.Services {
         }
 
         private async Task<Dictionary<string, string>> CollectFormData(
-            string vpnUrl, string userId, string password) {
+            string vpnUrl, string userId, string password)
+        {
             var response = await _initClient.GetAsync(vpnUrl);
             response.EnsureSuccessStatusCode(); //TODO: Exception
             var jsessionid =
@@ -53,7 +58,8 @@ namespace NeuToDo.Services {
             var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1]
                 .Value;
             var rsa = userId + password + lt;
-            var formData = new Dictionary<string, string> {
+            var formData = new Dictionary<string, string>
+            {
                 {"rsa", rsa},
                 {"ul", userId.Length.ToString()},
                 {"pl", password.Length.ToString()},
@@ -66,7 +72,8 @@ namespace NeuToDo.Services {
         }
 
         private async Task<Uri> LoginWebVpn(string vpnUrl,
-            IEnumerable<KeyValuePair<string, string>> formData) {
+            IEnumerable<KeyValuePair<string, string>> formData)
+        {
             var response = await _initClient.PostAsync(vpnUrl,
                 new FormUrlEncodedContent(formData));
             // Ensure code == HttpStatusCode.Redirect 
@@ -74,7 +81,8 @@ namespace NeuToDo.Services {
             return redirectUri;
         }
 
-        private static async Task LoginDean(Uri deanUri) {
+        private static async Task LoginDean(Uri deanUri)
+        {
             var response = await _reallocateClient.GetAsync(deanUri);
             response.EnsureSuccessStatusCode();
             const string deanOfficeUrl =
@@ -114,7 +122,8 @@ namespace NeuToDo.Services {
             Preferences.Set("updateDate", DateTime.Today);
         }
 
-        private static async Task GetCourseInfo() {
+        private static async Task GetCourseInfo()
+        {
             // Syllabus = new Dictionary<string, Course>();
             EventList = new List<NeuEvent>();
 
@@ -131,7 +140,8 @@ namespace NeuToDo.Services {
                 "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
             var ids = Regex.Match(responseBody, idsPattern).Groups[1].Value;
 
-            var formData = new Dictionary<string, string> {
+            var formData = new Dictionary<string, string>
+            {
                 {"ignoreHead", "1"},
                 {"showPrintAndExport", "1"},
                 {"setting.kind", "std"},
@@ -153,7 +163,8 @@ namespace NeuToDo.Services {
             var currDate = DateTime.Today;
 
             foreach (Match textSegment in Regex.Matches(responseBody,
-                textSplitPattern)) {
+                textSplitPattern))
+            {
                 var textSegmentGroups = textSegment.Groups;
                 string teacherInfo = textSegmentGroups[1].Value;
                 string courseId = textSegmentGroups[2].Value.Split('(', ')')[1];
@@ -168,32 +179,37 @@ namespace NeuToDo.Services {
                 var day = classTime.day;
                 var firstClass = classTime.firstClass;
                 var classTimeStr = classTime.classTimeStr;
-                string eventDetail = classTimeStr + ", " + teacherName + ", " +
-                    roomName;
+                string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
                 var baseDate =
                     currDate.AddDays((int) day -
-                        (int) currDate.DayOfWeek); //本周星期day的日期
+                                     (int) currDate.DayOfWeek); //本周星期day的日期
 
-                foreach (var weekIndex in weekIndexes) {
+                foreach (var weekIndex in weekIndexes)
+                {
                     var offset = GetOffsetMinutes(firstClass);
                     var localTime = baseDate
                         .AddDays(7 * (weekIndex - CurrWeekIndex))
                         .AddMinutes(offset);
-                    EventList.Add(new NeuEvent {
+                    EventList.Add(new NeuEvent
+                    {
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
                         Time = localTime,
-                        IsDone = false
+                        IsDone = false,
+                        Day = (int)day,
+                        Week = weekIndex,
                     });
                 }
             }
         }
 
         //new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime))
-        private static double GetOffsetMinutes(int firstClass) {
-            return firstClass switch {
+        private static double GetOffsetMinutes(int firstClass)
+        {
+            return firstClass switch
+            {
                 1 => 60 * 8.5,
                 3 => 10 * 60 + 40,
                 5 => 14 * 60,
@@ -204,12 +220,14 @@ namespace NeuToDo.Services {
             };
         }
 
-        private static string GetTeacherName(string teacherInfo) {
+        private static string GetTeacherName(string teacherInfo)
+        {
             string teacherName = string.Empty;
             const string teacherInfoPattern =
                 "{id:([\\d]*),name:\\\"([\\s\\S]*?)\\\",lab:([\\w]*)}";
             foreach (Match teacherInfoSegment in Regex.Matches(teacherInfo,
-                teacherInfoPattern)) {
+                teacherInfoPattern))
+            {
                 var teacherInfoSegmentGroups = teacherInfoSegment.Groups;
                 teacherName += (teacherInfoSegmentGroups[2].Value + ",");
             }
@@ -218,10 +236,12 @@ namespace NeuToDo.Services {
             return teacherName;
         }
 
-        private static IList<int> FindAllIndexes(string source, char key) {
+        private static IList<int> FindAllIndexes(string source, char key)
+        {
             var i = source.IndexOf(key);
             var indexes = new List<int>();
-            while (i != -1) {
+            while (i != -1)
+            {
                 indexes.Add(i);
                 i = source.IndexOf(key, i + 1);
             }
@@ -230,7 +250,8 @@ namespace NeuToDo.Services {
         }
 
         private static (DayOfWeek day, int firstClass, string classTimeStr)
-            GetClassTime(string timeTable) {
+            GetClassTime(string timeTable)
+        {
             const string timeTablePattern =
                 "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
@@ -239,13 +260,17 @@ namespace NeuToDo.Services {
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;
-            for (int i = 1; i < segments.Count; i++) {
+            for (int i = 1; i < segments.Count; i++)
+            {
                 var segmentGroups = segments[i].Groups;
                 int classIndex = int.Parse(segmentGroups[2].Value) + 1;
 
-                if (lastClassIndex + 1 == classIndex) {
+                if (lastClassIndex + 1 == classIndex)
+                {
                     lastClassIndex = classIndex;
-                } else {
+                }
+                else
+                {
                     classTimeStr += (lastClassIndex + ", " + classIndex + "-");
                     lastClassIndex = classIndex;
                 }
