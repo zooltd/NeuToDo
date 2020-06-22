@@ -70,9 +70,14 @@
                     IsVisible="{Binding EventDetail.ShowSwitchCell}" />
         </Grid>
         <Grid IsVisible="{Binding EventDetail.IsRepeat}" >
-            <Grid.RowDefinitions>
-
-            </Grid.RowDefinitions>
+            <CollectionView ItemsSource="{Binding EventDetail.RepeatList}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Entry Text="{Binding Day}"></Entry>
+                        <Entry Text="{Binding WeekNo}"></Entry>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </Grid>
 
     </StackLayout>
