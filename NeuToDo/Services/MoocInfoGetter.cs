@@ -28,6 +28,7 @@ namespace NeuToDo.Services {
         private static string _token;
 
         public static List<MoocEvent> EventList;
+        public static List<Course> CourseList;
 
         /// <summary>
         /// 获取token。
@@ -97,6 +98,13 @@ namespace NeuToDo.Services {
             for (int i = 0; i < length; i++) {
                 courses.Add(root.result.result[i].termPanel.id.ToString(),
                     root.result.result[i].name);
+                CourseList.Add(new Course {
+                    Code = root.result.result[i].termPanel.id.ToString(),
+                    ImgUrl = root.result.result[i].imgUrl,
+                    IsSelected = false,
+                    Name = root.result.result[i].name,
+                    School = root.result.result[i].schoolPanel.name
+                });
             }
 
             // var courses = new string[length];
@@ -249,6 +257,7 @@ namespace NeuToDo.Services {
             _token = string.Empty;
             _client = httpClientFactory.MoocClient();
             EventList = new List<MoocEvent>();
+            CourseList = new List<Course>();
         }
     }
 }

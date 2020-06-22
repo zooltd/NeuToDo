@@ -30,14 +30,19 @@ namespace NeuToDo.Services
         public const string LoadingPopupPage = nameof(Views.Popup.LoadingPopupPage);
 
         /// <summary>
-        /// 登陆弹出页。
+        /// 成功弹出页。
         /// </summary>
         public const string SuccessPopupPage = nameof(Views.Popup.SuccessPopupPage);
 
         /// <summary>
-        /// 登陆弹出页。
+        /// 错误弹出页。
         /// </summary>
         public const string ErrorPopupPage = nameof(Views.Popup.ErrorPopupPage);
+
+        /// <summary>
+        /// 选择弹出页。
+        /// </summary>
+        public const string SelectPopupPage = nameof(Views.Popup.SelectPopupPage);
 
         /// <summary>
         /// 页面键-页面类型字典。
@@ -47,7 +52,8 @@ namespace NeuToDo.Services
             {LoginPopupPage, typeof(LoginPopupPage)},
             {LoadingPopupPage, typeof(LoadingPopupPage)},
             {SuccessPopupPage, typeof(SuccessPopupPage)},
-            {ErrorPopupPage, typeof(ErrorPopupPage)}
+            {ErrorPopupPage, typeof(ErrorPopupPage)},
+            {SelectPopupPage, typeof(SelectPopupPage)}
         };
     }
 }

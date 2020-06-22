@@ -50,6 +50,8 @@ namespace NeuToDo.ViewModels
             var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
                 Password);
 
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
+
             if (res)
             {
                 await UpdateSecureStorage();
@@ -65,7 +67,7 @@ namespace NeuToDo.ViewModels
 
             await Task.Delay(1500);
 
-            await PopupNavigation.Instance.PopAllAsync();
+            // await PopupNavigation.Instance.PopAllAsync();
         }
 
         #endregion

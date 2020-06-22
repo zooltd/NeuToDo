@@ -41,6 +41,9 @@
     <Compile Update="Views\Popup\LoginPopupPage.xaml.cs">
       <DependentUpon>LoginPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Popup\SelectPopupPage.xaml.cs">
+      <DependentUpon>SelectPopupPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\Popup\SuccessPopupPage.xaml.cs">
       <DependentUpon>SuccessPopupPage.xaml</DependentUpon>
     </Compile>
@@ -63,6 +66,9 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\LoginPopupPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Views\Popup\SelectPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\SuccessPopupPage.xaml">

@@ -38,6 +38,11 @@ namespace NeuToDo.Models {
         /// 课程名。
         /// </summary>
         public string name { get; set; }
+
+        /// <summary>
+        /// 课程头图。
+        /// </summary>
+        public string imgUrl { get; set; }
     }
 
     public class Result {
