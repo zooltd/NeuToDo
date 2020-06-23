@@ -198,7 +198,7 @@ namespace NeuToDo.Services
                         Code = courseId,
                         Time = localTime,
                         IsDone = false,
-                        Day = (int)day,
+                        Day = (int) day,
                         Week = weekIndex,
                     });
                 }
@@ -256,7 +256,7 @@ namespace NeuToDo.Services
                 "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
             DayOfWeek day =
-                (DayOfWeek) (int.Parse(segments[0].Groups[1].Value) + 1);
+                (DayOfWeek) ((int.Parse(segments[0].Groups[1].Value) + 1) % 7);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;
