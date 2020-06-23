@@ -61,6 +61,7 @@ namespace NeuToDo.ViewModels
                 await UpdateSecureStorage();
                 SettingItem.Detail = $"已关联用户名: {UserName}, 更新时间: {_lastUpdateTime}";
                 SettingItem.Button1Text = "更新";
+                SettingItem.IsBound = true;
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
             }
             else

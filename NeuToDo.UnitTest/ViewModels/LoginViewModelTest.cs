@@ -19,8 +19,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockLoginAndFetchDataService = loginAndFetchDataService.Object;
             var mockSecureStorageProvider = secureStorageProvider.Object;
             var loginViewModel = new LoginViewModel(mockPopupNavigationService, mockLoginAndFetchDataService,
-                mockSecureStorageProvider);
-            loginViewModel.SettingItem.ServerType = ServerType.Neu;
+                mockSecureStorageProvider) {SettingItem = {ServerType = ServerType.Neu}};
             await loginViewModel.PageAppearingCommandFunction();
             secureStorageProvider.Verify(s=>s.GetAsync(loginViewModel.SettingItem.ServerType+"id"),Times.Once);
         }

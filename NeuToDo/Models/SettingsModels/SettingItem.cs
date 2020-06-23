@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Xamarin.Forms;
 
 namespace NeuToDo.Models.SettingsModels
 {
@@ -28,28 +29,12 @@ namespace NeuToDo.Models.SettingsModels
             set => Set(nameof(Button1Text), ref _button1Text, value);
         }
 
-        private string _button2Text;
+        private bool _isBound;
 
-        public string Button2Text
+        public bool IsBound
         {
-            get => _button2Text;
-            set => Set(nameof(Button2Text), ref _button2Text, value);
-        }
-
-        private bool _button1Status;
-
-        public bool Button1Status
-        {
-            get => _button1Status;
-            set => Set(nameof(Button1Status), ref _button1Status, value);
-        }
-
-        private bool _button2Status;
-
-        public bool Button2Status
-        {
-            get => _button2Status;
-            set => Set(nameof(Button2Status), ref _button2Status, value);
+            get => _isBound;
+            set => Set(nameof(IsBound), ref _isBound, value);
         }
 
         private ServerType _serverType;

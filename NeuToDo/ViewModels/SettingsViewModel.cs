@@ -5,7 +5,9 @@ using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace NeuToDo.ViewModels
@@ -16,11 +18,15 @@ namespace NeuToDo.ViewModels
 
         private readonly ISecureStorageProvider _secureStorageProvider;
 
+        private readonly IEventModelStorageProvider _storageProvider;
+
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
-            ISecureStorageProvider secureStorageProvider)
+            ISecureStorageProvider secureStorageProvider,
+            IEventModelStorageProvider eventModelStorageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _secureStorageProvider = secureStorageProvider;
+            _storageProvider = eventModelStorageProvider;
             Settings = SettingItemGroup.SettingGroup;
         }
 
@@ -41,6 +47,7 @@ namespace NeuToDo.ViewModels
                 var lastUpdateTime = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Time");
                 settingItem.Detail = $"已关联用户名: {itemId}, 更新时间: {lastUpdateTime}";
                 settingItem.Button1Text = "更新";
+                settingItem.IsBound = true;
             }
         }
 
@@ -54,10 +61,37 @@ namespace NeuToDo.ViewModels
             _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item);
         }
 
-        private RelayCommand _command2;
+        private RelayCommand<SettingItem> _command2;
 
-        public RelayCommand Command2 =>
-            _command2 ??= new RelayCommand(() => { });
+        public RelayCommand<SettingItem> Command2 =>
+            _command2 ??= new RelayCommand<SettingItem>(async (item) => await Command2Function(item));
+
+        private async Task Command2Function(SettingItem item)
+        {
+            if (!item.IsBound) return;
+            //TODO Popup Page 请先登录
+            var itemType = item.ServerType;
+            _secureStorageProvider.Remove(itemType + "Id");
+            _secureStorageProvider.Remove(itemType + "Pd");
+            _secureStorageProvider.Remove(itemType + "Time");
+            switch (itemType)
+            {
+                case ServerType.Neu:
+                    var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+                    await neuStorage.ClearTableAsync();
+                    break;
+                case ServerType.Mooc:
+                    var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    await moocStorage.ClearTableAsync();
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
+            }
+
+            item.Detail = "未绑定";
+            item.Button1Text = "关联";
+            item.IsBound = false;
+        }
 
         #endregion
 

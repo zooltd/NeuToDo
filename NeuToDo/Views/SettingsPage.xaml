@@ -85,8 +85,9 @@
                             WidthRequest="80"
                             HorizontalOptions="CenterAndExpand"
                             VerticalOptions="CenterAndExpand"
-                            Text="{Binding Button2Text}"
-                            Command="{Binding Command2}" />
+                            Text="解除"
+                            Command="{Binding BindingContext.Command2, Source={x:Reference CollectionView}}"
+                            CommandParameter="{Binding}"/>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
