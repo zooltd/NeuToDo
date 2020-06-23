@@ -59,6 +59,7 @@ namespace NeuToDo.ViewModels
                 SettingItem.Detail = $"已关联用户名{UserName}";
                 SettingItem.Button1Text = "更新";
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                await Task.Delay(1500);
 
                 Courses = MoocInfoGetter.CourseList;
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
@@ -67,8 +68,6 @@ namespace NeuToDo.ViewModels
             {
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.ErrorPopupPage);
             }
-
-            await Task.Delay(1500);
 
             // await PopupNavigation.Instance.PopAllAsync();
         }

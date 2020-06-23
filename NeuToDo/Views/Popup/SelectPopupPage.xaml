@@ -25,14 +25,15 @@
         </ResourceDictionary>
     </popup:PopupPage.Resources>
 
-    <popup:PopupPage.Animation>
-        <animations:ScaleAnimation PositionIn="Bottom"
-                                   PositionOut="Center"
-                                   ScaleIn="1"
-                                   ScaleOut="0.7"
-                                   DurationIn="700"
-                                   EasingIn="BounceOut" />
-    </popup:PopupPage.Animation>
+    <!-- <popup:PopupPage.Animation> -->
+    <!--     <animations:ScaleAnimation PositionIn="Bottom" -->
+    <!--                                PositionOut="Center" -->
+    <!--                                ScaleIn="1" -->
+    <!--                                ScaleOut="0.7" -->
+    <!--                                DurationIn="700" -->
+    <!--                                EasingIn="BounceOut" /> -->
+    <!-- </popup:PopupPage.Animation> -->
+
     <ScrollView HorizontalOptions="Center"
                 VerticalOptions="Center">
         <StackLayout>
@@ -40,38 +41,43 @@
                    Margin="15"
                    HorizontalOptions="Center"
                    BackgroundColor="White">
-                <CollectionView ItemsSource="{Binding Courses}"
-                                ItemsLayout="VerticalList">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Grid Padding="10">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Image Grid.RowSpan="2"
-                                       Source="{Binding ImgUrl}"
-                                       Aspect="AspectFill"
-                                       HeightRequest="60"
-                                       WidthRequest="106.5" />
-                                <Label Grid.Column="1"
-                                       Text="{Binding Name}"
-                                       FontAttributes="Bold" />
-                                <Label Grid.Row="1"
-                                       Grid.Column="1"
-                                       Text="{Binding School}"
-                                       FontAttributes="Italic"
-                                       VerticalOptions="End" />
-                            </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
+                <StackLayout>
+                    <CollectionView ItemsSource="{Binding Courses}"
+                                    ItemsLayout="VerticalList"
+                                    SelectionMode="Multiple">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Padding="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.RowSpan="2"
+                                           Source="{Binding ImgUrl}"
+                                           Aspect="AspectFill"
+                                           HeightRequest="60"
+                                           WidthRequest="106.5" />
+                                    <Label Grid.Column="1"
+                                           Text="{Binding Name}"
+                                           FontAttributes="Bold"
+                                           HorizontalOptions="Center" />
+                                    <Label Grid.Row="1"
+                                           Grid.Column="1"
+                                           Text="{Binding School}"
+                                           FontAttributes="Italic"
+                                           VerticalOptions="End" />
+                                </Grid>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                    <Button Text="完成"
+                            Clicked="OnCloseButtonTapped"/>
+                </StackLayout>
             </Frame>
-            
         </StackLayout>
     </ScrollView>
 </popup:PopupPage>
