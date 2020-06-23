@@ -19,6 +19,13 @@ namespace NeuToDo.ViewModels
             _eventStorage = eventModelStorageProvider;
         }
 
+        #region 绑定属性
+
+        /// <summary>
+        /// itemSource of Day picker
+        /// </summary>
+        public List<DayOfWeek> DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
+
         private string _eventTypeName;
 
         public string EventTypeName
@@ -43,12 +50,18 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(EventPeriod), ref _eventPeriod, value);
         }
 
+        #endregion
+
+        #region 绑定命令
+
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction()
             );
+
+        #endregion
 
         private async Task PageAppearingCommandFunction()
         {
@@ -82,5 +95,15 @@ namespace NeuToDo.ViewModels
             {nameof(MoocEvent), "Mooc ToDo"},
             {nameof(UserEvent), "自定义ToDo"}
         };
+    }
+
+    public class DayList
+    {
+        public static List<DayOfWeek> DayItems { set; get; }
+
+        public DayList()
+        {
+            DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
+        }
     }
 }

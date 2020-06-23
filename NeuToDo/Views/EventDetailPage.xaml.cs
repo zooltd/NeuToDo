@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Components;
 using NeuToDo.Models;
+using NeuToDo.Services;
 using NeuToDo.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -23,8 +24,6 @@ namespace NeuToDo.Views
         public EventDetailPage(string typeName)
         {
             InitializeComponent();
-            // var eventDetailViewModel = SimpleIoc.Default.GetInstance<EventDetailViewModel>();
-            // BindingContext = eventDetailViewModel;
             var pageContent = typeName switch
             {
                 nameof(NeuEvent) => new StackLayout {Children = {_eventDescription, _eventTime, _eventPeriod}},
@@ -32,7 +31,9 @@ namespace NeuToDo.Views
                 nameof(UserEvent) => new StackLayout {Children = {_eventDescription, _eventTime, _eventPeriod}},
                 _ => new StackLayout()
             };
-
+            var testLabel = new Label();
+            testLabel.SetBinding(Label.TextProperty, new Binding("SelectedEvent.Title"));
+            pageContent.Children.Add(testLabel);
             Content = pageContent;
         }
     }
