@@ -45,7 +45,8 @@ namespace NeuToDo.ViewModels
                 string itemId;
                 if ((itemId = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Id")) == null) continue;
                 var lastUpdateTime = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Time");
-                settingItem.Detail = $"已关联用户名: {itemId}, 更新时间: {lastUpdateTime}";
+                settingItem.UserName = itemId;
+                settingItem.LastUpdateTime = lastUpdateTime;
                 settingItem.Button1Text = "更新";
                 settingItem.IsBound = true;
             }
@@ -88,7 +89,8 @@ namespace NeuToDo.ViewModels
                     throw new ArgumentOutOfRangeException();
             }
 
-            item.Detail = "未绑定";
+            item.UserName = string.Empty;
+            item.LastUpdateTime = string.Empty;
             item.Button1Text = "关联";
             item.IsBound = false;
         }

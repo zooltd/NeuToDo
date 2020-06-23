@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace NeuToDo.Models.SettingsModels
 {
@@ -19,7 +20,8 @@ namespace NeuToDo.Models.SettingsModels
                     new SettingItem
                     {
                         Name = "东北大学教务处",
-                        Detail = "未绑定",
+                        UserName = string.Empty,
+                        LastUpdateTime = string.Empty,
                         Button1Text = "关联",
                         IsBound = false,
                         ServerType = ServerType.Neu,
@@ -29,7 +31,8 @@ namespace NeuToDo.Models.SettingsModels
                     new SettingItem
                     {
                         Name = "中国大学MOOC",
-                        Detail = "未绑定",
+                        UserName = string.Empty,
+                        LastUpdateTime = string.Empty,
                         Button1Text = "关联",
                         IsBound = false,
                         ServerType = ServerType.Mooc,
@@ -39,7 +42,8 @@ namespace NeuToDo.Models.SettingsModels
                     new SettingItem
                     {
                         Name = "东北大学Blackboard",
-                        Detail = "未绑定",
+                        UserName = string.Empty,
+                        LastUpdateTime = string.Empty,
                         Button1Text = "关联",
                         IsBound = false,
                         ServerType = ServerType.Bb,
@@ -53,19 +57,12 @@ namespace NeuToDo.Models.SettingsModels
                     new SettingItem
                     {
                         Name = "WebDAV",
-                        Detail = "未绑定",
+                        UserName = string.Empty,
+                        LastUpdateTime = string.Empty,
                         Button1Text = "关联",
                         IsBound = false,
                         ServerType = ServerType.WebDav
-                    },
-                    new SettingItem
-                    {
-                        Name = "Github",
-                        Detail = "未绑定",
-                        Button1Text = "关联",
-                        IsBound = false,
-                        ServerType = ServerType.Github
-                    },
+                    }
                 })
         };
     }

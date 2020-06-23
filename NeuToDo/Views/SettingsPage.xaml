@@ -41,37 +41,32 @@
         </CollectionView.GroupHeaderTemplate>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid RowSpacing="0" Padding="10">
+                <Grid Padding="10">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="40" />
                         <RowDefinition Height="20" />
+                        <RowDefinition Height="20" />
                     </Grid.RowDefinitions>
                     <Label Grid.Row="0"
                            Grid.Column="0"
                            Text="{Binding Name}"
                            TextColor="#455399"
-                           FontSize="15"
+                           FontSize="14"
                            VerticalOptions="CenterAndExpand"
                            FontAttributes="Bold" />
-                    <Label Grid.Row="1"
-                           Grid.Column="0"
-                           Text="{Binding Detail}"
-                           VerticalOptions="End" />
                     <Button Grid.Row="0"
                             Grid.Column="1"
                             BackgroundColor="#455399"
                             TextColor="White"
                             FontSize="12"
                             CornerRadius="20"
-                            HeightRequest="35"
-                            WidthRequest="80"
-                            HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
                             Text="{Binding Button1Text}"
                             Command="{Binding BindingContext.Command1, Source={x:Reference CollectionView}}"
                             CommandParameter="{Binding}" />
@@ -81,13 +76,21 @@
                             TextColor="White"
                             FontSize="12"
                             CornerRadius="20"
-                            HeightRequest="35"
-                            WidthRequest="80"
-                            HorizontalOptions="CenterAndExpand"
-                            VerticalOptions="CenterAndExpand"
+                            HorizontalOptions="End"
+                            VerticalOptions="Center"
                             Text="解除"
                             Command="{Binding BindingContext.Command2, Source={x:Reference CollectionView}}"
                             CommandParameter="{Binding}"/>
+                    <Label Grid.Row="1"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
+                           VerticalOptions="End" />
+                    <Label Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="3"
+                           Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
+                           VerticalOptions="End" />
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>

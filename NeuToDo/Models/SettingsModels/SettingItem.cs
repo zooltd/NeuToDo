@@ -13,12 +13,20 @@ namespace NeuToDo.Models.SettingsModels
             set => Set(nameof(Name), ref _name, value);
         }
 
-        private string _detail;
+        private string _userName;
 
-        public string Detail
+        public string UserName
         {
-            get => _detail;
-            set => Set(nameof(Detail), ref _detail, value);
+            get => _userName;
+            set => Set(nameof(UserName), ref _userName, value);
+        }
+
+        private string _lastUpdateTime;
+
+        public string LastUpdateTime
+        {
+            get => _lastUpdateTime;
+            set => Set(nameof(LastUpdateTime), ref _lastUpdateTime, value);
         }
 
         private string _button1Text;
