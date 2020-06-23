@@ -5,6 +5,7 @@
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
                  mc:Ignorable="d"
                  x:Class="NeuToDo.Views.Popup.SelectPopupPage"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
@@ -41,10 +42,23 @@
                    Margin="15"
                    HorizontalOptions="Center"
                    BackgroundColor="White">
+                <Frame.WidthRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="UWP" Value="400" />
+                        <On Platform="Android" Value="415" />
+                    </OnPlatform>
+                </Frame.WidthRequest>
+                <Frame.HeightRequest>
+                    <OnPlatform x:TypeArguments="x:Double">
+                        <On Platform="UWP" Value="400" />
+                        <On Platform="Android" Value="415" />
+                    </OnPlatform>
+                </Frame.HeightRequest>
                 <StackLayout>
                     <CollectionView ItemsSource="{Binding Courses}"
                                     ItemsLayout="VerticalList"
-                                    SelectionMode="Multiple">
+                                    SelectionMode="Multiple"
+                                    SelectedItems="{Binding SelectedCourses}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">
@@ -73,9 +87,18 @@
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
+                        <!-- <CollectionView.Behaviors> -->
+                        <!--     <b:EventHandlerBehavior EventName="ItemSelected"> -->
+                        <!--         <b:ActionCollection> -->
+                        <!--             <b:InvokeCommandAction -->
+                        <!--                 Command="{Binding }" /> -->
+                        <!--         </b:ActionCollection> -->
+                        <!--     </b:EventHandlerBehavior> -->
+                        <!-- </CollectionView.Behaviors> -->
                     </CollectionView>
                     <Button Text="完成"
-                            Clicked="OnCloseButtonTapped"/>
+                            Clicked="OnFinishButtonTapped"
+                            Command="{Binding SaveSelectedCoursesCommand}"/>
                 </StackLayout>
             </Frame>
         </StackLayout>
