@@ -4,7 +4,10 @@ using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
+using NeuToDo.Models;
 
 namespace NeuToDo.ViewModels
 {
@@ -50,15 +53,15 @@ namespace NeuToDo.ViewModels
             var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
                 Password);
 
-            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
-
             if (res)
             {
                 await UpdateSecureStorage();
                 SettingItem.Detail = $"已关联用户名{UserName}";
                 SettingItem.Button1Text = "更新";
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
-                
+
+                Courses = MoocInfoGetter.CourseList;
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
             }
             else
             {
@@ -73,6 +76,8 @@ namespace NeuToDo.ViewModels
         #endregion
 
         #region 绑定属性
+
+        public IEnumerable<Course> Courses { get; set; }
 
         private SettingItem _settingItem;
 
