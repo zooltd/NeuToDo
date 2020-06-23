@@ -22,19 +22,26 @@
 
     <CollectionView ItemsSource="{Binding Settings}"
                     IsGrouped="true"
-                    Margin="5,10,5,0"
+                    Margin="0,10"
                     x:Name="CollectionView">
         <CollectionView.GroupHeaderTemplate>
             <DataTemplate>
-                <Label Text="{Binding Name}"
-                       BackgroundColor="LightGray"
-                       FontSize="Large"
-                       FontAttributes="Bold" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="{Binding Name}"
+                           BackgroundColor="#455399"
+                           TextColor="White"
+                           FontSize="20"
+                           FontAttributes="Bold" />
+                </Grid>
             </DataTemplate>
         </CollectionView.GroupHeaderTemplate>
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Grid RowSpacing="0">
+                <Grid RowSpacing="0" Padding="10">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="3*" />
                         <ColumnDefinition Width="*" />
@@ -47,20 +54,37 @@
                     <Label Grid.Row="0"
                            Grid.Column="0"
                            Text="{Binding Name}"
+                           TextColor="#455399"
+                           FontSize="15"
                            VerticalOptions="CenterAndExpand"
                            FontAttributes="Bold" />
                     <Label Grid.Row="1"
                            Grid.Column="0"
                            Text="{Binding Detail}"
-                           FontAttributes="Italic"
                            VerticalOptions="End" />
                     <Button Grid.Row="0"
                             Grid.Column="1"
+                            BackgroundColor="#455399"
+                            TextColor="White"
+                            FontSize="12"
+                            CornerRadius="20"
+                            HeightRequest="35"
+                            WidthRequest="80"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
                             Text="{Binding Button1Text}"
                             Command="{Binding BindingContext.Command1, Source={x:Reference CollectionView}}"
                             CommandParameter="{Binding}" />
                     <Button Grid.Row="0"
                             Grid.Column="2"
+                            BackgroundColor="#455399"
+                            TextColor="White"
+                            FontSize="12"
+                            CornerRadius="20"
+                            HeightRequest="35"
+                            WidthRequest="80"
+                            HorizontalOptions="CenterAndExpand"
+                            VerticalOptions="CenterAndExpand"
                             Text="{Binding Button2Text}"
                             Command="{Binding Command2}" />
                 </Grid>

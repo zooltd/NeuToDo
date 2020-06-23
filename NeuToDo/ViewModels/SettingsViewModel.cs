@@ -15,6 +15,7 @@ namespace NeuToDo.ViewModels
         private readonly IPopupNavigationService _popupNavigationService;
 
         private readonly ISecureStorageProvider _secureStorageProvider;
+
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             ISecureStorageProvider secureStorageProvider)
         {
@@ -26,7 +27,6 @@ namespace NeuToDo.ViewModels
 
         #region 绑定方法
 
-       
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
@@ -37,11 +37,10 @@ namespace NeuToDo.ViewModels
             foreach (var settingItem in Settings.SelectMany(settingItemGroup => settingItemGroup))
             {
                 string itemId;
-                if ((itemId = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Id"))!=null)
-                {
-                    settingItem.Detail = $"已关联用户名{itemId}";
-                    settingItem.Button1Text = "更新";
-                }
+                if ((itemId = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Id")) == null) continue;
+                var lastUpdateTime = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Time");
+                settingItem.Detail = $"已关联用户名: {itemId}, 更新时间: {lastUpdateTime}";
+                settingItem.Button1Text = "更新";
             }
         }
 

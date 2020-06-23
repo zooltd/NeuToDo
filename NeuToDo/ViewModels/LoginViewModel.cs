@@ -4,6 +4,7 @@ using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 
 namespace NeuToDo.ViewModels
@@ -15,6 +16,8 @@ namespace NeuToDo.ViewModels
         private readonly IPopupNavigationService _popupNavigationService;
 
         private readonly ISecureStorageProvider _secureStorageProvider;
+
+        private string _lastUpdateTime;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService,
@@ -37,7 +40,9 @@ namespace NeuToDo.ViewModels
             if (SettingItem == null) return;
             await TryGetUserNameAsync(SettingItem.ServerType + "Id");
             await TryGetPasswordAsync(SettingItem.ServerType + "Pd");
+            await TryGetLastUpdateTimeAsync(SettingItem.ServerType + "Time");
         }
+
 
         private RelayCommand _onLogin;
 
@@ -50,13 +55,13 @@ namespace NeuToDo.ViewModels
             var res = await _loginAndFetchDataService.LoginAndFetchDataAsync(SettingItem.ServerType, UserName,
                 Password);
 
+
             if (res)
             {
                 await UpdateSecureStorage();
-                SettingItem.Detail = $"已关联用户名{UserName}";
+                SettingItem.Detail = $"已关联用户名: {UserName}, 更新时间: {_lastUpdateTime}";
                 SettingItem.Button1Text = "更新";
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
-                
             }
             else
             {
@@ -125,12 +130,28 @@ namespace NeuToDo.ViewModels
             }
         }
 
+        private async Task TryGetLastUpdateTimeAsync(string key)
+        {
+            try
+            {
+                _lastUpdateTime = await _secureStorageProvider.GetAsync(key);
+            }
+            catch (Exception e)
+            {
+                // ignored
+                _lastUpdateTime = string.Empty;
+            }
+        }
+
+
         private async Task UpdateSecureStorage()
         {
             try
             {
                 await _secureStorageProvider.SetAsync(SettingItem.ServerType + "Id", UserName);
                 await _secureStorageProvider.SetAsync(SettingItem.ServerType + "Pd", Password);
+                _lastUpdateTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                await _secureStorageProvider.SetAsync(SettingItem.ServerType + "Time",_lastUpdateTime);
             }
             catch (Exception e)
             {
