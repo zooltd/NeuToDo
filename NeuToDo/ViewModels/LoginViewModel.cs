@@ -160,6 +160,7 @@ namespace NeuToDo.ViewModels
             await moocStorage.ClearTableAsync();
             await moocStorage.InsertAllAsync(resultList);
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
+            await Task.Delay(1500);
             await _popupNavigationService.PopAllAsync();
         }
 

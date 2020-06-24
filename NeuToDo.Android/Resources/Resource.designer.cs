@@ -25,6 +25,2580 @@ namespace NeuToDo.Droid
 		
 		public static void UpdateIdValues()
 		{
+			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_in = global::NeuToDo.Droid.Resource.Animation.abc_fade_in;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_fade_out = global::NeuToDo.Droid.Resource.Animation.abc_fade_out;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_grow_fade_in_from_bottom = global::NeuToDo.Droid.Resource.Animation.abc_grow_fade_in_from_bottom;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_popup_enter = global::NeuToDo.Droid.Resource.Animation.abc_popup_enter;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_popup_exit = global::NeuToDo.Droid.Resource.Animation.abc_popup_exit;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_shrink_fade_out_from_bottom = global::NeuToDo.Droid.Resource.Animation.abc_shrink_fade_out_from_bottom;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_slide_in_bottom = global::NeuToDo.Droid.Resource.Animation.abc_slide_in_bottom;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_slide_in_top = global::NeuToDo.Droid.Resource.Animation.abc_slide_in_top;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_slide_out_bottom = global::NeuToDo.Droid.Resource.Animation.abc_slide_out_bottom;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_slide_out_top = global::NeuToDo.Droid.Resource.Animation.abc_slide_out_top;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_tooltip_enter = global::NeuToDo.Droid.Resource.Animation.abc_tooltip_enter;
+			global::Rg.Plugins.Popup.Resource.Animation.abc_tooltip_exit = global::NeuToDo.Droid.Resource.Animation.abc_tooltip_exit;
+			global::Rg.Plugins.Popup.Resource.Animation.design_bottom_sheet_slide_in = global::NeuToDo.Droid.Resource.Animation.design_bottom_sheet_slide_in;
+			global::Rg.Plugins.Popup.Resource.Animation.design_bottom_sheet_slide_out = global::NeuToDo.Droid.Resource.Animation.design_bottom_sheet_slide_out;
+			global::Rg.Plugins.Popup.Resource.Animation.design_snackbar_in = global::NeuToDo.Droid.Resource.Animation.design_snackbar_in;
+			global::Rg.Plugins.Popup.Resource.Animation.design_snackbar_out = global::NeuToDo.Droid.Resource.Animation.design_snackbar_out;
+			global::Rg.Plugins.Popup.Resource.Animation.EnterFromLeft = global::NeuToDo.Droid.Resource.Animation.EnterFromLeft;
+			global::Rg.Plugins.Popup.Resource.Animation.EnterFromRight = global::NeuToDo.Droid.Resource.Animation.EnterFromRight;
+			global::Rg.Plugins.Popup.Resource.Animation.ExitToLeft = global::NeuToDo.Droid.Resource.Animation.ExitToLeft;
+			global::Rg.Plugins.Popup.Resource.Animation.ExitToRight = global::NeuToDo.Droid.Resource.Animation.ExitToRight;
+			global::Rg.Plugins.Popup.Resource.Animator.design_appbar_state_list_animator = global::NeuToDo.Droid.Resource.Animator.design_appbar_state_list_animator;
+			global::Rg.Plugins.Popup.Resource.Animator.design_fab_hide_motion_spec = global::NeuToDo.Droid.Resource.Animator.design_fab_hide_motion_spec;
+			global::Rg.Plugins.Popup.Resource.Animator.design_fab_show_motion_spec = global::NeuToDo.Droid.Resource.Animator.design_fab_show_motion_spec;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_btn_state_list_anim = global::NeuToDo.Droid.Resource.Animator.mtrl_btn_state_list_anim;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_btn_unelevated_state_list_anim = global::NeuToDo.Droid.Resource.Animator.mtrl_btn_unelevated_state_list_anim;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_chip_state_list_anim = global::NeuToDo.Droid.Resource.Animator.mtrl_chip_state_list_anim;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_fab_hide_motion_spec = global::NeuToDo.Droid.Resource.Animator.mtrl_fab_hide_motion_spec;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_fab_show_motion_spec = global::NeuToDo.Droid.Resource.Animator.mtrl_fab_show_motion_spec;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec = global::NeuToDo.Droid.Resource.Animator.mtrl_fab_transformation_sheet_collapse_spec;
+			global::Rg.Plugins.Popup.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec = global::NeuToDo.Droid.Resource.Animator.mtrl_fab_transformation_sheet_expand_spec;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarDivider = global::NeuToDo.Droid.Resource.Attribute.actionBarDivider;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarItemBackground = global::NeuToDo.Droid.Resource.Attribute.actionBarItemBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarPopupTheme = global::NeuToDo.Droid.Resource.Attribute.actionBarPopupTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarSize = global::NeuToDo.Droid.Resource.Attribute.actionBarSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarSplitStyle = global::NeuToDo.Droid.Resource.Attribute.actionBarSplitStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarStyle = global::NeuToDo.Droid.Resource.Attribute.actionBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarTabBarStyle = global::NeuToDo.Droid.Resource.Attribute.actionBarTabBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarTabStyle = global::NeuToDo.Droid.Resource.Attribute.actionBarTabStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarTabTextStyle = global::NeuToDo.Droid.Resource.Attribute.actionBarTabTextStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarTheme = global::NeuToDo.Droid.Resource.Attribute.actionBarTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionBarWidgetTheme = global::NeuToDo.Droid.Resource.Attribute.actionBarWidgetTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionButtonStyle = global::NeuToDo.Droid.Resource.Attribute.actionButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionDropDownStyle = global::NeuToDo.Droid.Resource.Attribute.actionDropDownStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionLayout = global::NeuToDo.Droid.Resource.Attribute.actionLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionMenuTextAppearance = global::NeuToDo.Droid.Resource.Attribute.actionMenuTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionMenuTextColor = global::NeuToDo.Droid.Resource.Attribute.actionMenuTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeBackground = global::NeuToDo.Droid.Resource.Attribute.actionModeBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeCloseButtonStyle = global::NeuToDo.Droid.Resource.Attribute.actionModeCloseButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeCloseDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeCloseDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeCopyDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeCopyDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeCutDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeCutDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeFindDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeFindDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModePasteDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModePasteDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModePopupWindowStyle = global::NeuToDo.Droid.Resource.Attribute.actionModePopupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeSelectAllDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeSelectAllDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeShareDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeShareDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeSplitBackground = global::NeuToDo.Droid.Resource.Attribute.actionModeSplitBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeStyle = global::NeuToDo.Droid.Resource.Attribute.actionModeStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionModeWebSearchDrawable = global::NeuToDo.Droid.Resource.Attribute.actionModeWebSearchDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionOverflowButtonStyle = global::NeuToDo.Droid.Resource.Attribute.actionOverflowButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionOverflowMenuStyle = global::NeuToDo.Droid.Resource.Attribute.actionOverflowMenuStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionProviderClass = global::NeuToDo.Droid.Resource.Attribute.actionProviderClass;
+			global::Rg.Plugins.Popup.Resource.Attribute.actionViewClass = global::NeuToDo.Droid.Resource.Attribute.actionViewClass;
+			global::Rg.Plugins.Popup.Resource.Attribute.activityChooserViewStyle = global::NeuToDo.Droid.Resource.Attribute.activityChooserViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.alertDialogButtonGroupStyle = global::NeuToDo.Droid.Resource.Attribute.alertDialogButtonGroupStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.alertDialogCenterButtons = global::NeuToDo.Droid.Resource.Attribute.alertDialogCenterButtons;
+			global::Rg.Plugins.Popup.Resource.Attribute.alertDialogStyle = global::NeuToDo.Droid.Resource.Attribute.alertDialogStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.alertDialogTheme = global::NeuToDo.Droid.Resource.Attribute.alertDialogTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.allowStacking = global::NeuToDo.Droid.Resource.Attribute.allowStacking;
+			global::Rg.Plugins.Popup.Resource.Attribute.alpha = global::NeuToDo.Droid.Resource.Attribute.alpha;
+			global::Rg.Plugins.Popup.Resource.Attribute.alphabeticModifiers = global::NeuToDo.Droid.Resource.Attribute.alphabeticModifiers;
+			global::Rg.Plugins.Popup.Resource.Attribute.arrowHeadLength = global::NeuToDo.Droid.Resource.Attribute.arrowHeadLength;
+			global::Rg.Plugins.Popup.Resource.Attribute.arrowShaftLength = global::NeuToDo.Droid.Resource.Attribute.arrowShaftLength;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoCompleteTextViewStyle = global::NeuToDo.Droid.Resource.Attribute.autoCompleteTextViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoSizeMaxTextSize = global::NeuToDo.Droid.Resource.Attribute.autoSizeMaxTextSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoSizeMinTextSize = global::NeuToDo.Droid.Resource.Attribute.autoSizeMinTextSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoSizePresetSizes = global::NeuToDo.Droid.Resource.Attribute.autoSizePresetSizes;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoSizeStepGranularity = global::NeuToDo.Droid.Resource.Attribute.autoSizeStepGranularity;
+			global::Rg.Plugins.Popup.Resource.Attribute.autoSizeTextType = global::NeuToDo.Droid.Resource.Attribute.autoSizeTextType;
+			global::Rg.Plugins.Popup.Resource.Attribute.background = global::NeuToDo.Droid.Resource.Attribute.background;
+			global::Rg.Plugins.Popup.Resource.Attribute.backgroundSplit = global::NeuToDo.Droid.Resource.Attribute.backgroundSplit;
+			global::Rg.Plugins.Popup.Resource.Attribute.backgroundStacked = global::NeuToDo.Droid.Resource.Attribute.backgroundStacked;
+			global::Rg.Plugins.Popup.Resource.Attribute.backgroundTint = global::NeuToDo.Droid.Resource.Attribute.backgroundTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.backgroundTintMode = global::NeuToDo.Droid.Resource.Attribute.backgroundTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.barLength = global::NeuToDo.Droid.Resource.Attribute.barLength;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_autoHide = global::NeuToDo.Droid.Resource.Attribute.behavior_autoHide;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_fitToContents = global::NeuToDo.Droid.Resource.Attribute.behavior_fitToContents;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_hideable = global::NeuToDo.Droid.Resource.Attribute.behavior_hideable;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_overlapTop = global::NeuToDo.Droid.Resource.Attribute.behavior_overlapTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_peekHeight = global::NeuToDo.Droid.Resource.Attribute.behavior_peekHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.behavior_skipCollapsed = global::NeuToDo.Droid.Resource.Attribute.behavior_skipCollapsed;
+			global::Rg.Plugins.Popup.Resource.Attribute.borderlessButtonStyle = global::NeuToDo.Droid.Resource.Attribute.borderlessButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.borderWidth = global::NeuToDo.Droid.Resource.Attribute.borderWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.bottomAppBarStyle = global::NeuToDo.Droid.Resource.Attribute.bottomAppBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.bottomNavigationStyle = global::NeuToDo.Droid.Resource.Attribute.bottomNavigationStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.bottomSheetDialogTheme = global::NeuToDo.Droid.Resource.Attribute.bottomSheetDialogTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.bottomSheetStyle = global::NeuToDo.Droid.Resource.Attribute.bottomSheetStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxBackgroundColor = global::NeuToDo.Droid.Resource.Attribute.boxBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxBackgroundMode = global::NeuToDo.Droid.Resource.Attribute.boxBackgroundMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxCollapsedPaddingTop = global::NeuToDo.Droid.Resource.Attribute.boxCollapsedPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxCornerRadiusBottomEnd = global::NeuToDo.Droid.Resource.Attribute.boxCornerRadiusBottomEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxCornerRadiusBottomStart = global::NeuToDo.Droid.Resource.Attribute.boxCornerRadiusBottomStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxCornerRadiusTopEnd = global::NeuToDo.Droid.Resource.Attribute.boxCornerRadiusTopEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxCornerRadiusTopStart = global::NeuToDo.Droid.Resource.Attribute.boxCornerRadiusTopStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxStrokeColor = global::NeuToDo.Droid.Resource.Attribute.boxStrokeColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.boxStrokeWidth = global::NeuToDo.Droid.Resource.Attribute.boxStrokeWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonBarButtonStyle = global::NeuToDo.Droid.Resource.Attribute.buttonBarButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonBarNegativeButtonStyle = global::NeuToDo.Droid.Resource.Attribute.buttonBarNegativeButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonBarNeutralButtonStyle = global::NeuToDo.Droid.Resource.Attribute.buttonBarNeutralButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonBarPositiveButtonStyle = global::NeuToDo.Droid.Resource.Attribute.buttonBarPositiveButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonBarStyle = global::NeuToDo.Droid.Resource.Attribute.buttonBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonGravity = global::NeuToDo.Droid.Resource.Attribute.buttonGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonIconDimen = global::NeuToDo.Droid.Resource.Attribute.buttonIconDimen;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonPanelSideLayout = global::NeuToDo.Droid.Resource.Attribute.buttonPanelSideLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonStyle = global::NeuToDo.Droid.Resource.Attribute.buttonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonStyleSmall = global::NeuToDo.Droid.Resource.Attribute.buttonStyleSmall;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonTint = global::NeuToDo.Droid.Resource.Attribute.buttonTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.buttonTintMode = global::NeuToDo.Droid.Resource.Attribute.buttonTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardBackgroundColor = global::NeuToDo.Droid.Resource.Attribute.cardBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardCornerRadius = global::NeuToDo.Droid.Resource.Attribute.cardCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardElevation = global::NeuToDo.Droid.Resource.Attribute.cardElevation;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardMaxElevation = global::NeuToDo.Droid.Resource.Attribute.cardMaxElevation;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardPreventCornerOverlap = global::NeuToDo.Droid.Resource.Attribute.cardPreventCornerOverlap;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardUseCompatPadding = global::NeuToDo.Droid.Resource.Attribute.cardUseCompatPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.cardViewStyle = global::NeuToDo.Droid.Resource.Attribute.cardViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkboxStyle = global::NeuToDo.Droid.Resource.Attribute.checkboxStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkedChip = global::NeuToDo.Droid.Resource.Attribute.checkedChip;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkedIcon = global::NeuToDo.Droid.Resource.Attribute.checkedIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkedIconEnabled = global::NeuToDo.Droid.Resource.Attribute.checkedIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkedIconVisible = global::NeuToDo.Droid.Resource.Attribute.checkedIconVisible;
+			global::Rg.Plugins.Popup.Resource.Attribute.checkedTextViewStyle = global::NeuToDo.Droid.Resource.Attribute.checkedTextViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipBackgroundColor = global::NeuToDo.Droid.Resource.Attribute.chipBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipCornerRadius = global::NeuToDo.Droid.Resource.Attribute.chipCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipEndPadding = global::NeuToDo.Droid.Resource.Attribute.chipEndPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipGroupStyle = global::NeuToDo.Droid.Resource.Attribute.chipGroupStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipIcon = global::NeuToDo.Droid.Resource.Attribute.chipIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipIconEnabled = global::NeuToDo.Droid.Resource.Attribute.chipIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipIconSize = global::NeuToDo.Droid.Resource.Attribute.chipIconSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipIconTint = global::NeuToDo.Droid.Resource.Attribute.chipIconTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipIconVisible = global::NeuToDo.Droid.Resource.Attribute.chipIconVisible;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipMinHeight = global::NeuToDo.Droid.Resource.Attribute.chipMinHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipSpacing = global::NeuToDo.Droid.Resource.Attribute.chipSpacing;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipSpacingHorizontal = global::NeuToDo.Droid.Resource.Attribute.chipSpacingHorizontal;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipSpacingVertical = global::NeuToDo.Droid.Resource.Attribute.chipSpacingVertical;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipStandaloneStyle = global::NeuToDo.Droid.Resource.Attribute.chipStandaloneStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipStartPadding = global::NeuToDo.Droid.Resource.Attribute.chipStartPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipStrokeColor = global::NeuToDo.Droid.Resource.Attribute.chipStrokeColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipStrokeWidth = global::NeuToDo.Droid.Resource.Attribute.chipStrokeWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.chipStyle = global::NeuToDo.Droid.Resource.Attribute.chipStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIcon = global::NeuToDo.Droid.Resource.Attribute.closeIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconEnabled = global::NeuToDo.Droid.Resource.Attribute.closeIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconEndPadding = global::NeuToDo.Droid.Resource.Attribute.closeIconEndPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconSize = global::NeuToDo.Droid.Resource.Attribute.closeIconSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconStartPadding = global::NeuToDo.Droid.Resource.Attribute.closeIconStartPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconTint = global::NeuToDo.Droid.Resource.Attribute.closeIconTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeIconVisible = global::NeuToDo.Droid.Resource.Attribute.closeIconVisible;
+			global::Rg.Plugins.Popup.Resource.Attribute.closeItemLayout = global::NeuToDo.Droid.Resource.Attribute.closeItemLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.collapseContentDescription = global::NeuToDo.Droid.Resource.Attribute.collapseContentDescription;
+			global::Rg.Plugins.Popup.Resource.Attribute.collapsedTitleGravity = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.collapsedTitleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.collapseIcon = global::NeuToDo.Droid.Resource.Attribute.collapseIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.color = global::NeuToDo.Droid.Resource.Attribute.color;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorAccent = global::NeuToDo.Droid.Resource.Attribute.colorAccent;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorBackgroundFloating = global::NeuToDo.Droid.Resource.Attribute.colorBackgroundFloating;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorButtonNormal = global::NeuToDo.Droid.Resource.Attribute.colorButtonNormal;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorControlActivated = global::NeuToDo.Droid.Resource.Attribute.colorControlActivated;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorControlHighlight = global::NeuToDo.Droid.Resource.Attribute.colorControlHighlight;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorControlNormal = global::NeuToDo.Droid.Resource.Attribute.colorControlNormal;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorError = global::NeuToDo.Droid.Resource.Attribute.colorError;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorPrimary = global::NeuToDo.Droid.Resource.Attribute.colorPrimary;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorPrimaryDark = global::NeuToDo.Droid.Resource.Attribute.colorPrimaryDark;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorSecondary = global::NeuToDo.Droid.Resource.Attribute.colorSecondary;
+			global::Rg.Plugins.Popup.Resource.Attribute.colorSwitchThumbNormal = global::NeuToDo.Droid.Resource.Attribute.colorSwitchThumbNormal;
+			global::Rg.Plugins.Popup.Resource.Attribute.commitIcon = global::NeuToDo.Droid.Resource.Attribute.commitIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentDescription = global::NeuToDo.Droid.Resource.Attribute.contentDescription;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetEnd = global::NeuToDo.Droid.Resource.Attribute.contentInsetEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetEndWithActions = global::NeuToDo.Droid.Resource.Attribute.contentInsetEndWithActions;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetLeft = global::NeuToDo.Droid.Resource.Attribute.contentInsetLeft;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetRight = global::NeuToDo.Droid.Resource.Attribute.contentInsetRight;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetStart = global::NeuToDo.Droid.Resource.Attribute.contentInsetStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentInsetStartWithNavigation = global::NeuToDo.Droid.Resource.Attribute.contentInsetStartWithNavigation;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentPadding = global::NeuToDo.Droid.Resource.Attribute.contentPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentPaddingBottom = global::NeuToDo.Droid.Resource.Attribute.contentPaddingBottom;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentPaddingLeft = global::NeuToDo.Droid.Resource.Attribute.contentPaddingLeft;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentPaddingRight = global::NeuToDo.Droid.Resource.Attribute.contentPaddingRight;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentPaddingTop = global::NeuToDo.Droid.Resource.Attribute.contentPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.contentScrim = global::NeuToDo.Droid.Resource.Attribute.contentScrim;
+			global::Rg.Plugins.Popup.Resource.Attribute.controlBackground = global::NeuToDo.Droid.Resource.Attribute.controlBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.coordinatorLayoutStyle = global::NeuToDo.Droid.Resource.Attribute.coordinatorLayoutStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.cornerRadius = global::NeuToDo.Droid.Resource.Attribute.cornerRadius;
+			global::Rg.Plugins.Popup.Resource.Attribute.counterEnabled = global::NeuToDo.Droid.Resource.Attribute.counterEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.counterMaxLength = global::NeuToDo.Droid.Resource.Attribute.counterMaxLength;
+			global::Rg.Plugins.Popup.Resource.Attribute.counterOverflowTextAppearance = global::NeuToDo.Droid.Resource.Attribute.counterOverflowTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.counterTextAppearance = global::NeuToDo.Droid.Resource.Attribute.counterTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.customNavigationLayout = global::NeuToDo.Droid.Resource.Attribute.customNavigationLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.defaultQueryHint = global::NeuToDo.Droid.Resource.Attribute.defaultQueryHint;
+			global::Rg.Plugins.Popup.Resource.Attribute.dialogCornerRadius = global::NeuToDo.Droid.Resource.Attribute.dialogCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Attribute.dialogPreferredPadding = global::NeuToDo.Droid.Resource.Attribute.dialogPreferredPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.dialogTheme = global::NeuToDo.Droid.Resource.Attribute.dialogTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.displayOptions = global::NeuToDo.Droid.Resource.Attribute.displayOptions;
+			global::Rg.Plugins.Popup.Resource.Attribute.divider = global::NeuToDo.Droid.Resource.Attribute.divider;
+			global::Rg.Plugins.Popup.Resource.Attribute.dividerHorizontal = global::NeuToDo.Droid.Resource.Attribute.dividerHorizontal;
+			global::Rg.Plugins.Popup.Resource.Attribute.dividerPadding = global::NeuToDo.Droid.Resource.Attribute.dividerPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.dividerVertical = global::NeuToDo.Droid.Resource.Attribute.dividerVertical;
+			global::Rg.Plugins.Popup.Resource.Attribute.drawableSize = global::NeuToDo.Droid.Resource.Attribute.drawableSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.drawerArrowStyle = global::NeuToDo.Droid.Resource.Attribute.drawerArrowStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.dropdownListPreferredItemHeight = global::NeuToDo.Droid.Resource.Attribute.dropdownListPreferredItemHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.dropDownListViewStyle = global::NeuToDo.Droid.Resource.Attribute.dropDownListViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.editTextBackground = global::NeuToDo.Droid.Resource.Attribute.editTextBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.editTextColor = global::NeuToDo.Droid.Resource.Attribute.editTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.editTextStyle = global::NeuToDo.Droid.Resource.Attribute.editTextStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.elevation = global::NeuToDo.Droid.Resource.Attribute.elevation;
+			global::Rg.Plugins.Popup.Resource.Attribute.enforceMaterialTheme = global::NeuToDo.Droid.Resource.Attribute.enforceMaterialTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.enforceTextAppearance = global::NeuToDo.Droid.Resource.Attribute.enforceTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.errorEnabled = global::NeuToDo.Droid.Resource.Attribute.errorEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.errorTextAppearance = global::NeuToDo.Droid.Resource.Attribute.errorTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandActivityOverflowButtonDrawable = global::NeuToDo.Droid.Resource.Attribute.expandActivityOverflowButtonDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.expanded = global::NeuToDo.Droid.Resource.Attribute.expanded;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleGravity = global::NeuToDo.Droid.Resource.Attribute.expandedTitleGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleMargin = global::NeuToDo.Droid.Resource.Attribute.expandedTitleMargin;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleMarginBottom = global::NeuToDo.Droid.Resource.Attribute.expandedTitleMarginBottom;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleMarginEnd = global::NeuToDo.Droid.Resource.Attribute.expandedTitleMarginEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleMarginStart = global::NeuToDo.Droid.Resource.Attribute.expandedTitleMarginStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleMarginTop = global::NeuToDo.Droid.Resource.Attribute.expandedTitleMarginTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.expandedTitleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.expandedTitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabAlignmentMode = global::NeuToDo.Droid.Resource.Attribute.fabAlignmentMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabCradleMargin = global::NeuToDo.Droid.Resource.Attribute.fabCradleMargin;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabCradleRoundedCornerRadius = global::NeuToDo.Droid.Resource.Attribute.fabCradleRoundedCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabCradleVerticalOffset = global::NeuToDo.Droid.Resource.Attribute.fabCradleVerticalOffset;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabCustomSize = global::NeuToDo.Droid.Resource.Attribute.fabCustomSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.fabSize = global::NeuToDo.Droid.Resource.Attribute.fabSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.fastScrollEnabled = global::NeuToDo.Droid.Resource.Attribute.fastScrollEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.fastScrollHorizontalThumbDrawable = global::NeuToDo.Droid.Resource.Attribute.fastScrollHorizontalThumbDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.fastScrollHorizontalTrackDrawable = global::NeuToDo.Droid.Resource.Attribute.fastScrollHorizontalTrackDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.fastScrollVerticalThumbDrawable = global::NeuToDo.Droid.Resource.Attribute.fastScrollVerticalThumbDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.fastScrollVerticalTrackDrawable = global::NeuToDo.Droid.Resource.Attribute.fastScrollVerticalTrackDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.firstBaselineToTopHeight = global::NeuToDo.Droid.Resource.Attribute.firstBaselineToTopHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.floatingActionButtonStyle = global::NeuToDo.Droid.Resource.Attribute.floatingActionButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.font = global::NeuToDo.Droid.Resource.Attribute.font;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontFamily = global::NeuToDo.Droid.Resource.Attribute.fontFamily;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderAuthority = global::NeuToDo.Droid.Resource.Attribute.fontProviderAuthority;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderCerts = global::NeuToDo.Droid.Resource.Attribute.fontProviderCerts;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderFetchStrategy = global::NeuToDo.Droid.Resource.Attribute.fontProviderFetchStrategy;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderFetchTimeout = global::NeuToDo.Droid.Resource.Attribute.fontProviderFetchTimeout;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderPackage = global::NeuToDo.Droid.Resource.Attribute.fontProviderPackage;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontProviderQuery = global::NeuToDo.Droid.Resource.Attribute.fontProviderQuery;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontStyle = global::NeuToDo.Droid.Resource.Attribute.fontStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontVariationSettings = global::NeuToDo.Droid.Resource.Attribute.fontVariationSettings;
+			global::Rg.Plugins.Popup.Resource.Attribute.fontWeight = global::NeuToDo.Droid.Resource.Attribute.fontWeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.foregroundInsidePadding = global::NeuToDo.Droid.Resource.Attribute.foregroundInsidePadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.gapBetweenBars = global::NeuToDo.Droid.Resource.Attribute.gapBetweenBars;
+			global::Rg.Plugins.Popup.Resource.Attribute.goIcon = global::NeuToDo.Droid.Resource.Attribute.goIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.headerLayout = global::NeuToDo.Droid.Resource.Attribute.headerLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.height = global::NeuToDo.Droid.Resource.Attribute.height;
+			global::Rg.Plugins.Popup.Resource.Attribute.helperText = global::NeuToDo.Droid.Resource.Attribute.helperText;
+			global::Rg.Plugins.Popup.Resource.Attribute.helperTextEnabled = global::NeuToDo.Droid.Resource.Attribute.helperTextEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.helperTextTextAppearance = global::NeuToDo.Droid.Resource.Attribute.helperTextTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.hideMotionSpec = global::NeuToDo.Droid.Resource.Attribute.hideMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Attribute.hideOnContentScroll = global::NeuToDo.Droid.Resource.Attribute.hideOnContentScroll;
+			global::Rg.Plugins.Popup.Resource.Attribute.hideOnScroll = global::NeuToDo.Droid.Resource.Attribute.hideOnScroll;
+			global::Rg.Plugins.Popup.Resource.Attribute.hintAnimationEnabled = global::NeuToDo.Droid.Resource.Attribute.hintAnimationEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.hintEnabled = global::NeuToDo.Droid.Resource.Attribute.hintEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.hintTextAppearance = global::NeuToDo.Droid.Resource.Attribute.hintTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.homeAsUpIndicator = global::NeuToDo.Droid.Resource.Attribute.homeAsUpIndicator;
+			global::Rg.Plugins.Popup.Resource.Attribute.homeLayout = global::NeuToDo.Droid.Resource.Attribute.homeLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.hoveredFocusedTranslationZ = global::NeuToDo.Droid.Resource.Attribute.hoveredFocusedTranslationZ;
+			global::Rg.Plugins.Popup.Resource.Attribute.icon = global::NeuToDo.Droid.Resource.Attribute.icon;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconEndPadding = global::NeuToDo.Droid.Resource.Attribute.iconEndPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconGravity = global::NeuToDo.Droid.Resource.Attribute.iconGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconifiedByDefault = global::NeuToDo.Droid.Resource.Attribute.iconifiedByDefault;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconPadding = global::NeuToDo.Droid.Resource.Attribute.iconPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconSize = global::NeuToDo.Droid.Resource.Attribute.iconSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconStartPadding = global::NeuToDo.Droid.Resource.Attribute.iconStartPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconTint = global::NeuToDo.Droid.Resource.Attribute.iconTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.iconTintMode = global::NeuToDo.Droid.Resource.Attribute.iconTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.imageButtonStyle = global::NeuToDo.Droid.Resource.Attribute.imageButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.indeterminateProgressStyle = global::NeuToDo.Droid.Resource.Attribute.indeterminateProgressStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.initialActivityCount = global::NeuToDo.Droid.Resource.Attribute.initialActivityCount;
+			global::Rg.Plugins.Popup.Resource.Attribute.insetForeground = global::NeuToDo.Droid.Resource.Attribute.insetForeground;
+			global::Rg.Plugins.Popup.Resource.Attribute.isLightTheme = global::NeuToDo.Droid.Resource.Attribute.isLightTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemBackground = global::NeuToDo.Droid.Resource.Attribute.itemBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemHorizontalPadding = global::NeuToDo.Droid.Resource.Attribute.itemHorizontalPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemHorizontalTranslationEnabled = global::NeuToDo.Droid.Resource.Attribute.itemHorizontalTranslationEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemIconPadding = global::NeuToDo.Droid.Resource.Attribute.itemIconPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemIconSize = global::NeuToDo.Droid.Resource.Attribute.itemIconSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemIconTint = global::NeuToDo.Droid.Resource.Attribute.itemIconTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemPadding = global::NeuToDo.Droid.Resource.Attribute.itemPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemSpacing = global::NeuToDo.Droid.Resource.Attribute.itemSpacing;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemTextAppearance = global::NeuToDo.Droid.Resource.Attribute.itemTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemTextAppearanceActive = global::NeuToDo.Droid.Resource.Attribute.itemTextAppearanceActive;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemTextAppearanceInactive = global::NeuToDo.Droid.Resource.Attribute.itemTextAppearanceInactive;
+			global::Rg.Plugins.Popup.Resource.Attribute.itemTextColor = global::NeuToDo.Droid.Resource.Attribute.itemTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.keylines = global::NeuToDo.Droid.Resource.Attribute.keylines;
+			global::Rg.Plugins.Popup.Resource.Attribute.labelVisibilityMode = global::NeuToDo.Droid.Resource.Attribute.labelVisibilityMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.lastBaselineToBottomHeight = global::NeuToDo.Droid.Resource.Attribute.lastBaselineToBottomHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout = global::NeuToDo.Droid.Resource.Attribute.layout;
+			global::Rg.Plugins.Popup.Resource.Attribute.layoutManager = global::NeuToDo.Droid.Resource.Attribute.layoutManager;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_anchor = global::NeuToDo.Droid.Resource.Attribute.layout_anchor;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_anchorGravity = global::NeuToDo.Droid.Resource.Attribute.layout_anchorGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_behavior = global::NeuToDo.Droid.Resource.Attribute.layout_behavior;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_collapseMode = global::NeuToDo.Droid.Resource.Attribute.layout_collapseMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_collapseParallaxMultiplier = global::NeuToDo.Droid.Resource.Attribute.layout_collapseParallaxMultiplier;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_dodgeInsetEdges = global::NeuToDo.Droid.Resource.Attribute.layout_dodgeInsetEdges;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_insetEdge = global::NeuToDo.Droid.Resource.Attribute.layout_insetEdge;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_keyline = global::NeuToDo.Droid.Resource.Attribute.layout_keyline;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_scrollFlags = global::NeuToDo.Droid.Resource.Attribute.layout_scrollFlags;
+			global::Rg.Plugins.Popup.Resource.Attribute.layout_scrollInterpolator = global::NeuToDo.Droid.Resource.Attribute.layout_scrollInterpolator;
+			global::Rg.Plugins.Popup.Resource.Attribute.liftOnScroll = global::NeuToDo.Droid.Resource.Attribute.liftOnScroll;
+			global::Rg.Plugins.Popup.Resource.Attribute.lineHeight = global::NeuToDo.Droid.Resource.Attribute.lineHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.lineSpacing = global::NeuToDo.Droid.Resource.Attribute.lineSpacing;
+			global::Rg.Plugins.Popup.Resource.Attribute.listChoiceBackgroundIndicator = global::NeuToDo.Droid.Resource.Attribute.listChoiceBackgroundIndicator;
+			global::Rg.Plugins.Popup.Resource.Attribute.listDividerAlertDialog = global::NeuToDo.Droid.Resource.Attribute.listDividerAlertDialog;
+			global::Rg.Plugins.Popup.Resource.Attribute.listItemLayout = global::NeuToDo.Droid.Resource.Attribute.listItemLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.listLayout = global::NeuToDo.Droid.Resource.Attribute.listLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.listMenuViewStyle = global::NeuToDo.Droid.Resource.Attribute.listMenuViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPopupWindowStyle = global::NeuToDo.Droid.Resource.Attribute.listPopupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPreferredItemHeight = global::NeuToDo.Droid.Resource.Attribute.listPreferredItemHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPreferredItemHeightLarge = global::NeuToDo.Droid.Resource.Attribute.listPreferredItemHeightLarge;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPreferredItemHeightSmall = global::NeuToDo.Droid.Resource.Attribute.listPreferredItemHeightSmall;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPreferredItemPaddingLeft = global::NeuToDo.Droid.Resource.Attribute.listPreferredItemPaddingLeft;
+			global::Rg.Plugins.Popup.Resource.Attribute.listPreferredItemPaddingRight = global::NeuToDo.Droid.Resource.Attribute.listPreferredItemPaddingRight;
+			global::Rg.Plugins.Popup.Resource.Attribute.logo = global::NeuToDo.Droid.Resource.Attribute.logo;
+			global::Rg.Plugins.Popup.Resource.Attribute.logoDescription = global::NeuToDo.Droid.Resource.Attribute.logoDescription;
+			global::Rg.Plugins.Popup.Resource.Attribute.materialButtonStyle = global::NeuToDo.Droid.Resource.Attribute.materialButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.materialCardViewStyle = global::NeuToDo.Droid.Resource.Attribute.materialCardViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.maxActionInlineWidth = global::NeuToDo.Droid.Resource.Attribute.maxActionInlineWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.maxButtonHeight = global::NeuToDo.Droid.Resource.Attribute.maxButtonHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.maxImageSize = global::NeuToDo.Droid.Resource.Attribute.maxImageSize;
+			global::Rg.Plugins.Popup.Resource.Attribute.measureWithLargestChild = global::NeuToDo.Droid.Resource.Attribute.measureWithLargestChild;
+			global::Rg.Plugins.Popup.Resource.Attribute.menu = global::NeuToDo.Droid.Resource.Attribute.menu;
+			global::Rg.Plugins.Popup.Resource.Attribute.multiChoiceItemLayout = global::NeuToDo.Droid.Resource.Attribute.multiChoiceItemLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.navigationContentDescription = global::NeuToDo.Droid.Resource.Attribute.navigationContentDescription;
+			global::Rg.Plugins.Popup.Resource.Attribute.navigationIcon = global::NeuToDo.Droid.Resource.Attribute.navigationIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.navigationMode = global::NeuToDo.Droid.Resource.Attribute.navigationMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.navigationViewStyle = global::NeuToDo.Droid.Resource.Attribute.navigationViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.numericModifiers = global::NeuToDo.Droid.Resource.Attribute.numericModifiers;
+			global::Rg.Plugins.Popup.Resource.Attribute.overlapAnchor = global::NeuToDo.Droid.Resource.Attribute.overlapAnchor;
+			global::Rg.Plugins.Popup.Resource.Attribute.paddingBottomNoButtons = global::NeuToDo.Droid.Resource.Attribute.paddingBottomNoButtons;
+			global::Rg.Plugins.Popup.Resource.Attribute.paddingEnd = global::NeuToDo.Droid.Resource.Attribute.paddingEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.paddingStart = global::NeuToDo.Droid.Resource.Attribute.paddingStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.paddingTopNoTitle = global::NeuToDo.Droid.Resource.Attribute.paddingTopNoTitle;
+			global::Rg.Plugins.Popup.Resource.Attribute.panelBackground = global::NeuToDo.Droid.Resource.Attribute.panelBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.panelMenuListTheme = global::NeuToDo.Droid.Resource.Attribute.panelMenuListTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.panelMenuListWidth = global::NeuToDo.Droid.Resource.Attribute.panelMenuListWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.passwordToggleContentDescription = global::NeuToDo.Droid.Resource.Attribute.passwordToggleContentDescription;
+			global::Rg.Plugins.Popup.Resource.Attribute.passwordToggleDrawable = global::NeuToDo.Droid.Resource.Attribute.passwordToggleDrawable;
+			global::Rg.Plugins.Popup.Resource.Attribute.passwordToggleEnabled = global::NeuToDo.Droid.Resource.Attribute.passwordToggleEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.passwordToggleTint = global::NeuToDo.Droid.Resource.Attribute.passwordToggleTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.passwordToggleTintMode = global::NeuToDo.Droid.Resource.Attribute.passwordToggleTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.popupMenuStyle = global::NeuToDo.Droid.Resource.Attribute.popupMenuStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.popupTheme = global::NeuToDo.Droid.Resource.Attribute.popupTheme;
+			global::Rg.Plugins.Popup.Resource.Attribute.popupWindowStyle = global::NeuToDo.Droid.Resource.Attribute.popupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.preserveIconSpacing = global::NeuToDo.Droid.Resource.Attribute.preserveIconSpacing;
+			global::Rg.Plugins.Popup.Resource.Attribute.pressedTranslationZ = global::NeuToDo.Droid.Resource.Attribute.pressedTranslationZ;
+			global::Rg.Plugins.Popup.Resource.Attribute.progressBarPadding = global::NeuToDo.Droid.Resource.Attribute.progressBarPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.progressBarStyle = global::NeuToDo.Droid.Resource.Attribute.progressBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.queryBackground = global::NeuToDo.Droid.Resource.Attribute.queryBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.queryHint = global::NeuToDo.Droid.Resource.Attribute.queryHint;
+			global::Rg.Plugins.Popup.Resource.Attribute.radioButtonStyle = global::NeuToDo.Droid.Resource.Attribute.radioButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.ratingBarStyle = global::NeuToDo.Droid.Resource.Attribute.ratingBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.ratingBarStyleIndicator = global::NeuToDo.Droid.Resource.Attribute.ratingBarStyleIndicator;
+			global::Rg.Plugins.Popup.Resource.Attribute.ratingBarStyleSmall = global::NeuToDo.Droid.Resource.Attribute.ratingBarStyleSmall;
+			global::Rg.Plugins.Popup.Resource.Attribute.reverseLayout = global::NeuToDo.Droid.Resource.Attribute.reverseLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.rippleColor = global::NeuToDo.Droid.Resource.Attribute.rippleColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.scrimAnimationDuration = global::NeuToDo.Droid.Resource.Attribute.scrimAnimationDuration;
+			global::Rg.Plugins.Popup.Resource.Attribute.scrimBackground = global::NeuToDo.Droid.Resource.Attribute.scrimBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.scrimVisibleHeightTrigger = global::NeuToDo.Droid.Resource.Attribute.scrimVisibleHeightTrigger;
+			global::Rg.Plugins.Popup.Resource.Attribute.searchHintIcon = global::NeuToDo.Droid.Resource.Attribute.searchHintIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.searchIcon = global::NeuToDo.Droid.Resource.Attribute.searchIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.searchViewStyle = global::NeuToDo.Droid.Resource.Attribute.searchViewStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.seekBarStyle = global::NeuToDo.Droid.Resource.Attribute.seekBarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.selectableItemBackground = global::NeuToDo.Droid.Resource.Attribute.selectableItemBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.selectableItemBackgroundBorderless = global::NeuToDo.Droid.Resource.Attribute.selectableItemBackgroundBorderless;
+			global::Rg.Plugins.Popup.Resource.Attribute.showAsAction = global::NeuToDo.Droid.Resource.Attribute.showAsAction;
+			global::Rg.Plugins.Popup.Resource.Attribute.showDividers = global::NeuToDo.Droid.Resource.Attribute.showDividers;
+			global::Rg.Plugins.Popup.Resource.Attribute.showMotionSpec = global::NeuToDo.Droid.Resource.Attribute.showMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Attribute.showText = global::NeuToDo.Droid.Resource.Attribute.showText;
+			global::Rg.Plugins.Popup.Resource.Attribute.showTitle = global::NeuToDo.Droid.Resource.Attribute.showTitle;
+			global::Rg.Plugins.Popup.Resource.Attribute.singleChoiceItemLayout = global::NeuToDo.Droid.Resource.Attribute.singleChoiceItemLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.singleLine = global::NeuToDo.Droid.Resource.Attribute.singleLine;
+			global::Rg.Plugins.Popup.Resource.Attribute.singleSelection = global::NeuToDo.Droid.Resource.Attribute.singleSelection;
+			global::Rg.Plugins.Popup.Resource.Attribute.snackbarButtonStyle = global::NeuToDo.Droid.Resource.Attribute.snackbarButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.snackbarStyle = global::NeuToDo.Droid.Resource.Attribute.snackbarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.spanCount = global::NeuToDo.Droid.Resource.Attribute.spanCount;
+			global::Rg.Plugins.Popup.Resource.Attribute.spinBars = global::NeuToDo.Droid.Resource.Attribute.spinBars;
+			global::Rg.Plugins.Popup.Resource.Attribute.spinnerDropDownItemStyle = global::NeuToDo.Droid.Resource.Attribute.spinnerDropDownItemStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.spinnerStyle = global::NeuToDo.Droid.Resource.Attribute.spinnerStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.splitTrack = global::NeuToDo.Droid.Resource.Attribute.splitTrack;
+			global::Rg.Plugins.Popup.Resource.Attribute.srcCompat = global::NeuToDo.Droid.Resource.Attribute.srcCompat;
+			global::Rg.Plugins.Popup.Resource.Attribute.stackFromEnd = global::NeuToDo.Droid.Resource.Attribute.stackFromEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.state_above_anchor = global::NeuToDo.Droid.Resource.Attribute.state_above_anchor;
+			global::Rg.Plugins.Popup.Resource.Attribute.state_collapsed = global::NeuToDo.Droid.Resource.Attribute.state_collapsed;
+			global::Rg.Plugins.Popup.Resource.Attribute.state_collapsible = global::NeuToDo.Droid.Resource.Attribute.state_collapsible;
+			global::Rg.Plugins.Popup.Resource.Attribute.state_liftable = global::NeuToDo.Droid.Resource.Attribute.state_liftable;
+			global::Rg.Plugins.Popup.Resource.Attribute.state_lifted = global::NeuToDo.Droid.Resource.Attribute.state_lifted;
+			global::Rg.Plugins.Popup.Resource.Attribute.statusBarBackground = global::NeuToDo.Droid.Resource.Attribute.statusBarBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.statusBarScrim = global::NeuToDo.Droid.Resource.Attribute.statusBarScrim;
+			global::Rg.Plugins.Popup.Resource.Attribute.strokeColor = global::NeuToDo.Droid.Resource.Attribute.strokeColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.strokeWidth = global::NeuToDo.Droid.Resource.Attribute.strokeWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.subMenuArrow = global::NeuToDo.Droid.Resource.Attribute.subMenuArrow;
+			global::Rg.Plugins.Popup.Resource.Attribute.submitBackground = global::NeuToDo.Droid.Resource.Attribute.submitBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.subtitle = global::NeuToDo.Droid.Resource.Attribute.subtitle;
+			global::Rg.Plugins.Popup.Resource.Attribute.subtitleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.subtitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.subtitleTextColor = global::NeuToDo.Droid.Resource.Attribute.subtitleTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.subtitleTextStyle = global::NeuToDo.Droid.Resource.Attribute.subtitleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.suggestionRowLayout = global::NeuToDo.Droid.Resource.Attribute.suggestionRowLayout;
+			global::Rg.Plugins.Popup.Resource.Attribute.switchMinWidth = global::NeuToDo.Droid.Resource.Attribute.switchMinWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.switchPadding = global::NeuToDo.Droid.Resource.Attribute.switchPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.switchStyle = global::NeuToDo.Droid.Resource.Attribute.switchStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.switchTextAppearance = global::NeuToDo.Droid.Resource.Attribute.switchTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabBackground = global::NeuToDo.Droid.Resource.Attribute.tabBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabContentStart = global::NeuToDo.Droid.Resource.Attribute.tabContentStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabGravity = global::NeuToDo.Droid.Resource.Attribute.tabGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIconTint = global::NeuToDo.Droid.Resource.Attribute.tabIconTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIconTintMode = global::NeuToDo.Droid.Resource.Attribute.tabIconTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicator = global::NeuToDo.Droid.Resource.Attribute.tabIndicator;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicatorAnimationDuration = global::NeuToDo.Droid.Resource.Attribute.tabIndicatorAnimationDuration;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicatorColor = global::NeuToDo.Droid.Resource.Attribute.tabIndicatorColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicatorFullWidth = global::NeuToDo.Droid.Resource.Attribute.tabIndicatorFullWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicatorGravity = global::NeuToDo.Droid.Resource.Attribute.tabIndicatorGravity;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabIndicatorHeight = global::NeuToDo.Droid.Resource.Attribute.tabIndicatorHeight;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabInlineLabel = global::NeuToDo.Droid.Resource.Attribute.tabInlineLabel;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabMaxWidth = global::NeuToDo.Droid.Resource.Attribute.tabMaxWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabMinWidth = global::NeuToDo.Droid.Resource.Attribute.tabMinWidth;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabMode = global::NeuToDo.Droid.Resource.Attribute.tabMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabPadding = global::NeuToDo.Droid.Resource.Attribute.tabPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabPaddingBottom = global::NeuToDo.Droid.Resource.Attribute.tabPaddingBottom;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabPaddingEnd = global::NeuToDo.Droid.Resource.Attribute.tabPaddingEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabPaddingStart = global::NeuToDo.Droid.Resource.Attribute.tabPaddingStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabPaddingTop = global::NeuToDo.Droid.Resource.Attribute.tabPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabRippleColor = global::NeuToDo.Droid.Resource.Attribute.tabRippleColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabSelectedTextColor = global::NeuToDo.Droid.Resource.Attribute.tabSelectedTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabStyle = global::NeuToDo.Droid.Resource.Attribute.tabStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabTextAppearance = global::NeuToDo.Droid.Resource.Attribute.tabTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabTextColor = global::NeuToDo.Droid.Resource.Attribute.tabTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.tabUnboundedRipple = global::NeuToDo.Droid.Resource.Attribute.tabUnboundedRipple;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAllCaps = global::NeuToDo.Droid.Resource.Attribute.textAllCaps;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceBody1 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceBody1;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceBody2 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceBody2;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceButton = global::NeuToDo.Droid.Resource.Attribute.textAppearanceButton;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceCaption = global::NeuToDo.Droid.Resource.Attribute.textAppearanceCaption;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline1 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline1;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline2 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline2;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline3 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline3;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline4 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline4;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline5 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline5;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceHeadline6 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceHeadline6;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceLargePopupMenu = global::NeuToDo.Droid.Resource.Attribute.textAppearanceLargePopupMenu;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceListItem = global::NeuToDo.Droid.Resource.Attribute.textAppearanceListItem;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceListItemSecondary = global::NeuToDo.Droid.Resource.Attribute.textAppearanceListItemSecondary;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceListItemSmall = global::NeuToDo.Droid.Resource.Attribute.textAppearanceListItemSmall;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceOverline = global::NeuToDo.Droid.Resource.Attribute.textAppearanceOverline;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearancePopupMenuHeader = global::NeuToDo.Droid.Resource.Attribute.textAppearancePopupMenuHeader;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceSearchResultSubtitle = global::NeuToDo.Droid.Resource.Attribute.textAppearanceSearchResultSubtitle;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceSearchResultTitle = global::NeuToDo.Droid.Resource.Attribute.textAppearanceSearchResultTitle;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceSmallPopupMenu = global::NeuToDo.Droid.Resource.Attribute.textAppearanceSmallPopupMenu;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceSubtitle1 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceSubtitle1;
+			global::Rg.Plugins.Popup.Resource.Attribute.textAppearanceSubtitle2 = global::NeuToDo.Droid.Resource.Attribute.textAppearanceSubtitle2;
+			global::Rg.Plugins.Popup.Resource.Attribute.textColorAlertDialogListItem = global::NeuToDo.Droid.Resource.Attribute.textColorAlertDialogListItem;
+			global::Rg.Plugins.Popup.Resource.Attribute.textColorSearchUrl = global::NeuToDo.Droid.Resource.Attribute.textColorSearchUrl;
+			global::Rg.Plugins.Popup.Resource.Attribute.textEndPadding = global::NeuToDo.Droid.Resource.Attribute.textEndPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.textInputStyle = global::NeuToDo.Droid.Resource.Attribute.textInputStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.textStartPadding = global::NeuToDo.Droid.Resource.Attribute.textStartPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.theme = global::NeuToDo.Droid.Resource.Attribute.theme;
+			global::Rg.Plugins.Popup.Resource.Attribute.thickness = global::NeuToDo.Droid.Resource.Attribute.thickness;
+			global::Rg.Plugins.Popup.Resource.Attribute.thumbTextPadding = global::NeuToDo.Droid.Resource.Attribute.thumbTextPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.thumbTint = global::NeuToDo.Droid.Resource.Attribute.thumbTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.thumbTintMode = global::NeuToDo.Droid.Resource.Attribute.thumbTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.tickMark = global::NeuToDo.Droid.Resource.Attribute.tickMark;
+			global::Rg.Plugins.Popup.Resource.Attribute.tickMarkTint = global::NeuToDo.Droid.Resource.Attribute.tickMarkTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.tickMarkTintMode = global::NeuToDo.Droid.Resource.Attribute.tickMarkTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.tint = global::NeuToDo.Droid.Resource.Attribute.tint;
+			global::Rg.Plugins.Popup.Resource.Attribute.tintMode = global::NeuToDo.Droid.Resource.Attribute.tintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.title = global::NeuToDo.Droid.Resource.Attribute.title;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleEnabled = global::NeuToDo.Droid.Resource.Attribute.titleEnabled;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMargin = global::NeuToDo.Droid.Resource.Attribute.titleMargin;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMarginBottom = global::NeuToDo.Droid.Resource.Attribute.titleMarginBottom;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMarginEnd = global::NeuToDo.Droid.Resource.Attribute.titleMarginEnd;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMargins = global::NeuToDo.Droid.Resource.Attribute.titleMargins;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMarginStart = global::NeuToDo.Droid.Resource.Attribute.titleMarginStart;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleMarginTop = global::NeuToDo.Droid.Resource.Attribute.titleMarginTop;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.titleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleTextColor = global::NeuToDo.Droid.Resource.Attribute.titleTextColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.titleTextStyle = global::NeuToDo.Droid.Resource.Attribute.titleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.toolbarId = global::NeuToDo.Droid.Resource.Attribute.toolbarId;
+			global::Rg.Plugins.Popup.Resource.Attribute.toolbarNavigationButtonStyle = global::NeuToDo.Droid.Resource.Attribute.toolbarNavigationButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.toolbarStyle = global::NeuToDo.Droid.Resource.Attribute.toolbarStyle;
+			global::Rg.Plugins.Popup.Resource.Attribute.tooltipForegroundColor = global::NeuToDo.Droid.Resource.Attribute.tooltipForegroundColor;
+			global::Rg.Plugins.Popup.Resource.Attribute.tooltipFrameBackground = global::NeuToDo.Droid.Resource.Attribute.tooltipFrameBackground;
+			global::Rg.Plugins.Popup.Resource.Attribute.tooltipText = global::NeuToDo.Droid.Resource.Attribute.tooltipText;
+			global::Rg.Plugins.Popup.Resource.Attribute.track = global::NeuToDo.Droid.Resource.Attribute.track;
+			global::Rg.Plugins.Popup.Resource.Attribute.trackTint = global::NeuToDo.Droid.Resource.Attribute.trackTint;
+			global::Rg.Plugins.Popup.Resource.Attribute.trackTintMode = global::NeuToDo.Droid.Resource.Attribute.trackTintMode;
+			global::Rg.Plugins.Popup.Resource.Attribute.ttcIndex = global::NeuToDo.Droid.Resource.Attribute.ttcIndex;
+			global::Rg.Plugins.Popup.Resource.Attribute.useCompatPadding = global::NeuToDo.Droid.Resource.Attribute.useCompatPadding;
+			global::Rg.Plugins.Popup.Resource.Attribute.viewInflaterClass = global::NeuToDo.Droid.Resource.Attribute.viewInflaterClass;
+			global::Rg.Plugins.Popup.Resource.Attribute.voiceIcon = global::NeuToDo.Droid.Resource.Attribute.voiceIcon;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowActionBar = global::NeuToDo.Droid.Resource.Attribute.windowActionBar;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowActionBarOverlay = global::NeuToDo.Droid.Resource.Attribute.windowActionBarOverlay;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowActionModeOverlay = global::NeuToDo.Droid.Resource.Attribute.windowActionModeOverlay;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowFixedHeightMajor = global::NeuToDo.Droid.Resource.Attribute.windowFixedHeightMajor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowFixedHeightMinor = global::NeuToDo.Droid.Resource.Attribute.windowFixedHeightMinor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowFixedWidthMajor = global::NeuToDo.Droid.Resource.Attribute.windowFixedWidthMajor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowFixedWidthMinor = global::NeuToDo.Droid.Resource.Attribute.windowFixedWidthMinor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowMinWidthMajor = global::NeuToDo.Droid.Resource.Attribute.windowMinWidthMajor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowMinWidthMinor = global::NeuToDo.Droid.Resource.Attribute.windowMinWidthMinor;
+			global::Rg.Plugins.Popup.Resource.Attribute.windowNoTitle = global::NeuToDo.Droid.Resource.Attribute.windowNoTitle;
+			global::Rg.Plugins.Popup.Resource.Boolean.abc_action_bar_embed_tabs = global::NeuToDo.Droid.Resource.Boolean.abc_action_bar_embed_tabs;
+			global::Rg.Plugins.Popup.Resource.Boolean.abc_allow_stacked_button_bar = global::NeuToDo.Droid.Resource.Boolean.abc_allow_stacked_button_bar;
+			global::Rg.Plugins.Popup.Resource.Boolean.abc_config_actionMenuItemAllCaps = global::NeuToDo.Droid.Resource.Boolean.abc_config_actionMenuItemAllCaps;
+			global::Rg.Plugins.Popup.Resource.Boolean.mtrl_btn_textappearance_all_caps = global::NeuToDo.Droid.Resource.Boolean.mtrl_btn_textappearance_all_caps;
+			global::Rg.Plugins.Popup.Resource.Color.abc_background_cache_hint_selector_material_dark = global::NeuToDo.Droid.Resource.Color.abc_background_cache_hint_selector_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.abc_background_cache_hint_selector_material_light = global::NeuToDo.Droid.Resource.Color.abc_background_cache_hint_selector_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.abc_btn_colored_borderless_text_material = global::NeuToDo.Droid.Resource.Color.abc_btn_colored_borderless_text_material;
+			global::Rg.Plugins.Popup.Resource.Color.abc_btn_colored_text_material = global::NeuToDo.Droid.Resource.Color.abc_btn_colored_text_material;
+			global::Rg.Plugins.Popup.Resource.Color.abc_color_highlight_material = global::NeuToDo.Droid.Resource.Color.abc_color_highlight_material;
+			global::Rg.Plugins.Popup.Resource.Color.abc_hint_foreground_material_dark = global::NeuToDo.Droid.Resource.Color.abc_hint_foreground_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.abc_hint_foreground_material_light = global::NeuToDo.Droid.Resource.Color.abc_hint_foreground_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.abc_input_method_navigation_guard = global::NeuToDo.Droid.Resource.Color.abc_input_method_navigation_guard;
+			global::Rg.Plugins.Popup.Resource.Color.abc_primary_text_disable_only_material_dark = global::NeuToDo.Droid.Resource.Color.abc_primary_text_disable_only_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.abc_primary_text_disable_only_material_light = global::NeuToDo.Droid.Resource.Color.abc_primary_text_disable_only_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.abc_primary_text_material_dark = global::NeuToDo.Droid.Resource.Color.abc_primary_text_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.abc_primary_text_material_light = global::NeuToDo.Droid.Resource.Color.abc_primary_text_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.abc_search_url_text = global::NeuToDo.Droid.Resource.Color.abc_search_url_text;
+			global::Rg.Plugins.Popup.Resource.Color.abc_search_url_text_normal = global::NeuToDo.Droid.Resource.Color.abc_search_url_text_normal;
+			global::Rg.Plugins.Popup.Resource.Color.abc_search_url_text_pressed = global::NeuToDo.Droid.Resource.Color.abc_search_url_text_pressed;
+			global::Rg.Plugins.Popup.Resource.Color.abc_search_url_text_selected = global::NeuToDo.Droid.Resource.Color.abc_search_url_text_selected;
+			global::Rg.Plugins.Popup.Resource.Color.abc_secondary_text_material_dark = global::NeuToDo.Droid.Resource.Color.abc_secondary_text_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.abc_secondary_text_material_light = global::NeuToDo.Droid.Resource.Color.abc_secondary_text_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_btn_checkable = global::NeuToDo.Droid.Resource.Color.abc_tint_btn_checkable;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_default = global::NeuToDo.Droid.Resource.Color.abc_tint_default;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_edittext = global::NeuToDo.Droid.Resource.Color.abc_tint_edittext;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_seek_thumb = global::NeuToDo.Droid.Resource.Color.abc_tint_seek_thumb;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_spinner = global::NeuToDo.Droid.Resource.Color.abc_tint_spinner;
+			global::Rg.Plugins.Popup.Resource.Color.abc_tint_switch_track = global::NeuToDo.Droid.Resource.Color.abc_tint_switch_track;
+			global::Rg.Plugins.Popup.Resource.Color.accent_material_dark = global::NeuToDo.Droid.Resource.Color.accent_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.accent_material_light = global::NeuToDo.Droid.Resource.Color.accent_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.background_floating_material_dark = global::NeuToDo.Droid.Resource.Color.background_floating_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.background_floating_material_light = global::NeuToDo.Droid.Resource.Color.background_floating_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.background_material_dark = global::NeuToDo.Droid.Resource.Color.background_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.background_material_light = global::NeuToDo.Droid.Resource.Color.background_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_disabled_material_dark = global::NeuToDo.Droid.Resource.Color.bright_foreground_disabled_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_disabled_material_light = global::NeuToDo.Droid.Resource.Color.bright_foreground_disabled_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_inverse_material_dark = global::NeuToDo.Droid.Resource.Color.bright_foreground_inverse_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_inverse_material_light = global::NeuToDo.Droid.Resource.Color.bright_foreground_inverse_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_material_dark = global::NeuToDo.Droid.Resource.Color.bright_foreground_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.bright_foreground_material_light = global::NeuToDo.Droid.Resource.Color.bright_foreground_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.browser_actions_bg_grey = global::NeuToDo.Droid.Resource.Color.browser_actions_bg_grey;
+			global::Rg.Plugins.Popup.Resource.Color.browser_actions_divider_color = global::NeuToDo.Droid.Resource.Color.browser_actions_divider_color;
+			global::Rg.Plugins.Popup.Resource.Color.browser_actions_text_color = global::NeuToDo.Droid.Resource.Color.browser_actions_text_color;
+			global::Rg.Plugins.Popup.Resource.Color.browser_actions_title_color = global::NeuToDo.Droid.Resource.Color.browser_actions_title_color;
+			global::Rg.Plugins.Popup.Resource.Color.button_material_dark = global::NeuToDo.Droid.Resource.Color.button_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.button_material_light = global::NeuToDo.Droid.Resource.Color.button_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.cardview_dark_background = global::NeuToDo.Droid.Resource.Color.cardview_dark_background;
+			global::Rg.Plugins.Popup.Resource.Color.cardview_light_background = global::NeuToDo.Droid.Resource.Color.cardview_light_background;
+			global::Rg.Plugins.Popup.Resource.Color.cardview_shadow_end_color = global::NeuToDo.Droid.Resource.Color.cardview_shadow_end_color;
+			global::Rg.Plugins.Popup.Resource.Color.cardview_shadow_start_color = global::NeuToDo.Droid.Resource.Color.cardview_shadow_start_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_bottom_navigation_shadow_color = global::NeuToDo.Droid.Resource.Color.design_bottom_navigation_shadow_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_default_color_primary = global::NeuToDo.Droid.Resource.Color.design_default_color_primary;
+			global::Rg.Plugins.Popup.Resource.Color.design_default_color_primary_dark = global::NeuToDo.Droid.Resource.Color.design_default_color_primary_dark;
+			global::Rg.Plugins.Popup.Resource.Color.design_error = global::NeuToDo.Droid.Resource.Color.design_error;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_shadow_end_color = global::NeuToDo.Droid.Resource.Color.design_fab_shadow_end_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_shadow_mid_color = global::NeuToDo.Droid.Resource.Color.design_fab_shadow_mid_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_shadow_start_color = global::NeuToDo.Droid.Resource.Color.design_fab_shadow_start_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_stroke_end_inner_color = global::NeuToDo.Droid.Resource.Color.design_fab_stroke_end_inner_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_stroke_end_outer_color = global::NeuToDo.Droid.Resource.Color.design_fab_stroke_end_outer_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_stroke_top_inner_color = global::NeuToDo.Droid.Resource.Color.design_fab_stroke_top_inner_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_fab_stroke_top_outer_color = global::NeuToDo.Droid.Resource.Color.design_fab_stroke_top_outer_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_snackbar_background_color = global::NeuToDo.Droid.Resource.Color.design_snackbar_background_color;
+			global::Rg.Plugins.Popup.Resource.Color.design_tint_password_toggle = global::NeuToDo.Droid.Resource.Color.design_tint_password_toggle;
+			global::Rg.Plugins.Popup.Resource.Color.dim_foreground_disabled_material_dark = global::NeuToDo.Droid.Resource.Color.dim_foreground_disabled_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.dim_foreground_disabled_material_light = global::NeuToDo.Droid.Resource.Color.dim_foreground_disabled_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.dim_foreground_material_dark = global::NeuToDo.Droid.Resource.Color.dim_foreground_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.dim_foreground_material_light = global::NeuToDo.Droid.Resource.Color.dim_foreground_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.error_color_material_dark = global::NeuToDo.Droid.Resource.Color.error_color_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.error_color_material_light = global::NeuToDo.Droid.Resource.Color.error_color_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.foreground_material_dark = global::NeuToDo.Droid.Resource.Color.foreground_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.foreground_material_light = global::NeuToDo.Droid.Resource.Color.foreground_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.highlighted_text_material_dark = global::NeuToDo.Droid.Resource.Color.highlighted_text_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.highlighted_text_material_light = global::NeuToDo.Droid.Resource.Color.highlighted_text_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.material_blue_grey_800 = global::NeuToDo.Droid.Resource.Color.material_blue_grey_800;
+			global::Rg.Plugins.Popup.Resource.Color.material_blue_grey_900 = global::NeuToDo.Droid.Resource.Color.material_blue_grey_900;
+			global::Rg.Plugins.Popup.Resource.Color.material_blue_grey_950 = global::NeuToDo.Droid.Resource.Color.material_blue_grey_950;
+			global::Rg.Plugins.Popup.Resource.Color.material_deep_teal_200 = global::NeuToDo.Droid.Resource.Color.material_deep_teal_200;
+			global::Rg.Plugins.Popup.Resource.Color.material_deep_teal_500 = global::NeuToDo.Droid.Resource.Color.material_deep_teal_500;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_100 = global::NeuToDo.Droid.Resource.Color.material_grey_100;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_300 = global::NeuToDo.Droid.Resource.Color.material_grey_300;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_50 = global::NeuToDo.Droid.Resource.Color.material_grey_50;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_600 = global::NeuToDo.Droid.Resource.Color.material_grey_600;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_800 = global::NeuToDo.Droid.Resource.Color.material_grey_800;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_850 = global::NeuToDo.Droid.Resource.Color.material_grey_850;
+			global::Rg.Plugins.Popup.Resource.Color.material_grey_900 = global::NeuToDo.Droid.Resource.Color.material_grey_900;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_bottom_nav_colored_item_tint = global::NeuToDo.Droid.Resource.Color.mtrl_bottom_nav_colored_item_tint;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_bottom_nav_item_tint = global::NeuToDo.Droid.Resource.Color.mtrl_bottom_nav_item_tint;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_bg_color_disabled = global::NeuToDo.Droid.Resource.Color.mtrl_btn_bg_color_disabled;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_bg_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_btn_bg_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_btn_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_stroke_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_btn_stroke_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_text_btn_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_btn_text_btn_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_text_color_disabled = global::NeuToDo.Droid.Resource.Color.mtrl_btn_text_color_disabled;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_text_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_btn_text_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_btn_transparent_bg_color = global::NeuToDo.Droid.Resource.Color.mtrl_btn_transparent_bg_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_chip_background_color = global::NeuToDo.Droid.Resource.Color.mtrl_chip_background_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_chip_close_icon_tint = global::NeuToDo.Droid.Resource.Color.mtrl_chip_close_icon_tint;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_chip_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_chip_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_chip_text_color = global::NeuToDo.Droid.Resource.Color.mtrl_chip_text_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_fab_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_fab_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_scrim_color = global::NeuToDo.Droid.Resource.Color.mtrl_scrim_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_tabs_colored_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_tabs_colored_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_tabs_icon_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_tabs_icon_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_tabs_icon_color_selector_colored = global::NeuToDo.Droid.Resource.Color.mtrl_tabs_icon_color_selector_colored;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_tabs_legacy_text_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_tabs_legacy_text_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_tabs_ripple_color = global::NeuToDo.Droid.Resource.Color.mtrl_tabs_ripple_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_textinput_default_box_stroke_color = global::NeuToDo.Droid.Resource.Color.mtrl_textinput_default_box_stroke_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_textinput_disabled_color = global::NeuToDo.Droid.Resource.Color.mtrl_textinput_disabled_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_textinput_filled_box_default_background_color = global::NeuToDo.Droid.Resource.Color.mtrl_textinput_filled_box_default_background_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_textinput_hovered_box_stroke_color = global::NeuToDo.Droid.Resource.Color.mtrl_textinput_hovered_box_stroke_color;
+			global::Rg.Plugins.Popup.Resource.Color.mtrl_text_btn_text_color_selector = global::NeuToDo.Droid.Resource.Color.mtrl_text_btn_text_color_selector;
+			global::Rg.Plugins.Popup.Resource.Color.notification_action_color_filter = global::NeuToDo.Droid.Resource.Color.notification_action_color_filter;
+			global::Rg.Plugins.Popup.Resource.Color.notification_icon_bg_color = global::NeuToDo.Droid.Resource.Color.notification_icon_bg_color;
+			global::Rg.Plugins.Popup.Resource.Color.notification_material_background_media_default_color = global::NeuToDo.Droid.Resource.Color.notification_material_background_media_default_color;
+			global::Rg.Plugins.Popup.Resource.Color.primary_dark_material_dark = global::NeuToDo.Droid.Resource.Color.primary_dark_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.primary_dark_material_light = global::NeuToDo.Droid.Resource.Color.primary_dark_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.primary_material_dark = global::NeuToDo.Droid.Resource.Color.primary_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.primary_material_light = global::NeuToDo.Droid.Resource.Color.primary_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.primary_text_default_material_dark = global::NeuToDo.Droid.Resource.Color.primary_text_default_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.primary_text_default_material_light = global::NeuToDo.Droid.Resource.Color.primary_text_default_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.primary_text_disabled_material_dark = global::NeuToDo.Droid.Resource.Color.primary_text_disabled_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.primary_text_disabled_material_light = global::NeuToDo.Droid.Resource.Color.primary_text_disabled_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.ripple_material_dark = global::NeuToDo.Droid.Resource.Color.ripple_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.ripple_material_light = global::NeuToDo.Droid.Resource.Color.ripple_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.secondary_text_default_material_dark = global::NeuToDo.Droid.Resource.Color.secondary_text_default_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.secondary_text_default_material_light = global::NeuToDo.Droid.Resource.Color.secondary_text_default_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.secondary_text_disabled_material_dark = global::NeuToDo.Droid.Resource.Color.secondary_text_disabled_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.secondary_text_disabled_material_light = global::NeuToDo.Droid.Resource.Color.secondary_text_disabled_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_disabled_material_dark = global::NeuToDo.Droid.Resource.Color.switch_thumb_disabled_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_disabled_material_light = global::NeuToDo.Droid.Resource.Color.switch_thumb_disabled_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_material_dark = global::NeuToDo.Droid.Resource.Color.switch_thumb_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_material_light = global::NeuToDo.Droid.Resource.Color.switch_thumb_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_normal_material_dark = global::NeuToDo.Droid.Resource.Color.switch_thumb_normal_material_dark;
+			global::Rg.Plugins.Popup.Resource.Color.switch_thumb_normal_material_light = global::NeuToDo.Droid.Resource.Color.switch_thumb_normal_material_light;
+			global::Rg.Plugins.Popup.Resource.Color.tooltip_background_dark = global::NeuToDo.Droid.Resource.Color.tooltip_background_dark;
+			global::Rg.Plugins.Popup.Resource.Color.tooltip_background_light = global::NeuToDo.Droid.Resource.Color.tooltip_background_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_content_inset_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_content_inset_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_content_inset_with_nav = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_content_inset_with_nav;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_default_height_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_default_height_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_default_padding_end_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_default_padding_end_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_default_padding_start_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_default_padding_start_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_elevation_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_elevation_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_icon_vertical_padding_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_icon_vertical_padding_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_overflow_padding_end_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_overflow_padding_end_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_overflow_padding_start_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_overflow_padding_start_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_stacked_max_height = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_stacked_max_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_stacked_tab_max_width = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_stacked_tab_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_subtitle_bottom_margin_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_bar_subtitle_top_margin_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_bar_subtitle_top_margin_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_button_min_height_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_button_min_height_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_button_min_width_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_button_min_width_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_action_button_min_width_overflow_material = global::NeuToDo.Droid.Resource.Dimension.abc_action_button_min_width_overflow_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_alert_dialog_button_bar_height = global::NeuToDo.Droid.Resource.Dimension.abc_alert_dialog_button_bar_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_alert_dialog_button_dimen = global::NeuToDo.Droid.Resource.Dimension.abc_alert_dialog_button_dimen;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_button_inset_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.abc_button_inset_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_button_inset_vertical_material = global::NeuToDo.Droid.Resource.Dimension.abc_button_inset_vertical_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_button_padding_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.abc_button_padding_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_button_padding_vertical_material = global::NeuToDo.Droid.Resource.Dimension.abc_button_padding_vertical_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_cascading_menus_min_smallest_width = global::NeuToDo.Droid.Resource.Dimension.abc_cascading_menus_min_smallest_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_config_prefDialogWidth = global::NeuToDo.Droid.Resource.Dimension.abc_config_prefDialogWidth;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_control_corner_material = global::NeuToDo.Droid.Resource.Dimension.abc_control_corner_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_control_inset_material = global::NeuToDo.Droid.Resource.Dimension.abc_control_inset_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_control_padding_material = global::NeuToDo.Droid.Resource.Dimension.abc_control_padding_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_corner_radius_material = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_corner_radius_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_fixed_height_major = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_fixed_height_major;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_fixed_height_minor = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_fixed_height_minor;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_fixed_width_major = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_fixed_width_major;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_fixed_width_minor = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_fixed_width_minor;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_list_padding_bottom_no_buttons;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_list_padding_top_no_title = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_list_padding_top_no_title;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_min_width_major = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_min_width_major;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_min_width_minor = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_min_width_minor;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_padding_material = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_padding_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_padding_top_material = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_padding_top_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dialog_title_divider_material = global::NeuToDo.Droid.Resource.Dimension.abc_dialog_title_divider_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_disabled_alpha_material_dark = global::NeuToDo.Droid.Resource.Dimension.abc_disabled_alpha_material_dark;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_disabled_alpha_material_light = global::NeuToDo.Droid.Resource.Dimension.abc_disabled_alpha_material_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dropdownitem_icon_width = global::NeuToDo.Droid.Resource.Dimension.abc_dropdownitem_icon_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dropdownitem_text_padding_left = global::NeuToDo.Droid.Resource.Dimension.abc_dropdownitem_text_padding_left;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_dropdownitem_text_padding_right = global::NeuToDo.Droid.Resource.Dimension.abc_dropdownitem_text_padding_right;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_edit_text_inset_bottom_material = global::NeuToDo.Droid.Resource.Dimension.abc_edit_text_inset_bottom_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_edit_text_inset_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.abc_edit_text_inset_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_edit_text_inset_top_material = global::NeuToDo.Droid.Resource.Dimension.abc_edit_text_inset_top_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_floating_window_z = global::NeuToDo.Droid.Resource.Dimension.abc_floating_window_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_list_item_padding_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.abc_list_item_padding_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_panel_menu_list_width = global::NeuToDo.Droid.Resource.Dimension.abc_panel_menu_list_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_progress_bar_height_material = global::NeuToDo.Droid.Resource.Dimension.abc_progress_bar_height_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_search_view_preferred_height = global::NeuToDo.Droid.Resource.Dimension.abc_search_view_preferred_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_search_view_preferred_width = global::NeuToDo.Droid.Resource.Dimension.abc_search_view_preferred_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_seekbar_track_background_height_material = global::NeuToDo.Droid.Resource.Dimension.abc_seekbar_track_background_height_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_seekbar_track_progress_height_material = global::NeuToDo.Droid.Resource.Dimension.abc_seekbar_track_progress_height_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_select_dialog_padding_start_material = global::NeuToDo.Droid.Resource.Dimension.abc_select_dialog_padding_start_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_switch_padding = global::NeuToDo.Droid.Resource.Dimension.abc_switch_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_body_1_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_body_1_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_body_2_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_body_2_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_button_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_button_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_caption_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_caption_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_display_1_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_display_1_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_display_2_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_display_2_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_display_3_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_display_3_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_display_4_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_display_4_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_headline_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_headline_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_large_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_large_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_medium_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_medium_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_menu_header_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_menu_header_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_menu_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_menu_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_small_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_small_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_subhead_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_subhead_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_subtitle_material_toolbar = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_subtitle_material_toolbar;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_title_material = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_title_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.abc_text_size_title_material_toolbar = global::NeuToDo.Droid.Resource.Dimension.abc_text_size_title_material_toolbar;
+			global::Rg.Plugins.Popup.Resource.Dimension.browser_actions_context_menu_max_width = global::NeuToDo.Droid.Resource.Dimension.browser_actions_context_menu_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.browser_actions_context_menu_min_padding = global::NeuToDo.Droid.Resource.Dimension.browser_actions_context_menu_min_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.cardview_compat_inset_shadow = global::NeuToDo.Droid.Resource.Dimension.cardview_compat_inset_shadow;
+			global::Rg.Plugins.Popup.Resource.Dimension.cardview_default_elevation = global::NeuToDo.Droid.Resource.Dimension.cardview_default_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.cardview_default_radius = global::NeuToDo.Droid.Resource.Dimension.cardview_default_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_button_inset_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.compat_button_inset_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_button_inset_vertical_material = global::NeuToDo.Droid.Resource.Dimension.compat_button_inset_vertical_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_button_padding_horizontal_material = global::NeuToDo.Droid.Resource.Dimension.compat_button_padding_horizontal_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_button_padding_vertical_material = global::NeuToDo.Droid.Resource.Dimension.compat_button_padding_vertical_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_control_corner_material = global::NeuToDo.Droid.Resource.Dimension.compat_control_corner_material;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_notification_large_icon_max_height = global::NeuToDo.Droid.Resource.Dimension.compat_notification_large_icon_max_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.compat_notification_large_icon_max_width = global::NeuToDo.Droid.Resource.Dimension.compat_notification_large_icon_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_appbar_elevation = global::NeuToDo.Droid.Resource.Dimension.design_appbar_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_active_item_max_width = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_active_item_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_active_item_min_width = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_active_item_min_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_active_text_size = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_active_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_elevation = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_height = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_icon_size = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_icon_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_item_max_width = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_item_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_item_min_width = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_item_min_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_margin = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_shadow_height = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_shadow_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_navigation_text_size = global::NeuToDo.Droid.Resource.Dimension.design_bottom_navigation_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_sheet_modal_elevation = global::NeuToDo.Droid.Resource.Dimension.design_bottom_sheet_modal_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_bottom_sheet_peek_height_min = global::NeuToDo.Droid.Resource.Dimension.design_bottom_sheet_peek_height_min;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_border_width = global::NeuToDo.Droid.Resource.Dimension.design_fab_border_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_elevation = global::NeuToDo.Droid.Resource.Dimension.design_fab_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_image_size = global::NeuToDo.Droid.Resource.Dimension.design_fab_image_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_size_mini = global::NeuToDo.Droid.Resource.Dimension.design_fab_size_mini;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_size_normal = global::NeuToDo.Droid.Resource.Dimension.design_fab_size_normal;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_translation_z_hovered_focused = global::NeuToDo.Droid.Resource.Dimension.design_fab_translation_z_hovered_focused;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_fab_translation_z_pressed = global::NeuToDo.Droid.Resource.Dimension.design_fab_translation_z_pressed;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_elevation = global::NeuToDo.Droid.Resource.Dimension.design_navigation_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_icon_padding = global::NeuToDo.Droid.Resource.Dimension.design_navigation_icon_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_icon_size = global::NeuToDo.Droid.Resource.Dimension.design_navigation_icon_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_item_horizontal_padding = global::NeuToDo.Droid.Resource.Dimension.design_navigation_item_horizontal_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_item_icon_padding = global::NeuToDo.Droid.Resource.Dimension.design_navigation_item_icon_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_max_width = global::NeuToDo.Droid.Resource.Dimension.design_navigation_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_padding_bottom = global::NeuToDo.Droid.Resource.Dimension.design_navigation_padding_bottom;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_navigation_separator_vertical_padding = global::NeuToDo.Droid.Resource.Dimension.design_navigation_separator_vertical_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_action_inline_max_width = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_action_inline_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_background_corner_radius = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_background_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_elevation = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_extra_spacing_horizontal = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_extra_spacing_horizontal;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_max_width = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_min_width = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_min_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_padding_horizontal = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_padding_horizontal;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_padding_vertical = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_padding_vertical;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_padding_vertical_2lines = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_padding_vertical_2lines;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_snackbar_text_size = global::NeuToDo.Droid.Resource.Dimension.design_snackbar_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_tab_max_width = global::NeuToDo.Droid.Resource.Dimension.design_tab_max_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_tab_scrollable_min_width = global::NeuToDo.Droid.Resource.Dimension.design_tab_scrollable_min_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_tab_text_size = global::NeuToDo.Droid.Resource.Dimension.design_tab_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_tab_text_size_2line = global::NeuToDo.Droid.Resource.Dimension.design_tab_text_size_2line;
+			global::Rg.Plugins.Popup.Resource.Dimension.design_textinput_caption_translate_y = global::NeuToDo.Droid.Resource.Dimension.design_textinput_caption_translate_y;
+			global::Rg.Plugins.Popup.Resource.Dimension.disabled_alpha_material_dark = global::NeuToDo.Droid.Resource.Dimension.disabled_alpha_material_dark;
+			global::Rg.Plugins.Popup.Resource.Dimension.disabled_alpha_material_light = global::NeuToDo.Droid.Resource.Dimension.disabled_alpha_material_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.fastscroll_default_thickness = global::NeuToDo.Droid.Resource.Dimension.fastscroll_default_thickness;
+			global::Rg.Plugins.Popup.Resource.Dimension.fastscroll_margin = global::NeuToDo.Droid.Resource.Dimension.fastscroll_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.fastscroll_minimum_range = global::NeuToDo.Droid.Resource.Dimension.fastscroll_minimum_range;
+			global::Rg.Plugins.Popup.Resource.Dimension.highlight_alpha_material_colored = global::NeuToDo.Droid.Resource.Dimension.highlight_alpha_material_colored;
+			global::Rg.Plugins.Popup.Resource.Dimension.highlight_alpha_material_dark = global::NeuToDo.Droid.Resource.Dimension.highlight_alpha_material_dark;
+			global::Rg.Plugins.Popup.Resource.Dimension.highlight_alpha_material_light = global::NeuToDo.Droid.Resource.Dimension.highlight_alpha_material_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.hint_alpha_material_dark = global::NeuToDo.Droid.Resource.Dimension.hint_alpha_material_dark;
+			global::Rg.Plugins.Popup.Resource.Dimension.hint_alpha_material_light = global::NeuToDo.Droid.Resource.Dimension.hint_alpha_material_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.hint_pressed_alpha_material_dark = global::NeuToDo.Droid.Resource.Dimension.hint_pressed_alpha_material_dark;
+			global::Rg.Plugins.Popup.Resource.Dimension.hint_pressed_alpha_material_light = global::NeuToDo.Droid.Resource.Dimension.hint_pressed_alpha_material_light;
+			global::Rg.Plugins.Popup.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame = global::NeuToDo.Droid.Resource.Dimension.item_touch_helper_max_drag_scroll_per_frame;
+			global::Rg.Plugins.Popup.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity = global::NeuToDo.Droid.Resource.Dimension.item_touch_helper_swipe_escape_max_velocity;
+			global::Rg.Plugins.Popup.Resource.Dimension.item_touch_helper_swipe_escape_velocity = global::NeuToDo.Droid.Resource.Dimension.item_touch_helper_swipe_escape_velocity;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode = global::NeuToDo.Droid.Resource.Dimension.mtrl_bottomappbar_fabOffsetEndMode;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin = global::NeuToDo.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius = global::NeuToDo.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_rounded_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset = global::NeuToDo.Droid.Resource.Dimension.mtrl_bottomappbar_fab_cradle_vertical_offset;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_bottomappbar_height = global::NeuToDo.Droid.Resource.Dimension.mtrl_bottomappbar_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_corner_radius = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_dialog_btn_min_width = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_dialog_btn_min_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_disabled_elevation = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_disabled_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_disabled_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_disabled_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_elevation = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_focused_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_focused_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_hovered_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_hovered_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_icon_btn_padding_left = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_icon_btn_padding_left;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_icon_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_icon_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_inset = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_inset;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_letter_spacing = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_letter_spacing;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_padding_bottom = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_padding_bottom;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_padding_left = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_padding_left;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_padding_right = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_padding_right;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_padding_top = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_padding_top;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_pressed_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_pressed_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_stroke_size = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_stroke_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_text_btn_icon_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_text_btn_icon_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_text_btn_padding_left = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_left;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_text_btn_padding_right = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_text_btn_padding_right;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_text_size = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_btn_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_btn_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_card_elevation = global::NeuToDo.Droid.Resource.Dimension.mtrl_card_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_card_spacing = global::NeuToDo.Droid.Resource.Dimension.mtrl_card_spacing;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_chip_pressed_translation_z = global::NeuToDo.Droid.Resource.Dimension.mtrl_chip_pressed_translation_z;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_chip_text_size = global::NeuToDo.Droid.Resource.Dimension.mtrl_chip_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_fab_elevation = global::NeuToDo.Droid.Resource.Dimension.mtrl_fab_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_fab_translation_z_hovered_focused = global::NeuToDo.Droid.Resource.Dimension.mtrl_fab_translation_z_hovered_focused;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_fab_translation_z_pressed = global::NeuToDo.Droid.Resource.Dimension.mtrl_fab_translation_z_pressed;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_navigation_elevation = global::NeuToDo.Droid.Resource.Dimension.mtrl_navigation_elevation;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_navigation_item_horizontal_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_navigation_item_horizontal_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_navigation_item_icon_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_navigation_item_icon_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_snackbar_background_corner_radius = global::NeuToDo.Droid.Resource.Dimension.mtrl_snackbar_background_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_snackbar_margin = global::NeuToDo.Droid.Resource.Dimension.mtrl_snackbar_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_bottom_offset = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_bottom_offset;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_corner_radius_medium = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_medium;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_corner_radius_small = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_corner_radius_small;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_label_cutout_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_label_cutout_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_padding_end = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_padding_end;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_stroke_width_default = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_default;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_box_stroke_width_focused = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_box_stroke_width_focused;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding = global::NeuToDo.Droid.Resource.Dimension.mtrl_textinput_outline_box_expanded_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.mtrl_toolbar_default_height = global::NeuToDo.Droid.Resource.Dimension.mtrl_toolbar_default_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_action_icon_size = global::NeuToDo.Droid.Resource.Dimension.notification_action_icon_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_action_text_size = global::NeuToDo.Droid.Resource.Dimension.notification_action_text_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_big_circle_margin = global::NeuToDo.Droid.Resource.Dimension.notification_big_circle_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_content_margin_start = global::NeuToDo.Droid.Resource.Dimension.notification_content_margin_start;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_large_icon_height = global::NeuToDo.Droid.Resource.Dimension.notification_large_icon_height;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_large_icon_width = global::NeuToDo.Droid.Resource.Dimension.notification_large_icon_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_main_column_padding_top = global::NeuToDo.Droid.Resource.Dimension.notification_main_column_padding_top;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_media_narrow_margin = global::NeuToDo.Droid.Resource.Dimension.notification_media_narrow_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_right_icon_size = global::NeuToDo.Droid.Resource.Dimension.notification_right_icon_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_right_side_padding_top = global::NeuToDo.Droid.Resource.Dimension.notification_right_side_padding_top;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_small_icon_background_padding = global::NeuToDo.Droid.Resource.Dimension.notification_small_icon_background_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_small_icon_size_as_large = global::NeuToDo.Droid.Resource.Dimension.notification_small_icon_size_as_large;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_subtext_size = global::NeuToDo.Droid.Resource.Dimension.notification_subtext_size;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_top_pad = global::NeuToDo.Droid.Resource.Dimension.notification_top_pad;
+			global::Rg.Plugins.Popup.Resource.Dimension.notification_top_pad_large_text = global::NeuToDo.Droid.Resource.Dimension.notification_top_pad_large_text;
+			global::Rg.Plugins.Popup.Resource.Dimension.subtitle_corner_radius = global::NeuToDo.Droid.Resource.Dimension.subtitle_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.subtitle_outline_width = global::NeuToDo.Droid.Resource.Dimension.subtitle_outline_width;
+			global::Rg.Plugins.Popup.Resource.Dimension.subtitle_shadow_offset = global::NeuToDo.Droid.Resource.Dimension.subtitle_shadow_offset;
+			global::Rg.Plugins.Popup.Resource.Dimension.subtitle_shadow_radius = global::NeuToDo.Droid.Resource.Dimension.subtitle_shadow_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_corner_radius = global::NeuToDo.Droid.Resource.Dimension.tooltip_corner_radius;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_horizontal_padding = global::NeuToDo.Droid.Resource.Dimension.tooltip_horizontal_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_margin = global::NeuToDo.Droid.Resource.Dimension.tooltip_margin;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_precise_anchor_extra_offset = global::NeuToDo.Droid.Resource.Dimension.tooltip_precise_anchor_extra_offset;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_precise_anchor_threshold = global::NeuToDo.Droid.Resource.Dimension.tooltip_precise_anchor_threshold;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_vertical_padding = global::NeuToDo.Droid.Resource.Dimension.tooltip_vertical_padding;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_y_offset_non_touch = global::NeuToDo.Droid.Resource.Dimension.tooltip_y_offset_non_touch;
+			global::Rg.Plugins.Popup.Resource.Dimension.tooltip_y_offset_touch = global::NeuToDo.Droid.Resource.Dimension.tooltip_y_offset_touch;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ab_share_pack_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ab_share_pack_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_action_bar_item_background_material = global::NeuToDo.Droid.Resource.Drawable.abc_action_bar_item_background_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_borderless_material = global::NeuToDo.Droid.Resource.Drawable.abc_btn_borderless_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_check_material = global::NeuToDo.Droid.Resource.Drawable.abc_btn_check_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_check_to_on_mtrl_000 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_000;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_check_to_on_mtrl_015 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_check_to_on_mtrl_015;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_colored_material = global::NeuToDo.Droid.Resource.Drawable.abc_btn_colored_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_default_mtrl_shape = global::NeuToDo.Droid.Resource.Drawable.abc_btn_default_mtrl_shape;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_radio_material = global::NeuToDo.Droid.Resource.Drawable.abc_btn_radio_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_radio_to_on_mtrl_000 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_000;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_radio_to_on_mtrl_015 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_radio_to_on_mtrl_015;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00001;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012 = global::NeuToDo.Droid.Resource.Drawable.abc_btn_switch_to_on_mtrl_00012;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_cab_background_internal_bg = global::NeuToDo.Droid.Resource.Drawable.abc_cab_background_internal_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_cab_background_top_material = global::NeuToDo.Droid.Resource.Drawable.abc_cab_background_top_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_cab_background_top_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_cab_background_top_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_control_background_material = global::NeuToDo.Droid.Resource.Drawable.abc_control_background_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_dialog_material_background = global::NeuToDo.Droid.Resource.Drawable.abc_dialog_material_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_edit_text_material = global::NeuToDo.Droid.Resource.Drawable.abc_edit_text_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_ab_back_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_ab_back_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_arrow_drop_right_black_24dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_clear_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_clear_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_commit_search_api_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_go_search_api_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_go_search_api_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_copy_mtrl_am_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_cut_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_overflow_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_overflow_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_paste_mtrl_am_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_selectall_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_menu_share_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_ic_menu_share_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_search_api_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_search_api_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_black_16dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_black_16dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_black_36dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_black_36dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_black_48dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_black_48dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_half_black_16dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_half_black_16dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_half_black_36dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_half_black_36dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_star_half_black_48dp = global::NeuToDo.Droid.Resource.Drawable.abc_ic_star_half_black_48dp;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ic_voice_search_api_material = global::NeuToDo.Droid.Resource.Drawable.abc_ic_voice_search_api_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_item_background_holo_dark = global::NeuToDo.Droid.Resource.Drawable.abc_item_background_holo_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_item_background_holo_light = global::NeuToDo.Droid.Resource.Drawable.abc_item_background_holo_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_divider_material = global::NeuToDo.Droid.Resource.Drawable.abc_list_divider_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_divider_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_list_divider_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_focused_holo = global::NeuToDo.Droid.Resource.Drawable.abc_list_focused_holo;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_longpressed_holo = global::NeuToDo.Droid.Resource.Drawable.abc_list_longpressed_holo;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_pressed_holo_dark = global::NeuToDo.Droid.Resource.Drawable.abc_list_pressed_holo_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_pressed_holo_light = global::NeuToDo.Droid.Resource.Drawable.abc_list_pressed_holo_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_background_transition_holo_dark = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_background_transition_holo_light = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_background_transition_holo_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_disabled_holo_dark = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_disabled_holo_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_disabled_holo_light = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_disabled_holo_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_holo_dark = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_holo_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_list_selector_holo_light = global::NeuToDo.Droid.Resource.Drawable.abc_list_selector_holo_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult = global::NeuToDo.Droid.Resource.Drawable.abc_menu_hardkey_panel_mtrl_mult;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_popup_background_mtrl_mult = global::NeuToDo.Droid.Resource.Drawable.abc_popup_background_mtrl_mult;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ratingbar_indicator_material = global::NeuToDo.Droid.Resource.Drawable.abc_ratingbar_indicator_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ratingbar_material = global::NeuToDo.Droid.Resource.Drawable.abc_ratingbar_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_ratingbar_small_material = global::NeuToDo.Droid.Resource.Drawable.abc_ratingbar_small_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_scrubber_control_off_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000 = global::NeuToDo.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_000;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005 = global::NeuToDo.Droid.Resource.Drawable.abc_scrubber_control_to_pressed_mtrl_005;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_scrubber_primary_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_scrubber_primary_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_scrubber_track_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_scrubber_track_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_seekbar_thumb_material = global::NeuToDo.Droid.Resource.Drawable.abc_seekbar_thumb_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_seekbar_tick_mark_material = global::NeuToDo.Droid.Resource.Drawable.abc_seekbar_tick_mark_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_seekbar_track_material = global::NeuToDo.Droid.Resource.Drawable.abc_seekbar_track_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_spinner_mtrl_am_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_spinner_mtrl_am_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_spinner_textfield_background_material = global::NeuToDo.Droid.Resource.Drawable.abc_spinner_textfield_background_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_switch_thumb_material = global::NeuToDo.Droid.Resource.Drawable.abc_switch_thumb_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_switch_track_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_switch_track_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_tab_indicator_material = global::NeuToDo.Droid.Resource.Drawable.abc_tab_indicator_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_tab_indicator_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_tab_indicator_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_textfield_activated_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_textfield_activated_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_textfield_default_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_textfield_default_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_textfield_search_activated_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_textfield_search_default_mtrl_alpha = global::NeuToDo.Droid.Resource.Drawable.abc_textfield_search_default_mtrl_alpha;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_textfield_search_material = global::NeuToDo.Droid.Resource.Drawable.abc_textfield_search_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_cursor_material = global::NeuToDo.Droid.Resource.Drawable.abc_text_cursor_material;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_left_mtrl_dark = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_left_mtrl_light = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_left_mtrl_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_middle_mtrl_light = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_middle_mtrl_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_right_mtrl_dark = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_text_select_handle_right_mtrl_light = global::NeuToDo.Droid.Resource.Drawable.abc_text_select_handle_right_mtrl_light;
+			global::Rg.Plugins.Popup.Resource.Drawable.abc_vector_test = global::NeuToDo.Droid.Resource.Drawable.abc_vector_test;
+			global::Rg.Plugins.Popup.Resource.Drawable.avd_hide_password = global::NeuToDo.Droid.Resource.Drawable.avd_hide_password;
+			global::Rg.Plugins.Popup.Resource.Drawable.avd_show_password = global::NeuToDo.Droid.Resource.Drawable.avd_show_password;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_bottom_navigation_item_background = global::NeuToDo.Droid.Resource.Drawable.design_bottom_navigation_item_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_fab_background = global::NeuToDo.Droid.Resource.Drawable.design_fab_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_ic_visibility = global::NeuToDo.Droid.Resource.Drawable.design_ic_visibility;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_ic_visibility_off = global::NeuToDo.Droid.Resource.Drawable.design_ic_visibility_off;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_password_eye = global::NeuToDo.Droid.Resource.Drawable.design_password_eye;
+			global::Rg.Plugins.Popup.Resource.Drawable.design_snackbar_background = global::NeuToDo.Droid.Resource.Drawable.design_snackbar_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.ic_mtrl_chip_checked_black = global::NeuToDo.Droid.Resource.Drawable.ic_mtrl_chip_checked_black;
+			global::Rg.Plugins.Popup.Resource.Drawable.ic_mtrl_chip_checked_circle = global::NeuToDo.Droid.Resource.Drawable.ic_mtrl_chip_checked_circle;
+			global::Rg.Plugins.Popup.Resource.Drawable.ic_mtrl_chip_close_circle = global::NeuToDo.Droid.Resource.Drawable.ic_mtrl_chip_close_circle;
+			global::Rg.Plugins.Popup.Resource.Drawable.mtrl_snackbar_background = global::NeuToDo.Droid.Resource.Drawable.mtrl_snackbar_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.mtrl_tabs_default_indicator = global::NeuToDo.Droid.Resource.Drawable.mtrl_tabs_default_indicator;
+			global::Rg.Plugins.Popup.Resource.Drawable.navigation_empty_icon = global::NeuToDo.Droid.Resource.Drawable.navigation_empty_icon;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_action_background = global::NeuToDo.Droid.Resource.Drawable.notification_action_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg = global::NeuToDo.Droid.Resource.Drawable.notification_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg_low = global::NeuToDo.Droid.Resource.Drawable.notification_bg_low;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg_low_normal = global::NeuToDo.Droid.Resource.Drawable.notification_bg_low_normal;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg_low_pressed = global::NeuToDo.Droid.Resource.Drawable.notification_bg_low_pressed;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg_normal = global::NeuToDo.Droid.Resource.Drawable.notification_bg_normal;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_bg_normal_pressed = global::NeuToDo.Droid.Resource.Drawable.notification_bg_normal_pressed;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_icon_background = global::NeuToDo.Droid.Resource.Drawable.notification_icon_background;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_template_icon_bg = global::NeuToDo.Droid.Resource.Drawable.notification_template_icon_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_template_icon_low_bg = global::NeuToDo.Droid.Resource.Drawable.notification_template_icon_low_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.notification_tile_bg = global::NeuToDo.Droid.Resource.Drawable.notification_tile_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.notify_panel_notification_icon_bg = global::NeuToDo.Droid.Resource.Drawable.notify_panel_notification_icon_bg;
+			global::Rg.Plugins.Popup.Resource.Drawable.tooltip_frame_dark = global::NeuToDo.Droid.Resource.Drawable.tooltip_frame_dark;
+			global::Rg.Plugins.Popup.Resource.Drawable.tooltip_frame_light = global::NeuToDo.Droid.Resource.Drawable.tooltip_frame_light;
+			global::Rg.Plugins.Popup.Resource.Id.action0 = global::NeuToDo.Droid.Resource.Id.action0;
+			global::Rg.Plugins.Popup.Resource.Id.actions = global::NeuToDo.Droid.Resource.Id.actions;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar = global::NeuToDo.Droid.Resource.Id.action_bar;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_activity_content = global::NeuToDo.Droid.Resource.Id.action_bar_activity_content;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_container = global::NeuToDo.Droid.Resource.Id.action_bar_container;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_root = global::NeuToDo.Droid.Resource.Id.action_bar_root;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_spinner = global::NeuToDo.Droid.Resource.Id.action_bar_spinner;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_subtitle = global::NeuToDo.Droid.Resource.Id.action_bar_subtitle;
+			global::Rg.Plugins.Popup.Resource.Id.action_bar_title = global::NeuToDo.Droid.Resource.Id.action_bar_title;
+			global::Rg.Plugins.Popup.Resource.Id.action_container = global::NeuToDo.Droid.Resource.Id.action_container;
+			global::Rg.Plugins.Popup.Resource.Id.action_context_bar = global::NeuToDo.Droid.Resource.Id.action_context_bar;
+			global::Rg.Plugins.Popup.Resource.Id.action_divider = global::NeuToDo.Droid.Resource.Id.action_divider;
+			global::Rg.Plugins.Popup.Resource.Id.action_image = global::NeuToDo.Droid.Resource.Id.action_image;
+			global::Rg.Plugins.Popup.Resource.Id.action_menu_divider = global::NeuToDo.Droid.Resource.Id.action_menu_divider;
+			global::Rg.Plugins.Popup.Resource.Id.action_menu_presenter = global::NeuToDo.Droid.Resource.Id.action_menu_presenter;
+			global::Rg.Plugins.Popup.Resource.Id.action_mode_bar = global::NeuToDo.Droid.Resource.Id.action_mode_bar;
+			global::Rg.Plugins.Popup.Resource.Id.action_mode_bar_stub = global::NeuToDo.Droid.Resource.Id.action_mode_bar_stub;
+			global::Rg.Plugins.Popup.Resource.Id.action_mode_close_button = global::NeuToDo.Droid.Resource.Id.action_mode_close_button;
+			global::Rg.Plugins.Popup.Resource.Id.action_text = global::NeuToDo.Droid.Resource.Id.action_text;
+			global::Rg.Plugins.Popup.Resource.Id.activity_chooser_view_content = global::NeuToDo.Droid.Resource.Id.activity_chooser_view_content;
+			global::Rg.Plugins.Popup.Resource.Id.add = global::NeuToDo.Droid.Resource.Id.add;
+			global::Rg.Plugins.Popup.Resource.Id.alertTitle = global::NeuToDo.Droid.Resource.Id.alertTitle;
+			global::Rg.Plugins.Popup.Resource.Id.all = global::NeuToDo.Droid.Resource.Id.all;
+			global::Rg.Plugins.Popup.Resource.Id.ALT = global::NeuToDo.Droid.Resource.Id.ALT;
+			global::Rg.Plugins.Popup.Resource.Id.always = global::NeuToDo.Droid.Resource.Id.always;
+			global::Rg.Plugins.Popup.Resource.Id.async = global::NeuToDo.Droid.Resource.Id.async;
+			global::Rg.Plugins.Popup.Resource.Id.auto = global::NeuToDo.Droid.Resource.Id.auto;
+			global::Rg.Plugins.Popup.Resource.Id.beginning = global::NeuToDo.Droid.Resource.Id.beginning;
+			global::Rg.Plugins.Popup.Resource.Id.blocking = global::NeuToDo.Droid.Resource.Id.blocking;
+			global::Rg.Plugins.Popup.Resource.Id.bottom = global::NeuToDo.Droid.Resource.Id.bottom;
+			global::Rg.Plugins.Popup.Resource.Id.bottomtab_navarea = global::NeuToDo.Droid.Resource.Id.bottomtab_navarea;
+			global::Rg.Plugins.Popup.Resource.Id.bottomtab_tabbar = global::NeuToDo.Droid.Resource.Id.bottomtab_tabbar;
+			global::Rg.Plugins.Popup.Resource.Id.browser_actions_header_text = global::NeuToDo.Droid.Resource.Id.browser_actions_header_text;
+			global::Rg.Plugins.Popup.Resource.Id.browser_actions_menu_items = global::NeuToDo.Droid.Resource.Id.browser_actions_menu_items;
+			global::Rg.Plugins.Popup.Resource.Id.browser_actions_menu_item_icon = global::NeuToDo.Droid.Resource.Id.browser_actions_menu_item_icon;
+			global::Rg.Plugins.Popup.Resource.Id.browser_actions_menu_item_text = global::NeuToDo.Droid.Resource.Id.browser_actions_menu_item_text;
+			global::Rg.Plugins.Popup.Resource.Id.browser_actions_menu_view = global::NeuToDo.Droid.Resource.Id.browser_actions_menu_view;
+			global::Rg.Plugins.Popup.Resource.Id.buttonPanel = global::NeuToDo.Droid.Resource.Id.buttonPanel;
+			global::Rg.Plugins.Popup.Resource.Id.cancel_action = global::NeuToDo.Droid.Resource.Id.cancel_action;
+			global::Rg.Plugins.Popup.Resource.Id.center = global::NeuToDo.Droid.Resource.Id.center;
+			global::Rg.Plugins.Popup.Resource.Id.center_horizontal = global::NeuToDo.Droid.Resource.Id.center_horizontal;
+			global::Rg.Plugins.Popup.Resource.Id.center_vertical = global::NeuToDo.Droid.Resource.Id.center_vertical;
+			global::Rg.Plugins.Popup.Resource.Id.checkbox = global::NeuToDo.Droid.Resource.Id.checkbox;
+			global::Rg.Plugins.Popup.Resource.Id.chronometer = global::NeuToDo.Droid.Resource.Id.chronometer;
+			global::Rg.Plugins.Popup.Resource.Id.clip_horizontal = global::NeuToDo.Droid.Resource.Id.clip_horizontal;
+			global::Rg.Plugins.Popup.Resource.Id.clip_vertical = global::NeuToDo.Droid.Resource.Id.clip_vertical;
+			global::Rg.Plugins.Popup.Resource.Id.collapseActionView = global::NeuToDo.Droid.Resource.Id.collapseActionView;
+			global::Rg.Plugins.Popup.Resource.Id.container = global::NeuToDo.Droid.Resource.Id.container;
+			global::Rg.Plugins.Popup.Resource.Id.content = global::NeuToDo.Droid.Resource.Id.content;
+			global::Rg.Plugins.Popup.Resource.Id.contentPanel = global::NeuToDo.Droid.Resource.Id.contentPanel;
+			global::Rg.Plugins.Popup.Resource.Id.coordinator = global::NeuToDo.Droid.Resource.Id.coordinator;
+			global::Rg.Plugins.Popup.Resource.Id.CTRL = global::NeuToDo.Droid.Resource.Id.CTRL;
+			global::Rg.Plugins.Popup.Resource.Id.custom = global::NeuToDo.Droid.Resource.Id.custom;
+			global::Rg.Plugins.Popup.Resource.Id.customPanel = global::NeuToDo.Droid.Resource.Id.customPanel;
+			global::Rg.Plugins.Popup.Resource.Id.decor_content_parent = global::NeuToDo.Droid.Resource.Id.decor_content_parent;
+			global::Rg.Plugins.Popup.Resource.Id.default_activity_button = global::NeuToDo.Droid.Resource.Id.default_activity_button;
+			global::Rg.Plugins.Popup.Resource.Id.design_bottom_sheet = global::NeuToDo.Droid.Resource.Id.design_bottom_sheet;
+			global::Rg.Plugins.Popup.Resource.Id.design_menu_item_action_area = global::NeuToDo.Droid.Resource.Id.design_menu_item_action_area;
+			global::Rg.Plugins.Popup.Resource.Id.design_menu_item_action_area_stub = global::NeuToDo.Droid.Resource.Id.design_menu_item_action_area_stub;
+			global::Rg.Plugins.Popup.Resource.Id.design_menu_item_text = global::NeuToDo.Droid.Resource.Id.design_menu_item_text;
+			global::Rg.Plugins.Popup.Resource.Id.design_navigation_view = global::NeuToDo.Droid.Resource.Id.design_navigation_view;
+			global::Rg.Plugins.Popup.Resource.Id.disableHome = global::NeuToDo.Droid.Resource.Id.disableHome;
+			global::Rg.Plugins.Popup.Resource.Id.edit_query = global::NeuToDo.Droid.Resource.Id.edit_query;
+			global::Rg.Plugins.Popup.Resource.Id.end = global::NeuToDo.Droid.Resource.Id.end;
+			global::Rg.Plugins.Popup.Resource.Id.end_padder = global::NeuToDo.Droid.Resource.Id.end_padder;
+			global::Rg.Plugins.Popup.Resource.Id.enterAlways = global::NeuToDo.Droid.Resource.Id.enterAlways;
+			global::Rg.Plugins.Popup.Resource.Id.enterAlwaysCollapsed = global::NeuToDo.Droid.Resource.Id.enterAlwaysCollapsed;
+			global::Rg.Plugins.Popup.Resource.Id.exitUntilCollapsed = global::NeuToDo.Droid.Resource.Id.exitUntilCollapsed;
+			global::Rg.Plugins.Popup.Resource.Id.expanded_menu = global::NeuToDo.Droid.Resource.Id.expanded_menu;
+			global::Rg.Plugins.Popup.Resource.Id.expand_activities_button = global::NeuToDo.Droid.Resource.Id.expand_activities_button;
+			global::Rg.Plugins.Popup.Resource.Id.fill = global::NeuToDo.Droid.Resource.Id.fill;
+			global::Rg.Plugins.Popup.Resource.Id.filled = global::NeuToDo.Droid.Resource.Id.filled;
+			global::Rg.Plugins.Popup.Resource.Id.fill_horizontal = global::NeuToDo.Droid.Resource.Id.fill_horizontal;
+			global::Rg.Plugins.Popup.Resource.Id.fill_vertical = global::NeuToDo.Droid.Resource.Id.fill_vertical;
+			global::Rg.Plugins.Popup.Resource.Id.@fixed = global::NeuToDo.Droid.Resource.Id.@fixed;
+			global::Rg.Plugins.Popup.Resource.Id.flyoutcontent_appbar = global::NeuToDo.Droid.Resource.Id.flyoutcontent_appbar;
+			global::Rg.Plugins.Popup.Resource.Id.flyoutcontent_recycler = global::NeuToDo.Droid.Resource.Id.flyoutcontent_recycler;
+			global::Rg.Plugins.Popup.Resource.Id.forever = global::NeuToDo.Droid.Resource.Id.forever;
+			global::Rg.Plugins.Popup.Resource.Id.FUNCTION = global::NeuToDo.Droid.Resource.Id.FUNCTION;
+			global::Rg.Plugins.Popup.Resource.Id.ghost_view = global::NeuToDo.Droid.Resource.Id.ghost_view;
+			global::Rg.Plugins.Popup.Resource.Id.group_divider = global::NeuToDo.Droid.Resource.Id.group_divider;
+			global::Rg.Plugins.Popup.Resource.Id.home = global::NeuToDo.Droid.Resource.Id.home;
+			global::Rg.Plugins.Popup.Resource.Id.homeAsUp = global::NeuToDo.Droid.Resource.Id.homeAsUp;
+			global::Rg.Plugins.Popup.Resource.Id.icon = global::NeuToDo.Droid.Resource.Id.icon;
+			global::Rg.Plugins.Popup.Resource.Id.icon_group = global::NeuToDo.Droid.Resource.Id.icon_group;
+			global::Rg.Plugins.Popup.Resource.Id.ifRoom = global::NeuToDo.Droid.Resource.Id.ifRoom;
+			global::Rg.Plugins.Popup.Resource.Id.image = global::NeuToDo.Droid.Resource.Id.image;
+			global::Rg.Plugins.Popup.Resource.Id.info = global::NeuToDo.Droid.Resource.Id.info;
+			global::Rg.Plugins.Popup.Resource.Id.italic = global::NeuToDo.Droid.Resource.Id.italic;
+			global::Rg.Plugins.Popup.Resource.Id.item_touch_helper_previous_elevation = global::NeuToDo.Droid.Resource.Id.item_touch_helper_previous_elevation;
+			global::Rg.Plugins.Popup.Resource.Id.labeled = global::NeuToDo.Droid.Resource.Id.labeled;
+			global::Rg.Plugins.Popup.Resource.Id.largeLabel = global::NeuToDo.Droid.Resource.Id.largeLabel;
+			global::Rg.Plugins.Popup.Resource.Id.left = global::NeuToDo.Droid.Resource.Id.left;
+			global::Rg.Plugins.Popup.Resource.Id.line1 = global::NeuToDo.Droid.Resource.Id.line1;
+			global::Rg.Plugins.Popup.Resource.Id.line3 = global::NeuToDo.Droid.Resource.Id.line3;
+			global::Rg.Plugins.Popup.Resource.Id.listMode = global::NeuToDo.Droid.Resource.Id.listMode;
+			global::Rg.Plugins.Popup.Resource.Id.list_item = global::NeuToDo.Droid.Resource.Id.list_item;
+			global::Rg.Plugins.Popup.Resource.Id.main_appbar = global::NeuToDo.Droid.Resource.Id.main_appbar;
+			global::Rg.Plugins.Popup.Resource.Id.main_tablayout = global::NeuToDo.Droid.Resource.Id.main_tablayout;
+			global::Rg.Plugins.Popup.Resource.Id.main_toolbar = global::NeuToDo.Droid.Resource.Id.main_toolbar;
+			global::Rg.Plugins.Popup.Resource.Id.main_viewpager = global::NeuToDo.Droid.Resource.Id.main_viewpager;
+			global::Rg.Plugins.Popup.Resource.Id.masked = global::NeuToDo.Droid.Resource.Id.masked;
+			global::Rg.Plugins.Popup.Resource.Id.media_actions = global::NeuToDo.Droid.Resource.Id.media_actions;
+			global::Rg.Plugins.Popup.Resource.Id.message = global::NeuToDo.Droid.Resource.Id.message;
+			global::Rg.Plugins.Popup.Resource.Id.META = global::NeuToDo.Droid.Resource.Id.META;
+			global::Rg.Plugins.Popup.Resource.Id.middle = global::NeuToDo.Droid.Resource.Id.middle;
+			global::Rg.Plugins.Popup.Resource.Id.mini = global::NeuToDo.Droid.Resource.Id.mini;
+			global::Rg.Plugins.Popup.Resource.Id.mtrl_child_content_container = global::NeuToDo.Droid.Resource.Id.mtrl_child_content_container;
+			global::Rg.Plugins.Popup.Resource.Id.mtrl_internal_children_alpha_tag = global::NeuToDo.Droid.Resource.Id.mtrl_internal_children_alpha_tag;
+			global::Rg.Plugins.Popup.Resource.Id.multiply = global::NeuToDo.Droid.Resource.Id.multiply;
+			global::Rg.Plugins.Popup.Resource.Id.navigation_header_container = global::NeuToDo.Droid.Resource.Id.navigation_header_container;
+			global::Rg.Plugins.Popup.Resource.Id.never = global::NeuToDo.Droid.Resource.Id.never;
+			global::Rg.Plugins.Popup.Resource.Id.none = global::NeuToDo.Droid.Resource.Id.none;
+			global::Rg.Plugins.Popup.Resource.Id.normal = global::NeuToDo.Droid.Resource.Id.normal;
+			global::Rg.Plugins.Popup.Resource.Id.notification_background = global::NeuToDo.Droid.Resource.Id.notification_background;
+			global::Rg.Plugins.Popup.Resource.Id.notification_main_column = global::NeuToDo.Droid.Resource.Id.notification_main_column;
+			global::Rg.Plugins.Popup.Resource.Id.notification_main_column_container = global::NeuToDo.Droid.Resource.Id.notification_main_column_container;
+			global::Rg.Plugins.Popup.Resource.Id.outline = global::NeuToDo.Droid.Resource.Id.outline;
+			global::Rg.Plugins.Popup.Resource.Id.parallax = global::NeuToDo.Droid.Resource.Id.parallax;
+			global::Rg.Plugins.Popup.Resource.Id.parentPanel = global::NeuToDo.Droid.Resource.Id.parentPanel;
+			global::Rg.Plugins.Popup.Resource.Id.parent_matrix = global::NeuToDo.Droid.Resource.Id.parent_matrix;
+			global::Rg.Plugins.Popup.Resource.Id.pin = global::NeuToDo.Droid.Resource.Id.pin;
+			global::Rg.Plugins.Popup.Resource.Id.progress_circular = global::NeuToDo.Droid.Resource.Id.progress_circular;
+			global::Rg.Plugins.Popup.Resource.Id.progress_horizontal = global::NeuToDo.Droid.Resource.Id.progress_horizontal;
+			global::Rg.Plugins.Popup.Resource.Id.radio = global::NeuToDo.Droid.Resource.Id.radio;
+			global::Rg.Plugins.Popup.Resource.Id.right = global::NeuToDo.Droid.Resource.Id.right;
+			global::Rg.Plugins.Popup.Resource.Id.right_icon = global::NeuToDo.Droid.Resource.Id.right_icon;
+			global::Rg.Plugins.Popup.Resource.Id.right_side = global::NeuToDo.Droid.Resource.Id.right_side;
+			global::Rg.Plugins.Popup.Resource.Id.save_image_matrix = global::NeuToDo.Droid.Resource.Id.save_image_matrix;
+			global::Rg.Plugins.Popup.Resource.Id.save_non_transition_alpha = global::NeuToDo.Droid.Resource.Id.save_non_transition_alpha;
+			global::Rg.Plugins.Popup.Resource.Id.save_scale_type = global::NeuToDo.Droid.Resource.Id.save_scale_type;
+			global::Rg.Plugins.Popup.Resource.Id.screen = global::NeuToDo.Droid.Resource.Id.screen;
+			global::Rg.Plugins.Popup.Resource.Id.scroll = global::NeuToDo.Droid.Resource.Id.scroll;
+			global::Rg.Plugins.Popup.Resource.Id.scrollable = global::NeuToDo.Droid.Resource.Id.scrollable;
+			global::Rg.Plugins.Popup.Resource.Id.scrollIndicatorDown = global::NeuToDo.Droid.Resource.Id.scrollIndicatorDown;
+			global::Rg.Plugins.Popup.Resource.Id.scrollIndicatorUp = global::NeuToDo.Droid.Resource.Id.scrollIndicatorUp;
+			global::Rg.Plugins.Popup.Resource.Id.scrollView = global::NeuToDo.Droid.Resource.Id.scrollView;
+			global::Rg.Plugins.Popup.Resource.Id.search_badge = global::NeuToDo.Droid.Resource.Id.search_badge;
+			global::Rg.Plugins.Popup.Resource.Id.search_bar = global::NeuToDo.Droid.Resource.Id.search_bar;
+			global::Rg.Plugins.Popup.Resource.Id.search_button = global::NeuToDo.Droid.Resource.Id.search_button;
+			global::Rg.Plugins.Popup.Resource.Id.search_close_btn = global::NeuToDo.Droid.Resource.Id.search_close_btn;
+			global::Rg.Plugins.Popup.Resource.Id.search_edit_frame = global::NeuToDo.Droid.Resource.Id.search_edit_frame;
+			global::Rg.Plugins.Popup.Resource.Id.search_go_btn = global::NeuToDo.Droid.Resource.Id.search_go_btn;
+			global::Rg.Plugins.Popup.Resource.Id.search_mag_icon = global::NeuToDo.Droid.Resource.Id.search_mag_icon;
+			global::Rg.Plugins.Popup.Resource.Id.search_plate = global::NeuToDo.Droid.Resource.Id.search_plate;
+			global::Rg.Plugins.Popup.Resource.Id.search_src_text = global::NeuToDo.Droid.Resource.Id.search_src_text;
+			global::Rg.Plugins.Popup.Resource.Id.search_voice_btn = global::NeuToDo.Droid.Resource.Id.search_voice_btn;
+			global::Rg.Plugins.Popup.Resource.Id.selected = global::NeuToDo.Droid.Resource.Id.selected;
+			global::Rg.Plugins.Popup.Resource.Id.select_dialog_listview = global::NeuToDo.Droid.Resource.Id.select_dialog_listview;
+			global::Rg.Plugins.Popup.Resource.Id.shellcontent_appbar = global::NeuToDo.Droid.Resource.Id.shellcontent_appbar;
+			global::Rg.Plugins.Popup.Resource.Id.shellcontent_toolbar = global::NeuToDo.Droid.Resource.Id.shellcontent_toolbar;
+			global::Rg.Plugins.Popup.Resource.Id.SHIFT = global::NeuToDo.Droid.Resource.Id.SHIFT;
+			global::Rg.Plugins.Popup.Resource.Id.shortcut = global::NeuToDo.Droid.Resource.Id.shortcut;
+			global::Rg.Plugins.Popup.Resource.Id.showCustom = global::NeuToDo.Droid.Resource.Id.showCustom;
+			global::Rg.Plugins.Popup.Resource.Id.showHome = global::NeuToDo.Droid.Resource.Id.showHome;
+			global::Rg.Plugins.Popup.Resource.Id.showTitle = global::NeuToDo.Droid.Resource.Id.showTitle;
+			global::Rg.Plugins.Popup.Resource.Id.smallLabel = global::NeuToDo.Droid.Resource.Id.smallLabel;
+			global::Rg.Plugins.Popup.Resource.Id.snackbar_action = global::NeuToDo.Droid.Resource.Id.snackbar_action;
+			global::Rg.Plugins.Popup.Resource.Id.snackbar_text = global::NeuToDo.Droid.Resource.Id.snackbar_text;
+			global::Rg.Plugins.Popup.Resource.Id.snap = global::NeuToDo.Droid.Resource.Id.snap;
+			global::Rg.Plugins.Popup.Resource.Id.snapMargins = global::NeuToDo.Droid.Resource.Id.snapMargins;
+			global::Rg.Plugins.Popup.Resource.Id.spacer = global::NeuToDo.Droid.Resource.Id.spacer;
+			global::Rg.Plugins.Popup.Resource.Id.split_action_bar = global::NeuToDo.Droid.Resource.Id.split_action_bar;
+			global::Rg.Plugins.Popup.Resource.Id.src_atop = global::NeuToDo.Droid.Resource.Id.src_atop;
+			global::Rg.Plugins.Popup.Resource.Id.src_in = global::NeuToDo.Droid.Resource.Id.src_in;
+			global::Rg.Plugins.Popup.Resource.Id.src_over = global::NeuToDo.Droid.Resource.Id.src_over;
+			global::Rg.Plugins.Popup.Resource.Id.start = global::NeuToDo.Droid.Resource.Id.start;
+			global::Rg.Plugins.Popup.Resource.Id.status_bar_latest_event_content = global::NeuToDo.Droid.Resource.Id.status_bar_latest_event_content;
+			global::Rg.Plugins.Popup.Resource.Id.stretch = global::NeuToDo.Droid.Resource.Id.stretch;
+			global::Rg.Plugins.Popup.Resource.Id.submenuarrow = global::NeuToDo.Droid.Resource.Id.submenuarrow;
+			global::Rg.Plugins.Popup.Resource.Id.submit_area = global::NeuToDo.Droid.Resource.Id.submit_area;
+			global::Rg.Plugins.Popup.Resource.Id.SYM = global::NeuToDo.Droid.Resource.Id.SYM;
+			global::Rg.Plugins.Popup.Resource.Id.tabMode = global::NeuToDo.Droid.Resource.Id.tabMode;
+			global::Rg.Plugins.Popup.Resource.Id.tag_transition_group = global::NeuToDo.Droid.Resource.Id.tag_transition_group;
+			global::Rg.Plugins.Popup.Resource.Id.tag_unhandled_key_event_manager = global::NeuToDo.Droid.Resource.Id.tag_unhandled_key_event_manager;
+			global::Rg.Plugins.Popup.Resource.Id.tag_unhandled_key_listeners = global::NeuToDo.Droid.Resource.Id.tag_unhandled_key_listeners;
+			global::Rg.Plugins.Popup.Resource.Id.text = global::NeuToDo.Droid.Resource.Id.text;
+			global::Rg.Plugins.Popup.Resource.Id.text2 = global::NeuToDo.Droid.Resource.Id.text2;
+			global::Rg.Plugins.Popup.Resource.Id.textinput_counter = global::NeuToDo.Droid.Resource.Id.textinput_counter;
+			global::Rg.Plugins.Popup.Resource.Id.textinput_error = global::NeuToDo.Droid.Resource.Id.textinput_error;
+			global::Rg.Plugins.Popup.Resource.Id.textinput_helper_text = global::NeuToDo.Droid.Resource.Id.textinput_helper_text;
+			global::Rg.Plugins.Popup.Resource.Id.textSpacerNoButtons = global::NeuToDo.Droid.Resource.Id.textSpacerNoButtons;
+			global::Rg.Plugins.Popup.Resource.Id.textSpacerNoTitle = global::NeuToDo.Droid.Resource.Id.textSpacerNoTitle;
+			global::Rg.Plugins.Popup.Resource.Id.textStart = global::NeuToDo.Droid.Resource.Id.textStart;
+			global::Rg.Plugins.Popup.Resource.Id.text_input_password_toggle = global::NeuToDo.Droid.Resource.Id.text_input_password_toggle;
+			global::Rg.Plugins.Popup.Resource.Id.time = global::NeuToDo.Droid.Resource.Id.time;
+			global::Rg.Plugins.Popup.Resource.Id.title = global::NeuToDo.Droid.Resource.Id.title;
+			global::Rg.Plugins.Popup.Resource.Id.titleDividerNoCustom = global::NeuToDo.Droid.Resource.Id.titleDividerNoCustom;
+			global::Rg.Plugins.Popup.Resource.Id.title_template = global::NeuToDo.Droid.Resource.Id.title_template;
+			global::Rg.Plugins.Popup.Resource.Id.top = global::NeuToDo.Droid.Resource.Id.top;
+			global::Rg.Plugins.Popup.Resource.Id.topPanel = global::NeuToDo.Droid.Resource.Id.topPanel;
+			global::Rg.Plugins.Popup.Resource.Id.touch_outside = global::NeuToDo.Droid.Resource.Id.touch_outside;
+			global::Rg.Plugins.Popup.Resource.Id.transition_current_scene = global::NeuToDo.Droid.Resource.Id.transition_current_scene;
+			global::Rg.Plugins.Popup.Resource.Id.transition_layout_save = global::NeuToDo.Droid.Resource.Id.transition_layout_save;
+			global::Rg.Plugins.Popup.Resource.Id.transition_position = global::NeuToDo.Droid.Resource.Id.transition_position;
+			global::Rg.Plugins.Popup.Resource.Id.transition_scene_layoutid_cache = global::NeuToDo.Droid.Resource.Id.transition_scene_layoutid_cache;
+			global::Rg.Plugins.Popup.Resource.Id.transition_transform = global::NeuToDo.Droid.Resource.Id.transition_transform;
+			global::Rg.Plugins.Popup.Resource.Id.uniform = global::NeuToDo.Droid.Resource.Id.uniform;
+			global::Rg.Plugins.Popup.Resource.Id.unlabeled = global::NeuToDo.Droid.Resource.Id.unlabeled;
+			global::Rg.Plugins.Popup.Resource.Id.up = global::NeuToDo.Droid.Resource.Id.up;
+			global::Rg.Plugins.Popup.Resource.Id.useLogo = global::NeuToDo.Droid.Resource.Id.useLogo;
+			global::Rg.Plugins.Popup.Resource.Id.view_offset_helper = global::NeuToDo.Droid.Resource.Id.view_offset_helper;
+			global::Rg.Plugins.Popup.Resource.Id.visible = global::NeuToDo.Droid.Resource.Id.visible;
+			global::Rg.Plugins.Popup.Resource.Id.withText = global::NeuToDo.Droid.Resource.Id.withText;
+			global::Rg.Plugins.Popup.Resource.Id.wrap_content = global::NeuToDo.Droid.Resource.Id.wrap_content;
+			global::Rg.Plugins.Popup.Resource.Integer.abc_config_activityDefaultDur = global::NeuToDo.Droid.Resource.Integer.abc_config_activityDefaultDur;
+			global::Rg.Plugins.Popup.Resource.Integer.abc_config_activityShortDur = global::NeuToDo.Droid.Resource.Integer.abc_config_activityShortDur;
+			global::Rg.Plugins.Popup.Resource.Integer.app_bar_elevation_anim_duration = global::NeuToDo.Droid.Resource.Integer.app_bar_elevation_anim_duration;
+			global::Rg.Plugins.Popup.Resource.Integer.bottom_sheet_slide_duration = global::NeuToDo.Droid.Resource.Integer.bottom_sheet_slide_duration;
+			global::Rg.Plugins.Popup.Resource.Integer.cancel_button_image_alpha = global::NeuToDo.Droid.Resource.Integer.cancel_button_image_alpha;
+			global::Rg.Plugins.Popup.Resource.Integer.config_tooltipAnimTime = global::NeuToDo.Droid.Resource.Integer.config_tooltipAnimTime;
+			global::Rg.Plugins.Popup.Resource.Integer.design_snackbar_text_max_lines = global::NeuToDo.Droid.Resource.Integer.design_snackbar_text_max_lines;
+			global::Rg.Plugins.Popup.Resource.Integer.design_tab_indicator_anim_duration_ms = global::NeuToDo.Droid.Resource.Integer.design_tab_indicator_anim_duration_ms;
+			global::Rg.Plugins.Popup.Resource.Integer.hide_password_duration = global::NeuToDo.Droid.Resource.Integer.hide_password_duration;
+			global::Rg.Plugins.Popup.Resource.Integer.mtrl_btn_anim_delay_ms = global::NeuToDo.Droid.Resource.Integer.mtrl_btn_anim_delay_ms;
+			global::Rg.Plugins.Popup.Resource.Integer.mtrl_btn_anim_duration_ms = global::NeuToDo.Droid.Resource.Integer.mtrl_btn_anim_duration_ms;
+			global::Rg.Plugins.Popup.Resource.Integer.mtrl_chip_anim_duration = global::NeuToDo.Droid.Resource.Integer.mtrl_chip_anim_duration;
+			global::Rg.Plugins.Popup.Resource.Integer.mtrl_tab_indicator_anim_duration_ms = global::NeuToDo.Droid.Resource.Integer.mtrl_tab_indicator_anim_duration_ms;
+			global::Rg.Plugins.Popup.Resource.Integer.show_password_duration = global::NeuToDo.Droid.Resource.Integer.show_password_duration;
+			global::Rg.Plugins.Popup.Resource.Integer.status_bar_notification_info_maxnum = global::NeuToDo.Droid.Resource.Integer.status_bar_notification_info_maxnum;
+			global::Rg.Plugins.Popup.Resource.Interpolator.mtrl_fast_out_linear_in = global::NeuToDo.Droid.Resource.Interpolator.mtrl_fast_out_linear_in;
+			global::Rg.Plugins.Popup.Resource.Interpolator.mtrl_fast_out_slow_in = global::NeuToDo.Droid.Resource.Interpolator.mtrl_fast_out_slow_in;
+			global::Rg.Plugins.Popup.Resource.Interpolator.mtrl_linear = global::NeuToDo.Droid.Resource.Interpolator.mtrl_linear;
+			global::Rg.Plugins.Popup.Resource.Interpolator.mtrl_linear_out_slow_in = global::NeuToDo.Droid.Resource.Interpolator.mtrl_linear_out_slow_in;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_bar_title_item = global::NeuToDo.Droid.Resource.Layout.abc_action_bar_title_item;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_bar_up_container = global::NeuToDo.Droid.Resource.Layout.abc_action_bar_up_container;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_menu_item_layout = global::NeuToDo.Droid.Resource.Layout.abc_action_menu_item_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_menu_layout = global::NeuToDo.Droid.Resource.Layout.abc_action_menu_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_mode_bar = global::NeuToDo.Droid.Resource.Layout.abc_action_mode_bar;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_action_mode_close_item_material = global::NeuToDo.Droid.Resource.Layout.abc_action_mode_close_item_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_activity_chooser_view = global::NeuToDo.Droid.Resource.Layout.abc_activity_chooser_view;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_activity_chooser_view_list_item = global::NeuToDo.Droid.Resource.Layout.abc_activity_chooser_view_list_item;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_alert_dialog_button_bar_material = global::NeuToDo.Droid.Resource.Layout.abc_alert_dialog_button_bar_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_alert_dialog_material = global::NeuToDo.Droid.Resource.Layout.abc_alert_dialog_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_alert_dialog_title_material = global::NeuToDo.Droid.Resource.Layout.abc_alert_dialog_title_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_cascading_menu_item_layout = global::NeuToDo.Droid.Resource.Layout.abc_cascading_menu_item_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_dialog_title_material = global::NeuToDo.Droid.Resource.Layout.abc_dialog_title_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_expanded_menu_layout = global::NeuToDo.Droid.Resource.Layout.abc_expanded_menu_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_list_menu_item_checkbox = global::NeuToDo.Droid.Resource.Layout.abc_list_menu_item_checkbox;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_list_menu_item_icon = global::NeuToDo.Droid.Resource.Layout.abc_list_menu_item_icon;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_list_menu_item_layout = global::NeuToDo.Droid.Resource.Layout.abc_list_menu_item_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_list_menu_item_radio = global::NeuToDo.Droid.Resource.Layout.abc_list_menu_item_radio;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_popup_menu_header_item_layout = global::NeuToDo.Droid.Resource.Layout.abc_popup_menu_header_item_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_popup_menu_item_layout = global::NeuToDo.Droid.Resource.Layout.abc_popup_menu_item_layout;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_screen_content_include = global::NeuToDo.Droid.Resource.Layout.abc_screen_content_include;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_screen_simple = global::NeuToDo.Droid.Resource.Layout.abc_screen_simple;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_screen_simple_overlay_action_mode = global::NeuToDo.Droid.Resource.Layout.abc_screen_simple_overlay_action_mode;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_screen_toolbar = global::NeuToDo.Droid.Resource.Layout.abc_screen_toolbar;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_search_dropdown_item_icons_2line = global::NeuToDo.Droid.Resource.Layout.abc_search_dropdown_item_icons_2line;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_search_view = global::NeuToDo.Droid.Resource.Layout.abc_search_view;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_select_dialog_material = global::NeuToDo.Droid.Resource.Layout.abc_select_dialog_material;
+			global::Rg.Plugins.Popup.Resource.Layout.abc_tooltip = global::NeuToDo.Droid.Resource.Layout.abc_tooltip;
+			global::Rg.Plugins.Popup.Resource.Layout.BottomTabLayout = global::NeuToDo.Droid.Resource.Layout.BottomTabLayout;
+			global::Rg.Plugins.Popup.Resource.Layout.browser_actions_context_menu_page = global::NeuToDo.Droid.Resource.Layout.browser_actions_context_menu_page;
+			global::Rg.Plugins.Popup.Resource.Layout.browser_actions_context_menu_row = global::NeuToDo.Droid.Resource.Layout.browser_actions_context_menu_row;
+			global::Rg.Plugins.Popup.Resource.Layout.design_bottom_navigation_item = global::NeuToDo.Droid.Resource.Layout.design_bottom_navigation_item;
+			global::Rg.Plugins.Popup.Resource.Layout.design_bottom_sheet_dialog = global::NeuToDo.Droid.Resource.Layout.design_bottom_sheet_dialog;
+			global::Rg.Plugins.Popup.Resource.Layout.design_layout_snackbar = global::NeuToDo.Droid.Resource.Layout.design_layout_snackbar;
+			global::Rg.Plugins.Popup.Resource.Layout.design_layout_snackbar_include = global::NeuToDo.Droid.Resource.Layout.design_layout_snackbar_include;
+			global::Rg.Plugins.Popup.Resource.Layout.design_layout_tab_icon = global::NeuToDo.Droid.Resource.Layout.design_layout_tab_icon;
+			global::Rg.Plugins.Popup.Resource.Layout.design_layout_tab_text = global::NeuToDo.Droid.Resource.Layout.design_layout_tab_text;
+			global::Rg.Plugins.Popup.Resource.Layout.design_menu_item_action_area = global::NeuToDo.Droid.Resource.Layout.design_menu_item_action_area;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_item = global::NeuToDo.Droid.Resource.Layout.design_navigation_item;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_item_header = global::NeuToDo.Droid.Resource.Layout.design_navigation_item_header;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_item_separator = global::NeuToDo.Droid.Resource.Layout.design_navigation_item_separator;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_item_subheader = global::NeuToDo.Droid.Resource.Layout.design_navigation_item_subheader;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_menu = global::NeuToDo.Droid.Resource.Layout.design_navigation_menu;
+			global::Rg.Plugins.Popup.Resource.Layout.design_navigation_menu_item = global::NeuToDo.Droid.Resource.Layout.design_navigation_menu_item;
+			global::Rg.Plugins.Popup.Resource.Layout.design_text_input_password_icon = global::NeuToDo.Droid.Resource.Layout.design_text_input_password_icon;
+			global::Rg.Plugins.Popup.Resource.Layout.FlyoutContent = global::NeuToDo.Droid.Resource.Layout.FlyoutContent;
+			global::Rg.Plugins.Popup.Resource.Layout.mtrl_layout_snackbar = global::NeuToDo.Droid.Resource.Layout.mtrl_layout_snackbar;
+			global::Rg.Plugins.Popup.Resource.Layout.mtrl_layout_snackbar_include = global::NeuToDo.Droid.Resource.Layout.mtrl_layout_snackbar_include;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_action = global::NeuToDo.Droid.Resource.Layout.notification_action;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_action_tombstone = global::NeuToDo.Droid.Resource.Layout.notification_action_tombstone;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_media_action = global::NeuToDo.Droid.Resource.Layout.notification_media_action;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_media_cancel_action = global::NeuToDo.Droid.Resource.Layout.notification_media_cancel_action;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_big_media = global::NeuToDo.Droid.Resource.Layout.notification_template_big_media;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_big_media_custom = global::NeuToDo.Droid.Resource.Layout.notification_template_big_media_custom;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_big_media_narrow = global::NeuToDo.Droid.Resource.Layout.notification_template_big_media_narrow;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_big_media_narrow_custom = global::NeuToDo.Droid.Resource.Layout.notification_template_big_media_narrow_custom;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_custom_big = global::NeuToDo.Droid.Resource.Layout.notification_template_custom_big;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_icon_group = global::NeuToDo.Droid.Resource.Layout.notification_template_icon_group;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_lines_media = global::NeuToDo.Droid.Resource.Layout.notification_template_lines_media;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_media = global::NeuToDo.Droid.Resource.Layout.notification_template_media;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_media_custom = global::NeuToDo.Droid.Resource.Layout.notification_template_media_custom;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_part_chronometer = global::NeuToDo.Droid.Resource.Layout.notification_template_part_chronometer;
+			global::Rg.Plugins.Popup.Resource.Layout.notification_template_part_time = global::NeuToDo.Droid.Resource.Layout.notification_template_part_time;
+			global::Rg.Plugins.Popup.Resource.Layout.RootLayout = global::NeuToDo.Droid.Resource.Layout.RootLayout;
+			global::Rg.Plugins.Popup.Resource.Layout.select_dialog_item_material = global::NeuToDo.Droid.Resource.Layout.select_dialog_item_material;
+			global::Rg.Plugins.Popup.Resource.Layout.select_dialog_multichoice_material = global::NeuToDo.Droid.Resource.Layout.select_dialog_multichoice_material;
+			global::Rg.Plugins.Popup.Resource.Layout.select_dialog_singlechoice_material = global::NeuToDo.Droid.Resource.Layout.select_dialog_singlechoice_material;
+			global::Rg.Plugins.Popup.Resource.Layout.ShellContent = global::NeuToDo.Droid.Resource.Layout.ShellContent;
+			global::Rg.Plugins.Popup.Resource.Layout.support_simple_spinner_dropdown_item = global::NeuToDo.Droid.Resource.Layout.support_simple_spinner_dropdown_item;
+			global::Rg.Plugins.Popup.Resource.String.abc_action_bar_home_description = global::NeuToDo.Droid.Resource.String.abc_action_bar_home_description;
+			global::Rg.Plugins.Popup.Resource.String.abc_action_bar_up_description = global::NeuToDo.Droid.Resource.String.abc_action_bar_up_description;
+			global::Rg.Plugins.Popup.Resource.String.abc_action_menu_overflow_description = global::NeuToDo.Droid.Resource.String.abc_action_menu_overflow_description;
+			global::Rg.Plugins.Popup.Resource.String.abc_action_mode_done = global::NeuToDo.Droid.Resource.String.abc_action_mode_done;
+			global::Rg.Plugins.Popup.Resource.String.abc_activitychooserview_choose_application = global::NeuToDo.Droid.Resource.String.abc_activitychooserview_choose_application;
+			global::Rg.Plugins.Popup.Resource.String.abc_activity_chooser_view_see_all = global::NeuToDo.Droid.Resource.String.abc_activity_chooser_view_see_all;
+			global::Rg.Plugins.Popup.Resource.String.abc_capital_off = global::NeuToDo.Droid.Resource.String.abc_capital_off;
+			global::Rg.Plugins.Popup.Resource.String.abc_capital_on = global::NeuToDo.Droid.Resource.String.abc_capital_on;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_body_1_material = global::NeuToDo.Droid.Resource.String.abc_font_family_body_1_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_body_2_material = global::NeuToDo.Droid.Resource.String.abc_font_family_body_2_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_button_material = global::NeuToDo.Droid.Resource.String.abc_font_family_button_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_caption_material = global::NeuToDo.Droid.Resource.String.abc_font_family_caption_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_display_1_material = global::NeuToDo.Droid.Resource.String.abc_font_family_display_1_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_display_2_material = global::NeuToDo.Droid.Resource.String.abc_font_family_display_2_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_display_3_material = global::NeuToDo.Droid.Resource.String.abc_font_family_display_3_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_display_4_material = global::NeuToDo.Droid.Resource.String.abc_font_family_display_4_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_headline_material = global::NeuToDo.Droid.Resource.String.abc_font_family_headline_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_menu_material = global::NeuToDo.Droid.Resource.String.abc_font_family_menu_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_subhead_material = global::NeuToDo.Droid.Resource.String.abc_font_family_subhead_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_font_family_title_material = global::NeuToDo.Droid.Resource.String.abc_font_family_title_material;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_alt_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_alt_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_ctrl_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_ctrl_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_delete_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_delete_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_enter_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_enter_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_function_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_function_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_meta_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_meta_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_shift_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_shift_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_space_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_space_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_menu_sym_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_menu_sym_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_prepend_shortcut_label = global::NeuToDo.Droid.Resource.String.abc_prepend_shortcut_label;
+			global::Rg.Plugins.Popup.Resource.String.abc_searchview_description_clear = global::NeuToDo.Droid.Resource.String.abc_searchview_description_clear;
+			global::Rg.Plugins.Popup.Resource.String.abc_searchview_description_query = global::NeuToDo.Droid.Resource.String.abc_searchview_description_query;
+			global::Rg.Plugins.Popup.Resource.String.abc_searchview_description_search = global::NeuToDo.Droid.Resource.String.abc_searchview_description_search;
+			global::Rg.Plugins.Popup.Resource.String.abc_searchview_description_submit = global::NeuToDo.Droid.Resource.String.abc_searchview_description_submit;
+			global::Rg.Plugins.Popup.Resource.String.abc_searchview_description_voice = global::NeuToDo.Droid.Resource.String.abc_searchview_description_voice;
+			global::Rg.Plugins.Popup.Resource.String.abc_search_hint = global::NeuToDo.Droid.Resource.String.abc_search_hint;
+			global::Rg.Plugins.Popup.Resource.String.abc_shareactionprovider_share_with = global::NeuToDo.Droid.Resource.String.abc_shareactionprovider_share_with;
+			global::Rg.Plugins.Popup.Resource.String.abc_shareactionprovider_share_with_application = global::NeuToDo.Droid.Resource.String.abc_shareactionprovider_share_with_application;
+			global::Rg.Plugins.Popup.Resource.String.abc_toolbar_collapse_description = global::NeuToDo.Droid.Resource.String.abc_toolbar_collapse_description;
+			global::Rg.Plugins.Popup.Resource.String.appbar_scrolling_view_behavior = global::NeuToDo.Droid.Resource.String.appbar_scrolling_view_behavior;
+			global::Rg.Plugins.Popup.Resource.String.bottom_sheet_behavior = global::NeuToDo.Droid.Resource.String.bottom_sheet_behavior;
+			global::Rg.Plugins.Popup.Resource.String.character_counter_content_description = global::NeuToDo.Droid.Resource.String.character_counter_content_description;
+			global::Rg.Plugins.Popup.Resource.String.character_counter_pattern = global::NeuToDo.Droid.Resource.String.character_counter_pattern;
+			global::Rg.Plugins.Popup.Resource.String.fab_transformation_scrim_behavior = global::NeuToDo.Droid.Resource.String.fab_transformation_scrim_behavior;
+			global::Rg.Plugins.Popup.Resource.String.fab_transformation_sheet_behavior = global::NeuToDo.Droid.Resource.String.fab_transformation_sheet_behavior;
+			global::Rg.Plugins.Popup.Resource.String.hide_bottom_view_on_scroll_behavior = global::NeuToDo.Droid.Resource.String.hide_bottom_view_on_scroll_behavior;
+			global::Rg.Plugins.Popup.Resource.String.mtrl_chip_close_icon_content_description = global::NeuToDo.Droid.Resource.String.mtrl_chip_close_icon_content_description;
+			global::Rg.Plugins.Popup.Resource.String.password_toggle_content_description = global::NeuToDo.Droid.Resource.String.password_toggle_content_description;
+			global::Rg.Plugins.Popup.Resource.String.path_password_eye = global::NeuToDo.Droid.Resource.String.path_password_eye;
+			global::Rg.Plugins.Popup.Resource.String.path_password_eye_mask_strike_through = global::NeuToDo.Droid.Resource.String.path_password_eye_mask_strike_through;
+			global::Rg.Plugins.Popup.Resource.String.path_password_eye_mask_visible = global::NeuToDo.Droid.Resource.String.path_password_eye_mask_visible;
+			global::Rg.Plugins.Popup.Resource.String.path_password_strike_through = global::NeuToDo.Droid.Resource.String.path_password_strike_through;
+			global::Rg.Plugins.Popup.Resource.String.search_menu_title = global::NeuToDo.Droid.Resource.String.search_menu_title;
+			global::Rg.Plugins.Popup.Resource.String.status_bar_notification_info_overflow = global::NeuToDo.Droid.Resource.String.status_bar_notification_info_overflow;
+			global::Rg.Plugins.Popup.Resource.Style.AlertDialog_AppCompat = global::NeuToDo.Droid.Resource.Style.AlertDialog_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.AlertDialog_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.AlertDialog_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Animation_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Animation_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Animation_AppCompat_DropDownUp = global::NeuToDo.Droid.Resource.Style.Animation_AppCompat_DropDownUp;
+			global::Rg.Plugins.Popup.Resource.Style.Animation_AppCompat_Tooltip = global::NeuToDo.Droid.Resource.Style.Animation_AppCompat_Tooltip;
+			global::Rg.Plugins.Popup.Resource.Style.Animation_Design_BottomSheetDialog = global::NeuToDo.Droid.Resource.Style.Animation_Design_BottomSheetDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_AlertDialog_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_AlertDialog_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_AlertDialog_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_AlertDialog_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Animation_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_Animation_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Animation_AppCompat_DropDownUp = global::NeuToDo.Droid.Resource.Style.Base_Animation_AppCompat_DropDownUp;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Animation_AppCompat_Tooltip = global::NeuToDo.Droid.Resource.Style.Base_Animation_AppCompat_Tooltip;
+			global::Rg.Plugins.Popup.Resource.Style.Base_CardView = global::NeuToDo.Droid.Resource.Style.Base_CardView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_DialogWindowTitleBackground_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_DialogWindowTitleBackground_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_DialogWindowTitle_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_DialogWindowTitle_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Body1 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body1;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Body2 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Body2;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Button = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Button;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Caption = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Caption;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Display1 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display1;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Display2 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display2;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Display3 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display3;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Display4 = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Display4;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Headline = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Headline;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Large = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Large_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Medium = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Medium_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Menu = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_SearchResult = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_SearchResult_Title;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Small = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Small_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Subhead = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Subhead_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Title = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Title_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Tooltip = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Tooltip;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_Switch;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title = global::NeuToDo.Droid.Resource.Style.Base_TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_Dark = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_CompactMenu = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_CompactMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_FixedSize;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_DarkActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_FixedSize;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Base_Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Bridge = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_CompactMenu = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_CompactMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_FixedSize;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_FixedSize;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Base_Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Base_V14_ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Light = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V14_Theme_MaterialComponents_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V21_ThemeOverlay_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V21_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V21_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V21_Theme_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V21_Theme_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V21_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V21_Theme_AppCompat_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V22_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V22_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V22_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V22_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V23_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V23_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V23_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V23_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V26_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V26_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V26_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V26_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V26_Widget_AppCompat_Toolbar = global::NeuToDo.Droid.Resource.Style.Base_V26_Widget_AppCompat_Toolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V28_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V28_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V28_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V28_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V7_ThemeOverlay_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Base_V7_Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Theme_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V7_Theme_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Base_V7_Theme_AppCompat_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView = global::NeuToDo.Droid.Resource.Style.Base_V7_Widget_AppCompat_AutoCompleteTextView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Widget_AppCompat_EditText = global::NeuToDo.Droid.Resource.Style.Base_V7_Widget_AppCompat_EditText;
+			global::Rg.Plugins.Popup.Resource.Style.Base_V7_Widget_AppCompat_Toolbar = global::NeuToDo.Droid.Resource.Style.Base_V7_Widget_AppCompat_Toolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_Solid;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabText;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionBar_TabView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionButton = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_CloseMode;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionButton_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActionMode = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActionMode;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ActivityChooserView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ActivityChooserView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_AutoCompleteTextView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ButtonBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button_Borderless = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button_Borderless_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button_Colored = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Button_Small = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Button_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_CheckBox;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_RadioButton;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_CompoundButton_Switch;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_DrawerArrowToggle_Common;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_DropDownItem_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_EditText = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_EditText;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ImageButton = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ImageButton;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_Solid;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_ActionBar_TabView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ListMenuView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ListMenuView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ListPopupWindow = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ListPopupWindow;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ListView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ListView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ListView_DropDown = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ListView_DropDown;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ListView_Menu = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ListView_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_PopupMenu = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_PopupMenu_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_PopupWindow = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_PopupWindow;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ProgressBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_ProgressBar_Horizontal;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_RatingBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Indicator;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_RatingBar_Small = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_RatingBar_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_SearchView = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_SearchView;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_SearchView_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_SeekBar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_SeekBar_Discrete;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Spinner = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Spinner_Underlined;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_TextView_SpinnerItem;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Toolbar = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation = global::NeuToDo.Droid.Resource.Style.Base_Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_Design_TabLayout = global::NeuToDo.Droid.Resource.Style.Base_Widget_Design_TabLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_MaterialComponents_Chip = global::NeuToDo.Droid.Resource.Style.Base_Widget_MaterialComponents_Chip;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText = global::NeuToDo.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputEditText;
+			global::Rg.Plugins.Popup.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout = global::NeuToDo.Droid.Resource.Style.Base_Widget_MaterialComponents_TextInputLayout;
+			global::Rg.Plugins.Popup.Resource.Style.CardView = global::NeuToDo.Droid.Resource.Style.CardView;
+			global::Rg.Plugins.Popup.Resource.Style.CardView_Dark = global::NeuToDo.Droid.Resource.Style.CardView_Dark;
+			global::Rg.Plugins.Popup.Resource.Style.CardView_Light = global::NeuToDo.Droid.Resource.Style.CardView_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Platform_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_MaterialComponents = global::NeuToDo.Droid.Resource.Style.Platform_MaterialComponents;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Platform_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_MaterialComponents_Light = global::NeuToDo.Droid.Resource.Style.Platform_MaterialComponents_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_MaterialComponents_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Platform_MaterialComponents_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_ThemeOverlay_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark = global::NeuToDo.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Dark;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_ThemeOverlay_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Platform_ThemeOverlay_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_V21_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_V21_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_V21_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Platform_V21_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_V25_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_V25_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_V25_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Platform_V25_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Platform_Widget_AppCompat_Spinner = global::NeuToDo.Droid.Resource.Style.Platform_Widget_AppCompat_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat = global::NeuToDo.Droid.Resource.Style.RtlOverlay_DialogWindowTitle_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_ActionBar_TitleItem;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_DialogTitle_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_InternalGroup;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Shortcut;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_SubmenuArrow;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Text;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_PopupMenuItem_Title;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_SearchView_MagIcon;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1 = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon1;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2 = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Icon2;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Query;
+			global::Rg.Plugins.Popup.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text = global::NeuToDo.Droid.Resource.Style.RtlOverlay_Widget_AppCompat_Search_DropDown_Text;
+			global::Rg.Plugins.Popup.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton = global::NeuToDo.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow = global::NeuToDo.Droid.Resource.Style.RtlUnderlay_Widget_AppCompat_ActionButton_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Body1 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Body1;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Body2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Body2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Button = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Button;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Caption = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Caption;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Display1 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Display1;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Display2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Display2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Display3 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Display3;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Display4 = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Display4;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Headline = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Headline;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Large = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Large;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Large_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Large_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Light_SearchResult_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Large;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Light_Widget_PopupMenu_Small;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Medium = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Medium;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Medium_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Medium_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Menu = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_SearchResult_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_SearchResult_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Small = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Small;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Small_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Small_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Subhead = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Subhead;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Subhead_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Title_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Title_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Tooltip = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Tooltip;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Subtitle_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionBar_Title_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Subtitle_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_ActionMode_Title_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_Button = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Borderless_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Button_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_DropDownItem;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Header;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Large;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_PopupMenu_Small;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_Switch = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_Switch;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem = global::NeuToDo.Droid.Resource.Style.TextAppearance_AppCompat_Widget_TextView_SpinnerItem;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Info = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Info;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Info_Media = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Info_Media;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Line2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Line2_Media = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Line2_Media;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Media = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Media;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Time = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Time;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Time_Media = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Time_Media;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Title;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Compat_Notification_Title_Media = global::NeuToDo.Droid.Resource.Style.TextAppearance_Compat_Notification_Title_Media;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_CollapsingToolbar_Expanded;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Counter = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Counter;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Counter_Overflow = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Counter_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Error = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Error;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_HelperText = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_HelperText;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Hint = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Hint;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Snackbar_Message = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Snackbar_Message;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Design_Tab = global::NeuToDo.Droid.Resource.Style.TextAppearance_Design_Tab;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Body1 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Body1;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Body2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Body2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Button = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Button;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Caption = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Caption;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Chip = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Chip;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline1 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline1;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline3 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline3;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline4 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline4;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline5 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline5;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Headline6 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Headline6;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Overline = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Overline;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Subtitle1 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle1;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Subtitle2 = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Subtitle2;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_MaterialComponents_Tab = global::NeuToDo.Droid.Resource.Style.TextAppearance_MaterialComponents_Tab;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item = global::NeuToDo.Droid.Resource.Style.TextAppearance_Widget_AppCompat_ExpandedMenu_Item;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle = global::NeuToDo.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Subtitle;
+			global::Rg.Plugins.Popup.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title = global::NeuToDo.Droid.Resource.Style.TextAppearance_Widget_AppCompat_Toolbar_Title;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_ActionBar = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_Dark = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_Dark_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_Dark = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dark_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_Light = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_Light;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Rg.Plugins.Popup.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::NeuToDo.Droid.Resource.Style.ThemeOverlay_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_CompactMenu = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_CompactMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_DarkActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_Dialog = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DayNight_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DayNight_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Dialog = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_DarkActionBar = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_DarkActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_Light_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_Light_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_AppCompat_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_AppCompat_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design = global::NeuToDo.Droid.Resource.Style.Theme_Design;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design_BottomSheetDialog = global::NeuToDo.Droid.Resource.Style.Theme_Design_BottomSheetDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design_Light = global::NeuToDo.Droid.Resource.Style.Theme_Design_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design_Light_BottomSheetDialog = global::NeuToDo.Droid.Resource.Style.Theme_Design_Light_BottomSheetDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design_Light_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_Design_Light_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_Design_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_Design_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_BottomSheetDialog = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_BottomSheetDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Bridge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_CompactMenu = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_CompactMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Dialog = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_BottomSheetDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_Bridge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_DarkActionBar_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_Dialog = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_DialogWhenLarge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_Alert;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_Dialog_MinWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_Light_NoActionBar_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_NoActionBar = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge = global::NeuToDo.Droid.Resource.Style.Theme_MaterialComponents_NoActionBar_Bridge;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionBar_Solid = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionBar_Solid;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionBar_TabBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionBar_TabText = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabText;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionBar_TabView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionBar_TabView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionButton = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionButton_CloseMode = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionButton_CloseMode;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionButton_Overflow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionButton_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActionMode = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActionMode;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ActivityChooserView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ActivityChooserView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_AutoCompleteTextView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_AutoCompleteTextView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ButtonBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ButtonBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ButtonBar_AlertDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button_Borderless = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button_Borderless;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button_Borderless_Colored = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button_Borderless_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button_ButtonBar_AlertDialog;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button_Colored = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Button_Small = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Button_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_CompoundButton_CheckBox;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_CompoundButton_RadioButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_CompoundButton_Switch = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_CompoundButton_Switch;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_DrawerArrowToggle = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_DrawerArrowToggle;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_DropDownItem_Spinner = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_DropDownItem_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_EditText = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_EditText;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ImageButton = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ImageButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_Solid_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabBar_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabText_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionBar_TabView_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionButton = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_CloseMode;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionButton_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActionMode_Inverse;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ActivityChooserView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ActivityChooserView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_AutoCompleteTextView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_DropDownItem_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ListPopupWindow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ListPopupWindow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_ListView_DropDown = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_ListView_DropDown;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_PopupMenu = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_PopupMenu_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_SearchView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_SearchView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Light_Spinner_DropDown_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ListMenuView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ListMenuView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ListPopupWindow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ListPopupWindow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ListView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ListView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ListView_DropDown = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ListView_DropDown;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ListView_Menu = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ListView_Menu;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_PopupMenu = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_PopupMenu;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_PopupMenu_Overflow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_PopupMenu_Overflow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_PopupWindow = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_PopupWindow;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ProgressBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ProgressBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_ProgressBar_Horizontal;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_RatingBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_RatingBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_RatingBar_Indicator = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_RatingBar_Indicator;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_RatingBar_Small = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_RatingBar_Small;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_SearchView = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_SearchView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_SearchView_ActionBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_SearchView_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_SeekBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_SeekBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_SeekBar_Discrete = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_SeekBar_Discrete;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Spinner = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Spinner;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Spinner_DropDown = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Spinner_DropDown_ActionBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Spinner_Underlined = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Spinner_Underlined;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_TextView_SpinnerItem = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_TextView_SpinnerItem;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Toolbar = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Toolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation = global::NeuToDo.Droid.Resource.Style.Widget_AppCompat_Toolbar_Button_Navigation;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Compat_NotificationActionContainer = global::NeuToDo.Droid.Resource.Style.Widget_Compat_NotificationActionContainer;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Compat_NotificationActionText = global::NeuToDo.Droid.Resource.Style.Widget_Compat_NotificationActionText;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_AppBarLayout = global::NeuToDo.Droid.Resource.Style.Widget_Design_AppBarLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_BottomNavigationView = global::NeuToDo.Droid.Resource.Style.Widget_Design_BottomNavigationView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_BottomSheet_Modal = global::NeuToDo.Droid.Resource.Style.Widget_Design_BottomSheet_Modal;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_CollapsingToolbar = global::NeuToDo.Droid.Resource.Style.Widget_Design_CollapsingToolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_FloatingActionButton = global::NeuToDo.Droid.Resource.Style.Widget_Design_FloatingActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_NavigationView = global::NeuToDo.Droid.Resource.Style.Widget_Design_NavigationView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_ScrimInsetsFrameLayout = global::NeuToDo.Droid.Resource.Style.Widget_Design_ScrimInsetsFrameLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_Snackbar = global::NeuToDo.Droid.Resource.Style.Widget_Design_Snackbar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_TabLayout = global::NeuToDo.Droid.Resource.Style.Widget_Design_TabLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Design_TextInputLayout = global::NeuToDo.Droid.Resource.Style.Widget_Design_TextInputLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_BottomAppBar = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_BottomAppBar_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_BottomNavigationView = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_BottomNavigationView_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_BottomSheet_Modal;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_Icon = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_OutlinedButton_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_TextButton = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Dialog_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_TextButton_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Button_UnelevatedButton_Icon;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_CardView = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_CardView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_ChipGroup = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_ChipGroup;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Chip_Action = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Chip_Action;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Chip_Choice = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Chip_Choice;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Chip_Entry = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Chip_Entry;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Chip_Filter = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Chip_Filter;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_FloatingActionButton = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_FloatingActionButton;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_NavigationView = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_NavigationView;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Snackbar = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Snackbar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Snackbar_FullWidth;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TabLayout = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TabLayout;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TabLayout_Colored = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TabLayout_Colored;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_FilledBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputEditText_OutlinedBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_FilledBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_TextInputLayout_OutlinedBox_Dense;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_MaterialComponents_Toolbar = global::NeuToDo.Droid.Resource.Style.Widget_MaterialComponents_Toolbar;
+			global::Rg.Plugins.Popup.Resource.Style.Widget_Support_CoordinatorLayout = global::NeuToDo.Droid.Resource.Style.Widget_Support_CoordinatorLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar = global::NeuToDo.Droid.Resource.Styleable.ActionBar;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBarLayout = global::NeuToDo.Droid.Resource.Styleable.ActionBarLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBarLayout_android_layout_gravity = global::NeuToDo.Droid.Resource.Styleable.ActionBarLayout_android_layout_gravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_background = global::NeuToDo.Droid.Resource.Styleable.ActionBar_background;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_backgroundSplit = global::NeuToDo.Droid.Resource.Styleable.ActionBar_backgroundSplit;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_backgroundStacked = global::NeuToDo.Droid.Resource.Styleable.ActionBar_backgroundStacked;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetEnd = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetEndWithActions = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetEndWithActions;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetLeft = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetRight = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetStart = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_contentInsetStartWithNavigation = global::NeuToDo.Droid.Resource.Styleable.ActionBar_contentInsetStartWithNavigation;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_customNavigationLayout = global::NeuToDo.Droid.Resource.Styleable.ActionBar_customNavigationLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_displayOptions = global::NeuToDo.Droid.Resource.Styleable.ActionBar_displayOptions;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_divider = global::NeuToDo.Droid.Resource.Styleable.ActionBar_divider;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_elevation = global::NeuToDo.Droid.Resource.Styleable.ActionBar_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_height = global::NeuToDo.Droid.Resource.Styleable.ActionBar_height;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_hideOnContentScroll = global::NeuToDo.Droid.Resource.Styleable.ActionBar_hideOnContentScroll;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_homeAsUpIndicator = global::NeuToDo.Droid.Resource.Styleable.ActionBar_homeAsUpIndicator;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_homeLayout = global::NeuToDo.Droid.Resource.Styleable.ActionBar_homeLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_icon = global::NeuToDo.Droid.Resource.Styleable.ActionBar_icon;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_indeterminateProgressStyle = global::NeuToDo.Droid.Resource.Styleable.ActionBar_indeterminateProgressStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_itemPadding = global::NeuToDo.Droid.Resource.Styleable.ActionBar_itemPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_logo = global::NeuToDo.Droid.Resource.Styleable.ActionBar_logo;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_navigationMode = global::NeuToDo.Droid.Resource.Styleable.ActionBar_navigationMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_popupTheme = global::NeuToDo.Droid.Resource.Styleable.ActionBar_popupTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_progressBarPadding = global::NeuToDo.Droid.Resource.Styleable.ActionBar_progressBarPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_progressBarStyle = global::NeuToDo.Droid.Resource.Styleable.ActionBar_progressBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_subtitle = global::NeuToDo.Droid.Resource.Styleable.ActionBar_subtitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_subtitleTextStyle = global::NeuToDo.Droid.Resource.Styleable.ActionBar_subtitleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_title = global::NeuToDo.Droid.Resource.Styleable.ActionBar_title;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionBar_titleTextStyle = global::NeuToDo.Droid.Resource.Styleable.ActionBar_titleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMenuItemView = global::NeuToDo.Droid.Resource.Styleable.ActionMenuItemView;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMenuItemView_android_minWidth = global::NeuToDo.Droid.Resource.Styleable.ActionMenuItemView_android_minWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMenuView = global::NeuToDo.Droid.Resource.Styleable.ActionMenuView;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode = global::NeuToDo.Droid.Resource.Styleable.ActionMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_background = global::NeuToDo.Droid.Resource.Styleable.ActionMode_background;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_backgroundSplit = global::NeuToDo.Droid.Resource.Styleable.ActionMode_backgroundSplit;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_closeItemLayout = global::NeuToDo.Droid.Resource.Styleable.ActionMode_closeItemLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_height = global::NeuToDo.Droid.Resource.Styleable.ActionMode_height;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_subtitleTextStyle = global::NeuToDo.Droid.Resource.Styleable.ActionMode_subtitleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActionMode_titleTextStyle = global::NeuToDo.Droid.Resource.Styleable.ActionMode_titleTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActivityChooserView = global::NeuToDo.Droid.Resource.Styleable.ActivityChooserView;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable = global::NeuToDo.Droid.Resource.Styleable.ActivityChooserView_expandActivityOverflowButtonDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.ActivityChooserView_initialActivityCount = global::NeuToDo.Droid.Resource.Styleable.ActivityChooserView_initialActivityCount;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog = global::NeuToDo.Droid.Resource.Styleable.AlertDialog;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_android_layout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_android_layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_buttonIconDimen = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_buttonIconDimen;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_buttonPanelSideLayout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_buttonPanelSideLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_listItemLayout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_listItemLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_listLayout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_listLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_multiChoiceItemLayout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_multiChoiceItemLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_showTitle = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_showTitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AlertDialog_singleChoiceItemLayout = global::NeuToDo.Droid.Resource.Styleable.AlertDialog_singleChoiceItemLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_constantSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_dither;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_enterFadeDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_exitFadeDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_variablePadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableCompat_android_visible;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableItem = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_drawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableItem_android_id = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableItem_android_id;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableTransition = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableTransition;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_drawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_fromId;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_reversible;
+			global::Rg.Plugins.Popup.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId = global::NeuToDo.Droid.Resource.Styleable.AnimatedStateListDrawableTransition_android_toId;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayoutStates = global::NeuToDo.Droid.Resource.Styleable.AppBarLayoutStates;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayoutStates_state_collapsed = global::NeuToDo.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsed;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayoutStates_state_collapsible = global::NeuToDo.Droid.Resource.Styleable.AppBarLayoutStates_state_collapsible;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayoutStates_state_liftable = global::NeuToDo.Droid.Resource.Styleable.AppBarLayoutStates_state_liftable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayoutStates_state_lifted = global::NeuToDo.Droid.Resource.Styleable.AppBarLayoutStates_state_lifted;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_android_background = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_android_background;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_android_keyboardNavigationCluster;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_android_touchscreenBlocksFocus;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_elevation = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_expanded = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_expanded;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_Layout = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollFlags;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_Layout_layout_scrollInterpolator;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppBarLayout_liftOnScroll = global::NeuToDo.Droid.Resource.Styleable.AppBarLayout_liftOnScroll;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatImageView = global::NeuToDo.Droid.Resource.Styleable.AppCompatImageView;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatImageView_android_src = global::NeuToDo.Droid.Resource.Styleable.AppCompatImageView_android_src;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatImageView_srcCompat = global::NeuToDo.Droid.Resource.Styleable.AppCompatImageView_srcCompat;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatImageView_tint = global::NeuToDo.Droid.Resource.Styleable.AppCompatImageView_tint;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatImageView_tintMode = global::NeuToDo.Droid.Resource.Styleable.AppCompatImageView_tintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatSeekBar = global::NeuToDo.Droid.Resource.Styleable.AppCompatSeekBar;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatSeekBar_android_thumb = global::NeuToDo.Droid.Resource.Styleable.AppCompatSeekBar_android_thumb;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatSeekBar_tickMark = global::NeuToDo.Droid.Resource.Styleable.AppCompatSeekBar_tickMark;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatSeekBar_tickMarkTint = global::NeuToDo.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode = global::NeuToDo.Droid.Resource.Styleable.AppCompatSeekBar_tickMarkTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableBottom = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableEnd = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableLeft = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableRight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableStart = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_drawableTop = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_drawableTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextHelper_android_textAppearance = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextHelper_android_textAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_android_textAppearance = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_android_textAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_autoSizeMaxTextSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_autoSizeMinTextSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_autoSizePresetSizes = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_autoSizePresetSizes;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_autoSizeStepGranularity;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_autoSizeTextType = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_autoSizeTextType;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_firstBaselineToTopHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_fontFamily = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_fontFamily;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_lastBaselineToBottomHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_lineHeight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_lineHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTextView_textAllCaps = global::NeuToDo.Droid.Resource.Styleable.AppCompatTextView_textAllCaps;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarDivider = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarDivider;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarItemBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarItemBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarPopupTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarPopupTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarSize = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarSplitStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarSplitStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarTabBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarTabStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarTabStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarTabTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionBarWidgetTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionDropDownStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionDropDownStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionMenuTextColor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionMenuTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeCloseDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeCopyDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeCutDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeCutDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeFindDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeFindDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModePasteDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModePasteDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModePopupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeSelectAllDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeShareDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeShareDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeSplitBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeSplitBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionModeWebSearchDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionOverflowButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_actionOverflowMenuStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_activityChooserViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_activityChooserViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_alertDialogButtonGroupStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_alertDialogCenterButtons;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_alertDialogStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_alertDialogStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_alertDialogTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_alertDialogTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_android_windowAnimationStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_android_windowIsFloating = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_android_windowIsFloating;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_autoCompleteTextViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_borderlessButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_borderlessButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonBarButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonBarNegativeButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonBarNeutralButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonBarPositiveButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonBarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_buttonStyleSmall = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_buttonStyleSmall;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_checkboxStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_checkboxStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_checkedTextViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_checkedTextViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorAccent = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorAccent;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorBackgroundFloating = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorBackgroundFloating;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorButtonNormal = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorButtonNormal;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorControlActivated = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorControlActivated;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorControlHighlight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorControlHighlight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorControlNormal = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorControlNormal;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorError = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorError;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorPrimary = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorPrimary;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorPrimaryDark = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorPrimaryDark;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_colorSwitchThumbNormal;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_controlBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_controlBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dialogCornerRadius = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dialogCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dialogPreferredPadding = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dialogPreferredPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dialogTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dialogTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dividerHorizontal = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dividerHorizontal;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dividerVertical = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dividerVertical;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dropdownListPreferredItemHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_dropDownListViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_dropDownListViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_editTextBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_editTextBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_editTextColor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_editTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_editTextStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_editTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_homeAsUpIndicator = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_homeAsUpIndicator;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_imageButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_imageButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listChoiceBackgroundIndicator;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listDividerAlertDialog = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listDividerAlertDialog;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listMenuViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listMenuViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPopupWindowStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPopupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPreferredItemHeight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightLarge;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemHeightSmall;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_listPreferredItemPaddingRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_panelBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_panelBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_panelMenuListTheme = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_panelMenuListTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_panelMenuListWidth = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_panelMenuListWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_popupMenuStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_popupMenuStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_popupWindowStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_popupWindowStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_radioButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_radioButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_ratingBarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleIndicator;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_ratingBarStyleSmall;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_searchViewStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_searchViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_seekBarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_seekBarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_selectableItemBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_selectableItemBackgroundBorderless;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_spinnerDropDownItemStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_spinnerStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_spinnerStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_switchStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_switchStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceLargePopupMenu;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceListItem = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSecondary;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceListItemSmall;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearancePopupMenuHeader;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultSubtitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSearchResultTitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textAppearanceSmallPopupMenu;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textColorAlertDialogListItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_textColorSearchUrl = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_textColorSearchUrl;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_toolbarNavigationButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_toolbarStyle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_toolbarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_tooltipForegroundColor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_tooltipForegroundColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_tooltipFrameBackground = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_tooltipFrameBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_viewInflaterClass = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_viewInflaterClass;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowActionBar = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowActionBar;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowActionBarOverlay = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowActionBarOverlay;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowActionModeOverlay = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowActionModeOverlay;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMajor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowFixedHeightMinor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMajor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowFixedWidthMinor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowMinWidthMajor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMajor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowMinWidthMinor = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowMinWidthMinor;
+			global::Rg.Plugins.Popup.Resource.Styleable.AppCompatTheme_windowNoTitle = global::NeuToDo.Droid.Resource.Styleable.AppCompatTheme_windowNoTitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_backgroundTint = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_backgroundTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_fabAlignmentMode = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_fabAlignmentMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_fabCradleMargin = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_fabCradleMargin;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_fabCradleRoundedCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_fabCradleVerticalOffset;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomAppBar_hideOnScroll = global::NeuToDo.Droid.Resource.Styleable.BottomAppBar_hideOnScroll;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_elevation = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemBackground = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemHorizontalTranslationEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemIconSize = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemIconSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemIconTint = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemIconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceActive;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemTextAppearanceInactive;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_itemTextColor = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_itemTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_labelVisibilityMode = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_labelVisibilityMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomNavigationView_menu = global::NeuToDo.Droid.Resource.Styleable.BottomNavigationView_menu;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomSheetBehavior_Layout = global::NeuToDo.Droid.Resource.Styleable.BottomSheetBehavior_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents = global::NeuToDo.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_fitToContents;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable = global::NeuToDo.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_hideable;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight = global::NeuToDo.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_peekHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed = global::NeuToDo.Droid.Resource.Styleable.BottomSheetBehavior_Layout_behavior_skipCollapsed;
+			global::Rg.Plugins.Popup.Resource.Styleable.ButtonBarLayout = global::NeuToDo.Droid.Resource.Styleable.ButtonBarLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ButtonBarLayout_allowStacking = global::NeuToDo.Droid.Resource.Styleable.ButtonBarLayout_allowStacking;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView = global::NeuToDo.Droid.Resource.Styleable.CardView;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_android_minHeight = global::NeuToDo.Droid.Resource.Styleable.CardView_android_minHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_android_minWidth = global::NeuToDo.Droid.Resource.Styleable.CardView_android_minWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardBackgroundColor = global::NeuToDo.Droid.Resource.Styleable.CardView_cardBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardCornerRadius = global::NeuToDo.Droid.Resource.Styleable.CardView_cardCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardElevation = global::NeuToDo.Droid.Resource.Styleable.CardView_cardElevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardMaxElevation = global::NeuToDo.Droid.Resource.Styleable.CardView_cardMaxElevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardPreventCornerOverlap = global::NeuToDo.Droid.Resource.Styleable.CardView_cardPreventCornerOverlap;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_cardUseCompatPadding = global::NeuToDo.Droid.Resource.Styleable.CardView_cardUseCompatPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_contentPadding = global::NeuToDo.Droid.Resource.Styleable.CardView_contentPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_contentPaddingBottom = global::NeuToDo.Droid.Resource.Styleable.CardView_contentPaddingBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_contentPaddingLeft = global::NeuToDo.Droid.Resource.Styleable.CardView_contentPaddingLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_contentPaddingRight = global::NeuToDo.Droid.Resource.Styleable.CardView_contentPaddingRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.CardView_contentPaddingTop = global::NeuToDo.Droid.Resource.Styleable.CardView_contentPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip = global::NeuToDo.Droid.Resource.Styleable.Chip;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup = global::NeuToDo.Droid.Resource.Styleable.ChipGroup;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_checkedChip = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_checkedChip;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_chipSpacing = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_chipSpacing;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_chipSpacingHorizontal = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_chipSpacingHorizontal;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_chipSpacingVertical = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_chipSpacingVertical;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_singleLine = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_singleLine;
+			global::Rg.Plugins.Popup.Resource.Styleable.ChipGroup_singleSelection = global::NeuToDo.Droid.Resource.Styleable.ChipGroup_singleSelection;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_android_checkable = global::NeuToDo.Droid.Resource.Styleable.Chip_android_checkable;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_android_ellipsize = global::NeuToDo.Droid.Resource.Styleable.Chip_android_ellipsize;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_android_maxWidth = global::NeuToDo.Droid.Resource.Styleable.Chip_android_maxWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_android_text = global::NeuToDo.Droid.Resource.Styleable.Chip_android_text;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_android_textAppearance = global::NeuToDo.Droid.Resource.Styleable.Chip_android_textAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_checkedIcon = global::NeuToDo.Droid.Resource.Styleable.Chip_checkedIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_checkedIconEnabled = global::NeuToDo.Droid.Resource.Styleable.Chip_checkedIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_checkedIconVisible = global::NeuToDo.Droid.Resource.Styleable.Chip_checkedIconVisible;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipBackgroundColor = global::NeuToDo.Droid.Resource.Styleable.Chip_chipBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipCornerRadius = global::NeuToDo.Droid.Resource.Styleable.Chip_chipCornerRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipEndPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_chipEndPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipIcon = global::NeuToDo.Droid.Resource.Styleable.Chip_chipIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipIconEnabled = global::NeuToDo.Droid.Resource.Styleable.Chip_chipIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipIconSize = global::NeuToDo.Droid.Resource.Styleable.Chip_chipIconSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipIconTint = global::NeuToDo.Droid.Resource.Styleable.Chip_chipIconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipIconVisible = global::NeuToDo.Droid.Resource.Styleable.Chip_chipIconVisible;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipMinHeight = global::NeuToDo.Droid.Resource.Styleable.Chip_chipMinHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipStartPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_chipStartPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipStrokeColor = global::NeuToDo.Droid.Resource.Styleable.Chip_chipStrokeColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_chipStrokeWidth = global::NeuToDo.Droid.Resource.Styleable.Chip_chipStrokeWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIcon = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconEnabled = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconEndPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconEndPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconSize = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconStartPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconStartPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconTint = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_closeIconVisible = global::NeuToDo.Droid.Resource.Styleable.Chip_closeIconVisible;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_hideMotionSpec = global::NeuToDo.Droid.Resource.Styleable.Chip_hideMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_iconEndPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_iconEndPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_iconStartPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_iconStartPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_rippleColor = global::NeuToDo.Droid.Resource.Styleable.Chip_rippleColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_showMotionSpec = global::NeuToDo.Droid.Resource.Styleable.Chip_showMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_textEndPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_textEndPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.Chip_textStartPadding = global::NeuToDo.Droid.Resource.Styleable.Chip_textStartPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_collapsedTitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_contentScrim = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_contentScrim;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMargin;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleMarginTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_expandedTitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_Layout = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_Layout_layout_collapseParallaxMultiplier;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimAnimationDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_scrimVisibleHeightTrigger;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_statusBarScrim;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_title = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_title;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_titleEnabled = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_titleEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.CollapsingToolbarLayout_toolbarId = global::NeuToDo.Droid.Resource.Styleable.CollapsingToolbarLayout_toolbarId;
+			global::Rg.Plugins.Popup.Resource.Styleable.ColorStateListItem = global::NeuToDo.Droid.Resource.Styleable.ColorStateListItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.ColorStateListItem_alpha = global::NeuToDo.Droid.Resource.Styleable.ColorStateListItem_alpha;
+			global::Rg.Plugins.Popup.Resource.Styleable.ColorStateListItem_android_alpha = global::NeuToDo.Droid.Resource.Styleable.ColorStateListItem_android_alpha;
+			global::Rg.Plugins.Popup.Resource.Styleable.ColorStateListItem_android_color = global::NeuToDo.Droid.Resource.Styleable.ColorStateListItem_android_color;
+			global::Rg.Plugins.Popup.Resource.Styleable.CompoundButton = global::NeuToDo.Droid.Resource.Styleable.CompoundButton;
+			global::Rg.Plugins.Popup.Resource.Styleable.CompoundButton_android_button = global::NeuToDo.Droid.Resource.Styleable.CompoundButton_android_button;
+			global::Rg.Plugins.Popup.Resource.Styleable.CompoundButton_buttonTint = global::NeuToDo.Droid.Resource.Styleable.CompoundButton_buttonTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.CompoundButton_buttonTintMode = global::NeuToDo.Droid.Resource.Styleable.CompoundButton_buttonTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_keylines = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_keylines;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_android_layout_gravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchor;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_anchorGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_behavior;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_dodgeInsetEdges;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_insetEdge;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_Layout_layout_keyline;
+			global::Rg.Plugins.Popup.Resource.Styleable.CoordinatorLayout_statusBarBackground = global::NeuToDo.Droid.Resource.Styleable.CoordinatorLayout_statusBarBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.DesignTheme = global::NeuToDo.Droid.Resource.Styleable.DesignTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.DesignTheme_bottomSheetDialogTheme = global::NeuToDo.Droid.Resource.Styleable.DesignTheme_bottomSheetDialogTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.DesignTheme_bottomSheetStyle = global::NeuToDo.Droid.Resource.Styleable.DesignTheme_bottomSheetStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_arrowHeadLength = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_arrowHeadLength;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_arrowShaftLength = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_arrowShaftLength;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_barLength = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_barLength;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_color = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_color;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_drawableSize = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_drawableSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_gapBetweenBars = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_gapBetweenBars;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_spinBars = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_spinBars;
+			global::Rg.Plugins.Popup.Resource.Styleable.DrawerArrowToggle_thickness = global::NeuToDo.Droid.Resource.Styleable.DrawerArrowToggle_thickness;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_backgroundTint = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_backgroundTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_backgroundTintMode = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_backgroundTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_Behavior_Layout = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_Behavior_Layout_behavior_autoHide;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_borderWidth = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_borderWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_elevation = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_fabCustomSize = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_fabCustomSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_fabSize = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_fabSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_hideMotionSpec = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_hideMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_hoveredFocusedTranslationZ;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_maxImageSize = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_maxImageSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_pressedTranslationZ = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_pressedTranslationZ;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_rippleColor = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_rippleColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_showMotionSpec = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_showMotionSpec;
+			global::Rg.Plugins.Popup.Resource.Styleable.FloatingActionButton_useCompatPadding = global::NeuToDo.Droid.Resource.Styleable.FloatingActionButton_useCompatPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.FlowLayout = global::NeuToDo.Droid.Resource.Styleable.FlowLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.FlowLayout_itemSpacing = global::NeuToDo.Droid.Resource.Styleable.FlowLayout_itemSpacing;
+			global::Rg.Plugins.Popup.Resource.Styleable.FlowLayout_lineSpacing = global::NeuToDo.Droid.Resource.Styleable.FlowLayout_lineSpacing;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily = global::NeuToDo.Droid.Resource.Styleable.FontFamily;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_android_font = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_android_font;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_android_fontStyle = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_android_fontStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_android_fontVariationSettings = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_android_fontVariationSettings;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_android_fontWeight = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_android_fontWeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_android_ttcIndex = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_android_ttcIndex;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_font = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_font;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_fontStyle = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_fontStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_fontVariationSettings = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_fontVariationSettings;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_fontWeight = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_fontWeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamilyFont_ttcIndex = global::NeuToDo.Droid.Resource.Styleable.FontFamilyFont_ttcIndex;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderAuthority = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderAuthority;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderCerts = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderCerts;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderFetchStrategy = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderFetchStrategy;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderFetchTimeout = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderFetchTimeout;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderPackage = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderPackage;
+			global::Rg.Plugins.Popup.Resource.Styleable.FontFamily_fontProviderQuery = global::NeuToDo.Droid.Resource.Styleable.FontFamily_fontProviderQuery;
+			global::Rg.Plugins.Popup.Resource.Styleable.ForegroundLinearLayout = global::NeuToDo.Droid.Resource.Styleable.ForegroundLinearLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ForegroundLinearLayout_android_foreground = global::NeuToDo.Droid.Resource.Styleable.ForegroundLinearLayout_android_foreground;
+			global::Rg.Plugins.Popup.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity = global::NeuToDo.Droid.Resource.Styleable.ForegroundLinearLayout_android_foregroundGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding = global::NeuToDo.Droid.Resource.Styleable.ForegroundLinearLayout_foregroundInsidePadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor = global::NeuToDo.Droid.Resource.Styleable.GradientColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColorItem = global::NeuToDo.Droid.Resource.Styleable.GradientColorItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColorItem_android_color = global::NeuToDo.Droid.Resource.Styleable.GradientColorItem_android_color;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColorItem_android_offset = global::NeuToDo.Droid.Resource.Styleable.GradientColorItem_android_offset;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_centerColor = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_centerColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_centerX = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_centerX;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_centerY = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_centerY;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_endColor = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_endColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_endX = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_endX;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_endY = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_endY;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_gradientRadius = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_gradientRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_startColor = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_startColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_startX = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_startX;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_startY = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_startY;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_tileMode = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_tileMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.GradientColor_android_type = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_android_gravity = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_gravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_android_orientation = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_orientation;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_android_weightSum = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_weightSum;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_divider = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_divider;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_dividerPadding = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_dividerPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_Layout = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_gravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_height;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_weight;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_Layout_android_layout_width;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_measureWithLargestChild;
+			global::Rg.Plugins.Popup.Resource.Styleable.LinearLayoutCompat_showDividers = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_showDividers;
+			global::Rg.Plugins.Popup.Resource.Styleable.ListPopupWindow = global::NeuToDo.Droid.Resource.Styleable.ListPopupWindow;
+			global::Rg.Plugins.Popup.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset = global::NeuToDo.Droid.Resource.Styleable.ListPopupWindow_android_dropDownHorizontalOffset;
+			global::Rg.Plugins.Popup.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset = global::NeuToDo.Droid.Resource.Styleable.ListPopupWindow_android_dropDownVerticalOffset;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton = global::NeuToDo.Droid.Resource.Styleable.MaterialButton;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_android_insetBottom = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_android_insetBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_android_insetLeft = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_android_insetLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_android_insetRight = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_android_insetRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_android_insetTop = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_android_insetTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_backgroundTint = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_backgroundTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_backgroundTintMode = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_backgroundTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_cornerRadius = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_cornerRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_icon = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_icon;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_iconGravity = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_iconGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_iconPadding = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_iconPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_iconSize = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_iconSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_iconTint = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_iconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_iconTintMode = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_iconTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_rippleColor = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_rippleColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_strokeColor = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_strokeColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialButton_strokeWidth = global::NeuToDo.Droid.Resource.Styleable.MaterialButton_strokeWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialCardView = global::NeuToDo.Droid.Resource.Styleable.MaterialCardView;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialCardView_strokeColor = global::NeuToDo.Droid.Resource.Styleable.MaterialCardView_strokeColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialCardView_strokeWidth = global::NeuToDo.Droid.Resource.Styleable.MaterialCardView_strokeWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetDialogTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_bottomSheetStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_chipGroupStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_chipStandaloneStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_chipStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_chipStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_colorAccent = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_colorAccent;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_colorBackgroundFloating;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_colorPrimary = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimary;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_colorPrimaryDark;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_colorSecondary = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_colorSecondary;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_editTextStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_editTextStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_floatingActionButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_materialButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_materialCardViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_navigationViewStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_scrimBackground = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_scrimBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_snackbarButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_tabStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_tabStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody1;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceBody2;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceButton;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceCaption;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline1;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline2;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline3;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline4;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline5;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceHeadline6;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceOverline;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle1;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2 = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textAppearanceSubtitle2;
+			global::Rg.Plugins.Popup.Resource.Styleable.MaterialComponentsTheme_textInputStyle = global::NeuToDo.Droid.Resource.Styleable.MaterialComponentsTheme_textInputStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup = global::NeuToDo.Droid.Resource.Styleable.MenuGroup;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_checkableBehavior = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_checkableBehavior;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_enabled = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_enabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_id = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_id;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_menuCategory = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_menuCategory;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_orderInCategory = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_orderInCategory;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuGroup_android_visible = global::NeuToDo.Droid.Resource.Styleable.MenuGroup_android_visible;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem = global::NeuToDo.Droid.Resource.Styleable.MenuItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_actionLayout = global::NeuToDo.Droid.Resource.Styleable.MenuItem_actionLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_actionProviderClass = global::NeuToDo.Droid.Resource.Styleable.MenuItem_actionProviderClass;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_actionViewClass = global::NeuToDo.Droid.Resource.Styleable.MenuItem_actionViewClass;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_alphabeticModifiers = global::NeuToDo.Droid.Resource.Styleable.MenuItem_alphabeticModifiers;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_alphabeticShortcut = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_alphabeticShortcut;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_checkable = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_checkable;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_checked = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_checked;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_enabled = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_enabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_icon = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_icon;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_id = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_id;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_menuCategory = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_menuCategory;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_numericShortcut = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_numericShortcut;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_onClick = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_onClick;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_orderInCategory = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_orderInCategory;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_title = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_title;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_titleCondensed = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_titleCondensed;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_android_visible = global::NeuToDo.Droid.Resource.Styleable.MenuItem_android_visible;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_contentDescription = global::NeuToDo.Droid.Resource.Styleable.MenuItem_contentDescription;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_iconTint = global::NeuToDo.Droid.Resource.Styleable.MenuItem_iconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_iconTintMode = global::NeuToDo.Droid.Resource.Styleable.MenuItem_iconTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_numericModifiers = global::NeuToDo.Droid.Resource.Styleable.MenuItem_numericModifiers;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_showAsAction = global::NeuToDo.Droid.Resource.Styleable.MenuItem_showAsAction;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuItem_tooltipText = global::NeuToDo.Droid.Resource.Styleable.MenuItem_tooltipText;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView = global::NeuToDo.Droid.Resource.Styleable.MenuView;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_headerBackground = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_headerBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_horizontalDivider = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_horizontalDivider;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_itemBackground = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_itemBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_itemIconDisabledAlpha = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_itemIconDisabledAlpha;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_itemTextAppearance = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_itemTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_verticalDivider = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_verticalDivider;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_android_windowAnimationStyle = global::NeuToDo.Droid.Resource.Styleable.MenuView_android_windowAnimationStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_preserveIconSpacing = global::NeuToDo.Droid.Resource.Styleable.MenuView_preserveIconSpacing;
+			global::Rg.Plugins.Popup.Resource.Styleable.MenuView_subMenuArrow = global::NeuToDo.Droid.Resource.Styleable.MenuView_subMenuArrow;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView = global::NeuToDo.Droid.Resource.Styleable.NavigationView;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_android_background = global::NeuToDo.Droid.Resource.Styleable.NavigationView_android_background;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_android_fitsSystemWindows = global::NeuToDo.Droid.Resource.Styleable.NavigationView_android_fitsSystemWindows;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_android_maxWidth = global::NeuToDo.Droid.Resource.Styleable.NavigationView_android_maxWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_elevation = global::NeuToDo.Droid.Resource.Styleable.NavigationView_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_headerLayout = global::NeuToDo.Droid.Resource.Styleable.NavigationView_headerLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemBackground = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemHorizontalPadding = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemHorizontalPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemIconPadding = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemIconPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemIconTint = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemIconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemTextAppearance = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_itemTextColor = global::NeuToDo.Droid.Resource.Styleable.NavigationView_itemTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.NavigationView_menu = global::NeuToDo.Droid.Resource.Styleable.NavigationView_menu;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindow = global::NeuToDo.Droid.Resource.Styleable.PopupWindow;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindowBackgroundState = global::NeuToDo.Droid.Resource.Styleable.PopupWindowBackgroundState;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor = global::NeuToDo.Droid.Resource.Styleable.PopupWindowBackgroundState_state_above_anchor;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindow_android_popupAnimationStyle = global::NeuToDo.Droid.Resource.Styleable.PopupWindow_android_popupAnimationStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindow_android_popupBackground = global::NeuToDo.Droid.Resource.Styleable.PopupWindow_android_popupBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.PopupWindow_overlapAnchor = global::NeuToDo.Droid.Resource.Styleable.PopupWindow_overlapAnchor;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecycleListView = global::NeuToDo.Droid.Resource.Styleable.RecycleListView;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecycleListView_paddingBottomNoButtons = global::NeuToDo.Droid.Resource.Styleable.RecycleListView_paddingBottomNoButtons;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecycleListView_paddingTopNoTitle = global::NeuToDo.Droid.Resource.Styleable.RecycleListView_paddingTopNoTitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView = global::NeuToDo.Droid.Resource.Styleable.RecyclerView;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_android_descendantFocusability = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_android_descendantFocusability;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_android_orientation = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_android_orientation;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_fastScrollEnabled = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_fastScrollEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalThumbDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_fastScrollHorizontalTrackDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalThumbDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_fastScrollVerticalTrackDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_layoutManager = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_layoutManager;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_reverseLayout = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_reverseLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_spanCount = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_spanCount;
+			global::Rg.Plugins.Popup.Resource.Styleable.RecyclerView_stackFromEnd = global::NeuToDo.Droid.Resource.Styleable.RecyclerView_stackFromEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.ScrimInsetsFrameLayout = global::NeuToDo.Droid.Resource.Styleable.ScrimInsetsFrameLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground = global::NeuToDo.Droid.Resource.Styleable.ScrimInsetsFrameLayout_insetForeground;
+			global::Rg.Plugins.Popup.Resource.Styleable.ScrollingViewBehavior_Layout = global::NeuToDo.Droid.Resource.Styleable.ScrollingViewBehavior_Layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop = global::NeuToDo.Droid.Resource.Styleable.ScrollingViewBehavior_Layout_behavior_overlapTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView = global::NeuToDo.Droid.Resource.Styleable.SearchView;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_android_focusable = global::NeuToDo.Droid.Resource.Styleable.SearchView_android_focusable;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_android_imeOptions = global::NeuToDo.Droid.Resource.Styleable.SearchView_android_imeOptions;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_android_inputType = global::NeuToDo.Droid.Resource.Styleable.SearchView_android_inputType;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_android_maxWidth = global::NeuToDo.Droid.Resource.Styleable.SearchView_android_maxWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_closeIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_closeIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_commitIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_commitIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_defaultQueryHint = global::NeuToDo.Droid.Resource.Styleable.SearchView_defaultQueryHint;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_goIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_goIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_iconifiedByDefault = global::NeuToDo.Droid.Resource.Styleable.SearchView_iconifiedByDefault;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_layout = global::NeuToDo.Droid.Resource.Styleable.SearchView_layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_queryBackground = global::NeuToDo.Droid.Resource.Styleable.SearchView_queryBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_queryHint = global::NeuToDo.Droid.Resource.Styleable.SearchView_queryHint;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_searchHintIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_searchHintIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_searchIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_searchIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_submitBackground = global::NeuToDo.Droid.Resource.Styleable.SearchView_submitBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_suggestionRowLayout = global::NeuToDo.Droid.Resource.Styleable.SearchView_suggestionRowLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.SearchView_voiceIcon = global::NeuToDo.Droid.Resource.Styleable.SearchView_voiceIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Snackbar = global::NeuToDo.Droid.Resource.Styleable.Snackbar;
+			global::Rg.Plugins.Popup.Resource.Styleable.SnackbarLayout = global::NeuToDo.Droid.Resource.Styleable.SnackbarLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.SnackbarLayout_android_maxWidth = global::NeuToDo.Droid.Resource.Styleable.SnackbarLayout_android_maxWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.SnackbarLayout_elevation = global::NeuToDo.Droid.Resource.Styleable.SnackbarLayout_elevation;
+			global::Rg.Plugins.Popup.Resource.Styleable.SnackbarLayout_maxActionInlineWidth = global::NeuToDo.Droid.Resource.Styleable.SnackbarLayout_maxActionInlineWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.Snackbar_snackbarButtonStyle = global::NeuToDo.Droid.Resource.Styleable.Snackbar_snackbarButtonStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.Snackbar_snackbarStyle = global::NeuToDo.Droid.Resource.Styleable.Snackbar_snackbarStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner = global::NeuToDo.Droid.Resource.Styleable.Spinner;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner_android_dropDownWidth = global::NeuToDo.Droid.Resource.Styleable.Spinner_android_dropDownWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner_android_entries = global::NeuToDo.Droid.Resource.Styleable.Spinner_android_entries;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner_android_popupBackground = global::NeuToDo.Droid.Resource.Styleable.Spinner_android_popupBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner_android_prompt = global::NeuToDo.Droid.Resource.Styleable.Spinner_android_prompt;
+			global::Rg.Plugins.Popup.Resource.Styleable.Spinner_popupTheme = global::NeuToDo.Droid.Resource.Styleable.Spinner_popupTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawableItem = global::NeuToDo.Droid.Resource.Styleable.StateListDrawableItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawableItem_android_drawable = global::NeuToDo.Droid.Resource.Styleable.StateListDrawableItem_android_drawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_constantSize = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_constantSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_dither = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_dither;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_enterFadeDuration = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_enterFadeDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_exitFadeDuration = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_exitFadeDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_variablePadding = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_variablePadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.StateListDrawable_android_visible = global::NeuToDo.Droid.Resource.Styleable.StateListDrawable_android_visible;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_android_textOff = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_android_textOff;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_android_textOn = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_android_textOn;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_android_thumb = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_android_thumb;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_showText = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_showText;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_splitTrack = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_splitTrack;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_switchMinWidth = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_switchMinWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_switchPadding = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_switchPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_switchTextAppearance = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_switchTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_thumbTextPadding = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_thumbTextPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_thumbTint = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_thumbTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_thumbTintMode = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_thumbTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_track = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_track;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_trackTint = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_trackTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.SwitchCompat_trackTintMode = global::NeuToDo.Droid.Resource.Styleable.SwitchCompat_trackTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabItem = global::NeuToDo.Droid.Resource.Styleable.TabItem;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabItem_android_icon = global::NeuToDo.Droid.Resource.Styleable.TabItem_android_icon;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabItem_android_layout = global::NeuToDo.Droid.Resource.Styleable.TabItem_android_layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabItem_android_text = global::NeuToDo.Droid.Resource.Styleable.TabItem_android_text;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout = global::NeuToDo.Droid.Resource.Styleable.TabLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabBackground = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabBackground;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabContentStart = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabContentStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabGravity = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIconTint = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIconTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIconTintMode = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIconTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicator = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicator;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicatorAnimationDuration;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicatorColor = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicatorColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicatorFullWidth = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicatorFullWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicatorGravity = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicatorGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabIndicatorHeight = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabIndicatorHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabInlineLabel = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabInlineLabel;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabMaxWidth = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabMaxWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabMinWidth = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabMinWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabMode = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabPadding = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabPadding;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabPaddingBottom = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabPaddingBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabPaddingEnd = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabPaddingEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabPaddingStart = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabPaddingStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabPaddingTop = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabRippleColor = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabRippleColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabSelectedTextColor = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabSelectedTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabTextColor = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TabLayout_tabUnboundedRipple = global::NeuToDo.Droid.Resource.Styleable.TabLayout_tabUnboundedRipple;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_fontFamily = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_fontFamily;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_shadowColor = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_shadowColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_shadowDx = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_shadowDx;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_shadowDy = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_shadowDy;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_shadowRadius = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_shadowRadius;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_textColor = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_textColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_textColorHint = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_textColorHint;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_textColorLink = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_textColorLink;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_textSize = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_textSize;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_textStyle = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_textStyle;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_android_typeface = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_android_typeface;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_fontFamily = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_fontFamily;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextAppearance_textAllCaps = global::NeuToDo.Droid.Resource.Styleable.TextAppearance_textAllCaps;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_android_hint = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_android_hint;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_android_textColorHint = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_android_textColorHint;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxBackgroundColor = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxBackgroundColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxBackgroundMode = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxBackgroundMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxCollapsedPaddingTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusBottomStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxCornerRadiusTopStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxStrokeColor = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxStrokeColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_boxStrokeWidth = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_boxStrokeWidth;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_counterEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_counterEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_counterMaxLength = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_counterMaxLength;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_counterOverflowTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_counterTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_counterTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_errorEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_errorEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_errorTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_errorTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_helperText = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_helperText;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_helperTextEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_helperTextEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_helperTextTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_helperTextTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_hintAnimationEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_hintAnimationEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_hintEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_hintEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_hintTextAppearance = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_hintTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_passwordToggleContentDescription = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_passwordToggleContentDescription;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_passwordToggleDrawable = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_passwordToggleDrawable;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_passwordToggleEnabled = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_passwordToggleEnabled;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_passwordToggleTint = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_passwordToggleTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.TextInputLayout_passwordToggleTintMode = global::NeuToDo.Droid.Resource.Styleable.TextInputLayout_passwordToggleTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.ThemeEnforcement = global::NeuToDo.Droid.Resource.Styleable.ThemeEnforcement;
+			global::Rg.Plugins.Popup.Resource.Styleable.ThemeEnforcement_android_textAppearance = global::NeuToDo.Droid.Resource.Styleable.ThemeEnforcement_android_textAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme = global::NeuToDo.Droid.Resource.Styleable.ThemeEnforcement_enforceMaterialTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.ThemeEnforcement_enforceTextAppearance = global::NeuToDo.Droid.Resource.Styleable.ThemeEnforcement_enforceTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar = global::NeuToDo.Droid.Resource.Styleable.Toolbar;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_android_gravity = global::NeuToDo.Droid.Resource.Styleable.Toolbar_android_gravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_android_minHeight = global::NeuToDo.Droid.Resource.Styleable.Toolbar_android_minHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_buttonGravity = global::NeuToDo.Droid.Resource.Styleable.Toolbar_buttonGravity;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_collapseContentDescription = global::NeuToDo.Droid.Resource.Styleable.Toolbar_collapseContentDescription;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_collapseIcon = global::NeuToDo.Droid.Resource.Styleable.Toolbar_collapseIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetEnd = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetEndWithActions = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetEndWithActions;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetLeft = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetLeft;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetRight = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetRight;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetStart = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_contentInsetStartWithNavigation = global::NeuToDo.Droid.Resource.Styleable.Toolbar_contentInsetStartWithNavigation;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_logo = global::NeuToDo.Droid.Resource.Styleable.Toolbar_logo;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_logoDescription = global::NeuToDo.Droid.Resource.Styleable.Toolbar_logoDescription;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_maxButtonHeight = global::NeuToDo.Droid.Resource.Styleable.Toolbar_maxButtonHeight;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_navigationContentDescription = global::NeuToDo.Droid.Resource.Styleable.Toolbar_navigationContentDescription;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_navigationIcon = global::NeuToDo.Droid.Resource.Styleable.Toolbar_navigationIcon;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_popupTheme = global::NeuToDo.Droid.Resource.Styleable.Toolbar_popupTheme;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_subtitle = global::NeuToDo.Droid.Resource.Styleable.Toolbar_subtitle;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_subtitleTextAppearance = global::NeuToDo.Droid.Resource.Styleable.Toolbar_subtitleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_subtitleTextColor = global::NeuToDo.Droid.Resource.Styleable.Toolbar_subtitleTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_title = global::NeuToDo.Droid.Resource.Styleable.Toolbar_title;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMargin = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMargin;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMarginBottom = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMarginBottom;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMarginEnd = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMarginEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMargins = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMargins;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMarginStart = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMarginStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleMarginTop = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleMarginTop;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleTextAppearance = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleTextAppearance;
+			global::Rg.Plugins.Popup.Resource.Styleable.Toolbar_titleTextColor = global::NeuToDo.Droid.Resource.Styleable.Toolbar_titleTextColor;
+			global::Rg.Plugins.Popup.Resource.Styleable.View = global::NeuToDo.Droid.Resource.Styleable.View;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewBackgroundHelper = global::NeuToDo.Droid.Resource.Styleable.ViewBackgroundHelper;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewBackgroundHelper_android_background = global::NeuToDo.Droid.Resource.Styleable.ViewBackgroundHelper_android_background;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewBackgroundHelper_backgroundTint = global::NeuToDo.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTint;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode = global::NeuToDo.Droid.Resource.Styleable.ViewBackgroundHelper_backgroundTintMode;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewStubCompat = global::NeuToDo.Droid.Resource.Styleable.ViewStubCompat;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewStubCompat_android_id = global::NeuToDo.Droid.Resource.Styleable.ViewStubCompat_android_id;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewStubCompat_android_inflatedId = global::NeuToDo.Droid.Resource.Styleable.ViewStubCompat_android_inflatedId;
+			global::Rg.Plugins.Popup.Resource.Styleable.ViewStubCompat_android_layout = global::NeuToDo.Droid.Resource.Styleable.ViewStubCompat_android_layout;
+			global::Rg.Plugins.Popup.Resource.Styleable.View_android_focusable = global::NeuToDo.Droid.Resource.Styleable.View_android_focusable;
+			global::Rg.Plugins.Popup.Resource.Styleable.View_android_theme = global::NeuToDo.Droid.Resource.Styleable.View_android_theme;
+			global::Rg.Plugins.Popup.Resource.Styleable.View_paddingEnd = global::NeuToDo.Droid.Resource.Styleable.View_paddingEnd;
+			global::Rg.Plugins.Popup.Resource.Styleable.View_paddingStart = global::NeuToDo.Droid.Resource.Styleable.View_paddingStart;
+			global::Rg.Plugins.Popup.Resource.Styleable.View_theme = global::NeuToDo.Droid.Resource.Styleable.View_theme;
 			global::Xamarin.Essentials.Resource.Attribute.alpha = global::NeuToDo.Droid.Resource.Attribute.alpha;
 			global::Xamarin.Essentials.Resource.Attribute.coordinatorLayoutStyle = global::NeuToDo.Droid.Resource.Attribute.coordinatorLayoutStyle;
 			global::Xamarin.Essentials.Resource.Attribute.font = global::NeuToDo.Droid.Resource.Attribute.font;
@@ -368,6 +2942,7 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.collapsedTitleGravity = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleGravity;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.collapsedTitleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleTextAppearance;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.collapseIcon = global::NeuToDo.Droid.Resource.Attribute.collapseIcon;
+			global::Xamarin.Forms.Platform.Android.Resource.Attribute.collectionViewStyle = global::NeuToDo.Droid.Resource.Attribute.collectionViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.color = global::NeuToDo.Droid.Resource.Attribute.color;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.colorAccent = global::NeuToDo.Droid.Resource.Attribute.colorAccent;
 			global::Xamarin.Forms.Platform.Android.Resource.Attribute.colorBackgroundFloating = global::NeuToDo.Droid.Resource.Attribute.colorBackgroundFloating;
@@ -1715,7 +4290,8 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView = global::NeuToDo.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Dark = global::NeuToDo.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.CardView_Light = global::NeuToDo.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewStyle = global::NeuToDo.Droid.Resource.Style.collectionViewStyle;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewScrollBars = global::NeuToDo.Droid.Resource.Style.collectionViewScrollBars;
+			global::Xamarin.Forms.Platform.Android.Resource.Style.collectionViewTheme = global::NeuToDo.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme = global::NeuToDo.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.MainTheme_Base = global::NeuToDo.Droid.Resource.Style.MainTheme_Base;
 			global::Xamarin.Forms.Platform.Android.Resource.Style.Platform_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_AppCompat;
@@ -2446,6 +5022,8 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.GradientColor_android_startY = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.GradientColor_android_tileMode = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.GradientColor_android_type = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ItemsViewRendererTheme = global::NeuToDo.Droid.Resource.Styleable.ItemsViewRendererTheme;
+			global::Xamarin.Forms.Platform.Android.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle = global::NeuToDo.Droid.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.LinearLayoutCompat = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
 			global::Xamarin.Forms.Platform.Android.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
@@ -2933,6 +5511,7 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Resource.Attribute.collapsedTitleGravity = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleGravity;
 			global::Xamarin.Forms.Platform.Resource.Attribute.collapsedTitleTextAppearance = global::NeuToDo.Droid.Resource.Attribute.collapsedTitleTextAppearance;
 			global::Xamarin.Forms.Platform.Resource.Attribute.collapseIcon = global::NeuToDo.Droid.Resource.Attribute.collapseIcon;
+			global::Xamarin.Forms.Platform.Resource.Attribute.collectionViewStyle = global::NeuToDo.Droid.Resource.Attribute.collectionViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Attribute.color = global::NeuToDo.Droid.Resource.Attribute.color;
 			global::Xamarin.Forms.Platform.Resource.Attribute.colorAccent = global::NeuToDo.Droid.Resource.Attribute.colorAccent;
 			global::Xamarin.Forms.Platform.Resource.Attribute.colorBackgroundFloating = global::NeuToDo.Droid.Resource.Attribute.colorBackgroundFloating;
@@ -4280,7 +6859,8 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Resource.Style.CardView = global::NeuToDo.Droid.Resource.Style.CardView;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Dark = global::NeuToDo.Droid.Resource.Style.CardView_Dark;
 			global::Xamarin.Forms.Platform.Resource.Style.CardView_Light = global::NeuToDo.Droid.Resource.Style.CardView_Light;
-			global::Xamarin.Forms.Platform.Resource.Style.collectionViewStyle = global::NeuToDo.Droid.Resource.Style.collectionViewStyle;
+			global::Xamarin.Forms.Platform.Resource.Style.collectionViewScrollBars = global::NeuToDo.Droid.Resource.Style.collectionViewScrollBars;
+			global::Xamarin.Forms.Platform.Resource.Style.collectionViewTheme = global::NeuToDo.Droid.Resource.Style.collectionViewTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme = global::NeuToDo.Droid.Resource.Style.MainTheme;
 			global::Xamarin.Forms.Platform.Resource.Style.MainTheme_Base = global::NeuToDo.Droid.Resource.Style.MainTheme_Base;
 			global::Xamarin.Forms.Platform.Resource.Style.Platform_AppCompat = global::NeuToDo.Droid.Resource.Style.Platform_AppCompat;
@@ -5011,6 +7591,8 @@ namespace NeuToDo.Droid
 			global::Xamarin.Forms.Platform.Resource.Styleable.GradientColor_android_startY = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_startY;
 			global::Xamarin.Forms.Platform.Resource.Styleable.GradientColor_android_tileMode = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_tileMode;
 			global::Xamarin.Forms.Platform.Resource.Styleable.GradientColor_android_type = global::NeuToDo.Droid.Resource.Styleable.GradientColor_android_type;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ItemsViewRendererTheme = global::NeuToDo.Droid.Resource.Styleable.ItemsViewRendererTheme;
+			global::Xamarin.Forms.Platform.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle = global::NeuToDo.Droid.Resource.Styleable.ItemsViewRendererTheme_collectionViewStyle;
 			global::Xamarin.Forms.Platform.Resource.Styleable.LinearLayoutCompat = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat;
 			global::Xamarin.Forms.Platform.Resource.Styleable.LinearLayoutCompat_android_baselineAligned = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAligned;
 			global::Xamarin.Forms.Platform.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex = global::NeuToDo.Droid.Resource.Styleable.LinearLayoutCompat_android_baselineAlignedChildIndex;
@@ -7796,1042 +10378,1045 @@ namespace NeuToDo.Droid
 			public const int collapseIcon = 2130903168;
 			
 			// aapt resource value: 0x7F030083
-			public const int color = 2130903171;
+			public const int collectionViewStyle = 2130903171;
 			
 			// aapt resource value: 0x7F030084
-			public const int colorAccent = 2130903172;
+			public const int color = 2130903172;
 			
 			// aapt resource value: 0x7F030085
-			public const int colorBackgroundFloating = 2130903173;
+			public const int colorAccent = 2130903173;
 			
 			// aapt resource value: 0x7F030086
-			public const int colorButtonNormal = 2130903174;
+			public const int colorBackgroundFloating = 2130903174;
 			
 			// aapt resource value: 0x7F030087
-			public const int colorControlActivated = 2130903175;
+			public const int colorButtonNormal = 2130903175;
 			
 			// aapt resource value: 0x7F030088
-			public const int colorControlHighlight = 2130903176;
+			public const int colorControlActivated = 2130903176;
 			
 			// aapt resource value: 0x7F030089
-			public const int colorControlNormal = 2130903177;
+			public const int colorControlHighlight = 2130903177;
 			
 			// aapt resource value: 0x7F03008A
-			public const int colorError = 2130903178;
+			public const int colorControlNormal = 2130903178;
 			
 			// aapt resource value: 0x7F03008B
-			public const int colorPrimary = 2130903179;
+			public const int colorError = 2130903179;
 			
 			// aapt resource value: 0x7F03008C
-			public const int colorPrimaryDark = 2130903180;
+			public const int colorPrimary = 2130903180;
 			
 			// aapt resource value: 0x7F03008D
-			public const int colorSecondary = 2130903181;
+			public const int colorPrimaryDark = 2130903181;
 			
 			// aapt resource value: 0x7F03008E
-			public const int colorSwitchThumbNormal = 2130903182;
+			public const int colorSecondary = 2130903182;
 			
 			// aapt resource value: 0x7F03008F
-			public const int commitIcon = 2130903183;
+			public const int colorSwitchThumbNormal = 2130903183;
 			
 			// aapt resource value: 0x7F030090
-			public const int contentDescription = 2130903184;
+			public const int commitIcon = 2130903184;
 			
 			// aapt resource value: 0x7F030091
-			public const int contentInsetEnd = 2130903185;
+			public const int contentDescription = 2130903185;
 			
 			// aapt resource value: 0x7F030092
-			public const int contentInsetEndWithActions = 2130903186;
+			public const int contentInsetEnd = 2130903186;
 			
 			// aapt resource value: 0x7F030093
-			public const int contentInsetLeft = 2130903187;
+			public const int contentInsetEndWithActions = 2130903187;
 			
 			// aapt resource value: 0x7F030094
-			public const int contentInsetRight = 2130903188;
+			public const int contentInsetLeft = 2130903188;
 			
 			// aapt resource value: 0x7F030095
-			public const int contentInsetStart = 2130903189;
+			public const int contentInsetRight = 2130903189;
 			
 			// aapt resource value: 0x7F030096
-			public const int contentInsetStartWithNavigation = 2130903190;
+			public const int contentInsetStart = 2130903190;
 			
 			// aapt resource value: 0x7F030097
-			public const int contentPadding = 2130903191;
+			public const int contentInsetStartWithNavigation = 2130903191;
 			
 			// aapt resource value: 0x7F030098
-			public const int contentPaddingBottom = 2130903192;
+			public const int contentPadding = 2130903192;
 			
 			// aapt resource value: 0x7F030099
-			public const int contentPaddingLeft = 2130903193;
+			public const int contentPaddingBottom = 2130903193;
 			
 			// aapt resource value: 0x7F03009A
-			public const int contentPaddingRight = 2130903194;
+			public const int contentPaddingLeft = 2130903194;
 			
 			// aapt resource value: 0x7F03009B
-			public const int contentPaddingTop = 2130903195;
+			public const int contentPaddingRight = 2130903195;
 			
 			// aapt resource value: 0x7F03009C
-			public const int contentScrim = 2130903196;
+			public const int contentPaddingTop = 2130903196;
 			
 			// aapt resource value: 0x7F03009D
-			public const int controlBackground = 2130903197;
+			public const int contentScrim = 2130903197;
 			
 			// aapt resource value: 0x7F03009E
-			public const int coordinatorLayoutStyle = 2130903198;
+			public const int controlBackground = 2130903198;
 			
 			// aapt resource value: 0x7F03009F
-			public const int cornerRadius = 2130903199;
+			public const int coordinatorLayoutStyle = 2130903199;
 			
 			// aapt resource value: 0x7F0300A0
-			public const int counterEnabled = 2130903200;
+			public const int cornerRadius = 2130903200;
 			
 			// aapt resource value: 0x7F0300A1
-			public const int counterMaxLength = 2130903201;
+			public const int counterEnabled = 2130903201;
 			
 			// aapt resource value: 0x7F0300A2
-			public const int counterOverflowTextAppearance = 2130903202;
+			public const int counterMaxLength = 2130903202;
 			
 			// aapt resource value: 0x7F0300A3
-			public const int counterTextAppearance = 2130903203;
+			public const int counterOverflowTextAppearance = 2130903203;
 			
 			// aapt resource value: 0x7F0300A4
-			public const int customNavigationLayout = 2130903204;
+			public const int counterTextAppearance = 2130903204;
 			
 			// aapt resource value: 0x7F0300A5
-			public const int defaultQueryHint = 2130903205;
+			public const int customNavigationLayout = 2130903205;
 			
 			// aapt resource value: 0x7F0300A6
-			public const int dialogCornerRadius = 2130903206;
+			public const int defaultQueryHint = 2130903206;
 			
 			// aapt resource value: 0x7F0300A7
-			public const int dialogPreferredPadding = 2130903207;
+			public const int dialogCornerRadius = 2130903207;
 			
 			// aapt resource value: 0x7F0300A8
-			public const int dialogTheme = 2130903208;
+			public const int dialogPreferredPadding = 2130903208;
 			
 			// aapt resource value: 0x7F0300A9
-			public const int displayOptions = 2130903209;
+			public const int dialogTheme = 2130903209;
 			
 			// aapt resource value: 0x7F0300AA
-			public const int divider = 2130903210;
+			public const int displayOptions = 2130903210;
 			
 			// aapt resource value: 0x7F0300AB
-			public const int dividerHorizontal = 2130903211;
+			public const int divider = 2130903211;
 			
 			// aapt resource value: 0x7F0300AC
-			public const int dividerPadding = 2130903212;
+			public const int dividerHorizontal = 2130903212;
 			
 			// aapt resource value: 0x7F0300AD
-			public const int dividerVertical = 2130903213;
+			public const int dividerPadding = 2130903213;
 			
 			// aapt resource value: 0x7F0300AE
-			public const int drawableSize = 2130903214;
+			public const int dividerVertical = 2130903214;
 			
 			// aapt resource value: 0x7F0300AF
-			public const int drawerArrowStyle = 2130903215;
-			
-			// aapt resource value: 0x7F0300B1
-			public const int dropdownListPreferredItemHeight = 2130903217;
+			public const int drawableSize = 2130903215;
 			
 			// aapt resource value: 0x7F0300B0
-			public const int dropDownListViewStyle = 2130903216;
+			public const int drawerArrowStyle = 2130903216;
 			
 			// aapt resource value: 0x7F0300B2
-			public const int editTextBackground = 2130903218;
+			public const int dropdownListPreferredItemHeight = 2130903218;
+			
+			// aapt resource value: 0x7F0300B1
+			public const int dropDownListViewStyle = 2130903217;
 			
 			// aapt resource value: 0x7F0300B3
-			public const int editTextColor = 2130903219;
+			public const int editTextBackground = 2130903219;
 			
 			// aapt resource value: 0x7F0300B4
-			public const int editTextStyle = 2130903220;
+			public const int editTextColor = 2130903220;
 			
 			// aapt resource value: 0x7F0300B5
-			public const int elevation = 2130903221;
+			public const int editTextStyle = 2130903221;
 			
 			// aapt resource value: 0x7F0300B6
-			public const int enforceMaterialTheme = 2130903222;
+			public const int elevation = 2130903222;
 			
 			// aapt resource value: 0x7F0300B7
-			public const int enforceTextAppearance = 2130903223;
+			public const int enforceMaterialTheme = 2130903223;
 			
 			// aapt resource value: 0x7F0300B8
-			public const int errorEnabled = 2130903224;
+			public const int enforceTextAppearance = 2130903224;
 			
 			// aapt resource value: 0x7F0300B9
-			public const int errorTextAppearance = 2130903225;
+			public const int errorEnabled = 2130903225;
 			
 			// aapt resource value: 0x7F0300BA
-			public const int expandActivityOverflowButtonDrawable = 2130903226;
+			public const int errorTextAppearance = 2130903226;
 			
 			// aapt resource value: 0x7F0300BB
-			public const int expanded = 2130903227;
+			public const int expandActivityOverflowButtonDrawable = 2130903227;
 			
 			// aapt resource value: 0x7F0300BC
-			public const int expandedTitleGravity = 2130903228;
+			public const int expanded = 2130903228;
 			
 			// aapt resource value: 0x7F0300BD
-			public const int expandedTitleMargin = 2130903229;
+			public const int expandedTitleGravity = 2130903229;
 			
 			// aapt resource value: 0x7F0300BE
-			public const int expandedTitleMarginBottom = 2130903230;
+			public const int expandedTitleMargin = 2130903230;
 			
 			// aapt resource value: 0x7F0300BF
-			public const int expandedTitleMarginEnd = 2130903231;
+			public const int expandedTitleMarginBottom = 2130903231;
 			
 			// aapt resource value: 0x7F0300C0
-			public const int expandedTitleMarginStart = 2130903232;
+			public const int expandedTitleMarginEnd = 2130903232;
 			
 			// aapt resource value: 0x7F0300C1
-			public const int expandedTitleMarginTop = 2130903233;
+			public const int expandedTitleMarginStart = 2130903233;
 			
 			// aapt resource value: 0x7F0300C2
-			public const int expandedTitleTextAppearance = 2130903234;
+			public const int expandedTitleMarginTop = 2130903234;
 			
 			// aapt resource value: 0x7F0300C3
-			public const int fabAlignmentMode = 2130903235;
+			public const int expandedTitleTextAppearance = 2130903235;
 			
 			// aapt resource value: 0x7F0300C4
-			public const int fabCradleMargin = 2130903236;
+			public const int fabAlignmentMode = 2130903236;
 			
 			// aapt resource value: 0x7F0300C5
-			public const int fabCradleRoundedCornerRadius = 2130903237;
+			public const int fabCradleMargin = 2130903237;
 			
 			// aapt resource value: 0x7F0300C6
-			public const int fabCradleVerticalOffset = 2130903238;
+			public const int fabCradleRoundedCornerRadius = 2130903238;
 			
 			// aapt resource value: 0x7F0300C7
-			public const int fabCustomSize = 2130903239;
+			public const int fabCradleVerticalOffset = 2130903239;
 			
 			// aapt resource value: 0x7F0300C8
-			public const int fabSize = 2130903240;
+			public const int fabCustomSize = 2130903240;
 			
 			// aapt resource value: 0x7F0300C9
-			public const int fastScrollEnabled = 2130903241;
+			public const int fabSize = 2130903241;
 			
 			// aapt resource value: 0x7F0300CA
-			public const int fastScrollHorizontalThumbDrawable = 2130903242;
+			public const int fastScrollEnabled = 2130903242;
 			
 			// aapt resource value: 0x7F0300CB
-			public const int fastScrollHorizontalTrackDrawable = 2130903243;
+			public const int fastScrollHorizontalThumbDrawable = 2130903243;
 			
 			// aapt resource value: 0x7F0300CC
-			public const int fastScrollVerticalThumbDrawable = 2130903244;
+			public const int fastScrollHorizontalTrackDrawable = 2130903244;
 			
 			// aapt resource value: 0x7F0300CD
-			public const int fastScrollVerticalTrackDrawable = 2130903245;
+			public const int fastScrollVerticalThumbDrawable = 2130903245;
 			
 			// aapt resource value: 0x7F0300CE
-			public const int firstBaselineToTopHeight = 2130903246;
+			public const int fastScrollVerticalTrackDrawable = 2130903246;
 			
 			// aapt resource value: 0x7F0300CF
-			public const int floatingActionButtonStyle = 2130903247;
+			public const int firstBaselineToTopHeight = 2130903247;
 			
 			// aapt resource value: 0x7F0300D0
-			public const int font = 2130903248;
+			public const int floatingActionButtonStyle = 2130903248;
 			
 			// aapt resource value: 0x7F0300D1
-			public const int fontFamily = 2130903249;
+			public const int font = 2130903249;
 			
 			// aapt resource value: 0x7F0300D2
-			public const int fontProviderAuthority = 2130903250;
+			public const int fontFamily = 2130903250;
 			
 			// aapt resource value: 0x7F0300D3
-			public const int fontProviderCerts = 2130903251;
+			public const int fontProviderAuthority = 2130903251;
 			
 			// aapt resource value: 0x7F0300D4
-			public const int fontProviderFetchStrategy = 2130903252;
+			public const int fontProviderCerts = 2130903252;
 			
 			// aapt resource value: 0x7F0300D5
-			public const int fontProviderFetchTimeout = 2130903253;
+			public const int fontProviderFetchStrategy = 2130903253;
 			
 			// aapt resource value: 0x7F0300D6
-			public const int fontProviderPackage = 2130903254;
+			public const int fontProviderFetchTimeout = 2130903254;
 			
 			// aapt resource value: 0x7F0300D7
-			public const int fontProviderQuery = 2130903255;
+			public const int fontProviderPackage = 2130903255;
 			
 			// aapt resource value: 0x7F0300D8
-			public const int fontStyle = 2130903256;
+			public const int fontProviderQuery = 2130903256;
 			
 			// aapt resource value: 0x7F0300D9
-			public const int fontVariationSettings = 2130903257;
+			public const int fontStyle = 2130903257;
 			
 			// aapt resource value: 0x7F0300DA
-			public const int fontWeight = 2130903258;
+			public const int fontVariationSettings = 2130903258;
 			
 			// aapt resource value: 0x7F0300DB
-			public const int foregroundInsidePadding = 2130903259;
+			public const int fontWeight = 2130903259;
 			
 			// aapt resource value: 0x7F0300DC
-			public const int gapBetweenBars = 2130903260;
+			public const int foregroundInsidePadding = 2130903260;
 			
 			// aapt resource value: 0x7F0300DD
-			public const int goIcon = 2130903261;
+			public const int gapBetweenBars = 2130903261;
 			
 			// aapt resource value: 0x7F0300DE
-			public const int headerLayout = 2130903262;
+			public const int goIcon = 2130903262;
 			
 			// aapt resource value: 0x7F0300DF
-			public const int height = 2130903263;
+			public const int headerLayout = 2130903263;
 			
 			// aapt resource value: 0x7F0300E0
-			public const int helperText = 2130903264;
+			public const int height = 2130903264;
 			
 			// aapt resource value: 0x7F0300E1
-			public const int helperTextEnabled = 2130903265;
+			public const int helperText = 2130903265;
 			
 			// aapt resource value: 0x7F0300E2
-			public const int helperTextTextAppearance = 2130903266;
+			public const int helperTextEnabled = 2130903266;
 			
 			// aapt resource value: 0x7F0300E3
-			public const int hideMotionSpec = 2130903267;
+			public const int helperTextTextAppearance = 2130903267;
 			
 			// aapt resource value: 0x7F0300E4
-			public const int hideOnContentScroll = 2130903268;
+			public const int hideMotionSpec = 2130903268;
 			
 			// aapt resource value: 0x7F0300E5
-			public const int hideOnScroll = 2130903269;
+			public const int hideOnContentScroll = 2130903269;
 			
 			// aapt resource value: 0x7F0300E6
-			public const int hintAnimationEnabled = 2130903270;
+			public const int hideOnScroll = 2130903270;
 			
 			// aapt resource value: 0x7F0300E7
-			public const int hintEnabled = 2130903271;
+			public const int hintAnimationEnabled = 2130903271;
 			
 			// aapt resource value: 0x7F0300E8
-			public const int hintTextAppearance = 2130903272;
+			public const int hintEnabled = 2130903272;
 			
 			// aapt resource value: 0x7F0300E9
-			public const int homeAsUpIndicator = 2130903273;
+			public const int hintTextAppearance = 2130903273;
 			
 			// aapt resource value: 0x7F0300EA
-			public const int homeLayout = 2130903274;
+			public const int homeAsUpIndicator = 2130903274;
 			
 			// aapt resource value: 0x7F0300EB
-			public const int hoveredFocusedTranslationZ = 2130903275;
+			public const int homeLayout = 2130903275;
 			
 			// aapt resource value: 0x7F0300EC
-			public const int icon = 2130903276;
+			public const int hoveredFocusedTranslationZ = 2130903276;
 			
 			// aapt resource value: 0x7F0300ED
-			public const int iconEndPadding = 2130903277;
+			public const int icon = 2130903277;
 			
 			// aapt resource value: 0x7F0300EE
-			public const int iconGravity = 2130903278;
-			
-			// aapt resource value: 0x7F0300F4
-			public const int iconifiedByDefault = 2130903284;
+			public const int iconEndPadding = 2130903278;
 			
 			// aapt resource value: 0x7F0300EF
-			public const int iconPadding = 2130903279;
-			
-			// aapt resource value: 0x7F0300F0
-			public const int iconSize = 2130903280;
-			
-			// aapt resource value: 0x7F0300F1
-			public const int iconStartPadding = 2130903281;
-			
-			// aapt resource value: 0x7F0300F2
-			public const int iconTint = 2130903282;
-			
-			// aapt resource value: 0x7F0300F3
-			public const int iconTintMode = 2130903283;
+			public const int iconGravity = 2130903279;
 			
 			// aapt resource value: 0x7F0300F5
-			public const int imageButtonStyle = 2130903285;
+			public const int iconifiedByDefault = 2130903285;
+			
+			// aapt resource value: 0x7F0300F0
+			public const int iconPadding = 2130903280;
+			
+			// aapt resource value: 0x7F0300F1
+			public const int iconSize = 2130903281;
+			
+			// aapt resource value: 0x7F0300F2
+			public const int iconStartPadding = 2130903282;
+			
+			// aapt resource value: 0x7F0300F3
+			public const int iconTint = 2130903283;
+			
+			// aapt resource value: 0x7F0300F4
+			public const int iconTintMode = 2130903284;
 			
 			// aapt resource value: 0x7F0300F6
-			public const int indeterminateProgressStyle = 2130903286;
+			public const int imageButtonStyle = 2130903286;
 			
 			// aapt resource value: 0x7F0300F7
-			public const int initialActivityCount = 2130903287;
+			public const int indeterminateProgressStyle = 2130903287;
 			
 			// aapt resource value: 0x7F0300F8
-			public const int insetForeground = 2130903288;
+			public const int initialActivityCount = 2130903288;
 			
 			// aapt resource value: 0x7F0300F9
-			public const int isLightTheme = 2130903289;
+			public const int insetForeground = 2130903289;
 			
 			// aapt resource value: 0x7F0300FA
-			public const int itemBackground = 2130903290;
+			public const int isLightTheme = 2130903290;
 			
 			// aapt resource value: 0x7F0300FB
-			public const int itemHorizontalPadding = 2130903291;
+			public const int itemBackground = 2130903291;
 			
 			// aapt resource value: 0x7F0300FC
-			public const int itemHorizontalTranslationEnabled = 2130903292;
+			public const int itemHorizontalPadding = 2130903292;
 			
 			// aapt resource value: 0x7F0300FD
-			public const int itemIconPadding = 2130903293;
+			public const int itemHorizontalTranslationEnabled = 2130903293;
 			
 			// aapt resource value: 0x7F0300FE
-			public const int itemIconSize = 2130903294;
+			public const int itemIconPadding = 2130903294;
 			
 			// aapt resource value: 0x7F0300FF
-			public const int itemIconTint = 2130903295;
+			public const int itemIconSize = 2130903295;
 			
 			// aapt resource value: 0x7F030100
-			public const int itemPadding = 2130903296;
+			public const int itemIconTint = 2130903296;
 			
 			// aapt resource value: 0x7F030101
-			public const int itemSpacing = 2130903297;
+			public const int itemPadding = 2130903297;
 			
 			// aapt resource value: 0x7F030102
-			public const int itemTextAppearance = 2130903298;
+			public const int itemSpacing = 2130903298;
 			
 			// aapt resource value: 0x7F030103
-			public const int itemTextAppearanceActive = 2130903299;
+			public const int itemTextAppearance = 2130903299;
 			
 			// aapt resource value: 0x7F030104
-			public const int itemTextAppearanceInactive = 2130903300;
+			public const int itemTextAppearanceActive = 2130903300;
 			
 			// aapt resource value: 0x7F030105
-			public const int itemTextColor = 2130903301;
+			public const int itemTextAppearanceInactive = 2130903301;
 			
 			// aapt resource value: 0x7F030106
-			public const int keylines = 2130903302;
+			public const int itemTextColor = 2130903302;
 			
 			// aapt resource value: 0x7F030107
-			public const int labelVisibilityMode = 2130903303;
+			public const int keylines = 2130903303;
 			
 			// aapt resource value: 0x7F030108
-			public const int lastBaselineToBottomHeight = 2130903304;
+			public const int labelVisibilityMode = 2130903304;
 			
 			// aapt resource value: 0x7F030109
-			public const int layout = 2130903305;
+			public const int lastBaselineToBottomHeight = 2130903305;
 			
 			// aapt resource value: 0x7F03010A
-			public const int layoutManager = 2130903306;
+			public const int layout = 2130903306;
 			
 			// aapt resource value: 0x7F03010B
-			public const int layout_anchor = 2130903307;
+			public const int layoutManager = 2130903307;
 			
 			// aapt resource value: 0x7F03010C
-			public const int layout_anchorGravity = 2130903308;
+			public const int layout_anchor = 2130903308;
 			
 			// aapt resource value: 0x7F03010D
-			public const int layout_behavior = 2130903309;
+			public const int layout_anchorGravity = 2130903309;
 			
 			// aapt resource value: 0x7F03010E
-			public const int layout_collapseMode = 2130903310;
+			public const int layout_behavior = 2130903310;
 			
 			// aapt resource value: 0x7F03010F
-			public const int layout_collapseParallaxMultiplier = 2130903311;
+			public const int layout_collapseMode = 2130903311;
 			
 			// aapt resource value: 0x7F030110
-			public const int layout_dodgeInsetEdges = 2130903312;
+			public const int layout_collapseParallaxMultiplier = 2130903312;
 			
 			// aapt resource value: 0x7F030111
-			public const int layout_insetEdge = 2130903313;
+			public const int layout_dodgeInsetEdges = 2130903313;
 			
 			// aapt resource value: 0x7F030112
-			public const int layout_keyline = 2130903314;
+			public const int layout_insetEdge = 2130903314;
 			
 			// aapt resource value: 0x7F030113
-			public const int layout_scrollFlags = 2130903315;
+			public const int layout_keyline = 2130903315;
 			
 			// aapt resource value: 0x7F030114
-			public const int layout_scrollInterpolator = 2130903316;
+			public const int layout_scrollFlags = 2130903316;
 			
 			// aapt resource value: 0x7F030115
-			public const int liftOnScroll = 2130903317;
+			public const int layout_scrollInterpolator = 2130903317;
 			
 			// aapt resource value: 0x7F030116
-			public const int lineHeight = 2130903318;
+			public const int liftOnScroll = 2130903318;
 			
 			// aapt resource value: 0x7F030117
-			public const int lineSpacing = 2130903319;
+			public const int lineHeight = 2130903319;
 			
 			// aapt resource value: 0x7F030118
-			public const int listChoiceBackgroundIndicator = 2130903320;
+			public const int lineSpacing = 2130903320;
 			
 			// aapt resource value: 0x7F030119
-			public const int listDividerAlertDialog = 2130903321;
+			public const int listChoiceBackgroundIndicator = 2130903321;
 			
 			// aapt resource value: 0x7F03011A
-			public const int listItemLayout = 2130903322;
+			public const int listDividerAlertDialog = 2130903322;
 			
 			// aapt resource value: 0x7F03011B
-			public const int listLayout = 2130903323;
+			public const int listItemLayout = 2130903323;
 			
 			// aapt resource value: 0x7F03011C
-			public const int listMenuViewStyle = 2130903324;
+			public const int listLayout = 2130903324;
 			
 			// aapt resource value: 0x7F03011D
-			public const int listPopupWindowStyle = 2130903325;
+			public const int listMenuViewStyle = 2130903325;
 			
 			// aapt resource value: 0x7F03011E
-			public const int listPreferredItemHeight = 2130903326;
+			public const int listPopupWindowStyle = 2130903326;
 			
 			// aapt resource value: 0x7F03011F
-			public const int listPreferredItemHeightLarge = 2130903327;
+			public const int listPreferredItemHeight = 2130903327;
 			
 			// aapt resource value: 0x7F030120
-			public const int listPreferredItemHeightSmall = 2130903328;
+			public const int listPreferredItemHeightLarge = 2130903328;
 			
 			// aapt resource value: 0x7F030121
-			public const int listPreferredItemPaddingLeft = 2130903329;
+			public const int listPreferredItemHeightSmall = 2130903329;
 			
 			// aapt resource value: 0x7F030122
-			public const int listPreferredItemPaddingRight = 2130903330;
+			public const int listPreferredItemPaddingLeft = 2130903330;
 			
 			// aapt resource value: 0x7F030123
-			public const int logo = 2130903331;
+			public const int listPreferredItemPaddingRight = 2130903331;
 			
 			// aapt resource value: 0x7F030124
-			public const int logoDescription = 2130903332;
+			public const int logo = 2130903332;
 			
 			// aapt resource value: 0x7F030125
-			public const int materialButtonStyle = 2130903333;
+			public const int logoDescription = 2130903333;
 			
 			// aapt resource value: 0x7F030126
-			public const int materialCardViewStyle = 2130903334;
+			public const int materialButtonStyle = 2130903334;
 			
 			// aapt resource value: 0x7F030127
-			public const int maxActionInlineWidth = 2130903335;
+			public const int materialCardViewStyle = 2130903335;
 			
 			// aapt resource value: 0x7F030128
-			public const int maxButtonHeight = 2130903336;
+			public const int maxActionInlineWidth = 2130903336;
 			
 			// aapt resource value: 0x7F030129
-			public const int maxImageSize = 2130903337;
+			public const int maxButtonHeight = 2130903337;
 			
 			// aapt resource value: 0x7F03012A
-			public const int measureWithLargestChild = 2130903338;
+			public const int maxImageSize = 2130903338;
 			
 			// aapt resource value: 0x7F03012B
-			public const int menu = 2130903339;
+			public const int measureWithLargestChild = 2130903339;
 			
 			// aapt resource value: 0x7F03012C
-			public const int multiChoiceItemLayout = 2130903340;
+			public const int menu = 2130903340;
 			
 			// aapt resource value: 0x7F03012D
-			public const int navigationContentDescription = 2130903341;
+			public const int multiChoiceItemLayout = 2130903341;
 			
 			// aapt resource value: 0x7F03012E
-			public const int navigationIcon = 2130903342;
+			public const int navigationContentDescription = 2130903342;
 			
 			// aapt resource value: 0x7F03012F
-			public const int navigationMode = 2130903343;
+			public const int navigationIcon = 2130903343;
 			
 			// aapt resource value: 0x7F030130
-			public const int navigationViewStyle = 2130903344;
+			public const int navigationMode = 2130903344;
 			
 			// aapt resource value: 0x7F030131
-			public const int numericModifiers = 2130903345;
+			public const int navigationViewStyle = 2130903345;
 			
 			// aapt resource value: 0x7F030132
-			public const int overlapAnchor = 2130903346;
+			public const int numericModifiers = 2130903346;
 			
 			// aapt resource value: 0x7F030133
-			public const int paddingBottomNoButtons = 2130903347;
+			public const int overlapAnchor = 2130903347;
 			
 			// aapt resource value: 0x7F030134
-			public const int paddingEnd = 2130903348;
+			public const int paddingBottomNoButtons = 2130903348;
 			
 			// aapt resource value: 0x7F030135
-			public const int paddingStart = 2130903349;
+			public const int paddingEnd = 2130903349;
 			
 			// aapt resource value: 0x7F030136
-			public const int paddingTopNoTitle = 2130903350;
+			public const int paddingStart = 2130903350;
 			
 			// aapt resource value: 0x7F030137
-			public const int panelBackground = 2130903351;
+			public const int paddingTopNoTitle = 2130903351;
 			
 			// aapt resource value: 0x7F030138
-			public const int panelMenuListTheme = 2130903352;
+			public const int panelBackground = 2130903352;
 			
 			// aapt resource value: 0x7F030139
-			public const int panelMenuListWidth = 2130903353;
+			public const int panelMenuListTheme = 2130903353;
 			
 			// aapt resource value: 0x7F03013A
-			public const int passwordToggleContentDescription = 2130903354;
+			public const int panelMenuListWidth = 2130903354;
 			
 			// aapt resource value: 0x7F03013B
-			public const int passwordToggleDrawable = 2130903355;
+			public const int passwordToggleContentDescription = 2130903355;
 			
 			// aapt resource value: 0x7F03013C
-			public const int passwordToggleEnabled = 2130903356;
+			public const int passwordToggleDrawable = 2130903356;
 			
 			// aapt resource value: 0x7F03013D
-			public const int passwordToggleTint = 2130903357;
+			public const int passwordToggleEnabled = 2130903357;
 			
 			// aapt resource value: 0x7F03013E
-			public const int passwordToggleTintMode = 2130903358;
+			public const int passwordToggleTint = 2130903358;
 			
 			// aapt resource value: 0x7F03013F
-			public const int popupMenuStyle = 2130903359;
+			public const int passwordToggleTintMode = 2130903359;
 			
 			// aapt resource value: 0x7F030140
-			public const int popupTheme = 2130903360;
+			public const int popupMenuStyle = 2130903360;
 			
 			// aapt resource value: 0x7F030141
-			public const int popupWindowStyle = 2130903361;
+			public const int popupTheme = 2130903361;
 			
 			// aapt resource value: 0x7F030142
-			public const int preserveIconSpacing = 2130903362;
+			public const int popupWindowStyle = 2130903362;
 			
 			// aapt resource value: 0x7F030143
-			public const int pressedTranslationZ = 2130903363;
+			public const int preserveIconSpacing = 2130903363;
 			
 			// aapt resource value: 0x7F030144
-			public const int progressBarPadding = 2130903364;
+			public const int pressedTranslationZ = 2130903364;
 			
 			// aapt resource value: 0x7F030145
-			public const int progressBarStyle = 2130903365;
+			public const int progressBarPadding = 2130903365;
 			
 			// aapt resource value: 0x7F030146
-			public const int queryBackground = 2130903366;
+			public const int progressBarStyle = 2130903366;
 			
 			// aapt resource value: 0x7F030147
-			public const int queryHint = 2130903367;
+			public const int queryBackground = 2130903367;
 			
 			// aapt resource value: 0x7F030148
-			public const int radioButtonStyle = 2130903368;
+			public const int queryHint = 2130903368;
 			
 			// aapt resource value: 0x7F030149
-			public const int ratingBarStyle = 2130903369;
+			public const int radioButtonStyle = 2130903369;
 			
 			// aapt resource value: 0x7F03014A
-			public const int ratingBarStyleIndicator = 2130903370;
+			public const int ratingBarStyle = 2130903370;
 			
 			// aapt resource value: 0x7F03014B
-			public const int ratingBarStyleSmall = 2130903371;
+			public const int ratingBarStyleIndicator = 2130903371;
 			
 			// aapt resource value: 0x7F03014C
-			public const int reverseLayout = 2130903372;
+			public const int ratingBarStyleSmall = 2130903372;
 			
 			// aapt resource value: 0x7F03014D
-			public const int rippleColor = 2130903373;
+			public const int reverseLayout = 2130903373;
 			
 			// aapt resource value: 0x7F03014E
-			public const int scrimAnimationDuration = 2130903374;
+			public const int rippleColor = 2130903374;
 			
 			// aapt resource value: 0x7F03014F
-			public const int scrimBackground = 2130903375;
+			public const int scrimAnimationDuration = 2130903375;
 			
 			// aapt resource value: 0x7F030150
-			public const int scrimVisibleHeightTrigger = 2130903376;
+			public const int scrimBackground = 2130903376;
 			
 			// aapt resource value: 0x7F030151
-			public const int searchHintIcon = 2130903377;
+			public const int scrimVisibleHeightTrigger = 2130903377;
 			
 			// aapt resource value: 0x7F030152
-			public const int searchIcon = 2130903378;
+			public const int searchHintIcon = 2130903378;
 			
 			// aapt resource value: 0x7F030153
-			public const int searchViewStyle = 2130903379;
+			public const int searchIcon = 2130903379;
 			
 			// aapt resource value: 0x7F030154
-			public const int seekBarStyle = 2130903380;
+			public const int searchViewStyle = 2130903380;
 			
 			// aapt resource value: 0x7F030155
-			public const int selectableItemBackground = 2130903381;
+			public const int seekBarStyle = 2130903381;
 			
 			// aapt resource value: 0x7F030156
-			public const int selectableItemBackgroundBorderless = 2130903382;
+			public const int selectableItemBackground = 2130903382;
 			
 			// aapt resource value: 0x7F030157
-			public const int showAsAction = 2130903383;
+			public const int selectableItemBackgroundBorderless = 2130903383;
 			
 			// aapt resource value: 0x7F030158
-			public const int showDividers = 2130903384;
+			public const int showAsAction = 2130903384;
 			
 			// aapt resource value: 0x7F030159
-			public const int showMotionSpec = 2130903385;
+			public const int showDividers = 2130903385;
 			
 			// aapt resource value: 0x7F03015A
-			public const int showText = 2130903386;
+			public const int showMotionSpec = 2130903386;
 			
 			// aapt resource value: 0x7F03015B
-			public const int showTitle = 2130903387;
+			public const int showText = 2130903387;
 			
 			// aapt resource value: 0x7F03015C
-			public const int singleChoiceItemLayout = 2130903388;
+			public const int showTitle = 2130903388;
 			
 			// aapt resource value: 0x7F03015D
-			public const int singleLine = 2130903389;
+			public const int singleChoiceItemLayout = 2130903389;
 			
 			// aapt resource value: 0x7F03015E
-			public const int singleSelection = 2130903390;
+			public const int singleLine = 2130903390;
 			
 			// aapt resource value: 0x7F03015F
-			public const int snackbarButtonStyle = 2130903391;
+			public const int singleSelection = 2130903391;
 			
 			// aapt resource value: 0x7F030160
-			public const int snackbarStyle = 2130903392;
+			public const int snackbarButtonStyle = 2130903392;
 			
 			// aapt resource value: 0x7F030161
-			public const int spanCount = 2130903393;
+			public const int snackbarStyle = 2130903393;
 			
 			// aapt resource value: 0x7F030162
-			public const int spinBars = 2130903394;
+			public const int spanCount = 2130903394;
 			
 			// aapt resource value: 0x7F030163
-			public const int spinnerDropDownItemStyle = 2130903395;
+			public const int spinBars = 2130903395;
 			
 			// aapt resource value: 0x7F030164
-			public const int spinnerStyle = 2130903396;
+			public const int spinnerDropDownItemStyle = 2130903396;
 			
 			// aapt resource value: 0x7F030165
-			public const int splitTrack = 2130903397;
+			public const int spinnerStyle = 2130903397;
 			
 			// aapt resource value: 0x7F030166
-			public const int srcCompat = 2130903398;
+			public const int splitTrack = 2130903398;
 			
 			// aapt resource value: 0x7F030167
-			public const int stackFromEnd = 2130903399;
+			public const int srcCompat = 2130903399;
 			
 			// aapt resource value: 0x7F030168
-			public const int state_above_anchor = 2130903400;
+			public const int stackFromEnd = 2130903400;
 			
 			// aapt resource value: 0x7F030169
-			public const int state_collapsed = 2130903401;
+			public const int state_above_anchor = 2130903401;
 			
 			// aapt resource value: 0x7F03016A
-			public const int state_collapsible = 2130903402;
+			public const int state_collapsed = 2130903402;
 			
 			// aapt resource value: 0x7F03016B
-			public const int state_liftable = 2130903403;
+			public const int state_collapsible = 2130903403;
 			
 			// aapt resource value: 0x7F03016C
-			public const int state_lifted = 2130903404;
+			public const int state_liftable = 2130903404;
 			
 			// aapt resource value: 0x7F03016D
-			public const int statusBarBackground = 2130903405;
+			public const int state_lifted = 2130903405;
 			
 			// aapt resource value: 0x7F03016E
-			public const int statusBarScrim = 2130903406;
+			public const int statusBarBackground = 2130903406;
 			
 			// aapt resource value: 0x7F03016F
-			public const int strokeColor = 2130903407;
+			public const int statusBarScrim = 2130903407;
 			
 			// aapt resource value: 0x7F030170
-			public const int strokeWidth = 2130903408;
+			public const int strokeColor = 2130903408;
 			
 			// aapt resource value: 0x7F030171
-			public const int subMenuArrow = 2130903409;
+			public const int strokeWidth = 2130903409;
 			
 			// aapt resource value: 0x7F030172
-			public const int submitBackground = 2130903410;
+			public const int subMenuArrow = 2130903410;
 			
 			// aapt resource value: 0x7F030173
-			public const int subtitle = 2130903411;
+			public const int submitBackground = 2130903411;
 			
 			// aapt resource value: 0x7F030174
-			public const int subtitleTextAppearance = 2130903412;
+			public const int subtitle = 2130903412;
 			
 			// aapt resource value: 0x7F030175
-			public const int subtitleTextColor = 2130903413;
+			public const int subtitleTextAppearance = 2130903413;
 			
 			// aapt resource value: 0x7F030176
-			public const int subtitleTextStyle = 2130903414;
+			public const int subtitleTextColor = 2130903414;
 			
 			// aapt resource value: 0x7F030177
-			public const int suggestionRowLayout = 2130903415;
+			public const int subtitleTextStyle = 2130903415;
 			
 			// aapt resource value: 0x7F030178
-			public const int switchMinWidth = 2130903416;
+			public const int suggestionRowLayout = 2130903416;
 			
 			// aapt resource value: 0x7F030179
-			public const int switchPadding = 2130903417;
+			public const int switchMinWidth = 2130903417;
 			
 			// aapt resource value: 0x7F03017A
-			public const int switchStyle = 2130903418;
+			public const int switchPadding = 2130903418;
 			
 			// aapt resource value: 0x7F03017B
-			public const int switchTextAppearance = 2130903419;
+			public const int switchStyle = 2130903419;
 			
 			// aapt resource value: 0x7F03017C
-			public const int tabBackground = 2130903420;
+			public const int switchTextAppearance = 2130903420;
 			
 			// aapt resource value: 0x7F03017D
-			public const int tabContentStart = 2130903421;
+			public const int tabBackground = 2130903421;
 			
 			// aapt resource value: 0x7F03017E
-			public const int tabGravity = 2130903422;
+			public const int tabContentStart = 2130903422;
 			
 			// aapt resource value: 0x7F03017F
-			public const int tabIconTint = 2130903423;
+			public const int tabGravity = 2130903423;
 			
 			// aapt resource value: 0x7F030180
-			public const int tabIconTintMode = 2130903424;
+			public const int tabIconTint = 2130903424;
 			
 			// aapt resource value: 0x7F030181
-			public const int tabIndicator = 2130903425;
+			public const int tabIconTintMode = 2130903425;
 			
 			// aapt resource value: 0x7F030182
-			public const int tabIndicatorAnimationDuration = 2130903426;
+			public const int tabIndicator = 2130903426;
 			
 			// aapt resource value: 0x7F030183
-			public const int tabIndicatorColor = 2130903427;
+			public const int tabIndicatorAnimationDuration = 2130903427;
 			
 			// aapt resource value: 0x7F030184
-			public const int tabIndicatorFullWidth = 2130903428;
+			public const int tabIndicatorColor = 2130903428;
 			
 			// aapt resource value: 0x7F030185
-			public const int tabIndicatorGravity = 2130903429;
+			public const int tabIndicatorFullWidth = 2130903429;
 			
 			// aapt resource value: 0x7F030186
-			public const int tabIndicatorHeight = 2130903430;
+			public const int tabIndicatorGravity = 2130903430;
 			
 			// aapt resource value: 0x7F030187
-			public const int tabInlineLabel = 2130903431;
+			public const int tabIndicatorHeight = 2130903431;
 			
 			// aapt resource value: 0x7F030188
-			public const int tabMaxWidth = 2130903432;
+			public const int tabInlineLabel = 2130903432;
 			
 			// aapt resource value: 0x7F030189
-			public const int tabMinWidth = 2130903433;
+			public const int tabMaxWidth = 2130903433;
 			
 			// aapt resource value: 0x7F03018A
-			public const int tabMode = 2130903434;
+			public const int tabMinWidth = 2130903434;
 			
 			// aapt resource value: 0x7F03018B
-			public const int tabPadding = 2130903435;
+			public const int tabMode = 2130903435;
 			
 			// aapt resource value: 0x7F03018C
-			public const int tabPaddingBottom = 2130903436;
+			public const int tabPadding = 2130903436;
 			
 			// aapt resource value: 0x7F03018D
-			public const int tabPaddingEnd = 2130903437;
+			public const int tabPaddingBottom = 2130903437;
 			
 			// aapt resource value: 0x7F03018E
-			public const int tabPaddingStart = 2130903438;
+			public const int tabPaddingEnd = 2130903438;
 			
 			// aapt resource value: 0x7F03018F
-			public const int tabPaddingTop = 2130903439;
+			public const int tabPaddingStart = 2130903439;
 			
 			// aapt resource value: 0x7F030190
-			public const int tabRippleColor = 2130903440;
+			public const int tabPaddingTop = 2130903440;
 			
 			// aapt resource value: 0x7F030191
-			public const int tabSelectedTextColor = 2130903441;
+			public const int tabRippleColor = 2130903441;
 			
 			// aapt resource value: 0x7F030192
-			public const int tabStyle = 2130903442;
+			public const int tabSelectedTextColor = 2130903442;
 			
 			// aapt resource value: 0x7F030193
-			public const int tabTextAppearance = 2130903443;
+			public const int tabStyle = 2130903443;
 			
 			// aapt resource value: 0x7F030194
-			public const int tabTextColor = 2130903444;
+			public const int tabTextAppearance = 2130903444;
 			
 			// aapt resource value: 0x7F030195
-			public const int tabUnboundedRipple = 2130903445;
+			public const int tabTextColor = 2130903445;
 			
 			// aapt resource value: 0x7F030196
-			public const int textAllCaps = 2130903446;
+			public const int tabUnboundedRipple = 2130903446;
 			
 			// aapt resource value: 0x7F030197
-			public const int textAppearanceBody1 = 2130903447;
+			public const int textAllCaps = 2130903447;
 			
 			// aapt resource value: 0x7F030198
-			public const int textAppearanceBody2 = 2130903448;
+			public const int textAppearanceBody1 = 2130903448;
 			
 			// aapt resource value: 0x7F030199
-			public const int textAppearanceButton = 2130903449;
+			public const int textAppearanceBody2 = 2130903449;
 			
 			// aapt resource value: 0x7F03019A
-			public const int textAppearanceCaption = 2130903450;
+			public const int textAppearanceButton = 2130903450;
 			
 			// aapt resource value: 0x7F03019B
-			public const int textAppearanceHeadline1 = 2130903451;
+			public const int textAppearanceCaption = 2130903451;
 			
 			// aapt resource value: 0x7F03019C
-			public const int textAppearanceHeadline2 = 2130903452;
+			public const int textAppearanceHeadline1 = 2130903452;
 			
 			// aapt resource value: 0x7F03019D
-			public const int textAppearanceHeadline3 = 2130903453;
+			public const int textAppearanceHeadline2 = 2130903453;
 			
 			// aapt resource value: 0x7F03019E
-			public const int textAppearanceHeadline4 = 2130903454;
+			public const int textAppearanceHeadline3 = 2130903454;
 			
 			// aapt resource value: 0x7F03019F
-			public const int textAppearanceHeadline5 = 2130903455;
+			public const int textAppearanceHeadline4 = 2130903455;
 			
 			// aapt resource value: 0x7F0301A0
-			public const int textAppearanceHeadline6 = 2130903456;
+			public const int textAppearanceHeadline5 = 2130903456;
 			
 			// aapt resource value: 0x7F0301A1
-			public const int textAppearanceLargePopupMenu = 2130903457;
+			public const int textAppearanceHeadline6 = 2130903457;
 			
 			// aapt resource value: 0x7F0301A2
-			public const int textAppearanceListItem = 2130903458;
+			public const int textAppearanceLargePopupMenu = 2130903458;
 			
 			// aapt resource value: 0x7F0301A3
-			public const int textAppearanceListItemSecondary = 2130903459;
+			public const int textAppearanceListItem = 2130903459;
 			
 			// aapt resource value: 0x7F0301A4
-			public const int textAppearanceListItemSmall = 2130903460;
+			public const int textAppearanceListItemSecondary = 2130903460;
 			
 			// aapt resource value: 0x7F0301A5
-			public const int textAppearanceOverline = 2130903461;
+			public const int textAppearanceListItemSmall = 2130903461;
 			
 			// aapt resource value: 0x7F0301A6
-			public const int textAppearancePopupMenuHeader = 2130903462;
+			public const int textAppearanceOverline = 2130903462;
 			
 			// aapt resource value: 0x7F0301A7
-			public const int textAppearanceSearchResultSubtitle = 2130903463;
+			public const int textAppearancePopupMenuHeader = 2130903463;
 			
 			// aapt resource value: 0x7F0301A8
-			public const int textAppearanceSearchResultTitle = 2130903464;
+			public const int textAppearanceSearchResultSubtitle = 2130903464;
 			
 			// aapt resource value: 0x7F0301A9
-			public const int textAppearanceSmallPopupMenu = 2130903465;
+			public const int textAppearanceSearchResultTitle = 2130903465;
 			
 			// aapt resource value: 0x7F0301AA
-			public const int textAppearanceSubtitle1 = 2130903466;
+			public const int textAppearanceSmallPopupMenu = 2130903466;
 			
 			// aapt resource value: 0x7F0301AB
-			public const int textAppearanceSubtitle2 = 2130903467;
+			public const int textAppearanceSubtitle1 = 2130903467;
 			
 			// aapt resource value: 0x7F0301AC
-			public const int textColorAlertDialogListItem = 2130903468;
+			public const int textAppearanceSubtitle2 = 2130903468;
 			
 			// aapt resource value: 0x7F0301AD
-			public const int textColorSearchUrl = 2130903469;
+			public const int textColorAlertDialogListItem = 2130903469;
 			
 			// aapt resource value: 0x7F0301AE
-			public const int textEndPadding = 2130903470;
+			public const int textColorSearchUrl = 2130903470;
 			
 			// aapt resource value: 0x7F0301AF
-			public const int textInputStyle = 2130903471;
+			public const int textEndPadding = 2130903471;
 			
 			// aapt resource value: 0x7F0301B0
-			public const int textStartPadding = 2130903472;
+			public const int textInputStyle = 2130903472;
 			
 			// aapt resource value: 0x7F0301B1
-			public const int theme = 2130903473;
+			public const int textStartPadding = 2130903473;
 			
 			// aapt resource value: 0x7F0301B2
-			public const int thickness = 2130903474;
+			public const int theme = 2130903474;
 			
 			// aapt resource value: 0x7F0301B3
-			public const int thumbTextPadding = 2130903475;
+			public const int thickness = 2130903475;
 			
 			// aapt resource value: 0x7F0301B4
-			public const int thumbTint = 2130903476;
+			public const int thumbTextPadding = 2130903476;
 			
 			// aapt resource value: 0x7F0301B5
-			public const int thumbTintMode = 2130903477;
+			public const int thumbTint = 2130903477;
 			
 			// aapt resource value: 0x7F0301B6
-			public const int tickMark = 2130903478;
+			public const int thumbTintMode = 2130903478;
 			
 			// aapt resource value: 0x7F0301B7
-			public const int tickMarkTint = 2130903479;
+			public const int tickMark = 2130903479;
 			
 			// aapt resource value: 0x7F0301B8
-			public const int tickMarkTintMode = 2130903480;
+			public const int tickMarkTint = 2130903480;
 			
 			// aapt resource value: 0x7F0301B9
-			public const int tint = 2130903481;
+			public const int tickMarkTintMode = 2130903481;
 			
 			// aapt resource value: 0x7F0301BA
-			public const int tintMode = 2130903482;
+			public const int tint = 2130903482;
 			
 			// aapt resource value: 0x7F0301BB
-			public const int title = 2130903483;
+			public const int tintMode = 2130903483;
 			
 			// aapt resource value: 0x7F0301BC
-			public const int titleEnabled = 2130903484;
+			public const int title = 2130903484;
 			
 			// aapt resource value: 0x7F0301BD
-			public const int titleMargin = 2130903485;
+			public const int titleEnabled = 2130903485;
 			
 			// aapt resource value: 0x7F0301BE
-			public const int titleMarginBottom = 2130903486;
+			public const int titleMargin = 2130903486;
 			
 			// aapt resource value: 0x7F0301BF
-			public const int titleMarginEnd = 2130903487;
-			
-			// aapt resource value: 0x7F0301C2
-			public const int titleMargins = 2130903490;
+			public const int titleMarginBottom = 2130903487;
 			
 			// aapt resource value: 0x7F0301C0
-			public const int titleMarginStart = 2130903488;
-			
-			// aapt resource value: 0x7F0301C1
-			public const int titleMarginTop = 2130903489;
+			public const int titleMarginEnd = 2130903488;
 			
 			// aapt resource value: 0x7F0301C3
-			public const int titleTextAppearance = 2130903491;
+			public const int titleMargins = 2130903491;
+			
+			// aapt resource value: 0x7F0301C1
+			public const int titleMarginStart = 2130903489;
+			
+			// aapt resource value: 0x7F0301C2
+			public const int titleMarginTop = 2130903490;
 			
 			// aapt resource value: 0x7F0301C4
-			public const int titleTextColor = 2130903492;
+			public const int titleTextAppearance = 2130903492;
 			
 			// aapt resource value: 0x7F0301C5
-			public const int titleTextStyle = 2130903493;
+			public const int titleTextColor = 2130903493;
 			
 			// aapt resource value: 0x7F0301C6
-			public const int toolbarId = 2130903494;
+			public const int titleTextStyle = 2130903494;
 			
 			// aapt resource value: 0x7F0301C7
-			public const int toolbarNavigationButtonStyle = 2130903495;
+			public const int toolbarId = 2130903495;
 			
 			// aapt resource value: 0x7F0301C8
-			public const int toolbarStyle = 2130903496;
+			public const int toolbarNavigationButtonStyle = 2130903496;
 			
 			// aapt resource value: 0x7F0301C9
-			public const int tooltipForegroundColor = 2130903497;
+			public const int toolbarStyle = 2130903497;
 			
 			// aapt resource value: 0x7F0301CA
-			public const int tooltipFrameBackground = 2130903498;
+			public const int tooltipForegroundColor = 2130903498;
 			
 			// aapt resource value: 0x7F0301CB
-			public const int tooltipText = 2130903499;
+			public const int tooltipFrameBackground = 2130903499;
 			
 			// aapt resource value: 0x7F0301CC
-			public const int track = 2130903500;
+			public const int tooltipText = 2130903500;
 			
 			// aapt resource value: 0x7F0301CD
-			public const int trackTint = 2130903501;
+			public const int track = 2130903501;
 			
 			// aapt resource value: 0x7F0301CE
-			public const int trackTintMode = 2130903502;
+			public const int trackTint = 2130903502;
 			
 			// aapt resource value: 0x7F0301CF
-			public const int ttcIndex = 2130903503;
+			public const int trackTintMode = 2130903503;
 			
 			// aapt resource value: 0x7F0301D0
-			public const int useCompatPadding = 2130903504;
+			public const int ttcIndex = 2130903504;
 			
 			// aapt resource value: 0x7F0301D1
-			public const int viewInflaterClass = 2130903505;
+			public const int useCompatPadding = 2130903505;
 			
 			// aapt resource value: 0x7F0301D2
-			public const int voiceIcon = 2130903506;
+			public const int viewInflaterClass = 2130903506;
 			
 			// aapt resource value: 0x7F0301D3
-			public const int windowActionBar = 2130903507;
+			public const int voiceIcon = 2130903507;
 			
 			// aapt resource value: 0x7F0301D4
-			public const int windowActionBarOverlay = 2130903508;
+			public const int windowActionBar = 2130903508;
 			
 			// aapt resource value: 0x7F0301D5
-			public const int windowActionModeOverlay = 2130903509;
+			public const int windowActionBarOverlay = 2130903509;
 			
 			// aapt resource value: 0x7F0301D6
-			public const int windowFixedHeightMajor = 2130903510;
+			public const int windowActionModeOverlay = 2130903510;
 			
 			// aapt resource value: 0x7F0301D7
-			public const int windowFixedHeightMinor = 2130903511;
+			public const int windowFixedHeightMajor = 2130903511;
 			
 			// aapt resource value: 0x7F0301D8
-			public const int windowFixedWidthMajor = 2130903512;
+			public const int windowFixedHeightMinor = 2130903512;
 			
 			// aapt resource value: 0x7F0301D9
-			public const int windowFixedWidthMinor = 2130903513;
+			public const int windowFixedWidthMajor = 2130903513;
 			
 			// aapt resource value: 0x7F0301DA
-			public const int windowMinWidthMajor = 2130903514;
+			public const int windowFixedWidthMinor = 2130903514;
 			
 			// aapt resource value: 0x7F0301DB
-			public const int windowMinWidthMinor = 2130903515;
+			public const int windowMinWidthMajor = 2130903515;
 			
 			// aapt resource value: 0x7F0301DC
-			public const int windowNoTitle = 2130903516;
+			public const int windowMinWidthMinor = 2130903516;
+			
+			// aapt resource value: 0x7F0301DD
+			public const int windowNoTitle = 2130903517;
 			
 			static Attribute()
 			{
@@ -12094,7 +14679,10 @@ namespace NeuToDo.Droid
 			public const int CardView_Light = 2131624133;
 			
 			// aapt resource value: 0x7F0E01F7
-			public const int collectionViewStyle = 2131624439;
+			public const int collectionViewScrollBars = 2131624439;
+			
+			// aapt resource value: 0x7F0E01F8
+			public const int collectionViewTheme = 2131624440;
 			
 			// aapt resource value: 0x7F0E00C6
 			public const int MainTheme = 2131624134;
@@ -13024,37 +15612,37 @@ namespace NeuToDo.Droid
 		public partial class Styleable
 		{
 			
-			// aapt resource value: { 0x7F030031,0x7F030032,0x7F030033,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F0300A4,0x7F0300A9,0x7F0300AA,0x7F0300B5,0x7F0300DF,0x7F0300E4,0x7F0300E9,0x7F0300EA,0x7F0300EC,0x7F0300F6,0x7F030100,0x7F030123,0x7F03012F,0x7F030140,0x7F030144,0x7F030145,0x7F030173,0x7F030176,0x7F0301BB,0x7F0301C5 }
+			// aapt resource value: { 0x7F030031,0x7F030032,0x7F030033,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F030097,0x7F0300A5,0x7F0300AA,0x7F0300AB,0x7F0300B6,0x7F0300E0,0x7F0300E5,0x7F0300EA,0x7F0300EB,0x7F0300ED,0x7F0300F7,0x7F030101,0x7F030124,0x7F030130,0x7F030141,0x7F030145,0x7F030146,0x7F030174,0x7F030177,0x7F0301BC,0x7F0301C6 }
 			public static int[] ActionBar = new int[] {
 					2130903089,
 					2130903090,
 					2130903091,
-					2130903185,
 					2130903186,
 					2130903187,
 					2130903188,
 					2130903189,
 					2130903190,
-					2130903204,
-					2130903209,
+					2130903191,
+					2130903205,
 					2130903210,
-					2130903221,
-					2130903263,
-					2130903268,
-					2130903273,
+					2130903211,
+					2130903222,
+					2130903264,
+					2130903269,
 					2130903274,
-					2130903276,
-					2130903286,
-					2130903296,
-					2130903331,
-					2130903343,
-					2130903360,
-					2130903364,
+					2130903275,
+					2130903277,
+					2130903287,
+					2130903297,
+					2130903332,
+					2130903344,
+					2130903361,
 					2130903365,
-					2130903411,
-					2130903414,
-					2130903483,
-					2130903493};
+					2130903366,
+					2130903412,
+					2130903415,
+					2130903484,
+					2130903494};
 			
 			// aapt resource value: { 0x10100B3 }
 			public static int[] ActionBarLayout = new int[] {
@@ -13161,14 +15749,14 @@ namespace NeuToDo.Droid
 			public static int[] ActionMenuView = new int[] {
 					-1};
 			
-			// aapt resource value: { 0x7F030031,0x7F030032,0x7F03007E,0x7F0300DF,0x7F030176,0x7F0301C5 }
+			// aapt resource value: { 0x7F030031,0x7F030032,0x7F03007E,0x7F0300E0,0x7F030177,0x7F0301C6 }
 			public static int[] ActionMode = new int[] {
 					2130903089,
 					2130903090,
 					2130903166,
-					2130903263,
-					2130903414,
-					2130903493};
+					2130903264,
+					2130903415,
+					2130903494};
 			
 			// aapt resource value: 0
 			public const int ActionMode_background = 0;
@@ -13188,10 +15776,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 5
 			public const int ActionMode_titleTextStyle = 5;
 			
-			// aapt resource value: { 0x7F0300BA,0x7F0300F7 }
+			// aapt resource value: { 0x7F0300BB,0x7F0300F8 }
 			public static int[] ActivityChooserView = new int[] {
-					2130903226,
-					2130903287};
+					2130903227,
+					2130903288};
 			
 			// aapt resource value: 0
 			public const int ActivityChooserView_expandActivityOverflowButtonDrawable = 0;
@@ -13199,16 +15787,16 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int ActivityChooserView_initialActivityCount = 1;
 			
-			// aapt resource value: { 0x10100F2,0x7F030052,0x7F030053,0x7F03011A,0x7F03011B,0x7F03012C,0x7F03015B,0x7F03015C }
+			// aapt resource value: { 0x10100F2,0x7F030052,0x7F030053,0x7F03011B,0x7F03011C,0x7F03012D,0x7F03015C,0x7F03015D }
 			public static int[] AlertDialog = new int[] {
 					16842994,
 					2130903122,
 					2130903123,
-					2130903322,
 					2130903323,
-					2130903340,
-					2130903387,
-					2130903388};
+					2130903324,
+					2130903341,
+					2130903388,
+					2130903389};
 			
 			// aapt resource value: 0
 			public const int AlertDialog_android_layout = 0;
@@ -13291,21 +15879,21 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int AnimatedStateListDrawableTransition_android_toId = 1;
 			
-			// aapt resource value: { 0x10100D4,0x101048F,0x1010540,0x7F0300B5,0x7F0300BB,0x7F030115 }
+			// aapt resource value: { 0x10100D4,0x101048F,0x1010540,0x7F0300B6,0x7F0300BC,0x7F030116 }
 			public static int[] AppBarLayout = new int[] {
 					16842964,
 					16843919,
 					16844096,
-					2130903221,
-					2130903227,
-					2130903317};
+					2130903222,
+					2130903228,
+					2130903318};
 			
-			// aapt resource value: { 0x7F030169,0x7F03016A,0x7F03016B,0x7F03016C }
+			// aapt resource value: { 0x7F03016A,0x7F03016B,0x7F03016C,0x7F03016D }
 			public static int[] AppBarLayoutStates = new int[] {
-					2130903401,
 					2130903402,
 					2130903403,
-					2130903404};
+					2130903404,
+					2130903405};
 			
 			// aapt resource value: 0
 			public const int AppBarLayoutStates_state_collapsed = 0;
@@ -13334,10 +15922,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 4
 			public const int AppBarLayout_expanded = 4;
 			
-			// aapt resource value: { 0x7F030113,0x7F030114 }
+			// aapt resource value: { 0x7F030114,0x7F030115 }
 			public static int[] AppBarLayout_Layout = new int[] {
-					2130903315,
-					2130903316};
+					2130903316,
+					2130903317};
 			
 			// aapt resource value: 0
 			public const int AppBarLayout_Layout_layout_scrollFlags = 0;
@@ -13348,12 +15936,12 @@ namespace NeuToDo.Droid
 			// aapt resource value: 5
 			public const int AppBarLayout_liftOnScroll = 5;
 			
-			// aapt resource value: { 0x1010119,0x7F030166,0x7F0301B9,0x7F0301BA }
+			// aapt resource value: { 0x1010119,0x7F030167,0x7F0301BA,0x7F0301BB }
 			public static int[] AppCompatImageView = new int[] {
 					16843033,
-					2130903398,
-					2130903481,
-					2130903482};
+					2130903399,
+					2130903482,
+					2130903483};
 			
 			// aapt resource value: 0
 			public const int AppCompatImageView_android_src = 0;
@@ -13367,12 +15955,12 @@ namespace NeuToDo.Droid
 			// aapt resource value: 3
 			public const int AppCompatImageView_tintMode = 3;
 			
-			// aapt resource value: { 0x1010142,0x7F0301B6,0x7F0301B7,0x7F0301B8 }
+			// aapt resource value: { 0x1010142,0x7F0301B7,0x7F0301B8,0x7F0301B9 }
 			public static int[] AppCompatSeekBar = new int[] {
 					16843074,
-					2130903478,
 					2130903479,
-					2130903480};
+					2130903480,
+					2130903481};
 			
 			// aapt resource value: 0
 			public const int AppCompatSeekBar_android_thumb = 0;
@@ -13417,7 +16005,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 0
 			public const int AppCompatTextHelper_android_textAppearance = 0;
 			
-			// aapt resource value: { 0x1010034,0x7F03002C,0x7F03002D,0x7F03002E,0x7F03002F,0x7F030030,0x7F0300CE,0x7F0300D1,0x7F030108,0x7F030116,0x7F030196 }
+			// aapt resource value: { 0x1010034,0x7F03002C,0x7F03002D,0x7F03002E,0x7F03002F,0x7F030030,0x7F0300CF,0x7F0300D2,0x7F030109,0x7F030117,0x7F030197 }
 			public static int[] AppCompatTextView = new int[] {
 					16842804,
 					2130903084,
@@ -13425,11 +16013,11 @@ namespace NeuToDo.Droid
 					2130903086,
 					2130903087,
 					2130903088,
-					2130903246,
-					2130903249,
-					2130903304,
-					2130903318,
-					2130903446};
+					2130903247,
+					2130903250,
+					2130903305,
+					2130903319,
+					2130903447};
 			
 			// aapt resource value: 0
 			public const int AppCompatTextView_android_textAppearance = 0;
@@ -13464,7 +16052,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 10
 			public const int AppCompatTextView_textAllCaps = 10;
 			
-			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002B,0x7F03003E,0x7F03004C,0x7F03004D,0x7F03004E,0x7F03004F,0x7F030050,0x7F030054,0x7F030055,0x7F03005F,0x7F030064,0x7F030084,0x7F030085,0x7F030086,0x7F030087,0x7F030088,0x7F030089,0x7F03008A,0x7F03008B,0x7F03008C,0x7F03008E,0x7F03009D,0x7F0300A6,0x7F0300A7,0x7F0300A8,0x7F0300AB,0x7F0300AD,0x7F0300B0,0x7F0300B1,0x7F0300B2,0x7F0300B3,0x7F0300B4,0x7F0300E9,0x7F0300F5,0x7F030118,0x7F030119,0x7F03011C,0x7F03011D,0x7F03011E,0x7F03011F,0x7F030120,0x7F030121,0x7F030122,0x7F030137,0x7F030138,0x7F030139,0x7F03013F,0x7F030141,0x7F030148,0x7F030149,0x7F03014A,0x7F03014B,0x7F030153,0x7F030154,0x7F030155,0x7F030156,0x7F030163,0x7F030164,0x7F03017A,0x7F0301A1,0x7F0301A2,0x7F0301A3,0x7F0301A4,0x7F0301A6,0x7F0301A7,0x7F0301A8,0x7F0301A9,0x7F0301AC,0x7F0301AD,0x7F0301C7,0x7F0301C8,0x7F0301C9,0x7F0301CA,0x7F0301D1,0x7F0301D3,0x7F0301D4,0x7F0301D5,0x7F0301D6,0x7F0301D7,0x7F0301D8,0x7F0301D9,0x7F0301DA,0x7F0301DB,0x7F0301DC }
+			// aapt resource value: { 0x1010057,0x10100AE,0x7F030000,0x7F030001,0x7F030002,0x7F030003,0x7F030004,0x7F030005,0x7F030006,0x7F030007,0x7F030008,0x7F030009,0x7F03000A,0x7F03000B,0x7F03000C,0x7F03000E,0x7F03000F,0x7F030010,0x7F030011,0x7F030012,0x7F030013,0x7F030014,0x7F030015,0x7F030016,0x7F030017,0x7F030018,0x7F030019,0x7F03001A,0x7F03001B,0x7F03001C,0x7F03001D,0x7F03001E,0x7F030021,0x7F030022,0x7F030023,0x7F030024,0x7F030025,0x7F03002B,0x7F03003E,0x7F03004C,0x7F03004D,0x7F03004E,0x7F03004F,0x7F030050,0x7F030054,0x7F030055,0x7F03005F,0x7F030064,0x7F030085,0x7F030086,0x7F030087,0x7F030088,0x7F030089,0x7F03008A,0x7F03008B,0x7F03008C,0x7F03008D,0x7F03008F,0x7F03009E,0x7F0300A7,0x7F0300A8,0x7F0300A9,0x7F0300AC,0x7F0300AE,0x7F0300B1,0x7F0300B2,0x7F0300B3,0x7F0300B4,0x7F0300B5,0x7F0300EA,0x7F0300F6,0x7F030119,0x7F03011A,0x7F03011D,0x7F03011E,0x7F03011F,0x7F030120,0x7F030121,0x7F030122,0x7F030123,0x7F030138,0x7F030139,0x7F03013A,0x7F030140,0x7F030142,0x7F030149,0x7F03014A,0x7F03014B,0x7F03014C,0x7F030154,0x7F030155,0x7F030156,0x7F030157,0x7F030164,0x7F030165,0x7F03017B,0x7F0301A2,0x7F0301A3,0x7F0301A4,0x7F0301A5,0x7F0301A7,0x7F0301A8,0x7F0301A9,0x7F0301AA,0x7F0301AD,0x7F0301AE,0x7F0301C8,0x7F0301C9,0x7F0301CA,0x7F0301CB,0x7F0301D2,0x7F0301D4,0x7F0301D5,0x7F0301D6,0x7F0301D7,0x7F0301D8,0x7F0301D9,0x7F0301DA,0x7F0301DB,0x7F0301DC,0x7F0301DD }
 			public static int[] AppCompatTheme = new int[] {
 					16842839,
 					16842926,
@@ -13514,7 +16102,6 @@ namespace NeuToDo.Droid
 					2130903125,
 					2130903135,
 					2130903140,
-					2130903172,
 					2130903173,
 					2130903174,
 					2130903175,
@@ -13523,61 +16110,61 @@ namespace NeuToDo.Droid
 					2130903178,
 					2130903179,
 					2130903180,
-					2130903182,
-					2130903197,
-					2130903206,
+					2130903181,
+					2130903183,
+					2130903198,
 					2130903207,
 					2130903208,
-					2130903211,
-					2130903213,
-					2130903216,
+					2130903209,
+					2130903212,
+					2130903214,
 					2130903217,
 					2130903218,
 					2130903219,
 					2130903220,
-					2130903273,
-					2130903285,
-					2130903320,
+					2130903221,
+					2130903274,
+					2130903286,
 					2130903321,
-					2130903324,
+					2130903322,
 					2130903325,
 					2130903326,
 					2130903327,
 					2130903328,
 					2130903329,
 					2130903330,
-					2130903351,
+					2130903331,
 					2130903352,
 					2130903353,
-					2130903359,
-					2130903361,
-					2130903368,
+					2130903354,
+					2130903360,
+					2130903362,
 					2130903369,
 					2130903370,
 					2130903371,
-					2130903379,
+					2130903372,
 					2130903380,
 					2130903381,
 					2130903382,
-					2130903395,
+					2130903383,
 					2130903396,
-					2130903418,
-					2130903457,
+					2130903397,
+					2130903419,
 					2130903458,
 					2130903459,
 					2130903460,
-					2130903462,
+					2130903461,
 					2130903463,
 					2130903464,
 					2130903465,
-					2130903468,
+					2130903466,
 					2130903469,
-					2130903495,
+					2130903470,
 					2130903496,
 					2130903497,
 					2130903498,
-					2130903505,
-					2130903507,
+					2130903499,
+					2130903506,
 					2130903508,
 					2130903509,
 					2130903510,
@@ -13586,7 +16173,8 @@ namespace NeuToDo.Droid
 					2130903513,
 					2130903514,
 					2130903515,
-					2130903516};
+					2130903516,
+					2130903517};
 			
 			// aapt resource value: 2
 			public const int AppCompatTheme_actionBarDivider = 2;
@@ -13951,14 +16539,14 @@ namespace NeuToDo.Droid
 			// aapt resource value: 120
 			public const int AppCompatTheme_windowNoTitle = 120;
 			
-			// aapt resource value: { 0x7F030034,0x7F0300C3,0x7F0300C4,0x7F0300C5,0x7F0300C6,0x7F0300E5 }
+			// aapt resource value: { 0x7F030034,0x7F0300C4,0x7F0300C5,0x7F0300C6,0x7F0300C7,0x7F0300E6 }
 			public static int[] BottomAppBar = new int[] {
 					2130903092,
-					2130903235,
 					2130903236,
 					2130903237,
 					2130903238,
-					2130903269};
+					2130903239,
+					2130903270};
 			
 			// aapt resource value: 0
 			public const int BottomAppBar_backgroundTint = 0;
@@ -13978,18 +16566,18 @@ namespace NeuToDo.Droid
 			// aapt resource value: 5
 			public const int BottomAppBar_hideOnScroll = 5;
 			
-			// aapt resource value: { 0x7F0300B5,0x7F0300FA,0x7F0300FC,0x7F0300FE,0x7F0300FF,0x7F030103,0x7F030104,0x7F030105,0x7F030107,0x7F03012B }
+			// aapt resource value: { 0x7F0300B6,0x7F0300FB,0x7F0300FD,0x7F0300FF,0x7F030100,0x7F030104,0x7F030105,0x7F030106,0x7F030108,0x7F03012C }
 			public static int[] BottomNavigationView = new int[] {
-					2130903221,
-					2130903290,
-					2130903292,
-					2130903294,
+					2130903222,
+					2130903291,
+					2130903293,
 					2130903295,
-					2130903299,
+					2130903296,
 					2130903300,
 					2130903301,
-					2130903303,
-					2130903339};
+					2130903302,
+					2130903304,
+					2130903340};
 			
 			// aapt resource value: 0
 			public const int BottomNavigationView_elevation = 0;
@@ -14047,7 +16635,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 0
 			public const int ButtonBarLayout_allowStacking = 0;
 			
-			// aapt resource value: { 0x101013F,0x1010140,0x7F030058,0x7F030059,0x7F03005A,0x7F03005B,0x7F03005C,0x7F03005D,0x7F030097,0x7F030098,0x7F030099,0x7F03009A,0x7F03009B }
+			// aapt resource value: { 0x101013F,0x1010140,0x7F030058,0x7F030059,0x7F03005A,0x7F03005B,0x7F03005C,0x7F03005D,0x7F030098,0x7F030099,0x7F03009A,0x7F03009B,0x7F03009C }
 			public static int[] CardView = new int[] {
 					16843071,
 					16843072,
@@ -14057,11 +16645,11 @@ namespace NeuToDo.Droid
 					2130903131,
 					2130903132,
 					2130903133,
-					2130903191,
 					2130903192,
 					2130903193,
 					2130903194,
-					2130903195};
+					2130903195,
+					2130903196};
 			
 			// aapt resource value: 1
 			public const int CardView_android_minHeight = 1;
@@ -14102,7 +16690,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 12
 			public const int CardView_contentPaddingTop = 12;
 			
-			// aapt resource value: { 0x1010034,0x10100AB,0x101011F,0x101014F,0x10101E5,0x7F030061,0x7F030062,0x7F030063,0x7F030065,0x7F030066,0x7F030067,0x7F030069,0x7F03006A,0x7F03006B,0x7F03006C,0x7F03006D,0x7F03006E,0x7F030073,0x7F030074,0x7F030075,0x7F030077,0x7F030078,0x7F030079,0x7F03007A,0x7F03007B,0x7F03007C,0x7F03007D,0x7F0300E3,0x7F0300ED,0x7F0300F1,0x7F03014D,0x7F030159,0x7F0301AE,0x7F0301B0 }
+			// aapt resource value: { 0x1010034,0x10100AB,0x101011F,0x101014F,0x10101E5,0x7F030061,0x7F030062,0x7F030063,0x7F030065,0x7F030066,0x7F030067,0x7F030069,0x7F03006A,0x7F03006B,0x7F03006C,0x7F03006D,0x7F03006E,0x7F030073,0x7F030074,0x7F030075,0x7F030077,0x7F030078,0x7F030079,0x7F03007A,0x7F03007B,0x7F03007C,0x7F03007D,0x7F0300E4,0x7F0300EE,0x7F0300F2,0x7F03014E,0x7F03015A,0x7F0301AF,0x7F0301B1 }
 			public static int[] Chip = new int[] {
 					16842804,
 					16842923,
@@ -14131,22 +16719,22 @@ namespace NeuToDo.Droid
 					2130903163,
 					2130903164,
 					2130903165,
-					2130903267,
-					2130903277,
-					2130903281,
-					2130903373,
-					2130903385,
-					2130903470,
-					2130903472};
+					2130903268,
+					2130903278,
+					2130903282,
+					2130903374,
+					2130903386,
+					2130903471,
+					2130903473};
 			
-			// aapt resource value: { 0x7F030060,0x7F03006F,0x7F030070,0x7F030071,0x7F03015D,0x7F03015E }
+			// aapt resource value: { 0x7F030060,0x7F03006F,0x7F030070,0x7F030071,0x7F03015E,0x7F03015F }
 			public static int[] ChipGroup = new int[] {
 					2130903136,
 					2130903151,
 					2130903152,
 					2130903153,
-					2130903389,
-					2130903390};
+					2130903390,
+					2130903391};
 			
 			// aapt resource value: 0
 			public const int ChipGroup_checkedChip = 0;
@@ -14268,24 +16856,24 @@ namespace NeuToDo.Droid
 			// aapt resource value: 33
 			public const int Chip_textStartPadding = 33;
 			
-			// aapt resource value: { 0x7F030081,0x7F030082,0x7F03009C,0x7F0300BC,0x7F0300BD,0x7F0300BE,0x7F0300BF,0x7F0300C0,0x7F0300C1,0x7F0300C2,0x7F03014E,0x7F030150,0x7F03016E,0x7F0301BB,0x7F0301BC,0x7F0301C6 }
+			// aapt resource value: { 0x7F030081,0x7F030082,0x7F03009D,0x7F0300BD,0x7F0300BE,0x7F0300BF,0x7F0300C0,0x7F0300C1,0x7F0300C2,0x7F0300C3,0x7F03014F,0x7F030151,0x7F03016F,0x7F0301BC,0x7F0301BD,0x7F0301C7 }
 			public static int[] CollapsingToolbarLayout = new int[] {
 					2130903169,
 					2130903170,
-					2130903196,
-					2130903228,
+					2130903197,
 					2130903229,
 					2130903230,
 					2130903231,
 					2130903232,
 					2130903233,
 					2130903234,
-					2130903374,
-					2130903376,
-					2130903406,
-					2130903483,
+					2130903235,
+					2130903375,
+					2130903377,
+					2130903407,
 					2130903484,
-					2130903494};
+					2130903485,
+					2130903495};
 			
 			// aapt resource value: 0
 			public const int CollapsingToolbarLayout_collapsedTitleGravity = 0;
@@ -14317,10 +16905,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 9
 			public const int CollapsingToolbarLayout_expandedTitleTextAppearance = 9;
 			
-			// aapt resource value: { 0x7F03010E,0x7F03010F }
+			// aapt resource value: { 0x7F03010F,0x7F030110 }
 			public static int[] CollapsingToolbarLayout_Layout = new int[] {
-					2130903310,
-					2130903311};
+					2130903311,
+					2130903312};
 			
 			// aapt resource value: 0
 			public const int CollapsingToolbarLayout_Layout_layout_collapseMode = 0;
@@ -14376,23 +16964,23 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int CompoundButton_buttonTintMode = 2;
 			
-			// aapt resource value: { 0x7F030106,0x7F03016D }
+			// aapt resource value: { 0x7F030107,0x7F03016E }
 			public static int[] CoordinatorLayout = new int[] {
-					2130903302,
-					2130903405};
+					2130903303,
+					2130903406};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_keylines = 0;
 			
-			// aapt resource value: { 0x10100B3,0x7F03010B,0x7F03010C,0x7F03010D,0x7F030110,0x7F030111,0x7F030112 }
+			// aapt resource value: { 0x10100B3,0x7F03010C,0x7F03010D,0x7F03010E,0x7F030111,0x7F030112,0x7F030113 }
 			public static int[] CoordinatorLayout_Layout = new int[] {
 					16842931,
-					2130903307,
 					2130903308,
 					2130903309,
-					2130903312,
+					2130903310,
 					2130903313,
-					2130903314};
+					2130903314,
+					2130903315};
 			
 			// aapt resource value: 0
 			public const int CoordinatorLayout_Layout_android_layout_gravity = 0;
@@ -14429,16 +17017,16 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int DesignTheme_bottomSheetStyle = 1;
 			
-			// aapt resource value: { 0x7F030029,0x7F03002A,0x7F030036,0x7F030083,0x7F0300AE,0x7F0300DC,0x7F030162,0x7F0301B2 }
+			// aapt resource value: { 0x7F030029,0x7F03002A,0x7F030036,0x7F030084,0x7F0300AF,0x7F0300DD,0x7F030163,0x7F0301B3 }
 			public static int[] DrawerArrowToggle = new int[] {
 					2130903081,
 					2130903082,
 					2130903094,
-					2130903171,
-					2130903214,
-					2130903260,
-					2130903394,
-					2130903474};
+					2130903172,
+					2130903215,
+					2130903261,
+					2130903395,
+					2130903475};
 			
 			// aapt resource value: 0
 			public const int DrawerArrowToggle_arrowHeadLength = 0;
@@ -14464,21 +17052,21 @@ namespace NeuToDo.Droid
 			// aapt resource value: 7
 			public const int DrawerArrowToggle_thickness = 7;
 			
-			// aapt resource value: { 0x7F030034,0x7F030035,0x7F03003D,0x7F0300B5,0x7F0300C7,0x7F0300C8,0x7F0300E3,0x7F0300EB,0x7F030129,0x7F030143,0x7F03014D,0x7F030159,0x7F0301D0 }
+			// aapt resource value: { 0x7F030034,0x7F030035,0x7F03003D,0x7F0300B6,0x7F0300C8,0x7F0300C9,0x7F0300E4,0x7F0300EC,0x7F03012A,0x7F030144,0x7F03014E,0x7F03015A,0x7F0301D1 }
 			public static int[] FloatingActionButton = new int[] {
 					2130903092,
 					2130903093,
 					2130903101,
-					2130903221,
-					2130903239,
+					2130903222,
 					2130903240,
-					2130903267,
-					2130903275,
-					2130903337,
-					2130903363,
-					2130903373,
-					2130903385,
-					2130903504};
+					2130903241,
+					2130903268,
+					2130903276,
+					2130903338,
+					2130903364,
+					2130903374,
+					2130903386,
+					2130903505};
 			
 			// aapt resource value: 0
 			public const int FloatingActionButton_backgroundTint = 0;
@@ -14526,10 +17114,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 12
 			public const int FloatingActionButton_useCompatPadding = 12;
 			
-			// aapt resource value: { 0x7F030101,0x7F030117 }
+			// aapt resource value: { 0x7F030102,0x7F030118 }
 			public static int[] FlowLayout = new int[] {
-					2130903297,
-					2130903319};
+					2130903298,
+					2130903320};
 			
 			// aapt resource value: 0
 			public const int FlowLayout_itemSpacing = 0;
@@ -14537,27 +17125,27 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int FlowLayout_lineSpacing = 1;
 			
-			// aapt resource value: { 0x7F0300D2,0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7 }
+			// aapt resource value: { 0x7F0300D3,0x7F0300D4,0x7F0300D5,0x7F0300D6,0x7F0300D7,0x7F0300D8 }
 			public static int[] FontFamily = new int[] {
-					2130903250,
 					2130903251,
 					2130903252,
 					2130903253,
 					2130903254,
-					2130903255};
+					2130903255,
+					2130903256};
 			
-			// aapt resource value: { 0x1010532,0x1010533,0x101053F,0x101056F,0x1010570,0x7F0300D0,0x7F0300D8,0x7F0300D9,0x7F0300DA,0x7F0301CF }
+			// aapt resource value: { 0x1010532,0x1010533,0x101053F,0x101056F,0x1010570,0x7F0300D1,0x7F0300D9,0x7F0300DA,0x7F0300DB,0x7F0301D0 }
 			public static int[] FontFamilyFont = new int[] {
 					16844082,
 					16844083,
 					16844095,
 					16844143,
 					16844144,
-					2130903248,
-					2130903256,
+					2130903249,
 					2130903257,
 					2130903258,
-					2130903503};
+					2130903259,
+					2130903504};
 			
 			// aapt resource value: 0
 			public const int FontFamilyFont_android_font = 0;
@@ -14607,11 +17195,11 @@ namespace NeuToDo.Droid
 			// aapt resource value: 5
 			public const int FontFamily_fontProviderQuery = 5;
 			
-			// aapt resource value: { 0x1010109,0x1010200,0x7F0300DB }
+			// aapt resource value: { 0x1010109,0x1010200,0x7F0300DC }
 			public static int[] ForegroundLinearLayout = new int[] {
 					16843017,
 					16843264,
-					2130903259};
+					2130903260};
 			
 			// aapt resource value: 0
 			public const int ForegroundLinearLayout_android_foreground = 0;
@@ -14684,17 +17272,24 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int GradientColor_android_type = 2;
 			
-			// aapt resource value: { 0x10100AF,0x10100C4,0x1010126,0x1010127,0x1010128,0x7F0300AA,0x7F0300AC,0x7F03012A,0x7F030158 }
+			// aapt resource value: { 0x7F030083 }
+			public static int[] ItemsViewRendererTheme = new int[] {
+					2130903171};
+			
+			// aapt resource value: 0
+			public const int ItemsViewRendererTheme_collectionViewStyle = 0;
+			
+			// aapt resource value: { 0x10100AF,0x10100C4,0x1010126,0x1010127,0x1010128,0x7F0300AB,0x7F0300AD,0x7F03012B,0x7F030159 }
 			public static int[] LinearLayoutCompat = new int[] {
 					16842927,
 					16842948,
 					16843046,
 					16843047,
 					16843048,
-					2130903210,
-					2130903212,
-					2130903338,
-					2130903384};
+					2130903211,
+					2130903213,
+					2130903339,
+					2130903385};
 			
 			// aapt resource value: 2
 			public const int LinearLayoutCompat_android_baselineAligned = 2;
@@ -14753,7 +17348,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int ListPopupWindow_android_dropDownVerticalOffset = 1;
 			
-			// aapt resource value: { 0x10101B7,0x10101B8,0x10101B9,0x10101BA,0x7F030034,0x7F030035,0x7F03009F,0x7F0300EC,0x7F0300EE,0x7F0300EF,0x7F0300F0,0x7F0300F2,0x7F0300F3,0x7F03014D,0x7F03016F,0x7F030170 }
+			// aapt resource value: { 0x10101B7,0x10101B8,0x10101B9,0x10101BA,0x7F030034,0x7F030035,0x7F0300A0,0x7F0300ED,0x7F0300EF,0x7F0300F0,0x7F0300F1,0x7F0300F3,0x7F0300F4,0x7F03014E,0x7F030170,0x7F030171 }
 			public static int[] MaterialButton = new int[] {
 					16843191,
 					16843192,
@@ -14761,16 +17356,16 @@ namespace NeuToDo.Droid
 					16843194,
 					2130903092,
 					2130903093,
-					2130903199,
-					2130903276,
-					2130903278,
+					2130903200,
+					2130903277,
 					2130903279,
 					2130903280,
-					2130903282,
+					2130903281,
 					2130903283,
-					2130903373,
-					2130903407,
-					2130903408};
+					2130903284,
+					2130903374,
+					2130903408,
+					2130903409};
 			
 			// aapt resource value: 3
 			public const int MaterialButton_android_insetBottom = 3;
@@ -14820,10 +17415,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 15
 			public const int MaterialButton_strokeWidth = 15;
 			
-			// aapt resource value: { 0x7F03016F,0x7F030170 }
+			// aapt resource value: { 0x7F030170,0x7F030171 }
 			public static int[] MaterialCardView = new int[] {
-					2130903407,
-					2130903408};
+					2130903408,
+					2130903409};
 			
 			// aapt resource value: 0
 			public const int MaterialCardView_strokeColor = 0;
@@ -14831,27 +17426,26 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int MaterialCardView_strokeWidth = 1;
 			
-			// aapt resource value: { 0x7F030041,0x7F030042,0x7F030068,0x7F030072,0x7F030076,0x7F030084,0x7F030085,0x7F03008B,0x7F03008C,0x7F03008D,0x7F0300B4,0x7F0300CF,0x7F030125,0x7F030126,0x7F030130,0x7F03014F,0x7F03015F,0x7F030192,0x7F030197,0x7F030198,0x7F030199,0x7F03019A,0x7F03019B,0x7F03019C,0x7F03019D,0x7F03019E,0x7F03019F,0x7F0301A0,0x7F0301A5,0x7F0301AA,0x7F0301AB,0x7F0301AF }
+			// aapt resource value: { 0x7F030041,0x7F030042,0x7F030068,0x7F030072,0x7F030076,0x7F030085,0x7F030086,0x7F03008C,0x7F03008D,0x7F03008E,0x7F0300B5,0x7F0300D0,0x7F030126,0x7F030127,0x7F030131,0x7F030150,0x7F030160,0x7F030193,0x7F030198,0x7F030199,0x7F03019A,0x7F03019B,0x7F03019C,0x7F03019D,0x7F03019E,0x7F03019F,0x7F0301A0,0x7F0301A1,0x7F0301A6,0x7F0301AB,0x7F0301AC,0x7F0301B0 }
 			public static int[] MaterialComponentsTheme = new int[] {
 					2130903105,
 					2130903106,
 					2130903144,
 					2130903154,
 					2130903158,
-					2130903172,
 					2130903173,
-					2130903179,
+					2130903174,
 					2130903180,
 					2130903181,
-					2130903220,
-					2130903247,
-					2130903333,
+					2130903182,
+					2130903221,
+					2130903248,
 					2130903334,
-					2130903344,
-					2130903375,
-					2130903391,
-					2130903442,
-					2130903447,
+					2130903335,
+					2130903345,
+					2130903376,
+					2130903392,
+					2130903443,
 					2130903448,
 					2130903449,
 					2130903450,
@@ -14861,10 +17455,11 @@ namespace NeuToDo.Droid
 					2130903454,
 					2130903455,
 					2130903456,
-					2130903461,
-					2130903466,
+					2130903457,
+					2130903462,
 					2130903467,
-					2130903471};
+					2130903468,
+					2130903472};
 			
 			// aapt resource value: 0
 			public const int MaterialComponentsTheme_bottomSheetDialogTheme = 0;
@@ -14989,7 +17584,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int MenuGroup_android_visible = 2;
 			
-			// aapt resource value: { 0x1010002,0x101000E,0x10100D0,0x1010106,0x1010194,0x10101DE,0x10101DF,0x10101E1,0x10101E2,0x10101E3,0x10101E4,0x10101E5,0x101026F,0x7F03000D,0x7F03001F,0x7F030020,0x7F030028,0x7F030090,0x7F0300F2,0x7F0300F3,0x7F030131,0x7F030157,0x7F0301CB }
+			// aapt resource value: { 0x1010002,0x101000E,0x10100D0,0x1010106,0x1010194,0x10101DE,0x10101DF,0x10101E1,0x10101E2,0x10101E3,0x10101E4,0x10101E5,0x101026F,0x7F03000D,0x7F03001F,0x7F030020,0x7F030028,0x7F030091,0x7F0300F3,0x7F0300F4,0x7F030132,0x7F030158,0x7F0301CC }
 			public static int[] MenuItem = new int[] {
 					16842754,
 					16842766,
@@ -15008,12 +17603,12 @@ namespace NeuToDo.Droid
 					2130903071,
 					2130903072,
 					2130903080,
-					2130903184,
-					2130903282,
+					2130903185,
 					2130903283,
-					2130903345,
-					2130903383,
-					2130903499};
+					2130903284,
+					2130903346,
+					2130903384,
+					2130903500};
 			
 			// aapt resource value: 13
 			public const int MenuItem_actionLayout = 13;
@@ -15084,7 +17679,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 22
 			public const int MenuItem_tooltipText = 22;
 			
-			// aapt resource value: { 0x10100AE,0x101012C,0x101012D,0x101012E,0x101012F,0x1010130,0x1010131,0x7F030142,0x7F030171 }
+			// aapt resource value: { 0x10100AE,0x101012C,0x101012D,0x101012E,0x101012F,0x1010130,0x1010131,0x7F030143,0x7F030172 }
 			public static int[] MenuView = new int[] {
 					16842926,
 					16843052,
@@ -15093,8 +17688,8 @@ namespace NeuToDo.Droid
 					16843055,
 					16843056,
 					16843057,
-					2130903362,
-					2130903409};
+					2130903363,
+					2130903410};
 			
 			// aapt resource value: 4
 			public const int MenuView_android_headerBackground = 4;
@@ -15123,20 +17718,20 @@ namespace NeuToDo.Droid
 			// aapt resource value: 8
 			public const int MenuView_subMenuArrow = 8;
 			
-			// aapt resource value: { 0x10100D4,0x10100DD,0x101011F,0x7F0300B5,0x7F0300DE,0x7F0300FA,0x7F0300FB,0x7F0300FD,0x7F0300FF,0x7F030102,0x7F030105,0x7F03012B }
+			// aapt resource value: { 0x10100D4,0x10100DD,0x101011F,0x7F0300B6,0x7F0300DF,0x7F0300FB,0x7F0300FC,0x7F0300FE,0x7F030100,0x7F030103,0x7F030106,0x7F03012C }
 			public static int[] NavigationView = new int[] {
 					16842964,
 					16842973,
 					16843039,
-					2130903221,
-					2130903262,
-					2130903290,
+					2130903222,
+					2130903263,
 					2130903291,
-					2130903293,
-					2130903295,
-					2130903298,
-					2130903301,
-					2130903339};
+					2130903292,
+					2130903294,
+					2130903296,
+					2130903299,
+					2130903302,
+					2130903340};
 			
 			// aapt resource value: 0
 			public const int NavigationView_android_background = 0;
@@ -15174,15 +17769,15 @@ namespace NeuToDo.Droid
 			// aapt resource value: 11
 			public const int NavigationView_menu = 11;
 			
-			// aapt resource value: { 0x1010176,0x10102C9,0x7F030132 }
+			// aapt resource value: { 0x1010176,0x10102C9,0x7F030133 }
 			public static int[] PopupWindow = new int[] {
 					16843126,
 					16843465,
-					2130903346};
+					2130903347};
 			
-			// aapt resource value: { 0x7F030168 }
+			// aapt resource value: { 0x7F030169 }
 			public static int[] PopupWindowBackgroundState = new int[] {
-					2130903400};
+					2130903401};
 			
 			// aapt resource value: 0
 			public const int PopupWindowBackgroundState_state_above_anchor = 0;
@@ -15196,10 +17791,10 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int PopupWindow_overlapAnchor = 2;
 			
-			// aapt resource value: { 0x7F030133,0x7F030136 }
+			// aapt resource value: { 0x7F030134,0x7F030137 }
 			public static int[] RecycleListView = new int[] {
-					2130903347,
-					2130903350};
+					2130903348,
+					2130903351};
 			
 			// aapt resource value: 0
 			public const int RecycleListView_paddingBottomNoButtons = 0;
@@ -15207,19 +17802,19 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int RecycleListView_paddingTopNoTitle = 1;
 			
-			// aapt resource value: { 0x10100C4,0x10100F1,0x7F0300C9,0x7F0300CA,0x7F0300CB,0x7F0300CC,0x7F0300CD,0x7F03010A,0x7F03014C,0x7F030161,0x7F030167 }
+			// aapt resource value: { 0x10100C4,0x10100F1,0x7F0300CA,0x7F0300CB,0x7F0300CC,0x7F0300CD,0x7F0300CE,0x7F03010B,0x7F03014D,0x7F030162,0x7F030168 }
 			public static int[] RecyclerView = new int[] {
 					16842948,
 					16842993,
-					2130903241,
 					2130903242,
 					2130903243,
 					2130903244,
 					2130903245,
-					2130903306,
-					2130903372,
-					2130903393,
-					2130903399};
+					2130903246,
+					2130903307,
+					2130903373,
+					2130903394,
+					2130903400};
 			
 			// aapt resource value: 1
 			public const int RecyclerView_android_descendantFocusability = 1;
@@ -15254,9 +17849,9 @@ namespace NeuToDo.Droid
 			// aapt resource value: 10
 			public const int RecyclerView_stackFromEnd = 10;
 			
-			// aapt resource value: { 0x7F0300F8 }
+			// aapt resource value: { 0x7F0300F9 }
 			public static int[] ScrimInsetsFrameLayout = new int[] {
-					2130903288};
+					2130903289};
 			
 			// aapt resource value: 0
 			public const int ScrimInsetsFrameLayout_insetForeground = 0;
@@ -15268,25 +17863,25 @@ namespace NeuToDo.Droid
 			// aapt resource value: 0
 			public const int ScrollingViewBehavior_Layout_behavior_overlapTop = 0;
 			
-			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F030077,0x7F03008F,0x7F0300A5,0x7F0300DD,0x7F0300F4,0x7F030109,0x7F030146,0x7F030147,0x7F030151,0x7F030152,0x7F030172,0x7F030177,0x7F0301D2 }
+			// aapt resource value: { 0x10100DA,0x101011F,0x1010220,0x1010264,0x7F030077,0x7F030090,0x7F0300A6,0x7F0300DE,0x7F0300F5,0x7F03010A,0x7F030147,0x7F030148,0x7F030152,0x7F030153,0x7F030173,0x7F030178,0x7F0301D3 }
 			public static int[] SearchView = new int[] {
 					16842970,
 					16843039,
 					16843296,
 					16843364,
 					2130903159,
-					2130903183,
-					2130903205,
-					2130903261,
-					2130903284,
-					2130903305,
-					2130903366,
+					2130903184,
+					2130903206,
+					2130903262,
+					2130903285,
+					2130903306,
 					2130903367,
-					2130903377,
+					2130903368,
 					2130903378,
-					2130903410,
-					2130903415,
-					2130903506};
+					2130903379,
+					2130903411,
+					2130903416,
+					2130903507};
 			
 			// aapt resource value: 0
 			public const int SearchView_android_focusable = 0;
@@ -15339,16 +17934,16 @@ namespace NeuToDo.Droid
 			// aapt resource value: 16
 			public const int SearchView_voiceIcon = 16;
 			
-			// aapt resource value: { 0x7F03015F,0x7F030160 }
+			// aapt resource value: { 0x7F030160,0x7F030161 }
 			public static int[] Snackbar = new int[] {
-					2130903391,
-					2130903392};
+					2130903392,
+					2130903393};
 			
-			// aapt resource value: { 0x101011F,0x7F0300B5,0x7F030127 }
+			// aapt resource value: { 0x101011F,0x7F0300B6,0x7F030128 }
 			public static int[] SnackbarLayout = new int[] {
 					16843039,
-					2130903221,
-					2130903335};
+					2130903222,
+					2130903336};
 			
 			// aapt resource value: 0
 			public const int SnackbarLayout_android_maxWidth = 0;
@@ -15365,13 +17960,13 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int Snackbar_snackbarStyle = 1;
 			
-			// aapt resource value: { 0x10100B2,0x1010176,0x101017B,0x1010262,0x7F030140 }
+			// aapt resource value: { 0x10100B2,0x1010176,0x101017B,0x1010262,0x7F030141 }
 			public static int[] Spinner = new int[] {
 					16842930,
 					16843126,
 					16843131,
 					16843362,
-					2130903360};
+					2130903361};
 			
 			// aapt resource value: 3
 			public const int Spinner_android_dropDownWidth = 3;
@@ -15422,22 +18017,22 @@ namespace NeuToDo.Droid
 			// aapt resource value: 1
 			public const int StateListDrawable_android_visible = 1;
 			
-			// aapt resource value: { 0x1010124,0x1010125,0x1010142,0x7F03015A,0x7F030165,0x7F030178,0x7F030179,0x7F03017B,0x7F0301B3,0x7F0301B4,0x7F0301B5,0x7F0301CC,0x7F0301CD,0x7F0301CE }
+			// aapt resource value: { 0x1010124,0x1010125,0x1010142,0x7F03015B,0x7F030166,0x7F030179,0x7F03017A,0x7F03017C,0x7F0301B4,0x7F0301B5,0x7F0301B6,0x7F0301CD,0x7F0301CE,0x7F0301CF }
 			public static int[] SwitchCompat = new int[] {
 					16843044,
 					16843045,
 					16843074,
-					2130903386,
-					2130903397,
-					2130903416,
+					2130903387,
+					2130903398,
 					2130903417,
-					2130903419,
-					2130903475,
+					2130903418,
+					2130903420,
 					2130903476,
 					2130903477,
-					2130903500,
+					2130903478,
 					2130903501,
-					2130903502};
+					2130903502,
+					2130903503};
 			
 			// aapt resource value: 1
 			public const int SwitchCompat_android_textOff = 1;
@@ -15496,9 +18091,8 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int TabItem_android_text = 2;
 			
-			// aapt resource value: { 0x7F03017C,0x7F03017D,0x7F03017E,0x7F03017F,0x7F030180,0x7F030181,0x7F030182,0x7F030183,0x7F030184,0x7F030185,0x7F030186,0x7F030187,0x7F030188,0x7F030189,0x7F03018A,0x7F03018B,0x7F03018C,0x7F03018D,0x7F03018E,0x7F03018F,0x7F030190,0x7F030191,0x7F030193,0x7F030194,0x7F030195 }
+			// aapt resource value: { 0x7F03017D,0x7F03017E,0x7F03017F,0x7F030180,0x7F030181,0x7F030182,0x7F030183,0x7F030184,0x7F030185,0x7F030186,0x7F030187,0x7F030188,0x7F030189,0x7F03018A,0x7F03018B,0x7F03018C,0x7F03018D,0x7F03018E,0x7F03018F,0x7F030190,0x7F030191,0x7F030192,0x7F030194,0x7F030195,0x7F030196 }
 			public static int[] TabLayout = new int[] {
-					2130903420,
 					2130903421,
 					2130903422,
 					2130903423,
@@ -15520,9 +18114,10 @@ namespace NeuToDo.Droid
 					2130903439,
 					2130903440,
 					2130903441,
-					2130903443,
+					2130903442,
 					2130903444,
-					2130903445};
+					2130903445,
+					2130903446};
 			
 			// aapt resource value: 0
 			public const int TabLayout_tabBackground = 0;
@@ -15599,7 +18194,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 24
 			public const int TabLayout_tabUnboundedRipple = 24;
 			
-			// aapt resource value: { 0x1010095,0x1010096,0x1010097,0x1010098,0x101009A,0x101009B,0x1010161,0x1010162,0x1010163,0x1010164,0x10103AC,0x7F0300D1,0x7F030196 }
+			// aapt resource value: { 0x1010095,0x1010096,0x1010097,0x1010098,0x101009A,0x101009B,0x1010161,0x1010162,0x1010163,0x1010164,0x10103AC,0x7F0300D2,0x7F030197 }
 			public static int[] TextAppearance = new int[] {
 					16842901,
 					16842902,
@@ -15612,8 +18207,8 @@ namespace NeuToDo.Droid
 					16843107,
 					16843108,
 					16843692,
-					2130903249,
-					2130903446};
+					2130903250,
+					2130903447};
 			
 			// aapt resource value: 10
 			public const int TextAppearance_android_fontFamily = 10;
@@ -15654,7 +18249,7 @@ namespace NeuToDo.Droid
 			// aapt resource value: 12
 			public const int TextAppearance_textAllCaps = 12;
 			
-			// aapt resource value: { 0x101009A,0x1010150,0x7F030043,0x7F030044,0x7F030045,0x7F030046,0x7F030047,0x7F030048,0x7F030049,0x7F03004A,0x7F03004B,0x7F0300A0,0x7F0300A1,0x7F0300A2,0x7F0300A3,0x7F0300B8,0x7F0300B9,0x7F0300E0,0x7F0300E1,0x7F0300E2,0x7F0300E6,0x7F0300E7,0x7F0300E8,0x7F03013A,0x7F03013B,0x7F03013C,0x7F03013D,0x7F03013E }
+			// aapt resource value: { 0x101009A,0x1010150,0x7F030043,0x7F030044,0x7F030045,0x7F030046,0x7F030047,0x7F030048,0x7F030049,0x7F03004A,0x7F03004B,0x7F0300A1,0x7F0300A2,0x7F0300A3,0x7F0300A4,0x7F0300B9,0x7F0300BA,0x7F0300E1,0x7F0300E2,0x7F0300E3,0x7F0300E7,0x7F0300E8,0x7F0300E9,0x7F03013B,0x7F03013C,0x7F03013D,0x7F03013E,0x7F03013F }
 			public static int[] TextInputLayout = new int[] {
 					16842906,
 					16843088,
@@ -15667,23 +18262,23 @@ namespace NeuToDo.Droid
 					2130903113,
 					2130903114,
 					2130903115,
-					2130903200,
 					2130903201,
 					2130903202,
 					2130903203,
-					2130903224,
+					2130903204,
 					2130903225,
-					2130903264,
+					2130903226,
 					2130903265,
 					2130903266,
-					2130903270,
+					2130903267,
 					2130903271,
 					2130903272,
-					2130903354,
+					2130903273,
 					2130903355,
 					2130903356,
 					2130903357,
-					2130903358};
+					2130903358,
+					2130903359};
 			
 			// aapt resource value: 1
 			public const int TextInputLayout_android_hint = 1;
@@ -15769,11 +18364,11 @@ namespace NeuToDo.Droid
 			// aapt resource value: 27
 			public const int TextInputLayout_passwordToggleTintMode = 27;
 			
-			// aapt resource value: { 0x1010034,0x7F0300B6,0x7F0300B7 }
+			// aapt resource value: { 0x1010034,0x7F0300B7,0x7F0300B8 }
 			public static int[] ThemeEnforcement = new int[] {
 					16842804,
-					2130903222,
-					2130903223};
+					2130903223,
+					2130903224};
 			
 			// aapt resource value: 0
 			public const int ThemeEnforcement_android_textAppearance = 0;
@@ -15784,37 +18379,37 @@ namespace NeuToDo.Droid
 			// aapt resource value: 2
 			public const int ThemeEnforcement_enforceTextAppearance = 2;
 			
-			// aapt resource value: { 0x10100AF,0x1010140,0x7F030051,0x7F03007F,0x7F030080,0x7F030091,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F030123,0x7F030124,0x7F030128,0x7F03012D,0x7F03012E,0x7F030140,0x7F030173,0x7F030174,0x7F030175,0x7F0301BB,0x7F0301BD,0x7F0301BE,0x7F0301BF,0x7F0301C0,0x7F0301C1,0x7F0301C2,0x7F0301C3,0x7F0301C4 }
+			// aapt resource value: { 0x10100AF,0x1010140,0x7F030051,0x7F03007F,0x7F030080,0x7F030092,0x7F030093,0x7F030094,0x7F030095,0x7F030096,0x7F030097,0x7F030124,0x7F030125,0x7F030129,0x7F03012E,0x7F03012F,0x7F030141,0x7F030174,0x7F030175,0x7F030176,0x7F0301BC,0x7F0301BE,0x7F0301BF,0x7F0301C0,0x7F0301C1,0x7F0301C2,0x7F0301C3,0x7F0301C4,0x7F0301C5 }
 			public static int[] Toolbar = new int[] {
 					16842927,
 					16843072,
 					2130903121,
 					2130903167,
 					2130903168,
-					2130903185,
 					2130903186,
 					2130903187,
 					2130903188,
 					2130903189,
 					2130903190,
-					2130903331,
+					2130903191,
 					2130903332,
-					2130903336,
-					2130903341,
+					2130903333,
+					2130903337,
 					2130903342,
-					2130903360,
-					2130903411,
+					2130903343,
+					2130903361,
 					2130903412,
 					2130903413,
-					2130903483,
-					2130903485,
+					2130903414,
+					2130903484,
 					2130903486,
 					2130903487,
 					2130903488,
 					2130903489,
 					2130903490,
 					2130903491,
-					2130903492};
+					2130903492,
+					2130903493};
 			
 			// aapt resource value: 0
 			public const int Toolbar_android_gravity = 0;
@@ -15903,13 +18498,13 @@ namespace NeuToDo.Droid
 			// aapt resource value: 28
 			public const int Toolbar_titleTextColor = 28;
 			
-			// aapt resource value: { 0x1010000,0x10100DA,0x7F030134,0x7F030135,0x7F0301B1 }
+			// aapt resource value: { 0x1010000,0x10100DA,0x7F030135,0x7F030136,0x7F0301B2 }
 			public static int[] View = new int[] {
 					16842752,
 					16842970,
-					2130903348,
 					2130903349,
-					2130903473};
+					2130903350,
+					2130903474};
 			
 			// aapt resource value: { 0x10100D4,0x7F030034,0x7F030035 }
 			public static int[] ViewBackgroundHelper = new int[] {

@@ -23,9 +23,9 @@
     <PackageReference Include="Microsoft.Extensions.Http" Version="3.1.5" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
-    <PackageReference Include="Rg.Plugins.Popup" Version="1.2.0.223" />
+    <PackageReference Include="Rg.Plugins.Popup" Version="2.0.0.3" />
     <PackageReference Include="sqlite-net-pcl" Version="1.7.335" />
-    <PackageReference Include="Xamarin.Forms" Version="4.6.0.967" />  
+    <PackageReference Include="Xamarin.Forms" Version="4.7.0.968" />  
     <PackageReference Include="Xamarin.Essentials" Version="1.5.3.2" />  
     <PackageReference Include="Xamarin.Forms.PancakeView" Version="1.4.2" />  
     <PackageReference Include="Xamarin.Plugin.Calendar" Version="1.2.1411" />
@@ -40,9 +40,6 @@
     </Compile>
     <Compile Update="Views\Popup\LoginPopupPage.xaml.cs">
       <DependentUpon>LoginPopupPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="Views\Popup\SelectPopupPage.xaml.cs">
-      <DependentUpon>SelectPopupPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="Views\Popup\SuccessPopupPage.xaml.cs">
       <DependentUpon>SuccessPopupPage.xaml</DependentUpon>
@@ -78,7 +75,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\SelectPopupPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\Popup\SuccessPopupPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
