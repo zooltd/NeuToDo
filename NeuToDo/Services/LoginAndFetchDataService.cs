@@ -16,7 +16,7 @@ namespace NeuToDo.Services
             _httpClientFactory = httpClientFactory;
         }
 
-        public event EventHandler GetData;
+        // public event EventHandler GetData;
 
         public async Task<bool> LoginAndFetchDataAsync(ServerType serverType, string userId, string password)
         {
@@ -31,7 +31,7 @@ namespace NeuToDo.Services
                         await neuGetter.WebCrawler(userId, password);
                         await neuStorage.ClearTableAsync();
                         await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        OnGetData();
+                        _storageProvider.OnUpdateData();
                         return true;
                     }
                     catch (Exception e)
@@ -49,7 +49,7 @@ namespace NeuToDo.Services
                         // await moocStorage.ClearTableAsync();
                         // await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
                         
-                        OnGetData();
+                        _storageProvider.OnUpdateData();
                         return true;
                     }
                     catch (Exception e)
@@ -64,12 +64,6 @@ namespace NeuToDo.Services
             }
 
             return false;
-        }
-
-        protected virtual void OnGetData()
-        {
-            GetData?.Invoke(this, EventArgs.Empty);
-            
         }
     }
 }

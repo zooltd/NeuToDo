@@ -80,10 +80,12 @@ namespace NeuToDo.ViewModels
                 case ServerType.Neu:
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                     await neuStorage.ClearTableAsync();
+                    _storageProvider.OnUpdateData();
                     break;
                 case ServerType.Mooc:
                     var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
                     await moocStorage.ClearTableAsync();
+                    _storageProvider.OnUpdateData();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

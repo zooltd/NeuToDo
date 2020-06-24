@@ -6,8 +6,6 @@ namespace NeuToDo.Services
 {
     public interface ILoginAndFetchDataService
     {
-        public event EventHandler GetData;
-
         Task<bool> LoginAndFetchDataAsync(ServerType serverType, string userId, string password);
     }
 }

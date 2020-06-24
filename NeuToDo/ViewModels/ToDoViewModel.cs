@@ -15,13 +15,12 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
-            ILoginAndFetchDataService loginAndFetchDataService,
             IPreferenceStorageProvider preferenceStorageProvider)
         {
             _eventModelStorageProvider = eventModelStorageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
             _preferenceStorageProvider = preferenceStorageProvider;
-            loginAndFetchDataService.GetData += OnGetData;
+            eventModelStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
