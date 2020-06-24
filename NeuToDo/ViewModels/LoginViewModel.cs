@@ -71,6 +71,7 @@ namespace NeuToDo.ViewModels {
 
                 Courses = MoocInfoGetter.CourseList;
                 if (Courses.Any()) {
+                    _selectedCourses = new ObservableCollection<object>();
                     await _popupNavigationService.PushAsync(
                         PopupPageNavigationConstants.SelectPopupPage);
                 }
@@ -86,11 +87,11 @@ namespace NeuToDo.ViewModels {
 
         #region 绑定属性
 
-        public IEnumerable<Course> Courses { get; private set; }
+        public List<Course> Courses { get; private set; }
 
-        private IEnumerable<Course> _selectedCourses;
+        private static ObservableCollection<object> _selectedCourses;
 
-        public IEnumerable<Course> SelectedCourses {
+        public ObservableCollection<object> SelectedCourses {
             get => _selectedCourses;
             set => Set(nameof(SelectedCourses), ref _selectedCourses, value);
         }
@@ -150,9 +151,8 @@ namespace NeuToDo.ViewModels {
                 await SaveSelectedCoursesCommandFunction());
 
         public async Task SaveSelectedCoursesCommandFunction() {
-            var TEST = _selectedCourses;
             var resultList =
-                (from course in SelectedCourses
+                (from Course course in SelectedCourses
                     from moocEvent in MoocInfoGetter.EventList
                     where moocEvent.Code == course.Code select moocEvent)
                 .ToList();
@@ -160,7 +160,9 @@ namespace NeuToDo.ViewModels {
             var moocStorage =
                 await _storageProvider.GetEventModelStorage<MoocEvent>();
             await moocStorage.ClearTableAsync();
-            await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
+            await moocStorage.InsertAllAsync(resultList);
+
+            await _popupNavigationService.PopAllAsync();
         }
 
         #endregion

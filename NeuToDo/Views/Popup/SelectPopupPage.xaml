@@ -44,19 +44,23 @@
                    BackgroundColor="White">
                 <Frame.WidthRequest>
                     <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="UWP" Value="400" />
-                        <On Platform="Android" Value="415" />
+                        <On Platform="UWP"
+                            Value="400" />
+                        <On Platform="Android"
+                            Value="415" />
                     </OnPlatform>
                 </Frame.WidthRequest>
                 <Frame.HeightRequest>
                     <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="UWP" Value="400" />
-                        <On Platform="Android" Value="415" />
+                        <On Platform="UWP"
+                            Value="400" />
+                        <On Platform="Android"
+                            Value="415" />
                     </OnPlatform>
                 </Frame.HeightRequest>
                 <StackLayout>
-                    <CollectionView ItemsSource="{Binding Courses}"
-                                    ItemsLayout="VerticalList"
+                    <CollectionView x:Name="collectionView"
+                                    ItemsSource="{Binding Courses}"
                                     SelectionMode="Multiple"
                                     SelectedItems="{Binding SelectedCourses, Mode=TwoWay}">
                         <CollectionView.ItemTemplate>
@@ -87,18 +91,9 @@
                                 </Grid>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
-                        <!-- <CollectionView.Behaviors> -->
-                        <!--     <b:EventHandlerBehavior EventName="ItemSelected"> -->
-                        <!--         <b:ActionCollection> -->
-                        <!--             <b:InvokeCommandAction -->
-                        <!--                 Command="{Binding }" /> -->
-                        <!--         </b:ActionCollection> -->
-                        <!--     </b:EventHandlerBehavior> -->
-                        <!-- </CollectionView.Behaviors> -->
                     </CollectionView>
                     <Button Text="完成"
-                            Clicked="OnFinishButtonTapped"
-                            Command="{Binding SaveSelectedCoursesCommand}"/>
+                            Command="{Binding SaveSelectedCoursesCommand}" />
                 </StackLayout>
             </Frame>
         </StackLayout>
