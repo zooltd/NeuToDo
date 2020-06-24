@@ -71,12 +71,20 @@ namespace NeuToDo.ViewModels
                 SettingItem.LastUpdateTime = LastUpdateTime;
                 SettingItem.Button1Text = "更新";
                 SettingItem.IsBound = true;
-                // await Task.Delay(1000);
-                Courses = MoocInfoGetter.CourseList;
-                if (Courses.Any())
+                if (SettingItem.ServerType == ServerType.Mooc)
                 {
-                    _selectedCourses = new ObservableCollection<object>();
-                    await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
+                    Courses = MoocInfoGetter.CourseList;
+                    if (Courses.Any())
+                    {
+                        _selectedCourses = new ObservableCollection<object>();
+                        await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
+                    }
+                }
+                else
+                {
+                    await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                    await Task.Delay(1500);
+                    await _popupNavigationService.PopAllAsync();
                 }
             }
             else
