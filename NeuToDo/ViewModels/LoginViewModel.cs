@@ -71,8 +71,7 @@ namespace NeuToDo.ViewModels
                 SettingItem.LastUpdateTime = LastUpdateTime;
                 SettingItem.Button1Text = "更新";
                 SettingItem.IsBound = true;
-                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
-                await Task.Delay(1000);
+                // await Task.Delay(1000);
                 Courses = MoocInfoGetter.CourseList;
                 if (Courses.Any())
                 {
@@ -160,7 +159,7 @@ namespace NeuToDo.ViewModels
             var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
             await moocStorage.ClearTableAsync();
             await moocStorage.InsertAllAsync(resultList);
-
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
             await _popupNavigationService.PopAllAsync();
         }
 
