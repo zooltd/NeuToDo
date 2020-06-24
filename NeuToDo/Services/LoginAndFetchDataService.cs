@@ -48,8 +48,8 @@ namespace NeuToDo.Services
                         await moocGetter.WebCrawler(userId, password);
                         // await moocStorage.ClearTableAsync();
                         // await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
-                        
-                        _storageProvider.OnUpdateData();
+                        //TODO 重构 _storageProvider.OnUpdateData()在LoginViewModel中
+                        // _storageProvider.OnUpdateData();
                         return true;
                     }
                     catch (Exception e)
