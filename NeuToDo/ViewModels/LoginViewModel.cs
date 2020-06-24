@@ -170,6 +170,7 @@ namespace NeuToDo.ViewModels
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
             await Task.Delay(1500);
             await _popupNavigationService.PopAllAsync();
+            _storageProvider.OnUpdateData();
         }
 
         #endregion
