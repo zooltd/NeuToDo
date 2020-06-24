@@ -71,7 +71,7 @@ namespace NeuToDo.ViewModels
 
             await Task.Delay(1500);
 
-            await PopupNavigation.Instance.PopAllAsync();
+            await _popupNavigationService.PopAllAsync();
         }
 
         #endregion
