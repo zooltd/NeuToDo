@@ -9,7 +9,7 @@ namespace NeuToDo.UnitTest.ViewModels
 {
     public class LoginViewModelTest
     {
-        [Test,Ignore("")]
+        [Test]
         public async Task TestPageAppearingCommand()
         {
             var popupNavigationService = new Mock<IPopupNavigationService>();
@@ -19,9 +19,10 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockLoginAndFetchDataService = loginAndFetchDataService.Object;
             var mockSecureStorageProvider = secureStorageProvider.Object;
             var loginViewModel = new LoginViewModel(mockPopupNavigationService, mockLoginAndFetchDataService,
-                mockSecureStorageProvider) {SettingItem = {ServerType = ServerType.Neu}};
+                mockSecureStorageProvider);
+            loginViewModel.SettingItem = null;
             await loginViewModel.PageAppearingCommandFunction();
-            secureStorageProvider.Verify(s=>s.GetAsync(loginViewModel.SettingItem.ServerType+"id"),Times.Once);
+            secureStorageProvider.Verify(s=>s.GetAsync(loginViewModel.SettingItem.ServerType+"id"),Times.Never);
         }
     }
 }
