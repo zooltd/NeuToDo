@@ -9,20 +9,22 @@ namespace NeuToDo.UnitTest.ViewModels
 {
     public class LoginViewModelTest
     {
-        [Test,Ignore("")]
+        [Test, Ignore("")]
         public async Task TestPageAppearingCommand()
         {
             var popupNavigationService = new Mock<IPopupNavigationService>();
             var loginAndFetchDataService = new Mock<ILoginAndFetchDataService>();
             var secureStorageProvider = new Mock<ISecureStorageProvider>();
+            var eventModelStorageProvider = new Mock<IEventModelStorageProvider>();
             var mockPopupNavigationService = popupNavigationService.Object;
             var mockLoginAndFetchDataService = loginAndFetchDataService.Object;
             var mockSecureStorageProvider = secureStorageProvider.Object;
+            var mockEventModelStorageProvider = eventModelStorageProvider.Object;
             var loginViewModel = new LoginViewModel(mockPopupNavigationService, mockLoginAndFetchDataService,
-                mockSecureStorageProvider);
+                mockSecureStorageProvider, mockEventModelStorageProvider);
             loginViewModel.SettingItem = null;
             await loginViewModel.PageAppearingCommandFunction();
-            secureStorageProvider.Verify(s=>s.GetAsync(loginViewModel.SettingItem.ServerType+"id"),Times.Never);
+            secureStorageProvider.Verify(s => s.GetAsync(loginViewModel.SettingItem.ServerType + "id"), Times.Never);
         }
     }
 }
