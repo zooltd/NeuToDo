@@ -88,8 +88,29 @@ namespace NeuToDo.ViewModels {
 
         public IEnumerable<Course> Courses { get; private set; }
 
-        public ObservableCollection<Course> SelectedCourses { get; set; }
+        private IEnumerable<Course> _selectedCourses;
 
+        public IEnumerable<Course> SelectedCourses {
+            get => _selectedCourses;
+            set => Set(nameof(SelectedCourses), ref _selectedCourses, value);
+        }
+
+        // Course selectedCourse;
+        //
+        // public Course SelectedCourse
+        // {
+        //     get
+        //     {
+        //         return selectedCourse;
+        //     }
+        //     set
+        //     {
+        //         if (selectedCourse != value)
+        //         {
+        //             selectedCourse = value;
+        //         }
+        //     }
+        // }
 
         private SettingItem _settingItem;
 
@@ -129,6 +150,7 @@ namespace NeuToDo.ViewModels {
                 await SaveSelectedCoursesCommandFunction());
 
         public async Task SaveSelectedCoursesCommandFunction() {
+            var TEST = _selectedCourses;
             var resultList =
                 (from course in SelectedCourses
                     from moocEvent in MoocInfoGetter.EventList

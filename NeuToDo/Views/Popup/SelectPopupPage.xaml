@@ -58,7 +58,7 @@
                     <CollectionView ItemsSource="{Binding Courses}"
                                     ItemsLayout="VerticalList"
                                     SelectionMode="Multiple"
-                                    SelectedItems="{Binding SelectedCourses}">
+                                    SelectedItems="{Binding SelectedCourses, Mode=TwoWay}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <Grid Padding="10">
