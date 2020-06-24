@@ -65,19 +65,19 @@ namespace NeuToDo.ViewModels
 
         private async Task PageAppearingCommandFunction()
         {
-            // EventPeriod = new ObservableCollection<TimeTable>();
-            // EventTypeName = TypeToName.Dict[SelectedEvent.GetType().Name];
-            // if (SelectedEvent.GetType().Name == nameof(NeuEvent))
-            // {
-            //     var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
-            //     var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
-            //     var courseDict = courses.GroupBy(c => c.Day)
-            //         .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
-            //     foreach (var pair in courseDict)
-            //     {
-            //         EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
-            //     }
-            // }
+            EventPeriod = new ObservableCollection<TimeTable>();
+            EventTypeName = TypeToName.Dict[SelectedEvent.GetType().Name];
+            if (SelectedEvent.GetType().Name == nameof(NeuEvent))
+            {
+                var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+                var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
+                var courseDict = courses.GroupBy(c => c.Day)
+                    .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
+                foreach (var pair in courseDict)
+                {
+                    EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
+                }
+            }
         }
     }
 

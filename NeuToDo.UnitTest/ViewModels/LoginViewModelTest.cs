@@ -9,7 +9,7 @@ namespace NeuToDo.UnitTest.ViewModels
 {
     public class LoginViewModelTest
     {
-        [Test]
+        [Test,Ignore("")]
         public async Task TestPageAppearingCommand()
         {
             var popupNavigationService = new Mock<IPopupNavigationService>();
