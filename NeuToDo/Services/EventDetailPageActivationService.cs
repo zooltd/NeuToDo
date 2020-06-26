@@ -14,6 +14,9 @@ namespace NeuToDo.Services
         private readonly Dictionary<string, ContentPage> _cache = new Dictionary<string, ContentPage>();
 
         public ContentPage Activate(string typename) =>
-            _cache.ContainsKey(typename) ? _cache[typename] : _cache[typename] = new EventDetailPage(typename);
+            _cache.ContainsKey(typename)
+                ? _cache[typename]
+                : _cache[typename] =
+                    (ContentPage) Activator.CreateInstance(ContentNavigationConstants.PageKeyTypeDictionary[typename]);
     }
 }

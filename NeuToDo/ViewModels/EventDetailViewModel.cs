@@ -24,15 +24,7 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// itemSource of Day picker
         /// </summary>
-        public List<DayOfWeek> DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
-
-        private string _eventTypeName;
-
-        public string EventTypeName
-        {
-            get => _eventTypeName;
-            set => Set(nameof(EventTypeName), ref _eventTypeName, value);
-        }
+        // public static List<DayOfWeek> DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();;
 
         private EventModel _selectedEvent;
 
@@ -66,7 +58,6 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             EventPeriod = new ObservableCollection<TimeTable>();
-            EventTypeName = TypeToName.Dict[SelectedEvent.GetType().Name];
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
@@ -75,7 +66,7 @@ namespace NeuToDo.ViewModels
                     .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
                 foreach (var pair in courseDict)
                 {
-                    EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
+                    EventPeriod.Add(new TimeTable((DayOfWeek) pair.Key, string.Join(",", pair.Value)));
                 }
             }
         }
@@ -84,26 +75,16 @@ namespace NeuToDo.ViewModels
     public class TimeTable
     {
         public DayOfWeek Day { get; set; }
+
         public string WeekNo { get; set; }
-    };
 
-    public class TypeToName
-    {
-        public static Dictionary<string, string> Dict = new Dictionary<string, string>
+        public List<DayOfWeek> DayItems { get; set; }
+
+        public TimeTable(DayOfWeek day, string weekNo)
         {
-            {nameof(NeuEvent), "Neu ToDo"},
-            {nameof(MoocEvent), "Mooc ToDo"},
-            {nameof(UserEvent), "自定义ToDo"}
-        };
-    }
-
-    public class DayList
-    {
-        public static List<DayOfWeek> DayItems { set; get; }
-
-        public DayList()
-        {
+            Day = day;
+            WeekNo = weekNo;
             DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
         }
-    }
+    };
 }

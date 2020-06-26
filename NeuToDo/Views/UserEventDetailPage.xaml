@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NeuToDo.Views.UserEventDetailPage"
+             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
+             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
+             Title="自定义事件编辑">
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <ScrollView>
+        <StackLayout>
+            <lc:EventDescription />
+            <lc:EventTime />
+            <lc:EventPeriod />
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>

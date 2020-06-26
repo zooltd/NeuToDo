@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="NeuToDo.Views.MoocEventDetailPage"
+             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
+             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+             ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
+             Title="Mooc事件编辑">
+
+
+    <ScrollView>
+        <StackLayout>
+            <lc:EventDescription />
+            <lc:EventTime />
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

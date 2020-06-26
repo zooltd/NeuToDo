@@ -17,4 +17,21 @@ namespace NeuToDo.Services
         /// <param name="e"></param>
         Task PushAsync(EventModel e);
     }
+
+    /// <summary>
+    /// 内容导航常量。
+    /// </summary>
+    public static class ContentNavigationConstants
+    {
+        /// <summary>
+        /// 页面键-页面类型字典。
+        /// </summary>
+        public static readonly Dictionary<string, Type> PageKeyTypeDictionary =
+            new Dictionary<string, Type>
+            {
+                {nameof(NeuEvent), typeof(NeuEventDetailPage)},
+                {nameof(MoocEvent), typeof(MoocEventDetailPage)},
+                {nameof(UserEvent), typeof(UserEventDetailPage)}
+            };
+    }
 }
