@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"
+      encoding="utf-8"?>
 
 <popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
@@ -6,72 +7,85 @@
                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
                  xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
+                 xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
                  mc:Ignorable="d"
                  x:Class="NeuToDo.Views.Popup.SelectPopupPage"
                  BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
                  CloseWhenBackgroundIsClicked="False"
                  x:Name="SelectPage">
 
- <ScrollView HorizontalOptions="Center"
+    <popup:PopupPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </popup:PopupPage.Behaviors>
+
+    <ScrollView HorizontalOptions="Center"
                 VerticalOptions="Center">
-            <Frame x:Name="FrameContainer"
-                   Margin="15"
-                   HorizontalOptions="Center"
-                   BackgroundColor="White">
-                <Frame.WidthRequest>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="UWP"
-                            Value="400" />
-                        <On Platform="Android"
-                            Value="415" />
-                    </OnPlatform>
-                </Frame.WidthRequest>
-                <Frame.HeightRequest>
-                    <OnPlatform x:TypeArguments="x:Double">
-                        <On Platform="UWP"
-                            Value="400" />
-                        <On Platform="Android"
-                            Value="415" />
-                    </OnPlatform>
-                </Frame.HeightRequest>
-                <StackLayout>
-                    <CollectionView x:Name="collectionView"
-                                    ItemsSource="{Binding Courses}"
-                                    SelectionMode="Multiple"
-                                    SelectedItems="{Binding SelectedCourses, Mode=TwoWay}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <Grid Padding="10">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition Width="Auto" />
-                                    </Grid.ColumnDefinitions>
-                                    <Image Grid.RowSpan="2"
-                                           Source="{Binding ImgUrl}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="106.5" />
-                                    <Label Grid.Column="1"
-                                           Text="{Binding Name}"
-                                           FontAttributes="Bold"
-                                           HorizontalOptions="Center" />
-                                    <Label Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding School}"
-                                           FontAttributes="Italic"
-                                           VerticalOptions="End" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    <Button Text="完成"
-                            Command="{Binding SaveSelectedCoursesCommand}" />
-                </StackLayout>
-            </Frame>
+        <Frame x:Name="FrameContainer"
+               Margin="15"
+               HorizontalOptions="Center"
+               BackgroundColor="White">
+            <Frame.WidthRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="UWP"
+                        Value="400" />
+                    <On Platform="Android"
+                        Value="415" />
+                </OnPlatform>
+            </Frame.WidthRequest>
+            <Frame.HeightRequest>
+                <OnPlatform x:TypeArguments="x:Double">
+                    <On Platform="UWP"
+                        Value="400" />
+                    <On Platform="Android"
+                        Value="415" />
+                </OnPlatform>
+            </Frame.HeightRequest>
+            <StackLayout>
+                <Label Text="请选择您想要关联的课程："
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       FontSize="Medium" />
+                <CollectionView x:Name="CollectionView"
+                                ItemsSource="{Binding Courses}"
+                                SelectionMode="Multiple"
+                                SelectedItems="{Binding SelectedCourses}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Image Grid.RowSpan="2"
+                                       Source="{Binding ImgUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="106.5" />
+                                <Label Grid.Column="1"
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center" />
+                                <Label Grid.Row="1"
+                                       Grid.Column="1"
+                                       Text="{Binding School}"
+                                       FontAttributes="Italic"
+                                       VerticalOptions="End" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <Button Text="完成"
+                        Command="{Binding SaveSelectedCoursesCommand}" />
+            </StackLayout>
+        </Frame>
     </ScrollView>
 
 </popup:PopupPage>

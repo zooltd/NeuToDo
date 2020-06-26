@@ -9,6 +9,7 @@ namespace NeuToDo.Views.Popup
         public SelectPopupPage()
         {
             InitializeComponent();
+            CollectionView.SelectedItems.Clear();
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Text;
 using GalaSoft.MvvmLight;
 
 namespace NeuToDo.Models {
-    public class Course {
+    public class Course : ObservableObject {
         public string Name { get; set; }
 
         public string School { get; set; }
