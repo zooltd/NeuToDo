@@ -65,10 +65,10 @@
     <EmbeddedResource Update="Components\EventTime.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\EventDetailPage.xaml">
+    <EmbeddedResource Update="Views\EventDetailPage\EventDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\MoocEventDetailPage.xaml">
+    <EmbeddedResource Update="Views\EventDetailPage\MoocEventDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\NeuEventDetailPage.xaml">
@@ -98,7 +98,7 @@
     <EmbeddedResource Update="Views\ToDoListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\UserEventDetailPage.xaml">
+    <EmbeddedResource Update="Views\EventDetailPage\UserEventDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

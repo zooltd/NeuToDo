@@ -25,7 +25,6 @@ namespace NeuToDo.ViewModels
         /// itemSource of Day picker
         /// </summary>
         // public static List<DayOfWeek> DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();;
-
         private EventModel _selectedEvent;
 
         public EventModel SelectedEvent
@@ -78,6 +77,7 @@ namespace NeuToDo.ViewModels
 
         public string WeekNo { get; set; }
 
+        //TODO 
         public List<DayOfWeek> DayItems { get; set; }
 
         public TimeTable(DayOfWeek day, string weekNo)
