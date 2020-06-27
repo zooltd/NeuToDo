@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              xmlns:calendar="clr-namespace:Xamarin.Plugin.Calendar.Controls;assembly=Xamarin.Plugin.Calendar"
              xmlns:components="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="NeuToDo.Views.ToDoCalendarPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
@@ -73,16 +74,29 @@
                                     Value="1" />
                         </VisualState.Setters>
                     </VisualState>
-
+        
                     <VisualState x:Name="Pressed">
                         <VisualState.Setters>
                             <Setter Property="Scale"
                                     Value="0.8" />
                         </VisualState.Setters>
                     </VisualState>
-
+        
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
         </ImageButton>
+        <!-- <pv:PancakeView HorizontalOptions="End" VerticalOptions="End" CornerRadius="40" Padding="15"> -->
+        <!--     <pv:PancakeView.BackgroundGradientStops> -->
+        <!--         <pv:GradientStopCollection> -->
+        <!--             <pv:GradientStop Color="LightBlue" Offset="0"/> -->
+        <!--             <pv:GradientStop Color="SlateBlue" Offset="1"/> -->
+        <!--         </pv:GradientStopCollection> -->
+        <!--     </pv:PancakeView.BackgroundGradientStops> -->
+        <!--     <Expander> -->
+        <!--         <Expander.Header> -->
+        <!--             <Label Text="+" TextColor="White" FontSize="Large"></Label> -->
+        <!--         </Expander.Header> -->
+        <!--     </Expander> -->
+        <!-- </pv:PancakeView> -->
     </AbsoluteLayout>
 </ContentPage>
