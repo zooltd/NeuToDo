@@ -19,7 +19,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="8*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.ColumnSpan="2" Text="{Binding SelectedEvent}" />
+                <Label Grid.ColumnSpan="2" Text="显示信息" />
                 <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
                        VerticalOptions="Center" />
                 <Entry Grid.Column="1" Grid.Row="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
