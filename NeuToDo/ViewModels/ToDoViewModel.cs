@@ -138,18 +138,12 @@ namespace NeuToDo.ViewModels
         private RelayCommand<EventModel> _eventTappedCommand;
 
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
-            ((e) =>
-            {
-                _eventDetailNavigationService.PushAsync(e);
-            }));
+            ((e) => { _eventDetailNavigationService.PushAsync(e); }));
 
         private RelayCommand _addEventCommand;
 
         public RelayCommand AddEventCommand => _addEventCommand ??=
-            new RelayCommand((() =>
-            {
-                _eventDetailNavigationService.PushAsync(new UserEvent());
-            }));
+            new RelayCommand((() => { _eventDetailNavigationService.PushAsync(new UserEvent()); }));
 
         private RelayCommand _pageAppearingCommand;
 
@@ -188,6 +182,22 @@ namespace NeuToDo.ViewModels
             ThisSunday = ThisSunday.AddDays(7);
             UpdateListData();
         }));
+
+        private RelayCommand _navigateToNewUserEventPage;
+
+        public RelayCommand NavigateToNewUserEventPage =>
+            _navigateToNewUserEventPage ??= new RelayCommand((() =>
+            {
+                _eventDetailNavigationService.PushAsync(new UserEvent());
+            }));
+
+        private RelayCommand _navigateToNewNeuEventPage;
+
+        public RelayCommand NavigateToNewNeuEventPage =>
+            _navigateToNewNeuEventPage ??= new RelayCommand((() =>
+            {
+                _eventDetailNavigationService.PushAsync(new NeuEvent());
+            }));
 
         #endregion
 
