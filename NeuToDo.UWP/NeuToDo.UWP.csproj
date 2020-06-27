@@ -103,6 +103,7 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="addPeriod.png" />
     <Content Include="calendar.png" />
     <Content Include="CalendarAdd.png" />
     <Content Include="date.png" />
@@ -149,6 +150,7 @@
     <Content Include="time.png" />
     <Content Include="title.png" />
     <Content Include="xamarin_logo.png" />
+    <Content Include="removePeriod.png" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">

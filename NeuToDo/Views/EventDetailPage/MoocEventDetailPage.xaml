@@ -12,9 +12,12 @@
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
              Title="Mooc事件编辑">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding EditComplete}" Text="完成"/>
+    </ContentPage.ToolbarItems>
 
     <ScrollView>
-        <StackLayout>
+        <StackLayout Padding="10">
             <lc:EventDescription />
             <lc:EventTime />
         </StackLayout>

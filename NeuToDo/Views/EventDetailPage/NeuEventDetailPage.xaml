@@ -13,6 +13,11 @@
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
              Title="课程编辑">
 
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding EditComplete}" Text="完成"/>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Behaviors>
         <behaviors:EventHandlerBehavior EventName="Appearing">
             <behaviors:ActionCollection>
@@ -22,7 +27,7 @@
     </ContentPage.Behaviors>
 
     <ScrollView>
-        <StackLayout>
+        <StackLayout Padding="10">
             <lc:EventDescription />
             <lc:EventTime />
             <lc:EventPeriod />

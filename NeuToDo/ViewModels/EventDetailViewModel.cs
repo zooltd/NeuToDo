@@ -12,7 +12,7 @@ namespace NeuToDo.ViewModels
 {
     public class EventDetailViewModel : ViewModelBase
     {
-        private IEventModelStorageProvider _eventStorage;
+        private readonly IEventModelStorageProvider _eventStorage;
 
         public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider)
         {
@@ -24,7 +24,10 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// itemSource of Day picker
         /// </summary>
-        // public static List<DayOfWeek> DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();;
+        private List<DayOfWeek> _dayItems;
+
+        public List<DayOfWeek> DayItems => _dayItems ??= Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
+
         private EventModel _selectedEvent;
 
         public EventModel SelectedEvent
@@ -52,6 +55,21 @@ namespace NeuToDo.ViewModels
                 await PageAppearingCommandFunction()
             );
 
+        private RelayCommand _addPeriod;
+
+        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() => { EventPeriod.Add(new TimeTable()); }));
+
+        private RelayCommand<TimeTable> _removePeriod;
+
+        public RelayCommand<TimeTable> RemovePeriod => _removePeriod ??= new RelayCommand<TimeTable>(((t) =>
+        {
+            EventPeriod.Remove(t);
+        }));
+
+        private RelayCommand _editComplete;
+
+        public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
+
         #endregion
 
         private async Task PageAppearingCommandFunction()
@@ -65,7 +83,7 @@ namespace NeuToDo.ViewModels
                     .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
                 foreach (var pair in courseDict)
                 {
-                    EventPeriod.Add(new TimeTable((DayOfWeek) pair.Key, string.Join(",", pair.Value)));
+                    EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
                 }
             }
         }
@@ -76,15 +94,5 @@ namespace NeuToDo.ViewModels
         public DayOfWeek Day { get; set; }
 
         public string WeekNo { get; set; }
-
-        //TODO 
-        public List<DayOfWeek> DayItems { get; set; }
-
-        public TimeTable(DayOfWeek day, string weekNo)
-        {
-            Day = day;
-            WeekNo = weekNo;
-            DayItems = Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
-        }
     };
 }

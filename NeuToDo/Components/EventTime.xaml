@@ -16,7 +16,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="9*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Grid.ColumnSpan="2" Text="时间段" />
                 <Image Grid.Row="1" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"

@@ -17,7 +17,7 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="8*" />
+                    <ColumnDefinition Width="9*" />
                 </Grid.ColumnDefinitions>
                 <Label Grid.ColumnSpan="2" Text="显示信息" />
                 <Image Grid.Column="0" Grid.Row="1" Source="title.png" WidthRequest="30" HeightRequest="30"
