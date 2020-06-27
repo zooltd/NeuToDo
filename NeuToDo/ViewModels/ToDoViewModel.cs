@@ -83,6 +83,8 @@ namespace NeuToDo.ViewModels
             var daySpan = (_today - lastUpdateDate).Days - (int) _today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
             var weekSpan = daySpan / 7;
             WeekNo = lastUpdateWeekNo + weekSpan; //TODO 更好的方案？
+            ThisSaturday = _today.AddDays(-(int) _today.DayOfWeek);
+            ThisSaturday = ThisSunday.AddDays(6);
         }
 
         private void UpdateListData()
