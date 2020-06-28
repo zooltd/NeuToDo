@@ -15,5 +15,7 @@ namespace NeuToDo.Services
         Task<List<T>> GetAllAsync();
 
         Task<List<T>> GetAllAsync(string code);
+
+        Task MergeAsync(IList<T> eventList);
     }
 }

@@ -38,5 +38,26 @@ namespace NeuToDo.Services
         {
             return await _connection.Table<T>().Where(e => (e.Code == code)).ToListAsync();
         }
+
+        public async Task MergeAsync(IList<T> eventList)
+        {
+            var dataInDb = await GetAllAsync();
+            foreach (var e in eventList)
+            {
+                var index = dataInDb.FindIndex(x => (x.Time == e.Time) && (x.Code == e.Code));
+                if (index >= 0)
+                {
+                    e.Id = index;
+                    dataInDb[index] = e;
+                }
+                else
+                {
+                    dataInDb.Add(e);
+                }
+            }
+
+            await ClearTableAsync();
+            await InsertAllAsync(dataInDb);
+        }
     }
 }

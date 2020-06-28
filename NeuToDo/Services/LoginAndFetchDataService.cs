@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Microsoft.Extensions.DependencyInjection;
 using NeuToDo.Models;
 
 namespace NeuToDo.Services
@@ -10,7 +9,8 @@ namespace NeuToDo.Services
         private readonly IEventModelStorageProvider _storageProvider;
         private static IHttpClientFactory _httpClientFactory;
 
-        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider, IHttpClientFactory httpClientFactory)
+        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider,
+            IHttpClientFactory httpClientFactory)
         {
             _storageProvider = eventModelStorageProvider;
             _httpClientFactory = httpClientFactory;
@@ -29,8 +29,9 @@ namespace NeuToDo.Services
                     try
                     {
                         await neuGetter.WebCrawler(userId, password);
-                        await neuStorage.ClearTableAsync();
-                        await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
+                        // await neuStorage.ClearTableAsync();
+                        // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
+                        await neuStorage.MergeAsync(NeuSyllabusGetter.EventList);
                         _storageProvider.OnUpdateData();
                         return true;
                     }

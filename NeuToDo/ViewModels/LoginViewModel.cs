@@ -154,8 +154,9 @@ namespace NeuToDo.ViewModels {
                 where moocEvent.Code == course.Code select moocEvent).ToList();
             var moocStorage =
                 await _storageProvider.GetEventModelStorage<MoocEvent>();
-            await moocStorage.ClearTableAsync();
-            await moocStorage.InsertAllAsync(resultList);
+            // await moocStorage.ClearTableAsync();
+            // await moocStorage.InsertAllAsync(resultList);
+            await moocStorage.MergeAsync(resultList);
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants
                 .SuccessPopupPage);
             await Task.Delay(1500);

@@ -83,6 +83,7 @@ namespace NeuToDo.ViewModels
             var daySpan = (_today - lastUpdateDate).Days - (int) _today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
             var weekSpan = daySpan / 7;
             WeekNo = lastUpdateWeekNo + weekSpan; //TODO 更好的方案？
+            Semester = _preferenceStorageProvider.Get("semester", "未知的时间裂缝");
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
@@ -167,7 +168,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand((() =>
         {
-            WeekNo = WeekNo <= 1 ? 0 : WeekNo - 1; //TODO
+            WeekNo--; //TODO
             ThisSaturday = ThisSaturday.AddDays(-7);
             ThisSunday = ThisSunday.AddDays(-7);
             UpdateListData();
@@ -250,6 +251,14 @@ namespace NeuToDo.ViewModels
         {
             get => _weekNo;
             set => Set(nameof(WeekNo), ref _weekNo, value);
+        }
+
+        private string _semester;
+
+        public string Semester
+        {
+            get => _semester;
+            set => Set(nameof(Semester), ref _semester, value);
         }
 
         private string _weeklySummary;
