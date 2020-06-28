@@ -8,14 +8,13 @@
              x:Class="NeuToDo.Views.NeuEventDetailPage"
              BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
-             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
              Title="课程编辑">
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding EditComplete}" Text="完成"/>
+        <ToolbarItem Command="{Binding EditComplete}" Text="完成" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Behaviors>
@@ -26,11 +25,130 @@
         </behaviors:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
-    <ScrollView>
+    <!-- <ScrollView> -->
+    <!--     <StackLayout Padding="10"> -->
+    <!--         <lc:EventDescription /> -->
+    <!--         <lc:EventTime /> -->
+    <!--         <lc:EventPeriod /> -->
+    <!--     </StackLayout> -->
+    <!-- </ScrollView> -->
+
+    <ScrollView x:Name="ThisPage">
         <StackLayout Padding="10">
-            <lc:EventDescription />
-            <lc:EventTime />
-            <lc:EventPeriod />
+            <Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="9*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="title.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center" />
+                    <Entry Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                           VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                </Grid>
+            </Frame>
+
+            <StackLayout BindableLayout.ItemsSource="{Binding EventPeriod}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="9*" />
+                                </Grid.ColumnDefinitions>
+                                <ImageButton Grid.Column="1" Source="deletePeriod.png"
+                                             HeightRequest="20" WidthRequest="20"
+                                             HorizontalOptions="End" />
+                                <Image Grid.Row="1" Grid.Column="0"
+                                       Source="time.png"
+                                       WidthRequest="30" HeightRequest="30" />
+                                <Picker Grid.Row="1" Grid.Column="1"
+                                        ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}"
+                                        SelectedItem="{Binding Day}" />
+                                <Image Grid.Row="2" Grid.Column="0"
+                                       Source="period.png"
+                                       WidthRequest="30" HeightRequest="30"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Row="2" Grid.Column="1"
+                                       Text="{Binding WeekNo}" />
+                                <Image Grid.Row="3" Grid.Column="0"
+                                       Source="detail.png"
+                                       WidthRequest="30" HeightRequest="30"
+                                       VerticalOptions="Center" />
+                                <Entry Grid.Row="3" Grid.Column="1"
+                                       Text="{Binding Detail}"
+                                       Placeholder="详细信息" />
+                            </Grid>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <Frame>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Text="删除课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Button Grid.Column="1" Text="增加时间段"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center" />
+                    <Button Grid.Column="2" Text="保存课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center" />
+                </Grid>
+            </Frame>
+
+            <!-- <Frame Margin="0,10"> -->
+            <!--     <Grid> -->
+            <!--         <Grid.RowDefinitions> -->
+            <!--             <RowDefinition Height="Auto" /> -->
+            <!--             <RowDefinition Height="Auto" /> -->
+            <!--         </Grid.RowDefinitions> -->
+            <!--         <Label Grid.Row="0" Text="删除" /> -->
+            <!--         <StackLayout Grid.Row="1" BindableLayout.ItemsSource="{Binding EventPeriod}"> -->
+            <!--             <BindableLayout.ItemTemplate> -->
+            <!--                 <DataTemplate> -->
+            <!--                     <Grid> -->
+            <!--                         <Grid.ColumnDefinitions> -->
+            <!--                             <ColumnDefinition Width="*" /> -->
+            <!--                             <ColumnDefinition Width="4*" /> -->
+            <!--                             <ColumnDefinition Width="4*" /> -->
+            <!--                             <ColumnDefinition Width="*" /> -->
+            <!--                         </Grid.ColumnDefinitions> -->
+            <!--                         <Image Source="period.png" WidthRequest="30" HeightRequest="30" -->
+            <!--                                VerticalOptions="Center" /> -->
+            <!--                         <Picker Grid.Column="1" -->
+            <!--                                 ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}" -->
+            <!--                                 SelectedItem="{Binding Day}" -->
+            <!--                                 VerticalOptions="Center" -->
+            <!--                                 HorizontalOptions="StartAndExpand" /> -->
+            <!--                         <Entry Grid.Column="2" Text="{Binding WeekNo}" VerticalOptions="Center" -->
+            <!--                                HorizontalOptions="StartAndExpand" /> -->
+            <!--                         <ImageButton Grid.Column="3" Source="removePeriod.png" VerticalOptions="Center" -->
+            <!--                                      HorizontalOptions="Center" -->
+            <!--                                      Aspect="AspectFit" HeightRequest="30" WidthRequest="30" -->
+            <!--                                      Command="{Binding BindingContext.RemovePeriod, Source={x:Reference ThisPage}}" -->
+            <!--                                      CommandParameter="{Binding}" /> -->
+            <!--                     </Grid> -->
+            <!--                 </DataTemplate> -->
+            <!--             </BindableLayout.ItemTemplate> -->
+            <!--         </StackLayout> -->
+            <!--     </Grid> -->
+            <!-- </Frame> -->
+
+
         </StackLayout>
     </ScrollView>
 </ContentPage>

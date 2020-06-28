@@ -108,6 +108,7 @@
     <Content Include="calendar.png" />
     <Content Include="CalendarAdd.png" />
     <Content Include="date.png" />
+    <Content Include="deletePeriod.png" />
     <Content Include="detail.png" />
     <Content Include="left.png">
       <SubType>Designer</SubType>

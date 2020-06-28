@@ -40,7 +40,7 @@ namespace NeuToDo.ViewModels
 
         public ObservableCollection<TimeTable> EventPeriod
         {
-            get => _eventPeriod;
+            get => _eventPeriod ??= new ObservableCollection<TimeTable>();
             set => Set(nameof(EventPeriod), ref _eventPeriod, value);
         }
 
@@ -74,7 +74,7 @@ namespace NeuToDo.ViewModels
 
         private async Task PageAppearingCommandFunction()
         {
-            EventPeriod = new ObservableCollection<TimeTable>();
+            EventPeriod.Clear();
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
