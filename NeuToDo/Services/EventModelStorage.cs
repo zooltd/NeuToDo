@@ -2,6 +2,7 @@
 using NeuToDo.Models;
 using SQLite;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -42,18 +43,32 @@ namespace NeuToDo.Services
         public async Task MergeAsync(IList<T> eventList)
         {
             var dataInDb = await GetAllAsync();
-            foreach (var e in eventList)
+            switch (typeof(T).Name)
             {
-                var index = dataInDb.FindIndex(x => (x.Time == e.Time) && (x.Code == e.Code));
-                if (index >= 0)
-                {
-                    e.Id = index;
-                    dataInDb[index] = e;
-                }
-                else
-                {
-                    dataInDb.Add(e);
-                }
+                case nameof(NeuEvent):
+                    foreach (var e in eventList)
+                    {
+                        var index = dataInDb.FindIndex(x => (x.Time == e.Time) && (x.Code == e.Code));
+                        if (index >= 0)
+                            dataInDb[index] = e;
+                        else
+                            dataInDb.Add(e);
+                    }
+
+                    break;
+                case nameof(MoocEvent):
+                    //TODO 同名，同时间，同属某课程的event存在？
+                    foreach (var e in eventList)
+                    {
+                        var index = dataInDb.FindIndex(x =>
+                            (x.Title == e.Title) && (x.Time == e.Time) && (x.Code == e.Code));
+                        if (index >= 0)
+                            dataInDb[index] = e;
+                        else
+                            dataInDb.Add(e);
+                    }
+
+                    break;
             }
 
             await ClearTableAsync();
