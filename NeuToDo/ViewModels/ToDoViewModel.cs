@@ -168,7 +168,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand((() =>
         {
-            WeekNo--; //TODO
+            WeekNo--; //TODO 1以前？
             ThisSaturday = ThisSaturday.AddDays(-7);
             ThisSunday = ThisSunday.AddDays(-7);
             UpdateListData();
