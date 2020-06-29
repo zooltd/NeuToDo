@@ -4,17 +4,17 @@ using NeuToDo.Droid;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
-[assembly: ExportRenderer(typeof(CustomEntry), typeof(CustomEntryRenderer))]
+[assembly: ExportRenderer(typeof(CustomTimePicker), typeof(CustomTimePickerRenderer))]
 
 namespace NeuToDo.Droid
 {
-    public class CustomEntryRenderer : EntryRenderer
+    public class CustomTimePickerRenderer : TimePickerRenderer
     {
-        public CustomEntryRenderer(Context context) : base(context)
+        public CustomTimePickerRenderer(Context context) : base(context)
         {
         }
 
-        protected override void OnElementChanged(ElementChangedEventArgs<Entry> e)
+        protected override void OnElementChanged(ElementChangedEventArgs<TimePicker> e)
         {
             base.OnElementChanged(e);
             Control?.SetBackgroundColor(Android.Graphics.Color.Transparent);

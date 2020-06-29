@@ -25,9 +25,13 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// itemSource of Day picker
         /// </summary>
-        private List<DayOfWeek> _dayItems;
+        private Array _dayItems;
 
-        public List<DayOfWeek> DayItems => _dayItems ??= Enum.GetValues(typeof(DayOfWeek)).Cast<DayOfWeek>().ToList();
+        public Array DayItems => _dayItems ??= Enum.GetValues(typeof(DayOfWeek));
+
+        private List<int> _indexItems;
+
+        public List<int> IndexItems => _indexItems ??= Enumerable.Range(1, 12).ToList();
 
         private EventModel _selectedEvent;
 
@@ -87,22 +91,18 @@ namespace NeuToDo.ViewModels
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)
                 {
+                    var detailSplit = group.Key.Detail.Split(',', '-');
+                    int.TryParse(detailSplit[0], out var index);
                     EventGroupList.Add(
                         new EventGroup
                         {
                             Day = (DayOfWeek) group.Key.Day,
                             Detail = group.Key.Detail,
+                            ClassIndex = index,
                             WeekNo = string.Join(",", group.ToList().ConvertAll(x => x.Week))
                         });
                 }
             }
         }
-    }
-
-    public class EventGroup
-    {
-        public string Detail { get; set; }
-        public DayOfWeek Day { get; set; }
-        public string WeekNo { get; set; }
     }
 }

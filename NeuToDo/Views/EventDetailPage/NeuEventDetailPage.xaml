@@ -35,58 +35,72 @@
     <!-- </ScrollView> -->
 
     <ScrollView x:Name="ThisPage">
-        <StackLayout Padding="10" Spacing="10">
+        <StackLayout Padding="30" Spacing="15">
             <Frame>
-                <Grid>
+                <Grid VerticalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="9*" />
+                        <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="title.png" WidthRequest="30" HeightRequest="30"
+                    <Image Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
                     <lc:CustomEntry Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                 </Grid>
             </Frame>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding EventGroupList}" Spacing="10">
+            <StackLayout BindableLayout.ItemsSource="{Binding EventGroupList}" Spacing="15">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame>
-                            <Grid>
+                            <Grid ColumnSpacing="10" RowSpacing="0">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="20" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                     <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="9*" />
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="4*" />
                                 </Grid.ColumnDefinitions>
-                                <ImageButton Grid.Column="1" Source="deletePeriod.png"
+
+                                <ImageButton Grid.Column="2" Source="deletePeriod.png" BackgroundColor="Transparent"
                                              Command="{Binding BindingContext.RemovePeriod, Source={x:Reference ThisPage}}"
                                              CommandParameter="{Binding}"
                                              HeightRequest="20" WidthRequest="20"
                                              HorizontalOptions="End" />
+
                                 <Image Grid.Row="1" Grid.Column="0"
                                        Source="time.png"
-                                       WidthRequest="30" HeightRequest="30" />
-                                <Picker Grid.Row="1" Grid.Column="1"
-                                        ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}"
-                                        SelectedItem="{Binding Day}" />
+                                       WidthRequest="25" HeightRequest="25" />
+                                <lc:CustomPicker Grid.Row="1" Grid.Column="1"
+                                                 ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}"
+                                                 SelectedItem="{Binding Day}"
+                                                 Title="选择星期" />
+                                <lc:CustomPicker Grid.Row="1" Grid.Column="2"
+                                                 ItemsSource="{Binding BindingContext.IndexItems, Source={x:Reference ThisPage}}"
+                                                 SelectedItem="{Binding ClassIndex}"
+                                                 Title="选择节次" />
+
+
                                 <Image Grid.Row="2" Grid.Column="0"
                                        Source="period.png"
-                                       WidthRequest="30" HeightRequest="30"
+                                       WidthRequest="25" HeightRequest="25"
                                        VerticalOptions="Center" />
                                 <!-- TODO  选择-->
                                 <lc:CustomEntry Grid.Row="2" Grid.Column="1"
-                                                Text="{Binding WeekNo}" />
+                                                Grid.ColumnSpan="2"
+                                                Text="{Binding WeekNo, StringFormat='第{0}周'}"
+                                                Placeholder="选择周数" />
+
                                 <Image Grid.Row="3" Grid.Column="0"
                                        Source="detail.png"
-                                       WidthRequest="30" HeightRequest="30"
+                                       WidthRequest="25" HeightRequest="25"
                                        VerticalOptions="Center" />
                                 <lc:CustomEntry Grid.Row="3" Grid.Column="1"
+                                                Grid.ColumnSpan="2"
                                                 Text="{Binding Detail}"
                                                 Placeholder="详细信息" />
                             </Grid>
