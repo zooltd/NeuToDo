@@ -58,7 +58,10 @@ namespace NeuToDo.ViewModels
 
         private RelayCommand _addPeriod;
 
-        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() => { }));
+        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
+        {
+            EventGroupList.Add(new EventGroup());
+        }));
 
         private RelayCommand<EventGroup> _removePeriod;
 

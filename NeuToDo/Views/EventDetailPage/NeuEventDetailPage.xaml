@@ -65,6 +65,8 @@
                                     <ColumnDefinition Width="9*" />
                                 </Grid.ColumnDefinitions>
                                 <ImageButton Grid.Column="1" Source="deletePeriod.png"
+                                             Command="{Binding BindingContext.RemovePeriod, Source={x:Reference ThisPage}}"
+                                             CommandParameter="{Binding}"
                                              HeightRequest="20" WidthRequest="20"
                                              HorizontalOptions="End" />
                                 <Image Grid.Row="1" Grid.Column="0"
@@ -105,6 +107,7 @@
                             HorizontalOptions="Center" VerticalOptions="Center" />
                     <Button Grid.Column="1" Text="增加时间段"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            Command="{Binding AddPeriod}"
                             HorizontalOptions="Center" VerticalOptions="Center" />
                     <Button Grid.Column="2" Text="保存课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
