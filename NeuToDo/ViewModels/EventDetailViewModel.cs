@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -36,12 +37,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
-        private ObservableCollection<TimeTable> _eventPeriod;
+        private ObservableCollection<EventGroup> _eventGroupList;
 
-        public ObservableCollection<TimeTable> EventPeriod
+        public ObservableCollection<EventGroup> EventGroupList
         {
-            get => _eventPeriod ??= new ObservableCollection<TimeTable>();
-            set => Set(nameof(EventPeriod), ref _eventPeriod, value);
+            get => _eventGroupList ??= new ObservableCollection<EventGroup>();
+            set => Set(nameof(EventGroupList), ref _eventGroupList, value);
         }
 
         #endregion
@@ -57,13 +58,13 @@ namespace NeuToDo.ViewModels
 
         private RelayCommand _addPeriod;
 
-        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() => { EventPeriod.Add(new TimeTable()); }));
+        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() => { }));
 
-        private RelayCommand<TimeTable> _removePeriod;
+        private RelayCommand<EventGroup> _removePeriod;
 
-        public RelayCommand<TimeTable> RemovePeriod => _removePeriod ??= new RelayCommand<TimeTable>(((t) =>
+        public RelayCommand<EventGroup> RemovePeriod => _removePeriod ??= new RelayCommand<EventGroup>(((g) =>
         {
-            EventPeriod.Remove(t);
+            EventGroupList.Remove(g);
         }));
 
         private RelayCommand _editComplete;
@@ -74,25 +75,31 @@ namespace NeuToDo.ViewModels
 
         private async Task PageAppearingCommandFunction()
         {
-            EventPeriod.Clear();
+            EventGroupList.Clear();
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
                 var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
-                var courseDict = courses.GroupBy(c => c.Day)
-                    .ToDictionary(g => g.Key, g => g.ToList().ConvertAll(x => x.Week));
-                foreach (var pair in courseDict)
+                var courseGroupList = courses.GroupBy(c => new {c.Day, c.Detail})
+                    .OrderBy(p => p.Key.Day);
+                foreach (var group in courseGroupList)
                 {
-                    EventPeriod.Add(new TimeTable {Day = (DayOfWeek) pair.Key, WeekNo = string.Join(",", pair.Value)});
+                    EventGroupList.Add(
+                        new EventGroup
+                        {
+                            Day = (DayOfWeek) group.Key.Day,
+                            Detail = group.Key.Detail,
+                            WeekNo = string.Join(",", group.ToList().ConvertAll(x => x.Week))
+                        });
                 }
             }
         }
     }
 
-    public class TimeTable
+    public class EventGroup
     {
+        public string Detail { get; set; }
         public DayOfWeek Day { get; set; }
-
         public string WeekNo { get; set; }
-    };
+    }
 }

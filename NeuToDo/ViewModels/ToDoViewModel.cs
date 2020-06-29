@@ -124,12 +124,12 @@ namespace NeuToDo.ViewModels
         //     set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         // }
         //
-        // private EventDetail _eventDetail;
+        // private EventGroupList _eventDetail;
         //
-        // public EventDetail EventDetail
+        // public EventGroupList EventGroupList
         // {
         //     get => _eventDetail;
-        //     set => Set(nameof(EventDetail), ref _eventDetail, value);
+        //     set => Set(nameof(EventGroupList), ref _eventDetail, value);
         // }
 
         #endregion

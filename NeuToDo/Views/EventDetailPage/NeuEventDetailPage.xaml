@@ -49,7 +49,7 @@
                 </Grid>
             </Frame>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding EventPeriod}" Spacing="10">
+            <StackLayout BindableLayout.ItemsSource="{Binding EventGroupList}" Spacing="10">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame>
