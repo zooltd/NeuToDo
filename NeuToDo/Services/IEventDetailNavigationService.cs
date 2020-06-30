@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using NeuToDo.Models;
-using NeuToDo.Views;
+using NeuToDo.Views.EventDetailPage;
 
 namespace NeuToDo.Services
 {
