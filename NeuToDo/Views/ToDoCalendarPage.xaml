@@ -37,10 +37,10 @@
             VerticalOptions="FillAndExpand"
             MonthLabelColor="#455399"
             SelectedDateColor="#455399"
-            SelectedDayBackgroundColor="#7885CC"
-            EventIndicatorColor="#EA7CA5">
-            <!-- DaysTitleColor="#E0B753" -->
-            <!-- SelectedDateColor="#E0B753" -->
+            SelectedDayBackgroundColor="#455399"
+            EventIndicatorColor="#EA7CA5"
+            EventIndicatorSelectedColor="#BF4779"
+            EventIndicatorSelectedTextColor="White">
 
             <calendar:Calendar.HeaderSectionTemplate>
                 <components:CalendarHeader />

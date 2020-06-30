@@ -9,6 +9,7 @@ namespace NeuToDo.Views
         public ToDoListPage()
         {
             InitializeComponent();
+            SizeChanged += (sender, args) => FirstRow.Height = Height * 0.85;
         }
     }
 }
