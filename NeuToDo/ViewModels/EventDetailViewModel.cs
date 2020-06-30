@@ -14,10 +14,13 @@ namespace NeuToDo.ViewModels
     public class EventDetailViewModel : ViewModelBase
     {
         private readonly IEventModelStorageProvider _eventStorage;
+        private readonly IPopupNavigationService _popupNavigationService;
 
-        public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider)
+        public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider,
+            IPopupNavigationService popupNavigationService)
         {
             _eventStorage = eventModelStorageProvider;
+            _popupNavigationService = popupNavigationService;
         }
 
         #region 绑定属性
@@ -32,6 +35,14 @@ namespace NeuToDo.ViewModels
         private List<int> _indexItems;
 
         public List<int> IndexItems => _indexItems ??= Enumerable.Range(1, 12).ToList();
+
+        private List<bool> _weekNoSelection;
+
+        public List<bool> WeekNoSelection
+        {
+            get => _weekNoSelection ??= new List<bool>();
+            set => Set(nameof(WeekNoSelection), ref _weekNoSelection, value);
+        }
 
         private EventModel _selectedEvent;
 
@@ -77,6 +88,15 @@ namespace NeuToDo.ViewModels
         private RelayCommand _editComplete;
 
         public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
+
+        private RelayCommand _weekNoSelect;
+
+        public RelayCommand WeekNoSelect =>
+            _weekNoSelect ??= new RelayCommand((() =>
+            {
+                WeekNoSelection.Clear();
+                _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
+            }));
 
         #endregion
 

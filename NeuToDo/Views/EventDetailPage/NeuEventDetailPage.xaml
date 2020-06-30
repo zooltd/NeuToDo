@@ -40,7 +40,7 @@
                 <Grid VerticalOptions="Center">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="8*" />
                     </Grid.ColumnDefinitions>
                     <Image Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
@@ -90,10 +90,16 @@
                                        WidthRequest="25" HeightRequest="25"
                                        VerticalOptions="Center" />
                                 <!-- TODO  选择-->
-                                <lc:CustomEntry Grid.Row="2" Grid.Column="1"
-                                                Grid.ColumnSpan="2"
-                                                Text="{Binding WeekNo, StringFormat='第{0}周'}"
-                                                Placeholder="选择周数" />
+                                <StackLayout Grid.Row="2" Grid.Column="1"
+                                             Grid.ColumnSpan="2">
+                                    <lc:CustomEntry Text="{Binding WeekNo}"
+                                                    Placeholder="选择周数"
+                                                    InputTransparent="True" />
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}"></TapGestureRecognizer>
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
 
                                 <Image Grid.Row="3" Grid.Column="0"
                                        Source="detail.png"

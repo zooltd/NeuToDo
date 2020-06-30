@@ -44,6 +44,9 @@ namespace NeuToDo.Services
         /// </summary>
         public const string SelectPopupPage = nameof(Views.Popup.SelectPopupPage);
 
+        
+        public const string WeekNoSelectPopupPage = nameof(Views.Popup.WeekNoSelectPopupPage);
+
         /// <summary>
         /// 页面键-页面类型字典。
         /// </summary>
@@ -53,7 +56,8 @@ namespace NeuToDo.Services
             {LoadingPopupPage, typeof(LoadingPopupPage)},
             {SuccessPopupPage, typeof(SuccessPopupPage)},
             {ErrorPopupPage, typeof(ErrorPopupPage)},
-            {SelectPopupPage, typeof(SelectPopupPage)}
+            {SelectPopupPage, typeof(SelectPopupPage)},
+            {WeekNoSelectPopupPage, typeof(WeekNoSelectPopupPage)}
         };
     }
 }
