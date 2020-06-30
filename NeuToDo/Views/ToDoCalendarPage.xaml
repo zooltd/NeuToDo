@@ -34,7 +34,13 @@
             MonthYear="{Binding MonthYear}"
             SelectedDate="{Binding SelectedDate}"
             SelectedDateTextFormat="ddd, MMM dd yyyy"
-            VerticalOptions="FillAndExpand">
+            VerticalOptions="FillAndExpand"
+            MonthLabelColor="#455399"
+            SelectedDateColor="#455399"
+            SelectedDayBackgroundColor="#7885CC"
+            EventIndicatorColor="#EA7CA5">
+            <!-- DaysTitleColor="#E0B753" -->
+            <!-- SelectedDateColor="#E0B753" -->
 
             <calendar:Calendar.HeaderSectionTemplate>
                 <components:CalendarHeader />

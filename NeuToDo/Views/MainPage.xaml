@@ -11,11 +11,6 @@
             x:Class="NeuToDo.Views.MainPage">
 
     <TabbedPage.Children>
-        <NavigationPage Title="Calendar" IconImageSource="calendar.png">
-            <x:Arguments>
-                <views:ToDoCalendarPage />
-            </x:Arguments>
-        </NavigationPage>
 
         <NavigationPage Title="Planner" IconImageSource="list.png">
             <x:Arguments>
@@ -23,6 +18,11 @@
             </x:Arguments>
         </NavigationPage>
 
+        <NavigationPage Title="Calendar" IconImageSource="calendar.png">
+            <x:Arguments>
+                <views:ToDoCalendarPage />
+            </x:Arguments>
+        </NavigationPage>
         <NavigationPage Title="Settings" IconImageSource="settings.png">
             <x:Arguments>
                 <views:SettingsPage />

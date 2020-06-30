@@ -34,7 +34,7 @@
                    HorizontalTextAlignment="Center"
                    InputTransparent="True"
                    Text="←"
-                   TextColor="{Binding ArrowsColor}"
+                   TextColor="#455399"
                    VerticalOptions="CenterAndExpand"
                    VerticalTextAlignment="Center" />
 
@@ -76,7 +76,7 @@
                    HorizontalTextAlignment="Center"
                    InputTransparent="True"
                    Text="→"
-                   TextColor="{Binding ArrowsColor}"
+                   TextColor="#455399"
                    VerticalOptions="CenterAndExpand"
                    VerticalTextAlignment="Center" />
 

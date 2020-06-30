@@ -32,7 +32,7 @@
             HorizontalOptions="End"
             IsVisible="{Binding FooterArrowVisible}"
             Text="⬆"
-            TextColor="DarkCyan"
+            TextColor="#455399"
             VerticalOptions="CenterAndExpand"
             VerticalTextAlignment="Center">
             <Label.Triggers>
