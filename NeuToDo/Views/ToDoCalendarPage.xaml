@@ -95,8 +95,8 @@
                         AbsoluteLayout.LayoutFlags="PositionProportional" AbsoluteLayout.LayoutBounds="1,1">
             <pv:PancakeView.BackgroundGradientStops>
                 <pv:GradientStopCollection>
-                    <pv:GradientStop Color="LightBlue" Offset="0" />
-                    <pv:GradientStop Color="SlateBlue" Offset="1" />
+                    <pv:GradientStop Color="#EFC2D5" Offset="0" />
+                    <pv:GradientStop Color="BlueViolet" Offset="1" />
                 </pv:GradientStopCollection>
             </pv:PancakeView.BackgroundGradientStops>
             <Expander HorizontalOptions="Start" VerticalOptions="End" Rotation="180">
