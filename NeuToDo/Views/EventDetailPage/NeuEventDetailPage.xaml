@@ -21,7 +21,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <lconv:WeeNoConverter x:Key="WeeNoConverter" />
+            <lconv:WeekNoConverter x:Key="WeekNoConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
 
@@ -99,13 +99,13 @@
                                 <!-- TODO  选择-->
                                 <StackLayout Grid.Row="2" Grid.Column="1"
                                              Grid.ColumnSpan="2">
-                                    <lc:CustomEntry Text="{Binding WeekNo, Converter={StaticResource WeeNoConverter}}"
+                                    <lc:CustomEntry Text="{Binding WeekNo, Converter={StaticResource WeekNoConverter}}"
                                                     Placeholder="选择周数"
                                                     InputTransparent="True" />
                                     <StackLayout.GestureRecognizers>
                                         <TapGestureRecognizer
                                             Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}" 
-                                            CommandParameter="{Binding WeekNo}"/>
+                                            CommandParameter="{Binding}"/>
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 

@@ -1,14 +1,13 @@
 ﻿using Rg.Plugins.Popup.Pages;
 using Rg.Plugins.Popup.Services;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Components;
-using NeuToDo.Services;
 using NeuToDo.ViewModels;
-using NeuToDo.Views.EventDetailPage;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -19,15 +18,13 @@ namespace NeuToDo.Views.Popup
     {
         private readonly EventDetailViewModel _bindingContext = SimpleIoc.Default.GetInstance<EventDetailViewModel>();
 
+        private readonly List<int> _selectedIndex = new List<int>();
+
         public WeekNoSelectPopupPage()
         {
             InitializeComponent();
             BindingContext = _bindingContext;
             CollectionView.ItemsSource = Enumerable.Range(1, 24).ToList();
-            // foreach (var i in _bindingContext.WeekIndexInSelectionPage)
-            // {
-            //     if (CollectionView.LogicalChildren[i - 1] is CustomButton button) button.IsClicked = true;
-            // }
         }
 
         private bool _isSelectAll, _isSelectOdd, _isSelectEven;
@@ -72,11 +69,27 @@ namespace NeuToDo.Views.Popup
 
         private async void SelectDone(object sender, EventArgs e)
         {
-            Debug.WriteLine("完成");
-            foreach (var element in CollectionView.LogicalChildren)
+            _selectedIndex.Clear();
+            var customButtons = CollectionView.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
+
+            for (var i = 0; i < customButtons.Count; i++)
+                if (customButtons[i].IsClicked)
+                    _selectedIndex.Add(i + 1);
+            _bindingContext.SelectEventGroup.WeekNo = new List<int>(_selectedIndex);
+            await PopupNavigation.Instance.RemovePageAsync(this);
+        }
+
+
+        protected override void OnAppearing()
+        {
+            Device.BeginInvokeOnMainThread(() =>
             {
-                var customButton = (CustomButton) element;
-            }
+                if (CollectionView.LogicalChildren.Count < 24) return;
+                foreach (var index in _bindingContext.SelectEventGroup.WeekNo)
+                {
+                    if (CollectionView.LogicalChildren[index - 1] is CustomButton button) button.IsClicked = true;
+                }
+            });
         }
     }
 }

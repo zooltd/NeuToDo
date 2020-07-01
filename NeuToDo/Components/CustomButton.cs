@@ -14,6 +14,7 @@ namespace NeuToDo.Components
             {
                 SetValue(IsClickedProperty, value);
                 BackgroundColor = IsClicked ? SelectColor : Color.Transparent;
+                TextColor = IsClicked ? Color.White : Color.Black;
             }
         }
 

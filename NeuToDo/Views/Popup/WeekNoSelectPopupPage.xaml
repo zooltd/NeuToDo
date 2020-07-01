@@ -20,6 +20,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition />
@@ -27,13 +28,13 @@
                     <ColumnDefinition />
                 </Grid.ColumnDefinitions>
                 <Button Grid.Row="0" Grid.Column="0" HorizontalOptions="CenterAndExpand"
-                        Text="全部" BackgroundColor="Transparent"
+                        Text="全部" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
                         Clicked="SelectAll" />
                 <Button Grid.Row="0" Grid.Column="1" HorizontalOptions="CenterAndExpand"
-                        Text="单周" BackgroundColor="Transparent"
+                        Text="单周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
                         Clicked="SelectOdd" />
                 <Button Grid.Row="0" Grid.Column="2" HorizontalOptions="CenterAndExpand"
-                        Text="双周" BackgroundColor="Transparent"
+                        Text="双周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
                         Clicked="SelectEven" />
 
                 <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CollectionView"
@@ -44,17 +45,18 @@
                     </CollectionView.ItemsLayout>
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <lc:CustomButton Text="{Binding}" CornerRadius="0" SelectColor="#BF4779" />
+                            <lc:CustomButton Text="{Binding .}" CornerRadius="0" SelectColor="#BF4779" />
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <Button Grid.Row="2" Grid.Column="1" HorizontalOptions="EndAndExpand"
+                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="SlateGray"/>
+                <Button Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand"
                         Text="取消" BackgroundColor="Transparent"
-                        Clicked="SelectCancel" />
-                <Button Grid.Row="2" Grid.Column="2" HorizontalOptions="EndAndExpand"
+                        Clicked="SelectCancel" TextColor="#BF4779" FontAttributes="Bold" />
+                <Button Grid.Row="3" Grid.Column="2" HorizontalOptions="EndAndExpand"
                         Text="完成" BackgroundColor="Transparent"
-                        Clicked="SelectDone" />
+                        Clicked="SelectDone" TextColor="#BF4779" FontAttributes="Bold" />
 
             </Grid>
 

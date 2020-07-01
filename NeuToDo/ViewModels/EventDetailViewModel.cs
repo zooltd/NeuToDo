@@ -60,6 +60,8 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
+        public EventGroup SelectEventGroup { get; set; }
+
         #endregion
 
         #region 绑定命令
@@ -89,14 +91,14 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
 
-        private RelayCommand<object> _weekNoSelect;
+        private RelayCommand<EventGroup> _weekNoSelect;
 
-        public RelayCommand<object> WeekNoSelect =>
-            _weekNoSelect ??= new RelayCommand<object>(((obj) =>
+        public RelayCommand<EventGroup> WeekNoSelect =>
+            _weekNoSelect ??= new RelayCommand<EventGroup>((group) =>
             {
-                WeekIndexInSelectionPage = obj as ObservableCollection<int>;
+                SelectEventGroup = group;
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
-            }));
+            });
 
         #endregion
 
@@ -119,7 +121,7 @@ namespace NeuToDo.ViewModels
                             Day = (DayOfWeek) group.Key.Day,
                             Detail = group.Key.Detail,
                             ClassIndex = index,
-                            WeekNo = new ObservableCollection<int>(group.ToList().ConvertAll(x => x.Week))
+                            WeekNo = group.ToList().ConvertAll(x => x.Week)
                         });
                 }
             }
