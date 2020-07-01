@@ -84,6 +84,12 @@ namespace NeuToDo.Views.Popup
         {
             Device.BeginInvokeOnMainThread(() =>
             {
+                //TODO 阻塞
+                while (CollectionView.LogicalChildren.Count < 24)
+                {
+                    Task.Delay(100);
+                }
+
                 if (CollectionView.LogicalChildren.Count < 24) return;
                 foreach (var index in _bindingContext.SelectEventGroup.WeekNo)
                 {
