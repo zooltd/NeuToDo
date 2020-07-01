@@ -22,7 +22,7 @@
 
     <CollectionView ItemsSource="{Binding Settings}"
                     IsGrouped="true"
-                    Margin="0,10"
+                    Margin="0,20"
                     x:Name="CollectionView">
         <CollectionView.GroupHeaderTemplate>
             <DataTemplate>
@@ -35,7 +35,11 @@
                            BackgroundColor="#455399"
                            TextColor="White"
                            FontSize="20"
-                           FontAttributes="Bold" />
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           WidthRequest="100"
+                           HeightRequest="35" />
                 </Grid>
             </DataTemplate>
         </CollectionView.GroupHeaderTemplate>
@@ -45,52 +49,55 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="20" />
-                        <RowDefinition Height="20" />
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0"
-                           Grid.Column="0"
-                           Text="{Binding Name}"
-                           TextColor="#455399"
-                           FontSize="14"
-                           VerticalOptions="CenterAndExpand"
-                           FontAttributes="Bold" />
-                    <Button Grid.Row="0"
-                            Grid.Column="1"
-                            BackgroundColor="#455399"
-                            TextColor="White"
-                            FontSize="12"
-                            CornerRadius="20"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            Text="{Binding Button1Text}"
-                            Command="{Binding BindingContext.Command1, Source={x:Reference CollectionView}}"
-                            CommandParameter="{Binding}" />
-                    <Button Grid.Row="0"
-                            Grid.Column="2"
-                            BackgroundColor="#455399"
-                            TextColor="White"
-                            FontSize="12"
-                            CornerRadius="20"
-                            HorizontalOptions="End"
-                            VerticalOptions="Center"
-                            Text="解除"
-                            Command="{Binding BindingContext.Command2, Source={x:Reference CollectionView}}"
-                            CommandParameter="{Binding}"/>
-                    <Label Grid.Row="1"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
-                           VerticalOptions="End" />
-                    <Label Grid.Row="2"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="3"
-                           Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
-                           VerticalOptions="End" />
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="40" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <Label Grid.Row="0"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding Name}"
+                               TextColor="#455399"
+                               FontSize="16"
+                               VerticalOptions="CenterAndExpand"
+                               FontAttributes="Bold" />
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
+                               VerticalOptions="End" />
+                        <Label Grid.Row="2"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
+                               VerticalOptions="End" />
+                    </Grid>
+                    <Grid Grid.Column="1" ColumnSpacing="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0"
+                                BackgroundColor="#455399"
+                                TextColor="White"
+                                FontSize="12"
+                                CornerRadius="0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Text="{Binding Button1Text}"
+                                Command="{Binding BindingContext.Command1, Source={x:Reference CollectionView}}"
+                                CommandParameter="{Binding}" />
+                        <Button Grid.Column="1"
+                                BackgroundColor="#BF4779"
+                                TextColor="White"
+                                FontSize="12"
+                                CornerRadius="0"
+                                HorizontalOptions="End"
+                                VerticalOptions="Center"
+                                Text="解除"
+                                Command="{Binding BindingContext.Command2, Source={x:Reference CollectionView}}"
+                                CommandParameter="{Binding}" />
+                    </Grid>
                 </Grid>
             </DataTemplate>
         </CollectionView.ItemTemplate>
