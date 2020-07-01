@@ -105,8 +105,10 @@
   <ItemGroup>
     <Content Include="add.png" />
     <Content Include="addPeriod.png" />
+    <Content Include="BbPic.png" />
     <Content Include="calendar.png" />
     <Content Include="CalendarAdd.png" />
+    <Content Include="CloudStorage.png" />
     <Content Include="date.png" />
     <Content Include="deletePeriod.png" />
     <Content Include="detail.png" />
@@ -115,7 +117,9 @@
     </Content>
     <Content Include="list.png" />
     <Content Include="ListAdd.png" />
+    <Content Include="MoocPic.png" />
     <Content Include="NeuEventAdd.png" />
+    <Content Include="NeuPic.png" />
     <Content Include="period.png" />
     <Content Include="Properties\Default.rd.xml" />
     <Content Include="Assets\LargeTile.scale-100.png" />
