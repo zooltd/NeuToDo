@@ -32,17 +32,9 @@ namespace NeuToDo.ViewModels
 
         public Array DayItems => _dayItems ??= Enum.GetValues(typeof(DayOfWeek));
 
-        private List<int> _indexItems;
+        private List<int> _classIndexItems;
 
-        public List<int> IndexItems => _indexItems ??= Enumerable.Range(1, 12).ToList();
-
-        private List<bool> _weekNoSelection;
-
-        public List<bool> WeekNoSelection
-        {
-            get => _weekNoSelection ??= new List<bool>();
-            set => Set(nameof(WeekNoSelection), ref _weekNoSelection, value);
-        }
+        public List<int> ClassIndexItems => _classIndexItems ??= Enumerable.Range(1, 12).ToList();
 
         private EventModel _selectedEvent;
 
@@ -58,6 +50,14 @@ namespace NeuToDo.ViewModels
         {
             get => _eventGroupList ??= new ObservableCollection<EventGroup>();
             set => Set(nameof(EventGroupList), ref _eventGroupList, value);
+        }
+
+        private ObservableCollection<int> _weekIndexInSelectionPage;
+
+        public ObservableCollection<int> WeekIndexInSelectionPage
+        {
+            get => _weekIndexInSelectionPage;
+            set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
         #endregion
@@ -89,12 +89,12 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
 
-        private RelayCommand _weekNoSelect;
+        private RelayCommand<object> _weekNoSelect;
 
-        public RelayCommand WeekNoSelect =>
-            _weekNoSelect ??= new RelayCommand((() =>
+        public RelayCommand<object> WeekNoSelect =>
+            _weekNoSelect ??= new RelayCommand<object>(((obj) =>
             {
-                WeekNoSelection.Clear();
+                WeekIndexInSelectionPage = obj as ObservableCollection<int>;
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
             }));
 
@@ -119,7 +119,7 @@ namespace NeuToDo.ViewModels
                             Day = (DayOfWeek) group.Key.Day,
                             Detail = group.Key.Detail,
                             ClassIndex = index,
-                            WeekNo = string.Join(",", group.ToList().ConvertAll(x => x.Week))
+                            WeekNo = new ObservableCollection<int>(group.ToList().ConvertAll(x => x.Week))
                         });
                 }
             }

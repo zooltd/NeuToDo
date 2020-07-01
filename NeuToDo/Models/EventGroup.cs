@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace NeuToDo.Models
 {
@@ -7,7 +9,7 @@ namespace NeuToDo.Models
         public string Detail { get; set; }
         public int ClassIndex { get; set; }
         public DayOfWeek Day { get; set; }
-        public string WeekNo { get; set; }
+        public ObservableCollection<int> WeekNo { get; set; }
     }
 
     public enum DayOfWeekCHN

@@ -10,6 +10,7 @@
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:lconv="clr-namespace:NeuToDo.Converters;assembly=NeuToDo"
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
              Title="课程编辑">
 
@@ -17,6 +18,12 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding EditComplete}" Text="完成" />
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <lconv:WeeNoConverter x:Key="WeeNoConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ContentPage.Behaviors>
         <behaviors:EventHandlerBehavior EventName="Appearing">
@@ -80,7 +87,7 @@
                                                  SelectedItem="{Binding Day}"
                                                  Title="选择星期" />
                                 <lc:CustomPicker Grid.Row="1" Grid.Column="2"
-                                                 ItemsSource="{Binding BindingContext.IndexItems, Source={x:Reference ThisPage}}"
+                                                 ItemsSource="{Binding BindingContext.ClassIndexItems, Source={x:Reference ThisPage}}"
                                                  SelectedItem="{Binding ClassIndex}"
                                                  Title="选择节次" />
 
@@ -92,11 +99,13 @@
                                 <!-- TODO  选择-->
                                 <StackLayout Grid.Row="2" Grid.Column="1"
                                              Grid.ColumnSpan="2">
-                                    <lc:CustomEntry Text="{Binding WeekNo}"
+                                    <lc:CustomEntry Text="{Binding WeekNo, Converter={StaticResource WeeNoConverter}}"
                                                     Placeholder="选择周数"
                                                     InputTransparent="True" />
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}"></TapGestureRecognizer>
+                                        <TapGestureRecognizer
+                                            Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}" 
+                                            CommandParameter="{Binding WeekNo}"/>
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 

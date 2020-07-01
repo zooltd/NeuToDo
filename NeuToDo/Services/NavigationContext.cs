@@ -14,12 +14,6 @@ namespace NeuToDo.Services
             BindableProperty.CreateAttached("NavigationParameter", typeof(object), typeof(NavigationContext), null,
                 BindingMode.OneWayToSource);
 
-        //         public string EventName
-        // {
-        //   get { return (string)GetValue (EventNameProperty); }
-        //   set { SetValue (EventNameProperty, value); }
-        // }
-
         /// <summary>
         /// 设置导航参数。
         /// </summary>
