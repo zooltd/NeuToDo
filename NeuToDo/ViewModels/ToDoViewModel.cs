@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using NeuToDo.Utils;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -15,11 +16,13 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
-            IPreferenceStorageProvider preferenceStorageProvider)
+            IPreferenceStorageProvider preferenceStorageProvider,
+            IAcademicCalendar academicCalendar)
         {
             _eventModelStorageProvider = eventModelStorageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
             _preferenceStorageProvider = preferenceStorageProvider;
+            _academicCalendar = academicCalendar;
             eventModelStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -33,6 +36,8 @@ namespace NeuToDo.ViewModels
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
         private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+
+        private readonly IAcademicCalendar _academicCalendar;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -78,12 +83,8 @@ namespace NeuToDo.ViewModels
 
         private void UpdateTeachingWeekNo()
         {
-            var lastUpdateWeekNo = _preferenceStorageProvider.Get("weekNo", 0);
-            var lastUpdateDate = _preferenceStorageProvider.Get("updateDate", DateTime.Today);
-            var daySpan = (_today - lastUpdateDate).Days - (int) _today.DayOfWeek + (int) lastUpdateDate.DayOfWeek;
-            var weekSpan = daySpan / 7;
-            WeekNo = lastUpdateWeekNo + weekSpan; //TODO 更好的方案？
-            Semester = _preferenceStorageProvider.Get("semester", "未知的时间裂缝");
+            WeekNo = _academicCalendar.WeekNo;
+            Semester = _academicCalendar.Semester;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }

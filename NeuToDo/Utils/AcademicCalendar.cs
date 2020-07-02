@@ -4,7 +4,7 @@ using NeuToDo.Services;
 
 namespace NeuToDo.Utils
 {
-    public class AcademicCalendar
+    public class AcademicCalendar : IAcademicCalendar
     {
         private readonly IPreferenceStorageProvider _preferenceStorageProvider;
 
@@ -12,7 +12,7 @@ namespace NeuToDo.Utils
         {
             _preferenceStorageProvider = preferenceStorageProvider;
         }
-
+        //TODO 关联东北大学后更新
 
         private Campus? _campus;
 

@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Services;
+using NeuToDo.Utils;
 
 namespace NeuToDo.ViewModels
 {
@@ -12,6 +13,8 @@ namespace NeuToDo.ViewModels
         public LoginViewModel LoginViewModel => SimpleIoc.Default.GetInstance<LoginViewModel>();
 
         public EventDetailViewModel EventDetailViewModel => SimpleIoc.Default.GetInstance<EventDetailViewModel>();
+
+        public AcademicCalendar AcademicCalendar => SimpleIoc.Default.GetInstance<AcademicCalendar>();
         
         public ViewModelLocator()
         {
@@ -19,6 +22,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
+            SimpleIoc.Default.Register<IAcademicCalendar, AcademicCalendar>();
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
             SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();

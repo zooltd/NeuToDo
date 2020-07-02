@@ -113,13 +113,14 @@ namespace NeuToDo.Services
             //     {Semester = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
 
             CurrWeekIndex = weekNo;
-
+            var baseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - weekNo * 7);
             //TODO 正则 查看是否符合标准
-            Preferences.Set("stuName", stuName);
-            Preferences.Set("stuId", stuId);
-            Preferences.Set("weekNo", weekNo);
-            Preferences.Set("semester", semester);
-            Preferences.Set("updateDate", DateTime.Today);
+            Preferences.Set("StuName", stuName);
+            Preferences.Set("StuId", stuId);
+            Preferences.Set("WeekNo", weekNo);
+            Preferences.Set("Semester", semester);
+            Preferences.Set("BaseDate", baseDate);
+            Preferences.Set("UpdateDate", DateTime.Today);
         }
 
         private static async Task GetCourseInfo()
