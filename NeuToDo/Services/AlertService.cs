@@ -1,4 +1,5 @@
-﻿using NeuToDo.Views;
+﻿using System.Threading.Tasks;
+using NeuToDo.Views;
 using Xamarin.Forms;
 
 namespace NeuToDo.Services
@@ -13,6 +14,17 @@ namespace NeuToDo.Services
         {
             Device.BeginInvokeOnMainThread(async () =>
                 await MainPage.DisplayAlert(title, content, button));
+        }
+
+        public Task<bool> DisplayAlert(string title, string content, string accept, string cancel)
+        {
+            var res = new TaskCompletionSource<bool>();
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                res.TrySetResult(await MainPage.DisplayAlert(title, content, accept, cancel));
+            });
+            return res.Task;
         }
     }
 }

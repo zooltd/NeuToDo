@@ -90,7 +90,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            EventGroupList.Add(new EventGroup{WeekNo = new List<int>()});
+            EventGroupList.Add(new EventGroup {WeekNo = new List<int>()});
         }));
 
         /// <summary>
@@ -109,6 +109,8 @@ namespace NeuToDo.ViewModels
         public RelayCommand DeleteCourse =>
             _deleteCourse ??= new RelayCommand((async () =>
             {
+                var res = await _alertService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
+                if (!res) return;
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
                 await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
                 _eventStorage.OnUpdateData();
@@ -159,6 +161,8 @@ namespace NeuToDo.ViewModels
 
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             await neuStorage.InsertAllAsync(newList);
+            _eventStorage.OnUpdateData();
+            //TODO Navigate
         }
 
         /// <summary>

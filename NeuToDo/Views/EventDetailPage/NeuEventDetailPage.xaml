@@ -141,7 +141,7 @@
                     <Button Grid.Column="2" Text="保存课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center" 
-                            Command="{Binding DeleteCourse}"/>
+                            Command="{Binding EditDone}"/>
                 </Grid>
             </Frame>
 
