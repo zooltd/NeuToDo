@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NeuToDo.Utils;
 using Xamarin.Essentials;
 
 namespace NeuToDo.Services
@@ -15,12 +16,15 @@ namespace NeuToDo.Services
 
         private static HttpClient _initClient;
         private static HttpClient _reallocateClient;
+        private readonly IAcademicCalendar _academicCalendar;
+
         public static List<NeuEvent> EventList;
 
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory,IAcademicCalendar academicCalendar)
         {
             _initClient = httpClientFactory.NeuInitClient();
             _reallocateClient = httpClientFactory.NeuReallocateClient();
+            _academicCalendar = academicCalendar;
         }
 
         public async Task WebCrawler(string userId, string password)

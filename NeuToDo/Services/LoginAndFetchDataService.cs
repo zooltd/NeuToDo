@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Models;
 
 namespace NeuToDo.Services
@@ -7,13 +8,12 @@ namespace NeuToDo.Services
     public class LoginAndFetchDataService : ILoginAndFetchDataService
     {
         private readonly IEventModelStorageProvider _storageProvider;
-        private static IHttpClientFactory _httpClientFactory;
+        // private static IHttpClientFactory _httpClientFactory;
 
-        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider,
-            IHttpClientFactory httpClientFactory)
+        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider)
         {
             _storageProvider = eventModelStorageProvider;
-            _httpClientFactory = httpClientFactory;
+            // _httpClientFactory = httpClientFactory;
         }
 
         // public event EventHandler GetData;
@@ -24,7 +24,9 @@ namespace NeuToDo.Services
             {
                 case ServerType.Neu:
                     // var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
-                    var neuGetter = new NeuSyllabusGetter(_httpClientFactory);
+                    // var neuGetter = new NeuSyllabusGetter(_httpClientFactory);
+                    SimpleIoc.Default.Register<NeuSyllabusGetter>();
+                    var neuGetter = SimpleIoc.Default.GetInstance<NeuSyllabusGetter>();
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                     try
                     {
@@ -42,8 +44,10 @@ namespace NeuToDo.Services
                     }
                 case ServerType.Mooc:
                     // var moocGetter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
-                    var moocGetter = new MoocInfoGetter(_httpClientFactory);
-                    var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    // var moocGetter = new MoocInfoGetter(_httpClientFactory);
+                    SimpleIoc.Default.Register<MoocInfoGetter>();
+                    var moocGetter = SimpleIoc.Default.GetInstance<MoocInfoGetter>();
+                    // var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
                     try
                     {
                         await moocGetter.WebCrawler(userId, password);
