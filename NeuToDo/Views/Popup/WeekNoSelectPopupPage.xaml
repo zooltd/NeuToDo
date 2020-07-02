@@ -7,10 +7,11 @@
                  mc:Ignorable="d"
                  x:Class="NeuToDo.Views.Popup.WeekNoSelectPopupPage"
                  xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
-                 xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo">
+                 xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+                 BindingContext="{Binding EventDetailViewModel,Source={StaticResource ViewModelLocator}}">
 
 
-    <StackLayout HeightRequest="350"
+    <StackLayout HeightRequest="330"
                  Padding="30"
                  HorizontalOptions="CenterAndExpand"
                  VerticalOptions="CenterAndExpand">
@@ -38,7 +39,7 @@
                         Clicked="SelectEven" />
 
                 <CollectionView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" x:Name="CollectionView"
-                                HeightRequest="230">
+                                HeightRequest="210">
                     <CollectionView.ItemsLayout>
                         <GridItemsLayout Orientation="Vertical"
                                          Span="6" />
@@ -54,12 +55,12 @@
                 <Button Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand"
                         Text="取消" BackgroundColor="Transparent"
                         TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectCancel"
-                         />
+                        Command="{Binding SelectWeekNoCancel}" />
                 <Button Grid.Row="3" Grid.Column="2" HorizontalOptions="EndAndExpand"
                         Text="完成" BackgroundColor="Transparent"
                         TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectDone" />
+                        Command="{Binding SelectWeekNoDone}"
+                        CommandParameter="{x:Reference CollectionView}"/>
 
             </Grid>
 

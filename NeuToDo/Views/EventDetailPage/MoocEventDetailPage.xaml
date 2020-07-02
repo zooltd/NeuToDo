@@ -13,7 +13,7 @@
              Title="Mooc事件编辑">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding EditComplete}" Text="完成"/>
+        <ToolbarItem Command="{Binding EditDone}" Text="完成"/>
     </ContentPage.ToolbarItems>
 
     <ScrollView>

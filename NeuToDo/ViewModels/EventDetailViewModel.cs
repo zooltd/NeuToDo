@@ -2,12 +2,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NeuToDo.Components;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -101,12 +104,27 @@ namespace NeuToDo.ViewModels
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
                 await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+                _eventStorage.OnUpdateData();
+                // TODO navigate
             }));
 
 
-        private RelayCommand _editComplete;
+        private RelayCommand _editDone;
 
-        public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
+        public RelayCommand EditDone => _editDone ??= new RelayCommand((async () => await EditDoneFunction()));
+
+        private async Task EditDoneFunction()
+        {
+            var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            foreach (var eventGroup in EventGroupList)
+            {
+                foreach (var weekNo in eventGroup.WeekNo)
+                {
+                    
+                }
+            }
+        }
 
         /// <summary>
         /// Neu
@@ -119,6 +137,31 @@ namespace NeuToDo.ViewModels
                 SelectEventGroup = group;
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
             });
+
+        /// <summary>
+        /// SeekNoSelectPopupPage
+        /// </summary>
+        private RelayCommand _selectWeekNoCancel;
+
+        public RelayCommand SelectWeekNoCancel =>
+            _selectWeekNoCancel ??= new RelayCommand((() => { _popupNavigationService.PopAllAsync(); }));
+
+        private RelayCommand<CollectionView> _selectWeekNoDone;
+
+        public RelayCommand<CollectionView> SelectWeekNoDone =>
+            _selectWeekNoDone ??= new RelayCommand<CollectionView>(((collection) =>
+            {
+                var temp = new List<int>();
+                var buttons = collection.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
+                for (var i = 0; i < buttons.Count; i++)
+                {
+                    if (buttons[i].IsClicked) temp.Add(i + 1);
+                }
+
+                SelectEventGroup.WeekNo = new List<int>(temp);
+
+                _popupNavigationService.PopAllAsync();
+            }));
 
         #endregion
 

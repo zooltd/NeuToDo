@@ -16,14 +16,9 @@ namespace NeuToDo.Views.Popup
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WeekNoSelectPopupPage : PopupPage
     {
-        private readonly EventDetailViewModel _bindingContext = SimpleIoc.Default.GetInstance<EventDetailViewModel>();
-
-        private readonly List<int> _selectedIndex = new List<int>();
-
         public WeekNoSelectPopupPage()
         {
             InitializeComponent();
-            BindingContext = _bindingContext;
             CollectionView.ItemsSource = Enumerable.Range(1, 24).ToList();
         }
 
@@ -62,36 +57,22 @@ namespace NeuToDo.Views.Popup
             }
         }
 
-        private async void SelectCancel(object sender, EventArgs e)
-        {
-            await PopupNavigation.Instance.RemovePageAsync(this);
-        }
-
-        private async void SelectDone(object sender, EventArgs e)
-        {
-            _selectedIndex.Clear();
-            var customButtons = CollectionView.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
-
-            for (var i = 0; i < customButtons.Count; i++)
-                if (customButtons[i].IsClicked)
-                    _selectedIndex.Add(i + 1);
-            _bindingContext.SelectEventGroup.WeekNo = new List<int>(_selectedIndex);
-            await PopupNavigation.Instance.RemovePageAsync(this);
-        }
-
 
         protected override void OnAppearing()
         {
             Device.BeginInvokeOnMainThread(() =>
             {
                 //TODO 阻塞
-                while (CollectionView.LogicalChildren.Count < 24)
+                var cnt = 0;
+                while (CollectionView.LogicalChildren.Count < 24 || cnt > 20)
                 {
                     Task.Delay(100);
+                    cnt++;
                 }
 
                 if (CollectionView.LogicalChildren.Count < 24) return;
-                foreach (var index in _bindingContext.SelectEventGroup.WeekNo)
+                if (!(BindingContext is EventDetailViewModel bindingContext)) return;
+                foreach (var index in bindingContext.SelectEventGroup.WeekNo)
                 {
                     if (CollectionView.LogicalChildren[index - 1] is CustomButton button) button.IsClicked = true;
                 }
