@@ -15,7 +15,6 @@ namespace NeuToDo.Services
 
         private static HttpClient _initClient;
         private static HttpClient _reallocateClient;
-
         public static List<NeuEvent> EventList;
 
         public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)

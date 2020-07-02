@@ -41,9 +41,9 @@ namespace NeuToDo.Services
         public async Task<List<T>> GetAllAsync() =>
             await _connection.Table<T>().ToListAsync();
 
-        public async Task<List<T>> GetAllAsync(string code)
+        public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr)
         {
-            return await _connection.Table<T>().Where(e => (e.Code == code)).ToListAsync();
+            return await _connection.Table<T>().Where(predExpr).ToListAsync();
         }
 
         public async Task MergeAsync(IList<T> eventList)

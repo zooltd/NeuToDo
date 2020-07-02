@@ -210,7 +210,7 @@ namespace NeuToDo.ViewModels
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
             {
                 var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
-                var courses = await neuStorage.GetAllAsync(SelectedEvent.Code);
+                var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
                 var courseGroupList = courses.GroupBy(c => new {c.Day, c.Detail})
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)
