@@ -20,14 +20,17 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorageProvider _eventStorage;
         private readonly IPopupNavigationService _popupNavigationService;
         private readonly IAcademicCalendar _academicCalendar;
+        private readonly IAlertService _alertService;
 
         public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IPopupNavigationService popupNavigationService,
-            IAcademicCalendar academicCalendar)
+            IAcademicCalendar academicCalendar,
+            IAlertService alertService)
         {
             _eventStorage = eventModelStorageProvider;
             _popupNavigationService = popupNavigationService;
             _academicCalendar = academicCalendar;
+            _alertService = alertService;
         }
 
         #region 绑定属性
@@ -87,7 +90,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            EventGroupList.Add(new EventGroup());
+            EventGroupList.Add(new EventGroup{WeekNo = new List<int>()});
         }));
 
         /// <summary>
@@ -119,14 +122,33 @@ namespace NeuToDo.ViewModels
 
         private async Task EditDoneFunction()
         {
-            //TODO 校验
+            //TODO to be tested
+            if (string.IsNullOrWhiteSpace(SelectedEvent.Title))
+            {
+                _alertService.DisplayAlert("操作失败", "课程名称格式错误", "OK");
+                return;
+            }
+
+            if (EventGroupList.ToList().Exists(x => x.WeekNo == null || !x.WeekNo.Any()))
+            {
+                _alertService.DisplayAlert("操作失败", "存在未填写的周数", "OK");
+                return;
+            }
+
+            if (EventGroupList.ToList().Exists(x => x.ClassIndex < 1))
+            {
+                _alertService.DisplayAlert("操作失败", "存在未填写的节次", "OK");
+                return;
+            }
+
+
             var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
-            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             var newList = new List<NeuEvent>();
             foreach (var eventGroup in EventGroupList)
             {
                 newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
                 {
+                    Title = SelectedEvent.Title,
                     Code = SelectedEvent.Code,
                     Day = (int) eventGroup.Day,
                     IsDone = false,
@@ -135,6 +157,7 @@ namespace NeuToDo.ViewModels
                 }));
             }
 
+            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             await neuStorage.InsertAllAsync(newList);
         }
 

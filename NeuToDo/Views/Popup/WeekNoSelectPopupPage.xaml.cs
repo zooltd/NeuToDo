@@ -64,7 +64,7 @@ namespace NeuToDo.Views.Popup
             {
                 //TODO 阻塞
                 var cnt = 0;
-                while (CollectionView.LogicalChildren.Count < 24 || cnt > 20)
+                while (CollectionView.LogicalChildren.Count < 24 && cnt < 20)
                 {
                     Task.Delay(100);
                     cnt++;

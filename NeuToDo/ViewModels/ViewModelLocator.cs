@@ -30,6 +30,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
             SimpleIoc.Default.Register<IHttpClientFactory, HttpClientFactory>();
+            SimpleIoc.Default.Register<IAlertService, AlertService>();
         }
     }
 }
