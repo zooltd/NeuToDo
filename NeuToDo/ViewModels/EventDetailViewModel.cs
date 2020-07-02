@@ -10,6 +10,7 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Components;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using NeuToDo.Utils;
 using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
@@ -18,12 +19,15 @@ namespace NeuToDo.ViewModels
     {
         private readonly IEventModelStorageProvider _eventStorage;
         private readonly IPopupNavigationService _popupNavigationService;
+        private readonly IAcademicCalendar _academicCalendar;
 
         public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider,
-            IPopupNavigationService popupNavigationService)
+            IPopupNavigationService popupNavigationService,
+            IAcademicCalendar academicCalendar)
         {
             _eventStorage = eventModelStorageProvider;
             _popupNavigationService = popupNavigationService;
+            _academicCalendar = academicCalendar;
         }
 
         #region 绑定属性
@@ -115,15 +119,23 @@ namespace NeuToDo.ViewModels
 
         private async Task EditDoneFunction()
         {
+            //TODO 校验
             var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            var newList = new List<NeuEvent>();
             foreach (var eventGroup in EventGroupList)
             {
-                foreach (var weekNo in eventGroup.WeekNo)
+                newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
                 {
-                    
-                }
+                    Code = SelectedEvent.Code,
+                    Day = (int) eventGroup.Day,
+                    IsDone = false,
+                    Detail = eventGroup.Detail,
+                    Time = _academicCalendar.GetClassDateTime(eventGroup.Day, weekNo, eventGroup.ClassIndex)
+                }));
             }
+
+            await neuStorage.InsertAllAsync(newList);
         }
 
         /// <summary>
