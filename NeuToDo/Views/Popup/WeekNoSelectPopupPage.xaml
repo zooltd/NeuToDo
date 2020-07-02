@@ -50,13 +50,16 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="SlateGray"/>
+                <BoxView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" HeightRequest="1" Color="SlateGray" />
                 <Button Grid.Row="3" Grid.Column="1" HorizontalOptions="EndAndExpand"
                         Text="取消" BackgroundColor="Transparent"
-                        Clicked="SelectCancel" TextColor="#BF4779" FontAttributes="Bold" />
+                        TextColor="#BF4779" FontAttributes="Bold"
+                        Clicked="SelectCancel"
+                         />
                 <Button Grid.Row="3" Grid.Column="2" HorizontalOptions="EndAndExpand"
                         Text="完成" BackgroundColor="Transparent"
-                        Clicked="SelectDone" TextColor="#BF4779" FontAttributes="Bold" />
+                        TextColor="#BF4779" FontAttributes="Bold"
+                        Clicked="SelectDone" />
 
             </Grid>
 

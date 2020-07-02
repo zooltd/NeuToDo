@@ -96,7 +96,6 @@
                                        Source="period.png"
                                        WidthRequest="25" HeightRequest="25"
                                        VerticalOptions="Center" />
-                                <!-- TODO  选择-->
                                 <StackLayout Grid.Row="2" Grid.Column="1"
                                              Grid.ColumnSpan="2">
                                     <lc:CustomEntry Text="{Binding WeekNo, Converter={StaticResource WeekNoConverter}}"
@@ -133,14 +132,16 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Text="删除课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
-                            HorizontalOptions="Center" VerticalOptions="Center" />
+                            HorizontalOptions="Center" VerticalOptions="Center" 
+                            Command="{Binding DeleteCourse}"/>
                     <Button Grid.Column="1" Text="增加时间段"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             Command="{Binding AddPeriod}"
                             HorizontalOptions="Center" VerticalOptions="Center" />
                     <Button Grid.Column="2" Text="保存课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
-                            HorizontalOptions="Center" VerticalOptions="Center" />
+                            HorizontalOptions="Center" VerticalOptions="Center" 
+                            Command="{Binding DeleteCourse}"/>
                 </Grid>
             </Frame>
 

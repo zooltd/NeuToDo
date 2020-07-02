@@ -73,6 +73,9 @@ namespace NeuToDo.ViewModels
                 await PageAppearingCommandFunction()
             );
 
+        /// <summary>
+        /// Neu
+        /// </summary>
         private RelayCommand _addPeriod;
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
@@ -80,17 +83,34 @@ namespace NeuToDo.ViewModels
             EventGroupList.Add(new EventGroup());
         }));
 
+        /// <summary>
+        /// Neu
+        /// </summary>
         private RelayCommand<EventGroup> _removePeriod;
 
-        public RelayCommand<EventGroup> RemovePeriod => _removePeriod ??= new RelayCommand<EventGroup>(((g) =>
-        {
-            EventGroupList.Remove(g);
-        }));
+        public RelayCommand<EventGroup> RemovePeriod =>
+            _removePeriod ??= new RelayCommand<EventGroup>(((g) => { EventGroupList.Remove(g); }));
+
+        /// <summary>
+        /// Neu
+        /// </summary>
+        private RelayCommand _deleteCourse;
+
+        public RelayCommand DeleteCourse =>
+            _deleteCourse ??= new RelayCommand((async () =>
+            {
+                var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+                await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            }));
+
 
         private RelayCommand _editComplete;
 
         public RelayCommand EditComplete => _editComplete ??= new RelayCommand((() => { }));
 
+        /// <summary>
+        /// Neu
+        /// </summary>
         private RelayCommand<EventGroup> _weekNoSelect;
 
         public RelayCommand<EventGroup> WeekNoSelect =>

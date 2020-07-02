@@ -3,6 +3,7 @@ using NeuToDo.Models;
 using SQLite;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -25,6 +26,11 @@ namespace NeuToDo.Services
         public async Task InsertAllAsync(IEnumerable<T> eventList)
         {
             await _connection.InsertAllAsync(eventList);
+        }
+
+        public async Task DeleteAllAsync(Expression<Func<T, bool>> predExpr)
+        {
+            await _connection.Table<T>().DeleteAsync(predExpr);
         }
 
         public async Task ClearTableAsync()

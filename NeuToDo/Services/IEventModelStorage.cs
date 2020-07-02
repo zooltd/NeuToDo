@@ -1,5 +1,7 @@
-﻿using NeuToDo.Models;
+﻿using System;
+using NeuToDo.Models;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -9,6 +11,8 @@ namespace NeuToDo.Services
         Task InsertAsync(T t);
 
         Task InsertAllAsync(IEnumerable<T> eventList);
+
+        Task DeleteAllAsync(Expression<Func<T, bool>> predExpr);
 
         Task ClearTableAsync();
 
