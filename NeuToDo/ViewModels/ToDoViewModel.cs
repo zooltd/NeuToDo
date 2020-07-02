@@ -7,7 +7,6 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
-using NeuToDo.Utils;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels

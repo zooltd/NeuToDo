@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NeuToDo.Utils
+namespace NeuToDo.Services
 {
     public interface IAcademicCalendar
     {

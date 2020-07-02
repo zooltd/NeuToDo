@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using NeuToDo.Services;
+using NeuToDo.Models;
 
-namespace NeuToDo.Utils
+namespace NeuToDo.Services
 {
     public class AcademicCalendar : IAcademicCalendar
     {

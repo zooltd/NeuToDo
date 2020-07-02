@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using Moq;
 using NeuToDo.Services;
-using NeuToDo.Utils;
 using NUnit.Framework;
 
 namespace NeuToDo.UnitTest.Services

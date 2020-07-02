@@ -1,6 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Services;
-using NeuToDo.Utils;
 
 namespace NeuToDo.ViewModels
 {

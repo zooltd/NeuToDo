@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NeuToDo.Utils
+namespace NeuToDo.Models
 {
     public static class ClassTime
     {

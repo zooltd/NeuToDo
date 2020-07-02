@@ -10,7 +10,6 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Components;
 using NeuToDo.Models;
 using NeuToDo.Services;
-using NeuToDo.Utils;
 using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels

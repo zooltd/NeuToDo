@@ -1,7 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Moq;
 using NeuToDo.Services;
-using NeuToDo.Utils;
 using NeuToDo.ViewModels;
 
 namespace NeuToDo.UnitTest.ViewModels
