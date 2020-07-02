@@ -8,5 +8,7 @@ namespace NeuToDo.Utils
         DateTime BaseDate { get; set; }
         int WeekNo { get; set; }
         string Semester { get; set; }
+
+        void Reset();
     }
 }

@@ -83,6 +83,7 @@ namespace NeuToDo.ViewModels
 
         private void UpdateTeachingWeekNo()
         {
+            _academicCalendar.Reset();
             WeekNo = _academicCalendar.WeekNo;
             Semester = _academicCalendar.Semester;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日

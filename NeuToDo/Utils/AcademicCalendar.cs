@@ -12,7 +12,6 @@ namespace NeuToDo.Utils
         {
             _preferenceStorageProvider = preferenceStorageProvider;
         }
-        //TODO 关联东北大学后更新
 
         private Campus? _campus;
 
@@ -68,6 +67,14 @@ namespace NeuToDo.Utils
             var classTimeDict = Campus == Campus.Hunnan ? ClassTime.HunnanClassTimeDict : ClassTime.NanhuClassTimeDict;
 
             return BaseDate.AddDays((int) day + weekNo * 7) + classTimeDict[classNo];
+        }
+
+        public void Reset()
+        {
+            _campus = null;
+            _baseDate = null;
+            _weekNo = null;
+            _semester = null;
         }
     }
 
