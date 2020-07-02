@@ -18,30 +18,30 @@ namespace NeuToDo.Services
         private static HttpClient _reallocateClient;
         private readonly IAcademicCalendar _academicCalendar;
 
-        public static List<NeuEvent> EventList;
 
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory,IAcademicCalendar academicCalendar)
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory, IAcademicCalendar academicCalendar)
         {
             _initClient = httpClientFactory.NeuInitClient();
             _reallocateClient = httpClientFactory.NeuReallocateClient();
             _academicCalendar = academicCalendar;
         }
 
-        public async Task WebCrawler(string userId, string password)
+        public async Task<List<NeuEvent>> WebCrawler(string userId, string password)
         {
             var vpnUrl =
                 "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
             // InitSources(false);
-            var formData = await CollectFormData(vpnUrl, userId, password);
-            vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'),
-                ";" + formData["jsessionid"]);
-            var deanUri = await LoginWebVpn(vpnUrl, formData);
+            var authFormData = await GetAuthFormData(vpnUrl, userId, password);
+            vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'), ";" + authFormData["jsessionid"]);
+            var deanUri = await LoginWebVpn(vpnUrl, authFormData);
             // ReallocateSources(true);
             await LoginDean(deanUri);
-            await GetCourseInfo();
+            var semesterFormData = await GetSemesterFormData();
+            var responseBody = await GetCourseInfo(semesterFormData);
+            return Parse(responseBody);
         }
 
-        private async Task<Dictionary<string, string>> CollectFormData(
+        private async Task<Dictionary<string, string>> GetAuthFormData(
             string vpnUrl, string userId, string password)
         {
             var response = await _initClient.GetAsync(vpnUrl);
@@ -84,7 +84,7 @@ namespace NeuToDo.Services
             return redirectUri;
         }
 
-        private static async Task LoginDean(Uri deanUri)
+        private async Task LoginDean(Uri deanUri)
         {
             var response = await _reallocateClient.GetAsync(deanUri);
             response.EnsureSuccessStatusCode();
@@ -97,7 +97,7 @@ namespace NeuToDo.Services
             const string studentInfoPattern =
                 "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
             var studentInfoList = Regex.Match(responseBody, studentInfoPattern)
-                .Groups[1].Value.Split(new char[] {'(', ')'});
+                .Groups[1].Value.Split('(', ')');
 
             // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
 
@@ -118,19 +118,19 @@ namespace NeuToDo.Services
             CurrWeekIndex = weekNo;
             var baseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - weekNo * 7);
             //TODO 正则 查看是否符合标准
-            Preferences.Set("StuName", stuName);
-            Preferences.Set("StuId", stuId);
-            Preferences.Set("WeekNo", weekNo);
-            Preferences.Set("Semester", semester);
-            Preferences.Set("BaseDate", baseDate);
-            Preferences.Set("UpdateDate", DateTime.Today);
+            _academicCalendar.WeekNo = weekNo;
+            _academicCalendar.Semester = semester;
+            _academicCalendar.BaseDate = baseDate;
+            // Preferences.Set("StuName", stuName);
+            // Preferences.Set("StuId", stuId);
+            // Preferences.Set("WeekNo", weekNo);
+            // Preferences.Set("Semester", semester);
+            // Preferences.Set("BaseDate", baseDate);
+            // Preferences.Set("UpdateDate", DateTime.Today);
         }
 
-        private static async Task GetCourseInfo()
+        private async Task<Dictionary<string, string>> GetSemesterFormData()
         {
-            // Syllabus = new Dictionary<string, Course>();
-            EventList = new List<NeuEvent>();
-
             var res = await _reallocateClient.GetAsync(
                 "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
@@ -144,27 +144,34 @@ namespace NeuToDo.Services
                 "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
             var ids = Regex.Match(responseBody, idsPattern).Groups[1].Value;
 
-            var formData = new Dictionary<string, string>
+            return new Dictionary<string, string>
             {
                 {"ignoreHead", "1"},
                 {"showPrintAndExport", "1"},
                 {"setting.kind", "std"},
                 {"startWeek", string.Empty},
-                {"semester.id", id.ToString()},
+                {"semester.id", id},
                 {"ids", ids}
             };
+        }
 
-            res = await _reallocateClient.PostAsync(
+        private async Task<string> GetCourseInfo(IEnumerable<KeyValuePair<string, string>> formData)
+        {
+            var res = await _reallocateClient.PostAsync(
                 "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd!courseTable.action",
                 new FormUrlEncodedContent(formData));
             res.EnsureSuccessStatusCode();
-            responseBody = await res.Content.ReadAsStringAsync();
-            // await File.WriteAllTextAsync(".\\courseTable.html", responseBody);
+            return await res.Content.ReadAsStringAsync();
+        }
+
+        public List<NeuEvent> Parse(string responseBody)
+        {
+            var eventList = new List<NeuEvent>();
 
             const string textSplitPattern =
                 "(var teachers =[\\s\\S]*?;)[\\s\\S]*?TaskActivity\\(actTeacherId.join\\(','\\),actTeacherName.join\\(','\\),\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",null,null,assistantName,\"\",\"\"\\);((?:\\s*index =\\d+\\*unitCount\\+\\d+;\\s*.*\\s)*)";
 
-            var currDate = DateTime.Today;
+            // var currDate = DateTime.Today;
 
             foreach (Match textSegment in Regex.Matches(responseBody,
                 textSplitPattern))
@@ -185,44 +192,44 @@ namespace NeuToDo.Services
                 var classTimeStr = classTime.classTimeStr;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
-                var baseDate =
-                    currDate.AddDays((int) day -
-                                     (int) currDate.DayOfWeek); //本周星期day的日期
+                // var baseDate = currDate.AddDays((int) day - (int) currDate.DayOfWeek); //本周星期day的日期
 
                 foreach (var weekIndex in weekIndexes)
                 {
-                    var offset = GetOffsetMinutes(firstClass);
-                    var localTime = baseDate
-                        .AddDays(7 * (weekIndex - CurrWeekIndex))
-                        .AddMinutes(offset);
-                    EventList.Add(new NeuEvent
+                    // var offset = GetOffsetMinutes(firstClass);
+                    // var localTime = baseDate
+                    //     .AddDays(7 * (weekIndex - CurrWeekIndex))
+                    //     .AddMinutes(offset);
+                    var t = _academicCalendar.GetClassDateTime(day, weekIndex, firstClass);
+                    eventList.Add(new NeuEvent
                     {
                         Title = courseName,
                         Detail = eventDetail,
                         Code = courseId,
-                        Time = localTime,
+                        Time = t,
                         IsDone = false,
                         Day = (int) day,
                         Week = weekIndex,
                     });
                 }
             }
+
+            return eventList;
         }
 
-        //new DateTimeOffset(localTime, TimeZoneInfo.Local.GetUtcOffset(localTime))
-        private static double GetOffsetMinutes(int firstClass)
-        {
-            return firstClass switch
-            {
-                1 => 60 * 8.5,
-                3 => 10 * 60 + 40,
-                5 => 14 * 60,
-                7 => 16 * 60 + 10,
-                9 => 18.5 * 60,
-                11 => 21.5 * 60,
-                _ => 0
-            };
-        }
+        // private static double GetOffsetMinutes(int firstClass)
+        // {
+        //     return firstClass switch
+        //     {
+        //         1 => 60 * 8.5,
+        //         3 => 10 * 60 + 40,
+        //         5 => 14 * 60,
+        //         7 => 16 * 60 + 10,
+        //         9 => 18.5 * 60,
+        //         11 => 21.5 * 60,
+        //         _ => 0
+        //     };
+        // }
 
         private static string GetTeacherName(string teacherInfo)
         {

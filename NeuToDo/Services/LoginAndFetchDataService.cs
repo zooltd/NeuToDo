@@ -30,10 +30,10 @@ namespace NeuToDo.Services
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                     try
                     {
-                        await neuGetter.WebCrawler(userId, password);
+                        var neuEventList = await neuGetter.WebCrawler(userId, password);
                         // await neuStorage.ClearTableAsync();
                         // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        await neuStorage.MergeAsync(NeuSyllabusGetter.EventList);
+                        await neuStorage.MergeAsync(neuEventList);
                         _storageProvider.OnUpdateData();
                         return true;
                     }
