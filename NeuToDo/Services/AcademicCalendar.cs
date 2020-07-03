@@ -49,17 +49,30 @@ namespace NeuToDo.Services
         }
 
 
-        private string _semester;
+        private string _semesterName;
 
-        public string Semester
+        public string SemesterName
         {
-            get => _semester ??= _preferenceStorageProvider.Get(nameof(Semester), "未知的时间裂缝");
+            get => _semesterName ??= _preferenceStorageProvider.Get(nameof(SemesterName), "未知的时间裂缝");
             set
             {
-                _semester = value;
-                _preferenceStorageProvider.Set(nameof(Semester), value);
+                _semesterName = value;
+                _preferenceStorageProvider.Set(nameof(SemesterName), value);
             }
         }
+
+        private int? _semesterId;
+
+        public int SemesterId
+        {
+            get => _semesterId ??= _preferenceStorageProvider.Get(nameof(_semesterId), 0);
+            set
+            {
+                _semesterId = value;
+                _preferenceStorageProvider.Set(nameof(SemesterId), value);
+            }
+        }
+
 
         public DateTime GetClassDateTime(DayOfWeek day, int weekNo, int classNo)
         {
@@ -73,7 +86,7 @@ namespace NeuToDo.Services
             _campus = null;
             _baseDate = null;
             _weekNo = null;
-            _semester = null;
+            _semesterName = null;
         }
     }
 

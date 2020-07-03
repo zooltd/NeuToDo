@@ -30,7 +30,7 @@ namespace NeuToDo.UnitTest.Services
             var mockPreferenceStorageProvider = preferenceStorageProviderMock.Object;
             preferenceStorageProviderMock.Setup(p => p.Get("Campus", (int) Campus.Hunnan)).Returns((int) Campus.Hunnan);
             preferenceStorageProviderMock.Setup(p => p.Get("BaseDate", DateTime.MinValue)).Returns(DateTime.MinValue);
-            preferenceStorageProviderMock.Setup(p => p.Get("Semester", "未知的时间裂缝")).Returns("test");
+            preferenceStorageProviderMock.Setup(p => p.Get("SemesterName", "未知的时间裂缝")).Returns("test");
             var academicCalendar = new AcademicCalendar(mockPreferenceStorageProvider);
 
             academicCalendar.Campus = Campus.Hunnan;
@@ -43,10 +43,10 @@ namespace NeuToDo.UnitTest.Services
             Assert.AreEqual(academicCalendar.BaseDate,
                 mockPreferenceStorageProvider.Get("BaseDate", DateTime.MinValue));
 
-            academicCalendar.Semester = "test";
-            preferenceStorageProviderMock.Verify(x => x.Set("Semester", "test"), Times.Once());
-            Assert.AreEqual(academicCalendar.Semester,
-                mockPreferenceStorageProvider.Get("Semester", "未知的时间裂缝"));
+            academicCalendar.SemesterName = "test";
+            preferenceStorageProviderMock.Verify(x => x.Set("SemesterName", "test"), Times.Once());
+            Assert.AreEqual(academicCalendar.SemesterName,
+                mockPreferenceStorageProvider.Get("SemesterName", "未知的时间裂缝"));
 
             academicCalendar.WeekNo = 1;
             Assert.AreEqual(academicCalendar.WeekNo, 1);
@@ -59,7 +59,7 @@ namespace NeuToDo.UnitTest.Services
             var mockPreferenceStorageProvider = preferenceStorageProviderMock.Object;
             preferenceStorageProviderMock.Setup(p => p.Get("Campus", (int) Campus.Hunnan)).Returns((int) Campus.Hunnan);
             preferenceStorageProviderMock.Setup(p => p.Get("BaseDate", DateTime.MinValue)).Returns(DateTime.MinValue);
-            preferenceStorageProviderMock.Setup(p => p.Get("Semester", "未知的时间裂缝")).Returns("test");
+            preferenceStorageProviderMock.Setup(p => p.Get("SemesterName", "未知的时间裂缝")).Returns("test");
             var academicCalendar = new AcademicCalendar(mockPreferenceStorageProvider);
 
             academicCalendar.Campus = Campus.Hunnan;

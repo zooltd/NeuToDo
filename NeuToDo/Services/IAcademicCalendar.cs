@@ -7,7 +7,8 @@ namespace NeuToDo.Services
         Campus Campus { get; set; }
         DateTime BaseDate { get; set; }
         int WeekNo { get; set; }
-        string Semester { get; set; }
+        string SemesterName { get; set; }
+        int SemesterId { get; set; }
         DateTime GetClassDateTime(DayOfWeek day, int weekNo, int classNo);
         void Reset();
     }

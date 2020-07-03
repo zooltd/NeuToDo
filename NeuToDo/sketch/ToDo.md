@@ -12,4 +12,6 @@
 1. 非本学期课程归档（无法编辑），考虑新增`学期`字段
 2. 新增第一节课No字段，否则编辑时备注填写不正确会导致再次打开编辑页时节数为空（节数在PageAppearing方法中由备注得到）
 3. UWP的CollectionView中CustomButton排版错误，导致索引错误，选择周数后与CustomEntry中的显示不匹配，考虑用CustomButton.Text代替索引
-4. SettingPage UI 调整
+4. 新增课程，code字段未设置，删除会有问题
+5. SettingPage UI 调整
+6. 记录之前Semester的BaseDate

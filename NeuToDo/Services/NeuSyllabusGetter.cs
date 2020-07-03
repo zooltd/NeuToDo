@@ -100,30 +100,29 @@ namespace NeuToDo.Services
 
             // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
 
-            string stuName = studentInfoList[0];
-            string stuId = studentInfoList[1];
+            // string stuName = studentInfoList[0];
+            // string stuId = studentInfoList[1];
 
             const string teachingTimePattern =
                 "id=\"teach-week\">[\\s]*(.*)[\\s]*<font[\\s\\S]*?>(.*)<\\/font>";
             var teachingTimeGroups =
                 Regex.Match(responseBody, teachingTimePattern).Groups;
 
-            var semester = teachingTimeGroups[1].Value.Replace('第', ',');
-            int weekNo = int.Parse(teachingTimeGroups[2].Value);
-
+            var semester = teachingTimeGroups[1].Value.Replace("第", ", ");
+            int weekNo = int.TryParse(teachingTimeGroups[2].Value, out weekNo) ? weekNo : 0;
             // TeachingTime = new TeachingTime()
-            //     {Semester = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
+            //     {SemesterName = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
 
             CurrWeekIndex = weekNo;
             var baseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - weekNo * 7);
             //TODO 正则 查看是否符合标准
             _academicCalendar.WeekNo = weekNo;
-            _academicCalendar.Semester = semester;
+            _academicCalendar.SemesterName = semester;
             _academicCalendar.BaseDate = baseDate;
             // Preferences.Set("StuName", stuName);
             // Preferences.Set("StuId", stuId);
             // Preferences.Set("WeekNo", weekNo);
-            // Preferences.Set("Semester", semester);
+            // Preferences.Set("SemesterName", semester);
             // Preferences.Set("BaseDate", baseDate);
             // Preferences.Set("UpdateDate", DateTime.Today);
         }
@@ -134,10 +133,12 @@ namespace NeuToDo.Services
                 "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
             var responseBody = await res.Content.ReadAsStringAsync();
-            var id =
-                res.Headers
-                    .SingleOrDefault(header => header.Key == "Set-Cookie").Value
-                    .ToArray()[0].Split(';')[0].Split('=')[1];
+
+
+            var cookieString = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToList()[0];
+            var semesterId = Regex.Match(cookieString, @"semester\.id=(\d+);").Groups[1].Value;
+            _academicCalendar.SemesterId = int.TryParse(semesterId, out var temp) ? temp : 0;
+            // var id = res.Headers.SingleOrDefault(header=>header.Key=="Set-Cookie").Value.;
 
             const string idsPattern =
                 "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
@@ -149,7 +150,7 @@ namespace NeuToDo.Services
                 {"showPrintAndExport", "1"},
                 {"setting.kind", "std"},
                 {"startWeek", string.Empty},
-                {"semester.id", id},
+                {"semester.id", semesterId},
                 {"ids", ids}
             };
         }
