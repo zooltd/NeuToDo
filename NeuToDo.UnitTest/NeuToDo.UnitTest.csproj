@@ -26,8 +26,4 @@
     <ProjectReference Include="..\NeuToDo\NeuToDo.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Documents\" />
-  </ItemGroup>
-
 </Project>

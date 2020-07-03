@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using Moq;
+using NeuToDo.Models;
 using NeuToDo.Services;
 using NUnit.Framework;
 

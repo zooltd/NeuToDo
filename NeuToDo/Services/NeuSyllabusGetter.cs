@@ -191,44 +191,20 @@ namespace NeuToDo.Services
                 var classTimeStr = classTime.classTimeStr;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
-                // var baseDate = currDate.AddDays((int) day - (int) currDate.DayOfWeek); //本周星期day的日期
-
-                foreach (var weekIndex in weekIndexes)
+                eventList.AddRange(weekIndexes.Select(weekIndex => new NeuEvent
                 {
-                    // var offset = GetOffsetMinutes(firstClass);
-                    // var localTime = baseDate
-                    //     .AddDays(7 * (weekIndex - CurrWeekIndex))
-                    //     .AddMinutes(offset);
-                    var t = _academicCalendar.GetClassDateTime(day, weekIndex, firstClass);
-                    eventList.Add(new NeuEvent
-                    {
-                        Title = courseName,
-                        Detail = eventDetail,
-                        Code = courseId,
-                        Time = t,
-                        IsDone = false,
-                        Day = (int) day,
-                        Week = weekIndex,
-                    });
-                }
+                    Title = courseName,
+                    Detail = eventDetail,
+                    Code = courseId,
+                    Time = _academicCalendar.GetClassDateTime(day, weekIndex, firstClass),
+                    IsDone = false,
+                    Day = (int) day,
+                    Week = weekIndex,
+                }));
             }
 
             return eventList;
         }
-
-        // private static double GetOffsetMinutes(int firstClass)
-        // {
-        //     return firstClass switch
-        //     {
-        //         1 => 60 * 8.5,
-        //         3 => 10 * 60 + 40,
-        //         5 => 14 * 60,
-        //         7 => 16 * 60 + 10,
-        //         9 => 18.5 * 60,
-        //         11 => 21.5 * 60,
-        //         _ => 0
-        //     };
-        // }
 
         private static string GetTeacherName(string teacherInfo)
         {

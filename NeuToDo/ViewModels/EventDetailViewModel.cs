@@ -106,22 +106,24 @@ namespace NeuToDo.ViewModels
         private RelayCommand _deleteCourse;
 
         public RelayCommand DeleteCourse =>
-            _deleteCourse ??= new RelayCommand((async () =>
-            {
-                var res = await _alertService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
-                if (!res) return;
-                var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
-                await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
-                _eventStorage.OnUpdateData();
-                // TODO navigate
-            }));
+            _deleteCourse ??= new RelayCommand((async () => await DeleteCourseFunction()));
+
+        public async Task DeleteCourseFunction()
+        {
+            var res = await _alertService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
+            if (!res) return;
+            var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            _eventStorage.OnUpdateData();
+            // TODO navigate
+        }
 
 
         private RelayCommand _editDone;
 
         public RelayCommand EditDone => _editDone ??= new RelayCommand((async () => await EditDoneFunction()));
 
-        private async Task EditDoneFunction()
+        public async Task EditDoneFunction()
         {
             //TODO to be tested
             if (string.IsNullOrWhiteSpace(SelectedEvent.Title))
@@ -187,23 +189,25 @@ namespace NeuToDo.ViewModels
         private RelayCommand<CollectionView> _selectWeekNoDone;
 
         public RelayCommand<CollectionView> SelectWeekNoDone =>
-            _selectWeekNoDone ??= new RelayCommand<CollectionView>(((collection) =>
+            _selectWeekNoDone ??= new RelayCommand<CollectionView>((SelectWeekNoDoneFunction));
+
+        public void SelectWeekNoDoneFunction(CollectionView collection)
+        {
+            var temp = new List<int>();
+            var buttons = collection.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
+            for (var i = 0; i < buttons.Count; i++)
             {
-                var temp = new List<int>();
-                var buttons = collection.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
-                for (var i = 0; i < buttons.Count; i++)
-                {
-                    if (buttons[i].IsClicked) temp.Add(i + 1);
-                }
+                if (buttons[i].IsClicked) temp.Add(i + 1);
+            }
 
-                SelectEventGroup.WeekNo = new List<int>(temp);
+            SelectEventGroup.WeekNo = new List<int>(temp);
 
-                _popupNavigationService.PopAllAsync();
-            }));
+            _popupNavigationService.PopAllAsync();
+        }
 
         #endregion
 
-        private async Task PageAppearingCommandFunction()
+        public async Task PageAppearingCommandFunction()
         {
             EventGroupList.Clear();
             if (SelectedEvent.GetType().Name == nameof(NeuEvent))
