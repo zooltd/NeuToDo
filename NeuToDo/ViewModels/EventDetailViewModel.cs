@@ -158,7 +158,8 @@ namespace NeuToDo.ViewModels
                     Day = (int) eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
-                    Time = _academicCalendar.GetClassDateTime(eventGroup.Day, weekNo, eventGroup.ClassIndex)
+                    Time = _academicCalendar.GetClassDateTime(eventGroup.Day, weekNo, eventGroup.ClassIndex),
+                    Week = weekNo,
                 }));
             }
 
