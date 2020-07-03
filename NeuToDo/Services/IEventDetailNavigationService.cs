@@ -16,6 +16,12 @@ namespace NeuToDo.Services
         /// </summary>
         /// <param name="e"></param>
         Task PushAsync(EventModel e);
+
+        /// <summary>
+        /// 返回Root页
+        /// </summary>
+        /// <returns></returns>
+        Task PopToRootAsync();
     }
 
     /// <summary>

@@ -32,8 +32,10 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
+            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAcademicCalendar, mockAlertService)
+                mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
             {
                 EventGroupList = new ObservableCollection<EventGroup>(), SelectedEvent = new NeuEvent {Code = "A101"}
             };
@@ -79,8 +81,11 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
+            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAcademicCalendar, mockAlertService) {SelectedEvent = new NeuEvent {Code = "A101"}};
+                    mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
+                {SelectedEvent = new NeuEvent {Code = "A101"}};
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
@@ -133,8 +138,10 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
+            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAcademicCalendar, mockAlertService);
+                mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService);
             eventDetailViewModel.SelectedEvent = new EventModel {Code = "A101", Title = ""};
             eventDetailViewModel.EventGroupList = new ObservableCollection<EventGroup>
             {
@@ -198,9 +205,14 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
+            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(mockStorageProvider, mockPopupNavigationService,
-                    mockAcademicCalendar, mockAlertService)
-                {SelectEventGroup = new EventGroup {WeekNo = new List<int> {2, 3, 4, 5}}};
+                    mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
+                {
+                    SelectEventGroup = new EventGroup {WeekNo = new List<int> {2, 3, 4, 5}}
+                }
+                ;
             eventDetailViewModel.SelectWeekNoDoneFunction(collection);
             Assert.AreEqual(eventDetailViewModel.SelectEventGroup.WeekNo, new List<int> {1, 2, 3});
         }

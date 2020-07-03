@@ -25,5 +25,10 @@ namespace NeuToDo.Services
             NavigationContext.SetParameter(page, e);
             await MainPage.CurrentPage.Navigation.PushAsync(page);
         }
+
+        public async Task PopToRootAsync()
+        {
+            await MainPage.CurrentPage.Navigation.PopToRootAsync();
+        }
     }
 }

@@ -20,16 +20,19 @@ namespace NeuToDo.ViewModels
         private readonly IPopupNavigationService _popupNavigationService;
         private readonly IAcademicCalendar _academicCalendar;
         private readonly IAlertService _alertService;
+        private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
         public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider,
             IPopupNavigationService popupNavigationService,
             IAcademicCalendar academicCalendar,
-            IAlertService alertService)
+            IAlertService alertService,
+            IEventDetailNavigationService eventDetailNavigationService)
         {
             _eventStorage = eventModelStorageProvider;
             _popupNavigationService = popupNavigationService;
             _academicCalendar = academicCalendar;
             _alertService = alertService;
+            _eventDetailNavigationService = eventDetailNavigationService;
         }
 
         #region 绑定属性
@@ -115,7 +118,7 @@ namespace NeuToDo.ViewModels
             var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             _eventStorage.OnUpdateData();
-            // TODO navigate
+            await _eventDetailNavigationService.PopToRootAsync();
         }
 
 
@@ -125,7 +128,6 @@ namespace NeuToDo.ViewModels
 
         public async Task EditDoneFunction()
         {
-            //TODO to be tested
             if (string.IsNullOrWhiteSpace(SelectedEvent.Title))
             {
                 _alertService.DisplayAlert("操作失败", "课程名称格式错误", "OK");
@@ -163,7 +165,7 @@ namespace NeuToDo.ViewModels
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             await neuStorage.InsertAllAsync(newList);
             _eventStorage.OnUpdateData();
-            //TODO Navigate
+            await _eventDetailNavigationService.PopToRootAsync();
         }
 
         /// <summary>
