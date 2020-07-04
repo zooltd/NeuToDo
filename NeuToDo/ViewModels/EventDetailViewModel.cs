@@ -181,32 +181,32 @@ namespace NeuToDo.ViewModels
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
             });
 
-        /// <summary>
-        /// SeekNoSelectPopupPage
-        /// </summary>
-        private RelayCommand _selectWeekNoCancel;
-
-        public RelayCommand SelectWeekNoCancel =>
-            _selectWeekNoCancel ??= new RelayCommand((() => { _popupNavigationService.PopAllAsync(); }));
-
-        private RelayCommand<CollectionView> _selectWeekNoDone;
-
-        public RelayCommand<CollectionView> SelectWeekNoDone =>
-            _selectWeekNoDone ??= new RelayCommand<CollectionView>((SelectWeekNoDoneFunction));
-
-        public void SelectWeekNoDoneFunction(CollectionView collection)
-        {
-            var temp = new List<int>();
-            var buttons = collection.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
-            for (var i = 0; i < buttons.Count; i++)
-            {
-                if (buttons[i].IsClicked) temp.Add(i + 1);
-            }
-
-            SelectEventGroup.WeekNo = new List<int>(temp);
-
-            _popupNavigationService.PopAllAsync();
-        }
+        // /// <summary>
+        // /// SeekNoSelectPopupPage
+        // /// </summary>
+        // private RelayCommand _selectWeekNoCancel;
+        //
+        // public RelayCommand SelectWeekNoCancel =>
+        //     _selectWeekNoCancel ??= new RelayCommand((() => { _popupNavigationService.PopAllAsync(); }));
+        //
+        // private RelayCommand<Grid> _selectWeekNoDone;
+        //
+        // public RelayCommand<Grid> SelectWeekNoDone =>
+        //     _selectWeekNoDone ??= new RelayCommand<Grid>((SelectWeekNoDoneFunction));
+        //
+        // public void SelectWeekNoDoneFunction(Grid grid)
+        // {
+        //     // var temp = new List<int>();
+        //     // var buttons = grid.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
+        //     // for (var i = 0; i < buttons.Count; i++)
+        //     // {
+        //     //     if (buttons[i].IsClicked) temp.Add(i + 1);
+        //     // }
+        //     //
+        //     // SelectEventGroup.WeekNo = new List<int>(temp);
+        //     //
+        //     // _popupNavigationService.PopAllAsync();
+        // }
 
         #endregion
 

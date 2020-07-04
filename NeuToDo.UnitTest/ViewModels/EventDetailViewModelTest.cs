@@ -182,39 +182,5 @@ namespace NeuToDo.UnitTest.ViewModels
             Assert.AreEqual(dbData.Count, 11);
             await storageProvider.CloseConnectionAsync();
         }
-
-        [Test]
-        public void SelectWeekNoDoneFunctionTest()
-        {
-            var collection = new CollectionView();
-            for (var i = 0; i < 3; i++)
-            {
-                collection.AddLogicalChild(new CustomButton {IsClicked = true});
-            }
-
-            for (var i = 0; i < 3; i++)
-            {
-                collection.AddLogicalChild(new CustomButton {IsClicked = false});
-            }
-
-            var storageProviderMock = new Mock<EventModelStorageProvider>();
-            var mockStorageProvider = storageProviderMock.Object;
-            var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
-            var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var academicCalendarMock = new Mock<IAcademicCalendar>();
-            var mockAcademicCalendar = academicCalendarMock.Object;
-            var alertServiceMock = new Mock<IAlertService>();
-            var mockAlertService = alertServiceMock.Object;
-            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
-            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(mockStorageProvider, mockPopupNavigationService,
-                    mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
-                {
-                    SelectEventGroup = new EventGroup {WeekNo = new List<int> {2, 3, 4, 5}}
-                }
-                ;
-            eventDetailViewModel.SelectWeekNoDoneFunction(collection);
-            Assert.AreEqual(eventDetailViewModel.SelectEventGroup.WeekNo, new List<int> {1, 2, 3});
-        }
     }
 }
