@@ -13,16 +13,16 @@ namespace NeuToDo.ViewModels
 {
     public class ToDoViewModel : ViewModelBase
     {
-        public ToDoViewModel(IEventModelStorageProvider eventModelStorageProvider,
+        public ToDoViewModel(IStorageProvider storageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
             IPreferenceStorageProvider preferenceStorageProvider,
             IAcademicCalendar academicCalendar)
         {
-            _eventModelStorageProvider = eventModelStorageProvider;
+            _storageProvider = storageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
             _preferenceStorageProvider = preferenceStorageProvider;
             _academicCalendar = academicCalendar;
-            eventModelStorageProvider.UpdateData += OnGetData;
+            storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
@@ -30,7 +30,7 @@ namespace NeuToDo.ViewModels
 
         #region 私有变量
 
-        private readonly IEventModelStorageProvider _eventModelStorageProvider;
+        private readonly IStorageProvider _storageProvider;
 
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
@@ -60,8 +60,8 @@ namespace NeuToDo.ViewModels
         /// <returns></returns>
         private async Task LoadData()
         {
-            var neuStorage = await _eventModelStorageProvider.GetEventModelStorage<NeuEvent>();
-            var moocStorage = await _eventModelStorageProvider.GetEventModelStorage<MoocEvent>();
+            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+            var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
             var totalEventList = new List<EventModel>();
             totalEventList.AddRange(await neuStorage.GetAllAsync());
             totalEventList.AddRange(await moocStorage.GetAllAsync());

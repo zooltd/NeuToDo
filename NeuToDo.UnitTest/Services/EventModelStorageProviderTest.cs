@@ -14,18 +14,31 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(EventModelStorageProvider.DbPath);
+            File.Delete(StorageProvider.DbPath);
         }
 
         [Test]
         public async Task GetDatabaseConnectionTest()
         {
-            Assert.IsFalse(File.Exists(EventModelStorageProvider.DbPath));
+            Assert.IsFalse(File.Exists(StorageProvider.DbPath));
 
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             await storageProvider.GetEventModelStorage<NeuEvent>();
 
-            Assert.IsTrue(File.Exists(EventModelStorageProvider.DbPath));
+            Assert.IsTrue(File.Exists(StorageProvider.DbPath));
+
+            await storageProvider.CloseConnectionAsync();
+        }
+
+        [Test]
+        public async Task GetSemesterTableConnectionTest()
+        {
+            Assert.IsFalse(File.Exists(StorageProvider.DbPath));
+
+            var storageProvider = new StorageProvider();
+            await storageProvider.GetSemesterStorage();
+
+            Assert.IsTrue(File.Exists(StorageProvider.DbPath));
 
             await storageProvider.CloseConnectionAsync();
         }
@@ -33,7 +46,7 @@ namespace NeuToDo.UnitTest.Services
         [Test]
         public void OnUpdateDataTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var voidClassMock = new Mock<VoidClass>();
             var classMockMock = voidClassMock.Object;
             storageProvider.UpdateData += classMockMock.VoidFunc;

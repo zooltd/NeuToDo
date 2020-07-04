@@ -16,19 +16,19 @@ namespace NeuToDo.ViewModels
 {
     public class EventDetailViewModel : ViewModelBase
     {
-        private readonly IEventModelStorageProvider _eventStorage;
+        private readonly IStorageProvider _eventStorage;
         private readonly IPopupNavigationService _popupNavigationService;
         private readonly IAcademicCalendar _academicCalendar;
         private readonly IAlertService _alertService;
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
-        public EventDetailViewModel(IEventModelStorageProvider eventModelStorageProvider,
+        public EventDetailViewModel(IStorageProvider storageProvider,
             IPopupNavigationService popupNavigationService,
             IAcademicCalendar academicCalendar,
             IAlertService alertService,
             IEventDetailNavigationService eventDetailNavigationService)
         {
-            _eventStorage = eventModelStorageProvider;
+            _eventStorage = storageProvider;
             _popupNavigationService = popupNavigationService;
             _academicCalendar = academicCalendar;
             _alertService = alertService;

@@ -22,17 +22,17 @@ namespace NeuToDo.ViewModels
 
         private readonly ISecureStorageProvider _secureStorageProvider;
 
-        private readonly IEventModelStorageProvider _storageProvider;
+        private readonly IStorageProvider _storageProvider;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService,
             ISecureStorageProvider secureStorageProvider,
-            IEventModelStorageProvider eventModelStorageProvider)
+            IStorageProvider storageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _loginAndFetchDataService = loginAndFetchDataService;
             _secureStorageProvider = secureStorageProvider;
-            _storageProvider = eventModelStorageProvider;
+            _storageProvider = storageProvider;
         }
 
         #region 绑定方法

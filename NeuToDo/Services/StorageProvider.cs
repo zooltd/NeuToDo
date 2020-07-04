@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    public class EventModelStorageProvider : IEventModelStorageProvider
+    public class StorageProvider : IStorageProvider
     {
         private const string DbName = "events.sqlite3";
 
@@ -31,11 +31,21 @@ namespace NeuToDo.Services
             return new EventModelStorage<T>(_databaseConnection.Value);
         }
 
+        public async Task<ISemesterStorage> GetSemesterStorage()
+        {
+            if (!await TableExists(nameof(Semester), _databaseConnection.Value))
+            {
+                await _databaseConnection.Value
+                    .CreateTablesAsync(CreateFlags.None, typeof(Semester));
+            }
+
+            return new SemesterStorage(_databaseConnection.Value);
+        }
+
         public async Task CloseConnectionAsync()
         {
             await _databaseConnection.Value.CloseAsync();
         }
-
 
         private static async Task<bool> TableExists(string tableName,
             SQLiteAsyncConnection connection)

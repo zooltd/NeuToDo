@@ -7,12 +7,12 @@ namespace NeuToDo.Services
 {
     public class LoginAndFetchDataService : ILoginAndFetchDataService
     {
-        private readonly IEventModelStorageProvider _storageProvider;
+        private readonly IStorageProvider _storageProvider;
         // private static IHttpClientFactory _httpClientFactory;
 
-        public LoginAndFetchDataService(IEventModelStorageProvider eventModelStorageProvider)
+        public LoginAndFetchDataService(IStorageProvider storageProvider)
         {
-            _storageProvider = eventModelStorageProvider;
+            _storageProvider = storageProvider;
             // _httpClientFactory = httpClientFactory;
         }
 

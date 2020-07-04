@@ -19,13 +19,13 @@ namespace NeuToDo.UnitTest.ViewModels
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(EventModelStorageProvider.DbPath);
+            File.Delete(StorageProvider.DbPath);
         }
 
         [Test]
         public async Task PageAppearingCommandFunctionTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var academicCalendarMock = new Mock<IAcademicCalendar>();
@@ -74,7 +74,7 @@ namespace NeuToDo.UnitTest.ViewModels
         [Test]
         public async Task DeleteCourseFunctionTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var academicCalendarMock = new Mock<IAcademicCalendar>();
@@ -131,7 +131,7 @@ namespace NeuToDo.UnitTest.ViewModels
         [Test]
         public async Task EditDoneFunctionTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var academicCalendarMock = new Mock<IAcademicCalendar>();

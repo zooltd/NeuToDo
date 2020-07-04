@@ -14,13 +14,13 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(EventModelStorageProvider.DbPath);
+            File.Delete(StorageProvider.DbPath);
         }
 
         [Test]
         public async Task CrudTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var neuEventModelStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
 
             var eventList = new List<NeuEvent>
@@ -94,7 +94,7 @@ namespace NeuToDo.UnitTest.Services
         [Test]
         public async Task MergeTest()
         {
-            var storageProvider = new EventModelStorageProvider();
+            var storageProvider = new StorageProvider();
             var neuEventModelStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
 
             var neuEventList = new List<NeuEvent>

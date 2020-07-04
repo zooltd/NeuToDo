@@ -18,15 +18,15 @@ namespace NeuToDo.ViewModels
 
         private readonly ISecureStorageProvider _secureStorageProvider;
 
-        private readonly IEventModelStorageProvider _storageProvider;
+        private readonly IStorageProvider _storageProvider;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             ISecureStorageProvider secureStorageProvider,
-            IEventModelStorageProvider eventModelStorageProvider)
+            IStorageProvider storageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _secureStorageProvider = secureStorageProvider;
-            _storageProvider = eventModelStorageProvider;
+            _storageProvider = storageProvider;
             Settings = SettingItemGroup.SettingGroup;
         }
 
