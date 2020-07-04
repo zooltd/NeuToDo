@@ -16,13 +16,16 @@ namespace NeuToDo.Services
         private static HttpClient _initClient;
         private static HttpClient _reallocateClient;
         private readonly IAcademicCalendar _academicCalendar;
+        private readonly IStorageProvider _storageProvider;
 
 
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory, IAcademicCalendar academicCalendar)
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory, IAcademicCalendar academicCalendar,
+            IStorageProvider storageProvider)
         {
             _initClient = httpClientFactory.NeuInitClient();
             _reallocateClient = httpClientFactory.NeuReallocateClient();
             _academicCalendar = academicCalendar;
+            _storageProvider = storageProvider;
         }
 
         public async Task<List<NeuEvent>> WebCrawler(string userId, string password)
