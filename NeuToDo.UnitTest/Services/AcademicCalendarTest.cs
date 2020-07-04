@@ -1,5 +1,6 @@
 ﻿using System;
 using Moq;
+using NeuToDo.Models;
 using NeuToDo.Services;
 using NUnit.Framework;
 using Range = Moq.Range;

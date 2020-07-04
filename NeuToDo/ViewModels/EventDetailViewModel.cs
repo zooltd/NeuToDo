@@ -14,6 +14,7 @@ using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
+    //TODO to be fixed 去除IAcademicCalendar
     public class EventDetailViewModel : ViewModelBase
     {
         private readonly IStorageProvider _eventStorage;

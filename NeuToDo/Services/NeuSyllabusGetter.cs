@@ -5,27 +5,28 @@ using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NeuToDo.Utils;
 using Xamarin.Essentials;
 
 namespace NeuToDo.Services
 {
+    //TODO 存储Semester
     public class NeuSyllabusGetter
     {
         private static int CurrWeekIndex { get; set; }
 
         private static HttpClient _initClient;
         private static HttpClient _reallocateClient;
-        private readonly IAcademicCalendar _academicCalendar;
         private readonly IStorageProvider _storageProvider;
+        private readonly Semester _semester;
 
-
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory, IAcademicCalendar academicCalendar,
+        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory,
             IStorageProvider storageProvider)
         {
             _initClient = httpClientFactory.NeuInitClient();
             _reallocateClient = httpClientFactory.NeuReallocateClient();
-            _academicCalendar = academicCalendar;
             _storageProvider = storageProvider;
+            _semester = new Semester();
         }
 
         public async Task<List<NeuEvent>> WebCrawler(string userId, string password)
@@ -40,7 +41,7 @@ namespace NeuToDo.Services
             await LoginDean(deanUri);
             var semesterFormData = await GetSemesterFormData();
             var responseBody = await GetCourseInfo(semesterFormData);
-            return Parse(responseBody);
+            return Parse(responseBody, _semester);
         }
 
         private async Task<Dictionary<string, string>> GetAuthFormData(
@@ -111,23 +112,15 @@ namespace NeuToDo.Services
             var teachingTimeGroups =
                 Regex.Match(responseBody, teachingTimePattern).Groups;
 
-            var semester = teachingTimeGroups[1].Value.Replace("第", ", ");
+            var semesterName = teachingTimeGroups[1].Value.Replace("第", ", ");
             int weekNo = int.TryParse(teachingTimeGroups[2].Value, out weekNo) ? weekNo : 0;
-            // TeachingTime = new TeachingTime()
-            //     {SemesterName = semester, TeachingWeek = int.Parse(teachingTimeGroups[2].Value)};
 
             CurrWeekIndex = weekNo;
             var baseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - weekNo * 7);
+
             //TODO 正则 查看是否符合标准
-            _academicCalendar.WeekNo = weekNo;
-            _academicCalendar.SemesterName = semester;
-            _academicCalendar.BaseDate = baseDate;
-            // Preferences.Set("StuName", stuName);
-            // Preferences.Set("StuId", stuId);
-            // Preferences.Set("WeekNo", weekNo);
-            // Preferences.Set("SemesterName", semester);
-            // Preferences.Set("BaseDate", baseDate);
-            // Preferences.Set("UpdateDate", DateTime.Today);
+            _semester.SemesterName = semesterName;
+            _semester.BaseDate = baseDate;
         }
 
         private async Task<Dictionary<string, string>> GetSemesterFormData()
@@ -140,7 +133,8 @@ namespace NeuToDo.Services
 
             var cookieString = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToList()[0];
             var semesterId = Regex.Match(cookieString, @"semester\.id=(\d+);").Groups[1].Value;
-            _academicCalendar.SemesterId = int.TryParse(semesterId, out var temp) ? temp : 0;
+
+            _semester.SemesterId = int.TryParse(semesterId, out var temp) ? temp : 0;
             // var id = res.Headers.SingleOrDefault(header=>header.Key=="Set-Cookie").Value.;
 
             const string idsPattern =
@@ -167,7 +161,7 @@ namespace NeuToDo.Services
             return await res.Content.ReadAsStringAsync();
         }
 
-        public List<NeuEvent> Parse(string responseBody)
+        public List<NeuEvent> Parse(string responseBody, Semester semester)
         {
             var eventList = new List<NeuEvent>();
 
@@ -185,6 +179,11 @@ namespace NeuToDo.Services
                 string courseName =
                     textSegmentGroups[3].Value.Split('(', ')')[0];
                 string roomName = textSegmentGroups[5].Value;
+
+                string campusName = roomName.Split('(', ')')[1];
+
+                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu;
+
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;
                 string timeTable = textSegmentGroups[7].Value;
@@ -200,10 +199,12 @@ namespace NeuToDo.Services
                     Title = courseName,
                     Detail = eventDetail,
                     Code = courseId,
-                    Time = _academicCalendar.GetClassDateTime(day, weekIndex, firstClass),
+                    Time = Calculator.CalculateClassTime(day, weekIndex, firstClass, campus, semester.BaseDate),
                     IsDone = false,
                     Day = (int) day,
                     Week = weekIndex,
+                    ClassNo = firstClass,
+                    SemesterId = semester.SemesterId
                 }));
             }
 

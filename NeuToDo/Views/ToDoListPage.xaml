@@ -41,7 +41,7 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="{Binding Semester}" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding SemesterName}" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" />
                     <Label Text="{Binding WeeklySummary}" TextColor="White" FontSize="18"
                            HorizontalTextAlignment="Center" />
                 </StackLayout>

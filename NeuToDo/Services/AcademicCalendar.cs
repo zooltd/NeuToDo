@@ -90,9 +90,9 @@ namespace NeuToDo.Services
         }
     }
 
-    public enum Campus
-    {
-        Hunnan,
-        Nanhu
-    }
+    // public enum Campus
+    // {
+    //     Hunnan,
+    //     Nanhu
+    // }
 }

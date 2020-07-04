@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using NeuToDo.Utils;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -15,13 +16,11 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IStorageProvider storageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
-            IPreferenceStorageProvider preferenceStorageProvider,
-            IAcademicCalendar academicCalendar)
+            IPreferenceStorageProvider preferenceStorageProvider)
         {
             _storageProvider = storageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
             _preferenceStorageProvider = preferenceStorageProvider;
-            _academicCalendar = academicCalendar;
             storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -36,14 +35,14 @@ namespace NeuToDo.ViewModels
 
         private readonly IPreferenceStorageProvider _preferenceStorageProvider;
 
-        private readonly IAcademicCalendar _academicCalendar;
-
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
 
         private bool _isLoaded;
 
-        private DateTime _today;
+        private readonly DateTime _today;
+
+        private Semester _currentSemester;
 
         #endregion
 
@@ -66,6 +65,17 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await neuStorage.GetAllAsync());
             totalEventList.AddRange(await moocStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
+
+            var semesterStorage = await _storageProvider.GetSemesterStorage();
+            try
+            {
+                _currentSemester = await semesterStorage.GetSemesterByMaxBaseDateAsync();
+            }
+            catch (Exception e)
+            {
+                _currentSemester = new Semester {BaseDate = DateTime.Today, SemesterId = 0, SemesterName = "未知的时间裂缝"};
+            }
+
             UpdateCalendarData();
             UpdateTeachingWeekNo();
             UpdateListData();
@@ -82,9 +92,8 @@ namespace NeuToDo.ViewModels
 
         private void UpdateTeachingWeekNo()
         {
-            _academicCalendar.Reset();
-            WeekNo = _academicCalendar.WeekNo;
-            Semester = _academicCalendar.SemesterName;
+            WeekNo = Calculator.CalculateCurrentWeekNo(_currentSemester.BaseDate);
+            SemesterName = _currentSemester.SemesterName;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
@@ -254,12 +263,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekNo), ref _weekNo, value);
         }
 
-        private string _semester;
+        private string _semesterName;
 
-        public string Semester
+        public string SemesterName
         {
-            get => _semester;
-            set => Set(nameof(Semester), ref _semester, value);
+            get => _semesterName;
+            set => Set(nameof(SemesterName), ref _semesterName, value);
         }
 
         private string _weeklySummary;
