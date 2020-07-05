@@ -2,12 +2,12 @@
 
 namespace NeuToDo.Models
 {
-    [SQLite.Table("NeuEvent")]
+    [SQLite.Table(nameof(NeuEvent))]
     public class NeuEvent : EventModel
     {
-        [SQLite.Column("day")] public int Day { get; set; }
+        [SQLite.Column(nameof(Day))] public int Day { get; set; }
 
-        [SQLite.Column("week")] public int Week { get; set; }
+        [SQLite.Column(nameof(Week))] public int Week { get; set; }
 
         [SQLite.Column(nameof(SemesterId))] public int SemesterId { get; set; }
 

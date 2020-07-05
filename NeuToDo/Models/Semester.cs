@@ -3,17 +3,15 @@ using SQLite;
 
 namespace NeuToDo.Models
 {
-    [Table("Semester")]
+    [Table(nameof(Semester))]
     public class Semester
     {
         [PrimaryKey]
-        [Column("semester_id")]
+        [Column(nameof(SemesterId))]
         public int SemesterId { get; set; }
 
-        [Column("semester_name")]
-        public string SemesterName { get; set; }
+        [Column(nameof(SemesterName))] public string SemesterName { get; set; }
 
-        [Column("base_date")]
-        public DateTime BaseDate { get; set; }
+        [Column(nameof(BaseDate))] public DateTime BaseDate { get; set; }
     }
 }

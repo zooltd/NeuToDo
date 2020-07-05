@@ -2,10 +2,8 @@
 
 namespace NeuToDo.Models
 {
-    [SQLite.Table("UserEvent")]
+    [Table(nameof(UserEvent))]
     public class UserEvent : EventModel
     {
-        [SQLite.Column("is_repeat")]
-        public bool IsRepeat { get; set; }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace NeuToDo.Models
 {
-    [SQLite.Table("MoocEvent")]
+    [SQLite.Table(nameof(MoocEvent))]
     public class MoocEvent : EventModel
     {
         
