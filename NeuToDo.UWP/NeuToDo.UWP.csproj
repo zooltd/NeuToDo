@@ -153,6 +153,7 @@
     <Content Include="right.png">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="semester.png" />
     <Content Include="settings.png" />
     <Content Include="time.png" />
     <Content Include="title.png" />

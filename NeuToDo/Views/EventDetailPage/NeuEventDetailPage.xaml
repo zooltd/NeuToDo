@@ -45,14 +45,21 @@
         <StackLayout Padding="30" Spacing="15">
             <Frame>
                 <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="8*" />
                     </Grid.ColumnDefinitions>
-                    <Image Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
+                    <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
-                    <lc:CustomEntry Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="semester.png"
+                           WidthRequest="25" HeightRequest="25" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding EventSemester}" IsReadOnly="True" />
                 </Grid>
             </Frame>
 
@@ -60,64 +67,76 @@
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame>
-                            <Grid ColumnSpacing="10" RowSpacing="0">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="20" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="4*" />
-                                    <ColumnDefinition Width="4*" />
-                                </Grid.ColumnDefinitions>
+                            <StackLayout Spacing="15">
 
-                                <ImageButton Grid.Column="2" Source="deletePeriod.png" BackgroundColor="Transparent"
-                                             Command="{Binding BindingContext.RemovePeriod, Source={x:Reference ThisPage}}"
-                                             CommandParameter="{Binding}"
-                                             HeightRequest="20" WidthRequest="20"
-                                             HorizontalOptions="End" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="8*" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton Grid.Column="1" Source="deletePeriod.png"
+                                                 BackgroundColor="Transparent"
+                                                 Command="{Binding BindingContext.RemovePeriod, Source={x:Reference ThisPage}}"
+                                                 CommandParameter="{Binding}"
+                                                 HeightRequest="20" WidthRequest="20"
+                                                 HorizontalOptions="End" />
+                                </Grid>
 
-                                <Image Grid.Row="1" Grid.Column="0"
-                                       Source="time.png"
-                                       WidthRequest="25" HeightRequest="25" />
-                                <lc:CustomPicker Grid.Row="1" Grid.Column="1"
-                                                 ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}"
-                                                 SelectedItem="{Binding Day}"
-                                                 Title="选择星期" />
-                                <lc:CustomPicker Grid.Row="1" Grid.Column="2"
-                                                 ItemsSource="{Binding BindingContext.ClassIndexItems, Source={x:Reference ThisPage}}"
-                                                 SelectedItem="{Binding ClassIndex}"
-                                                 Title="选择节次" />
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="4*" />
+                                        <ColumnDefinition Width="4*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"
+                                           Source="time.png"
+                                           WidthRequest="25" HeightRequest="25" />
+                                    <lc:CustomPicker Grid.Column="1"
+                                                     ItemsSource="{Binding BindingContext.DayItems, Source={x:Reference ThisPage}}"
+                                                     SelectedItem="{Binding Day}"
+                                                     Title="选择星期" />
+                                    <lc:CustomPicker Grid.Column="2"
+                                                     ItemsSource="{Binding BindingContext.ClassIndexItems, Source={x:Reference ThisPage}}"
+                                                     SelectedItem="{Binding ClassIndex}"
+                                                     Title="选择节次" />
+                                </Grid>
 
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="8*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"
+                                           Source="period.png"
+                                           WidthRequest="25" HeightRequest="25"
+                                           VerticalOptions="Center" />
+                                    <StackLayout Grid.Column="1">
+                                        <lc:CustomEntry
+                                            Text="{Binding WeekNo, Converter={StaticResource WeekNoConverter}}"
+                                            Placeholder="选择周数"
+                                            InputTransparent="True" />
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                                Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}"
+                                                CommandParameter="{Binding}" />
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </Grid>
 
-                                <Image Grid.Row="2" Grid.Column="0"
-                                       Source="period.png"
-                                       WidthRequest="25" HeightRequest="25"
-                                       VerticalOptions="Center" />
-                                <StackLayout Grid.Row="2" Grid.Column="1"
-                                             Grid.ColumnSpan="2">
-                                    <lc:CustomEntry Text="{Binding WeekNo, Converter={StaticResource WeekNoConverter}}"
-                                                    Placeholder="选择周数"
-                                                    InputTransparent="True" />
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding BindingContext.WeekNoSelect, Source={x:Reference ThisPage}}" 
-                                            CommandParameter="{Binding}"/>
-                                    </StackLayout.GestureRecognizers>
-                                </StackLayout>
-
-
-                                <Image Grid.Row="3" Grid.Column="0"
-                                       Source="detail.png"
-                                       WidthRequest="25" HeightRequest="25"
-                                       VerticalOptions="Center" />
-                                <lc:CustomEntry Grid.Row="3" Grid.Column="1"
-                                                Grid.ColumnSpan="2"
-                                                Text="{Binding Detail}"
-                                                Placeholder="详细信息" />
-                            </Grid>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="8*" />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Grid.Column="0"
+                                           Source="detail.png"
+                                           WidthRequest="25" HeightRequest="25"
+                                           VerticalOptions="Center" />
+                                    <lc:CustomEntry Grid.Column="1"
+                                                    Text="{Binding Detail}"
+                                                    Placeholder="详细信息" />
+                                </Grid>
+                            </StackLayout>
                         </Frame>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
@@ -132,16 +151,16 @@
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Text="删除课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
-                            HorizontalOptions="Center" VerticalOptions="Center" 
-                            Command="{Binding DeleteCourse}"/>
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding DeleteCourse}" />
                     <Button Grid.Column="1" Text="增加时间段"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             Command="{Binding AddPeriod}"
                             HorizontalOptions="Center" VerticalOptions="Center" />
                     <Button Grid.Column="2" Text="保存课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
-                            HorizontalOptions="Center" VerticalOptions="Center" 
-                            Command="{Binding EditDone}"/>
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding EditDone}" />
                 </Grid>
             </Frame>
 

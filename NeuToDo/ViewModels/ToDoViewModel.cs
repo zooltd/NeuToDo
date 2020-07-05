@@ -47,7 +47,7 @@ namespace NeuToDo.ViewModels
         private int _semesterIndex;
 
         private static readonly Semester EmptySemester = new Semester
-            {SchoolYear = "[未知的时间裂缝]", Season = "[请关联教务处]", BaseDate = DateTime.MinValue, SemesterId = 0};
+            {SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0};
 
         #endregion
 
@@ -237,7 +237,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand NavigateToNewNeuEventPage =>
             _navigateToNewNeuEventPage ??= new RelayCommand((() =>
             {
-                _eventDetailNavigationService.PushAsync(new NeuEvent());
+                _eventDetailNavigationService.PushAsync(new NeuEvent {SemesterId = _semesters[0].SemesterId});
             }));
 
         #endregion

@@ -10,28 +10,28 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Components;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using NeuToDo.Utils;
 using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
-    //TODO to be fixed 去除IAcademicCalendar
     public class EventDetailViewModel : ViewModelBase
     {
-        private readonly IStorageProvider _eventStorage;
+        private readonly IStorageProvider _storageProvider;
+
         private readonly IPopupNavigationService _popupNavigationService;
-        private readonly IAcademicCalendar _academicCalendar;
+
         private readonly IAlertService _alertService;
+
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
         public EventDetailViewModel(IStorageProvider storageProvider,
             IPopupNavigationService popupNavigationService,
-            IAcademicCalendar academicCalendar,
             IAlertService alertService,
             IEventDetailNavigationService eventDetailNavigationService)
         {
-            _eventStorage = storageProvider;
+            _storageProvider = storageProvider;
             _popupNavigationService = popupNavigationService;
-            _academicCalendar = academicCalendar;
             _alertService = alertService;
             _eventDetailNavigationService = eventDetailNavigationService;
         }
@@ -63,6 +63,14 @@ namespace NeuToDo.ViewModels
         {
             get => _eventGroupList ??= new ObservableCollection<EventGroup>();
             set => Set(nameof(EventGroupList), ref _eventGroupList, value);
+        }
+
+        private Semester _eventSemester;
+
+        public Semester EventSemester
+        {
+            get => _eventSemester;
+            set => Set(nameof(EventSemester), ref _eventSemester, value);
         }
 
         private ObservableCollection<int> _weekIndexInSelectionPage;
@@ -116,9 +124,9 @@ namespace NeuToDo.ViewModels
         {
             var res = await _alertService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!res) return;
-            var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
-            _eventStorage.OnUpdateData();
+            _storageProvider.OnUpdateData();
             await _eventDetailNavigationService.PopToRootAsync();
         }
 
@@ -148,7 +156,7 @@ namespace NeuToDo.ViewModels
             }
 
 
-            var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
             var newList = new List<NeuEvent>();
             foreach (var eventGroup in EventGroupList)
             {
@@ -159,14 +167,17 @@ namespace NeuToDo.ViewModels
                     Day = (int) eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
-                    Time = _academicCalendar.GetClassDateTime(eventGroup.Day, weekNo, eventGroup.ClassIndex),
+                    Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, Campus.Hunnan,
+                        EventSemester.BaseDate), //TODO Campus全局设置
                     Week = weekNo,
+                    ClassNo = eventGroup.ClassIndex,
+                    SemesterId = EventSemester.SemesterId
                 }));
             }
 
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             await neuStorage.InsertAllAsync(newList);
-            _eventStorage.OnUpdateData();
+            _storageProvider.OnUpdateData();
             await _eventDetailNavigationService.PopToRootAsync();
         }
 
@@ -214,22 +225,22 @@ namespace NeuToDo.ViewModels
         public async Task PageAppearingCommandFunction()
         {
             EventGroupList.Clear();
-            if (SelectedEvent.GetType().Name == nameof(NeuEvent))
+            if (SelectedEvent is NeuEvent neuEvent)
             {
-                var neuStorage = await _eventStorage.GetEventModelStorage<NeuEvent>();
+                var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+                var semesterStorage = await _storageProvider.GetSemesterStorage();
+                EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
                 var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
-                var courseGroupList = courses.GroupBy(c => new {c.Day, c.Detail})
+                var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)
                 {
-                    var detailSplit = group.Key.Detail.Split(',', '-');
-                    int.TryParse(detailSplit[0], out var index);
                     EventGroupList.Add(
                         new EventGroup
                         {
                             Day = (DayOfWeek) group.Key.Day,
                             Detail = group.Key.Detail,
-                            ClassIndex = index,
+                            ClassIndex = group.Key.ClassNo,
                             WeekNo = group.ToList().ConvertAll(x => x.Week)
                         });
                 }

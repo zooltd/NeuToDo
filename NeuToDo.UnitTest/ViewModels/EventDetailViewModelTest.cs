@@ -28,46 +28,56 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var academicCalendarMock = new Mock<IAcademicCalendar>();
-            var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
+            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
+                , mockAlertService, mockEventDetailNavigationService)
             {
-                EventGroupList = new ObservableCollection<EventGroup>(), SelectedEvent = new NeuEvent {Code = "A101"}
+                EventGroupList = new ObservableCollection<EventGroup>(),
+                SelectedEvent = new NeuEvent {Code = "A101", SemesterId = 31}
             };
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
+            var semesterStorage = await storageProvider.GetSemesterStorage();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
                 new NeuEvent
                 {
-                    Id = 1, Code = "A101", Title = "A101", Detail = "C101", IsDone = false,
-                    Time = DateTime.Today
+                    Id = 1, Code = "A101", Title = "A101", Detail = "A101",
+                    Day = (int) DayOfWeek.Saturday, Week = 1, ClassNo = 1
                 },
                 new NeuEvent
                 {
-                    Id = 2, Code = "A101", Title = "A101", Detail = "C101", IsDone = false,
-                    Time = DateTime.Today
+                    Id = 2, Code = "A101", Title = "A101", Detail = "A101",
+                    Day = (int) DayOfWeek.Saturday, Week = 2, ClassNo = 1
                 },
                 new NeuEvent
                 {
-                    Id = 3, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Time = DateTime.Today.AddDays(-1)
+                    Id = 3, Code = "A101", Title = "A101", Detail = "B101",
+                    Day = (int) DayOfWeek.Sunday, Week = 1, ClassNo = 1
                 },
                 new NeuEvent
                 {
-                    Id = 4, Code = "B101", Title = "A102", Detail = "A102", IsDone = false,
-                    Time = DateTime.Today.AddDays(-1)
+                    Id = 4, Code = "A101", Title = "A102", Detail = "C101",
+                    Day = (int) DayOfWeek.Sunday, Week = 2, ClassNo = 1
+                },
+                new NeuEvent
+                {
+                    Id = 5, Code = "A101", Title = "A102", Detail = "C101",
+                    Day = (int) DayOfWeek.Sunday, Week = 3, ClassNo = 1
+                },
+                new NeuEvent
+                {
+                    Id = 6, Code = "B101", Title = "A102", Detail = "A102",
                 }
             });
+            await semesterStorage.InsertOrReplaceAsync(new Semester
+                {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)});
             await eventDetailViewModel.PageAppearingCommandFunction();
             var eventGroupList = eventDetailViewModel.EventGroupList;
-            Assert.AreEqual(eventGroupList.Count, 2);
-            Assert.AreEqual(eventGroupList.First(x => x.Detail.Equals("C101")).WeekNo.Count, 2);
-            Assert.AreEqual(eventGroupList.First(x => x.Detail.Equals("A101")).WeekNo.Count, 1);
+            Assert.AreEqual(eventGroupList.Count, 3);
+
             await storageProvider.CloseConnectionAsync();
         }
 
@@ -77,14 +87,12 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var academicCalendarMock = new Mock<IAcademicCalendar>();
-            var mockAcademicCalendar = academicCalendarMock.Object;
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                    mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService)
+            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
+                    , mockAlertService, mockEventDetailNavigationService)
                 {SelectedEvent = new NeuEvent {Code = "A101"}};
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
@@ -134,14 +142,13 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var academicCalendarMock = new Mock<IAcademicCalendar>();
-            var mockAcademicCalendar = academicCalendarMock.Object;
+
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAcademicCalendar, mockAlertService, mockEventDetailNavigationService);
+                mockAlertService, mockEventDetailNavigationService);
             eventDetailViewModel.SelectedEvent = new EventModel {Code = "A101", Title = ""};
             eventDetailViewModel.EventGroupList = new ObservableCollection<EventGroup>
             {
@@ -156,6 +163,8 @@ namespace NeuToDo.UnitTest.ViewModels
                     WeekNo = new List<int> {1, 2, 3, 7, 8}
                 }
             };
+            eventDetailViewModel.EventSemester = new Semester
+                {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)};
             await eventDetailViewModel.EditDoneFunction();
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             var dbData = await neuStorage.GetAllAsync();

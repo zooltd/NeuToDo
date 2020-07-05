@@ -56,6 +56,7 @@ namespace NeuToDo.Views.Popup
         private void WeekNoSelectPopupPage_OnAppearing(object sender, EventArgs e)
         {
             if (!(BindingContext is EventDetailViewModel bindingContext)) return;
+            _buttons.ForEach(x => x.IsClicked = false);
             foreach (var index in bindingContext.SelectEventGroup.WeekNo)
                 _buttons[index - 1].IsClicked = true;
         }

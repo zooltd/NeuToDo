@@ -10,6 +10,8 @@ namespace NeuToDo.Services
     {
         Task InsertOrReplaceAsync(Semester semester);
 
+        Task<Semester> GetAsync(int id);
+
         Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate);
 
         Task<List<Semester>> GetAllOrderedByBaseDateAsync();

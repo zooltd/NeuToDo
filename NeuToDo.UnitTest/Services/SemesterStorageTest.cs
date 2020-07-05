@@ -39,6 +39,8 @@ namespace NeuToDo.UnitTest.Services
             Assert.AreEqual(autumnSemester.SemesterId, dbData[2].SemesterId);
             dbData = await semesterStorage.GetAllAsync(x => x.BaseDate > autumnSemester.BaseDate);
             Assert.AreEqual(dbData.Count, 2);
+            var querySemester = await semesterStorage.GetAsync(31);
+            Assert.AreEqual(querySemester.Season,"春季");
             await storageProvider.CloseConnectionAsync();
         }
     }

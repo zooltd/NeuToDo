@@ -18,9 +18,10 @@ namespace NeuToDo.Services
         }
 
         public async Task InsertOrReplaceAsync(Semester semester)
-        {
-            await _connection.InsertOrReplaceAsync(semester);
-        }
+            => await _connection.InsertOrReplaceAsync(semester);
+
+        public async Task<Semester> GetAsync(int id)
+            => await _connection.GetAsync<Semester>(id);
 
         public async Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate)
             => await _connection.Table<Semester>().Where(predicate).ToListAsync();

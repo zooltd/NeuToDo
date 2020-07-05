@@ -13,7 +13,7 @@
                  Appearing="WeekNoSelectPopupPage_OnAppearing">
 
 
-    <Frame VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="30">
+    <Frame VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="30" BackgroundColor="White">
         <StackLayout>
             <Grid>
                 <Grid.ColumnDefinitions>

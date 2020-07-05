@@ -19,7 +19,7 @@ namespace NeuToDo.Models
 
         public override string ToString()
         {
-            return SchoolYear + "学年，" + Season + "学期";
+            return SchoolYear + "，" + Season;
         }
     }
 }
