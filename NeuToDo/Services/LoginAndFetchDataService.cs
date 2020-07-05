@@ -32,10 +32,10 @@ namespace NeuToDo.Services
                     var semesterStorage = await _storageProvider.GetSemesterStorage();
                     try
                     {
-                        var (semester, neuCourses) = await neuGetter.WebCrawler(userId, password);
+                        var (semester, neuCourses) = await neuGetter.LoginAndFetchData(userId, password);
                         // await neuStorage.ClearTableAsync();
                         // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        await semesterStorage.InsertAsync(semester);
+                        await semesterStorage.InsertOrReplaceAsync(semester);
                         await neuStorage.MergeAsync(neuCourses);
                         _storageProvider.OnUpdateData();
                         return true;

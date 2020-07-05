@@ -8,7 +8,7 @@ namespace NeuToDo.Services
 {
     public interface ISemesterStorage
     {
-        Task InsertAsync(Semester semester);
+        Task InsertOrReplaceAsync(Semester semester);
 
         Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate);
 

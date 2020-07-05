@@ -17,9 +17,9 @@ namespace NeuToDo.Services
             _connection = databaseConnectionValue;
         }
 
-        public async Task InsertAsync(Semester semester)
+        public async Task InsertOrReplaceAsync(Semester semester)
         {
-            await _connection.InsertAsync(semester, typeof(Semester));
+            await _connection.InsertOrReplaceAsync(semester);
         }
 
         public async Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate)

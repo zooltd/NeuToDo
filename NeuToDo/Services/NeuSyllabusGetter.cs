@@ -29,7 +29,7 @@ namespace NeuToDo.Services
             _neuCourses = new List<NeuEvent>();
         }
 
-        public async Task<(Semester semester, List<NeuEvent> neuCourses)> WebCrawler(string userId, string password)
+        public async Task<(Semester semester, List<NeuEvent> neuCourses)> LoginAndFetchData(string userId, string password)
         {
             var vpnUrl =
                 "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
@@ -51,6 +51,7 @@ namespace NeuToDo.Services
             var coursesResponseBody = await GetCourseInfoResponseBody(semesterFormData);
 
             _neuCourses = ParseSemesters(coursesResponseBody, _semester);
+
             return (_semester, _neuCourses);
         }
 

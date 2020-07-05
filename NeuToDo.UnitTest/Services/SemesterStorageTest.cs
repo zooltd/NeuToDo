@@ -28,9 +28,9 @@ namespace NeuToDo.UnitTest.Services
                 {SemesterId = 54, SchoolYear = "2019-2020", Season = "夏季", BaseDate = new DateTime(2020, 6, 21)};
             var springSemester = new Semester
                 {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)};
-            await semesterStorage.InsertAsync(springSemester);
-            await semesterStorage.InsertAsync(summerSemester);
-            await semesterStorage.InsertAsync(autumnSemester);
+            await semesterStorage.InsertOrReplaceAsync(springSemester);
+            await semesterStorage.InsertOrReplaceAsync(summerSemester);
+            await semesterStorage.InsertOrReplaceAsync(autumnSemester);
             dbData = await semesterStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 3);
             var currentSemester = await semesterStorage.GetSemesterByMaxBaseDateAsync();
