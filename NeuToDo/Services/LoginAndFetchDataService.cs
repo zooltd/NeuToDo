@@ -25,15 +25,18 @@ namespace NeuToDo.Services
                 case ServerType.Neu:
                     // var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
                     // var neuGetter = new NeuSyllabusGetter(_httpClientFactory);
+                    //TODO 依赖注入？
                     SimpleIoc.Default.Register<NeuSyllabusGetter>();
                     var neuGetter = SimpleIoc.Default.GetInstance<NeuSyllabusGetter>();
                     var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+                    var semesterStorage = await _storageProvider.GetSemesterStorage();
                     try
                     {
-                        var neuEventList = await neuGetter.WebCrawler(userId, password);
+                        var (semester, neuCourses) = await neuGetter.WebCrawler(userId, password);
                         // await neuStorage.ClearTableAsync();
                         // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        await neuStorage.MergeAsync(neuEventList);
+                        await semesterStorage.InsertAsync(semester);
+                        await neuStorage.MergeAsync(neuCourses);
                         _storageProvider.OnUpdateData();
                         return true;
                     }

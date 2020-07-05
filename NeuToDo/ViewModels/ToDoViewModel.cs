@@ -73,7 +73,7 @@ namespace NeuToDo.ViewModels
             }
             catch (Exception e)
             {
-                _currentSemester = new Semester {BaseDate = DateTime.Today, SemesterId = 0, SemesterName = "未知的时间裂缝"};
+                _currentSemester = new Semester {BaseDate = DateTime.Today, SemesterId = 0, SchoolYear = DateTime.Today.Year.ToString(), Season = "未知"};
             }
 
             UpdateCalendarData();
@@ -93,7 +93,7 @@ namespace NeuToDo.ViewModels
         private void UpdateTeachingWeekNo()
         {
             WeekNo = Calculator.CalculateCurrentWeekNo(_currentSemester.BaseDate);
-            SemesterName = _currentSemester.SemesterName;
+            Semester = _currentSemester;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
@@ -263,12 +263,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekNo), ref _weekNo, value);
         }
 
-        private string _semesterName;
+        private Semester _semester;
 
-        public string SemesterName
+        public Semester Semester
         {
-            get => _semesterName;
-            set => Set(nameof(SemesterName), ref _semesterName, value);
+            get => _semester;
+            set => Set(nameof(Semester), ref _semester, value);
         }
 
         private string _weeklySummary;

@@ -23,11 +23,11 @@ namespace NeuToDo.UnitTest.Services
             var dbData = await semesterStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
             var autumnSemester = new Semester
-                {SemesterId = 12, SemesterName = "2019-2020, 秋季学期", BaseDate = new DateTime(2019, 9, 1)};
+                {SemesterId = 12, SchoolYear = "2019-2020", Season = "秋季", BaseDate = new DateTime(2019, 9, 1)};
             var summerSemester = new Semester
-                {SemesterId = 54, SemesterName = "2019-2020, 夏季学期", BaseDate = new DateTime(2020, 6, 21)};
+                {SemesterId = 54, SchoolYear = "2019-2020", Season = "夏季", BaseDate = new DateTime(2020, 6, 21)};
             var springSemester = new Semester
-                {SemesterId = 31, SemesterName = "2019-2020, 春季学期", BaseDate = new DateTime(2020, 2, 16)};
+                {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)};
             await semesterStorage.InsertAsync(springSemester);
             await semesterStorage.InsertAsync(summerSemester);
             await semesterStorage.InsertAsync(autumnSemester);

@@ -10,8 +10,16 @@ namespace NeuToDo.Models
         [Column(nameof(SemesterId))]
         public int SemesterId { get; set; }
 
-        [Column(nameof(SemesterName))] public string SemesterName { get; set; }
+        [Column(nameof(SchoolYear))] public string SchoolYear { get; set; }
+
+        [Column(nameof(Season))] public string Season { get; set; }
+
 
         [Column(nameof(BaseDate))] public DateTime BaseDate { get; set; }
+
+        public override string ToString()
+        {
+            return SchoolYear + "学年，" + Season + "学期";
+        }
     }
 }
