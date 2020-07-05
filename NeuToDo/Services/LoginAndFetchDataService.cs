@@ -33,7 +33,7 @@ namespace NeuToDo.Services
                         var neuEventList = await neuGetter.WebCrawler(userId, password);
                         // await neuStorage.ClearTableAsync();
                         // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        await neuStorage.MergeAsync(neuEventList); //TODO Clear后InsertAll报错 ①排查 ②转换为原子性操作
+                        await neuStorage.MergeAsync(neuEventList);
                         _storageProvider.OnUpdateData();
                         return true;
                     }

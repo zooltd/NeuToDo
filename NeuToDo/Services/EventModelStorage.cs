@@ -46,7 +46,7 @@ namespace NeuToDo.Services
             return await _connection.Table<T>().Where(predExpr).ToListAsync();
         }
 
-        public async Task MergeAsync(IList<T> eventList)
+        public async Task MergeAsync(IEnumerable<T> eventList)
         {
             var dataInDb = await GetAllAsync();
             switch (typeof(T).Name)
@@ -77,8 +77,12 @@ namespace NeuToDo.Services
                     break;
             }
 
-            await ClearTableAsync();
-            await InsertAllAsync(dataInDb);
+            //TODO transaction
+            await _connection.RunInTransactionAsync((connection =>
+            {
+                connection.DeleteAll<T>();
+                connection.InsertAll(dataInDb);
+            }));
         }
     }
 }

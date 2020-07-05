@@ -20,6 +20,6 @@ namespace NeuToDo.Services
 
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr);
 
-        Task MergeAsync(IList<T> eventList);
+        Task MergeAsync(IEnumerable<T> eventList);
     }
 }
