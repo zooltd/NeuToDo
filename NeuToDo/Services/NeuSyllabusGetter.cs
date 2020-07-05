@@ -50,7 +50,7 @@ namespace NeuToDo.Services
 
             var coursesResponseBody = await GetCourseInfoResponseBody(semesterFormData);
 
-            _neuCourses = ParseSemesters(coursesResponseBody, _semester);
+            _neuCourses = ParseCourses(coursesResponseBody, _semester);
 
             return (_semester, _neuCourses);
         }
@@ -201,7 +201,7 @@ namespace NeuToDo.Services
             };
         }
 
-        public List<NeuEvent> ParseSemesters(string responseBody, Semester semester)
+        public List<NeuEvent> ParseCourses(string responseBody, Semester semester)
         {
             var eventList = new List<NeuEvent>();
 
