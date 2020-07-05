@@ -42,7 +42,12 @@ namespace NeuToDo.ViewModels
 
         private readonly DateTime _today;
 
-        private Semester _currentSemester;
+        private List<Semester> _semesters;
+
+        private int _semesterIndex;
+
+        private static readonly Semester EmptySemester = new Semester
+            {SchoolYear = "[未知的时间裂缝]", Season = "[请关联教务处]", BaseDate = DateTime.MinValue, SemesterId = 0};
 
         #endregion
 
@@ -67,17 +72,10 @@ namespace NeuToDo.ViewModels
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
             var semesterStorage = await _storageProvider.GetSemesterStorage();
-            try
-            {
-                _currentSemester = await semesterStorage.GetSemesterByMaxBaseDateAsync();
-            }
-            catch (Exception e)
-            {
-                _currentSemester = new Semester {BaseDate = DateTime.Today, SemesterId = 0, SchoolYear = DateTime.Today.Year.ToString(), Season = "未知"};
-            }
+            _semesters = await semesterStorage.GetAllOrderedByBaseDateAsync();
 
             UpdateCalendarData();
-            UpdateTeachingWeekNo();
+            UpdateSemester();
             UpdateListData();
         }
 
@@ -90,12 +88,22 @@ namespace NeuToDo.ViewModels
             }
         }
 
-        private void UpdateTeachingWeekNo()
+        private void UpdateSemester()
         {
-            WeekNo = Calculator.CalculateCurrentWeekNo(_currentSemester.BaseDate);
-            Semester = _currentSemester;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
+
+            _semesterIndex = 0;
+            if (_semesters.Count <= 0)
+            {
+                Semester = EmptySemester;
+                WeekNo = 0;
+            }
+            else
+            {
+                Semester = _semesters[_semesterIndex];
+                WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, DateTime.Today);
+            }
         }
 
         private void UpdateListData()
@@ -124,23 +132,6 @@ namespace NeuToDo.ViewModels
         #endregion
 
         #region 共有绑定属性
-
-        //
-        // private EventModel _selectedEvent;
-        //
-        // public EventModel SelectedEvent
-        // {
-        //     get => _selectedEvent;
-        //     set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
-        // }
-        //
-        // private EventGroupList _eventDetail;
-        //
-        // public EventGroupList EventGroupList
-        // {
-        //     get => _eventDetail;
-        //     set => Set(nameof(EventGroupList), ref _eventDetail, value);
-        // }
 
         #endregion
 
@@ -178,9 +169,27 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand((() =>
         {
-            WeekNo--; //TODO 1以前？
-            ThisSaturday = ThisSaturday.AddDays(-7);
             ThisSunday = ThisSunday.AddDays(-7);
+            ThisSaturday = ThisSaturday.AddDays(-7);
+
+            if (WeekNo <= 0)
+            {
+                if (_semesters.Count > _semesterIndex + 1)
+                {
+                    Semester = _semesters[++_semesterIndex];
+                    WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, ThisSunday);
+                }
+                else
+                {
+                    Semester = EmptySemester;
+                    WeekNo--;
+                }
+            }
+            else
+            {
+                WeekNo--;
+            }
+
             UpdateListData();
         }));
 
@@ -188,9 +197,30 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand((() =>
         {
-            WeekNo++;
-            ThisSaturday = ThisSaturday.AddDays(7);
             ThisSunday = ThisSunday.AddDays(7);
+            ThisSaturday = ThisSaturday.AddDays(7);
+
+
+            if (WeekNo >= 0)
+            {
+                var maxThisSemesterSunday = _semesterIndex >= 1
+                    ? _semesters[_semesterIndex - 1].BaseDate.AddDays(-7)
+                    : DateTime.MaxValue;
+                if (ThisSunday > maxThisSemesterSunday)
+                {
+                    Semester = _semesters[--_semesterIndex];
+                    WeekNo = 0;
+                }
+                else
+                {
+                    WeekNo++;
+                }
+            }
+            else
+            {
+                WeekNo++;
+            }
+
             UpdateListData();
         }));
 

@@ -13,7 +13,7 @@ namespace NeuToDo.Utils
             return baseDate.AddDays((int) day + weekNo * 7) + classTimeDict[classNo];
         }
 
-        public static int CalculateCurrentWeekNo(DateTime baseDate)
-            => (int) ((DateTime.Today - baseDate).TotalDays / 7);
+        public static int CalculateWeekNo(DateTime baseDate, DateTime date)
+            => (int) ((date - baseDate).TotalDays / 7);
     }
 }

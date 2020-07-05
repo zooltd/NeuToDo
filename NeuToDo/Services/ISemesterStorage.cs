@@ -12,7 +12,7 @@ namespace NeuToDo.Services
 
         Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate);
 
-        Task<Semester> GetSemesterByMaxBaseDateAsync();
+        Task<List<Semester>> GetAllOrderedByBaseDateAsync();
 
         Task<List<Semester>> GetAllAsync();
     }

@@ -33,10 +33,12 @@ namespace NeuToDo.UnitTest.Services
             await semesterStorage.InsertOrReplaceAsync(autumnSemester);
             dbData = await semesterStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 3);
-            var currentSemester = await semesterStorage.GetSemesterByMaxBaseDateAsync();
-            Assert.AreEqual(summerSemester.SemesterId, currentSemester.SemesterId);
-            var querySemesterList = await semesterStorage.GetAllAsync(x => x.BaseDate > autumnSemester.BaseDate);
-            Assert.AreEqual(querySemesterList.Count, 2);
+            dbData = await semesterStorage.GetAllOrderedByBaseDateAsync();
+            Assert.AreEqual(summerSemester.SemesterId, dbData[0].SemesterId);
+            Assert.AreEqual(springSemester.SemesterId, dbData[1].SemesterId);
+            Assert.AreEqual(autumnSemester.SemesterId, dbData[2].SemesterId);
+            dbData = await semesterStorage.GetAllAsync(x => x.BaseDate > autumnSemester.BaseDate);
+            Assert.AreEqual(dbData.Count, 2);
             await storageProvider.CloseConnectionAsync();
         }
     }
