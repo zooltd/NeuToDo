@@ -229,7 +229,14 @@ namespace NeuToDo.ViewModels
             {
                 var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                 var semesterStorage = await _storageProvider.GetSemesterStorage();
-                EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
+                try
+                {
+                    EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
+                }
+                catch (Exception e)
+                {
+                    EventSemester = new Semester();
+                }
                 var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
                 var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
                     .OrderBy(p => p.Key.Day);

@@ -16,11 +16,13 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IStorageProvider storageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
-            IPreferenceStorageProvider preferenceStorageProvider)
+            IPreferenceStorageProvider preferenceStorageProvider,
+            IAlertService alertService)
         {
             _storageProvider = storageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
             _preferenceStorageProvider = preferenceStorageProvider;
+            _alertService = alertService;
             storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -34,6 +36,8 @@ namespace NeuToDo.ViewModels
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
         private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+
+        private readonly IAlertService _alertService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -237,7 +241,12 @@ namespace NeuToDo.ViewModels
         public RelayCommand NavigateToNewNeuEventPage =>
             _navigateToNewNeuEventPage ??= new RelayCommand((() =>
             {
-                _eventDetailNavigationService.PushAsync(new NeuEvent {SemesterId = _semesters[0].SemesterId});
+                if (Semester.SemesterId == 0)
+                {
+                    _alertService.DisplayAlert("提示", "当前学期不明，请关联数据库", "OK");
+                }
+
+                _eventDetailNavigationService.PushAsync(new NeuEvent {SemesterId = Semester.SemesterId});
             }));
 
         #endregion
