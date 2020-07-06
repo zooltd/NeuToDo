@@ -89,11 +89,13 @@ namespace NeuToDo.ViewModels
             try
             {
                 var pickedFile = await CrossFilePicker.Current.PickFile();
+                if (pickedFile == null) return;
                 if (pickedFile.FileName != "events.sqlite3")
                 {
                     _alertService.DisplayAlert("警告", "导入文件名应为\"events.sqlite3\"", "OK");
                     return;
                 }
+
                 if (File.Exists(StorageProvider.DbPath))
                 {
                     File.Delete(StorageProvider.DbPath);
