@@ -7,12 +7,12 @@ namespace NeuToDo.Services
     {
         private readonly IPreferenceStorageProvider _preferenceStorageProvider;
 
-        private readonly IAlertService _alertService;
+        private readonly IDialogService _dialogService;
 
-        public CampusStorageService(IPreferenceStorageProvider preferenceStorageProvider, IAlertService alertService)
+        public CampusStorageService(IPreferenceStorageProvider preferenceStorageProvider, IDialogService dialogService)
         {
             _preferenceStorageProvider = preferenceStorageProvider;
-            _alertService = alertService;
+            _dialogService = dialogService;
         }
 
         private Campus? _campus;
@@ -31,7 +31,7 @@ namespace NeuToDo.Services
 
         private async Task<Campus> GetCampusFromDialog()
         {
-            var res = await _alertService.DisplayActionSheet("请选择校区", "Cancel", null, "浑南", "南湖");
+            var res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, "浑南", "南湖");
             var campus = res == "浑南" ? Campus.Hunnan : Campus.Nanhu;
             _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
             return campus;

@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
-    public class AlertService : IAlertService
+    public class DialogService : IDialogService
     {
         private MainPage _mainPage;
 

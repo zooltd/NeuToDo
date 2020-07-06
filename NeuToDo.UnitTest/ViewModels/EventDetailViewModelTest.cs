@@ -28,9 +28,9 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var alertServiceMock = new Mock<IAlertService>();
+            var alertServiceMock = new Mock<IDialogService>();
             var mockAlertService = alertServiceMock.Object;
-            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<CampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
@@ -90,9 +90,9 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var alertServiceMock = new Mock<IAlertService>();
+            var alertServiceMock = new Mock<IDialogService>();
             var mockAlertService = alertServiceMock.Object;
-            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<CampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
@@ -148,9 +148,9 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-            var alertServiceMock = new Mock<IAlertService>();
+            var alertServiceMock = new Mock<IDialogService>();
             var mockAlertService = alertServiceMock.Object;
-            var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
+            var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<CampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;

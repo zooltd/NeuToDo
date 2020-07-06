@@ -22,17 +22,17 @@ namespace NeuToDo.ViewModels
 
         private readonly IStorageProvider _storageProvider;
 
-        private readonly IAlertService _alertService;
+        private readonly IDialogService _dialogService;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
             IStorageProvider storageProvider,
-            IAlertService alertService)
+            IDialogService dialogService)
         {
             _popupNavigationService = popupNavigationService;
             _accountStorageService = accountStorageService;
             _storageProvider = storageProvider;
-            _alertService = alertService;
+            _dialogService = dialogService;
             Platforms = Platform.Platforms;
         }
 
@@ -88,7 +88,7 @@ namespace NeuToDo.ViewModels
                 if (pickedFile == null) return;
                 if (pickedFile.FileName != "events.sqlite3")
                 {
-                    _alertService.DisplayAlert("警告", "导入文件名应为\"events.sqlite3\"", "OK");
+                    _dialogService.DisplayAlert("警告", "导入文件名应为\"events.sqlite3\"", "OK");
                     return;
                 }
 
@@ -113,7 +113,7 @@ namespace NeuToDo.ViewModels
         {
             if (!p.IsBound)
             {
-                _alertService.DisplayAlert("提示", "请先登录", "OK");
+                _dialogService.DisplayAlert("提示", "请先登录", "OK");
                 return;
             }
 

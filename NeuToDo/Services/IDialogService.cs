@@ -5,7 +5,7 @@ namespace NeuToDo.Services
     /// <summary>
     /// 警告服务。
     /// </summary>
-    public interface IAlertService
+    public interface IDialogService
     {
         /// <summary>
         /// 显示警告。

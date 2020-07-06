@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
-    public interface IEventDetailPageActivationService
+    public interface IContentPageActivationService
     {
         ContentPage Activate(string typeName);
     }

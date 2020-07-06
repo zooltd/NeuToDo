@@ -15,12 +15,12 @@ namespace NeuToDo.ViewModels
     public class ToDoViewModel : ViewModelBase
     {
         public ToDoViewModel(IStorageProvider storageProvider,
-            IEventDetailNavigationService eventDetailNavigationService,
-            IAlertService alertService)
+            IContentPageNavigationService contentPageNavigationService,
+            IDialogService dialogService)
         {
             _storageProvider = storageProvider;
-            _eventDetailNavigationService = eventDetailNavigationService;
-            _alertService = alertService;
+            _contentPageNavigationService = contentPageNavigationService;
+            _dialogService = dialogService;
             storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -31,9 +31,9 @@ namespace NeuToDo.ViewModels
 
         private readonly IStorageProvider _storageProvider;
 
-        private readonly IEventDetailNavigationService _eventDetailNavigationService;
+        private readonly IContentPageNavigationService _contentPageNavigationService;
 
-        private readonly IAlertService _alertService;
+        private readonly IDialogService _dialogService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -146,7 +146,7 @@ namespace NeuToDo.ViewModels
         /// ToDoList, ToDoCalendar视图中Event点击命令，触发导航
         /// </summary>
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
-            ((e) => { _eventDetailNavigationService.PushAsync(e); }));
+            ((e) => { _contentPageNavigationService.PushAsync(e); }));
 
         /// <summary>
         /// 页面显示命令
@@ -274,7 +274,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand NavigateToNewUserEventPage =>
             _navigateToNewUserEventPage ??= new RelayCommand((() =>
             {
-                _eventDetailNavigationService.PushAsync(new UserEvent());
+                _contentPageNavigationService.PushAsync(new UserEvent());
             }));
 
         /// <summary>
@@ -292,11 +292,11 @@ namespace NeuToDo.ViewModels
         {
             if (Semester.SemesterId == 0)
             {
-                _alertService.DisplayAlert("提示", "当前学期不明，请关联东北大学(设置=>关联)", "OK");
+                _dialogService.DisplayAlert("提示", "当前学期不明，请关联东北大学(设置=>关联)", "OK");
                 return;
             }
 
-            _eventDetailNavigationService.PushAsync(new NeuEvent
+            _contentPageNavigationService.PushAsync(new NeuEvent
                 {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
         }
 

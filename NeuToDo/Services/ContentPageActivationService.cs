@@ -6,7 +6,7 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
-    public class EventDetailPageActivationService : IEventDetailPageActivationService
+    public class ContentPageActivationService : IContentPageActivationService
     {
         /// <summary>
         /// 页面缓存。

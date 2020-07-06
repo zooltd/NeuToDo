@@ -19,18 +19,18 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
-            SimpleIoc.Default.Register<IAccountStorageService,AccountStorageService>();
+            SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
             SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
+            SimpleIoc.Default.Register<IContentPageActivationService, ContentPageActivationService>();
+            SimpleIoc.Default.Register<IContentPageNavigationService, ContentPageNavigationService>();
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
-            SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();
-            SimpleIoc.Default.Register<IEventDetailPageActivationService, EventDetailPageActivationService>();
             SimpleIoc.Default.Register<IStorageProvider, StorageProvider>();
             SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
             SimpleIoc.Default.Register<IHttpClientFactory, HttpClientFactory>();
-            SimpleIoc.Default.Register<IAlertService, AlertService>();
         }
     }
 }

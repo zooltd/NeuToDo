@@ -6,13 +6,13 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {
-    public class EventDetailNavigationService : IEventDetailNavigationService
+    public class ContentPageNavigationService : IContentPageNavigationService
     {
-        private readonly IEventDetailPageActivationService _eventDetailPageActivationService;
+        private readonly IContentPageActivationService _contentPageActivationService;
 
-        public EventDetailNavigationService(IEventDetailPageActivationService eventDetailPageActivationService)
+        public ContentPageNavigationService(IContentPageActivationService contentPageActivationService)
         {
-            _eventDetailPageActivationService = eventDetailPageActivationService;
+            _contentPageActivationService = contentPageActivationService;
         }
 
         private MainPage _mainPage;
@@ -21,7 +21,7 @@ namespace NeuToDo.Services
 
         public async Task PushAsync(EventModel e)
         {
-            var page = _eventDetailPageActivationService.Activate(e.GetType().Name);
+            var page = _contentPageActivationService.Activate(e.GetType().Name);
             NavigationContext.SetParameter(page, e);
             await MainPage.CurrentPage.Navigation.PushAsync(page);
         }

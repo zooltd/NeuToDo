@@ -21,22 +21,22 @@ namespace NeuToDo.ViewModels
 
         private readonly IPopupNavigationService _popupNavigationService;
 
-        private readonly IAlertService _alertService;
+        private readonly IDialogService _dialogService;
 
-        private readonly IEventDetailNavigationService _eventDetailNavigationService;
+        private readonly IContentPageNavigationService _contentPageNavigationService;
 
         private readonly ICampusStorageService _campusStorageService;
 
         public EventDetailViewModel(IStorageProvider storageProvider,
             IPopupNavigationService popupNavigationService,
-            IAlertService alertService,
-            IEventDetailNavigationService eventDetailNavigationService,
+            IDialogService dialogService,
+            IContentPageNavigationService contentPageNavigationService,
             ICampusStorageService campusStorageService)
         {
             _storageProvider = storageProvider;
             _popupNavigationService = popupNavigationService;
-            _alertService = alertService;
-            _eventDetailNavigationService = eventDetailNavigationService;
+            _dialogService = dialogService;
+            _contentPageNavigationService = contentPageNavigationService;
             _campusStorageService = campusStorageService;
         }
 
@@ -126,12 +126,12 @@ namespace NeuToDo.ViewModels
 
         public async Task DeleteCourseFunction()
         {
-            var res = await _alertService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
+            var res = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!res) return;
             var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             _storageProvider.OnUpdateData();
-            await _eventDetailNavigationService.PopToRootAsync();
+            await _contentPageNavigationService.PopToRootAsync();
         }
 
 
@@ -143,19 +143,19 @@ namespace NeuToDo.ViewModels
         {
             if (string.IsNullOrWhiteSpace(SelectedEvent.Title))
             {
-                _alertService.DisplayAlert("操作失败", "课程名称格式错误", "OK");
+                _dialogService.DisplayAlert("操作失败", "课程名称格式错误", "OK");
                 return;
             }
 
             if (EventGroupList.ToList().Exists(x => x.WeekNo == null || !x.WeekNo.Any()))
             {
-                _alertService.DisplayAlert("操作失败", "存在未填写的周数", "OK");
+                _dialogService.DisplayAlert("操作失败", "存在未填写的周数", "OK");
                 return;
             }
 
             if (EventGroupList.ToList().Exists(x => x.ClassIndex < 1))
             {
-                _alertService.DisplayAlert("操作失败", "存在未填写的节次", "OK");
+                _dialogService.DisplayAlert("操作失败", "存在未填写的节次", "OK");
                 return;
             }
 
@@ -184,7 +184,7 @@ namespace NeuToDo.ViewModels
             await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
             await neuStorage.InsertAllAsync(newList);
             _storageProvider.OnUpdateData();
-            await _eventDetailNavigationService.PopToRootAsync();
+            await _contentPageNavigationService.PopToRootAsync();
         }
 
         /// <summary>

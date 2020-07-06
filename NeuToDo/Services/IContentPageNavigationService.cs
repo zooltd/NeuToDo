@@ -9,7 +9,7 @@ namespace NeuToDo.Services
     /// <summary>
     /// 内容导航服务接口。
     /// </summary>
-    public interface IEventDetailNavigationService
+    public interface IContentPageNavigationService
     {
         /// <summary>
         /// 导航到页面。
