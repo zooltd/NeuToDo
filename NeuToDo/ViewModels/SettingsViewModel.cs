@@ -6,9 +6,11 @@ using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using System.Collections.Generic;
 using System.Dynamic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using Plugin.FilePicker;
 
 namespace NeuToDo.ViewModels
 {
@@ -76,6 +78,38 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand<Platform> Command2 =>
             _command2 ??= new RelayCommand<Platform>(async (p) => await Command2Function(p));
+
+        private RelayCommand _importDb;
+
+        public RelayCommand ImportDb =>
+            _importDb ??= new RelayCommand(async () => await ImportDbFunction());
+
+        private async Task ImportDbFunction()
+        {
+            try
+            {
+                var pickedFile = await CrossFilePicker.Current.PickFile();
+                if (pickedFile.FileName != "events.sqlite3")
+                {
+                    _alertService.DisplayAlert("警告", "导入文件名应为\"events.sqlite3\"", "OK");
+                    return;
+                }
+                if (File.Exists(StorageProvider.DbPath))
+                {
+                    File.Delete(StorageProvider.DbPath);
+                    File.Copy(pickedFile.FilePath, StorageProvider.DbPath);
+                }
+                else
+                {
+                    File.Copy(pickedFile.FilePath, StorageProvider.DbPath);
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
 
         private async Task Command2Function(Platform p)
         {

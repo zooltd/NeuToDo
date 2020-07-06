@@ -18,165 +18,175 @@
             </b:ActionCollection>
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
+    <ScrollView>
+        <StackLayout x:Name="Page">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <Label Text="关联平台"
+                       BackgroundColor="#455399"
+                       TextColor="White"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       HeightRequest="35" />
+            </Grid>
 
-    <StackLayout x:Name="Page">
-        <Label Text="关联平台"
-               BackgroundColor="#455399"
-               TextColor="White"
-               FontSize="20"
-               FontAttributes="Bold"
-               HorizontalTextAlignment="Center"
-               VerticalTextAlignment="Center"
-               WidthRequest="100"
-               HeightRequest="35" />
+            <StackLayout BindableLayout.ItemsSource="{Binding Platforms}" Spacing="10" Padding="10" Margin="0,-5">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Label Text="{Binding Name}"
+                                   FontSize="16"
+                                   TextColor="#455399"
+                                   FontAttributes="Bold"
+                                   HorizontalTextAlignment="Start"
+                                   VerticalTextAlignment="Center" />
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="17*" />
+                                    <ColumnDefinition Width="7*" />
+                                </Grid.ColumnDefinitions>
+                                <StackLayout Grid.Column="0" VerticalOptions="Center">
+                                    <Label Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
+                                           VerticalOptions="End" />
+                                    <Label Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
+                                           VerticalOptions="End" />
+                                </StackLayout>
+                                <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Button Grid.Column="0" BackgroundColor="#455399"
+                                            TextColor="White"
+                                            FontSize="12"
+                                            CornerRadius="0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Text="{Binding Button1Text}"
+                                            Command="{Binding BindingContext.Command1, Source={x:Reference Page}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Grid.Column="1" BackgroundColor="#BF4779"
+                                            TextColor="White"
+                                            FontSize="12"
+                                            CornerRadius="0"
+                                            HorizontalOptions="End"
+                                            VerticalOptions="Center"
+                                            Text="解除"
+                                            Command="{Binding BindingContext.Command2, Source={x:Reference Page}}"
+                                            CommandParameter="{Binding}" />
+                                    <!-- </Grid> -->
+                                </Grid>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
 
-        <StackLayout BindableLayout.ItemsSource="{Binding Platforms}">
-            <BindableLayout.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout>
-                        <Label Text="{Binding Name}"
-                               BackgroundColor="#455399"
-                               TextColor="White"
-                               FontSize="20"
-                               FontAttributes="Bold"
-                               HorizontalTextAlignment="Center"
-                               VerticalTextAlignment="Center"
-                               WidthRequest="100"
-                               HeightRequest="35" />
-                        <Grid>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                </Grid.ColumnDefinitions>
+                <Label Text="同步与备份"
+                       BackgroundColor="#455399"
+                       TextColor="White"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       HeightRequest="35" />
+            </Grid>
+
+            <StackLayout Padding="10" Margin="0,-5">
+                <StackLayout>
+                    <Label Text="WebDAV"
+                           FontSize="16"
+                           TextColor="#455399"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="导出路径: "
+                                   VerticalOptions="End" />
+                            <Label Text="同步时间:"
+                                   VerticalOptions="End" />
+                        </StackLayout>
+                        <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="2*" />
-                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition />
+                                <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <StackLayout Grid.Column="0" VerticalOptions="Center">
-                                <Label Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
-                                       VerticalOptions="End" />
-                                <Label Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
-                                       VerticalOptions="End" />
-                            </StackLayout>
-                            <StackLayout Grid.Column="1" Orientation="Horizontal" VerticalOptions="Center">
-                                <!-- <Grid> -->
-                                <!--     <Grid.ColumnDefinitions> -->
-                                <!--         <ColumnDefinition /> -->
-                                <!--         <ColumnDefinition /> -->
-                                <!--     </Grid.ColumnDefinitions> -->
-                                <Button BackgroundColor="#455399"
-                                        TextColor="White"
-                                        FontSize="12"
-                                        CornerRadius="0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center"
-                                        Text="{Binding Button1Text}"
-                                        Command="{Binding BindingContext.Command1, Source={x:Reference Page}}"
-                                        CommandParameter="{Binding}" />
-                                <Button BackgroundColor="#BF4779"
-                                        TextColor="White"
-                                        FontSize="12"
-                                        CornerRadius="0"
-                                        HorizontalOptions="End"
-                                        VerticalOptions="Center"
-                                        Text="解除"
-                                        Command="{Binding BindingContext.Command2, Source={x:Reference Page}}"
-                                        CommandParameter="{Binding}" />
-                                <!-- </Grid> -->
-                            </StackLayout>
+                            <Button Grid.Column="0" BackgroundColor="#455399"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    CornerRadius="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="关联" />
+                            <Button Grid.Column="1" BackgroundColor="#BF4779"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    CornerRadius="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="同步" />
                         </Grid>
-                    </StackLayout>
-                </DataTemplate>
+                    </Grid>
+                </StackLayout>
 
-            </BindableLayout.ItemTemplate>
+                <StackLayout>
+                    <Label Text="本地备份"
+                           FontSize="16"
+                           TextColor="#455399"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Start"
+                           VerticalTextAlignment="Center" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="17*" />
+                            <ColumnDefinition Width="7*" />
+                        </Grid.ColumnDefinitions>
+                        <StackLayout Grid.Column="0">
+                            <Label Text="导出路径: /backup"
+                                   VerticalOptions="End" />
+                            <Label Text="备份时间:"
+                                   VerticalOptions="End" />
+                        </StackLayout>
+                        <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Button Grid.Column="0" BackgroundColor="#455399"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    CornerRadius="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="导入" 
+                                    Command="{Binding ImportDb}"/>
+                            <Button Grid.Column="1" BackgroundColor="#BF4779"
+                                    TextColor="White"
+                                    FontSize="12"
+                                    CornerRadius="0"
+                                    HorizontalOptions="End"
+                                    VerticalOptions="Center"
+                                    Text="导出"/>
+                        </Grid>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+
         </StackLayout>
-
-
-    </StackLayout>
-
-    <!-- <CollectionView ItemsSource="{Binding Settings}" -->
-    <!--                 IsGrouped="true" -->
-    <!--                 Margin="0,20" -->
-    <!--                 x:Name="CollectionView"> -->
-    <!--     <CollectionView.GroupHeaderTemplate> -->
-    <!--         <DataTemplate> -->
-    <!--             <Grid> -->
-    <!--                 <Grid.ColumnDefinitions> -->
-    <!--                     <ColumnDefinition Width="Auto" /> -->
-    <!--                     <ColumnDefinition Width="Auto" /> -->
-    <!--                 </Grid.ColumnDefinitions> -->
-    <!--                 <Label Text="{Binding Name}" -->
-    <!--                        BackgroundColor="#455399" -->
-    <!--                        TextColor="White" -->
-    <!--                        FontSize="20" -->
-    <!--                        FontAttributes="Bold" -->
-    <!--                        HorizontalTextAlignment="Center" -->
-    <!--                        VerticalTextAlignment="Center" -->
-    <!--                        WidthRequest="100" -->
-    <!--                        HeightRequest="35" /> -->
-    <!--             </Grid> -->
-    <!--         </DataTemplate> -->
-    <!--     </CollectionView.GroupHeaderTemplate> -->
-    <!--     <CollectionView.ItemTemplate> -->
-    <!--         <DataTemplate> -->
-    <!--             <Grid Padding="10"> -->
-    <!--                 <Grid.ColumnDefinitions> -->
-    <!--                     <ColumnDefinition Width="2*" /> -->
-    <!--                     <ColumnDefinition Width="*" /> -->
-    <!--                 </Grid.ColumnDefinitions> -->
-    <!--                 <Grid> -->
-    <!--                     <Grid.RowDefinitions> -->
-    <!--                         <RowDefinition Height="40" /> -->
-    <!--                         <RowDefinition Height="20" /> -->
-    <!--                         <RowDefinition Height="20" /> -->
-    <!--                     </Grid.RowDefinitions> -->
-    <!--                     <Label Grid.Row="0" -->
-    <!--                            Grid.ColumnSpan="2" -->
-    <!--                            Text="{Binding Name}" -->
-    <!--                            TextColor="#455399" -->
-    <!--                            FontSize="16" -->
-    <!--                            VerticalOptions="CenterAndExpand" -->
-    <!--                            FontAttributes="Bold" /> -->
-    <!--                     <Label Grid.Row="1" -->
-    <!--                            Grid.ColumnSpan="2" -->
-    <!--                            Text="{Binding UserName, StringFormat='绑定账户: {0}'}" -->
-    <!--                            VerticalOptions="End" /> -->
-    <!--                     <Label Grid.Row="2" -->
-    <!--                            Grid.ColumnSpan="2" -->
-    <!--                            Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}" -->
-    <!--                            VerticalOptions="End" /> -->
-    <!--                 </Grid> -->
-    <!--                 <Grid Grid.Column="1" ColumnSpacing="0"> -->
-    <!--                     <Grid.ColumnDefinitions> -->
-    <!--                         <ColumnDefinition Width="*" /> -->
-    <!--                         <ColumnDefinition Width="*" /> -->
-    <!--                     </Grid.ColumnDefinitions> -->
-    <!--                     <Button Grid.Column="0" -->
-    <!--                             BackgroundColor="#455399" -->
-    <!--                             TextColor="White" -->
-    <!--                             FontSize="12" -->
-    <!--                             CornerRadius="0" -->
-    <!--                             HorizontalOptions="End" -->
-    <!--                             VerticalOptions="Center" -->
-    <!--                             Text="{Binding Button1Text}" -->
-    <!--                             Command="{Binding BindingContext.Command1, Source={x:Reference CollectionView}}" -->
-    <!--                             CommandParameter="{Binding}" /> -->
-    <!--                     <Button Grid.Column="1" -->
-    <!--                             BackgroundColor="#BF4779" -->
-    <!--                             TextColor="White" -->
-    <!--                             FontSize="12" -->
-    <!--                             CornerRadius="0" -->
-    <!--                             HorizontalOptions="End" -->
-    <!--                             VerticalOptions="Center" -->
-    <!--                             Text="解除" -->
-    <!--                             Command="{Binding BindingContext.Command2, Source={x:Reference CollectionView}}" -->
-    <!--                             CommandParameter="{Binding}" /> -->
-    <!--                 </Grid> -->
-    <!--             </Grid> -->
-    <!--         </DataTemplate> -->
-    <!--     </CollectionView.ItemTemplate> -->
-    <!-- <CollectionView.GroupFooterTemplate> -->
-    <!--     <DataTemplate> -->
-    <!--         <Label Text="{Binding Count, StringFormat='Total: {0:D}'}" -->
-    <!--                Margin="0,0,0,10" /> -->
-    <!--     </DataTemplate> -->
-    <!-- </CollectionView.GroupFooterTemplate> -->
-    <!-- </CollectionView> -->
+    </ScrollView>
 
 </ContentPage>
