@@ -21,20 +21,24 @@
     <ScrollView>
         <StackLayout x:Name="Page">
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                </Grid.ColumnDefinitions>
-                <Label Text="关联平台"
-                       BackgroundColor="#455399"
-                       TextColor="White"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       HeightRequest="35" />
+                <Grid HorizontalOptions="Start"
+                      BackgroundColor="#455399"
+                      Padding="16,8,16,8"
+                      Margin="0,12,0,0">
+                    <Label Text="关联平台"
+                           TextColor="White"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HeightRequest="35" />
+                </Grid>
             </Grid>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding Platforms}" Spacing="10" Padding="10" Margin="0,-5">
+            <StackLayout BindableLayout.ItemsSource="{Binding Platforms}"
+                         Spacing="28"
+                         Padding="16"
+                         Margin="0,-5">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>
@@ -49,18 +53,24 @@
                                     <ColumnDefinition Width="17*" />
                                     <ColumnDefinition Width="7*" />
                                 </Grid.ColumnDefinitions>
-                                <StackLayout Grid.Column="0" VerticalOptions="Center">
-                                    <Label Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
-                                           VerticalOptions="End" />
-                                    <Label Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
-                                           VerticalOptions="End" />
+                                <StackLayout Grid.Column="0"
+                                             VerticalOptions="Center">
+                                    <Label
+                                        Text="{Binding UserName, StringFormat='绑定账户: {0}'}"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Text="{Binding LastUpdateTime, StringFormat='更新时间: {0}'}"
+                                        VerticalOptions="End" />
                                 </StackLayout>
-                                <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
+                                <Grid Grid.Column="1"
+                                      VerticalOptions="Center"
+                                      ColumnSpacing="0">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition />
                                         <ColumnDefinition />
                                     </Grid.ColumnDefinitions>
-                                    <Button Grid.Column="0" BackgroundColor="#455399"
+                                    <Button Grid.Column="0"
+                                            BackgroundColor="#455399"
                                             TextColor="White"
                                             FontSize="12"
                                             CornerRadius="0"
@@ -69,7 +79,8 @@
                                             Text="{Binding Button1Text}"
                                             Command="{Binding BindingContext.Command1, Source={x:Reference Page}}"
                                             CommandParameter="{Binding}" />
-                                    <Button Grid.Column="1" BackgroundColor="#BF4779"
+                                    <Button Grid.Column="1"
+                                            BackgroundColor="#BF4779"
                                             TextColor="White"
                                             FontSize="12"
                                             CornerRadius="0"
@@ -88,20 +99,22 @@
             </StackLayout>
 
             <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120" />
-                </Grid.ColumnDefinitions>
-                <Label Text="同步与备份"
-                       BackgroundColor="#455399"
-                       TextColor="White"
-                       FontSize="20"
-                       FontAttributes="Bold"
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       HeightRequest="35" />
+                <Grid HorizontalOptions="Start"
+                      BackgroundColor="#455399"
+                      Padding="16,8,16,8">
+                    <Label Text="同步与备份"
+                           TextColor="White"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HeightRequest="35" />
+                </Grid>
             </Grid>
 
-            <StackLayout Padding="10" Margin="0,-5">
+            <StackLayout Margin="0,-5"
+                         Spacing="28"
+                         Padding="16">
                 <StackLayout>
                     <Label Text="WebDAV"
                            FontSize="16"
@@ -120,19 +133,23 @@
                             <Label Text="同步时间:"
                                    VerticalOptions="End" />
                         </StackLayout>
-                        <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
+                        <Grid Grid.Column="1"
+                              VerticalOptions="Center"
+                              ColumnSpacing="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" BackgroundColor="#455399"
+                            <Button Grid.Column="0"
+                                    BackgroundColor="#455399"
                                     TextColor="White"
                                     FontSize="12"
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
                                     Text="关联" />
-                            <Button Grid.Column="1" BackgroundColor="#BF4779"
+                            <Button Grid.Column="1"
+                                    BackgroundColor="#BF4779"
                                     TextColor="White"
                                     FontSize="12"
                                     CornerRadius="0"
@@ -161,26 +178,30 @@
                             <Label Text="备份时间:"
                                    VerticalOptions="End" />
                         </StackLayout>
-                        <Grid Grid.Column="1" VerticalOptions="Center" ColumnSpacing="0">
+                        <Grid Grid.Column="1"
+                              VerticalOptions="Center"
+                              ColumnSpacing="0">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
                                 <ColumnDefinition />
                             </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0" BackgroundColor="#455399"
+                            <Button Grid.Column="0"
+                                    BackgroundColor="#455399"
                                     TextColor="White"
                                     FontSize="12"
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
-                                    Text="导入" 
-                                    Command="{Binding ImportDb}"/>
-                            <Button Grid.Column="1" BackgroundColor="#BF4779"
+                                    Text="导入"
+                                    Command="{Binding ImportDb}" />
+                            <Button Grid.Column="1"
+                                    BackgroundColor="#BF4779"
                                     TextColor="White"
                                     FontSize="12"
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
-                                    Text="导出"/>
+                                    Text="导出" />
                         </Grid>
                     </Grid>
                 </StackLayout>
