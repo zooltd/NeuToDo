@@ -32,7 +32,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
                 , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
@@ -94,7 +94,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
                     , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
@@ -152,7 +152,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
-            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
                 mockAlertService, mockEventDetailNavigationService, mockCampusStorageService);
