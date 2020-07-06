@@ -25,15 +25,19 @@ namespace NeuToDo.ViewModels
 
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
 
+        private readonly ICampusStorageService _campusStorageService;
+
         public EventDetailViewModel(IStorageProvider storageProvider,
             IPopupNavigationService popupNavigationService,
             IAlertService alertService,
-            IEventDetailNavigationService eventDetailNavigationService)
+            IEventDetailNavigationService eventDetailNavigationService,
+            ICampusStorageService campusStorageService)
         {
             _storageProvider = storageProvider;
             _popupNavigationService = popupNavigationService;
             _alertService = alertService;
             _eventDetailNavigationService = eventDetailNavigationService;
+            _campusStorageService = campusStorageService;
         }
 
         #region 绑定属性
@@ -155,6 +159,7 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
+            var campus = await _campusStorageService.GetCampus();
 
             var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
             var newList = new List<NeuEvent>();
@@ -167,11 +172,12 @@ namespace NeuToDo.ViewModels
                     Day = (int) eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
-                    Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, Campus.Hunnan,
-                        EventSemester.BaseDate), //TODO Campus全局设置
+                    Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, campus,
+                        EventSemester.BaseDate),
                     Week = weekNo,
                     ClassNo = eventGroup.ClassIndex,
-                    SemesterId = EventSemester.SemesterId
+                    SemesterId = EventSemester.SemesterId,
+                    IsUserGenerated = true
                 }));
             }
 
@@ -193,33 +199,6 @@ namespace NeuToDo.ViewModels
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
             });
 
-        // /// <summary>
-        // /// SeekNoSelectPopupPage
-        // /// </summary>
-        // private RelayCommand _selectWeekNoCancel;
-        //
-        // public RelayCommand SelectWeekNoCancel =>
-        //     _selectWeekNoCancel ??= new RelayCommand((() => { _popupNavigationService.PopAllAsync(); }));
-        //
-        // private RelayCommand<Grid> _selectWeekNoDone;
-        //
-        // public RelayCommand<Grid> SelectWeekNoDone =>
-        //     _selectWeekNoDone ??= new RelayCommand<Grid>((SelectWeekNoDoneFunction));
-        //
-        // public void SelectWeekNoDoneFunction(Grid grid)
-        // {
-        //     // var temp = new List<int>();
-        //     // var buttons = grid.LogicalChildren.ToList().ConvertAll(x => (CustomButton) x);
-        //     // for (var i = 0; i < buttons.Count; i++)
-        //     // {
-        //     //     if (buttons[i].IsClicked) temp.Add(i + 1);
-        //     // }
-        //     //
-        //     // SelectEventGroup.WeekNo = new List<int>(temp);
-        //     //
-        //     // _popupNavigationService.PopAllAsync();
-        // }
-
         #endregion
 
         public async Task PageAppearingCommandFunction()
@@ -227,16 +206,16 @@ namespace NeuToDo.ViewModels
             EventGroupList.Clear();
             if (SelectedEvent is NeuEvent neuEvent)
             {
-                var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                 var semesterStorage = await _storageProvider.GetSemesterStorage();
-                try
+                EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
+
+                if (neuEvent.IsUserGenerated)
                 {
-                    EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
+                    EventGroupList.Add(new EventGroup());
+                    return;
                 }
-                catch (Exception e)
-                {
-                    EventSemester = new Semester();
-                }
+
+                var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                 var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
                 var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
                     .OrderBy(p => p.Key.Day);

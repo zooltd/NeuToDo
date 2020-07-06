@@ -222,7 +222,7 @@ namespace NeuToDo.Services
 
                 string campusName = roomName.Split('(', ')')[1];
 
-                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu;
+                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu;//TODO
 
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;
@@ -244,7 +244,8 @@ namespace NeuToDo.Services
                     Day = (int) day,
                     Week = weekIndex,
                     ClassNo = firstClass,
-                    SemesterId = semester.SemesterId
+                    SemesterId = semester.SemesterId,
+                    IsUserGenerated = false
                 }));
             }
 

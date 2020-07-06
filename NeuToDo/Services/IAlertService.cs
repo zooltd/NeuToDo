@@ -24,5 +24,15 @@ namespace NeuToDo.Services
         /// <param name="cancel"></param>
         /// <param name="button"></param>
         Task<bool> DisplayAlert(string title, string content, string accept, string cancel);
+
+        /// <summary>
+        /// 弹出选择列表
+        /// </summary>
+        /// <param name="title"></param>
+        /// <param name="cancel"></param>
+        /// <param name="destruction"></param>
+        /// <param name="buttons"></param>
+        /// <returns></returns>
+        Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons);
     }
 }

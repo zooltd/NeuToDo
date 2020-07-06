@@ -32,12 +32,15 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
+            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
-                , mockAlertService, mockEventDetailNavigationService)
+                , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
             {
                 EventGroupList = new ObservableCollection<EventGroup>(),
                 SelectedEvent = new NeuEvent {Code = "A101", SemesterId = 31}
             };
+            // campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             var semesterStorage = await storageProvider.GetSemesterStorage();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
@@ -91,9 +94,12 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
+            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
-                    , mockAlertService, mockEventDetailNavigationService)
+                    , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
                 {SelectedEvent = new NeuEvent {Code = "A101"}};
+
             var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
@@ -142,13 +148,16 @@ namespace NeuToDo.UnitTest.ViewModels
             var storageProvider = new StorageProvider();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
-
             var alertServiceMock = new Mock<IAlertService>();
             var mockAlertService = alertServiceMock.Object;
             var eventDetailNavigationServiceMock = new Mock<IEventDetailNavigationService>();
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
+            var campusStorageServiceMock = new Mock<CampusStorageService>();
+            var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
-                mockAlertService, mockEventDetailNavigationService);
+                mockAlertService, mockEventDetailNavigationService, mockCampusStorageService);
+            campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
+
             eventDetailViewModel.SelectedEvent = new EventModel {Code = "A101", Title = ""};
             eventDetailViewModel.EventGroupList = new ObservableCollection<EventGroup>
             {

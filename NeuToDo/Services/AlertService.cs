@@ -26,5 +26,16 @@ namespace NeuToDo.Services
             });
             return res.Task;
         }
+
+        public Task<string> DisplayActionSheet(string title, string cancel, string destruction, params string[] buttons)
+        {
+            var res = new TaskCompletionSource<string>();
+
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                res.TrySetResult(await MainPage.DisplayActionSheet(title, cancel, destruction, buttons));
+            });
+            return res.Task;
+        }
     }
 }

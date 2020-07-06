@@ -301,7 +301,7 @@ namespace NeuToDo.ViewModels
             }
 
             _eventDetailNavigationService.PushAsync(new NeuEvent
-                {SemesterId = Semester.SemesterId, Code = string.Empty, IsDone = false});
+                {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
         }
 
         #endregion

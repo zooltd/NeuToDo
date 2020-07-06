@@ -15,5 +15,8 @@ namespace NeuToDo.Utils
 
         public static int CalculateWeekNo(DateTime baseDate, DateTime date)
             => (int) ((date - baseDate).TotalDays / 7);
+
+        public static string CalculateUniqueNeuEventCode()
+            => "c" + DateTime.Now.ToString("yyMMddHHmmssff");
     }
 }

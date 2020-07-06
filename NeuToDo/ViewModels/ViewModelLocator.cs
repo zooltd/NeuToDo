@@ -19,7 +19,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
-            // SimpleIoc.Default.Register<IAcademicCalendar, AcademicCalendar>();
+            SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
             SimpleIoc.Default.Register<IEventDetailNavigationService, EventDetailNavigationService>();
