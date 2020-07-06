@@ -18,23 +18,19 @@ namespace NeuToDo.ViewModels
     {
         private readonly IPopupNavigationService _popupNavigationService;
 
-        private readonly ISecureStorageProvider _secureStorageProvider;
-
-        private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+        private readonly IAccountStorageService _accountStorageService;
 
         private readonly IStorageProvider _storageProvider;
 
         private readonly IAlertService _alertService;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
-            ISecureStorageProvider secureStorageProvider,
-            IPreferenceStorageProvider preferenceStorageProvider,
+            IAccountStorageService accountStorageService,
             IStorageProvider storageProvider,
             IAlertService alertService)
         {
             _popupNavigationService = popupNavigationService;
-            _secureStorageProvider = secureStorageProvider;
-            _preferenceStorageProvider = preferenceStorageProvider;
+            _accountStorageService = accountStorageService;
             _storageProvider = storageProvider;
             _alertService = alertService;
             Platforms = Platform.Platforms;
@@ -53,10 +49,10 @@ namespace NeuToDo.ViewModels
         {
             if (_isInit) return;
             foreach (var platform in Platforms.Where(platform =>
-                _preferenceStorageProvider.ContainsKey(platform.ServerType + "Id")))
+                _accountStorageService.AccountExist(platform.ServerType)))
             {
-                platform.UserName = _preferenceStorageProvider.Get(platform.ServerType + "Id", "");
-                platform.LastUpdateTime = _preferenceStorageProvider.Get(platform.ServerType + "Time", "未知的时间");
+                platform.UserName = _accountStorageService.GetUserName(platform.ServerType);
+                platform.LastUpdateTime = _accountStorageService.GetUpdateTime(platform.ServerType);
                 platform.Button1Text = "更新";
                 platform.IsBound = true;
             }
@@ -122,9 +118,7 @@ namespace NeuToDo.ViewModels
             }
 
             var itemType = p.ServerType;
-            _preferenceStorageProvider.Remove(itemType + "Id");
-            _secureStorageProvider.Remove(itemType + "Pd");
-            _preferenceStorageProvider.Remove(itemType + "Time");
+            _accountStorageService.RemoveAccountHistory(itemType);
             switch (itemType)
             {
                 case ServerType.Neu:

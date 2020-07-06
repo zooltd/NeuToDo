@@ -16,12 +16,10 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IStorageProvider storageProvider,
             IEventDetailNavigationService eventDetailNavigationService,
-            IPreferenceStorageProvider preferenceStorageProvider,
             IAlertService alertService)
         {
             _storageProvider = storageProvider;
             _eventDetailNavigationService = eventDetailNavigationService;
-            _preferenceStorageProvider = preferenceStorageProvider;
             _alertService = alertService;
             storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
@@ -34,8 +32,6 @@ namespace NeuToDo.ViewModels
         private readonly IStorageProvider _storageProvider;
 
         private readonly IEventDetailNavigationService _eventDetailNavigationService;
-
-        private readonly IPreferenceStorageProvider _preferenceStorageProvider;
 
         private readonly IAlertService _alertService;
 

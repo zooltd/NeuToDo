@@ -9,8 +9,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using NeuToDo.Models;
-using NeuToDo.Views.Popup;
-using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -20,9 +18,7 @@ namespace NeuToDo.ViewModels
 
         private readonly IPopupNavigationService _popupNavigationService;
 
-        private readonly ISecureStorageProvider _secureStorageProvider;
-
-        private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+        private readonly IAccountStorageService _accountStorageService;
 
         private readonly IStorageProvider _storageProvider;
 
@@ -30,14 +26,13 @@ namespace NeuToDo.ViewModels
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService,
-            ISecureStorageProvider secureStorageProvider,
-            IPreferenceStorageProvider preferenceStorageProvider,
+            IAccountStorageService accountStorageService,
             IStorageProvider storageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _loginAndFetchDataService = loginAndFetchDataService;
-            _secureStorageProvider = secureStorageProvider;
-            _preferenceStorageProvider = preferenceStorageProvider;
+
+            _accountStorageService = accountStorageService;
             _storageProvider = storageProvider;
         }
 
@@ -52,8 +47,8 @@ namespace NeuToDo.ViewModels
         public async Task PageAppearingCommandFunction()
         {
             if (Platform == null) return;
-            UserName = _preferenceStorageProvider.Get(Platform.ServerType + "Id", string.Empty);
-            Password = await _secureStorageProvider.TryGetAsync(Platform.ServerType + "Pd", string.Empty);
+            UserName = _accountStorageService.GetUserName(Platform.ServerType);
+            Password = await _accountStorageService.GetPasswordAsync(Platform.ServerType);
         }
 
 
@@ -74,7 +69,7 @@ namespace NeuToDo.ViewModels
             if (res)
             {
                 _currTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-                await UpdateLocalStorage();
+                await _accountStorageService.SaveAccountAsync(Platform.ServerType, UserName, Password, _currTime);
                 Platform.UserName = UserName;
                 Platform.LastUpdateTime = _currTime;
                 Platform.Button1Text = "更新";
@@ -177,20 +172,5 @@ namespace NeuToDo.ViewModels
         }
 
         #endregion
-
-        private async Task UpdateLocalStorage()
-        {
-            //TODO 已有？
-            try
-            {
-                _preferenceStorageProvider.Set(Platform.ServerType + "Id", UserName);
-                await _secureStorageProvider.SetAsync(Platform.ServerType + "Pd", Password);
-                _preferenceStorageProvider.Set(Platform.ServerType + "Time", _currTime);
-            }
-            catch (Exception e)
-            {
-                // ignored
-            }
-        }
     }
 }
