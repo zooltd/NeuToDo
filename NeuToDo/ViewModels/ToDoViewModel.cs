@@ -63,7 +63,7 @@ namespace NeuToDo.ViewModels
         }
 
         /// <summary>
-        /// 从DB中读取数据到EventDict, 并更新两个视图的绑定属性
+        /// 从DB中读取数据到EventDict和_semesters, 并更新两个视图的绑定属性
         /// </summary>
         /// <returns></returns>
         private async Task LoadData()
@@ -83,15 +83,19 @@ namespace NeuToDo.ViewModels
             UpdateListData();
         }
 
+        /// <summary>
+        /// 更新ToDoCalendar界面绑定属性EventCollection
+        /// </summary>
         private void UpdateCalendarData()
         {
             EventCollection.Clear();
             foreach (var pair in EventDict)
-            {
                 EventCollection.Add(pair.Key, pair.Value);
-            }
         }
 
+        /// <summary>
+        /// 更新ToDoList界面绑定属性ThisSunday, ThisSaturday, Semester, WeekNo
+        /// </summary>
         private void UpdateSemester()
         {
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -110,6 +114,9 @@ namespace NeuToDo.ViewModels
             }
         }
 
+        /// <summary>
+        /// 更新ToDoList界面绑定属性WeeklyAgenda, WeeklySummary
+        /// </summary>
         private void UpdateListData()
         {
             var cnt = 0;
@@ -126,6 +133,36 @@ namespace NeuToDo.ViewModels
             WeeklySummary = $"你本周有{cnt}个ToDo事项, 所谓债多不压身";
         }
 
+        #endregion
+
+        #region 共有绑定属性
+
+        #endregion
+
+        #region 共有绑定命令
+
+        /// <summary>
+        /// ToDoList, ToDoCalendar视图中Event点击命令，触发导航
+        /// </summary>
+        private RelayCommand<EventModel> _eventTappedCommand;
+
+        /// <summary>
+        /// ToDoList, ToDoCalendar视图中Event点击命令，触发导航
+        /// </summary>
+        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
+            ((e) => { _eventDetailNavigationService.PushAsync(e); }));
+
+        /// <summary>
+        /// 页面显示命令
+        /// </summary>
+        private RelayCommand _pageAppearingCommand;
+
+        /// <summary>
+        /// 页面显示命令
+        /// </summary>
+        public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
+            new RelayCommand(async () => await PageAppearingCommandFunction());
+
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
@@ -135,119 +172,137 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        #region 共有绑定属性
-
-        #endregion
-
-        #region 共有绑定命令
-
-        private RelayCommand<EventModel> _eventTappedCommand;
-
-        public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
-            ((e) => { _eventDetailNavigationService.PushAsync(e); }));
-
-        private RelayCommand _addEventCommand;
-
-        public RelayCommand AddEventCommand => _addEventCommand ??=
-            new RelayCommand((() => { _eventDetailNavigationService.PushAsync(new UserEvent()); }));
-
-        private RelayCommand _pageAppearingCommand;
-
-        public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
-            new RelayCommand(async () => await PageAppearingCommandFunction());
-
-        #endregion
-
         #region Calendar绑定命令
 
+        /// <summary>
+        /// 点击CalendarHeader月份时跳转到当天
+        /// </summary>
         private RelayCommand _monthYearTappedCommand;
 
+        /// <summary>
+        /// 点击CalendarHeader月份时跳转到当天
+        /// </summary>
         public RelayCommand MonthYearTappedCommand =>
-            _monthYearTappedCommand ??= new RelayCommand((() => { SelectedDate = DateTime.Today; }));
+            _monthYearTappedCommand ??= new RelayCommand((() =>
+            {
+                MonthYear = DateTime.Today;
+                SelectedDate = DateTime.Today;
+            }));
 
         #endregion
 
         #region List绑定命令
 
+        /// <summary>
+        /// 查看上周Event
+        /// </summary>
         private RelayCommand _toLastWeek;
 
-        public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand((() =>
+        /// <summary>
+        /// 查看上周Event
+        /// </summary>
+        public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand(ToLastWeekFunction);
+
+        private void ToLastWeekFunction()
         {
             ThisSunday = ThisSunday.AddDays(-7);
             ThisSaturday = ThisSaturday.AddDays(-7);
 
-            if (WeekNo <= 0)
+            if (WeekNo > 0)
             {
-                if (_semesters.Count > _semesterIndex + 1)
-                {
-                    Semester = _semesters[++_semesterIndex];
-                    WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, ThisSunday);
-                }
-                else
-                {
-                    Semester = EmptySemester;
-                    WeekNo--;
-                }
+                WeekNo--;
+                return;
+            }
+
+            ++_semesterIndex;
+
+            if (_semesters.Count > _semesterIndex)
+            {
+                Semester = _semesters[_semesterIndex];
+                WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, ThisSunday);
             }
             else
             {
-                WeekNo--;
+                Semester = EmptySemester;
             }
 
             UpdateListData();
-        }));
+        }
 
+        /// <summary>
+        /// 查看下周Event
+        /// </summary>
         private RelayCommand _toNextWeek;
 
-        public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand((() =>
+        /// <summary>
+        /// 查看下周Event
+        /// </summary>
+        public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand(ToNextWeekFunction);
+
+        private void ToNextWeekFunction()
         {
             ThisSunday = ThisSunday.AddDays(7);
             ThisSaturday = ThisSaturday.AddDays(7);
 
-
-            if (WeekNo >= 0)
+            if (_semesterIndex > _semesters.Count)
             {
-                var maxThisSemesterSunday = _semesterIndex >= 1
-                    ? _semesters[_semesterIndex - 1].BaseDate.AddDays(-7)
-                    : DateTime.MaxValue;
-                if (ThisSunday > maxThisSemesterSunday)
-                {
-                    Semester = _semesters[--_semesterIndex];
-                    WeekNo = 0;
-                }
-                else
-                {
-                    WeekNo++;
-                }
+                _semesterIndex--;
+                return;
+            }
+
+            var maxThisSemesterSunday = _semesterIndex >= 1
+                ? _semesters[_semesterIndex - 1].BaseDate.AddDays(-7)
+                : DateTime.MaxValue;
+            if (ThisSunday > maxThisSemesterSunday)
+            {
+                Semester = _semesters[--_semesterIndex];
+                WeekNo = 0;
             }
             else
             {
                 WeekNo++;
             }
 
-            UpdateListData();
-        }));
 
+            UpdateListData();
+        }
+
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
         private RelayCommand _navigateToNewUserEventPage;
 
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
         public RelayCommand NavigateToNewUserEventPage =>
             _navigateToNewUserEventPage ??= new RelayCommand((() =>
             {
                 _eventDetailNavigationService.PushAsync(new UserEvent());
             }));
 
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
         private RelayCommand _navigateToNewNeuEventPage;
 
+        /// <summary>
+        /// 导航到新课程编辑页面
+        /// </summary>
         public RelayCommand NavigateToNewNeuEventPage =>
-            _navigateToNewNeuEventPage ??= new RelayCommand((() =>
-            {
-                if (Semester.SemesterId == 0)
-                {
-                    _alertService.DisplayAlert("提示", "当前学期不明，请关联数据库", "OK");
-                }
+            _navigateToNewNeuEventPage ??= new RelayCommand(NavigateToNewNeuEventPageFunction);
 
-                _eventDetailNavigationService.PushAsync(new NeuEvent {SemesterId = Semester.SemesterId});
-            }));
+        private void NavigateToNewNeuEventPageFunction()
+        {
+            if (Semester.SemesterId == 0)
+            {
+                _alertService.DisplayAlert("提示", "当前学期不明，请关联东北大学(设置=>关联)", "OK");
+                return;
+            }
+
+            _eventDetailNavigationService.PushAsync(new NeuEvent
+                {SemesterId = Semester.SemesterId, Code = string.Empty, IsDone = false});
+        }
 
         #endregion
 

@@ -151,14 +151,6 @@ namespace NeuToDo.ViewModels
 
         #region 绑定属性
 
-        //
-        // private List<SettingItemGroup> _settings;
-        //
-        // public List<SettingItemGroup> Settings
-        // {
-        //     get => _settings;
-        //     set => Set(nameof(Settings), ref _settings, value);
-        // }
         private List<Platform> _platforms;
 
         public List<Platform> Platforms
