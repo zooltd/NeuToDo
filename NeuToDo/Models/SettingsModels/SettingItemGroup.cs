@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace NeuToDo.Models.SettingsModels
 {
-    public class SettingItemGroup : List<SettingItem>
+    public class SettingItemGroup : List<Platform>
     {
         public string Name { get; private set; }
 
-        public SettingItemGroup(string name, List<SettingItem> items) : base(items)
+        public SettingItemGroup(string name, List<Platform> items) : base(items)
         {
             Name = name;
         }
@@ -15,9 +15,9 @@ namespace NeuToDo.Models.SettingsModels
         public static List<SettingItemGroup> SettingGroup { get; } = new List<SettingItemGroup>
         {
             new SettingItemGroup("关联平台",
-                new List<SettingItem>
+                new List<Platform>
                 {
-                    new SettingItem
+                    new Platform
                     {
                         Name = "东北大学教务处",
                         UserName = string.Empty,
@@ -27,7 +27,7 @@ namespace NeuToDo.Models.SettingsModels
                         ServerType = ServerType.Neu,
                         PicUrl = "NeuPic.png"
                     },
-                    new SettingItem
+                    new Platform
                     {
                         Name = "中国大学MOOC",
                         UserName = string.Empty,
@@ -37,7 +37,7 @@ namespace NeuToDo.Models.SettingsModels
                         ServerType = ServerType.Mooc,
                         PicUrl = "MoocPic.png"
                     },
-                    new SettingItem
+                    new Platform
                     {
                         Name = "东北大学Blackboard",
                         UserName = string.Empty,
@@ -49,9 +49,9 @@ namespace NeuToDo.Models.SettingsModels
                     },
                 }),
             new SettingItemGroup("同步设置",
-                new List<SettingItem>
+                new List<Platform>
                 {
-                    new SettingItem
+                    new Platform
                     {
                         Name = "WebDAV",
                         UserName = string.Empty,

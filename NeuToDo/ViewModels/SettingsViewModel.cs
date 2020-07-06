@@ -18,63 +18,77 @@ namespace NeuToDo.ViewModels
 
         private readonly ISecureStorageProvider _secureStorageProvider;
 
+        private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+
         private readonly IStorageProvider _storageProvider;
+
+        private readonly IAlertService _alertService;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             ISecureStorageProvider secureStorageProvider,
-            IStorageProvider storageProvider)
+            IPreferenceStorageProvider preferenceStorageProvider,
+            IStorageProvider storageProvider,
+            IAlertService alertService)
         {
             _popupNavigationService = popupNavigationService;
             _secureStorageProvider = secureStorageProvider;
+            _preferenceStorageProvider = preferenceStorageProvider;
             _storageProvider = storageProvider;
-            Settings = SettingItemGroup.SettingGroup;
+            _alertService = alertService;
+            Platforms = Platform.Platforms;
         }
 
+        private bool _isInit;
 
         #region 绑定方法
 
         private RelayCommand _pageAppearingCommand;
 
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
-            new RelayCommand(async () => await PageAppearingCommandFunction());
+            new RelayCommand(PageAppearingCommandFunction);
 
-        private async Task PageAppearingCommandFunction()
+        private void PageAppearingCommandFunction()
         {
-            foreach (var settingItem in Settings.SelectMany(settingItemGroup => settingItemGroup))
+            if (_isInit) return;
+            foreach (var platform in Platforms.Where(platform =>
+                _preferenceStorageProvider.ContainsKey(platform.ServerType + "Id")))
             {
-                string itemId;
-                if ((itemId = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Id")) == null) continue;
-                var lastUpdateTime = await _secureStorageProvider.GetAsync(settingItem.ServerType + "Time");
-                settingItem.UserName = itemId;
-                settingItem.LastUpdateTime = lastUpdateTime;
-                settingItem.Button1Text = "更新";
-                settingItem.IsBound = true;
+                platform.UserName = _preferenceStorageProvider.Get(platform.ServerType + "Id", "");
+                platform.LastUpdateTime = _preferenceStorageProvider.Get(platform.ServerType + "Time", "未知的时间");
+                platform.Button1Text = "更新";
+                platform.IsBound = true;
             }
+
+            _isInit = true;
         }
 
-        private RelayCommand<SettingItem> _command1;
+        private RelayCommand<Platform> _command1;
 
-        public RelayCommand<SettingItem> Command1 =>
-            _command1 ??= new RelayCommand<SettingItem>(Command1Function);
+        public RelayCommand<Platform> Command1 =>
+            _command1 ??= new RelayCommand<Platform>(Command1Function);
 
-        public void Command1Function(SettingItem item)
+        public void Command1Function(Platform item)
         {
             _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item);
         }
 
-        private RelayCommand<SettingItem> _command2;
+        private RelayCommand<Platform> _command2;
 
-        public RelayCommand<SettingItem> Command2 =>
-            _command2 ??= new RelayCommand<SettingItem>(async (item) => await Command2Function(item));
+        public RelayCommand<Platform> Command2 =>
+            _command2 ??= new RelayCommand<Platform>(async (p) => await Command2Function(p));
 
-        private async Task Command2Function(SettingItem item)
+        private async Task Command2Function(Platform p)
         {
-            if (!item.IsBound) return;
-            //TODO Popup Page 请先登录
-            var itemType = item.ServerType;
-            _secureStorageProvider.Remove(itemType + "Id");
+            if (!p.IsBound)
+            {
+                _alertService.DisplayAlert("提示", "请先登录", "OK");
+                return;
+            }
+
+            var itemType = p.ServerType;
+            _preferenceStorageProvider.Remove(itemType + "Id");
             _secureStorageProvider.Remove(itemType + "Pd");
-            _secureStorageProvider.Remove(itemType + "Time");
+            _preferenceStorageProvider.Remove(itemType + "Time");
             switch (itemType)
             {
                 case ServerType.Neu:
@@ -91,22 +105,30 @@ namespace NeuToDo.ViewModels
                     throw new ArgumentOutOfRangeException();
             }
 
-            item.UserName = string.Empty;
-            item.LastUpdateTime = string.Empty;
-            item.Button1Text = "关联";
-            item.IsBound = false;
+            p.UserName = string.Empty;
+            p.LastUpdateTime = string.Empty;
+            p.Button1Text = "关联";
+            p.IsBound = false;
         }
 
         #endregion
 
         #region 绑定属性
 
-        private List<SettingItemGroup> _settings;
+        //
+        // private List<SettingItemGroup> _settings;
+        //
+        // public List<SettingItemGroup> Settings
+        // {
+        //     get => _settings;
+        //     set => Set(nameof(Settings), ref _settings, value);
+        // }
+        private List<Platform> _platforms;
 
-        public List<SettingItemGroup> Settings
+        public List<Platform> Platforms
         {
-            get => _settings;
-            set => Set(nameof(Settings), ref _settings, value);
+            get => _platforms;
+            set => Set(nameof(Platforms), ref _platforms, value);
         }
 
         #endregion

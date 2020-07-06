@@ -22,16 +22,22 @@ namespace NeuToDo.ViewModels
 
         private readonly ISecureStorageProvider _secureStorageProvider;
 
+        private readonly IPreferenceStorageProvider _preferenceStorageProvider;
+
         private readonly IStorageProvider _storageProvider;
+
+        private string _currTime;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService,
             ISecureStorageProvider secureStorageProvider,
+            IPreferenceStorageProvider preferenceStorageProvider,
             IStorageProvider storageProvider)
         {
             _popupNavigationService = popupNavigationService;
             _loginAndFetchDataService = loginAndFetchDataService;
             _secureStorageProvider = secureStorageProvider;
+            _preferenceStorageProvider = preferenceStorageProvider;
             _storageProvider = storageProvider;
         }
 
@@ -45,11 +51,9 @@ namespace NeuToDo.ViewModels
 
         public async Task PageAppearingCommandFunction()
         {
-            if (SettingItem == null)
-                return;
-            await TryGetUserNameAsync(SettingItem.ServerType + "Id");
-            await TryGetPasswordAsync(SettingItem.ServerType + "Pd");
-            await TryGetLastUpdateTimeAsync(SettingItem.ServerType + "Time");
+            if (Platform == null) return;
+            UserName = _preferenceStorageProvider.Get(Platform.ServerType + "Id", string.Empty);
+            Password = await _secureStorageProvider.TryGetAsync(Platform.ServerType + "Pd", string.Empty);
         }
 
 
@@ -65,16 +69,17 @@ namespace NeuToDo.ViewModels
 
             var res =
                 await _loginAndFetchDataService.LoginAndFetchDataAsync(
-                    SettingItem.ServerType, UserName, Password);
+                    Platform.ServerType, UserName, Password);
 
             if (res)
             {
-                await UpdateSecureStorage();
-                SettingItem.UserName = UserName;
-                SettingItem.LastUpdateTime = LastUpdateTime;
-                SettingItem.Button1Text = "更新";
-                SettingItem.IsBound = true;
-                if (SettingItem.ServerType == ServerType.Mooc)
+                _currTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                await UpdateLocalStorage();
+                Platform.UserName = UserName;
+                Platform.LastUpdateTime = _currTime;
+                Platform.Button1Text = "更新";
+                Platform.IsBound = true;
+                if (Platform.ServerType == ServerType.Mooc)
                 {
                     Courses = MoocInfoGetter.CourseList;
                     if (Courses.Any())
@@ -115,12 +120,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedCourses), ref _selectedCourses, value);
         }
 
-        private SettingItem _settingItem;
+        private Platform _platform;
 
-        public SettingItem SettingItem
+        public Platform Platform
         {
-            get => _settingItem;
-            set => Set(nameof(SettingItem), ref _settingItem, value);
+            get => _platform;
+            set => Set(nameof(Platform), ref _platform, value);
         }
 
         private static string _userName;
@@ -137,14 +142,6 @@ namespace NeuToDo.ViewModels
         {
             get => _password;
             set => Set(nameof(Password), ref _password, value);
-        }
-
-        private string _lastUpdateTime;
-
-        public string LastUpdateTime
-        {
-            get => _lastUpdateTime;
-            set => Set(nameof(LastUpdateTime), ref _lastUpdateTime, value);
         }
 
         #endregion
@@ -181,59 +178,14 @@ namespace NeuToDo.ViewModels
 
         #endregion
 
-        private async Task TryGetUserNameAsync(string key)
+        private async Task UpdateLocalStorage()
         {
+            //TODO 已有？
             try
             {
-                UserName = await _secureStorageProvider.GetAsync(key);
-            }
-            catch (Exception e)
-            {
-                // ignored
-                UserName = string.Empty;
-            }
-        }
-
-        //
-        private async Task TryGetPasswordAsync(string key)
-        {
-            try
-            {
-                Password = await _secureStorageProvider.GetAsync(key);
-            }
-            catch (Exception e)
-            {
-                // ignored
-                Password = string.Empty;
-            }
-        }
-
-        private async Task TryGetLastUpdateTimeAsync(string key)
-        {
-            try
-            {
-                LastUpdateTime = await _secureStorageProvider.GetAsync(key);
-            }
-            catch (Exception e)
-            {
-                // ignored
-                LastUpdateTime = string.Empty;
-            }
-        }
-
-
-        private async Task UpdateSecureStorage()
-        {
-            try
-            {
-                await _secureStorageProvider.SetAsync(
-                    SettingItem.ServerType + "Id", UserName);
-                await _secureStorageProvider.SetAsync(
-                    SettingItem.ServerType + "Pd", Password);
-                LastUpdateTime =
-                    DateTime.Now.ToString(CultureInfo.CurrentCulture);
-                await _secureStorageProvider.SetAsync(
-                    SettingItem.ServerType + "Time", LastUpdateTime);
+                _preferenceStorageProvider.Set(Platform.ServerType + "Id", UserName);
+                await _secureStorageProvider.SetAsync(Platform.ServerType + "Pd", Password);
+                _preferenceStorageProvider.Set(Platform.ServerType + "Time", _currTime);
             }
             catch (Exception e)
             {

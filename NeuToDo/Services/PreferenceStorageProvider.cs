@@ -44,5 +44,9 @@ namespace NeuToDo.Services
         /// <returns>Value for the given key, or the default if it does not exist.</returns>
         public DateTime Get(string key, DateTime defaultValue) =>
             Preferences.Get(key, defaultValue);
+
+        public void Remove(string key) => Preferences.Remove(key);
+
+        public bool ContainsKey(string key) => Preferences.ContainsKey(key);
     }
 }

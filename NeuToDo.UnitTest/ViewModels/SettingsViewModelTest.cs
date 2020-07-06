@@ -17,13 +17,18 @@ namespace NeuToDo.UnitTest.ViewModels
         {
             var popupNavigationMock = new Mock<IPopupNavigationService>();
             var secureStorageProviderMock = new Mock<ISecureStorageProvider>();
-            var eventModelStorageProvider = new Mock<IStorageProvider>();
+            var eventModelStorageProviderMock = new Mock<IStorageProvider>();
+            var preferenceStorageProviderMock = new Mock<IPreferenceStorageProvider>();
+            var alertServiceMock = new Mock<IAlertService>();
+
             var mockPopupNavigation = popupNavigationMock.Object;
             var mockSecureStorageProvider = secureStorageProviderMock.Object;
-            var mockEventModelStorageProvider = eventModelStorageProvider.Object;
-            var item = new SettingItem();
+            var mockEventModelStorageProvider = eventModelStorageProviderMock.Object;
+            var mockPreferenceStorageProvider = preferenceStorageProviderMock.Object;
+            var mockAlertService = alertServiceMock.Object;
+            var item = new Platform();
             var settingsViewModel = new SettingsViewModel(mockPopupNavigation, mockSecureStorageProvider,
-                mockEventModelStorageProvider);
+                mockPreferenceStorageProvider, mockEventModelStorageProvider, mockAlertService);
             settingsViewModel.Command1Function(item);
             popupNavigationMock.Verify(p => p.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item), Times.Once);
         }

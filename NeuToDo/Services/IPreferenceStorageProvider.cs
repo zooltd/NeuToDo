@@ -36,5 +36,9 @@ namespace NeuToDo.Services
         /// <param name="defaultValue">Default value to return if the key does not exist.</param>
         /// <summary>Gets the value for a given key, or the default specified if the key does not exist.</summary>
         DateTime Get(string key, DateTime defaultValue);
+
+        void Remove(string key);
+
+        bool ContainsKey(string key);
     }
 }
