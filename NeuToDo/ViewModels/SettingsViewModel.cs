@@ -92,6 +92,8 @@ namespace NeuToDo.ViewModels
                     return;
                 }
 
+                await _storageProvider.CloseConnectionAsync();
+                //access denied
                 if (File.Exists(StorageProvider.DbPath))
                 {
                     File.Delete(StorageProvider.DbPath);
@@ -104,8 +106,7 @@ namespace NeuToDo.ViewModels
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
-                throw;
+                _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
             }
         }
 

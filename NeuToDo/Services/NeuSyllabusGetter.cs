@@ -14,170 +14,125 @@ namespace NeuToDo.Services
     //TODO 存储Semester
     public class NeuSyllabusGetter
     {
-        private static int CurrWeekIndex { get; set; }
-
-        private static HttpClient _initClient;
-        private static HttpClient _reallocateClient;
+        private static HttpClient _client;
         private Semester _semester;
         private List<NeuEvent> _neuCourses;
+        private readonly string _baseUri;
+        private string _deanUri;
+        private int _semeserId;
+        private int _ids;
+
 
         public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
         {
-            _initClient = httpClientFactory.NeuInitClient();
-            _reallocateClient = httpClientFactory.NeuReallocateClient();
+            _client = httpClientFactory.NeuClient();
             _semester = new Semester();
             _neuCourses = new List<NeuEvent>();
+            _baseUri = "https://webvpn.neu.edu.cn";
         }
 
-        public async Task<(Semester semester, List<NeuEvent> neuCourses)> LoginAndFetchData(string userId, string password)
+        public async Task<(Semester semester, List<NeuEvent> neuCourses)> LoginAndFetchData(string userName,
+            string password)
         {
-            var vpnUrl =
-                "https://pass-443.webvpn.neu.edu.cn/tpass/login?service=https%3A%2F%2Fwebvpn.neu.edu.cn%2Fusers%2Fauth%2Fcas%2Fcallback%3Furl";
-            // InitSources(false);
-            var authFormData = await GetAuthFormData(vpnUrl, userId, password);
+            await LoginDeanOfStudentsOffice(userName, password);
 
-            vpnUrl = vpnUrl.Insert(vpnUrl.IndexOf('?'), ";" + authFormData["jsessionid"]);
+            await GetQueryData();
 
-            var deanUri = await LoginWebVpn(vpnUrl, authFormData);
-            // ReallocateSources(true);
-            await LoginDean(deanUri);
-
-            var semesterFormData = await GetSemesterFormData();
-
-            var semestersResponseBody = await GetSemesterInfoResponseBody(semesterFormData);
+            var semestersResponseBody = await GetSemesterInfoResponseBody();
 
             _semester = ParseSemesters(semestersResponseBody);
 
-            var coursesResponseBody = await GetCourseInfoResponseBody(semesterFormData);
+            var coursesResponseBody = await GetCourseInfoResponseBody();
 
             _neuCourses = ParseCourses(coursesResponseBody, _semester);
 
             return (_semester, _neuCourses);
         }
 
-        private async Task<Dictionary<string, string>> GetAuthFormData(
-            string vpnUrl, string userId, string password)
+        /// <summary>
+        /// 登陆教务处
+        /// </summary>
+        /// <param name="userName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        private async Task LoginDeanOfStudentsOffice(string userName, string password)
         {
-            var response = await _initClient.GetAsync(vpnUrl);
-            response.EnsureSuccessStatusCode(); //TODO: Exception
-            var jsessionid =
-                response.Headers
-                    .SingleOrDefault(header => header.Key == "Set-Cookie").Value
-                    .ToArray()[1].Split(';')[0]; //TODO: Exception
-            var responseBody = await response.Content.ReadAsStringAsync();
-            const string ltPattern = "name=\"lt\" value=\"(.*)\"";
-            const string executionPattern = "name=\"execution\" value=\"(.*)\"";
-            const string eventIdPattern = "name=\"_eventId\" value=\"(.*)\"";
-            var lt = Regex.Match(responseBody, ltPattern).Groups[1]
-                .Value; //TODO: Exception
-            var execution = Regex.Match(responseBody, executionPattern)
-                .Groups[1].Value;
-            var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1]
-                .Value;
-            var rsa = userId + password + lt;
-            var formData = new Dictionary<string, string>
-            {
-                {"rsa", rsa},
-                {"ul", userId.Length.ToString()},
-                {"pl", password.Length.ToString()},
-                {"lt", lt},
-                {"execution", execution},
-                {"_eventId", eventId},
-                {"jsessionid", jsessionid}
-            };
-            return formData;
-        }
-
-        private async Task<Uri> LoginWebVpn(string vpnUrl,
-            IEnumerable<KeyValuePair<string, string>> formData)
-        {
-            var response = await _initClient.PostAsync(vpnUrl,
-                new FormUrlEncodedContent(formData));
-            // Ensure code == HttpStatusCode.Redirect 
-            var redirectUri = response.Headers.Location;
-            return redirectUri;
-        }
-
-        private async Task LoginDean(Uri deanUri)
-        {
-            var response = await _reallocateClient.GetAsync(deanUri);
-            response.EnsureSuccessStatusCode();
-            const string deanOfficeUrl =
-                "https://219-216-96-4.webvpn.neu.edu.cn/eams/homeExt.action";
-            response = await _reallocateClient.GetAsync(deanOfficeUrl);
-            response.EnsureSuccessStatusCode();
-            // var responseBody = await response.Content.ReadAsStringAsync();
-
-            // const string studentInfoPattern =
-            //     "class=\"personal-name\">[\\s]*(.*)[\\s]*<\\/a>";
-            // var studentInfoList = Regex.Match(responseBody, studentInfoPattern)
-            //     .Groups[1].Value.Split('(', ')');
-
-            // User = new User() { Id = studentInfoList[1], Title = studentInfoList[0] };
-
-            // string stuName = studentInfoList[0];
-            // string stuId = studentInfoList[1];
-
-            // const string teachingTimePattern =
-            //     "id=\"teach-week\">[\\s]*(.*)[\\s]*<font[\\s\\S]*?>(.*)<\\/font>";
-            // var teachingTimeGroups =
-            //     Regex.Match(responseBody, teachingTimePattern).Groups;
-            //
-            // var semesterName = teachingTimeGroups[1].Value.Replace("第", ", ");
-            // int weekNo = int.TryParse(teachingTimeGroups[2].Value, out weekNo) ? weekNo : 0;
-
-            // CurrWeekIndex = weekNo;
-            // var baseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - weekNo * 7);
-
-            //TODO 正则 查看是否符合标准
-            // _semester.SemesterName = semesterName;
-            // _semester.BaseDate = baseDate;
-        }
-
-        private async Task<Dictionary<string, string>> GetSemesterFormData()
-        {
-            var res = await _reallocateClient.GetAsync(
-                "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd.action?");
+            var res = await _client.GetAsync(_baseUri);
             res.EnsureSuccessStatusCode();
             var responseBody = await res.Content.ReadAsStringAsync();
 
+            var uriPattern = @"<form id=""loginForm""[\s]*action=""(.*)""[\s]*method=""post"">";
+            var ltPattern = @"name=""lt"" value=""(.*)""";
+            var executionPattern = @"name=""execution"" value=""(.*)""";
+            var eventIdPattern = @"name=""_eventId"" value=""(.*)""";
 
-            var cookieString = res.Headers.SingleOrDefault(header => header.Key == "Set-Cookie").Value.ToList()[0];
-            var semesterId = Regex.Match(cookieString, @"semester\.id=(\d+);").Groups[1].Value;
+            var loginUri = _baseUri + Regex.Match(responseBody, uriPattern).Groups[1].Value;
+            var lt = Regex.Match(responseBody, ltPattern).Groups[1].Value;
+            var execution = Regex.Match(responseBody, executionPattern).Groups[1].Value;
+            var eventId = Regex.Match(responseBody, eventIdPattern).Groups[1].Value;
 
-            _semester.SemesterId = int.TryParse(semesterId, out var temp) ? temp : 0;
-
-            const string idsPattern =
-                "if\\(jQuery\\(\"#courseTableType\"\\)\\.val\\(\\)==\"std\"\\){[\\s]*bg\\.form.addInput\\(form,\"ids\",\"([\\d]*)\"\\)";
-            var ids = Regex.Match(responseBody, idsPattern).Groups[1].Value;
-
-            return new Dictionary<string, string>
+            var loginFormData = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
             {
-                {"ignoreHead", "1"},
-                {"showPrintAndExport", "1"},
-                {"setting.kind", "std"},
-                {"startWeek", string.Empty},
-                {"semester.id", semesterId},
-                {"ids", ids}
-            };
+                new KeyValuePair<string, string>("rsa", userName + password + lt),
+                new KeyValuePair<string, string>("ul", userName.Length.ToString()),
+                new KeyValuePair<string, string>("pl", password.Length.ToString()),
+                new KeyValuePair<string, string>("lt", lt),
+                new KeyValuePair<string, string>("execution", execution),
+                new KeyValuePair<string, string>("_eventId", eventId)
+            });
+
+            var vpnResponse = await _client.PostAsync(loginUri, loginFormData);
+            vpnResponse.EnsureSuccessStatusCode();
+            var vpnResponseBody = await vpnResponse.Content.ReadAsStringAsync();
+
+            const string deanUriPattern = @"data-redirect=""(.*)""[\s]*data-name=""教务系统\(新\)""";
+            _deanUri = _baseUri + Regex.Match(vpnResponseBody, deanUriPattern).Groups[1].Value;
+
+            var deanResponse = await _client.GetAsync(_deanUri);
+            deanResponse.EnsureSuccessStatusCode();
         }
 
-        private async Task<String> GetSemesterInfoResponseBody(Dictionary<string, string> formData)
+        public async Task GetQueryData()
         {
-            var dict = new Dictionary<string, string>
-            {
-                {"dataType", "semesterCalendar"}, {"value", formData["semester.id"]}, {"empty", "false"}
-            };
-            var res = await _reallocateClient.PostAsync("https://219-216-96-4.webvpn.neu.edu.cn/eams/dataQuery.action",
-                new FormUrlEncodedContent(dict));
-            return await res.Content.ReadAsStringAsync();
+            var res = await _client.GetAsync(_deanUri + "courseTableForStd.action?");
+            res.EnsureSuccessStatusCode();
+            var responseBody = await res.Content.ReadAsStringAsync();
+            string idPattern =
+                @"semesterCalendar\({empty:""false"",onChange:"""",value:""(.*)""},""searchTable\(\)""\);";
+            _semeserId = int.Parse(Regex.Match(responseBody, idPattern).Groups[1].Value);
+            string idsPattern =
+                @"if\(jQuery\(""#courseTableType""\).val\(\)==""std""\){[\s]*bg.form.addInput\(form,""ids"",""(.*)""\);";
+            _ids = int.Parse(Regex.Match(responseBody, idsPattern).Groups[1].Value);
         }
 
-        private async Task<string> GetCourseInfoResponseBody(IEnumerable<KeyValuePair<string, string>> formData)
+        private async Task<string> GetSemesterInfoResponseBody()
         {
-            var res = await _reallocateClient.PostAsync(
-                "https://219-216-96-4.webvpn.neu.edu.cn/eams/courseTableForStd!courseTable.action",
-                new FormUrlEncodedContent(formData));
+            var formData = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("dataType", "semesterCalendar"),
+                new KeyValuePair<string, string>("value", _semeserId.ToString()),
+                new KeyValuePair<string, string>("empty", "false")
+            });
+
+            var queryResponse = await _client.PostAsync(_deanUri + "/dataQuery.action?vpn-12-o1-219.216.96.4", formData);
+            queryResponse.EnsureSuccessStatusCode();
+            return await queryResponse.Content.ReadAsStringAsync();
+        }
+
+
+        private async Task<string> GetCourseInfoResponseBody()
+        {
+            var formData = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("ignoreHead", "1"),
+                new KeyValuePair<string, string>("showPrintAndExport", "1"),
+                new KeyValuePair<string, string>("setting.kind", "std"),
+                new KeyValuePair<string, string>("startWeek", string.Empty),
+                new KeyValuePair<string, string>("semester.id", _semeserId.ToString()),
+                new KeyValuePair<string, string>("ids", _ids.ToString()),
+            });
+
+            var res = await _client.PostAsync(_deanUri + "/courseTableForStd!courseTable.action", formData);
             res.EnsureSuccessStatusCode();
             return await res.Content.ReadAsStringAsync();
         }
@@ -222,7 +177,7 @@ namespace NeuToDo.Services
 
                 string campusName = roomName.Split('(', ')')[1];
 
-                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu;//TODO
+                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu; //TODO
 
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;

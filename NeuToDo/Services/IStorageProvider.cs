@@ -10,6 +10,8 @@ namespace NeuToDo.Services
 
         Task<ISemesterStorage> GetSemesterStorage();
 
+        Task CloseConnectionAsync();
+
         //TODO 抽离成新的Service
         public event EventHandler UpdateData;
         public void OnUpdateData();
