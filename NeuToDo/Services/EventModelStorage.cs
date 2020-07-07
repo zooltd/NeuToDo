@@ -28,6 +28,11 @@ namespace NeuToDo.Services
             await _connection.InsertAllAsync(eventList);
         }
 
+        public async Task UpdateAsync(T t)
+        {
+            await _connection.UpdateAsync(t);
+        }
+
         public async Task DeleteAllAsync(Expression<Func<T, bool>> predExpr)
         {
             await _connection.Table<T>().DeleteAsync(predExpr);

@@ -12,10 +12,12 @@ namespace NeuToDo.Services
 
         Task InsertAllAsync(IEnumerable<T> eventList);
 
+        Task UpdateAsync(T t);
+
         Task DeleteAllAsync(Expression<Func<T, bool>> predExpr);
 
         Task ClearTableAsync();
-        
+
         Task<List<T>> GetAllAsync();
 
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr);

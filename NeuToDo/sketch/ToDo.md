@@ -11,6 +11,7 @@
 10. LoginVM, LoginAndFechDataService重构
 11. Mooc crud
 12. User crud
+13. Semester管理?
 
 ### 重要:
 1. ~~非本学期课程归档（无法编辑），考虑新增`学期`字段~~

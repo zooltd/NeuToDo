@@ -166,6 +166,37 @@ namespace NeuToDo.ViewModels
             _isLoaded = true;
         }
 
+        private RelayCommand<EventModel> _checkCommand;
+
+        public RelayCommand<EventModel> CheckCommand =>
+            _checkCommand ??= new RelayCommand<EventModel>(async (e) => await CheckCommandFunction(e));
+
+        private async Task CheckCommandFunction(EventModel eventModel)
+        {
+            eventModel.IsDone = true;
+            switch (eventModel)
+            {
+                case NeuEvent neuEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+                    await storage.UpdateAsync(neuEvent);
+                    break;
+                }
+                case MoocEvent moocEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    await storage.UpdateAsync(moocEvent);
+                    break;
+                }
+                case UserEvent userEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
+                    await storage.UpdateAsync(userEvent);
+                    break;
+                }
+            }
+        }
+
         #endregion
 
         #region Calendar绑定命令

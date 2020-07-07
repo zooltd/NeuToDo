@@ -8,6 +8,8 @@
              xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
              x:Class="NeuToDo.Views.ToDoListPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:lconv="clr-namespace:NeuToDo.Converters;assembly=NeuToDo"
+             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              BindingContext="{Binding ToDoViewModel, Source={StaticResource ViewModelLocator}}"
              NavigationPage.HasNavigationBar="False">
 
@@ -18,6 +20,12 @@
             </b:ActionCollection>
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <lconv:IsDoneToStrikethroughConvertor x:Key="IsDoneToStrikethrough" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
 
     <ScrollView x:Name="ScrollView">
         <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
@@ -164,15 +172,18 @@
                                                                 <ColumnDefinition Width="Auto" />
                                                                 <ColumnDefinition Width="3.5*" />
                                                             </Grid.ColumnDefinitions>
-                                                            <CheckBox Grid.Column="0" IsChecked="{Binding IsDone}"
-                                                                      HorizontalOptions="CenterAndExpand"
-                                                                      VerticalOptions="CenterAndExpand" />
+                                                            <lc:CustomCheckBox Grid.Column="0"
+                                                                               IsChecked="{Binding IsDone}"
+                                                                               HorizontalOptions="CenterAndExpand"
+                                                                               VerticalOptions="CenterAndExpand"
+                                                                               CheckCommand="{Binding BindingContext.CheckCommand, Source={x:Reference ScrollView}}" />
                                                             <BoxView Grid.Column="1" BackgroundColor="#F2F4F8"
                                                                      WidthRequest="1"
                                                                      HorizontalOptions="Start"
                                                                      VerticalOptions="FillAndExpand" />
                                                             <Label Grid.Column="2" TextColor="#2F3246"
-                                                                   VerticalOptions="CenterAndExpand">
+                                                                   VerticalOptions="CenterAndExpand"
+                                                                   TextDecorations="{Binding IsDone, Converter={StaticResource IsDoneToStrikethrough}}">
                                                                 <Label.FormattedText>
                                                                     <FormattedString>
                                                                         <FormattedString.Spans>
