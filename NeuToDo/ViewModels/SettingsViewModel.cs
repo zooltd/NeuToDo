@@ -11,6 +11,9 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using Plugin.FilePicker;
+using Plugin.FilePicker.Abstractions;
+using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace NeuToDo.ViewModels
 {
@@ -84,7 +87,13 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                var pickedFile = await CrossFilePicker.Current.PickFile();
+                string[] fileTypes = Device.RuntimePlatform switch
+                {
+                    Device.Android => null,
+                    Device.UWP => new[] {".sqlite3"},
+                    _ => null
+                };
+                var pickedFile = await CrossFilePicker.Current.PickFile(fileTypes);
                 if (pickedFile == null) return;
                 if (pickedFile.FileName != "events.sqlite3")
                 {
@@ -93,21 +102,26 @@ namespace NeuToDo.ViewModels
                 }
 
                 await _storageProvider.CloseConnectionAsync();
-                //access denied
+
                 if (File.Exists(StorageProvider.DbPath))
-                {
                     File.Delete(StorageProvider.DbPath);
-                    File.Copy(pickedFile.FilePath, StorageProvider.DbPath);
-                }
-                else
-                {
-                    File.Copy(pickedFile.FilePath, StorageProvider.DbPath);
-                }
+                var stream = pickedFile.GetStream();
+                using (var fileStream = File.Create(StorageProvider.DbPath))
+                    CopyStream(stream, fileStream);
+                _storageProvider.OnUpdateData();
             }
             catch (Exception e)
             {
                 _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
             }
+        }
+
+        public static void CopyStream(Stream input, Stream output)
+        {
+            byte[] buffer = new byte[16 * 1024];
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                output.Write(buffer, 0, read);
         }
 
         private async Task Command2Function(Platform p)
