@@ -22,10 +22,10 @@ namespace NeuToDo.Components
 
         private void CustomCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
+            // if (sender is CustomCheckBox checkBox)
+            //     checkBox.IsChecked = !checkBox.IsChecked;
             if (BindingContext is EventModel eventModel)
-            {
                 CheckCommand?.Execute(eventModel);
-            }
         }
     }
 }

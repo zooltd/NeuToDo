@@ -173,28 +173,27 @@ namespace NeuToDo.ViewModels
 
         private async Task CheckCommandFunction(EventModel eventModel)
         {
-            eventModel.IsDone = true;
-            switch (eventModel)
-            {
-                case NeuEvent neuEvent:
-                {
-                    var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-                    await storage.UpdateAsync(neuEvent);
-                    break;
-                }
-                case MoocEvent moocEvent:
-                {
-                    var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
-                    await storage.UpdateAsync(moocEvent);
-                    break;
-                }
-                case UserEvent userEvent:
-                {
-                    var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
-                    await storage.UpdateAsync(userEvent);
-                    break;
-                }
-            }
+            // switch (eventModel)
+            // {
+            //     case NeuEvent neuEvent:
+            //     {
+            //         var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+            //         await storage.UpdateAsync(neuEvent);
+            //         break;
+            //     }
+            //     case MoocEvent moocEvent:
+            //     {
+            //         var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+            //         await storage.UpdateAsync(moocEvent);
+            //         break;
+            //     }
+            //     case UserEvent userEvent:
+            //     {
+            //         var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
+            //         await storage.UpdateAsync(userEvent);
+            //         break;
+            //     }
+            // }
         }
 
         #endregion
@@ -238,6 +237,7 @@ namespace NeuToDo.ViewModels
             if (WeekNo > 0)
             {
                 WeekNo--;
+                UpdateListData();
                 return;
             }
 
@@ -274,6 +274,7 @@ namespace NeuToDo.ViewModels
             if (_semesterIndex > _semesters.Count)
             {
                 _semesterIndex--;
+                UpdateListData();
                 return;
             }
 
@@ -289,7 +290,6 @@ namespace NeuToDo.ViewModels
             {
                 WeekNo++;
             }
-
 
             UpdateListData();
         }
