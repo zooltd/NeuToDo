@@ -6,6 +6,8 @@ namespace NeuToDo.Services
 {
     public interface IStorageProvider
     {
+        Task CheckInitialization();
+
         Task<IEventModelStorage<T>> GetEventModelStorage<T>() where T : EventModel, new();
 
         Task<ISemesterStorage> GetSemesterStorage();

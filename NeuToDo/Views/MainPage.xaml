@@ -4,12 +4,21 @@
             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+            xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
             mc:Ignorable="d"
             xmlns:views="clr-namespace:NeuToDo.Views"
             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
             android:TabbedPage.ToolbarPlacement="Bottom"
-            x:Class="NeuToDo.Views.MainPage">
+            x:Class="NeuToDo.Views.MainPage"
+            BindingContext="{Binding MainPageViewModel, Source={StaticResource ViewModelLocator}}">
 
+    <TabbedPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </TabbedPage.Behaviors>
     <TabbedPage.Children>
 
         <NavigationPage Title="Planner" IconImageSource="list.png">

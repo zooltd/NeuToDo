@@ -18,7 +18,20 @@ namespace NeuToDo.Services
             new Lazy<SQLiteAsyncConnection>(() =>
                 new SQLiteAsyncConnection(DbPath));
 
-        private ISemesterStorage _semesterStorage;
+
+        public async Task CheckInitialization()
+        {
+            //TODO 一次查找完毕
+            if (!await TableExists(nameof(NeuEvent), _databaseConnection.Value))
+                await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(NeuEvent));
+            if (!await TableExists(nameof(MoocEvent), _databaseConnection.Value))
+                await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(MoocEvent));
+            if (!await TableExists(nameof(UserEvent), _databaseConnection.Value))
+                await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(UserEvent));
+            if (!await TableExists(nameof(Semester), _databaseConnection.Value))
+                await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(Semester));
+        }
+
 
         public async Task<IEventModelStorage<T>> GetEventModelStorage<T>()
             where T : EventModel, new()
@@ -31,6 +44,8 @@ namespace NeuToDo.Services
 
             return new EventModelStorage<T>(_databaseConnection.Value);
         }
+
+        private ISemesterStorage _semesterStorage;
 
         public async Task<ISemesterStorage> GetSemesterStorage()
         {
