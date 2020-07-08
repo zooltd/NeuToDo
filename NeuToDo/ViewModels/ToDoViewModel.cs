@@ -16,17 +16,18 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IDbStorageProvider dbStorageProvider,
             IContentPageNavigationService contentPageNavigationService,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            IAcademicCalendarService academicCalendarService)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
-            _semesterStorage = dbStorageProvider.GetSemesterStorage();
+            _academicCalendarService = academicCalendarService;
             _contentPageNavigationService = contentPageNavigationService;
             _dialogService = dialogService;
             dbStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
-            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
 
@@ -37,7 +38,7 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IEventModelStorage<UserEvent> _userStorage;
-        private readonly ISemesterStorage _semesterStorage;
+        private readonly IAcademicCalendarService _academicCalendarService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -45,13 +46,6 @@ namespace NeuToDo.ViewModels
         private bool _isLoaded;
 
         private readonly DateTime _today;
-
-        private List<Semester> _semesters;
-
-        private int _semesterIndex;
-
-        private static readonly Semester EmptySemester = new Semester
-        { SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0 };
 
         #endregion
 
@@ -73,10 +67,10 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await _moocStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
-            _semesters = await _semesterStorage.GetAllOrderedByBaseDateAsync();
+            // _semesters = await _semesterStorage.GetAllOrderedByBaseDateAsync();
 
             UpdateCalendarData();
-            UpdateSemester();
+            await UpdateSemester();
             UpdateListData();
         }
 
@@ -93,22 +87,11 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// 更新ToDoList界面绑定属性ThisSunday, ThisSaturday, Semester, WeekNo
         /// </summary>
-        private void UpdateSemester()
+        private async Task UpdateSemester()
         {
-            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
-
-            _semesterIndex = 0;
-            if (_semesters.Count <= 0)
-            {
-                Semester = EmptySemester;
-                WeekNo = 0;
-            }
-            else
-            {
-                Semester = _semesters[_semesterIndex];
-                WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, DateTime.Today);
-            }
+            (Semester, WeekNo) = await _academicCalendarService.GetCurrentSemester();
         }
 
         /// <summary>
@@ -177,20 +160,20 @@ namespace NeuToDo.ViewModels
             switch (eventModel)
             {
                 case NeuEvent neuEvent:
-                    {
-                        await _neuStorage.UpdateAsync(neuEvent);
-                        break;
-                    }
+                {
+                    await _neuStorage.UpdateAsync(neuEvent);
+                    break;
+                }
                 case MoocEvent moocEvent:
-                    {
-                        await _moocStorage.UpdateAsync(moocEvent);
-                        break;
-                    }
+                {
+                    await _moocStorage.UpdateAsync(moocEvent);
+                    break;
+                }
                 case UserEvent userEvent:
-                    {
-                        await _userStorage.UpdateAsync(userEvent);
-                        break;
-                    }
+                {
+                    await _userStorage.UpdateAsync(userEvent);
+                    break;
+                }
             }
         }
 
@@ -225,31 +208,13 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// 查看上周Event
         /// </summary>
-        public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand(ToLastWeekFunction);
+        public RelayCommand ToLastWeek => _toLastWeek ??= new RelayCommand(async () => await ToLastWeekFunction());
 
-        private void ToLastWeekFunction()
+        private async Task ToLastWeekFunction()
         {
             ThisSunday = ThisSunday.AddDays(-7);
             ThisSaturday = ThisSaturday.AddDays(-7);
-
-            if (WeekNo > 0)
-            {
-                WeekNo--;
-                UpdateListData();
-                return;
-            }
-
-            ++_semesterIndex;
-
-            if (_semesters.Count > _semesterIndex)
-            {
-                Semester = _semesters[_semesterIndex];
-                WeekNo = Calculator.CalculateWeekNo(Semester.BaseDate, ThisSunday);
-            }
-            else
-            {
-                Semester = EmptySemester;
-            }
+            (Semester, WeekNo) = await _academicCalendarService.ToLastWeekSemester(WeekNo, ThisSunday);
 
             UpdateListData();
         }
@@ -262,32 +227,13 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// 查看下周Event
         /// </summary>
-        public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand(ToNextWeekFunction);
+        public RelayCommand ToNextWeek => _toNextWeek ??= new RelayCommand(async () => await ToNextWeekFunction());
 
-        private void ToNextWeekFunction()
+        private async Task ToNextWeekFunction()
         {
             ThisSunday = ThisSunday.AddDays(7);
             ThisSaturday = ThisSaturday.AddDays(7);
-
-            if (_semesterIndex > _semesters.Count)
-            {
-                _semesterIndex--;
-                UpdateListData();
-                return;
-            }
-
-            var maxThisSemesterSunday = _semesterIndex >= 1
-                ? _semesters[_semesterIndex - 1].BaseDate.AddDays(-7)
-                : DateTime.MaxValue;
-            if (ThisSunday > maxThisSemesterSunday)
-            {
-                Semester = _semesters[--_semesterIndex];
-                WeekNo = 0;
-            }
-            else
-            {
-                WeekNo++;
-            }
+            (Semester, WeekNo) = await _academicCalendarService.ToNextWeekSemester(WeekNo, ThisSunday);
 
             UpdateListData();
         }
@@ -326,7 +272,7 @@ namespace NeuToDo.ViewModels
             }
 
             _contentPageNavigationService.PushAsync(new NeuEvent
-            { SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false });
+                {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
         }
 
         #endregion

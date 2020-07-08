@@ -22,6 +22,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
+            SimpleIoc.Default.Register<IAcademicCalendarService, AcademicCalendarService>();
             SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
             SimpleIoc.Default.Register<IBackupService, BackupService>();
             SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
