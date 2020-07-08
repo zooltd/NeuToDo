@@ -173,27 +173,27 @@ namespace NeuToDo.ViewModels
 
         private async Task CheckCommandFunction(EventModel eventModel)
         {
-            // switch (eventModel)
-            // {
-            //     case NeuEvent neuEvent:
-            //     {
-            //         var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-            //         await storage.UpdateAsync(neuEvent);
-            //         break;
-            //     }
-            //     case MoocEvent moocEvent:
-            //     {
-            //         var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
-            //         await storage.UpdateAsync(moocEvent);
-            //         break;
-            //     }
-            //     case UserEvent userEvent:
-            //     {
-            //         var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
-            //         await storage.UpdateAsync(userEvent);
-            //         break;
-            //     }
-            // }
+            switch (eventModel)
+            {
+                case NeuEvent neuEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
+                    await storage.UpdateAsync(neuEvent);
+                    break;
+                }
+                case MoocEvent moocEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    await storage.UpdateAsync(moocEvent);
+                    break;
+                }
+                case UserEvent userEvent:
+                {
+                    var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
+                    await storage.UpdateAsync(userEvent);
+                    break;
+                }
+            }
         }
 
         #endregion

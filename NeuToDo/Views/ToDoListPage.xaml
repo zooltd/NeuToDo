@@ -21,11 +21,6 @@
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <lconv:IsDoneToStrikethroughConvertor x:Key="IsDoneToStrikethrough" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
 
     <ScrollView x:Name="ScrollView">
         <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
@@ -188,8 +183,8 @@
                                                                     <DataTrigger TargetType="Label"
                                                                                  Binding="{Binding Source={x:Reference CheckBox},Path=IsChecked}"
                                                                                  Value="True">
-                                                                        <Setter Property="TextDecorations"
-                                                                                Value="Strikethrough" />
+                                                                        <!-- <Setter Property="TextDecorations" -->
+                                                                        <!--         Value="Strikethrough" /> -->
                                                                         <Setter Property="TextColor"
                                                                                 Value="Color.Gray" />
                                                                     </DataTrigger>
@@ -197,8 +192,8 @@
                                                                     <DataTrigger TargetType="Label"
                                                                                  Binding="{Binding Source={x:Reference CheckBox},Path=IsChecked}"
                                                                                  Value="False">
-                                                                        <Setter Property="TextDecorations"
-                                                                                Value="Underline" />
+                                                                        <!-- <Setter Property="TextDecorations" -->
+                                                                        <!--         Value="Underline" /> -->
                                                                         <Setter Property="TextColor"
                                                                                 Value="Color.Black" />
                                                                     </DataTrigger>
