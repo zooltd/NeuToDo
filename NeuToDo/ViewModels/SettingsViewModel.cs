@@ -27,15 +27,19 @@ namespace NeuToDo.ViewModels
 
         private readonly IDialogService _dialogService;
 
+        private readonly IBackupService _backupService;
+
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
             IStorageProvider storageProvider,
-            IDialogService dialogService)
+            IDialogService dialogService,
+            IBackupService backupService)
         {
             _popupNavigationService = popupNavigationService;
             _accountStorageService = accountStorageService;
             _storageProvider = storageProvider;
             _dialogService = dialogService;
+            _backupService = backupService;
             Platforms = Platform.Platforms;
         }
 
@@ -87,27 +91,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                string[] fileTypes = Device.RuntimePlatform switch
-                {
-                    Device.Android => null,
-                    Device.UWP => new[] {".sqlite3"},
-                    _ => null
-                };
-                var pickedFile = await CrossFilePicker.Current.PickFile(fileTypes);
-                if (pickedFile == null) return;
-                if (pickedFile.FileName != "events.sqlite3")
-                {
-                    _dialogService.DisplayAlert("警告", "导入文件名应为\"events.sqlite3\"", "OK");
-                    return;
-                }
-
-                await _storageProvider.CloseConnectionAsync();
-
-                if (File.Exists(StorageProvider.DbPath))
-                    File.Delete(StorageProvider.DbPath);
-                var stream = pickedFile.GetStream();
-                using (var fileStream = File.Create(StorageProvider.DbPath))
-                    CopyStream(stream, fileStream);
+                await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
                 _storageProvider.OnUpdateData();
             }
             catch (Exception e)
@@ -116,13 +100,6 @@ namespace NeuToDo.ViewModels
             }
         }
 
-        public static void CopyStream(Stream input, Stream output)
-        {
-            byte[] buffer = new byte[16 * 1024];
-            int read;
-            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-                output.Write(buffer, 0, read);
-        }
 
         private async Task Command2Function(Platform p)
         {

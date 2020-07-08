@@ -20,6 +20,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
             SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
+            SimpleIoc.Default.Register<IBackupService, BackupService>();
             SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
             SimpleIoc.Default.Register<IContentPageActivationService, ContentPageActivationService>();
             SimpleIoc.Default.Register<IContentPageNavigationService, ContentPageNavigationService>();
