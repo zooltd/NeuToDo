@@ -46,9 +46,9 @@ namespace NeuToDo.ViewModels
 
         public async Task PageAppearingCommandFunction()
         {
-            if (Platform == null) return;
-            UserName = _accountStorageService.GetUserName(Platform.ServerType);
-            Password = await _accountStorageService.GetPasswordAsync(Platform.ServerType);
+            if (ServerPlatform == null) return;
+            UserName = _accountStorageService.GetUserName(ServerPlatform.ServerType);
+            Password = await _accountStorageService.GetPasswordAsync(ServerPlatform.ServerType);
         }
 
 
@@ -64,17 +64,17 @@ namespace NeuToDo.ViewModels
 
             var res =
                 await _loginAndFetchDataService.LoginAndFetchDataAsync(
-                    Platform.ServerType, UserName, Password);
+                    ServerPlatform.ServerType, UserName, Password);
 
             if (res)
             {
                 _currTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-                await _accountStorageService.SaveAccountAsync(Platform.ServerType, UserName, Password, _currTime);
-                Platform.UserName = UserName;
-                Platform.LastUpdateTime = _currTime;
-                Platform.Button1Text = "更新";
-                Platform.IsBound = true;
-                if (Platform.ServerType == ServerType.Mooc)
+                await _accountStorageService.SaveAccountAsync(ServerPlatform.ServerType, UserName, Password, _currTime);
+                ServerPlatform.UserName = UserName;
+                ServerPlatform.LastUpdateTime = _currTime;
+                ServerPlatform.Button1Text = "更新";
+                ServerPlatform.IsBound = true;
+                if (ServerPlatform.ServerType == ServerType.Mooc)
                 {
                     Courses = MoocInfoGetter.CourseList;
                     if (Courses.Any())
@@ -115,12 +115,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedCourses), ref _selectedCourses, value);
         }
 
-        private Platform _platform;
+        private ServerPlatform _serverPlatform;
 
-        public Platform Platform
+        public ServerPlatform ServerPlatform
         {
-            get => _platform;
-            set => Set(nameof(Platform), ref _platform, value);
+            get => _serverPlatform;
+            set => Set(nameof(ServerPlatform), ref _serverPlatform, value);
         }
 
         private static string _userName;

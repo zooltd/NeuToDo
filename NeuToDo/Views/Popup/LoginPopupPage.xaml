@@ -12,7 +12,7 @@
                  BackgroundColor="Transparent"
                  xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
                  BindingContext="{Binding LoginViewModel, Source={StaticResource ViewModelLocator}}"
-                 ls:NavigationContext.NavigationParameter="{Binding Platform}">
+                 ls:NavigationContext.NavigationParameter="{Binding ServerPlatform}">
 
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
@@ -54,7 +54,7 @@
                            Margin="15"
                            HeightRequest="140"
                            WidthRequest="140"
-                           Source="{Binding Platform.PicUrl}">
+                           Source="{Binding ServerPlatform.PicUrl}">
                         <!-- <Image.Source> -->
                         <!--     <OnPlatform -->
                         <!--         x:TypeArguments="ImageSource" -->

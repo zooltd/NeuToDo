@@ -35,7 +35,7 @@
                 </Grid>
             </Grid>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding Platforms}"
+            <StackLayout BindableLayout.ItemsSource="{Binding ServerPlatforms}"
                          Spacing="28"
                          Padding="16"
                          Margin="0,-5">

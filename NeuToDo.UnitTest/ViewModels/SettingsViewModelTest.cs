@@ -28,7 +28,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var mockBackupService = backupServiceMock.Object;
 
-            var item = new Platform();
+            var item = new ServerPlatform();
             var settingsViewModel = new SettingsViewModel(mockPopupNavigation, mockAccountStorageService,
                 mockEventModelStorageProvider, mockAlertService, mockBackupService);
             settingsViewModel.Command1Function(item);

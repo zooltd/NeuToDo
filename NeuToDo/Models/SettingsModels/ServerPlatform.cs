@@ -4,7 +4,7 @@ using Xamarin.Forms;
 
 namespace NeuToDo.Models.SettingsModels
 {
-    public class Platform : ObservableObject
+    public class ServerPlatform : ObservableObject
     {
         private string _name;
 
@@ -62,9 +62,9 @@ namespace NeuToDo.Models.SettingsModels
             set => Set(nameof(PicUrl), ref _picUrl, value);
         }
 
-        public static List<Platform> Platforms { get; } = new List<Platform>
+        public static List<ServerPlatform> ServerPlatforms { get; } = new List<ServerPlatform>
         {
-            new Platform
+            new ServerPlatform
             {
                 Name = "东北大学教务处",
                 UserName = string.Empty,
@@ -74,7 +74,7 @@ namespace NeuToDo.Models.SettingsModels
                 ServerType = ServerType.Neu,
                 PicUrl = "NeuPic.png"
             },
-            new Platform
+            new ServerPlatform
             {
                 Name = "中国大学MOOC",
                 UserName = string.Empty,
@@ -84,7 +84,7 @@ namespace NeuToDo.Models.SettingsModels
                 ServerType = ServerType.Mooc,
                 PicUrl = "MoocPic.png"
             },
-            new Platform
+            new ServerPlatform
             {
                 Name = "东北大学Blackboard",
                 UserName = string.Empty,

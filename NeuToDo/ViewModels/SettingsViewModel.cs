@@ -40,7 +40,7 @@ namespace NeuToDo.ViewModels
             _storageProvider = storageProvider;
             _dialogService = dialogService;
             _backupService = backupService;
-            Platforms = Platform.Platforms;
+            ServerPlatforms = ServerPlatform.ServerPlatforms;
         }
 
         private bool _isInit;
@@ -55,7 +55,7 @@ namespace NeuToDo.ViewModels
         private void PageAppearingCommandFunction()
         {
             if (_isInit) return;
-            foreach (var platform in Platforms.Where(platform =>
+            foreach (var platform in ServerPlatforms.Where(platform =>
                 _accountStorageService.AccountExist(platform.ServerType)))
             {
                 platform.UserName = _accountStorageService.GetUserName(platform.ServerType);
@@ -67,20 +67,20 @@ namespace NeuToDo.ViewModels
             _isInit = true;
         }
 
-        private RelayCommand<Platform> _command1;
+        private RelayCommand<ServerPlatform> _command1;
 
-        public RelayCommand<Platform> Command1 =>
-            _command1 ??= new RelayCommand<Platform>(Command1Function);
+        public RelayCommand<ServerPlatform> Command1 =>
+            _command1 ??= new RelayCommand<ServerPlatform>(Command1Function);
 
-        public void Command1Function(Platform item)
+        public void Command1Function(ServerPlatform item)
         {
             _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item);
         }
 
-        private RelayCommand<Platform> _command2;
+        private RelayCommand<ServerPlatform> _command2;
 
-        public RelayCommand<Platform> Command2 =>
-            _command2 ??= new RelayCommand<Platform>(async (p) => await Command2Function(p));
+        public RelayCommand<ServerPlatform> Command2 =>
+            _command2 ??= new RelayCommand<ServerPlatform>(async (p) => await Command2Function(p));
 
         private RelayCommand _importDb;
 
@@ -101,7 +101,7 @@ namespace NeuToDo.ViewModels
         }
 
 
-        private async Task Command2Function(Platform p)
+        private async Task Command2Function(ServerPlatform p)
         {
             if (!p.IsBound)
             {
@@ -137,12 +137,12 @@ namespace NeuToDo.ViewModels
 
         #region 绑定属性
 
-        private List<Platform> _platforms;
+        private List<ServerPlatform> _serverPlatforms;
 
-        public List<Platform> Platforms
+        public List<ServerPlatform> ServerPlatforms
         {
-            get => _platforms;
-            set => Set(nameof(Platforms), ref _platforms, value);
+            get => _serverPlatforms;
+            set => Set(nameof(ServerPlatforms), ref _serverPlatforms, value);
         }
 
         #endregion

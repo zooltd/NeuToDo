@@ -22,9 +22,9 @@ namespace NeuToDo.UnitTest.ViewModels
         //     var mockEventModelStorageProvider = eventModelStorageProvider.Object;
         //     var loginViewModel = new LoginViewModel(mockPopupNavigationService, mockLoginAndFetchDataService,
         //         mockSecureStorageProvider, mockEventModelStorageProvider);
-        //     loginViewModel.Platform = null;
+        //     loginViewModel.ServerPlatform = null;
         //     await loginViewModel.PageAppearingCommandFunction();
-        //     secureStorageProvider.Verify(s => s.GetAsync(loginViewModel.Platform.ServerType + "id"), Times.Never);
+        //     secureStorageProvider.Verify(s => s.GetAsync(loginViewModel.ServerPlatform.ServerType + "id"), Times.Never);
         // }
     }
 }
