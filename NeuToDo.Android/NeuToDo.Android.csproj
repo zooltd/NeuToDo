@@ -73,6 +73,7 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomDatePickerRender.cs" />
     <Compile Include="CustomEditorRenderer.cs" />
     <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="CustomPickerRender.cs" />

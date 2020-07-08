@@ -12,185 +12,186 @@
                  BackgroundInputTransparent="False"
                  Appearing="WeekNoSelectPopupPage_OnAppearing">
 
+    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="30">
+        <Frame BackgroundColor="White">
+            <StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" HorizontalOptions="CenterAndExpand"
+                            Text="全部" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
+                            Clicked="SelectAll" />
+                    <Button Grid.Column="1" HorizontalOptions="CenterAndExpand"
+                            Text="单周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
+                            Clicked="SelectOdd" />
+                    <Button Grid.Column="2" HorizontalOptions="CenterAndExpand"
+                            Text="双周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
+                            Clicked="SelectEven" />
+                </Grid>
 
-    <Frame VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="30" BackgroundColor="White">
-        <StackLayout>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" HorizontalOptions="CenterAndExpand"
-                        Text="全部" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectAll" />
-                <Button Grid.Column="1" HorizontalOptions="CenterAndExpand"
-                        Text="单周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectOdd" />
-                <Button Grid.Column="2" HorizontalOptions="CenterAndExpand"
-                        Text="双周" BackgroundColor="Transparent" TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectEven" />
-            </Grid>
+                <Grid ColumnSpacing="0" RowSpacing="0" x:Name="Grid">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-            <Grid ColumnSpacing="0" RowSpacing="0" x:Name="Grid">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <lc:CustomButton x:Name="Button1"
-                                 Grid.Row="0" Grid.Column="0"
-                                 CornerRadius="0"
-                                 Text="1"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button2"
-                                 Grid.Row="0" Grid.Column="1" CornerRadius="0"
-                                 Text="2"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button3"
-                                 Grid.Row="0" Grid.Column="2" CornerRadius="0"
-                                 Text="3"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button4"
-                                 Grid.Row="0" Grid.Column="3" CornerRadius="0"
-                                 Text="4"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button5"
-                                 Grid.Row="0" Grid.Column="4" CornerRadius="0"
-                                 Text="5"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button6"
-                                 Grid.Row="0" Grid.Column="5" CornerRadius="0"
-                                 Text="6"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button7"
-                                 Grid.Row="1" Grid.Column="0" CornerRadius="0"
-                                 Text="7"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button8"
-                                 Grid.Row="1" Grid.Column="1" CornerRadius="0"
-                                 Text="8"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button9"
-                                 Grid.Row="1" Grid.Column="2" CornerRadius="0"
-                                 Text="9"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button10"
-                                 Grid.Row="1" Grid.Column="3" CornerRadius="0"
-                                 Text="10"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button11"
-                                 Grid.Row="1" Grid.Column="4" CornerRadius="0"
-                                 Text="11"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button12"
-                                 Grid.Row="1" Grid.Column="5" CornerRadius="0"
-                                 Text="12"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button13"
-                                 Grid.Row="2" Grid.Column="0" CornerRadius="0"
-                                 Text="13"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button14"
-                                 Grid.Row="2" Grid.Column="1" CornerRadius="0"
-                                 Text="14"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button15"
-                                 Grid.Row="2" Grid.Column="2" CornerRadius="0"
-                                 Text="15"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button16"
-                                 Grid.Row="2" Grid.Column="3" CornerRadius="0"
-                                 Text="16"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button17"
-                                 Grid.Row="2" Grid.Column="4" CornerRadius="0"
-                                 Text="17"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button18"
-                                 Grid.Row="2" Grid.Column="5" CornerRadius="0"
-                                 Text="18"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button19"
-                                 Grid.Row="3" Grid.Column="0" CornerRadius="0"
-                                 Text="19"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button20"
-                                 Grid.Row="3" Grid.Column="1" CornerRadius="0"
-                                 Text="20"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button21"
-                                 Grid.Row="3" Grid.Column="2" CornerRadius="0"
-                                 Text="21"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button22"
-                                 Grid.Row="3" Grid.Column="3" CornerRadius="0"
-                                 Text="22"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button23"
-                                 Grid.Row="3" Grid.Column="4" CornerRadius="0"
-                                 Text="23"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-                <lc:CustomButton x:Name="Button24"
-                                 Grid.Row="3" Grid.Column="5" CornerRadius="0"
-                                 Text="24"
-                                 IsClicked="False"
-                                 SelectColor="#BF4779" />
-            </Grid>
+                    <lc:CustomButton x:Name="Button1"
+                                     Grid.Row="0" Grid.Column="0"
+                                     CornerRadius="0"
+                                     Text="1"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button2"
+                                     Grid.Row="0" Grid.Column="1" CornerRadius="0"
+                                     Text="2"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button3"
+                                     Grid.Row="0" Grid.Column="2" CornerRadius="0"
+                                     Text="3"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button4"
+                                     Grid.Row="0" Grid.Column="3" CornerRadius="0"
+                                     Text="4"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button5"
+                                     Grid.Row="0" Grid.Column="4" CornerRadius="0"
+                                     Text="5"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button6"
+                                     Grid.Row="0" Grid.Column="5" CornerRadius="0"
+                                     Text="6"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button7"
+                                     Grid.Row="1" Grid.Column="0" CornerRadius="0"
+                                     Text="7"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button8"
+                                     Grid.Row="1" Grid.Column="1" CornerRadius="0"
+                                     Text="8"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button9"
+                                     Grid.Row="1" Grid.Column="2" CornerRadius="0"
+                                     Text="9"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button10"
+                                     Grid.Row="1" Grid.Column="3" CornerRadius="0"
+                                     Text="10"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button11"
+                                     Grid.Row="1" Grid.Column="4" CornerRadius="0"
+                                     Text="11"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button12"
+                                     Grid.Row="1" Grid.Column="5" CornerRadius="0"
+                                     Text="12"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button13"
+                                     Grid.Row="2" Grid.Column="0" CornerRadius="0"
+                                     Text="13"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button14"
+                                     Grid.Row="2" Grid.Column="1" CornerRadius="0"
+                                     Text="14"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button15"
+                                     Grid.Row="2" Grid.Column="2" CornerRadius="0"
+                                     Text="15"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button16"
+                                     Grid.Row="2" Grid.Column="3" CornerRadius="0"
+                                     Text="16"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button17"
+                                     Grid.Row="2" Grid.Column="4" CornerRadius="0"
+                                     Text="17"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button18"
+                                     Grid.Row="2" Grid.Column="5" CornerRadius="0"
+                                     Text="18"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button19"
+                                     Grid.Row="3" Grid.Column="0" CornerRadius="0"
+                                     Text="19"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button20"
+                                     Grid.Row="3" Grid.Column="1" CornerRadius="0"
+                                     Text="20"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button21"
+                                     Grid.Row="3" Grid.Column="2" CornerRadius="0"
+                                     Text="21"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button22"
+                                     Grid.Row="3" Grid.Column="3" CornerRadius="0"
+                                     Text="22"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button23"
+                                     Grid.Row="3" Grid.Column="4" CornerRadius="0"
+                                     Text="23"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                    <lc:CustomButton x:Name="Button24"
+                                     Grid.Row="3" Grid.Column="5" CornerRadius="0"
+                                     Text="24"
+                                     IsClicked="False"
+                                     SelectColor="#BF4779" />
+                </Grid>
 
 
-            <BoxView HeightRequest="2" Color="DimGray" />
+                <BoxView HeightRequest="2" Color="DimGray" />
 
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <Button Grid.Column="2" HorizontalOptions="EndAndExpand"
-                        Text="取消" BackgroundColor="Transparent"
-                        TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectWeekNoCancel" />
-                <Button Grid.Column="3" HorizontalOptions="EndAndExpand"
-                        Text="完成" BackgroundColor="Transparent"
-                        TextColor="#BF4779" FontAttributes="Bold"
-                        Clicked="SelectWeekNoDone" />
-            </Grid>
-        </StackLayout>
-    </Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="2" HorizontalOptions="EndAndExpand"
+                            Text="取消" BackgroundColor="Transparent"
+                            TextColor="#BF4779" FontAttributes="Bold"
+                            Clicked="SelectWeekNoCancel" />
+                    <Button Grid.Column="3" HorizontalOptions="EndAndExpand"
+                            Text="完成" BackgroundColor="Transparent"
+                            TextColor="#BF4779" FontAttributes="Bold"
+                            Clicked="SelectWeekNoDone" />
+                </Grid>
+            </StackLayout>
+        </Frame>
+    </StackLayout>
 
 </popup:PopupPage>

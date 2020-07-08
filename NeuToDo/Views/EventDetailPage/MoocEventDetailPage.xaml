@@ -13,13 +13,67 @@
              Title="Mooc事件编辑">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding EditDone}" Text="完成"/>
+        <ToolbarItem Command="{Binding EditDone}" Text="完成" />
     </ContentPage.ToolbarItems>
 
-    <ScrollView>
-        <StackLayout Padding="10">
-            <lc:EventDescription />
-            <lc:EventTime />
+    <ScrollView x:Name="ThisPage">
+        <StackLayout Padding="30" Spacing="15">
+            <Frame>
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
+                           VerticalOptions="Center" />
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                                    VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
+                           WidthRequest="25" HeightRequest="25" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding SelectedEvent.Detail}"
+                                    IsReadOnly="True"
+                                    Placeholder="详情" />
+                </Grid>
+            </Frame>
+            <Frame>
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center" />
+                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1" Date="{Binding SelectedEvent.Time.Date}"
+                                         VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="time.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center" />
+                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1" Time="{Binding SelectedEvent.Time.TimeOfDay}"
+                                         VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
+                </Grid>
+            </Frame>
+            <Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Text="删除课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding DeleteCourse}" />
+                    <Button Grid.Column="1" Text="保存课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center" />
+                </Grid>
+            </Frame>
         </StackLayout>
     </ScrollView>
 </ContentPage>
