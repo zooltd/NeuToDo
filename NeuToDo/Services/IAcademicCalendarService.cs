@@ -9,10 +9,8 @@ namespace NeuToDo.Services
     {
         Task<(Semester semester, int weekNo)> GetCurrentSemester();
 
-        Task<(Semester semester, int weekNo)> ToLastWeekSemester(
-            int thisWeekNo, DateTime lastSunday);
+        Task<(Semester semester, int weekNo)> ToLastWeekSemester(int thisWeekNo, DateTime lastSunday);
 
-        Task<(Semester semester, int weekNo)> ToNextWeekSemester(
-            int thisWeekNo, DateTime nextSunday);
+        Task<(Semester semester, int weekNo)> ToNextWeekSemester(int thisWeekNo, DateTime nextSunday);
     }
 }
