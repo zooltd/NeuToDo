@@ -17,6 +17,7 @@
         <Label
             FontAttributes="Bold"
             FontSize="Medium"
+            Margin="15,0,0,0"
             Text="{Binding SelectedDateText}"
             TextColor="{Binding SelectedDateColor}"
             VerticalOptions="CenterAndExpand"

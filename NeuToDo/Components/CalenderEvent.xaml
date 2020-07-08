@@ -11,7 +11,7 @@
             Padding="15,0,0,0"
             HorizontalOptions="FillAndExpand"
             VerticalOptions="FillAndExpand">
-            <Label FontAttributes="Bold" FontSize="Medium">
+            <Label FontAttributes="Bold" FontSize="17">
                 <Label.FormattedText>
                     <FormattedString>
                         <Span Text="{Binding Time, StringFormat='{0:HH\\:mm}'}" TextColor="Black" />

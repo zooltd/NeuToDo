@@ -33,7 +33,7 @@
             HorizontalOptions="FillAndExpand"
             MonthYear="{Binding MonthYear}"
             SelectedDate="{Binding SelectedDate}"
-            SelectedDateTextFormat="ddd, MMM dd yyyy"
+            SelectedDateTextFormat="yyyy / MM / dd / dddd"
             VerticalOptions="FillAndExpand"
             MonthLabelColor="#455399"
             SelectedDateColor="#455399"
