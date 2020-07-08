@@ -1,7 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight.Ioc;
+﻿using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Models;
+using System;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {

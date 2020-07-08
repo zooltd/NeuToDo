@@ -1,14 +1,14 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using System;
-using System.Globalization;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using NeuToDo.Models;
 
 namespace NeuToDo.ViewModels
 {
@@ -158,9 +158,9 @@ namespace NeuToDo.ViewModels
         public async Task SaveSelectedCoursesCommandFunction()
         {
             var resultList = (from Course course in SelectedCourses
-                from moocEvent in MoocInfoGetter.EventList
-                where moocEvent.Code == course.Code
-                select moocEvent).ToList();
+                              from moocEvent in MoocInfoGetter.EventList
+                              where moocEvent.Code == course.Code
+                              select moocEvent).ToList();
             var moocStorage =
                 await _storageProvider.GetEventModelStorage<MoocEvent>();
             await moocStorage.MergeAsync(resultList);

@@ -1,5 +1,5 @@
-﻿using System;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
+using System;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services

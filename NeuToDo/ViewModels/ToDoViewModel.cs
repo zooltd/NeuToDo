@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.Utils;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 using Xamarin.Plugin.Calendar.Models;
 
 namespace NeuToDo.ViewModels
@@ -23,7 +23,7 @@ namespace NeuToDo.ViewModels
             _dialogService = dialogService;
             storageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
-            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
 
@@ -47,7 +47,7 @@ namespace NeuToDo.ViewModels
         private int _semesterIndex;
 
         private static readonly Semester EmptySemester = new Semester
-            {SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0};
+        { SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0 };
 
         #endregion
 
@@ -94,7 +94,7 @@ namespace NeuToDo.ViewModels
         /// </summary>
         private void UpdateSemester()
         {
-            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
 
             _semesterIndex = 0;
@@ -328,7 +328,7 @@ namespace NeuToDo.ViewModels
             }
 
             _contentPageNavigationService.PushAsync(new NeuEvent
-                {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
+            { SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false });
         }
 
         #endregion

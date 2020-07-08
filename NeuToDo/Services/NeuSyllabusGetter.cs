@@ -1,13 +1,12 @@
 ﻿using NeuToDo.Models;
+using NeuToDo.Utils;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using NeuToDo.Utils;
-using Newtonsoft.Json;
-using Xamarin.Essentials;
 
 namespace NeuToDo.Services
 {
@@ -149,7 +148,7 @@ namespace NeuToDo.Services
             var currSemester = dict["y" + yearIndex].Find(x => x.id == semesterId);
             return new Semester
             {
-                BaseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - termIndex * 7),
+                BaseDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - termIndex * 7),
                 SemesterId = semesterId,
                 SchoolYear = currSemester.schoolYear,
                 Season = currSemester.name
@@ -196,7 +195,7 @@ namespace NeuToDo.Services
                     Code = courseId,
                     Time = Calculator.CalculateClassTime(day, weekIndex, firstClass, campus, semester.BaseDate),
                     IsDone = false,
-                    Day = (int) day,
+                    Day = (int)day,
                     Week = weekIndex,
                     ClassNo = firstClass,
                     SemesterId = semester.SemesterId,
@@ -243,7 +242,7 @@ namespace NeuToDo.Services
                 "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
             DayOfWeek day =
-                (DayOfWeek) ((int.Parse(segments[0].Groups[1].Value) + 1) % 7);
+                (DayOfWeek)((int.Parse(segments[0].Groups[1].Value) + 1) % 7);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;

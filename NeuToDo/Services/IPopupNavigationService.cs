@@ -44,7 +44,7 @@ namespace NeuToDo.Services
         /// </summary>
         public const string SelectPopupPage = nameof(Views.Popup.SelectPopupPage);
 
-        
+
         public const string WeekNoSelectPopupPage = nameof(Views.Popup.WeekNoSelectPopupPage);
 
         /// <summary>

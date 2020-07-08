@@ -1,19 +1,12 @@
-﻿using System;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
+using System;
 using System.Collections.Generic;
-using System.Dynamic;
-using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Threading.Tasks;
-using Plugin.FilePicker;
-using Plugin.FilePicker.Abstractions;
-using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
 
 namespace NeuToDo.ViewModels
 {
@@ -91,7 +84,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
+                await _backupService.ImportAsync(new List<FileType> { FileType.Sqlite });
                 _storageProvider.OnUpdateData();
             }
             catch (Exception e)

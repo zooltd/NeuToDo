@@ -1,12 +1,10 @@
-﻿using Rg.Plugins.Popup.Pages;
+﻿using NeuToDo.Components;
+using NeuToDo.ViewModels;
+using Rg.Plugins.Popup.Pages;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using NeuToDo.Components;
-using NeuToDo.Services;
-using NeuToDo.ViewModels;
-using Rg.Plugins.Popup.Services;
 using Xamarin.Forms.Xaml;
 
 namespace NeuToDo.Views.Popup

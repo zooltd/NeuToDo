@@ -10,7 +10,7 @@ namespace NeuToDo.Components
     {
         public static BindableProperty CalenderEventCommandProperty =
             BindableProperty.Create(nameof(CalenderEventCommand), typeof(ICommand), typeof(CalenderEvent), null);
-        
+
         public CalenderEvent()
         {
             InitializeComponent();

@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using NeuToDo.Models;
-using NeuToDo.Views;
 using Xamarin.Forms;
 
 namespace NeuToDo.Services
@@ -17,6 +15,6 @@ namespace NeuToDo.Services
             _cache.ContainsKey(typename)
                 ? _cache[typename]
                 : _cache[typename] =
-                    (ContentPage) Activator.CreateInstance(ContentNavigationConstants.PageKeyTypeDictionary[typename]);
+                    (ContentPage)Activator.CreateInstance(ContentNavigationConstants.PageKeyTypeDictionary[typename]);
     }
 }

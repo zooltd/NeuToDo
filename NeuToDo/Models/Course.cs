@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 
-namespace NeuToDo.Models {
-    public class Course : ObservableObject {
+namespace NeuToDo.Models
+{
+    public class Course : ObservableObject
+    {
         public string Name { get; set; }
 
         public string School { get; set; }

@@ -1,7 +1,5 @@
-﻿using System;
+﻿using NeuToDo.Models;
 using System.Threading.Tasks;
-using NeuToDo.Models;
-using NeuToDo.Models.SettingsModels;
 
 namespace NeuToDo.Services
 {

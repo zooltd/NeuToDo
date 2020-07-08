@@ -1,8 +1,7 @@
-﻿using System;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
 using SQLite;
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 

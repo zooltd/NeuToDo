@@ -1,5 +1,4 @@
-﻿using System;
-using NeuToDo.Views;
+﻿using NeuToDo.Views;
 using Xamarin.Forms;
 
 namespace NeuToDo

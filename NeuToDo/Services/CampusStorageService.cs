@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
@@ -25,7 +25,7 @@ namespace NeuToDo.Services
         private async Task<Campus> GetCampusFromPreferenceStorage()
         {
             return _preferenceStorageProvider.ContainsKey(nameof(Campus))
-                ? (Campus) _preferenceStorageProvider.Get(nameof(Campus), (int) Campus.Hunnan)
+                ? (Campus)_preferenceStorageProvider.Get(nameof(Campus), (int)Campus.Hunnan)
                 : await GetCampusFromDialog();
         }
 
@@ -33,7 +33,7 @@ namespace NeuToDo.Services
         {
             var res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, "浑南", "南湖");
             var campus = res == "浑南" ? Campus.Hunnan : Campus.Nanhu;
-            _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
+            _preferenceStorageProvider.Set(nameof(Campus), (int)campus);
             return campus;
         }
 
@@ -46,7 +46,7 @@ namespace NeuToDo.Services
 
         public void SaveCampus(Campus campus)
         {
-            _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
+            _preferenceStorageProvider.Set(nameof(Campus), (int)campus);
             _campus = campus;
         }
     }

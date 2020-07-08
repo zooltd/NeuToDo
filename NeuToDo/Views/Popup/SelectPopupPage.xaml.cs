@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Rg.Plugins.Popup.Pages;
 using System.Threading.Tasks;
-using Rg.Plugins.Popup.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

@@ -1,17 +1,17 @@
-﻿using System;
-using System.Collections;
+﻿using NeuToDo.Models;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using NeuToDo.Models;
-using Newtonsoft.Json;
 
-namespace NeuToDo.Services {
-    public class MoocInfoGetter {
+namespace NeuToDo.Services
+{
+    public class MoocInfoGetter
+    {
         private const string LoginUrl = "https://www.icourse163.org/passport/reg/icourseLogin.do";
 
         private const string GetTokenUrl = "https://www.icourse163.org/";
@@ -35,7 +35,8 @@ namespace NeuToDo.Services {
         /// </summary>
         /// <param name="response">HttpResponseMessage。</param>
         /// <returns></returns>
-        private static string GetToken(HttpResponseMessage response) {
+        private static string GetToken(HttpResponseMessage response)
+        {
             var token = response.Headers
                 .SingleOrDefault(header => header.Key == "Set-Cookie").Value
                 .ToArray()[0].Split('=', ';')[1];
@@ -48,8 +49,10 @@ namespace NeuToDo.Services {
         /// <param name="userName">用户名。</param>
         /// <param name="password">密码</param>
         /// <returns></returns>
-        private static async Task Login(string userName, string password) {
-            try {
+        private static async Task Login(string userName, string password)
+        {
+            try
+            {
                 Dictionary<string, string> postParams =
                     new Dictionary<string, string>();
                 postParams.Add("saveLogin", "true");
@@ -69,14 +72,17 @@ namespace NeuToDo.Services {
                 // var node = doc.DocumentNode.SelectSingleNode(
                 //     "//div[@class='m-slideTop-personFunc']//span['f-thide']");
                 // Console.WriteLine(node.InnerText);
-            } catch (WebException we) {
+            }
+            catch (WebException we)
+            {
                 string msg = we.Message;
                 Console.WriteLine(msg);
             }
         }
 
         private static async Task<Dictionary<string, string>> GetOnGoingCourses(
-            string token) {
+            string token)
+        {
             var postParams = new Dictionary<string, string> {
                 {"csrfKey", token},
                 {"type", "10"},
@@ -95,10 +101,12 @@ namespace NeuToDo.Services {
             var length = root.result.result.Count;
 
             var courses = new Dictionary<string, string>();
-            for (int i = 0; i < length; i++) {
+            for (int i = 0; i < length; i++)
+            {
                 courses.Add(root.result.result[i].termPanel.id.ToString(),
                     root.result.result[i].name);
-                CourseList.Add(new Course {
+                CourseList.Add(new Course
+                {
                     Code = root.result.result[i].termPanel.id.ToString(),
                     ImgUrl = root.result.result[i].imgUrl,
                     IsSelected = false,
@@ -119,7 +127,8 @@ namespace NeuToDo.Services {
         }
 
         private static async Task GetTestInfo(
-            KeyValuePair<string, string> course) {
+            KeyValuePair<string, string> course)
+        {
             var postParams = new Dictionary<string, string> {
                 {"callCount", "1"},
                 {"scriptSessionId", "${scriptSessionId}190"},
@@ -138,33 +147,41 @@ namespace NeuToDo.Services {
 
             var quizPattern = @"\w\d+.contentType=2";
             var quizNumList = new List<string>();
-            foreach (Match match in Regex.Matches(dwr, quizPattern)) {
+            foreach (Match match in Regex.Matches(dwr, quizPattern))
+            {
                 var str = match.Value.Split('.')[0];
                 quizNumList.Add(str);
             }
 
             var quizName = new List<string>();
             var removeQuizNum = new List<string>();
-            foreach (var num in quizNumList) {
+            foreach (var num in quizNumList)
+            {
                 quizPattern = num + @".name="".*""";
                 var match = Regex.Match(dwr, quizPattern).Value.Split('\"')[1];
                 var name = Regex.Unescape(match);
-                if (name.Contains("测验")) {
+                if (name.Contains("测验"))
+                {
                     quizName.Add(name);
                     Console.WriteLine(name);
-                } else {
+                }
+                else
+                {
                     removeQuizNum.Add(num);
                 }
             }
 
-            foreach (string item in removeQuizNum) {
+            foreach (string item in removeQuizNum)
+            {
                 quizNumList.Remove(item);
             }
 
             var quizDeadline = new List<DateTime>();
 
-            foreach (string num in quizNumList) {
-                try {
+            foreach (string num in quizNumList)
+            {
+                try
+                {
                     quizPattern = "s" + (int.Parse(num.Substring(1)) + 1) +
                         @".deadline=\d*";
                     var unixTime = long.Parse(Regex.Match(dwr, quizPattern)
@@ -173,7 +190,9 @@ namespace NeuToDo.Services {
                         .ConvertTimeFromUtc(new DateTime(1970, 1, 1),
                             TimeZoneInfo.Local).AddMilliseconds(unixTime);
                     quizDeadline.Add(time);
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     quizName.RemoveAt(quizName.Count - 1);
                 }
             }
@@ -181,34 +200,42 @@ namespace NeuToDo.Services {
 
             var homeworkPattern = @"\w\d+.contentType=3";
             var homeworkNumList = new List<string>();
-            foreach (Match match in Regex.Matches(dwr, homeworkPattern)) {
+            foreach (Match match in Regex.Matches(dwr, homeworkPattern))
+            {
                 var str = match.Value.Split('.')[0];
                 homeworkNumList.Add(str);
             }
 
             var homeworkName = new List<string>();
             var removeHomeworkNum = new List<string>();
-            foreach (string num in homeworkNumList) {
+            foreach (string num in homeworkNumList)
+            {
                 homeworkPattern = num + @".name="".*""";
                 var match =
                     Regex.Match(dwr, homeworkPattern).Value.Split('\"')[1];
                 var name = Regex.Unescape(match);
-                if (name.Contains("作业")) {
+                if (name.Contains("作业"))
+                {
                     homeworkName.Add(name);
                     Console.WriteLine(name);
-                } else {
+                }
+                else
+                {
                     removeHomeworkNum.Add(num);
                 }
             }
 
-            foreach (string item in removeHomeworkNum) {
+            foreach (string item in removeHomeworkNum)
+            {
                 homeworkNumList.Remove(item);
             }
 
             var homeworkDeadline = new List<DateTime>();
 
-            foreach (string num in homeworkNumList) {
-                try {
+            foreach (string num in homeworkNumList)
+            {
+                try
+                {
                     homeworkPattern = "s" + (int.Parse(num.Substring(1)) + 1) +
                         @".deadline=\d*";
                     var unixTime = long.Parse(Regex.Match(dwr, homeworkPattern)
@@ -217,14 +244,18 @@ namespace NeuToDo.Services {
                         .ConvertTimeFromUtc(new DateTime(1970, 1, 1),
                             TimeZoneInfo.Local).AddMilliseconds(unixTime);
                     homeworkDeadline.Add(time);
-                } catch (Exception e) {
+                }
+                catch (Exception e)
+                {
                     homeworkName.RemoveAt(homeworkName.Count - 1);
                 }
             }
 
             //向EventList赋值
-            for (var i = 0; i < quizName.Count; i++) {
-                EventList.Add(new MoocEvent {
+            for (var i = 0; i < quizName.Count; i++)
+            {
+                EventList.Add(new MoocEvent
+                {
                     Title = "Mooc " + course.Value,
                     Detail = quizName[i],
                     Code = course.Key,
@@ -233,8 +264,10 @@ namespace NeuToDo.Services {
                 });
             }
 
-            for (var i = 0; i < homeworkName.Count; i++) {
-                EventList.Add(new MoocEvent {
+            for (var i = 0; i < homeworkName.Count; i++)
+            {
+                EventList.Add(new MoocEvent
+                {
                     Title = "Mooc " + course.Value,
                     Detail = homeworkName[i],
                     Code = course.Key,
@@ -244,16 +277,19 @@ namespace NeuToDo.Services {
             }
         }
 
-        public async Task WebCrawler(string userName, string password) {
+        public async Task WebCrawler(string userName, string password)
+        {
             await Login(userName, password);
             var courses = await GetOnGoingCourses(_token);
-            foreach (var course in courses) {
+            foreach (var course in courses)
+            {
                 await GetTestInfo(course);
             }
             _client.Dispose();
         }
 
-        public MoocInfoGetter(IHttpClientFactory httpClientFactory) {
+        public MoocInfoGetter(IHttpClientFactory httpClientFactory)
+        {
             _token = string.Empty;
             _client = httpClientFactory.MoocClient();
             EventList = new List<MoocEvent>();

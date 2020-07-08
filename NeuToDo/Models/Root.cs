@@ -1,22 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 
-namespace NeuToDo.Models {
+namespace NeuToDo.Models
+{
     /// <summary>
     /// 反序列化类。
     /// </summary>
-    public class Root {
+    public class Root
+    {
         public Result result { get; set; }
     }
 
-    public class TermPanel {
+    public class TermPanel
+    {
         public int id { get; set; }
 
         public int courseId { get; set; }
     }
 
-    public class SchoolPanel {
+    public class SchoolPanel
+    {
         public int id { get; set; }
 
         /// <summary>
@@ -27,7 +29,8 @@ namespace NeuToDo.Models {
         public string shortName { get; set; }
     }
 
-    public class ResultItem {
+    public class ResultItem
+    {
         public int id { get; set; }
 
         public TermPanel termPanel { get; set; }
@@ -45,7 +48,8 @@ namespace NeuToDo.Models {
         public string imgUrl { get; set; }
     }
 
-    public class Result {
+    public class Result
+    {
         public List<ResultItem> result { get; set; }
     }
 }

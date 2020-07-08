@@ -1,7 +1,6 @@
-﻿using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
 using NeuToDo.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NeuToDo.Services

@@ -1,5 +1,5 @@
-﻿using System;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
+using System;
 
 namespace NeuToDo.Utils
 {
@@ -10,11 +10,11 @@ namespace NeuToDo.Utils
         {
             var classTimeDict = campus == Campus.Hunnan ? ClassTime.HunnanClassTimeDict : ClassTime.NanhuClassTimeDict;
 
-            return baseDate.AddDays((int) day + weekNo * 7) + classTimeDict[classNo];
+            return baseDate.AddDays((int)day + weekNo * 7) + classTimeDict[classNo];
         }
 
         public static int CalculateWeekNo(DateTime baseDate, DateTime date)
-            => (int) ((date - baseDate).TotalDays / 7);
+            => (int)((date - baseDate).TotalDays / 7);
 
         public static string CalculateUniqueNeuEventCode()
             => "c" + DateTime.Now.ToString("yyMMddHHmmssff");

@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using NeuToDo.Views;
+﻿using NeuToDo.Views;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace NeuToDo.Services

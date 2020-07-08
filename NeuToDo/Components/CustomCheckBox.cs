@@ -1,5 +1,5 @@
-﻿using System.Windows.Input;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
+using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace NeuToDo.Components
@@ -11,7 +11,7 @@ namespace NeuToDo.Components
 
         public ICommand CheckCommand
         {
-            get => (ICommand) GetValue(CheckCommandProperty);
+            get => (ICommand)GetValue(CheckCommandProperty);
             set => SetValue(CheckCommandProperty, value);
         }
 

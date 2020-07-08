@@ -1,6 +1,5 @@
-﻿using System.Collections.Generic;
-using GalaSoft.MvvmLight;
-using Xamarin.Forms;
+﻿using GalaSoft.MvvmLight;
+using System.Collections.Generic;
 
 namespace NeuToDo.Models.SettingsModels
 {

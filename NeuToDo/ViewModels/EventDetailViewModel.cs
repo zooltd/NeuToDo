@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NeuToDo.Components;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.Utils;
-using Xamarin.Forms;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace NeuToDo.ViewModels
 {
@@ -105,7 +101,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            EventGroupList.Add(new EventGroup {WeekNo = new List<int>()});
+            EventGroupList.Add(new EventGroup { WeekNo = new List<int>() });
         }));
 
         /// <summary>
@@ -169,7 +165,7 @@ namespace NeuToDo.ViewModels
                 {
                     Title = SelectedEvent.Title,
                     Code = SelectedEvent.Code,
-                    Day = (int) eventGroup.Day,
+                    Day = (int)eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
                     Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, campus,
@@ -211,14 +207,14 @@ namespace NeuToDo.ViewModels
 
                 var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
                 var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
-                var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
+                var courseGroupList = courses.GroupBy(c => new { c.Day, c.ClassNo, c.Detail })
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)
                 {
                     EventGroupList.Add(
                         new EventGroup
                         {
-                            Day = (DayOfWeek) group.Key.Day,
+                            Day = (DayOfWeek)group.Key.Day,
                             Detail = group.Key.Detail,
                             ClassIndex = group.Key.ClassNo,
                             WeekNo = group.ToList().ConvertAll(x => x.Week)

@@ -1,6 +1,4 @@
-﻿using System;
-using NeuToDo.Models;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
 namespace NeuToDo.Services
 {

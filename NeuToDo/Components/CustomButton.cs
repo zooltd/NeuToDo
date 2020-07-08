@@ -9,7 +9,7 @@ namespace NeuToDo.Components
 
         public bool IsClicked
         {
-            get => (bool) GetValue(IsClickedProperty);
+            get => (bool)GetValue(IsClickedProperty);
             set
             {
                 SetValue(IsClickedProperty, value);
@@ -23,7 +23,7 @@ namespace NeuToDo.Components
 
         public Color SelectColor
         {
-            get => (Color) GetValue(SelectColorProperty);
+            get => (Color)GetValue(SelectColorProperty);
             set => SetValue(SelectColorProperty, value);
         }
 
