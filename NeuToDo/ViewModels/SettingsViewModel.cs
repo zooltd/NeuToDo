@@ -84,7 +84,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
+                await _backupService.ImportAsync(new List<FileType> { FileType.Sqlite });
                 _dbStorageProvider.OnUpdateData();
             }
             catch (Exception e)
@@ -125,7 +125,7 @@ namespace NeuToDo.ViewModels
             switch (itemType)
             {
                 case ServerType.Neu:
-                   
+
                     await _neuStorage.ClearTableAsync();
                     _dbStorageProvider.OnUpdateData();
                     break;

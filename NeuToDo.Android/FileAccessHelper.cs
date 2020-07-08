@@ -1,13 +1,9 @@
-﻿using System.IO;
-using System.Threading.Tasks;
-using Android.Content;
-using Android.OS;
-using Java.IO;
+﻿using Android.OS;
 using NeuToDo.Droid;
 using NeuToDo.Services;
 using Plugin.Permissions;
 using Plugin.Permissions.Abstractions;
-using Xamarin.Essentials;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 using PermissionStatus = Plugin.Permissions.Abstractions.PermissionStatus;
 

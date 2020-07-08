@@ -38,7 +38,7 @@ namespace NeuToDo.UnitTest.Services
                 },
             };
             var e = new NeuEvent
-                {Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Time = DateTime.Now};
+            { Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Time = DateTime.Now };
 
             await neuEventModelStorage.InsertAsync(e);
 

@@ -160,9 +160,9 @@ namespace NeuToDo.ViewModels
         public async Task SaveSelectedCoursesCommandFunction()
         {
             var resultList = (from Course course in SelectedCourses
-                from moocEvent in MoocInfoGetter.EventList
-                where moocEvent.Code == course.Code
-                select moocEvent).ToList();
+                              from moocEvent in MoocInfoGetter.EventList
+                              where moocEvent.Code == course.Code
+                              select moocEvent).ToList();
             await _moocStorage.MergeAsync(resultList);
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants
                 .SuccessPopupPage);

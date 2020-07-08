@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Services;
+using System.Threading.Tasks;
 
 namespace NeuToDo.ViewModels
 {

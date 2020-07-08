@@ -5,7 +5,6 @@ using System.IO;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.PlatformConfiguration;
 
 namespace NeuToDo.Services
 {
@@ -57,7 +56,7 @@ namespace NeuToDo.Services
                     var privateExternalDirectory = accessHelper.GetPrivateExternalDirectory();
                     if (!await accessHelper.CheckPermission()) throw new Exception("缺少外部存储访问权限");
 
-                    destPath = Path.Combine(privateExternalDirectory, 
+                    destPath = Path.Combine(privateExternalDirectory,
                         DbStorageProvider.DbName);
 
                     File.Copy(DbStorageProvider.DbPath, destPath, true);

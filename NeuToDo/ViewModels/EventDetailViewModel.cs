@@ -199,10 +199,10 @@ namespace NeuToDo.ViewModels
             EventGroupList.Clear();
             if (SelectedEvent is NeuEvent neuEvent)
             {
- 
+
                 EventSemester = await _semesterStorage.GetAsync(neuEvent.SemesterId);
 
-                var courses =  await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
+                var courses = await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
                 var courseGroupList = courses.GroupBy(c => new { c.Day, c.ClassNo, c.Detail })
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)
