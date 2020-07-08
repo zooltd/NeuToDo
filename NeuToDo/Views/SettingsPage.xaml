@@ -201,7 +201,8 @@
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
-                                    Text="导出" />
+                                    Text="导出" 
+                                    Command="{Binding ExportDb}"/>
                         </Grid>
                     </Grid>
                 </StackLayout>

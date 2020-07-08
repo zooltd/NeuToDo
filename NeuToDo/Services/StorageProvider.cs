@@ -8,7 +8,7 @@ namespace NeuToDo.Services
 {
     public class StorageProvider : IStorageProvider
     {
-        private const string DbName = "events.sqlite3";
+        public const string DbName = "events.sqlite3";
 
         public static readonly string DbPath = Path.Combine(
             Environment.GetFolderPath(Environment.SpecialFolder

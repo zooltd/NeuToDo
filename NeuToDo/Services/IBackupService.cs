@@ -6,6 +6,8 @@ namespace NeuToDo.Services
     public interface IBackupService
     {
         Task ImportAsync(List<FileType> allowedTypes = null);
+
+        Task<string> ExportAsync();
     }
 
     public static class PlatformFileTypeDict

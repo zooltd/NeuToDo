@@ -57,6 +57,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting">
       <Version>3.1.5</Version>
     </PackageReference>
+    <PackageReference Include="Plugin.Permissions">
+      <Version>6.0.1</Version>
+    </PackageReference>
     <PackageReference Include="Rg.Plugins.Popup">
       <Version>2.0.0.3</Version>
     </PackageReference>
@@ -74,6 +77,7 @@
     <Compile Include="CustomEntryRenderer.cs" />
     <Compile Include="CustomPickerRender.cs" />
     <Compile Include="CustomTimePickerRenderer.cs" />
+    <Compile Include="FileAccessHelper.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -84,8 +84,26 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await _backupService.ImportAsync(new List<FileType> { FileType.Sqlite });
+                await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
                 _storageProvider.OnUpdateData();
+            }
+            catch (Exception e)
+            {
+                _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
+            }
+        }
+
+        private RelayCommand _exportDb;
+
+        public RelayCommand ExportDb =>
+            _exportDb ??= new RelayCommand(async () => await ExportDbFunction());
+
+        private async Task ExportDbFunction()
+        {
+            try
+            {
+                var dest = await _backupService.ExportAsync();
+                _dialogService.DisplayAlert("提示", $"保存在{dest}", "OK");
             }
             catch (Exception e)
             {

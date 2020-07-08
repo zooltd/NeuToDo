@@ -3,7 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
+using Xamarin.Forms.PlatformConfiguration;
 
 namespace NeuToDo.Services
 {
@@ -25,18 +27,45 @@ namespace NeuToDo.Services
                 _ => null
             };
             var pickedFile = await CrossFilePicker.Current.PickFile(fileTypes);
-            if (pickedFile == null) return;
 
-            if (pickedFile.FileName != "events.sqlite3")
-                throw new Exception("导入文件名应为\"events.sqlite3\"");
+            if (pickedFile == null)
+                throw new Exception($"导入文件名应为\"{StorageProvider.DbName}\"");
+
+            if (pickedFile.FileName != StorageProvider.DbName)
+                throw new Exception($"导入文件名应为\"{StorageProvider.DbName}\"");
 
             await _storageProvider.CloseConnectionAsync();
 
-            if (File.Exists(StorageProvider.DbPath))
-                File.Delete(StorageProvider.DbPath);
             var stream = pickedFile.GetStream();
             using var fileStream = File.Create(StorageProvider.DbPath);
             CopyStream(stream, fileStream);
+        }
+
+        public async Task<string> ExportAsync()
+        {
+            string destPath = null;
+            switch (Device.RuntimePlatform)
+            {
+                case Device.UWP:
+
+                    await Clipboard.SetTextAsync(StorageProvider.DbPath);
+                    throw new Exception("UWP下暂不支持, 可自行复制, 路径已保存到剪切板");
+                    break;
+                case Device.Android:
+                    await _storageProvider.CloseConnectionAsync();
+                    var accessHelper = DependencyService.Get<IFileAccessHelper>();
+                    var privateExternalDirectory = accessHelper.GetPrivateExternalDirectory();
+                    if (!await accessHelper.CheckPermission()) throw new Exception("缺少外部存储访问权限");
+
+                    destPath = Path.Combine(privateExternalDirectory, 
+                        StorageProvider.DbName);
+
+                    File.Copy(StorageProvider.DbPath, destPath, true);
+
+                    break;
+            }
+
+            return destPath;
         }
 
         private void CopyStream(Stream input, Stream output)
