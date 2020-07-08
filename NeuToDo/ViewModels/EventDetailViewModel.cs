@@ -13,23 +13,23 @@ namespace NeuToDo.ViewModels
 {
     public class EventDetailViewModel : ViewModelBase
     {
-        private readonly IStorageProvider _storageProvider;
-
+        private readonly IEventModelStorage<NeuEvent> _neuStorage;
+        private readonly ISemesterStorage _semesterStorage;
+        private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IPopupNavigationService _popupNavigationService;
-
         private readonly IDialogService _dialogService;
-
         private readonly IContentPageNavigationService _contentPageNavigationService;
-
         private readonly ICampusStorageService _campusStorageService;
 
-        public EventDetailViewModel(IStorageProvider storageProvider,
+        public EventDetailViewModel(IDbStorageProvider dbStorageProvider,
             IPopupNavigationService popupNavigationService,
             IDialogService dialogService,
             IContentPageNavigationService contentPageNavigationService,
             ICampusStorageService campusStorageService)
         {
-            _storageProvider = storageProvider;
+            _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
+            _semesterStorage = dbStorageProvider.GetSemesterStorage();
+            _dbStorageProvider = dbStorageProvider;
             _popupNavigationService = popupNavigationService;
             _dialogService = dialogService;
             _contentPageNavigationService = contentPageNavigationService;
@@ -124,9 +124,8 @@ namespace NeuToDo.ViewModels
         {
             var res = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!res) return;
-            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
-            _storageProvider.OnUpdateData();
+            await _neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
 
@@ -156,8 +155,6 @@ namespace NeuToDo.ViewModels
             }
 
             var campus = await _campusStorageService.GetCampus();
-
-            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
             var newList = new List<NeuEvent>();
             foreach (var eventGroup in EventGroupList)
             {
@@ -177,9 +174,9 @@ namespace NeuToDo.ViewModels
                 }));
             }
 
-            await neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
-            await neuStorage.InsertAllAsync(newList);
-            _storageProvider.OnUpdateData();
+            await _neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            await _neuStorage.InsertAllAsync(newList);
+            _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
 
@@ -202,11 +199,10 @@ namespace NeuToDo.ViewModels
             EventGroupList.Clear();
             if (SelectedEvent is NeuEvent neuEvent)
             {
-                var semesterStorage = await _storageProvider.GetSemesterStorage();
-                EventSemester = await semesterStorage.GetAsync(neuEvent.SemesterId);
+ 
+                EventSemester = await _semesterStorage.GetAsync(neuEvent.SemesterId);
 
-                var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-                var courses = await neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
+                var courses =  await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
                 var courseGroupList = courses.GroupBy(c => new { c.Day, c.ClassNo, c.Detail })
                     .OrderBy(p => p.Key.Day);
                 foreach (var group in courseGroupList)

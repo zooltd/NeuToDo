@@ -4,18 +4,19 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    public interface IStorageProvider
+    public interface IDbStorageProvider
     {
         Task CheckInitialization();
 
-        Task<IEventModelStorage<T>> GetEventModelStorage<T>() where T : EventModel, new();
+        IEventModelStorage<T> GetEventModelStorage<T>() where T : EventModel, new();
 
-        Task<ISemesterStorage> GetSemesterStorage();
+        ISemesterStorage GetSemesterStorage();
 
         Task CloseConnectionAsync();
 
-        //TODO 抽离成新的Service
+        //TODO 抽离成新的Service?
         public event EventHandler UpdateData;
+
         public void OnUpdateData();
     }
 }

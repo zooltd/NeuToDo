@@ -14,18 +14,19 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(StorageProvider.DbPath);
+            File.Delete(DbStorageProvider.DbPath);
         }
 
         [Test]
         public async Task GetDatabaseConnectionTest()
         {
-            Assert.IsFalse(File.Exists(StorageProvider.DbPath));
+            Assert.IsFalse(File.Exists(DbStorageProvider.DbPath));
 
-            var storageProvider = new StorageProvider();
-            await storageProvider.GetEventModelStorage<NeuEvent>();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
+            storageProvider.GetEventModelStorage<NeuEvent>();
 
-            Assert.IsTrue(File.Exists(StorageProvider.DbPath));
+            Assert.IsTrue(File.Exists(DbStorageProvider.DbPath));
 
             await storageProvider.CloseConnectionAsync();
         }
@@ -33,12 +34,13 @@ namespace NeuToDo.UnitTest.Services
         [Test]
         public async Task GetSemesterTableConnectionTest()
         {
-            Assert.IsFalse(File.Exists(StorageProvider.DbPath));
+            Assert.IsFalse(File.Exists(DbStorageProvider.DbPath));
 
-            var storageProvider = new StorageProvider();
-            await storageProvider.GetSemesterStorage();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
+            storageProvider.GetSemesterStorage();
 
-            Assert.IsTrue(File.Exists(StorageProvider.DbPath));
+            Assert.IsTrue(File.Exists(DbStorageProvider.DbPath));
 
             await storageProvider.CloseConnectionAsync();
         }
@@ -46,12 +48,12 @@ namespace NeuToDo.UnitTest.Services
         [Test]
         public void OnUpdateDataTest()
         {
-            var storageProvider = new StorageProvider();
+            var storageProvider = new DbStorageProvider();
             var voidClassMock = new Mock<VoidClass>();
             var classMockMock = voidClassMock.Object;
             storageProvider.UpdateData += classMockMock.VoidFunc;
             storageProvider.OnUpdateData();
-            // voidClassMock.Verify(x => x.VoidFunc(storageProvider, EventArgs.Empty), Times.Once);
+            // voidClassMock.Verify(x => x.VoidFunc(dbStorageProvider, EventArgs.Empty), Times.Once);
         }
     }
 

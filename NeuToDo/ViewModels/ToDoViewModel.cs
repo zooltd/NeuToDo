@@ -14,26 +14,32 @@ namespace NeuToDo.ViewModels
 {
     public class ToDoViewModel : ViewModelBase
     {
-        public ToDoViewModel(IStorageProvider storageProvider,
+        public ToDoViewModel(IDbStorageProvider dbStorageProvider,
             IContentPageNavigationService contentPageNavigationService,
             IDialogService dialogService)
         {
-            _storageProvider = storageProvider;
+            _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
+            _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
+            _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
+            _semesterStorage = dbStorageProvider.GetSemesterStorage();
+            _dbStorageProvider = dbStorageProvider;
             _contentPageNavigationService = contentPageNavigationService;
             _dialogService = dialogService;
-            storageProvider.UpdateData += OnGetData;
+            dbStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
-            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
         }
 
         #region 私有变量
 
-        private readonly IStorageProvider _storageProvider;
-
         private readonly IContentPageNavigationService _contentPageNavigationService;
-
         private readonly IDialogService _dialogService;
+        private readonly IEventModelStorage<NeuEvent> _neuStorage;
+        private readonly IEventModelStorage<MoocEvent> _moocStorage;
+        private readonly IEventModelStorage<UserEvent> _userStorage;
+        private readonly ISemesterStorage _semesterStorage;
+        private readonly IDbStorageProvider _dbStorageProvider;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -47,7 +53,7 @@ namespace NeuToDo.ViewModels
         private int _semesterIndex;
 
         private static readonly Semester EmptySemester = new Semester
-        { SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0 };
+            {SchoolYear = "未知的时间裂缝", Season = "请关联教务处", BaseDate = DateTime.MinValue, SemesterId = 0};
 
         #endregion
 
@@ -64,15 +70,12 @@ namespace NeuToDo.ViewModels
         /// <returns></returns>
         private async Task LoadData()
         {
-            var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-            var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
             var totalEventList = new List<EventModel>();
-            totalEventList.AddRange(await neuStorage.GetAllAsync());
-            totalEventList.AddRange(await moocStorage.GetAllAsync());
+            totalEventList.AddRange(await _neuStorage.GetAllAsync());
+            totalEventList.AddRange(await _moocStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
-            var semesterStorage = await _storageProvider.GetSemesterStorage();
-            _semesters = await semesterStorage.GetAllOrderedByBaseDateAsync();
+            _semesters = await _semesterStorage.GetAllOrderedByBaseDateAsync();
 
             UpdateCalendarData();
             UpdateSemester();
@@ -94,7 +97,7 @@ namespace NeuToDo.ViewModels
         /// </summary>
         private void UpdateSemester()
         {
-            ThisSunday = _today.AddDays(-(int)_today.DayOfWeek); //本周日
+            ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
 
             _semesterIndex = 0;
@@ -177,20 +180,17 @@ namespace NeuToDo.ViewModels
             {
                 case NeuEvent neuEvent:
                 {
-                    var storage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-                    await storage.UpdateAsync(neuEvent);
+                    await _neuStorage.UpdateAsync(neuEvent);
                     break;
                 }
                 case MoocEvent moocEvent:
                 {
-                    var storage = await _storageProvider.GetEventModelStorage<MoocEvent>();
-                    await storage.UpdateAsync(moocEvent);
+                    await _moocStorage.UpdateAsync(moocEvent);
                     break;
                 }
                 case UserEvent userEvent:
                 {
-                    var storage = await _storageProvider.GetEventModelStorage<UserEvent>();
-                    await storage.UpdateAsync(userEvent);
+                    await _userStorage.UpdateAsync(userEvent);
                     break;
                 }
             }
@@ -328,7 +328,7 @@ namespace NeuToDo.ViewModels
             }
 
             _contentPageNavigationService.PushAsync(new NeuEvent
-            { SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false });
+                {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
         }
 
         #endregion

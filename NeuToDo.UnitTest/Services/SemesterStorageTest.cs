@@ -12,14 +12,15 @@ namespace NeuToDo.UnitTest.Services
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(StorageProvider.DbPath);
+            File.Delete(DbStorageProvider.DbPath);
         }
 
         [Test]
         public async Task CrudTest()
         {
-            var storageProvider = new StorageProvider();
-            var semesterStorage = await storageProvider.GetSemesterStorage();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
+            var semesterStorage =  storageProvider.GetSemesterStorage();
             var dbData = await semesterStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
             var autumnSemester = new Semester

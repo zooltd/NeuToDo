@@ -20,20 +20,22 @@ namespace NeuToDo.ViewModels
 
         private readonly IAccountStorageService _accountStorageService;
 
-        private readonly IStorageProvider _storageProvider;
+        private readonly IEventModelStorage<MoocEvent> _moocStorage;
+
+        private readonly IDbStorageProvider _dbStorageProvider;
 
         private string _currTime;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             ILoginAndFetchDataService loginAndFetchDataService,
             IAccountStorageService accountStorageService,
-            IStorageProvider storageProvider)
+            IDbStorageProvider dbStorageProvider)
         {
+            _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _popupNavigationService = popupNavigationService;
             _loginAndFetchDataService = loginAndFetchDataService;
-
             _accountStorageService = accountStorageService;
-            _storageProvider = storageProvider;
+            _dbStorageProvider = dbStorageProvider;
         }
 
         #region 绑定方法
@@ -158,17 +160,15 @@ namespace NeuToDo.ViewModels
         public async Task SaveSelectedCoursesCommandFunction()
         {
             var resultList = (from Course course in SelectedCourses
-                              from moocEvent in MoocInfoGetter.EventList
-                              where moocEvent.Code == course.Code
-                              select moocEvent).ToList();
-            var moocStorage =
-                await _storageProvider.GetEventModelStorage<MoocEvent>();
-            await moocStorage.MergeAsync(resultList);
+                from moocEvent in MoocInfoGetter.EventList
+                where moocEvent.Code == course.Code
+                select moocEvent).ToList();
+            await _moocStorage.MergeAsync(resultList);
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants
                 .SuccessPopupPage);
             await Task.Delay(1500);
             await _popupNavigationService.PopAllAsync();
-            _storageProvider.OnUpdateData();
+            _dbStorageProvider.OnUpdateData();
         }
 
         #endregion

@@ -2,11 +2,12 @@
 using SQLite;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    public class StorageProvider : IStorageProvider
+    public class DbStorageProvider : IDbStorageProvider
     {
         public const string DbName = "events.sqlite3";
 
@@ -17,7 +18,6 @@ namespace NeuToDo.Services
         private readonly Lazy<SQLiteAsyncConnection> _databaseConnection =
             new Lazy<SQLiteAsyncConnection>(() =>
                 new SQLiteAsyncConnection(DbPath));
-
 
         public async Task CheckInitialization()
         {
@@ -32,32 +32,30 @@ namespace NeuToDo.Services
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(Semester));
         }
 
+        private IEventModelStorage<NeuEvent> _neuStorage;
+        private IEventModelStorage<MoocEvent> _moocStorage;
+        private IEventModelStorage<UserEvent> _userStorage;
 
-        public async Task<IEventModelStorage<T>> GetEventModelStorage<T>()
+        public IEventModelStorage<T> GetEventModelStorage<T>()
             where T : EventModel, new()
         {
-            if (!await TableExists(typeof(T).Name, _databaseConnection.Value))
+            return typeof(T).Name switch
             {
-                await _databaseConnection.Value
-                    .CreateTablesAsync(CreateFlags.None, typeof(T));
-            }
-
-            return new EventModelStorage<T>(_databaseConnection.Value);
+                nameof(NeuEvent) => (_neuStorage ??= new EventModelStorage<NeuEvent>(_databaseConnection.Value)) as
+                IEventModelStorage<T>,
+                nameof(MoocEvent) => (_moocStorage ??= new EventModelStorage<MoocEvent>(_databaseConnection.Value)) as
+                IEventModelStorage<T>,
+                nameof(UserEvent) => (_userStorage ??= new EventModelStorage<UserEvent>(_databaseConnection.Value)) as
+                IEventModelStorage<T>,
+                _ => null
+            };
         }
 
         private ISemesterStorage _semesterStorage;
 
-        public async Task<ISemesterStorage> GetSemesterStorage()
+        public ISemesterStorage GetSemesterStorage()
         {
-            if (_semesterStorage != null) return _semesterStorage;
-            if (!await TableExists(nameof(Semester), _databaseConnection.Value))
-            {
-                await _databaseConnection.Value
-                    .CreateTablesAsync(CreateFlags.None, typeof(Semester));
-            }
-
-            _semesterStorage = new SemesterStorage(_databaseConnection.Value);
-            return _semesterStorage;
+            return _semesterStorage ??= new SemesterStorage(_databaseConnection.Value);
         }
 
         public async Task CloseConnectionAsync()

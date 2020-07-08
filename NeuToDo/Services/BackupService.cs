@@ -11,11 +11,11 @@ namespace NeuToDo.Services
 {
     public class BackupService : IBackupService
     {
-        private readonly IStorageProvider _storageProvider;
+        private readonly IDbStorageProvider _dbStorageProvider;
 
-        public BackupService(IStorageProvider storageProvider)
+        public BackupService(IDbStorageProvider dbStorageProvider)
         {
-            _storageProvider = storageProvider;
+            _dbStorageProvider = dbStorageProvider;
         }
 
         public async Task ImportAsync(List<FileType> allowedTypes = null)
@@ -29,15 +29,15 @@ namespace NeuToDo.Services
             var pickedFile = await CrossFilePicker.Current.PickFile(fileTypes);
 
             if (pickedFile == null)
-                throw new Exception($"导入文件名应为\"{StorageProvider.DbName}\"");
+                throw new Exception($"导入文件名应为\"{DbStorageProvider.DbName}\"");
 
-            if (pickedFile.FileName != StorageProvider.DbName)
-                throw new Exception($"导入文件名应为\"{StorageProvider.DbName}\"");
+            if (pickedFile.FileName != DbStorageProvider.DbName)
+                throw new Exception($"导入文件名应为\"{DbStorageProvider.DbName}\"");
 
-            await _storageProvider.CloseConnectionAsync();
+            await _dbStorageProvider.CloseConnectionAsync();
 
             var stream = pickedFile.GetStream();
-            using var fileStream = File.Create(StorageProvider.DbPath);
+            using var fileStream = File.Create(DbStorageProvider.DbPath);
             CopyStream(stream, fileStream);
         }
 
@@ -48,19 +48,19 @@ namespace NeuToDo.Services
             {
                 case Device.UWP:
 
-                    await Clipboard.SetTextAsync(StorageProvider.DbPath);
+                    await Clipboard.SetTextAsync(DbStorageProvider.DbPath);
                     throw new Exception("UWP下暂不支持, 可自行复制, 路径已保存到剪切板");
                     break;
                 case Device.Android:
-                    await _storageProvider.CloseConnectionAsync();
+                    await _dbStorageProvider.CloseConnectionAsync();
                     var accessHelper = DependencyService.Get<IFileAccessHelper>();
                     var privateExternalDirectory = accessHelper.GetPrivateExternalDirectory();
                     if (!await accessHelper.CheckPermission()) throw new Exception("缺少外部存储访问权限");
 
                     destPath = Path.Combine(privateExternalDirectory, 
-                        StorageProvider.DbName);
+                        DbStorageProvider.DbName);
 
-                    File.Copy(StorageProvider.DbPath, destPath, true);
+                    File.Copy(DbStorageProvider.DbPath, destPath, true);
 
                     break;
             }

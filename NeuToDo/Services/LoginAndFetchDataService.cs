@@ -7,13 +7,15 @@ namespace NeuToDo.Services
 {
     public class LoginAndFetchDataService : ILoginAndFetchDataService
     {
-        private readonly IStorageProvider _storageProvider;
-        // private static IHttpClientFactory _httpClientFactory;
+        private readonly IEventModelStorage<NeuEvent> _neuStorage;
+        private readonly ISemesterStorage _semesterStorage;
+        private readonly IDbStorageProvider _dbStorageProvider;
 
-        public LoginAndFetchDataService(IStorageProvider storageProvider)
+        public LoginAndFetchDataService(IDbStorageProvider dbStorageProvider)
         {
-            _storageProvider = storageProvider;
-            // _httpClientFactory = httpClientFactory;
+            _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
+            _semesterStorage = dbStorageProvider.GetSemesterStorage();
+            _dbStorageProvider = dbStorageProvider;
         }
 
         // public event EventHandler GetData;
@@ -28,16 +30,15 @@ namespace NeuToDo.Services
                     //TODO 依赖注入？
                     SimpleIoc.Default.Register<NeuSyllabusGetter>();
                     var neuGetter = SimpleIoc.Default.GetInstance<NeuSyllabusGetter>();
-                    var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-                    var semesterStorage = await _storageProvider.GetSemesterStorage();
+
                     try
                     {
                         var (semester, neuCourses) = await neuGetter.LoginAndFetchData(userId, password);
                         // await neuStorage.ClearTableAsync();
                         // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
-                        await semesterStorage.InsertOrReplaceAsync(semester);
-                        await neuStorage.MergeAsync(neuCourses);
-                        _storageProvider.OnUpdateData();
+                        await _semesterStorage.InsertOrReplaceAsync(semester);
+                        await _neuStorage.MergeAsync(neuCourses);
+                        _dbStorageProvider.OnUpdateData();
                         return true;
                     }
                     catch (Exception e)
@@ -50,14 +51,14 @@ namespace NeuToDo.Services
                     // var moocGetter = new MoocInfoGetter(_httpClientFactory);
                     SimpleIoc.Default.Register<MoocInfoGetter>();
                     var moocGetter = SimpleIoc.Default.GetInstance<MoocInfoGetter>();
-                    // var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
+                    // var moocStorage = await _dbStorageProvider.GetEventModelStorage<MoocEvent>();
                     try
                     {
                         await moocGetter.WebCrawler(userId, password);
                         // await moocStorage.ClearTableAsync();
                         // await moocStorage.InsertAllAsync(MoocInfoGetter.EventList);
-                        //TODO 重构 _storageProvider.OnUpdateData()在LoginViewModel中
-                        // _storageProvider.OnUpdateData();
+                        //TODO 重构 _dbStorageProvider.OnUpdateData()在LoginViewModel中
+                        // _dbStorageProvider.OnUpdateData();
                         return true;
                     }
                     catch (Exception e)

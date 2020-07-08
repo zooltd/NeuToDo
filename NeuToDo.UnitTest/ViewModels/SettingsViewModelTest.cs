@@ -17,7 +17,7 @@ namespace NeuToDo.UnitTest.ViewModels
         {
             var popupNavigationMock = new Mock<IPopupNavigationService>();
 
-            var eventModelStorageProviderMock = new Mock<IStorageProvider>();
+            var eventModelStorageProviderMock = new Mock<IDbStorageProvider>();
             var accountStorageService = new Mock<IAccountStorageService>();
             var alertServiceMock = new Mock<IDialogService>();
             var backupServiceMock = new Mock<IBackupService>();

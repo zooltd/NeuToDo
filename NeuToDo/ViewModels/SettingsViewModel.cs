@@ -13,24 +13,24 @@ namespace NeuToDo.ViewModels
     public class SettingsViewModel : ViewModelBase
     {
         private readonly IPopupNavigationService _popupNavigationService;
-
         private readonly IAccountStorageService _accountStorageService;
-
-        private readonly IStorageProvider _storageProvider;
-
         private readonly IDialogService _dialogService;
-
         private readonly IBackupService _backupService;
+        private readonly IEventModelStorage<NeuEvent> _neuStorage;
+        private readonly IEventModelStorage<MoocEvent> _moocStorage;
+        private readonly IDbStorageProvider _dbStorageProvider;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
-            IStorageProvider storageProvider,
+            IDbStorageProvider dbStorageProvider,
             IDialogService dialogService,
             IBackupService backupService)
         {
+            _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
+            _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _popupNavigationService = popupNavigationService;
             _accountStorageService = accountStorageService;
-            _storageProvider = storageProvider;
+            _dbStorageProvider = dbStorageProvider;
             _dialogService = dialogService;
             _backupService = backupService;
             ServerPlatforms = ServerPlatform.ServerPlatforms;
@@ -85,7 +85,7 @@ namespace NeuToDo.ViewModels
             try
             {
                 await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
-                _storageProvider.OnUpdateData();
+                _dbStorageProvider.OnUpdateData();
             }
             catch (Exception e)
             {
@@ -125,14 +125,13 @@ namespace NeuToDo.ViewModels
             switch (itemType)
             {
                 case ServerType.Neu:
-                    var neuStorage = await _storageProvider.GetEventModelStorage<NeuEvent>();
-                    await neuStorage.ClearTableAsync();
-                    _storageProvider.OnUpdateData();
+                   
+                    await _neuStorage.ClearTableAsync();
+                    _dbStorageProvider.OnUpdateData();
                     break;
                 case ServerType.Mooc:
-                    var moocStorage = await _storageProvider.GetEventModelStorage<MoocEvent>();
-                    await moocStorage.ClearTableAsync();
-                    _storageProvider.OnUpdateData();
+                    await _moocStorage.ClearTableAsync();
+                    _dbStorageProvider.OnUpdateData();
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();

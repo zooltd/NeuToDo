@@ -8,11 +8,11 @@ namespace NeuToDo.ViewModels
 {
     public class MainPageViewModel : ViewModelBase
     {
-        private readonly IStorageProvider _storageProvider;
+        private readonly IDbStorageProvider _dbStorageProvider;
 
-        public MainPageViewModel(IStorageProvider storageProvider)
+        public MainPageViewModel(IDbStorageProvider dbStorageProvider)
         {
-            _storageProvider = storageProvider;
+            _dbStorageProvider = dbStorageProvider;
         }
 
         /// <summary>
@@ -32,7 +32,7 @@ namespace NeuToDo.ViewModels
         /// <returns></returns>
         private async Task PageAppearingCommandFunction()
         {
-            await _storageProvider.CheckInitialization();
+            await _dbStorageProvider.CheckInitialization();
         }
     }
 }

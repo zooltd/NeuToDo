@@ -23,7 +23,7 @@ namespace NeuToDo.UnitTest.Services
             var httpClientFactoryMock = new Mock<IHttpClientFactory>();
             var mockHttpClientFactory = httpClientFactoryMock.Object;
 
-            // var storageProviderMock = new Mock<IStorageProvider>();
+            // var storageProviderMock = new Mock<IDbStorageProvider>();
             // var mockStorageProvider = storageProviderMock.Object;
 
             var neuSyllabusGetter = new NeuSyllabusGetter(mockHttpClientFactory);

@@ -19,13 +19,14 @@ namespace NeuToDo.UnitTest.ViewModels
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
         {
-            File.Delete(StorageProvider.DbPath);
+            File.Delete(DbStorageProvider.DbPath);
         }
 
         [Test]
         public async Task PageAppearingCommandFunctionTest()
         {
-            var storageProvider = new StorageProvider();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var alertServiceMock = new Mock<IDialogService>();
@@ -41,8 +42,8 @@ namespace NeuToDo.UnitTest.ViewModels
                 SelectedEvent = new NeuEvent {Code = "A101", SemesterId = 31}
             };
             // campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
-            var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
-            var semesterStorage = await storageProvider.GetSemesterStorage();
+            var neuStorage =  storageProvider.GetEventModelStorage<NeuEvent>();
+            var semesterStorage =  storageProvider.GetSemesterStorage();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
                 new NeuEvent
@@ -87,7 +88,8 @@ namespace NeuToDo.UnitTest.ViewModels
         [Test]
         public async Task DeleteCourseFunctionTest()
         {
-            var storageProvider = new StorageProvider();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var alertServiceMock = new Mock<IDialogService>();
@@ -100,7 +102,7 @@ namespace NeuToDo.UnitTest.ViewModels
                     , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
                 {SelectedEvent = new NeuEvent {Code = "A101"}};
 
-            var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
+            var neuStorage =  storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
                 new NeuEvent
@@ -145,7 +147,8 @@ namespace NeuToDo.UnitTest.ViewModels
         [Test]
         public async Task EditDoneFunctionTest()
         {
-            var storageProvider = new StorageProvider();
+            var storageProvider = new DbStorageProvider();
+            await storageProvider.CheckInitialization();
             var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
             var mockPopupNavigationService = popupNavigationServiceMock.Object;
             var alertServiceMock = new Mock<IDialogService>();
@@ -175,7 +178,7 @@ namespace NeuToDo.UnitTest.ViewModels
             eventDetailViewModel.EventSemester = new Semester
                 {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)};
             await eventDetailViewModel.EditDoneFunction();
-            var neuStorage = await storageProvider.GetEventModelStorage<NeuEvent>();
+            var neuStorage =  storageProvider.GetEventModelStorage<NeuEvent>();
             var dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
 
