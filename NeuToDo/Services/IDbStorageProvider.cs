@@ -6,6 +6,8 @@ namespace NeuToDo.Services
 {
     public interface IDbStorageProvider
     {
+        bool IsInitialized { get; set; }
+
         Task CheckInitialization();
 
         IEventModelStorage<T> GetEventModelStorage<T>() where T : EventModel, new();

@@ -12,13 +12,13 @@
             x:Class="NeuToDo.Views.MainPage"
             BindingContext="{Binding MainPageViewModel, Source={StaticResource ViewModelLocator}}">
 
-    <TabbedPage.Behaviors>
-        <b:EventHandlerBehavior EventName="Appearing">
-            <b:ActionCollection>
-                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
-            </b:ActionCollection>
-        </b:EventHandlerBehavior>
-    </TabbedPage.Behaviors>
+    <!-- <TabbedPage.Behaviors> -->
+    <!--     <b:EventHandlerBehavior EventName="Appearing"> -->
+    <!--         <b:ActionCollection> -->
+    <!--             <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" /> -->
+    <!--         </b:ActionCollection> -->
+    <!--     </b:EventHandlerBehavior> -->
+    <!-- </TabbedPage.Behaviors> -->
     <TabbedPage.Children>
 
         <NavigationPage Title="Planner" IconImageSource="list.png">

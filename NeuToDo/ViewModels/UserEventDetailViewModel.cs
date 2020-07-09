@@ -1,18 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
-using NeuToDo.Components;
 using NeuToDo.Models;
+using NeuToDo.Services;
 
 namespace NeuToDo.ViewModels
 {
     public class UserEventDetailViewModel : ViewModelBase
     {
-        private List<int> _daySpans;
+        private readonly IDbStorageProvider _dbStorageProvider;
+        private readonly IEventModelStorage<UserEvent> _userStorage;
+        private readonly IDialogService _dialogService;
+        private readonly IContentPageNavigationService _contentPageNavigationService;
+
+        public UserEventDetailViewModel(IDbStorageProvider dbStorageProvider,
+            IDialogService dialogService,
+            IContentPageNavigationService contentPageNavigationService)
+        {
+            _dbStorageProvider = dbStorageProvider;
+            _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
+            _dialogService = dialogService;
+            _contentPageNavigationService = contentPageNavigationService;
+        }
+
+
         public List<int> DaySpans => Enumerable.Range(1, 31).ToList();
 
         private UserEvent _selectedEvent;
@@ -22,7 +36,6 @@ namespace NeuToDo.ViewModels
             get => _selectedEvent;
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
-
 
         private UserEventWrapper _userEventDetail;
 
@@ -40,12 +53,35 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             UserEventDetail = new UserEventWrapper(SelectedEvent);
+            if (!UserEventDetail.IsRepeat) return;
+            var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code);
+            var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
+                .OrderBy(x => x.Key.StartDate).ToList();
+            foreach (var group in userEventGroupList)
+            {
+                UserEventDetail.EventPeriods.Add(new Period
+                {
+                    StartDate = group.Key.StartDate,
+                    EndDate = group.Key.EndDate,
+                    TimeOfDay = group.Key.TimeOfDay,
+                    DaySpan = group.Key.DaySpan
+                });
+            }
         }
 
         private RelayCommand _deleteAll;
 
         public RelayCommand DeleteAll =>
-            _deleteAll ??= new RelayCommand(() => { });
+            _deleteAll ??= new RelayCommand(async () => await DeleteAllFunction());
+
+        private async Task DeleteAllFunction()
+        {
+            var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
+            if (!toDelete) return;
+            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
 
         private RelayCommand _addPeriod;
 
@@ -55,7 +91,7 @@ namespace NeuToDo.ViewModels
                 UserEventDetail.EventPeriods.Add(new Period
                 {
                     StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(7),
-                    EventTime = TimeSpan.Zero, DaySpan = 1
+                    TimeOfDay = TimeSpan.Zero, DaySpan = 1
                 });
             });
 
@@ -64,40 +100,25 @@ namespace NeuToDo.ViewModels
         public RelayCommand EditDone =>
             _editDone ??= new RelayCommand(async () => await EditDoneFunction());
 
-        private async Task EditDoneFunction()
+        public async Task EditDoneFunction()
         {
+            if (string.IsNullOrWhiteSpace(UserEventDetail.Title))
+            {
+                _dialogService.DisplayAlert("警告", "事件标题不能为空", "OK");
+                return;
+            }
+
+            var userEvents = UserEventDetail.GetUserEvents();
+
+            await _userStorage.InsertAllAsync(userEvents);
+
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
         }
 
         private RelayCommand<Period> _removePeriod;
 
         public RelayCommand<Period> RemovePeriod =>
             _removePeriod ??= new RelayCommand<Period>((p) => { UserEventDetail.EventPeriods.Remove(p); });
-    }
-
-    public class UserEventWrapper
-    {
-        public UserEvent UserEvent { get; set; }
-
-        public DateTime EventDate { get; set; }
-
-        public TimeSpan EventTime { get; set; }
-
-        public ObservableCollection<Period> EventPeriods { get; set; }
-
-        public UserEventWrapper(UserEvent userEvent)
-        {
-            UserEvent = userEvent;
-            EventDate = userEvent.Time.Date;
-            EventTime = userEvent.Time.TimeOfDay;
-            EventPeriods = new ObservableCollection<Period>();
-        }
-    }
-
-    public class Period
-    {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public TimeSpan EventTime { get; set; }
-        public int DaySpan { get; set; }
     }
 }

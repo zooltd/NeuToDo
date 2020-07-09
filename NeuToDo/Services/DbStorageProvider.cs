@@ -18,6 +18,8 @@ namespace NeuToDo.Services
             new Lazy<SQLiteAsyncConnection>(() =>
                 new SQLiteAsyncConnection(DbPath));
 
+        public bool IsInitialized { get; set; }
+
         public async Task CheckInitialization()
         {
             //TODO 一次查找完毕
@@ -29,6 +31,7 @@ namespace NeuToDo.Services
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(UserEvent));
             if (!await TableExists(nameof(Semester), _databaseConnection.Value))
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(Semester));
+            IsInitialized = true;
         }
 
         private IEventModelStorage<NeuEvent> _neuStorage;

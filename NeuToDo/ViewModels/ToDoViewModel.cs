@@ -19,6 +19,7 @@ namespace NeuToDo.ViewModels
             IDialogService dialogService,
             IAcademicCalendarService academicCalendarService)
         {
+            _dbStorageProvider = dbStorageProvider;
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
@@ -35,6 +36,7 @@ namespace NeuToDo.ViewModels
 
         private readonly IContentPageNavigationService _contentPageNavigationService;
         private readonly IDialogService _dialogService;
+        private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IEventModelStorage<UserEvent> _userStorage;
@@ -65,6 +67,7 @@ namespace NeuToDo.ViewModels
             var totalEventList = new List<EventModel>();
             totalEventList.AddRange(await _neuStorage.GetAllAsync());
             totalEventList.AddRange(await _moocStorage.GetAllAsync());
+            totalEventList.AddRange(await _userStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
             // _semesters = await _semesterStorage.GetAllOrderedByBaseDateAsync();
@@ -151,6 +154,7 @@ namespace NeuToDo.ViewModels
         private async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
+            await _dbStorageProvider.CheckInitialization(); //TODO
             await LoadData();
             _isLoaded = true;
         }
@@ -281,7 +285,10 @@ namespace NeuToDo.ViewModels
             }
 
             await _contentPageNavigationService.PushAsync(new NeuEvent
-                {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
+            {
+                SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false,
+                Time = DateTime.Today
+            });
         }
 
         #endregion

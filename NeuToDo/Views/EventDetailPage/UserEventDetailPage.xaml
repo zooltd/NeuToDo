@@ -41,12 +41,12 @@
                     <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
                     <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称"
-                                    Text="{Binding UserEventDetail.UserEvent.Title}"
+                                    Text="{Binding UserEventDetail.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
                            WidthRequest="25" HeightRequest="25" />
                     <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情"
-                                    Text="{Binding UserEventDetail.UserEvent.Detail}"
+                                    Text="{Binding UserEventDetail.Detail}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                 </Grid>
             </Frame>
@@ -111,7 +111,7 @@
 
                     <Image Grid.Row="2" Grid.Column="0" Source="repeat.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.UserEvent.IsRepeat}" x:Name="Switch" />
+                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" />
                 </Grid>
             </Frame>
 
