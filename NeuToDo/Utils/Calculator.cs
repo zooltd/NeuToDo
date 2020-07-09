@@ -17,6 +17,6 @@ namespace NeuToDo.Utils
             => (int)((date - baseDate).TotalDays / 7);
 
         public static string CalculateUniqueNeuEventCode()
-            => "c" + DateTime.Now.ToString("yyMMddHHmmssff");
+            => "C" + DateTime.Now.ToString("yyMMddHHmmssff");
     }
 }
