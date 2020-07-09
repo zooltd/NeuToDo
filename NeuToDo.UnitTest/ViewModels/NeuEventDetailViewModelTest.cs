@@ -96,7 +96,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var eventDetailViewModel = new NeuEventDetailViewModel(storageProvider, mockPopupNavigationService
                     , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
                 {SelectedEvent = new NeuEvent {Code = "A101"}};
-
+            eventDetailViewModel.NeuEventDetail = new NeuEventWrapper(eventDetailViewModel.SelectedEvent);
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
             {
@@ -202,6 +202,7 @@ namespace NeuToDo.UnitTest.ViewModels
             await eventDetailViewModel.EditDoneFunction();
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 11);
+
             await storageProvider.CloseConnectionAsync();
         }
     }
