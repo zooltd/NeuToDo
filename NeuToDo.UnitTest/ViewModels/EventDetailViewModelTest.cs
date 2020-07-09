@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
+using EventGroup = NeuToDo.ViewModels.EventGroup;
 
 namespace NeuToDo.UnitTest.ViewModels
 {
