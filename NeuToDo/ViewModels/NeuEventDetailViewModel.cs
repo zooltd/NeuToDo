@@ -45,11 +45,11 @@ namespace NeuToDo.ViewModels
             _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction());
 
-        private async Task PageAppearingCommandFunction()
+        public async Task PageAppearingCommandFunction()
         {
             NeuEventDetail = new NeuEventWrapper(SelectedEvent);
             NeuEventDetail.EventSemester = await _semesterStorage.GetAsync(NeuEventDetail.SemesterId);
-            var courses = await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
+            var courses = await _neuStorage.GetAllAsync(e => e.Code == NeuEventDetail.Code);
             var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
                 .OrderBy(p => p.Key.Day);
             foreach (var group in courseGroupList)
@@ -82,11 +82,11 @@ namespace NeuToDo.ViewModels
         public RelayCommand DeleteAll =>
             _deleteAll ??= new RelayCommand((async () => await DeleteAllFunction()));
 
-        private async Task DeleteAllFunction()
+        public async Task DeleteAllFunction()
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!toDelete) return;
-            await _neuStorage.DeleteAllAsync(e => e.Code == SelectedEvent.Code);
+            await _neuStorage.DeleteAllAsync(e => e.Code == NeuEventDetail.Code);
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -97,7 +97,7 @@ namespace NeuToDo.ViewModels
 
         public async Task EditDoneFunction()
         {
-            if (string.IsNullOrWhiteSpace(SelectedEvent.Title))
+            if (string.IsNullOrWhiteSpace(NeuEventDetail.Title))
             {
                 _dialogService.DisplayAlert("操作失败", "课程名称格式错误", "OK");
                 return;
@@ -121,8 +121,8 @@ namespace NeuToDo.ViewModels
             {
                 newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
                 {
-                    Title = SelectedEvent.Title,
-                    Code = SelectedEvent.Code,
+                    Title = NeuEventDetail.Title,
+                    Code = NeuEventDetail.Code,
                     Day = (int) eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
@@ -134,7 +134,7 @@ namespace NeuToDo.ViewModels
                 }));
             }
 
-            await _neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            await _neuStorage.DeleteAllAsync((e => e.Code == NeuEventDetail.Code));
             await _neuStorage.InsertAllAsync(newList);
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();

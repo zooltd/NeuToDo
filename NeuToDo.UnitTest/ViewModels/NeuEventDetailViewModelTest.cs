@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.UnitTest.ViewModels
 {
-    public class EventDetailViewModelTest
+    public class NeuEventDetailViewModelTest
     {
         [SetUp, TearDown]
         public static void RemoveDatabaseFile()
@@ -32,11 +32,10 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
+            var eventDetailViewModel = new NeuEventDetailViewModel(storageProvider, mockPopupNavigationService
                 , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
             {
-                EventGroupList = new ObservableCollection<NeuEventPeriod>(),
-                SelectedEvent = new NeuEvent { Code = "A101", SemesterId = 31 }
+                SelectedEvent = new NeuEvent {Code = "A101", SemesterId = 31}
             };
             // campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
@@ -46,38 +45,37 @@ namespace NeuToDo.UnitTest.ViewModels
                 new NeuEvent
                 {
                     Id = 1, Code = "A101", Title = "A101", Detail = "A101",
-                    Day = (int) DayOfWeek.Saturday, Week = 1, ClassNo = 1
+                    Day = (int) DayOfWeek.Saturday, Week = 1, ClassNo = 1, SemesterId = 31
                 },
                 new NeuEvent
                 {
                     Id = 2, Code = "A101", Title = "A101", Detail = "A101",
-                    Day = (int) DayOfWeek.Saturday, Week = 2, ClassNo = 1
+                    Day = (int) DayOfWeek.Saturday, Week = 2, ClassNo = 1, SemesterId = 31
                 },
                 new NeuEvent
                 {
                     Id = 3, Code = "A101", Title = "A101", Detail = "B101",
-                    Day = (int) DayOfWeek.Sunday, Week = 1, ClassNo = 1
+                    Day = (int) DayOfWeek.Sunday, Week = 1, ClassNo = 1, SemesterId = 31
                 },
                 new NeuEvent
                 {
                     Id = 4, Code = "A101", Title = "A102", Detail = "C101",
-                    Day = (int) DayOfWeek.Sunday, Week = 2, ClassNo = 1
+                    Day = (int) DayOfWeek.Sunday, Week = 2, ClassNo = 1, SemesterId = 31
                 },
                 new NeuEvent
                 {
                     Id = 5, Code = "A101", Title = "A102", Detail = "C101",
-                    Day = (int) DayOfWeek.Sunday, Week = 3, ClassNo = 1
+                    Day = (int) DayOfWeek.Sunday, Week = 3, ClassNo = 1, SemesterId = 31
                 },
                 new NeuEvent
                 {
-                    Id = 6, Code = "B101", Title = "A102", Detail = "A102",
+                    Id = 6, Code = "B101", Title = "A102", Detail = "A102", SemesterId = 31
                 }
             });
             await semesterStorage.InsertOrReplaceAsync(new Semester
-            { SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16) });
+                {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)});
             await eventDetailViewModel.PageAppearingCommandFunction();
-            var eventGroupList = eventDetailViewModel.EventGroupList;
-            Assert.AreEqual(eventGroupList.Count, 3);
+            Assert.AreEqual(3, eventDetailViewModel.NeuEventDetail.EventPeriods.Count);
 
             await storageProvider.CloseConnectionAsync();
         }
@@ -95,9 +93,9 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
+            var eventDetailViewModel = new NeuEventDetailViewModel(storageProvider, mockPopupNavigationService
                     , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
-            { SelectedEvent = new NeuEvent { Code = "A101" } };
+                {SelectedEvent = new NeuEvent {Code = "A101"}};
 
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
@@ -154,33 +152,37 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
             var campusStorageServiceMock = new Mock<ICampusStorageService>();
             var mockCampusStorageService = campusStorageServiceMock.Object;
-            var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService,
+            var eventDetailViewModel = new NeuEventDetailViewModel(storageProvider, mockPopupNavigationService,
                 mockAlertService, mockEventDetailNavigationService, mockCampusStorageService);
             campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
 
-            eventDetailViewModel.SelectedEvent = new EventModel { Code = "A101", Title = "" };
-            eventDetailViewModel.EventGroupList = new ObservableCollection<NeuEventPeriod>
+            eventDetailViewModel.SelectedEvent = new NeuEvent {Code = "A101", Title = ""};
+            eventDetailViewModel.NeuEventDetail = new NeuEventWrapper(eventDetailViewModel.SelectedEvent)
             {
-                new NeuEventPeriod
+                EventPeriods = new ObservableCollection<NeuEventPeriod>
                 {
-                    ClassIndex = 5, Day = DayOfWeek.Sunday, Detail = "5-8, someone, 信息A101(浑南校区)",
-                    WeekNo = new List<int> {2, 3, 4}
+                    new NeuEventPeriod
+                    {
+                        ClassIndex = 5, Day = DayOfWeek.Sunday, Detail = "5-8, someone, 信息A101(浑南校区)",
+                        WeekNo = new List<int> {2, 3, 4}
+                    },
+                    new NeuEventPeriod
+                    {
+                        ClassIndex = 5, Day = DayOfWeek.Saturday, Detail = "5-8, someone, 信息A101(浑南校区)",
+                        WeekNo = new List<int> {1, 2, 3, 7, 8}
+                    }
                 },
-                new NeuEventPeriod
-                {
-                    ClassIndex = 5, Day = DayOfWeek.Saturday, Detail = "5-8, someone, 信息A101(浑南校区)",
-                    WeekNo = new List<int> {1, 2, 3, 7, 8}
-                }
+                EventSemester = new Semester
+                    {SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16)}
             };
-            eventDetailViewModel.EventSemester = new Semester
-            { SemesterId = 31, SchoolYear = "2019-2020", Season = "春季", BaseDate = new DateTime(2020, 2, 16) };
+
             await eventDetailViewModel.EditDoneFunction();
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
             var dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
 
-            eventDetailViewModel.SelectedEvent.Title = "A101";
-            eventDetailViewModel.EventGroupList.Add(new NeuEventPeriod
+            eventDetailViewModel.NeuEventDetail.Title = "A101";
+            eventDetailViewModel.NeuEventDetail.EventPeriods.Add(new NeuEventPeriod
             {
                 ClassIndex = 0,
                 Day = DayOfWeek.Monday,
@@ -191,12 +193,12 @@ namespace NeuToDo.UnitTest.ViewModels
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
 
-            eventDetailViewModel.EventGroupList[2].WeekNo.AddRange(new[] { 1, 2, 3 });
+            eventDetailViewModel.NeuEventDetail.EventPeriods[2].WeekNo.AddRange(new[] {1, 2, 3});
             await eventDetailViewModel.EditDoneFunction();
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 0);
 
-            eventDetailViewModel.EventGroupList[2].ClassIndex = 1;
+            eventDetailViewModel.NeuEventDetail.EventPeriods[2].ClassIndex = 1;
             await eventDetailViewModel.EditDoneFunction();
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 11);
