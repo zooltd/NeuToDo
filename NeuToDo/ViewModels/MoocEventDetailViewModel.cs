@@ -30,7 +30,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(PageAppearingCommandFunction);
 
-        private void PageAppearingCommandFunction()
+        public void PageAppearingCommandFunction()
         {
             MoocEventDetail = new MoocEventWrapper(SelectedEvent);
         }
@@ -54,7 +54,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand DeleteThisEvent =>
             _deleteThisEvent ??= new RelayCommand(async () => await DeleteThisEventFunction());
 
-        private async Task DeleteThisEventFunction()
+        public async Task DeleteThisEventFunction()
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除本事件？", "Yes", "No");
             if (!toDelete) return;
@@ -69,11 +69,11 @@ namespace NeuToDo.ViewModels
         public RelayCommand SaveThisEvent =>
             _saveThisEvent ??= new RelayCommand(async () => await SaveThisEventFunction());
 
-        private async Task SaveThisEventFunction()
+        public async Task SaveThisEventFunction()
         {
             MoocEventDetail.Time = MoocEventDetail.EventDate + MoocEventDetail.EventTime;
             var newMoocEvent = new MoocEvent(MoocEventDetail);
-            await _moocStorage.UpdateAsync(newMoocEvent);
+            await _moocStorage.InsertOrReplaceAsync(newMoocEvent);
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();

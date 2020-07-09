@@ -10,6 +10,8 @@ namespace NeuToDo.Services
     {
         Task InsertAsync(T t);
 
+        Task InsertOrReplaceAsync(T t);
+
         Task InsertAllAsync(IEnumerable<T> eventList);
 
         Task UpdateAsync(T t);

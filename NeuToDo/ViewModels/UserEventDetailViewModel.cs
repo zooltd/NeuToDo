@@ -27,6 +27,90 @@ namespace NeuToDo.ViewModels
         }
 
 
+        public async Task PageAppearingCommandFunction()
+        {
+            UserEventDetail = new UserEventWrapper(SelectedEvent);
+            if (!UserEventDetail.IsRepeat) return;
+            var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code);
+            var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
+                .OrderBy(x => x.Key.StartDate).ToList();
+            foreach (var group in userEventGroupList)
+            {
+                UserEventDetail.EventPeriods.Add(new UserEventPeriod
+                {
+                    StartDate = group.Key.StartDate,
+                    EndDate = group.Key.EndDate,
+                    TimeOfDay = group.Key.TimeOfDay,
+                    DaySpan = group.Key.DaySpan
+                });
+            }
+        }
+
+        #region 绑定命令
+
+        private RelayCommand _deleteAll;
+
+        public RelayCommand DeleteAll =>
+            _deleteAll ??= new RelayCommand(async () => await DeleteAllFunction());
+
+        public async Task DeleteAllFunction()
+        {
+            var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
+            if (!toDelete) return;
+            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
+
+        private RelayCommand _addPeriod;
+
+        public RelayCommand AddPeriod =>
+            _addPeriod ??= new RelayCommand(AddPeriodFunction);
+
+        public void AddPeriodFunction()
+        {
+            UserEventDetail.EventPeriods.Add(new UserEventPeriod
+            {
+                StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(7),
+                TimeOfDay = TimeSpan.Zero, DaySpan = 1
+            });
+        }
+
+        private RelayCommand _editDone;
+
+        public RelayCommand EditDone =>
+            _editDone ??= new RelayCommand(async () => await EditDoneFunction());
+
+        public async Task EditDoneFunction()
+        {
+            if (string.IsNullOrWhiteSpace(UserEventDetail.Title))
+            {
+                _dialogService.DisplayAlert("警告", "事件标题不能为空", "OK");
+                return;
+            }
+
+            var userEvents = UserEventDetail.GetUserEvents();
+            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
+            await _userStorage.InsertAllAsync(userEvents);
+
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
+
+        private RelayCommand<UserEventPeriod> _removePeriod;
+
+        public RelayCommand<UserEventPeriod> RemovePeriod =>
+            _removePeriod ??= new RelayCommand<UserEventPeriod>(RemovePeriodFunction);
+
+        public void RemovePeriodFunction(UserEventPeriod p)
+        {
+            UserEventDetail.EventPeriods.Remove(p);
+        }
+
+        #endregion
+
+        #region 绑定属性
+
         public List<int> DaySpans => Enumerable.Range(1, 31).ToList();
 
         private UserEvent _selectedEvent;
@@ -50,75 +134,6 @@ namespace NeuToDo.ViewModels
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(async () => await PageAppearingCommandFunction());
 
-        private async Task PageAppearingCommandFunction()
-        {
-            UserEventDetail = new UserEventWrapper(SelectedEvent);
-            if (!UserEventDetail.IsRepeat) return;
-            var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code);
-            var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
-                .OrderBy(x => x.Key.StartDate).ToList();
-            foreach (var group in userEventGroupList)
-            {
-                UserEventDetail.EventPeriods.Add(new UserEventPeriod
-                {
-                    StartDate = group.Key.StartDate,
-                    EndDate = group.Key.EndDate,
-                    TimeOfDay = group.Key.TimeOfDay,
-                    DaySpan = group.Key.DaySpan
-                });
-            }
-        }
-
-        private RelayCommand _deleteAll;
-
-        public RelayCommand DeleteAll =>
-            _deleteAll ??= new RelayCommand(async () => await DeleteAllFunction());
-
-        private async Task DeleteAllFunction()
-        {
-            var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
-            if (!toDelete) return;
-            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
-            _dbStorageProvider.OnUpdateData();
-            await _contentPageNavigationService.PopToRootAsync();
-        }
-
-        private RelayCommand _addPeriod;
-
-        public RelayCommand AddPeriod =>
-            _addPeriod ??= new RelayCommand(() =>
-            {
-                UserEventDetail.EventPeriods.Add(new UserEventPeriod
-                {
-                    StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(7),
-                    TimeOfDay = TimeSpan.Zero, DaySpan = 1
-                });
-            });
-
-        private RelayCommand _editDone;
-
-        public RelayCommand EditDone =>
-            _editDone ??= new RelayCommand(async () => await EditDoneFunction());
-
-        public async Task EditDoneFunction()
-        {
-            if (string.IsNullOrWhiteSpace(UserEventDetail.Title))
-            {
-                _dialogService.DisplayAlert("警告", "事件标题不能为空", "OK");
-                return;
-            }
-
-            var userEvents = UserEventDetail.GetUserEvents();
-
-            await _userStorage.InsertAllAsync(userEvents);
-
-            _dbStorageProvider.OnUpdateData();
-            await _contentPageNavigationService.PopToRootAsync();
-        }
-
-        private RelayCommand<UserEventPeriod> _removePeriod;
-
-        public RelayCommand<UserEventPeriod> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<UserEventPeriod>((p) => { UserEventDetail.EventPeriods.Remove(p); });
+        #endregion
     }
 }

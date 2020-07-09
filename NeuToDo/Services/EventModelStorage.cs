@@ -22,6 +22,11 @@ namespace NeuToDo.Services
             await _connection.InsertAsync(t);
         }
 
+        public async Task InsertOrReplaceAsync(T t)
+        {
+            await _connection.InsertOrReplaceAsync(t);
+        }
+
         public async Task InsertAllAsync(IEnumerable<T> eventList)
         {
             await _connection.InsertAllAsync(eventList);

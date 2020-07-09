@@ -205,5 +205,32 @@ namespace NeuToDo.UnitTest.ViewModels
 
             await storageProvider.CloseConnectionAsync();
         }
+
+        [Test]
+        public void PeriodCrud()
+        {
+            var dbStorageProviderMock = new Mock<DbStorageProvider>();
+            var mockDbStorageProvider = dbStorageProviderMock.Object;
+            var popupNavigationServiceMock = new Mock<IPopupNavigationService>();
+            var mockPopupNavigationService = popupNavigationServiceMock.Object;
+            var alertServiceMock = new Mock<IDialogService>();
+            var mockAlertService = alertServiceMock.Object;
+            var eventDetailNavigationServiceMock = new Mock<IContentPageNavigationService>();
+            var mockEventDetailNavigationService = eventDetailNavigationServiceMock.Object;
+            var campusStorageServiceMock = new Mock<ICampusStorageService>();
+            var mockCampusStorageService = campusStorageServiceMock.Object;
+            var eventDetailViewModel = new NeuEventDetailViewModel(mockDbStorageProvider, mockPopupNavigationService,
+                mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
+            {
+                NeuEventDetail = new NeuEventWrapper(new NeuEvent())
+            };
+            Assert.AreEqual(0, eventDetailViewModel.NeuEventDetail.EventPeriods.Count);
+
+            eventDetailViewModel.AddPeriodFunction();
+            Assert.AreEqual(1, eventDetailViewModel.NeuEventDetail.EventPeriods.Count);
+
+            eventDetailViewModel.RemovePeriodFunction(eventDetailViewModel.NeuEventDetail.EventPeriods[0]);
+            Assert.AreEqual(0, eventDetailViewModel.NeuEventDetail.EventPeriods.Count);
+        }
     }
 }

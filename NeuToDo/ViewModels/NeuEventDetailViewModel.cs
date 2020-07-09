@@ -67,15 +67,22 @@ namespace NeuToDo.ViewModels
 
         private RelayCommand _addPeriod;
 
-        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
+        public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand(AddPeriodFunction);
+
+        public void AddPeriodFunction()
         {
             NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>()});
-        }));
+        }
 
         private RelayCommand<NeuEventPeriod> _removePeriod;
 
         public RelayCommand<NeuEventPeriod> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<NeuEventPeriod>(g => { NeuEventDetail.EventPeriods.Remove(g); });
+            _removePeriod ??= new RelayCommand<NeuEventPeriod>(RemovePeriodFunction);
+
+        public void RemovePeriodFunction(NeuEventPeriod period)
+        {
+            NeuEventDetail.EventPeriods.Remove(period);
+        }
 
         private RelayCommand _deleteAll;
 
@@ -134,7 +141,7 @@ namespace NeuToDo.ViewModels
                 }));
             }
 
-            await _neuStorage.DeleteAllAsync((e => e.Code == NeuEventDetail.Code));
+            await _neuStorage.DeleteAllAsync(e => e.Code == NeuEventDetail.Code);
             await _neuStorage.InsertAllAsync(newList);
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();

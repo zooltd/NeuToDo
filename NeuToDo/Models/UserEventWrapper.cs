@@ -34,7 +34,7 @@ namespace NeuToDo.Models
                 foreach (var period in EventPeriods)
                 {
                     for (var time = period.StartDate + period.TimeOfDay;
-                        time < period.EndDate;
+                        time <= period.EndDate;
                         time = time.AddDays(period.DaySpan))
                     {
                         Time = time;
