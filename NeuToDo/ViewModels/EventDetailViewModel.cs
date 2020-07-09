@@ -43,13 +43,9 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// itemSource of Day picker
         /// </summary>
-        private Array _dayItems;
+        public Array DayItems => Enum.GetValues(typeof(DayOfWeek));
 
-        public Array DayItems => _dayItems ??= Enum.GetValues(typeof(DayOfWeek));
-
-        private List<int> _classIndexItems;
-
-        public List<int> ClassIndexItems => _classIndexItems ??= Enumerable.Range(1, 12).ToList();
+        public List<int> ClassIndexItems => Enumerable.Range(1, 12).ToList();
 
         private EventModel _selectedEvent;
 

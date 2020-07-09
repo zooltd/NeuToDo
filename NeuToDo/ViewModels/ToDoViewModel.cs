@@ -252,10 +252,14 @@ namespace NeuToDo.ViewModels
         /// 导航到新自定义事件编辑页面
         /// </summary>
         public RelayCommand NavigateToNewUserEventPage =>
-            _navigateToNewUserEventPage ??= new RelayCommand((() =>
-            {
-                _contentPageNavigationService.PushAsync(new UserEvent());
-            }));
+            _navigateToNewUserEventPage ??= new RelayCommand(async () => await NavigateToNewUserEventPageFunction());
+
+        private async Task NavigateToNewUserEventPageFunction()
+        {
+            await _contentPageNavigationService.PushAsync(new UserEvent
+                {Code = Calculator.CalculateUniqueUserEventCode(), IsDone = false});
+        }
+
 
         /// <summary>
         /// 导航到新自定义事件编辑页面
@@ -266,9 +270,9 @@ namespace NeuToDo.ViewModels
         /// 导航到新课程编辑页面
         /// </summary>
         public RelayCommand NavigateToNewNeuEventPage =>
-            _navigateToNewNeuEventPage ??= new RelayCommand(NavigateToNewNeuEventPageFunction);
+            _navigateToNewNeuEventPage ??= new RelayCommand(async () => await NavigateToNewNeuEventPageFunction());
 
-        private void NavigateToNewNeuEventPageFunction()
+        private async Task NavigateToNewNeuEventPageFunction()
         {
             if (Semester.SemesterId == 0)
             {
@@ -276,7 +280,7 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            _contentPageNavigationService.PushAsync(new NeuEvent
+            await _contentPageNavigationService.PushAsync(new NeuEvent
                 {SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false});
         }
 

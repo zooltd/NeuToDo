@@ -10,13 +10,15 @@ namespace NeuToDo.Utils
         {
             var classTimeDict = campus == Campus.Hunnan ? ClassTime.HunnanClassTimeDict : ClassTime.NanhuClassTimeDict;
 
-            return baseDate.AddDays((int)day + weekNo * 7) + classTimeDict[classNo];
+            return baseDate.AddDays((int) day + weekNo * 7) + classTimeDict[classNo];
         }
 
         public static int CalculateWeekNo(DateTime baseDate, DateTime date)
-            => (int)((date - baseDate).TotalDays / 7);
+            => (int) ((date - baseDate).TotalDays / 7);
 
         public static string CalculateUniqueNeuEventCode()
             => "C" + DateTime.Now.ToString("yyMMddHHmmssff");
+
+        public static string CalculateUniqueUserEventCode() => DateTime.Now.ToString("yyMMddHHmmssff");
     }
 }

@@ -82,7 +82,7 @@
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
                             Command="{Binding DeleteThisEvent}" />
-                    <Button Grid.Column="2" Text="保存课程"
+                    <Button Grid.Column="2" Text="保存事件"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
                             Command="{Binding SaveThisEvent}" />

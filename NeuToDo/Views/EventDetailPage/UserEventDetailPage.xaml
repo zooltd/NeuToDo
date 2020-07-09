@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage.UserEventDetailPage"
-             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding UserEventDetailViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
@@ -14,7 +14,7 @@
              Title="自定义事件编辑">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding EditDone}" Text="完成"/>
+        <ToolbarItem Command="{Binding EditDone}" Text="完成" />
     </ContentPage.ToolbarItems>
 
     <ContentPage.Behaviors>
@@ -25,11 +25,177 @@
         </behaviors:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
-    <ScrollView>
-        <StackLayout Padding="10">
-            <lc:EventDescription />
-            <lc:EventTime />
-            <lc:EventPeriod />
+    <ScrollView x:Name="ThisPage">
+        <StackLayout Padding="30" Spacing="15">
+
+            <Frame>
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
+                           VerticalOptions="Center" />
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称"
+                                    Text="{Binding UserEventDetail.Title}"
+                                    VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                    <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
+                           WidthRequest="25" HeightRequest="25" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情"
+                                    Text="{Binding UserEventDetail.Detail}"
+                                    VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
+                </Grid>
+            </Frame>
+
+            <Frame>
+                <Grid VerticalOptions="Center">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Row="0" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={x:Reference Switch}, Path=IsToggled}"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1"
+                                         Date="{Binding BindingContext.EventDate, Source={x:Reference ThisPage}}"
+                                         VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                        <lc:CustomDatePicker.Triggers>
+                            <DataTrigger TargetType="lc:CustomDatePicker"
+                                         Binding="{Binding Source={x:Reference Switch}, Path=IsToggled}"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
+                            </DataTrigger>
+                        </lc:CustomDatePicker.Triggers>
+                    </lc:CustomDatePicker>
+                    <Image Grid.Row="1" Grid.Column="0" Source="time.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={x:Reference Switch}, Path=IsToggled}"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1"
+                                         Time="{Binding BindingContext.EventTime, Source={x:Reference ThisPage}}"
+                                         VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                        <lc:CustomTimePicker.Triggers>
+                            <DataTrigger TargetType="lc:CustomTimePicker"
+                                         Binding="{Binding Source={x:Reference Switch}, Path=IsToggled}"
+                                         Value="true">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
+                            </DataTrigger>
+                        </lc:CustomTimePicker.Triggers>
+                    </lc:CustomTimePicker>
+
+                    <Image Grid.Row="2" Grid.Column="0" Source="repeat.png" WidthRequest="30" HeightRequest="30"
+                           VerticalOptions="Center" />
+                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" />
+                </Grid>
+            </Frame>
+
+            <StackLayout BindableLayout.ItemsSource="{Binding UserEventDetail.EventPeriods}" Spacing="15">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <Frame>
+                            <StackLayout Spacing="15">
+
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <ImageButton Grid.Row="0" Grid.Column="1"
+                                                 Source="deletePeriod.png"
+                                                 BackgroundColor="Transparent"
+                                                 Command="{Binding BindingContext.RemovePeriod,Source={x:Reference ThisPage}}"
+                                                 CommandParameter="{Binding}"
+                                                 HeightRequest="20" WidthRequest="20"
+                                                 HorizontalOptions="End" />
+                                    <Label Grid.Row="1" Grid.Column="0" Text="开始时间" FontSize="Small"
+                                           HorizontalOptions="Center" />
+                                    <Label Grid.Row="1" Grid.Column="1" Text="截止时间" FontSize="Small"
+                                           HorizontalOptions="Center" />
+                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" 
+                                                         Date="{Binding StartDate}"/>
+                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" 
+                                                         Date="{Binding EndDate}"/>
+                                    <Label Grid.Row="3" Grid.Column="0" Text="提醒时间" FontSize="Small"
+                                           HorizontalOptions="Center" />
+                                    <Label Grid.Row="3" Grid.Column="1" Text="相隔天数" FontSize="Small"
+                                           HorizontalOptions="Center" />
+                                    <lc:CustomTimePicker Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" 
+                                                         Time="{Binding EventTime}"/>
+                                    <lc:CustomPicker Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" 
+                                                     ItemsSource="{Binding BindingContext.DaySpans, Source={x:Reference ThisPage}}"
+                                                     SelectedItem="{Binding DaySpan}"/>
+                                </Grid>
+                            </StackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <Frame>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Text="删除课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding DeleteAll}" />
+                    <Button Grid.Column="1" Text="增加时间段"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding AddPeriod}">
+                        <Button.Triggers>
+                            <DataTrigger TargetType="Button"
+                                         Binding="{Binding Source={x:Reference Switch}, Path=IsToggled}"
+                                         Value="False">
+                                <Setter Property="IsVisible"
+                                        Value="False" />
+                            </DataTrigger>
+                        </Button.Triggers>
+                    </Button>
+                    <Button Grid.Column="2" Text="保存课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding EditDone}" />
+                </Grid>
+            </Frame>
+
         </StackLayout>
     </ScrollView>
 
