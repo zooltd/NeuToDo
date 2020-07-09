@@ -63,7 +63,7 @@
                 </Grid>
             </Frame>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding NeuEventDetail.EventGroupList}" Spacing="15">
+            <StackLayout BindableLayout.ItemsSource="{Binding NeuEventDetail.EventPeriods}" Spacing="15">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame>

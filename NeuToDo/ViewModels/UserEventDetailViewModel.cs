@@ -59,7 +59,7 @@ namespace NeuToDo.ViewModels
                 .OrderBy(x => x.Key.StartDate).ToList();
             foreach (var group in userEventGroupList)
             {
-                UserEventDetail.EventPeriods.Add(new Period
+                UserEventDetail.EventPeriods.Add(new UserEventPeriod
                 {
                     StartDate = group.Key.StartDate,
                     EndDate = group.Key.EndDate,
@@ -88,7 +88,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand AddPeriod =>
             _addPeriod ??= new RelayCommand(() =>
             {
-                UserEventDetail.EventPeriods.Add(new Period
+                UserEventDetail.EventPeriods.Add(new UserEventPeriod
                 {
                     StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(7),
                     TimeOfDay = TimeSpan.Zero, DaySpan = 1
@@ -116,9 +116,9 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
-        private RelayCommand<Period> _removePeriod;
+        private RelayCommand<UserEventPeriod> _removePeriod;
 
-        public RelayCommand<Period> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<Period>((p) => { UserEventDetail.EventPeriods.Remove(p); });
+        public RelayCommand<UserEventPeriod> RemovePeriod =>
+            _removePeriod ??= new RelayCommand<UserEventPeriod>((p) => { UserEventDetail.EventPeriods.Remove(p); });
     }
 }

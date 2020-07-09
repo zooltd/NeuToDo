@@ -14,7 +14,6 @@ namespace NeuToDo.Models
 
         [Column(nameof(Season))] public string Season { get; set; }
 
-
         [Column(nameof(BaseDate))] public DateTime BaseDate { get; set; }
 
         public override string ToString()

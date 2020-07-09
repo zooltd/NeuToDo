@@ -54,8 +54,8 @@ namespace NeuToDo.ViewModels
                 .OrderBy(p => p.Key.Day);
             foreach (var group in courseGroupList)
             {
-                NeuEventDetail.EventGroupList.Add(
-                    new EventGroup
+                NeuEventDetail.EventPeriods.Add(
+                    new NeuEventPeriod
                     {
                         Day = (DayOfWeek) group.Key.Day,
                         Detail = group.Key.Detail,
@@ -69,13 +69,13 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            NeuEventDetail.EventGroupList.Add(new EventGroup {WeekNo = new List<int>()});
+            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>()});
         }));
 
-        private RelayCommand<EventGroup> _removePeriod;
+        private RelayCommand<NeuEventPeriod> _removePeriod;
 
-        public RelayCommand<EventGroup> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<EventGroup>(g => { NeuEventDetail.EventGroupList.Remove(g); });
+        public RelayCommand<NeuEventPeriod> RemovePeriod =>
+            _removePeriod ??= new RelayCommand<NeuEventPeriod>(g => { NeuEventDetail.EventPeriods.Remove(g); });
 
         private RelayCommand _deleteAll;
 
@@ -103,13 +103,13 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            if (NeuEventDetail.EventGroupList.ToList().Exists(x => x.WeekNo == null || !x.WeekNo.Any()))
+            if (NeuEventDetail.EventPeriods.ToList().Exists(x => x.WeekNo == null || !x.WeekNo.Any()))
             {
                 _dialogService.DisplayAlert("操作失败", "存在未填写的周数", "OK");
                 return;
             }
 
-            if (NeuEventDetail.EventGroupList.ToList().Exists(x => x.ClassIndex < 1))
+            if (NeuEventDetail.EventPeriods.ToList().Exists(x => x.ClassIndex < 1))
             {
                 _dialogService.DisplayAlert("操作失败", "存在未填写的节次", "OK");
                 return;
@@ -117,7 +117,7 @@ namespace NeuToDo.ViewModels
 
             var campus = await _campusStorageService.GetCampus();
             var newList = new List<NeuEvent>();
-            foreach (var eventGroup in NeuEventDetail.EventGroupList)
+            foreach (var eventGroup in NeuEventDetail.EventPeriods)
             {
                 newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
                 {
@@ -140,10 +140,10 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
-        private RelayCommand<EventGroup> _weekNoSelect;
+        private RelayCommand<NeuEventPeriod> _weekNoSelect;
 
-        public RelayCommand<EventGroup> WeekNoSelect =>
-            _weekNoSelect ??= new RelayCommand<EventGroup>((group) =>
+        public RelayCommand<NeuEventPeriod> WeekNoSelect =>
+            _weekNoSelect ??= new RelayCommand<NeuEventPeriod>((group) =>
             {
                 SelectEventGroup = group;
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
@@ -193,35 +193,8 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
-        public EventGroup SelectEventGroup { get; set; }
+        public NeuEventPeriod SelectEventGroup { get; set; }
 
         #endregion
-    }
-
-    public class NeuEventWrapper : NeuEvent
-    {
-        public ObservableCollection<EventGroup> EventGroupList { get; set; }
-
-        public Semester EventSemester { get; set; }
-
-        public NeuEventWrapper(NeuEvent neuEvent) : base(neuEvent)
-        {
-            EventGroupList = new ObservableCollection<EventGroup>();
-        }
-    }
-
-    public class EventGroup : ObservableObject
-    {
-        public string Detail { get; set; }
-        public int ClassIndex { get; set; }
-        public DayOfWeek Day { get; set; }
-
-        private List<int> _weekNo;
-
-        public List<int> WeekNo
-        {
-            get => _weekNo;
-            set => Set(nameof(WeekNo), ref _weekNo, value);
-        }
     }
 }

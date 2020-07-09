@@ -30,7 +30,7 @@ namespace NeuToDo.Models
             IsRepeat = userEvent.IsRepeat;
         }
 
-        public UserEvent(UserEvent userEvent, Period period)
+        public UserEvent(UserEvent userEvent, UserEventPeriod userEventPeriod)
         {
             Id = userEvent.Id;
             Code = userEvent.Code;
@@ -39,10 +39,10 @@ namespace NeuToDo.Models
             Time = userEvent.Time;
             IsDone = userEvent.IsDone;
             IsRepeat = userEvent.IsRepeat;
-            StartDate = period.StartDate;
-            EndDate = period.EndDate;
-            TimeOfDay = period.TimeOfDay;
-            DaySpan = period.DaySpan;
+            StartDate = userEventPeriod.StartDate;
+            EndDate = userEventPeriod.EndDate;
+            TimeOfDay = userEventPeriod.TimeOfDay;
+            DaySpan = userEventPeriod.DaySpan;
         }
 
         public UserEvent()

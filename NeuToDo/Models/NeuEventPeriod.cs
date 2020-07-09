@@ -1,10 +1,10 @@
-﻿using GalaSoft.MvvmLight;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 
 namespace NeuToDo.Models
 {
-    public class EventGroup : ObservableObject
+    public class NeuEventPeriod : ObservableObject
     {
         public string Detail { get; set; }
         public int ClassIndex { get; set; }

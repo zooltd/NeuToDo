@@ -2,7 +2,7 @@
 
 namespace NeuToDo.Models
 {
-    public class Period
+    public class UserEventPeriod
     {
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

@@ -10,13 +10,13 @@ namespace NeuToDo.Models
 
         public TimeSpan EventTime { get; set; }
 
-        public ObservableCollection<Period> EventPeriods { get; set; }
+        public ObservableCollection<UserEventPeriod> EventPeriods { get; set; }
 
         public UserEventWrapper(UserEvent userEvent) : base(userEvent)
         {
             EventDate = userEvent.Time.Date;
             EventTime = userEvent.Time.TimeOfDay;
-            EventPeriods = new ObservableCollection<Period>();
+            EventPeriods = new ObservableCollection<UserEventPeriod>();
         }
 
         public IEnumerable<UserEvent> GetUserEvents()

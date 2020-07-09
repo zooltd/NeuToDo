@@ -55,11 +55,11 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
-        private ObservableCollection<EventGroup> _eventGroupList;
+        private ObservableCollection<NeuEventPeriod> _eventGroupList;
 
-        public ObservableCollection<EventGroup> EventGroupList
+        public ObservableCollection<NeuEventPeriod> EventGroupList
         {
-            get => _eventGroupList ??= new ObservableCollection<EventGroup>();
+            get => _eventGroupList ??= new ObservableCollection<NeuEventPeriod>();
             set => Set(nameof(EventGroupList), ref _eventGroupList, value);
         }
 
@@ -79,7 +79,7 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
-        public EventGroup SelectEventGroup { get; set; }
+        public NeuEventPeriod SelectEventGroup { get; set; }
 
         /// <summary>
         /// Mooc TimePicker绑定属性
@@ -118,16 +118,16 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            EventGroupList.Add(new EventGroup {WeekNo = new List<int>()});
+            EventGroupList.Add(new NeuEventPeriod {WeekNo = new List<int>()});
         }));
 
         /// <summary>
         /// Neu
         /// </summary>
-        private RelayCommand<EventGroup> _removePeriod;
+        private RelayCommand<NeuEventPeriod> _removePeriod;
 
-        public RelayCommand<EventGroup> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<EventGroup>(g => { EventGroupList.Remove(g); });
+        public RelayCommand<NeuEventPeriod> RemovePeriod =>
+            _removePeriod ??= new RelayCommand<NeuEventPeriod>(g => { EventGroupList.Remove(g); });
 
         /// <summary>
         /// Neu, Mooc
@@ -259,10 +259,10 @@ namespace NeuToDo.ViewModels
         /// <summary>
         /// Neu
         /// </summary>
-        private RelayCommand<EventGroup> _weekNoSelect;
+        private RelayCommand<NeuEventPeriod> _weekNoSelect;
 
-        public RelayCommand<EventGroup> WeekNoSelect =>
-            _weekNoSelect ??= new RelayCommand<EventGroup>((group) =>
+        public RelayCommand<NeuEventPeriod> WeekNoSelect =>
+            _weekNoSelect ??= new RelayCommand<NeuEventPeriod>((group) =>
             {
                 SelectEventGroup = group;
                 _popupNavigationService.PushAsync(PopupPageNavigationConstants.WeekNoSelectPopupPage);
@@ -286,7 +286,7 @@ namespace NeuToDo.ViewModels
                     foreach (var group in courseGroupList)
                     {
                         EventGroupList.Add(
-                            new EventGroup
+                            new NeuEventPeriod
                             {
                                 Day = (DayOfWeek) group.Key.Day,
                                 Detail = group.Key.Detail,

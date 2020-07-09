@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Threading.Tasks;
-using EventGroup = NeuToDo.ViewModels.EventGroup;
 
 namespace NeuToDo.UnitTest.ViewModels
 {
@@ -36,7 +35,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var eventDetailViewModel = new EventDetailViewModel(storageProvider, mockPopupNavigationService
                 , mockAlertService, mockEventDetailNavigationService, mockCampusStorageService)
             {
-                EventGroupList = new ObservableCollection<EventGroup>(),
+                EventGroupList = new ObservableCollection<NeuEventPeriod>(),
                 SelectedEvent = new NeuEvent { Code = "A101", SemesterId = 31 }
             };
             // campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
@@ -160,14 +159,14 @@ namespace NeuToDo.UnitTest.ViewModels
             campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
 
             eventDetailViewModel.SelectedEvent = new EventModel { Code = "A101", Title = "" };
-            eventDetailViewModel.EventGroupList = new ObservableCollection<EventGroup>
+            eventDetailViewModel.EventGroupList = new ObservableCollection<NeuEventPeriod>
             {
-                new EventGroup
+                new NeuEventPeriod
                 {
                     ClassIndex = 5, Day = DayOfWeek.Sunday, Detail = "5-8, someone, 信息A101(浑南校区)",
                     WeekNo = new List<int> {2, 3, 4}
                 },
-                new EventGroup
+                new NeuEventPeriod
                 {
                     ClassIndex = 5, Day = DayOfWeek.Saturday, Detail = "5-8, someone, 信息A101(浑南校区)",
                     WeekNo = new List<int> {1, 2, 3, 7, 8}
@@ -181,7 +180,7 @@ namespace NeuToDo.UnitTest.ViewModels
             Assert.AreEqual(dbData.Count, 0);
 
             eventDetailViewModel.SelectedEvent.Title = "A101";
-            eventDetailViewModel.EventGroupList.Add(new EventGroup
+            eventDetailViewModel.EventGroupList.Add(new NeuEventPeriod
             {
                 ClassIndex = 0,
                 Day = DayOfWeek.Monday,
