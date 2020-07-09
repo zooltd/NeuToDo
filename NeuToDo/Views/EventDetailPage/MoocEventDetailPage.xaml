@@ -6,16 +6,16 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage.MoocEventDetailPage"
-             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding MoocEventDetailViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
              Title="Mooc事件编辑">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding EditDone}" Text="完成" />
-    </ContentPage.ToolbarItems>
+    <!-- <ContentPage.ToolbarItems> -->
+    <!--     <ToolbarItem Command="{Binding EditDone}" Text="完成" /> -->
+    <!-- </ContentPage.ToolbarItems> -->
 
     <ContentPage.Behaviors>
         <behaviors:EventHandlerBehavior EventName="Appearing">
@@ -39,11 +39,11 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
-                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding MoocEventDetail.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
                            WidthRequest="25" HeightRequest="25" />
-                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情" Text="{Binding SelectedEvent.Detail}"
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情" Text="{Binding MoocEventDetail.Detail}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                 </Grid>
             </Frame>
@@ -59,11 +59,11 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1" Date="{Binding BindingContext.EventDate, Source={x:Reference ThisPage}}"
+                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1" Date="{Binding MoocEventDetail.EventDate}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="time.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1" Time="{Binding BindingContext.EventTime, Source={x:Reference ThisPage}}"
+                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1" Time="{Binding MoocEventDetail.EventTime}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
                 </Grid>
             </Frame>

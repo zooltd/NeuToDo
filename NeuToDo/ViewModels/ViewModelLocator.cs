@@ -15,11 +15,14 @@ namespace NeuToDo.ViewModels
 
         public EventDetailViewModel EventDetailViewModel => SimpleIoc.Default.GetInstance<EventDetailViewModel>();
 
-        public UserEventDetailViewModel UserEventDetailViewModel =>
-            SimpleIoc.Default.GetInstance<UserEventDetailViewModel>();
-
         public NeuEventDetailViewModel NeuEventDetailViewModel =>
             SimpleIoc.Default.GetInstance<NeuEventDetailViewModel>();
+
+        public MoocEventDetailViewModel MoocEventDetailViewModel =>
+            SimpleIoc.Default.GetInstance<MoocEventDetailViewModel>();
+
+        public UserEventDetailViewModel UserEventDetailViewModel =>
+            SimpleIoc.Default.GetInstance<UserEventDetailViewModel>();
 
         public ViewModelLocator()
         {
@@ -29,6 +32,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<LoginViewModel>();
             SimpleIoc.Default.Register<EventDetailViewModel>();
             SimpleIoc.Default.Register<NeuEventDetailViewModel>();
+            SimpleIoc.Default.Register<MoocEventDetailViewModel>();
             SimpleIoc.Default.Register<UserEventDetailViewModel>();
             SimpleIoc.Default.Register<IAcademicCalendarService, AcademicCalendarService>();
             SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
