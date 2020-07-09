@@ -221,10 +221,8 @@ namespace NeuToDo.ViewModels
 
         private async Task ToLastWeekFunction()
         {
-            ThisSunday = ThisSunday.AddDays(-7);
+            (Semester, WeekNo, ThisSunday) = await _academicCalendarService.ToLastWeekSemester();
             ThisSaturday = ThisSaturday.AddDays(-7);
-            (Semester, WeekNo) = await _academicCalendarService.ToLastWeekSemester(WeekNo, ThisSunday);
-
             UpdateListData();
         }
 
@@ -240,10 +238,8 @@ namespace NeuToDo.ViewModels
 
         private async Task ToNextWeekFunction()
         {
-            ThisSunday = ThisSunday.AddDays(7);
+            (Semester, WeekNo, ThisSunday) = await _academicCalendarService.ToNextWeekSemester();
             ThisSaturday = ThisSaturday.AddDays(7);
-            (Semester, WeekNo) = await _academicCalendarService.ToNextWeekSemester(WeekNo, ThisSunday);
-
             UpdateListData();
         }
 

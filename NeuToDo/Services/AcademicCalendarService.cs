@@ -45,52 +45,58 @@ namespace NeuToDo.Services
 
 
         private LinkedListNode<Semester> _thisSemesterNode;
+        private DateTime _thisSunday;
+        private int _thisWeekNo;
 
-        public async Task<(Semester semester, int weekNo)> ToLastWeekSemester(
-            int thisWeekNo, DateTime lastSunday)
+        public async Task<(Semester semester, int weekNo, DateTime sunday)> ToLastWeekSemester()
         {
-            int weekNo;
-            Semester semester;
-
-            _thisSemesterNode ??= await GetCurrentSemesterNode();
-
-            if (thisWeekNo > 0)
+            if (_thisSemesterNode == null)
             {
-                weekNo = --thisWeekNo;
-                semester = _thisSemesterNode.Value;
+                _thisSemesterNode = await GetCurrentSemesterNode();
+                _thisSunday = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek);
+                _thisWeekNo = Calculator.CalculateWeekNo(_thisSemesterNode.Value.BaseDate, DateTime.Today);
+            }
+
+            _thisSunday = _thisSunday.AddDays(-7);
+
+            if (_thisWeekNo > 0)
+            {
+                --_thisWeekNo;
             }
             else
             {
                 _thisSemesterNode = _thisSemesterNode.Next ?? _thisSemesterNode;
-                semester = _thisSemesterNode.Value;
-                weekNo = semester.SemesterId == 0 ? 0 : Calculator.CalculateWeekNo(semester.BaseDate, lastSunday);
+                _thisWeekNo = _thisSemesterNode.Value.SemesterId == 0
+                    ? 0
+                    : Calculator.CalculateWeekNo(_thisSemesterNode.Value.BaseDate, _thisSunday);
             }
 
-            return (semester, weekNo);
+            return (_thisSemesterNode.Value, _thisWeekNo, _thisSunday);
         }
 
-        public async Task<(Semester semester, int weekNo)> ToNextWeekSemester(
-            int thisWeekNo, DateTime nextSunday)
+        public async Task<(Semester semester, int weekNo, DateTime sunday)> ToNextWeekSemester()
         {
-            int weekNo;
-            Semester semester;
+            if (_thisSemesterNode == null)
+            {
+                _thisSemesterNode = await GetCurrentSemesterNode();
+                _thisSunday = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek);
+                _thisWeekNo = Calculator.CalculateWeekNo(_thisSemesterNode.Value.BaseDate, DateTime.Today);
+            }
 
-            _thisSemesterNode ??= await GetCurrentSemesterNode();
+            _thisSunday = _thisSunday.AddDays(7);
 
             var threshold = _thisSemesterNode.Previous?.Value.BaseDate ?? DateTime.MaxValue;
-            if (nextSunday < threshold)
+            if (_thisSunday < threshold)
             {
-                semester = _thisSemesterNode.Value;
-                weekNo = semester.SemesterId == 0 ? 0 : ++thisWeekNo;
+                _thisWeekNo = _thisSemesterNode.Value.SemesterId == 0 ? 0 : _thisWeekNo + 1;
             }
             else
             {
                 _thisSemesterNode = _thisSemesterNode.Previous;
-                semester = _thisSemesterNode.Value;
-                weekNo = 0;
+                _thisWeekNo = 0;
             }
 
-            return (semester, weekNo);
+            return (_thisSemesterNode?.Value, _thisWeekNo, _thisSunday);
         }
     }
 }

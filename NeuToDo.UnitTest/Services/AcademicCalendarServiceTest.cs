@@ -60,11 +60,9 @@ namespace NeuToDo.UnitTest.Services
             Assert.AreEqual(dbData.Count, 3);
 
             var academicCalendarService = new AcademicCalendarService(dbStorageProvider);
-            var (semester, weekNo) =
-                await academicCalendarService.ToLastWeekSemester(0, summerSemester.BaseDate.AddDays(-7));
-            Assert.AreEqual(springSemester.SemesterId, semester.SemesterId);
-            Assert.AreEqual(Calculator.CalculateWeekNo(springSemester.BaseDate, summerSemester.BaseDate.AddDays(-7)),
-                weekNo);
+            var (semester, weekNo, _) = await academicCalendarService.ToLastWeekSemester();
+            Assert.AreEqual(summerSemester.SemesterId, semester.SemesterId);
+            Assert.AreEqual(Calculator.CalculateWeekNo(summerSemester.BaseDate, DateTime.Today) - 1, weekNo);
 
             await dbStorageProvider.CloseConnectionAsync();
         }
@@ -88,9 +86,9 @@ namespace NeuToDo.UnitTest.Services
             Assert.AreEqual(dbData.Count, 3);
 
             var academicCalendarService = new AcademicCalendarService(dbStorageProvider);
-            var (semester, weekNo) = await academicCalendarService.ToNextWeekSemester(0, summerSemester.BaseDate.AddDays(7));
-            Assert.AreEqual(summerSemester.SemesterId,semester.SemesterId);
-            Assert.AreEqual(1,weekNo);
+            var (semester, weekNo, _) = await academicCalendarService.ToNextWeekSemester();
+            Assert.AreEqual(summerSemester.SemesterId, semester.SemesterId);
+            Assert.AreEqual(Calculator.CalculateWeekNo(summerSemester.BaseDate, DateTime.Today) + 1, weekNo);
 
             await dbStorageProvider.CloseConnectionAsync();
         }
