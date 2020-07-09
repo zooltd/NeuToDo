@@ -11,7 +11,7 @@ namespace NeuToDo.Components
 
         public ICommand CheckCommand
         {
-            get => (ICommand)GetValue(CheckCommandProperty);
+            get => (ICommand) GetValue(CheckCommandProperty);
             set => SetValue(CheckCommandProperty, value);
         }
 
@@ -20,6 +20,7 @@ namespace NeuToDo.Components
             CheckedChanged += CustomCheckBox_CheckedChanged;
         }
 
+        //TODO 页面初始化绑定时也会触发
         private void CustomCheckBox_CheckedChanged(object sender, CheckedChangedEventArgs e)
         {
             // if (sender is CustomCheckBox checkBox)
