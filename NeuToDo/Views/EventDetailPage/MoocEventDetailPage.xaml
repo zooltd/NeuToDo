@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage.MoocEventDetailPage"
              BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              ls:NavigationContext.NavigationParameter="{Binding SelectedEvent}"
@@ -15,6 +16,14 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding EditDone}" Text="完成" />
     </ContentPage.ToolbarItems>
+
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
 
     <ScrollView x:Name="ThisPage">
         <StackLayout Padding="30" Spacing="15">
@@ -34,9 +43,8 @@
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
                            WidthRequest="25" HeightRequest="25" />
-                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding SelectedEvent.Detail}"
-                                    IsReadOnly="True"
-                                    Placeholder="详情" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情" Text="{Binding SelectedEvent.Detail}"
+                                    VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                 </Grid>
             </Frame>
             <Frame>
@@ -51,11 +59,11 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="date.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1" Date="{Binding SelectedEvent.Time.Date}"
+                    <lc:CustomDatePicker Grid.Row="0" Grid.Column="1" Date="{Binding BindingContext.EventDate, Source={x:Reference ThisPage}}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="time.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1" Time="{Binding SelectedEvent.Time.TimeOfDay}"
+                    <lc:CustomTimePicker Grid.Row="1" Grid.Column="1" Time="{Binding BindingContext.EventTime, Source={x:Reference ThisPage}}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand" />
                 </Grid>
             </Frame>
@@ -64,14 +72,20 @@
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="删除课程"
+                    <Button Grid.Column="0" Text="删除全部"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
-                            Command="{Binding DeleteCourse}" />
-                    <Button Grid.Column="1" Text="保存课程"
+                            Command="{Binding DeleteAll}" />
+                    <Button Grid.Column="1" Text="删除本事件"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
-                            HorizontalOptions="Center" VerticalOptions="Center" />
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding DeleteThisEvent}" />
+                    <Button Grid.Column="2" Text="保存课程"
+                            TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
+                            HorizontalOptions="Center" VerticalOptions="Center"
+                            Command="{Binding SaveThisEvent}" />
                 </Grid>
             </Frame>
         </StackLayout>

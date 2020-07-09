@@ -14,6 +14,7 @@ namespace NeuToDo.ViewModels
     public class EventDetailViewModel : ViewModelBase
     {
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
+        private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly ISemesterStorage _semesterStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IPopupNavigationService _popupNavigationService;
@@ -28,6 +29,7 @@ namespace NeuToDo.ViewModels
             ICampusStorageService campusStorageService)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
+            _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _semesterStorage = dbStorageProvider.GetSemesterStorage();
             _dbStorageProvider = dbStorageProvider;
             _popupNavigationService = popupNavigationService;
@@ -83,6 +85,25 @@ namespace NeuToDo.ViewModels
 
         public EventGroup SelectEventGroup { get; set; }
 
+        /// <summary>
+        /// Mooc TimePicker绑定属性
+        /// </summary>
+        private TimeSpan _eventTime;
+
+        public TimeSpan EventTime
+        {
+            get => _eventTime;
+            set => Set(nameof(EventTime), ref _eventTime, value);
+        }
+
+        private DateTime _eventDate;
+
+        public DateTime EventDate
+        {
+            get => _eventDate;
+            set => Set(nameof(EventDate), ref _eventDate, value);
+        }
+
         #endregion
 
         #region 绑定命令
@@ -101,7 +122,7 @@ namespace NeuToDo.ViewModels
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand((() =>
         {
-            EventGroupList.Add(new EventGroup { WeekNo = new List<int>() });
+            EventGroupList.Add(new EventGroup {WeekNo = new List<int>()});
         }));
 
         /// <summary>
@@ -110,26 +131,85 @@ namespace NeuToDo.ViewModels
         private RelayCommand<EventGroup> _removePeriod;
 
         public RelayCommand<EventGroup> RemovePeriod =>
-            _removePeriod ??= new RelayCommand<EventGroup>(((g) => { EventGroupList.Remove(g); }));
+            _removePeriod ??= new RelayCommand<EventGroup>(g => { EventGroupList.Remove(g); });
 
         /// <summary>
-        /// Neu
+        /// Neu, Mooc
         /// </summary>
-        private RelayCommand _deleteCourse;
+        private RelayCommand _deleteAll;
 
-        public RelayCommand DeleteCourse =>
-            _deleteCourse ??= new RelayCommand((async () => await DeleteCourseFunction()));
+        public RelayCommand DeleteAll =>
+            _deleteAll ??= new RelayCommand((async () => await DeleteAllFunction()));
 
-        public async Task DeleteCourseFunction()
+        public async Task DeleteAllFunction()
         {
-            var res = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
-            if (!res) return;
-            await _neuStorage.DeleteAllAsync((e => e.Code == SelectedEvent.Code));
+            bool toDelete;
+            switch (SelectedEvent.GetType().Name)
+            {
+                case nameof(NeuEvent):
+                    toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
+                    if (!toDelete) return;
+                    await _neuStorage.DeleteAllAsync(e => e.Code == SelectedEvent.Code);
+                    break;
+                case nameof(MoocEvent):
+                    toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有课程/作业/测试信息？", "Yes", "No");
+                    if (!toDelete) return;
+                    await _moocStorage.DeleteAllAsync(e => e.Code == SelectedEvent.Code);
+                    break;
+            }
+
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+        /// <summary>
+        /// Mooc
+        /// </summary>
+        private RelayCommand _deleteThisEvent;
 
+        public RelayCommand DeleteThisEvent =>
+            _deleteThisEvent ??= new RelayCommand(async () => await DeleteThisEventFunction());
+
+        private async Task DeleteThisEventFunction()
+        {
+            var toDelete = await _dialogService.DisplayAlert("警告", "确定删除本事件？", "Yes", "No");
+            if (!toDelete) return;
+            switch (SelectedEvent.GetType().Name)
+            {
+                case nameof(MoocEvent):
+                    await _moocStorage.DeleteAsync(SelectedEvent as MoocEvent);
+                    break;
+            }
+
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
+
+        /// <summary>
+        /// Mooc
+        /// </summary>
+        private RelayCommand _saveThisEvent;
+
+        public RelayCommand SaveThisEvent =>
+            _saveThisEvent ??= new RelayCommand(async () => await SaveThisEventFunction());
+
+        private async Task SaveThisEventFunction()
+        {
+            SelectedEvent.Time = EventDate + EventTime;
+            switch (SelectedEvent.GetType().Name)
+            {
+                case nameof(MoocEvent):
+                    await _moocStorage.UpdateAsync(SelectedEvent as MoocEvent);
+                    break;
+            }
+
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
+
+        /// <summary>
+        /// Neu
+        /// </summary>
         private RelayCommand _editDone;
 
         public RelayCommand EditDone => _editDone ??= new RelayCommand((async () => await EditDoneFunction()));
@@ -162,7 +242,7 @@ namespace NeuToDo.ViewModels
                 {
                     Title = SelectedEvent.Title,
                     Code = SelectedEvent.Code,
-                    Day = (int)eventGroup.Day,
+                    Day = (int) eventGroup.Day,
                     IsDone = false,
                     Detail = eventGroup.Detail,
                     Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, campus,
@@ -196,26 +276,37 @@ namespace NeuToDo.ViewModels
 
         public async Task PageAppearingCommandFunction()
         {
-            EventGroupList.Clear();
-            if (SelectedEvent is NeuEvent neuEvent)
+            switch (SelectedEvent)
             {
+                case NeuEvent neuEvent:
 
-                EventSemester = await _semesterStorage.GetAsync(neuEvent.SemesterId);
+                    EventGroupList.Clear();
 
-                var courses = await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
-                var courseGroupList = courses.GroupBy(c => new { c.Day, c.ClassNo, c.Detail })
-                    .OrderBy(p => p.Key.Day);
-                foreach (var group in courseGroupList)
-                {
-                    EventGroupList.Add(
-                        new EventGroup
-                        {
-                            Day = (DayOfWeek)group.Key.Day,
-                            Detail = group.Key.Detail,
-                            ClassIndex = group.Key.ClassNo,
-                            WeekNo = group.ToList().ConvertAll(x => x.Week)
-                        });
-                }
+                    EventSemester = await _semesterStorage.GetAsync(neuEvent.SemesterId);
+
+                    var courses = await _neuStorage.GetAllAsync(e => e.Code == SelectedEvent.Code);
+                    var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
+                        .OrderBy(p => p.Key.Day);
+                    foreach (var group in courseGroupList)
+                    {
+                        EventGroupList.Add(
+                            new EventGroup
+                            {
+                                Day = (DayOfWeek) group.Key.Day,
+                                Detail = group.Key.Detail,
+                                ClassIndex = group.Key.ClassNo,
+                                WeekNo = group.ToList().ConvertAll(x => x.Week)
+                            });
+                    }
+
+                    break;
+
+                case MoocEvent moocEvent:
+
+                    EventDate = moocEvent.Time;
+                    EventTime = moocEvent.Time.TimeOfDay;
+
+                    break;
             }
         }
     }

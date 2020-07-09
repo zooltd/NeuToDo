@@ -16,6 +16,8 @@ namespace NeuToDo.Services
 
         Task DeleteAllAsync(Expression<Func<T, bool>> predExpr);
 
+        Task DeleteAsync(T t);
+
         Task ClearTableAsync();
 
         Task<List<T>> GetAllAsync();

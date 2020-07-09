@@ -152,7 +152,7 @@
                     <Button Grid.Column="0" Text="删除课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
-                            Command="{Binding DeleteCourse}" />
+                            Command="{Binding DeleteAll}" />
                     <Button Grid.Column="1" Text="增加时间段"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             Command="{Binding AddPeriod}"

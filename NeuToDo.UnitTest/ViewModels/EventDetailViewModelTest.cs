@@ -127,14 +127,14 @@ namespace NeuToDo.UnitTest.ViewModels
             Assert.AreEqual(dbData.Count, 4);
             alertServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No"))
                 .ReturnsAsync(true);
-            await eventDetailViewModel.DeleteCourseFunction();
+            await eventDetailViewModel.DeleteAllFunction();
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 1);
 
             alertServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No"))
                 .ReturnsAsync(false);
             eventDetailViewModel.SelectedEvent.Code = "B101";
-            await eventDetailViewModel.DeleteCourseFunction();
+            await eventDetailViewModel.DeleteAllFunction();
             dbData = await neuStorage.GetAllAsync();
             Assert.AreEqual(dbData.Count, 1);
 

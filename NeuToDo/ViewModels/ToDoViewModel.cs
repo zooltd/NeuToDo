@@ -130,7 +130,12 @@ namespace NeuToDo.ViewModels
         /// ToDoList, ToDoCalendar视图中Event点击命令，触发导航
         /// </summary>
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
-            ((e) => { _contentPageNavigationService.PushAsync(e); }));
+            async e => await EventTappedCommandFunction(e));
+
+        public async Task EventTappedCommandFunction(EventModel e)
+        {
+            await _contentPageNavigationService.PushAsync(e);
+        }
 
         /// <summary>
         /// 页面显示命令

@@ -37,6 +37,11 @@ namespace NeuToDo.Services
             await _connection.Table<T>().DeleteAsync(predExpr);
         }
 
+        public async Task DeleteAsync(T t)
+        {
+            await _connection.DeleteAsync(t);
+        }
+
         public async Task ClearTableAsync()
         {
             await _connection.DeleteAllAsync<T>();
