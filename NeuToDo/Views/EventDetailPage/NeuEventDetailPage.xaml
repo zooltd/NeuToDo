@@ -6,7 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.EventDetailPage.NeuEventDetailPage"
-             BindingContext="{Binding EventDetailViewModel, Source={StaticResource ViewModelLocator}}"
+             BindingContext="{Binding NeuEventDetailViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:ls="clr-namespace:NeuToDo.Services;assembly=NeuToDo"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
@@ -55,15 +55,15 @@
                     </Grid.ColumnDefinitions>
                     <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
-                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding SelectedEvent.Title}"
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称" Text="{Binding NeuEventDetail.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="semester.png"
                            WidthRequest="25" HeightRequest="25" />
-                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding EventSemester}" IsReadOnly="True" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding NeuEventDetail.EventSemester}" IsReadOnly="True" />
                 </Grid>
             </Frame>
 
-            <StackLayout BindableLayout.ItemsSource="{Binding EventGroupList}" Spacing="15">
+            <StackLayout BindableLayout.ItemsSource="{Binding NeuEventDetail.EventGroupList}" Spacing="15">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <Frame>

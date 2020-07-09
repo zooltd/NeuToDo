@@ -53,7 +53,7 @@ namespace NeuToDo.Views.Popup
 
         private void WeekNoSelectPopupPage_OnAppearing(object sender, EventArgs e)
         {
-            if (!(BindingContext is EventDetailViewModel bindingContext)) return;
+            if (!(BindingContext is NeuEventDetailViewModel bindingContext)) return;
             _buttons.ForEach(x => x.IsClicked = false);
             foreach (var index in bindingContext.SelectEventGroup.WeekNo)
                 _buttons[index - 1].IsClicked = true;
@@ -66,7 +66,7 @@ namespace NeuToDo.Views.Popup
 
         private void SelectWeekNoDone(object sender, EventArgs e)
         {
-            if (!(BindingContext is EventDetailViewModel bindingContext)) return;
+            if (!(BindingContext is NeuEventDetailViewModel bindingContext)) return;
             bindingContext.SelectEventGroup.WeekNo =
                 new List<int>(_buttons.Where(x => x.IsClicked).ToList().ConvertAll(x => int.Parse(x.Text)));
             PopupNavigation.Instance.RemovePageAsync(this);
