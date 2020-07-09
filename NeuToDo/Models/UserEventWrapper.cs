@@ -24,13 +24,14 @@ namespace NeuToDo.Models
             var userEvents = new List<UserEvent>();
 
             //保存单个
-            if (!IsRepeat || EventPeriods.Count < 1)
+            if (!IsRepeat)
             {
                 Time = EventDate + EventTime;
                 userEvents.Add(new UserEvent(this));
             }
             else
             {
+                if (EventPeriods.Count == 0) return null;
                 foreach (var period in EventPeriods)
                 {
                     for (var time = period.StartDate + period.TimeOfDay;

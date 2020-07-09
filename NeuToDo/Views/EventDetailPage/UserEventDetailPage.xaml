@@ -154,7 +154,7 @@
                                     <Label Grid.Row="3" Grid.Column="1" Text="相隔天数" FontSize="Small"
                                            HorizontalOptions="Center" />
                                     <lc:CustomTimePicker Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" 
-                                                         Time="{Binding EventTime}"/>
+                                                         Time="{Binding TimeOfDay}"/>
                                     <lc:CustomPicker Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" 
                                                      ItemsSource="{Binding BindingContext.DaySpans, Source={x:Reference ThisPage}}"
                                                      SelectedItem="{Binding DaySpan}"/>
@@ -172,7 +172,7 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Text="删除课程"
+                    <Button Grid.Column="0" Text="删除事件"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
                             Command="{Binding DeleteAll}" />
@@ -189,7 +189,7 @@
                             </DataTrigger>
                         </Button.Triggers>
                     </Button>
-                    <Button Grid.Column="2" Text="保存课程"
+                    <Button Grid.Column="2" Text="保存事件"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
                             HorizontalOptions="Center" VerticalOptions="Center"
                             Command="{Binding EditDone}" />

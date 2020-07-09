@@ -257,7 +257,7 @@ namespace NeuToDo.ViewModels
         private async Task NavigateToNewUserEventPageFunction()
         {
             await _contentPageNavigationService.PushAsync(new UserEvent
-                {Code = Calculator.CalculateUniqueUserEventCode(), IsDone = false});
+                {Code = Calculator.CalculateUniqueUserEventCode(), IsDone = false, Time = DateTime.Today});
         }
 
 

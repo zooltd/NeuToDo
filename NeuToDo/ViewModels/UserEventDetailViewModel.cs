@@ -90,6 +90,13 @@ namespace NeuToDo.ViewModels
             }
 
             var userEvents = UserEventDetail.GetUserEvents();
+
+            if (userEvents == null)
+            {
+                _dialogService.DisplayAlert("警告", "请至少添加一个时间段", "OK");
+                return;
+            }
+
             await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
             await _userStorage.InsertAllAsync(userEvents);
 
