@@ -45,10 +45,7 @@ namespace NeuToDo.ViewModels
         private RelayCommand _deleteAll;
 
         public RelayCommand DeleteAll =>
-            _deleteAll ??= new RelayCommand(() =>
-            {
-                var a = UserEventDetail;
-            });
+            _deleteAll ??= new RelayCommand(() => { });
 
         private RelayCommand _addPeriod;
 
@@ -65,7 +62,11 @@ namespace NeuToDo.ViewModels
         private RelayCommand _editDone;
 
         public RelayCommand EditDone =>
-            _editDone ??= new RelayCommand(() => { });
+            _editDone ??= new RelayCommand(async () => await EditDoneFunction());
+
+        private async Task EditDoneFunction()
+        {
+        }
 
         private RelayCommand<Period> _removePeriod;
 
@@ -73,12 +74,21 @@ namespace NeuToDo.ViewModels
             _removePeriod ??= new RelayCommand<Period>((p) => { UserEventDetail.EventPeriods.Remove(p); });
     }
 
-    public class UserEventWrapper : UserEvent
+    public class UserEventWrapper
     {
+        public UserEvent UserEvent { get; set; }
+
+        public DateTime EventDate { get; set; }
+
+        public TimeSpan EventTime { get; set; }
+
         public ObservableCollection<Period> EventPeriods { get; set; }
 
-        public UserEventWrapper(UserEvent userEvent) : base(userEvent)
+        public UserEventWrapper(UserEvent userEvent)
         {
+            UserEvent = userEvent;
+            EventDate = userEvent.Time.Date;
+            EventTime = userEvent.Time.TimeOfDay;
             EventPeriods = new ObservableCollection<Period>();
         }
     }

@@ -41,12 +41,12 @@
                     <Image Grid.Row="0" Grid.Column="0" Source="title.png" WidthRequest="25" HeightRequest="25"
                            VerticalOptions="Center" />
                     <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="名称"
-                                    Text="{Binding UserEventDetail.Title}"
+                                    Text="{Binding UserEventDetail.UserEvent.Title}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="detail.png"
                            WidthRequest="25" HeightRequest="25" />
                     <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="详情"
-                                    Text="{Binding UserEventDetail.Detail}"
+                                    Text="{Binding UserEventDetail.UserEvent.Detail}"
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                 </Grid>
             </Frame>
@@ -74,7 +74,7 @@
                         </Image.Triggers>
                     </Image>
                     <lc:CustomDatePicker Grid.Row="0" Grid.Column="1"
-                                         Date="{Binding BindingContext.EventDate, Source={x:Reference ThisPage}}"
+                                         Date="{Binding UserEventDetail.EventDate}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                         <lc:CustomDatePicker.Triggers>
                             <DataTrigger TargetType="lc:CustomDatePicker"
@@ -97,7 +97,7 @@
                         </Image.Triggers>
                     </Image>
                     <lc:CustomTimePicker Grid.Row="1" Grid.Column="1"
-                                         Time="{Binding BindingContext.EventTime, Source={x:Reference ThisPage}}"
+                                         Time="{Binding UserEventDetail.EventTime}"
                                          VerticalOptions="Center" HorizontalOptions="StartAndExpand">
                         <lc:CustomTimePicker.Triggers>
                             <DataTrigger TargetType="lc:CustomTimePicker"
@@ -111,7 +111,7 @@
 
                     <Image Grid.Row="2" Grid.Column="0" Source="repeat.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
-                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" />
+                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.UserEvent.IsRepeat}" x:Name="Switch" />
                 </Grid>
             </Frame>
 
