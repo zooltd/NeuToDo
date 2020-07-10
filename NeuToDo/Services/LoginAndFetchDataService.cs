@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Ioc;
 using NeuToDo.Models;
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -31,10 +32,12 @@ namespace NeuToDo.Services
                     try
                     {
                         var (semester, neuCourses) = await neuGetter.LoginAndFetchData(userId, password);
-                        // await neuStorage.ClearTableAsync();
-                        // await neuStorage.InsertAllAsync(NeuSyllabusGetter.EventList);
+
                         await _semesterStorage.InsertOrReplaceAsync(semester);
-                        await _neuStorage.MergeAsync(neuCourses);
+
+                        await _neuStorage.DeleteAllAsync(x => x.SemesterId == semester.SemesterId);
+                        await _neuStorage.InsertAllAsync(neuCourses);
+
                         _dbStorageProvider.OnUpdateData();
                         return true;
                     }
@@ -44,7 +47,7 @@ namespace NeuToDo.Services
                         return false;
                     }
                 case ServerType.Mooc:
-                    
+
                     var moocGetter = new MoocInfoGetter();
                     // var moocStorage = await _dbStorageProvider.GetEventModelStorage<MoocEvent>();
                     try

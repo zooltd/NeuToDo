@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    //TODO DeleteAll 去掉
     public class EventModelStorage<T> : IEventModelStorage<T>
         where T : EventModel, new()
     {
@@ -64,6 +63,11 @@ namespace NeuToDo.Services
         public async Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr)
         {
             return await _connection.Table<T>().Where(predExpr).ToListAsync();
+        }
+
+        public async Task<bool> ExistAsync(Expression<Func<T, bool>> predExpr)
+        {
+            return await _connection.Table<T>().Where(predExpr).CountAsync() > 0;
         }
 
         public async Task MergeAsync(IEnumerable<T> eventList)
