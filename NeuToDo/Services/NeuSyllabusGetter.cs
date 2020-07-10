@@ -18,7 +18,7 @@ namespace NeuToDo.Services
         private List<NeuEvent> _neuCourses;
         private readonly string _baseUri;
         private string _deanUri;
-        private int _semeserId;
+        private int _semesterId;
         private int _ids;
 
 
@@ -98,7 +98,7 @@ namespace NeuToDo.Services
             var responseBody = await res.Content.ReadAsStringAsync();
             string idPattern =
                 @"semesterCalendar\({empty:""false"",onChange:"""",value:""(.*)""},""searchTable\(\)""\);";
-            _semeserId = int.Parse(Regex.Match(responseBody, idPattern).Groups[1].Value);
+            _semesterId = int.Parse(Regex.Match(responseBody, idPattern).Groups[1].Value);
             string idsPattern =
                 @"if\(jQuery\(""#courseTableType""\).val\(\)==""std""\){[\s]*bg.form.addInput\(form,""ids"",""(.*)""\);";
             _ids = int.Parse(Regex.Match(responseBody, idsPattern).Groups[1].Value);
@@ -109,7 +109,7 @@ namespace NeuToDo.Services
             var formData = new FormUrlEncodedContent(new List<KeyValuePair<string, string>>
             {
                 new KeyValuePair<string, string>("dataType", "semesterCalendar"),
-                new KeyValuePair<string, string>("value", _semeserId.ToString()),
+                new KeyValuePair<string, string>("value", _semesterId.ToString()),
                 new KeyValuePair<string, string>("empty", "false")
             });
 
@@ -127,7 +127,7 @@ namespace NeuToDo.Services
                 new KeyValuePair<string, string>("showPrintAndExport", "1"),
                 new KeyValuePair<string, string>("setting.kind", "std"),
                 new KeyValuePair<string, string>("startWeek", string.Empty),
-                new KeyValuePair<string, string>("semester.id", _semeserId.ToString()),
+                new KeyValuePair<string, string>("semester.id", _semesterId.ToString()),
                 new KeyValuePair<string, string>("ids", _ids.ToString()),
             });
 
