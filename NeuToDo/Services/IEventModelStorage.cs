@@ -28,6 +28,13 @@ namespace NeuToDo.Services
 
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr);
 
+        Task<bool> ExistAsync(Expression<Func<T, bool>> predExpr);
+        /// <summary>
+        /// Do not call me
+        /// </summary>
+        /// <param name="eventList"></param>
+        /// <returns></returns>
+        [Obsolete]
         Task MergeAsync(IEnumerable<T> eventList);
     }
 }

@@ -38,7 +38,7 @@ namespace NeuToDo.UnitTest.Services
                 },
             };
             var e = new NeuEvent
-            { Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Time = DateTime.Now };
+                {Id = 3, Code = "A103", Title = "A103", Detail = "A103", IsDone = false, Time = DateTime.Now};
 
             await neuEventModelStorage.InsertAsync(e);
 
@@ -83,11 +83,17 @@ namespace NeuToDo.UnitTest.Services
 
             Assert.AreEqual(eventListFromStorage.Count, 4);
 
+            var res = await neuEventModelStorage.ExistAsync(x => x.Code == "A101");
+            Assert.AreEqual(true, res);
+
             await neuEventModelStorage.DeleteAllAsync(x => x.Code == "A101");
 
             eventListFromStorage = await neuEventModelStorage.GetAllAsync();
 
             Assert.AreEqual(eventListFromStorage.Count, 0);
+
+            res = await neuEventModelStorage.ExistAsync(x => x.Code == "A101");
+            Assert.AreEqual(false, res);
 
             await storageProvider.CloseConnectionAsync();
         }

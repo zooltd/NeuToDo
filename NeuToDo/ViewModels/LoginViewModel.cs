@@ -160,10 +160,19 @@ namespace NeuToDo.ViewModels
         public async Task SaveSelectedCoursesCommandFunction()
         {
             var resultList = (from Course course in SelectedCourses
-                              from moocEvent in MoocInfoGetter.EventList
-                              where moocEvent.Code == course.Code
-                              select moocEvent).ToList();
-            await _moocStorage.MergeAsync(resultList);
+                from moocEvent in MoocInfoGetter.EventList
+                where moocEvent.Code == course.Code
+                select moocEvent).ToList();
+
+            var dictionary = resultList.GroupBy(x => x.Code).ToDictionary(x => x.Key, x => x.ToList());
+            
+            foreach (var group in dictionary)
+            {
+                await _moocStorage.DeleteAllAsync(x => x.Code == group.Key);
+                await _moocStorage.InsertAllAsync(group.Value);
+            }
+
+            // await _moocStorage.MergeAsync(resultList);
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants
                 .SuccessPopupPage);
             await Task.Delay(1500);
