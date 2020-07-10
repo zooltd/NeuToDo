@@ -43,6 +43,9 @@
     <Compile Update="Views\Popup\SuccessPopupPage.xaml.cs">
       <DependentUpon>SuccessPopupPage.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\SyncPage.xaml.cs">
+      <DependentUpon>SyncPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -91,10 +94,7 @@
     <EmbeddedResource Update="Views\StartPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Views\SyncPage\LocalSyncPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\SyncPage\WebSyncPage.xaml">
+    <EmbeddedResource Update="Views\SyncPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\ToDoCalendarPage.xaml">

@@ -3,7 +3,7 @@ using NeuToDo.Views.EventDetailPage;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using NeuToDo.Views.SyncPage;
+using NeuToDo.Views;
 
 namespace NeuToDo.Services
 {
@@ -36,9 +36,8 @@ namespace NeuToDo.Services
     /// </summary>
     public static class ContentNavigationConstants
     {
-        public const string WebSyncPage = nameof(Views.SyncPage.WebSyncPage);
+        public const string SyncPage = nameof(Views.SyncPage);
 
-        public const string LocalSyncPage = nameof(Views.SyncPage.LocalSyncPage);
 
         /// <summary>
         /// 页面键-页面类型字典。
@@ -49,8 +48,7 @@ namespace NeuToDo.Services
                 {nameof(NeuEvent), typeof(NeuEventDetailPage)},
                 {nameof(MoocEvent), typeof(MoocEventDetailPage)},
                 {nameof(UserEvent), typeof(UserEventDetailPage)},
-                {WebSyncPage, typeof(WebSyncPage)},
-                {LocalSyncPage, typeof(LocalSyncPage)}
+                {SyncPage, typeof(SyncPage)}
             };
     }
 }

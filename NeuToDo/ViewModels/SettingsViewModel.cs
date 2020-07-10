@@ -146,17 +146,11 @@ namespace NeuToDo.ViewModels
             p.IsBound = false;
         }
 
-        private RelayCommand _webSyncCommand;
+        private RelayCommand _navigateToSyncPageCommand;
 
-        public RelayCommand WebSyncCommand =>
-            _webSyncCommand ??= new RelayCommand(async () =>
-                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.WebSyncPage));
-
-        private RelayCommand _localSyncCommand;
-
-        public RelayCommand LocalSyncCommand =>
-            _localSyncCommand ??= new RelayCommand(async () =>
-                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.LocalSyncPage));
+        public RelayCommand NavigateToSyncPageCommand =>
+            _navigateToSyncPageCommand ??= new RelayCommand(async () =>
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.SyncPage));
 
         #endregion
 

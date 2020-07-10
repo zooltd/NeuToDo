@@ -103,7 +103,7 @@
                 <Grid HorizontalOptions="Start"
                       BackgroundColor="#455399"
                       Padding="16,8,16,8">
-                    <Label Text="同步与备份"
+                    <Label Text="备份与恢复"
                            TextColor="White"
                            FontSize="20"
                            FontAttributes="Bold"
@@ -117,18 +117,10 @@
                          Spacing="28"
                          Padding="16">
                 <StackLayout>
-                    <Label Text="云备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="通过WebDAV协议将数据库文件备份到私有网盘" />
+                    <Label Text="本地/云端备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
+                    <Label Text="设备本地空间/云端服务器备份数据库文件" />
                     <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding WebSyncCommand}" />
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-
-                <StackLayout>
-                    <Label Text="本地备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="就本地备份咯" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LocalSyncCommand}" />
+                        <TapGestureRecognizer Command="{Binding NavigateToSyncPageCommand}" />
                     </StackLayout.GestureRecognizers>
                 </StackLayout>
 
