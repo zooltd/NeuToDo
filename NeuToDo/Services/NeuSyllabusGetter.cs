@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    //TODO 存储Semester
     public class NeuSyllabusGetter
     {
         private static HttpClient _client;

@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
+    //TODO DeleteAll 去掉
     public class EventModelStorage<T> : IEventModelStorage<T>
         where T : EventModel, new()
     {
@@ -35,6 +36,11 @@ namespace NeuToDo.Services
         public async Task UpdateAsync(T t)
         {
             await _connection.UpdateAsync(t);
+        }
+
+        public async Task UpdateAll(IEnumerable<T> eventList)
+        {
+            await _connection.UpdateAllAsync(eventList);
         }
 
         public async Task DeleteAllAsync(Expression<Func<T, bool>> predExpr)

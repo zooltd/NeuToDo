@@ -16,6 +16,8 @@ namespace NeuToDo.Services
 
         Task UpdateAsync(T t);
 
+        Task UpdateAll(IEnumerable<T> eventList);
+
         Task DeleteAllAsync(Expression<Func<T, bool>> predExpr);
 
         Task DeleteAsync(T t);
