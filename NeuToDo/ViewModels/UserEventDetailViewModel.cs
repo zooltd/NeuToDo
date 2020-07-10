@@ -114,6 +114,17 @@ namespace NeuToDo.ViewModels
             UserEventDetail.EventPeriods.Remove(p);
         }
 
+        // private RelayCommand _toggleCommand;
+        //
+        // public RelayCommand ToggleCommand =>
+        //     _toggleCommand ??= new RelayCommand(ToggleCommandFunction);
+        //
+        // private void ToggleCommandFunction()
+        // {
+        //     if (!UserEventDetail.IsRepeat)
+        //         UserEventDetail.EventPeriods.Clear();
+        // }
+
         #endregion
 
         #region 绑定属性

@@ -111,6 +111,7 @@
 
                     <Image Grid.Row="2" Grid.Column="0" Source="repeat.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
+                    <!-- 绑定命令 UserEventDetail.EventPeriods.Clear() -->
                     <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" />
                 </Grid>
             </Frame>
@@ -120,8 +121,6 @@
                     <DataTemplate>
                         <Frame>
                             <StackLayout Spacing="15">
-
-
                                 <Grid>
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="Auto" />
@@ -145,19 +144,19 @@
                                            HorizontalOptions="Center" />
                                     <Label Grid.Row="1" Grid.Column="1" Text="截止时间" FontSize="Small"
                                            HorizontalOptions="Center" />
-                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="0" HorizontalOptions="Center" 
-                                                         Date="{Binding StartDate}"/>
-                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="1" HorizontalOptions="Center" 
-                                                         Date="{Binding EndDate}"/>
+                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="0" HorizontalOptions="Center"
+                                                         Date="{Binding StartDate}" />
+                                    <lc:CustomDatePicker Grid.Row="2" Grid.Column="1" HorizontalOptions="Center"
+                                                         Date="{Binding EndDate}" />
                                     <Label Grid.Row="3" Grid.Column="0" Text="提醒时间" FontSize="Small"
                                            HorizontalOptions="Center" />
                                     <Label Grid.Row="3" Grid.Column="1" Text="相隔天数" FontSize="Small"
                                            HorizontalOptions="Center" />
-                                    <lc:CustomTimePicker Grid.Row="4" Grid.Column="0" HorizontalOptions="Center" 
-                                                         Time="{Binding TimeOfDay}"/>
-                                    <lc:CustomPicker Grid.Row="4" Grid.Column="1" HorizontalOptions="Center" 
+                                    <lc:CustomTimePicker Grid.Row="4" Grid.Column="0" HorizontalOptions="Center"
+                                                         Time="{Binding TimeOfDay}" />
+                                    <lc:CustomPicker Grid.Row="4" Grid.Column="1" HorizontalOptions="Center"
                                                      ItemsSource="{Binding BindingContext.DaySpans, Source={x:Reference ThisPage}}"
-                                                     SelectedItem="{Binding DaySpan}"/>
+                                                     SelectedItem="{Binding DaySpan}" />
                                 </Grid>
                             </StackLayout>
                         </Frame>

@@ -1,6 +1,7 @@
 ﻿using NeuToDo.Models;
 using SQLite;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -18,20 +19,18 @@ namespace NeuToDo.Services
             new Lazy<SQLiteAsyncConnection>(() =>
                 new SQLiteAsyncConnection(DbPath));
 
-        public bool IsInitialized { get; set; }
 
         public async Task CheckInitialization()
         {
-            //TODO 一次查找完毕
-            if (!await TableExists(nameof(NeuEvent), _databaseConnection.Value))
+            var tableNames = await GetAllTableNames();
+            if (!tableNames.Exists(x => x == nameof(NeuEvent)))
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(NeuEvent));
-            if (!await TableExists(nameof(MoocEvent), _databaseConnection.Value))
+            if (!tableNames.Exists(x => x == nameof(MoocEvent)))
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(MoocEvent));
-            if (!await TableExists(nameof(UserEvent), _databaseConnection.Value))
+            if (!tableNames.Exists(x => x == nameof(UserEvent)))
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(UserEvent));
-            if (!await TableExists(nameof(Semester), _databaseConnection.Value))
+            if (!tableNames.Exists(x => x == nameof(Semester)))
                 await _databaseConnection.Value.CreateTablesAsync(CreateFlags.None, typeof(Semester));
-            IsInitialized = true;
         }
 
         private IEventModelStorage<NeuEvent> _neuStorage;
@@ -65,13 +64,21 @@ namespace NeuToDo.Services
             await _databaseConnection.Value.CloseAsync();
         }
 
-        private static async Task<bool> TableExists(string tableName,
-            SQLiteAsyncConnection connection)
+        private async Task<List<string>> GetAllTableNames()
         {
-            var sql =
-                $"SELECT name FROM sqlite_master WHERE type = 'table' AND name = '{tableName}'";
-            return await connection.ExecuteScalarAsync<string>(sql).ConfigureAwait(true) != null;
+            var sql = "SELECT name FROM sqlite_master WHERE type = 'table'";
+            var tables = await _databaseConnection.Value.QueryAsync<TableName>(sql).ConfigureAwait(false);
+            var tableNames = tables.ConvertAll(x => x.Name);
+            return tableNames;
         }
+
+        // private static async Task<bool> TableExists(string tableName,
+        //     SQLiteAsyncConnection connection)
+        // {
+        //     var sql =
+        //         $"SELECT name FROM sqlite_master WHERE type = 'table' AND name = '{tableName}'";
+        //     return await connection.ExecuteScalarAsync<string>(sql).ConfigureAwait(true) != null;
+        // }
 
         public event EventHandler UpdateData;
 
@@ -79,5 +86,10 @@ namespace NeuToDo.Services
         {
             UpdateData?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public class TableName
+    {
+        public string Name { get; set; }
     }
 }
