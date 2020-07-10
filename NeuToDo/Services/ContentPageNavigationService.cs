@@ -25,6 +25,9 @@ namespace NeuToDo.Services
             await MainPage.CurrentPage.Navigation.PushAsync(page);
         }
 
+        public async Task PushAsync(string pageKey)
+            => await MainPage.CurrentPage.Navigation.PushAsync(_contentPageActivationService.Activate(pageKey));
+
         public async Task PopToRootAsync()
         {
             await MainPage.CurrentPage.Navigation.PopToRootAsync();

@@ -19,12 +19,14 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
+        private readonly IContentPageNavigationService _contentPageNavigationService;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
             IDbStorageProvider dbStorageProvider,
             IDialogService dialogService,
-            IBackupService backupService)
+            IBackupService backupService,
+            IContentPageNavigationService contentPageNavigationService)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
@@ -33,6 +35,7 @@ namespace NeuToDo.ViewModels
             _dbStorageProvider = dbStorageProvider;
             _dialogService = dialogService;
             _backupService = backupService;
+            _contentPageNavigationService = contentPageNavigationService;
             ServerPlatforms = ServerPlatform.ServerPlatforms;
         }
 
@@ -84,7 +87,7 @@ namespace NeuToDo.ViewModels
         {
             try
             {
-                await _backupService.ImportAsync(new List<FileType> { FileType.Sqlite });
+                await _backupService.ImportAsync(new List<FileType> {FileType.Sqlite});
                 _dbStorageProvider.OnUpdateData();
             }
             catch (Exception e)
@@ -142,6 +145,18 @@ namespace NeuToDo.ViewModels
             p.Button1Text = "关联";
             p.IsBound = false;
         }
+
+        private RelayCommand _webSyncCommand;
+
+        public RelayCommand WebSyncCommand =>
+            _webSyncCommand ??= new RelayCommand(async () =>
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.WebSyncPage));
+
+        private RelayCommand _localSyncCommand;
+
+        public RelayCommand LocalSyncCommand =>
+            _localSyncCommand ??= new RelayCommand(async () =>
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.LocalSyncPage));
 
         #endregion
 

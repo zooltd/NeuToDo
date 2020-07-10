@@ -6,10 +6,9 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="NeuToDo.Views.SettingsPage"
+             x:Class="NeuToDo.Views.ServerPlatformSyncPage"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
-             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
@@ -32,7 +31,7 @@
                            FontAttributes="Bold"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"
-                           HeightRequest="32" />
+                           HeightRequest="35" />
                 </Grid>
             </Grid>
 
@@ -109,31 +108,9 @@
                            FontAttributes="Bold"
                            HorizontalTextAlignment="Center"
                            VerticalTextAlignment="Center"
-                           HeightRequest="32" />
+                           HeightRequest="35" />
                 </Grid>
             </Grid>
-
-            <StackLayout Margin="0,-5"
-                         Spacing="28"
-                         Padding="16">
-                <StackLayout>
-                    <Label Text="云备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="通过WebDAV协议将数据库文件备份到私有网盘" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding WebSyncCommand}" />
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-
-                <StackLayout>
-                    <Label Text="本地备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="就本地备份咯" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding LocalSyncCommand}" />
-                    </StackLayout.GestureRecognizers>
-                </StackLayout>
-
-            </StackLayout>
-
 
             <StackLayout Margin="0,-5"
                          Spacing="28"
@@ -183,7 +160,6 @@
                     </Grid>
                 </StackLayout>
 
-
                 <StackLayout>
                     <Label Text="本地备份"
                            FontSize="16"
@@ -225,8 +201,8 @@
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
-                                    Text="导出"
-                                    Command="{Binding ExportDb}" />
+                                    Text="导出" 
+                                    Command="{Binding ExportDb}"/>
                         </Grid>
                     </Grid>
                 </StackLayout>

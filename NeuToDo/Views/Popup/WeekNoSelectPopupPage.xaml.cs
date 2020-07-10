@@ -15,7 +15,7 @@ namespace NeuToDo.Views.Popup
         public WeekNoSelectPopupPage()
         {
             InitializeComponent();
-            _buttons = new List<CustomButton>
+            _buttons = new List<CustomCheckButton>
             {
                 Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9, Button10, Button11,
                 Button12, Button13, Button14, Button15, Button16, Button17, Button18, Button19, Button20, Button21,
@@ -23,7 +23,7 @@ namespace NeuToDo.Views.Popup
             };
         }
 
-        private readonly List<CustomButton> _buttons;
+        private readonly List<CustomCheckButton> _buttons;
 
         private bool _isSelectAll, _isSelectOdd, _isSelectEven;
 
