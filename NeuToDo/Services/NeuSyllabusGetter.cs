@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -21,10 +22,16 @@ namespace NeuToDo.Services
         private int _semesterId;
         private int _ids;
 
-
-        public NeuSyllabusGetter(IHttpClientFactory httpClientFactory)
+        public NeuSyllabusGetter()
         {
-            _client = httpClientFactory.NeuClient();
+            _client = new HttpClient(new HttpClientHandler
+            {
+                AllowAutoRedirect = true,
+                UseCookies = true,
+                CookieContainer = new CookieContainer()
+            });
+            _client.DefaultRequestHeaders.Add("User-Agent",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
             _semester = new Semester();
             _neuCourses = new List<NeuEvent>();
             _baseUri = "https://webvpn.neu.edu.cn";
@@ -113,7 +120,8 @@ namespace NeuToDo.Services
                 new KeyValuePair<string, string>("empty", "false")
             });
 
-            var queryResponse = await _client.PostAsync(_deanUri + "/dataQuery.action?vpn-12-o1-219.216.96.4", formData);
+            var queryResponse =
+                await _client.PostAsync(_deanUri + "/dataQuery.action?vpn-12-o1-219.216.96.4", formData);
             queryResponse.EnsureSuccessStatusCode();
             return await queryResponse.Content.ReadAsStringAsync();
         }
@@ -148,7 +156,7 @@ namespace NeuToDo.Services
             var currSemester = dict["y" + yearIndex].Find(x => x.id == semesterId);
             return new Semester
             {
-                BaseDate = DateTime.Today.AddDays(-(int)DateTime.Today.DayOfWeek - termIndex * 7),
+                BaseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - termIndex * 7),
                 SemesterId = semesterId,
                 SchoolYear = currSemester.schoolYear,
                 Season = currSemester.name
@@ -195,7 +203,7 @@ namespace NeuToDo.Services
                     Code = courseId,
                     Time = Calculator.CalculateClassTime(day, weekIndex, firstClass, campus, semester.BaseDate),
                     IsDone = false,
-                    Day = (int)day,
+                    Day = (int) day,
                     Week = weekIndex,
                     ClassNo = firstClass,
                     SemesterId = semester.SemesterId,
@@ -242,7 +250,7 @@ namespace NeuToDo.Services
                 "index =(\\d)\\*unitCount\\+([\\d]+);";
             var segments = Regex.Matches(timeTable, timeTablePattern);
             DayOfWeek day =
-                (DayOfWeek)((int.Parse(segments[0].Groups[1].Value) + 1) % 7);
+                (DayOfWeek) ((int.Parse(segments[0].Groups[1].Value) + 1) % 7);
             int firstClass = int.Parse(segments[0].Groups[2].Value) + 1;
             string classTimeStr = firstClass + "-";
             int lastClassIndex = firstClass;

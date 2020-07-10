@@ -83,7 +83,8 @@ namespace NeuToDo.Services
         private static async Task<Dictionary<string, string>> GetOnGoingCourses(
             string token)
         {
-            var postParams = new Dictionary<string, string> {
+            var postParams = new Dictionary<string, string>
+            {
                 {"csrfKey", token},
                 {"type", "10"},
                 {"p", "1"},
@@ -129,7 +130,8 @@ namespace NeuToDo.Services
         private static async Task GetTestInfo(
             KeyValuePair<string, string> course)
         {
-            var postParams = new Dictionary<string, string> {
+            var postParams = new Dictionary<string, string>
+            {
                 {"callCount", "1"},
                 {"scriptSessionId", "${scriptSessionId}190"},
                 {"httpSessionId", _token},
@@ -183,7 +185,7 @@ namespace NeuToDo.Services
                 try
                 {
                     quizPattern = "s" + (int.Parse(num.Substring(1)) + 1) +
-                        @".deadline=\d*";
+                                  @".deadline=\d*";
                     var unixTime = long.Parse(Regex.Match(dwr, quizPattern)
                         .Value.Split('=')[1]);
                     var time = TimeZoneInfo
@@ -237,7 +239,7 @@ namespace NeuToDo.Services
                 try
                 {
                     homeworkPattern = "s" + (int.Parse(num.Substring(1)) + 1) +
-                        @".deadline=\d*";
+                                      @".deadline=\d*";
                     var unixTime = long.Parse(Regex.Match(dwr, homeworkPattern)
                         .Value.Split('=')[1]);
                     var time = TimeZoneInfo
@@ -285,13 +287,21 @@ namespace NeuToDo.Services
             {
                 await GetTestInfo(course);
             }
+
             _client.Dispose();
         }
 
-        public MoocInfoGetter(IHttpClientFactory httpClientFactory)
+        public MoocInfoGetter()
         {
             _token = string.Empty;
-            _client = httpClientFactory.MoocClient();
+            _client = new HttpClient(new HttpClientHandler
+            {
+                AllowAutoRedirect = true,
+                UseCookies = true,
+                CookieContainer = new CookieContainer()
+            });
+            _client.DefaultRequestHeaders.Add("User-Agent",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
             EventList = new List<MoocEvent>();
             CourseList = new List<Course>();
         }

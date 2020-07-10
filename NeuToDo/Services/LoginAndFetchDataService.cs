@@ -25,11 +25,8 @@ namespace NeuToDo.Services
             switch (serverType)
             {
                 case ServerType.Neu:
-                    // var neuGetter = Startup.ServiceProvider.GetService<NeuSyllabusGetter>();
-                    // var neuGetter = new NeuSyllabusGetter(_httpClientFactory);
-                    //TODO 依赖注入？
-                    SimpleIoc.Default.Register<NeuSyllabusGetter>();
-                    var neuGetter = SimpleIoc.Default.GetInstance<NeuSyllabusGetter>();
+
+                    var neuGetter = new NeuSyllabusGetter();
 
                     try
                     {
@@ -47,10 +44,8 @@ namespace NeuToDo.Services
                         return false;
                     }
                 case ServerType.Mooc:
-                    // var moocGetter = Startup.ServiceProvider.GetService<MoocInfoGetter>();
-                    // var moocGetter = new MoocInfoGetter(_httpClientFactory);
-                    SimpleIoc.Default.Register<MoocInfoGetter>();
-                    var moocGetter = SimpleIoc.Default.GetInstance<MoocInfoGetter>();
+                    
+                    var moocGetter = new MoocInfoGetter();
                     // var moocStorage = await _dbStorageProvider.GetEventModelStorage<MoocEvent>();
                     try
                     {
