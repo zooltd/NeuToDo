@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -36,6 +37,20 @@ namespace NeuToDo.Services
             var result = await _client.Propfind(_baseUri);
             return result.IsSuccessful;
         }
+
+        public async Task UploadFile(string destPath, string sourcePath)
+        {
+            var stream = File.OpenRead(sourcePath);
+            var res = await _client.PutFile(_baseUri + destPath, new StreamContent(stream));
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+        }
+
+        public async Task CreateFolder(string folderName)
+        {
+            var res = await _client.Mkcol(folderName);
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+        }
+
 
         public async Task GetAll()
         {

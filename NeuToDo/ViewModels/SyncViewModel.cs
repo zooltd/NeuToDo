@@ -1,8 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.IO;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
 {
@@ -11,14 +14,22 @@ namespace NeuToDo.ViewModels
         private readonly IAccountStorageService _accountStorageService;
         private readonly IPopupNavigationService _popupNavigationService;
         private readonly IHttpWebDavService _httpWebDavService;
+        private readonly IDialogService _dialogService;
+        private readonly IDbStorageProvider _dbStorageProvider;
+
+        // private bool _isConnected;
 
         public SyncViewModel(IAccountStorageService accountStorageService,
             IPopupNavigationService popupNavigationService,
-            IHttpWebDavService httpWebDavService)
+            IHttpWebDavService httpWebDavService,
+            IDialogService dialogService,
+            IDbStorageProvider dbStorageProvider)
         {
             _accountStorageService = accountStorageService;
             _popupNavigationService = popupNavigationService;
             _httpWebDavService = httpWebDavService;
+            _dialogService = dialogService;
+            _dbStorageProvider = dbStorageProvider;
         }
 
         private RelayCommand _pageAppearingCommand;
@@ -26,7 +37,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
             new RelayCommand(async () => await PageAppearingCommandFunction());
 
-        public async Task PageAppearingCommandFunction()
+        private async Task PageAppearingCommandFunction()
         {
             IsConnecting = true;
             ShowedAccount = await _accountStorageService.GetAccountAsync(ServerType.WebDav);
@@ -34,25 +45,16 @@ namespace NeuToDo.ViewModels
             {
                 ShowedAccount = AccountStorageService.DefaultAccount;
                 IsConnecting = false;
-                PictureSource = "failure.png";
-                Description = "未登录WebDAV";
+                ConnectionResponse.IsConnected = false;
+                ConnectionResponse.Reason = "未登录WebDAV";
                 return;
             }
 
             _httpWebDavService.Initiate(ShowedAccount);
             var res = await _httpWebDavService.TestConnection();
-
+            ConnectionResponse.IsConnected = res;
+            ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
             IsConnecting = false;
-            if (res)
-            {
-                PictureSource = "success.png";
-                Description = "已成功连接服务器";
-            }
-            else
-            {
-                PictureSource = "failure.png";
-                Description = "连接服务器失败,请检查网络或登录账户";
-            }
         }
 
 
@@ -80,20 +82,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(IsConnecting), ref _isConnecting, value);
         }
 
-        private string _pictureSource;
+        private ConnectionResponse _connectionResponse;
 
-        public string PictureSource
+        public ConnectionResponse ConnectionResponse
         {
-            get => _pictureSource;
-            set => Set(nameof(PictureSource), ref _pictureSource, value);
-        }
-
-        private string _description;
-
-        public string Description
-        {
-            get => _description;
-            set => Set(nameof(Description), ref _description, value);
+            get => _connectionResponse ??= new ConnectionResponse();
+            set => Set(nameof(ConnectionResponse), ref _connectionResponse, value);
         }
 
         private RelayCommand _navigateToSyncLoginPage;
@@ -119,23 +113,107 @@ namespace NeuToDo.ViewModels
             _httpWebDavService.Initiate(LoginAccount);
             var res = await _httpWebDavService.TestConnection();
             IsConnecting = false;
+            ConnectionResponse.IsConnected = res;
+            ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
             if (res)
             {
-                ShowedAccount = new Account
-                {
-                    BaseUri = LoginAccount.BaseUri, UserName = LoginAccount.UserName, Password = LoginAccount.Password,
-                    Remarks = LoginAccount.Remarks
-                };
-                PictureSource = "success.png";
-                Description = "已成功连接服务器";
+                ShowedAccount = LoginAccount;
                 await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+            }
+
+            await _popupNavigationService.PopAllAsync();
+        }
+
+        private RelayCommand _retryLogin;
+
+        public RelayCommand RetryLogin =>
+            _retryLogin ??= new RelayCommand(async () => await RetryLoginFunction());
+
+        private async Task RetryLoginFunction()
+        {
+            IsConnecting = true;
+            if (_httpWebDavService.IsInitialized)
+            {
+                var res = await _httpWebDavService.TestConnection();
+                if (res == ConnectionResponse.IsConnected) //与上次结果相同，不做改变
+                {
+                    IsConnecting = false;
+                    return;
+                }
+
+                ConnectionResponse.IsConnected = true; //记录本次结果
+                ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
+                ShowedAccount = LoginAccount;
+                if (res) //不成功=>成功
+                    await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
             }
             else
             {
-                PictureSource = "failure.png";
-                Description = "连接服务器失败,请检查网络或登录账户";
+                _dialogService.DisplayAlert("提示", "请先点击上方登录", "OK");
             }
-            await _popupNavigationService.PopAllAsync();
+
+            IsConnecting = false;
+        }
+
+        private RelayCommand _exportToWebDav;
+
+        public RelayCommand ExportToWebDav =>
+            _exportToWebDav ??= new RelayCommand(async () => await ExportToWebDavFunction());
+
+        private async Task ExportToWebDavFunction()
+        {
+            if (_httpWebDavService.IsInitialized && ConnectionResponse.IsConnected)
+            {
+                try
+                {
+                    await _dbStorageProvider.CloseConnectionAsync();
+
+                    var destPath =
+                        $"{AppInfo.Name}/{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm}_{DbStorageProvider.DbName}";
+                    await _httpWebDavService.CreateFolder($"{AppInfo.Name}");
+                    await _httpWebDavService.UploadFile(destPath, DbStorageProvider.DbPath);
+                    _dialogService.DisplayAlert("提示", "操作成功", "OK");
+                }
+                catch (Exception e)
+                {
+                    _dialogService.DisplayAlert("警告", e.ToString(), "OK");
+                }
+            }
+            else
+            {
+                _dialogService.DisplayAlert("警告", "连接失败", "OK");
+            }
+        }
+    }
+
+    public class ConnectionResponse : ObservableObject
+    {
+        private bool _isConnected;
+
+        public bool IsConnected
+        {
+            get => _isConnected;
+            set
+            {
+                _isConnected = value;
+                PictureSource = IsConnected ? "success.png" : "failure.png";
+            }
+        }
+
+        private string _reason;
+
+        public string Reason
+        {
+            get => _reason;
+            set => Set(nameof(Reason), ref _reason, value);
+        }
+
+        private string _pictureSource;
+
+        public string PictureSource
+        {
+            get => _pictureSource;
+            set => Set(nameof(PictureSource), ref _pictureSource, value);
         }
     }
 }

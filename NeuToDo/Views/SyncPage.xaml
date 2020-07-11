@@ -62,13 +62,19 @@
 
                 <ActivityIndicator IsRunning="{Binding IsConnecting}" x:Name="Indicator" />
 
-                <StackLayout>
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500"
+                             touch:TouchEff.Command="{Binding RetryLogin}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding PictureSource}" HeightRequest="20" WidthRequest="20"
+                        <Image Grid.Column="0" Source="{Binding ConnectionResponse.PictureSource}" HeightRequest="20"
+                               WidthRequest="20"
                                IsVisible="False">
                             <Image.Triggers>
                                 <DataTrigger TargetType="Image"
@@ -78,7 +84,7 @@
                                 </DataTrigger>
                             </Image.Triggers>
                         </Image>
-                        <Label Grid.Column="1" Text="{Binding Description}" IsVisible="False">
+                        <Label Grid.Column="1" Text="{Binding ConnectionResponse.Reason}" IsVisible="False">
                             <Label.Triggers>
                                 <DataTrigger TargetType="Label"
                                              Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
@@ -122,7 +128,8 @@
                              touch:TouchEff.PressedBackgroundColor="Gray"
                              touch:TouchEff.RippleCount="1"
                              touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500">
+                             touch:TouchEff.RegularAnimationDuration="500"
+                             touch:TouchEff.Command="{Binding ExportToWebDav}">
                     <Label Text="导出到云端服务器" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceDame.DateTime.events.sqlite3" />
                 </StackLayout>
