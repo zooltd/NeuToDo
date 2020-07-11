@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Reflection;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
+using TouchEffect.UWP;
 
 namespace NeuToDo.UWP
 {
@@ -50,6 +53,19 @@ namespace NeuToDo.UWP
                 Rg.Plugins.Popup.Popup.Init();
 
                 Xamarin.Forms.Forms.Init(e, Rg.Plugins.Popup.Popup.GetExtraAssemblies());
+
+                var assembliesToInclude = new List<Assembly>
+                {
+                    typeof(PlatformTouchEff).GetTypeInfo().Assembly,
+
+                    typeof(Xamarin.Forms.PancakeView.UWP.PancakeViewRenderer).GetTypeInfo().Assembly
+                };
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
+
+                TouchEffectPreserver.Preserve();
+
+                Xamarin.Forms.Forms.Init(e, assembliesToInclude);
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {

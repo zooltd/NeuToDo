@@ -6,6 +6,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SyncPage"
+             xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
 
     <ScrollView>
@@ -93,23 +94,44 @@
             </Grid>
 
             <StackLayout Padding="16" Spacing="15">
-                <StackLayout>
+
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500">
                     <Label Text="导出到本地存储空间" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label
                         Text="备份文件将被保存到/Android/com.companyname.&#x0a;neutodo/documents/DeviceDame.DateTime.events.sqlite3" />
                 </StackLayout>
-                <StackLayout>
+
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500">
                     <Label Text="导出到云端服务器" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceDame.DateTime.events.sqlite3" />
                 </StackLayout>
-                <StackLayout>
+
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500">
                     <Label Text="恢复备份" TextColor="#BF4779" FontAttributes="Bold" FontSize="16" />
                     <Label Text="待恢复文件列表将从本地存储空间和WebDAV服务器中读取,可从中选择需要恢复的数据库记录，覆盖本地数据" />
                 </StackLayout>
-                <StackLayout>
+
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500">
                     <Label Text="帮助" TextColor="#BF4779" FontAttributes="Bold" FontSize="16" />
                     <Label Text="获取WebDAV教程" />
                 </StackLayout>
+
             </StackLayout>
         </StackLayout>
     </ScrollView>
