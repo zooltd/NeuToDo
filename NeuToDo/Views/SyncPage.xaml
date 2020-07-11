@@ -10,11 +10,11 @@
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
 
-    
+
     <ContentPage.Behaviors>
         <b:EventHandlerBehavior EventName="Appearing">
             <b:ActionCollection>
-                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" ></b:InvokeCommandAction>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
             </b:ActionCollection>
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
@@ -44,48 +44,45 @@
                            FontAttributes="Bold"
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center" />
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="17*" />
-                            <ColumnDefinition Width="7*" />
-                        </Grid.ColumnDefinitions>
-                        <StackLayout Grid.Column="0"
-                                     VerticalOptions="Center">
-                            <Label Text="{Binding Account.ServerUri, StringFormat='服务器地址: {0}'}"
-                                   d:Text="https://esafaffaf.f.fsafsf.sa"
-                                   VerticalOptions="End" />
-                            <Label Text="{Binding Account.UserName, StringFormat='用户名: {0}'}"
-                                   d:Text="A long word"
-                                   VerticalOptions="End" />
-                        </StackLayout>
-                        <Grid Grid.Column="1"
-                              VerticalOptions="Center"
-                              ColumnSpacing="0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition />
-                                <ColumnDefinition />
-                            </Grid.ColumnDefinitions>
-                            <Button Grid.Column="0"
-                                    BackgroundColor="#455399"
-                                    TextColor="White"
-                                    FontSize="12"
-                                    CornerRadius="0"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="Center"
-                                    Text="登录" 
-                                    Command="{Binding NavigateToSyncLoginPage}"/>
-                            <Button Grid.Column="1"
-                                    BackgroundColor="#BF4779"
-                                    TextColor="White"
-                                    FontSize="12"
-                                    CornerRadius="0"
-                                    HorizontalOptions="End"
-                                    VerticalOptions="Center"
-                                    Text="解除" />
-                        </Grid>
-                    </Grid>
+                    <StackLayout>
+                        <Label Text="{Binding Account.BaseUri, StringFormat='服务器地址: {0}'}"
+                               d:Text="https://esafaffaf.f.fsafsf.sa"
+                               VerticalOptions="End" />
+                        <Label Text="{Binding Account.UserName, StringFormat='用户名: {0}'}"
+                               d:Text="A long word"
+                               VerticalOptions="End" />
+                    </StackLayout>
                 </StackLayout>
 
+                <ActivityIndicator IsRunning="{Binding IsConnecting}" x:Name="Indicator" />
+
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.Column="0" Source="{Binding PictureSource}" HeightRequest="20" WidthRequest="20"
+                               IsVisible="False">
+                            <Image.Triggers>
+                                <DataTrigger TargetType="Image"
+                                             Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
+                                             Value="False">
+                                    <Setter Property="IsVisible" Value="True" />
+                                </DataTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <Label Grid.Column="1" Text="{Binding Description}" IsVisible="False">
+                            <Label.Triggers>
+                                <DataTrigger TargetType="Label"
+                                             Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
+                                             Value="False">
+                                    <Setter Property="IsVisible" Value="True" />
+                                </DataTrigger>
+                            </Label.Triggers>
+                        </Label>
+                    </Grid>
+                </StackLayout>
             </StackLayout>
 
             <Grid>

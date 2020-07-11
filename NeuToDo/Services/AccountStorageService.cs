@@ -54,11 +54,8 @@ namespace NeuToDo.Services
                     await _secureStorageProvider.TryGetAsync(serverType + nameof(Account.Password), string.Empty),
                 LastUpdateTime =
                     _preferenceStorageProvider.Get(serverType + nameof(Account.LastUpdateTime), string.Empty),
-                ServerUri = serverType == ServerType.WebDav
-                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.ServerUri), string.Empty)
-                    : string.Empty,
-                Remarks = serverType == ServerType.WebDav
-                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.Remarks), string.Empty)
+                BaseUri = serverType == ServerType.WebDav
+                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.BaseUri), string.Empty)
                     : string.Empty
             };
         }
@@ -69,7 +66,6 @@ namespace NeuToDo.Services
         public string UserName { get; set; }
         public string Password { get; set; }
         public string LastUpdateTime { get; set; }
-        public string ServerUri { get; set; }
-        public string Remarks { get; set; }
+        public string BaseUri { get; set; }
     }
 }

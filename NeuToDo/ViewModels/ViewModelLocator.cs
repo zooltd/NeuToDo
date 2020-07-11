@@ -47,6 +47,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
+            SimpleIoc.Default.Register<IHttpWebDavService,HttpWebDavService>();
         }
     }
 }

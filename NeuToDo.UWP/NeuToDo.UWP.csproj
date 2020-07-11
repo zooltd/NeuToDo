@@ -112,6 +112,7 @@
     <Content Include="date.png" />
     <Content Include="deletePeriod.png" />
     <Content Include="detail.png" />
+    <Content Include="failure.png" />
     <Content Include="left.png">
       <SubType>Designer</SubType>
     </Content>
@@ -155,6 +156,7 @@
     </Content>
     <Content Include="semester.png" />
     <Content Include="settings.png" />
+    <Content Include="success.png" />
     <Content Include="time.png" />
     <Content Include="title.png" />
     <Content Include="UserEventAdd.png" />
