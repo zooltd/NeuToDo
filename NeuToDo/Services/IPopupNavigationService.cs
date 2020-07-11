@@ -45,7 +45,15 @@ namespace NeuToDo.Services
         public const string SelectPopupPage = nameof(Views.Popup.SelectPopupPage);
 
 
+        /// <summary>
+        /// Neu课程编辑——周数选择页
+        /// </summary>
         public const string WeekNoSelectPopupPage = nameof(Views.Popup.WeekNoSelectPopupPage);
+
+        /// <summary>
+        /// WebDAV登录页
+        /// </summary>
+        public const string SyncLoginPage = nameof(Views.Popup.SyncLoginPage);
 
         /// <summary>
         /// 页面键-页面类型字典。
@@ -57,7 +65,8 @@ namespace NeuToDo.Services
             {SuccessPopupPage, typeof(SuccessPopupPage)},
             {ErrorPopupPage, typeof(ErrorPopupPage)},
             {SelectPopupPage, typeof(SelectPopupPage)},
-            {WeekNoSelectPopupPage, typeof(WeekNoSelectPopupPage)}
+            {WeekNoSelectPopupPage, typeof(WeekNoSelectPopupPage)},
+            {SyncLoginPage,typeof(SyncLoginPage)}
         };
     }
 }

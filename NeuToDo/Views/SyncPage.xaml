@@ -7,8 +7,17 @@
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SyncPage"
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+             xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
 
+    
+    <ContentPage.Behaviors>
+        <b:EventHandlerBehavior EventName="Appearing">
+            <b:ActionCollection>
+                <b:InvokeCommandAction Command="{Binding PageAppearingCommand}" ></b:InvokeCommandAction>
+            </b:ActionCollection>
+        </b:EventHandlerBehavior>
+    </ContentPage.Behaviors>
     <ScrollView>
         <StackLayout>
 
@@ -63,7 +72,8 @@
                                     CornerRadius="0"
                                     HorizontalOptions="End"
                                     VerticalOptions="Center"
-                                    Text="登录" />
+                                    Text="登录" 
+                                    Command="{Binding NavigateToSyncLoginPage}"/>
                             <Button Grid.Column="1"
                                     BackgroundColor="#BF4779"
                                     TextColor="White"

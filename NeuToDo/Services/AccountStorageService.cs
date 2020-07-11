@@ -1,4 +1,5 @@
-﻿using NeuToDo.Models;
+﻿using System;
+using NeuToDo.Models;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -40,5 +41,35 @@ namespace NeuToDo.Services
             await _secureStorageProvider.SetAsync(serverType + "Pd", password);
             _preferenceStorageProvider.Set(serverType + "Time", updateTime);
         }
+
+        public async Task<Account> GetAccountAsync(ServerType serverType)
+        {
+            if (!_preferenceStorageProvider.ContainsKey(serverType + nameof(Account.UserName))) return null;
+
+            return new Account
+            {
+                UserName =
+                    _preferenceStorageProvider.Get(serverType + nameof(Account.UserName), string.Empty),
+                Password =
+                    await _secureStorageProvider.TryGetAsync(serverType + nameof(Account.Password), string.Empty),
+                LastUpdateTime =
+                    _preferenceStorageProvider.Get(serverType + nameof(Account.LastUpdateTime), string.Empty),
+                ServerUri = serverType == ServerType.WebDav
+                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.ServerUri), string.Empty)
+                    : string.Empty,
+                Remarks = serverType == ServerType.WebDav
+                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.Remarks), string.Empty)
+                    : string.Empty
+            };
+        }
+    }
+
+    public class Account
+    {
+        public string UserName { get; set; }
+        public string Password { get; set; }
+        public string LastUpdateTime { get; set; }
+        public string ServerUri { get; set; }
+        public string Remarks { get; set; }
     }
 }
