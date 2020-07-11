@@ -20,31 +20,41 @@
             EasingIn="BounceOut" />
     </popup:PopupPage.Animation>
 
-    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand" Padding="30">
-        <Frame>
+    <StackLayout VerticalOptions="Center" HorizontalOptions="CenterAndExpand">
+        <Frame BackgroundColor="White">
             <StackLayout>
                 <Image HorizontalOptions="Center"
-                       Margin="15"
-                       HeightRequest="140"
-                       WidthRequest="140"
+                       WidthRequest="150"
+                       HeightRequest="150"
                        Source="CloudStorage.png" />
-                <Entry Text="{Binding Account.UserName}"
-                       HorizontalOptions="Center"
-                       x:Name="ServerUriEntry"
-                       Placeholder="服务器地址(https://...)" />
-                <Entry Text="{Binding Account.UserName}"
-                       HorizontalOptions="Center"
-                       x:Name="UserNameEntry"
-                       Placeholder="用户名" />
-                <Entry Text="{Binding Account.Password}"
-                       HorizontalOptions="Center"
-                       x:Name="PasswordEntry"
-                       Placeholder="密码"
-                       IsPassword="True" />
-                <Button BackgroundColor="#455399"
-                        HorizontalOptions="Fill"
-                        x:Name="LoginButton"
-                        Text="登录" />
+                <StackLayout >
+                    <Entry Text="{Binding LoginAccount.BaseUri}"
+                           HorizontalOptions="FillAndExpand"
+                           x:Name="ServerUriEntry"
+                           Placeholder="服务器地址(https://...)" />
+                    
+                    <Entry Text="{Binding LoginAccount.UserName}"
+                           HorizontalOptions="FillAndExpand"
+                           x:Name="UserNameEntry"
+                           Placeholder="用户名" />
+                    <Entry Text="{Binding LoginAccount.Password}"
+                           HorizontalOptions="FillAndExpand"
+                           x:Name="PasswordEntry"
+                           Placeholder="密码"
+                           IsPassword="True" />
+                    <Entry Text="{Binding LoginAccount.Remarks}"
+                           HorizontalOptions="FillAndExpand"
+                           x:Name="RemarksEntry"
+                           Placeholder="备注" />
+                    <Button BackgroundColor="#455399"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            HorizontalOptions="FillAndExpand"
+                            x:Name="LoginButton"
+                            Margin="0,5"
+                            Command="{Binding FillAccount}"
+                            Text="确      定" />
+                </StackLayout>
             </StackLayout>
         </Frame>
     </StackLayout>

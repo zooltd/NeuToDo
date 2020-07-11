@@ -8,7 +8,8 @@
              x:Class="NeuToDo.Views.SyncPage"
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
-             BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="备份与恢复">
 
 
     <ContentPage.Behaviors>
@@ -36,8 +37,13 @@
                 </Grid>
             </Grid>
             <StackLayout Padding="16">
-                <StackLayout>
-                    <Label Text="{Binding Account.Remarks}"
+                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
+                             touch:TouchEff.PressedBackgroundColor="Gray"
+                             touch:TouchEff.RippleCount="1"
+                             touch:TouchEff.PressedAnimationDuration="500"
+                             touch:TouchEff.RegularAnimationDuration="500"
+                             touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
+                    <Label Text="{Binding ShowedAccount.Remarks}"
                            d:Text="我的坚果云"
                            FontSize="16"
                            TextColor="#455399"
@@ -45,10 +51,10 @@
                            HorizontalTextAlignment="Start"
                            VerticalTextAlignment="Center" />
                     <StackLayout>
-                        <Label Text="{Binding Account.BaseUri, StringFormat='服务器地址: {0}'}"
+                        <Label Text="{Binding ShowedAccount.BaseUri, StringFormat='服务器地址: {0}'}"
                                d:Text="https://esafaffaf.f.fsafsf.sa"
                                VerticalOptions="End" />
-                        <Label Text="{Binding Account.UserName, StringFormat='用户名: {0}'}"
+                        <Label Text="{Binding ShowedAccount.UserName, StringFormat='用户名: {0}'}"
                                d:Text="A long word"
                                VerticalOptions="End" />
                     </StackLayout>

@@ -24,6 +24,8 @@ namespace NeuToDo.Services
         [Obsolete]
         Task SaveAccountAsync(ServerType serverType, string userName, string password, string updateTime);
 
+        Task SaveAccountAsync(ServerType serverType, Account account);
+
         /// <summary>
         /// Get the specific account ot the server type; Return null if it does not exist
         /// </summary>

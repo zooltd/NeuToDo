@@ -38,7 +38,6 @@ namespace NeuToDo.Services
     {
         public const string SyncPage = nameof(Views.SyncPage);
 
-
         /// <summary>
         /// 页面键-页面类型字典。
         /// </summary>

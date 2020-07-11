@@ -29,28 +29,47 @@ namespace NeuToDo.ViewModels
         public async Task PageAppearingCommandFunction()
         {
             IsConnecting = true;
-            // Account = await _accountStorageService.GetAccountAsync(ServerType.WebDav);
-            // if (Account == null)
-            // {
-            //     IsConnecting = false;
-            //     ConnectionResult = new ConnectionResult {PictureSource = "failure.png", Description = "未成功连接服务器"};
-            //     return;
-            // }
-            // _httpWebDavService.Initiate(Account);
-            // var res = await _httpWebDavService.TestConnection();
-            await Task.Delay(3000);
-            PictureSource = "success.png";
-            Description = "已成功连接服务器";
+            ShowedAccount = await _accountStorageService.GetAccountAsync(ServerType.WebDav);
+            if (ShowedAccount == null)
+            {
+                ShowedAccount = AccountStorageService.DefaultAccount;
+                IsConnecting = false;
+                PictureSource = "failure.png";
+                Description = "未登录WebDAV";
+                return;
+            }
+
+            _httpWebDavService.Initiate(ShowedAccount);
+            var res = await _httpWebDavService.TestConnection();
+
             IsConnecting = false;
+            if (res)
+            {
+                PictureSource = "success.png";
+                Description = "已成功连接服务器";
+            }
+            else
+            {
+                PictureSource = "failure.png";
+                Description = "连接服务器失败,请检查网络或登录账户";
+            }
         }
 
 
-        private Account _account;
+        private Account _showedAccount;
 
-        public Account Account
+        public Account ShowedAccount
         {
-            get => _account;
-            set => Set(nameof(Account), ref _account, value);
+            get => _showedAccount;
+            set => Set(nameof(ShowedAccount), ref _showedAccount, value);
+        }
+
+        private Account _loginAccount;
+
+        public Account LoginAccount
+        {
+            get => _loginAccount;
+            set => Set(nameof(LoginAccount), ref _loginAccount, value);
         }
 
         private bool _isConnecting;
@@ -84,22 +103,39 @@ namespace NeuToDo.ViewModels
 
         private async Task NavigateToSyncLoginPageFunction()
         {
+            LoginAccount = string.IsNullOrEmpty(ShowedAccount.Password) ? new Account() : ShowedAccount;
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SyncLoginPage);
         }
 
-        private RelayCommand _onLogin;
+        private RelayCommand _fillAccount;
 
-        public RelayCommand Login =>
-            _onLogin ??= new RelayCommand(async () => await OnLoginFunction());
+        public RelayCommand FillAccount =>
+            _fillAccount ??= new RelayCommand(async () => await FillAccountFunction());
 
-
-        private async Task OnLoginFunction()
+        private async Task FillAccountFunction()
         {
-            throw new System.NotImplementedException();
+            IsConnecting = true;
+            //TODO Validation
+            _httpWebDavService.Initiate(LoginAccount);
+            var res = await _httpWebDavService.TestConnection();
+            IsConnecting = false;
+            if (res)
+            {
+                ShowedAccount = new Account
+                {
+                    BaseUri = LoginAccount.BaseUri, UserName = LoginAccount.UserName, Password = LoginAccount.Password,
+                    Remarks = LoginAccount.Remarks
+                };
+                PictureSource = "success.png";
+                Description = "已成功连接服务器";
+                await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+            }
+            else
+            {
+                PictureSource = "failure.png";
+                Description = "连接服务器失败,请检查网络或登录账户";
+            }
+            await _popupNavigationService.PopAllAsync();
         }
     }
-
-   
-
-    
 }

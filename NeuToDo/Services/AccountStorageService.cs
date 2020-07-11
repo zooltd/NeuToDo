@@ -42,6 +42,19 @@ namespace NeuToDo.Services
             _preferenceStorageProvider.Set(serverType + "Time", updateTime);
         }
 
+
+        public async Task SaveAccountAsync(ServerType serverType, Account account)
+        {
+            _preferenceStorageProvider.Set(serverType + nameof(Account.UserName), account.UserName);
+            await _secureStorageProvider.SetAsync(serverType + nameof(Account.Password), account.Password);
+            _preferenceStorageProvider.Set(serverType + nameof(Account.LastUpdateTime), account.LastUpdateTime);
+            if (serverType == ServerType.WebDav)
+            {
+                _preferenceStorageProvider.Set(serverType + nameof(Account.BaseUri), account.BaseUri);
+                _preferenceStorageProvider.Set(serverType + nameof(Account.Remarks), account.Remarks);
+            }
+        }
+
         public async Task<Account> GetAccountAsync(ServerType serverType)
         {
             if (!_preferenceStorageProvider.ContainsKey(serverType + nameof(Account.UserName))) return null;
@@ -56,9 +69,15 @@ namespace NeuToDo.Services
                     _preferenceStorageProvider.Get(serverType + nameof(Account.LastUpdateTime), string.Empty),
                 BaseUri = serverType == ServerType.WebDav
                     ? _preferenceStorageProvider.Get(serverType + nameof(Account.BaseUri), string.Empty)
+                    : string.Empty,
+                Remarks = serverType == ServerType.WebDav
+                    ? _preferenceStorageProvider.Get(serverType + nameof(Account.Remarks), string.Empty)
                     : string.Empty
             };
         }
+
+        public static Account DefaultAccount = new Account
+            {Remarks = "我的私有云盘", BaseUri = "我的服务器地址", UserName = "我的用户名"};
     }
 
     public class Account
@@ -67,5 +86,6 @@ namespace NeuToDo.Services
         public string Password { get; set; }
         public string LastUpdateTime { get; set; }
         public string BaseUri { get; set; }
+        public string Remarks { get; set; }
     }
 }

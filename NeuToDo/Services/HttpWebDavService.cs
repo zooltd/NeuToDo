@@ -19,7 +19,6 @@ namespace NeuToDo.Services
 
         public void Initiate(Account account)
         {
-            // baseUri = baseUri.EndsWith("/") ? baseUri.TrimEnd('/') : baseUri; //去除末尾字符"/?
             var clientParams = new WebDavClientParams
             {
                 BaseAddress = new Uri(account.BaseUri),
