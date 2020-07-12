@@ -10,6 +10,7 @@
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              BindingContext="{Binding SettingsViewModel, Source={StaticResource ViewModelLocator}}"
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Behaviors>
@@ -116,15 +117,11 @@
             <StackLayout Margin="0,-5"
                          Spacing="28"
                          Padding="16">
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500"
-                             touch:TouchEff.Command="{Binding NavigateToSyncPageCommand}">
+                <lc:RippleStackLayout
+                    touch:TouchEff.Command="{Binding NavigateToSyncPageCommand}">
                     <Label Text="本地/云端备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="设备本地空间/云端服务器备份数据库文件" />
-                </StackLayout>
+                </lc:RippleStackLayout>
 
             </StackLayout>
 

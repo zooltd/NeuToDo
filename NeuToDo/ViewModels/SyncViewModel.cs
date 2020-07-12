@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using Xamarin.Essentials;
+using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -16,6 +17,7 @@ namespace NeuToDo.ViewModels
         private readonly IHttpWebDavService _httpWebDavService;
         private readonly IDialogService _dialogService;
         private readonly IDbStorageProvider _dbStorageProvider;
+        public static string AppName = "NeuToDo";
 
         // private bool _isConnected;
 
@@ -169,10 +171,10 @@ namespace NeuToDo.ViewModels
                     await _dbStorageProvider.CloseConnectionAsync();
 
                     var destPath =
-                        $"{AppInfo.Name}/{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm}_{DbStorageProvider.DbName}";
-                    await _httpWebDavService.CreateFolder($"{AppInfo.Name}");
+                        $"{AppName}/{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm}_{DbStorageProvider.DbName}";
+                    await _httpWebDavService.CreateFolder($"{AppName}");
                     await _httpWebDavService.UploadFile(destPath, DbStorageProvider.DbPath);
-                    _dialogService.DisplayAlert("提示", "操作成功", "OK");
+                    _dialogService.DisplayAlert("提示", $"已保存文件至{destPath}", "OK");
                 }
                 catch (Exception e)
                 {
@@ -182,6 +184,29 @@ namespace NeuToDo.ViewModels
             else
             {
                 _dialogService.DisplayAlert("警告", "连接失败", "OK");
+            }
+        }
+
+        private RelayCommand _exportToLocal;
+
+        public RelayCommand ExportToLocal =>
+            _exportToLocal ??= new RelayCommand(async () => await ExportToLocalFunction());
+
+        private async Task ExportToLocalFunction()
+        {
+            //TODO check permission
+            try
+            {
+                var accessHelper = DependencyService.Get<IFileAccessHelper>();
+                var destDir = accessHelper.GetBackUpDirectory();
+                var fileName = $"{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}_{DbStorageProvider.DbName}";
+                var destPath = Path.Combine(destDir, fileName);
+                File.Copy(DbStorageProvider.DbPath, destPath);
+                _dialogService.DisplayAlert("提示", $"已保存至{destPath}", "Ok");
+            }
+            catch (Exception e)
+            {
+                _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
             }
         }
     }

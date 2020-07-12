@@ -8,6 +8,7 @@
              x:Class="NeuToDo.Views.SyncPage"
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
+             xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}"
              Title="备份与恢复">
 
@@ -37,12 +38,7 @@
                 </Grid>
             </Grid>
             <StackLayout Padding="16">
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500"
-                             touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
                     <Label Text="{Binding ShowedAccount.Remarks}"
                            d:Text="我的坚果云"
                            FontSize="16"
@@ -58,16 +54,11 @@
                                d:Text="A long word"
                                VerticalOptions="End" />
                     </StackLayout>
-                </StackLayout>
+                </lc:RippleStackLayout>
 
                 <ActivityIndicator IsRunning="{Binding IsConnecting}" x:Name="Indicator" />
 
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500"
-                             touch:TouchEff.Command="{Binding RetryLogin}">
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding RetryLogin}">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition />
@@ -94,7 +85,7 @@
                             </Label.Triggers>
                         </Label>
                     </Grid>
-                </StackLayout>
+                </lc:RippleStackLayout>
             </StackLayout>
 
             <Grid>
@@ -114,43 +105,27 @@
 
             <StackLayout Padding="16" Spacing="15">
 
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500">
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding ExportToLocal}">
                     <Label Text="导出到本地存储空间" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label
-                        Text="备份文件将被保存到/Android/com.companyname.&#x0a;neutodo/documents/DeviceDame.DateTime.events.sqlite3" />
-                </StackLayout>
+                        Text="备份文件将被保存到/Android/com.companyname.&#x0a;neutodo/documents/DeviceName_DateTime_events.sqlite3" />
+                </lc:RippleStackLayout>
 
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500"
+                <lc:RippleStackLayout
                              touch:TouchEff.Command="{Binding ExportToWebDav}">
                     <Label Text="导出到云端服务器" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceDame.DateTime.events.sqlite3" />
-                </StackLayout>
+                    <Label Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceName_DateTime_events.sqlite3" />
+                </lc:RippleStackLayout>
 
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500">
+                <lc:RippleStackLayout>
                     <Label Text="恢复备份" TextColor="#BF4779" FontAttributes="Bold" FontSize="16" />
                     <Label Text="待恢复文件列表将从本地存储空间和WebDAV服务器中读取,可从中选择需要恢复的数据库记录，覆盖本地数据" />
-                </StackLayout>
+                </lc:RippleStackLayout>
 
-                <StackLayout touch:TouchEff.RegularBackgroundColor="Transparent"
-                             touch:TouchEff.PressedBackgroundColor="Gray"
-                             touch:TouchEff.RippleCount="1"
-                             touch:TouchEff.PressedAnimationDuration="500"
-                             touch:TouchEff.RegularAnimationDuration="500">
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding HelpCommand}">
                     <Label Text="帮助" TextColor="#BF4779" FontAttributes="Bold" FontSize="16" />
                     <Label Text="获取WebDAV教程" />
-                </StackLayout>
+                </lc:RippleStackLayout>
 
             </StackLayout>
         </StackLayout>

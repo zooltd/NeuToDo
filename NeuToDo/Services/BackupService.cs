@@ -53,7 +53,7 @@ namespace NeuToDo.Services
                 case Device.Android:
                     await _dbStorageProvider.CloseConnectionAsync();
                     var accessHelper = DependencyService.Get<IFileAccessHelper>();
-                    var privateExternalDirectory = accessHelper.GetPrivateExternalDirectory();
+                    var privateExternalDirectory = accessHelper.GetBackUpDirectory();
                     if (!await accessHelper.CheckPermission()) throw new Exception("缺少外部存储访问权限");
 
                     destPath = Path.Combine(privateExternalDirectory,

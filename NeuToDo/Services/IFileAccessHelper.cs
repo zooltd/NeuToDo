@@ -4,7 +4,8 @@ namespace NeuToDo.Services
 {
     public interface IFileAccessHelper
     {
-        string GetPrivateExternalDirectory();
+        string GetBackUpDirectory();
+        // Task CopyToAsync();
 
         Task<bool> CheckPermission();
     }
