@@ -17,7 +17,8 @@ namespace NeuToDo.ViewModels
         private readonly IHttpWebDavService _httpWebDavService;
         private readonly IDialogService _dialogService;
         private readonly IDbStorageProvider _dbStorageProvider;
-        public static string AppName = "NeuToDo";
+        private readonly IContentPageNavigationService _contentPageNavigationService;
+        private static string AppName = "NeuToDo";
 
         // private bool _isConnected;
 
@@ -25,13 +26,15 @@ namespace NeuToDo.ViewModels
             IPopupNavigationService popupNavigationService,
             IHttpWebDavService httpWebDavService,
             IDialogService dialogService,
-            IDbStorageProvider dbStorageProvider)
+            IDbStorageProvider dbStorageProvider,
+            IContentPageNavigationService contentPageNavigationService)
         {
             _accountStorageService = accountStorageService;
             _popupNavigationService = popupNavigationService;
             _httpWebDavService = httpWebDavService;
             _dialogService = dialogService;
             _dbStorageProvider = dbStorageProvider;
+            _contentPageNavigationService = contentPageNavigationService;
         }
 
         private RelayCommand _pageAppearingCommand;
@@ -209,6 +212,14 @@ namespace NeuToDo.ViewModels
                 _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
             }
         }
+
+        private RelayCommand _helpCommand;
+
+        public RelayCommand HelpCommand =>
+            _helpCommand ??= new RelayCommand(async () =>
+            {
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.HelpPage);
+            });
     }
 
     public class ConnectionResponse : ObservableObject

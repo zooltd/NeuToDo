@@ -9,6 +9,7 @@
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
              xmlns:b="clr-namespace:Behaviors;assembly=Behaviors"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+             xmlns:drawer="clr-namespace:Xam.Plugin.SimpleBottomDrawer;assembly=Xam.Plugin.SimpleBottomDrawer"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}"
              Title="备份与恢复">
 
@@ -20,9 +21,10 @@
             </b:ActionCollection>
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
+
+
     <ScrollView>
         <StackLayout>
-
             <Grid>
                 <Grid HorizontalOptions="Start"
                       BackgroundColor="#455399"
@@ -64,7 +66,8 @@
                             <ColumnDefinition />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ConnectionResponse.PictureSource}" HeightRequest="20"
+                        <Image Grid.Column="0" Source="{Binding ConnectionResponse.PictureSource}"
+                               HeightRequest="20"
                                WidthRequest="20"
                                IsVisible="False">
                             <Image.Triggers>
@@ -112,9 +115,10 @@
                 </lc:RippleStackLayout>
 
                 <lc:RippleStackLayout
-                             touch:TouchEff.Command="{Binding ExportToWebDav}">
+                    touch:TouchEff.Command="{Binding ExportToWebDav}">
                     <Label Text="导出到云端服务器" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceName_DateTime_events.sqlite3" />
+                    <Label
+                        Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceName_DateTime_events.sqlite3" />
                 </lc:RippleStackLayout>
 
                 <lc:RippleStackLayout>
@@ -128,7 +132,29 @@
                 </lc:RippleStackLayout>
 
             </StackLayout>
+
+
+            <drawer:BottomDrawer Padding="0"
+                                 BackgroundColor="White"
+                                 ExpandedPercentage="{Binding ExpandedPercentage}"
+                                 IsExpanded="{Binding IsExpanded}"
+                                 IsVisible="{Binding IsVisible}"
+                                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=0}"
+                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=1,
+                                                                  Constant=-65}" />
         </StackLayout>
+
+
     </ScrollView>
+
 
 </ContentPage>

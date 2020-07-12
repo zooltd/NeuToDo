@@ -38,6 +38,8 @@ namespace NeuToDo.Services
     {
         public const string SyncPage = nameof(Views.SyncPage);
 
+        public const string HelpPage = nameof(Views.HelpPage);
+
         /// <summary>
         /// 页面键-页面类型字典。
         /// </summary>
@@ -47,7 +49,8 @@ namespace NeuToDo.Services
                 {nameof(NeuEvent), typeof(NeuEventDetailPage)},
                 {nameof(MoocEvent), typeof(MoocEventDetailPage)},
                 {nameof(UserEvent), typeof(UserEventDetailPage)},
-                {SyncPage, typeof(SyncPage)}
+                {SyncPage, typeof(SyncPage)},
+                {HelpPage, typeof(HelpPage)}
             };
     }
 }
