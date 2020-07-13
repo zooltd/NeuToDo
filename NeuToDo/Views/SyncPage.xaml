@@ -151,21 +151,25 @@
                     HeightRequest="3"
                     HorizontalOptions="Center"
                     WidthRequest="80" />
-                <Grid>
+                <Grid Padding="10">
+                    <Grid.RowDefinitions>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition />
-                        <ColumnDefinition />
+                        <ColumnDefinition Width="0.9*" />
+                        <ColumnDefinition Width="0.1*" />
                     </Grid.ColumnDefinitions>
-                    <Label Text="选择备份文件"
-                           Margin="16"
+                    <Label Grid.Column="0"
+                           Text="选择备份文件"
                            FontAttributes="Bold"
                            FontSize="18"
                            TextColor="#003154" />
+                    <ImageButton Grid.Column="1" Source="minimize.png" HeightRequest="10" WidthRequest="10"
+                                 BackgroundColor="Transparent" Command="{Binding CloseDrawer}"/>
                 </Grid>
 
                 <ScrollView>
                     <StackLayout BindableLayout.ItemsSource="{Binding BackUpFileNames}">
-                        <Label Text="{Binding}"></Label>
+                        <Label Text="{Binding}" />
                     </StackLayout>
                 </ScrollView>
             </StackLayout>

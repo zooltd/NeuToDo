@@ -151,6 +151,15 @@ namespace NeuToDo.ViewModels
         public RelayCommand BackgroundClicked =>
             _backgroundClicked ??= new RelayCommand(() => { IsExpanded = false; });
 
+        private RelayCommand _closeDrawer;
+
+        public RelayCommand CloseDrawer =>
+            _closeDrawer ??= new RelayCommand(() =>
+            {
+                IsExpanded = false;
+                IsVisible = false;
+            });
+
         /*-------------------------------------*/
         private RelayCommand _navigateToSyncLoginPage;
 

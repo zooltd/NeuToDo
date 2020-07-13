@@ -125,6 +125,7 @@
     </Content>
     <Content Include="list.png" />
     <Content Include="ListAdd.png" />
+    <Content Include="minimize.png" />
     <Content Include="MoocPic.png" />
     <Content Include="NeuEventAdd.png" />
     <Content Include="NeuPic.png" />
