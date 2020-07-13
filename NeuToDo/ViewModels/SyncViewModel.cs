@@ -99,12 +99,12 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(ConnectionResponse), ref _connectionResponse, value);
         }
 
-        private List<string> _backUpFileNames;
+        private List<RecoveryFile> _recoveryFiles;
 
-        public List<string> BackUpFileNames
+        public List<RecoveryFile> RecoveryFiles
         {
-            get => _backUpFileNames;
-            set => Set(nameof(BackUpFileNames), ref _backUpFileNames, value);
+            get => _recoveryFiles;
+            set => Set(nameof(RecoveryFiles), ref _recoveryFiles, value);
         }
 
         /*-------------------------------------*/
@@ -279,15 +279,16 @@ namespace NeuToDo.ViewModels
         }
 
 
-        private RelayCommand _importCommand;
+        private RelayCommand _showBackUpFiles;
 
-        public RelayCommand ImportCommand =>
-            _importCommand ??= new RelayCommand(async () => await ImportCommandFunction());
+        public RelayCommand ShowBackUpFiles =>
+            _showBackUpFiles ??= new RelayCommand(async () => await ShowBackUpFilesFunction());
 
-        private async Task ImportCommandFunction()
+        private async Task ShowBackUpFilesFunction()
         {
             IsVisible = true;
-            BackUpFileNames = await Task.Run(async () => await GetBackupFiles());
+            IsExpanded = true;
+            RecoveryFiles = await GetBackupFiles();
         }
 
 
@@ -300,20 +301,66 @@ namespace NeuToDo.ViewModels
             });
 
 
-        private async Task<List<string>> GetBackupFiles()
+        private async Task<List<RecoveryFile>> GetBackupFiles()
         {
-            var fileList = new List<string>();
             var localDir = _fileAccessHelper.GetBackUpDirectory();
             var files = Directory.GetFiles(localDir, "*_*.sqlite3");
-            fileList.AddRange(files.Select(s => new FileInfo(s)).Select(fi => fi.Name));
 
-            if (ConnectionResponse.IsConnected)
-            {
-                fileList.AddRange(await _httpWebDavService.GetFilesAsync($"{AppName}", @"(.*)_events.sqlite3"));
-            }
+            var fileList = files.Select(file => new FileInfo(file)).Select(fi => new RecoveryFile
+                {FileName = fi.Name, FilePath = fi.FullName, FileSource = FileSource.Local}).ToList();
 
+            if (!ConnectionResponse.IsConnected) return fileList;
+            var webFiles = await _httpWebDavService.GetFilesAsync($"{AppName}", @"(.*)_events.sqlite3");
+            fileList.AddRange(webFiles);
             return fileList;
         }
+
+
+        private RelayCommand<RecoveryFile> _importFile;
+
+        public RelayCommand<RecoveryFile> ImportFile =>
+            _importFile ??= new RelayCommand<RecoveryFile>(async (file) => await ImportFileFunction(file));
+
+        private async Task ImportFileFunction(RecoveryFile recoveryFile)
+        {
+            var res = await _dialogService.DisplayAlert("警告", "将覆盖现有数据库文件，请确保已备份重要信息", "确认覆盖", "取消覆盖");
+            if (!res) return;
+            await _dbStorageProvider.CloseConnectionAsync();
+            var inputStream = recoveryFile.FileSource switch
+            {
+                FileSource.Server => await _httpWebDavService.GetFileAsync(recoveryFile.FilePath),
+                FileSource.Local => File.OpenRead(recoveryFile.FilePath),
+                _ => throw new ArgumentOutOfRangeException()
+            };
+
+            var outputStream = File.Create(DbStorageProvider.DbPath);
+            CopyStream(inputStream, outputStream);
+            inputStream.Close();
+            outputStream.Close();
+            _dbStorageProvider.OnUpdateData();
+            _dialogService.DisplayAlert("提示", "导入成功", "OK");
+        }
+
+        private static void CopyStream(Stream input, Stream output)
+        {
+            var buffer = new byte[16 * 1024];
+            int read;
+            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
+                output.Write(buffer, 0, read);
+        }
+    }
+
+    public class RecoveryFile
+    {
+        public FileSource FileSource { get; set; }
+        public string FileName { get; set; }
+        public string FilePath { get; set; }
+    }
+
+    public enum FileSource
+    {
+        Local,
+        Server
     }
 
     public class ConnectionResponse : ObservableObject

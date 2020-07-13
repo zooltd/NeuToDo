@@ -1,5 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Threading.Tasks;
+using NeuToDo.ViewModels;
+using WebDav;
 
 namespace NeuToDo.Services
 {
@@ -15,6 +18,8 @@ namespace NeuToDo.Services
 
         Task CreateFolder(string folderName);
 
-        Task<List<string>> GetFilesAsync(string sourcePath, string searchPattern = null);
+        Task<List<RecoveryFile>> GetFilesAsync(string sourcePath, string searchPattern = null);
+
+        Task<Stream> GetFileAsync(string uri);
     }
 }

@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using NeuToDo.ViewModels;
 using WebDav;
 using Xamarin.Essentials;
 
@@ -17,8 +18,9 @@ namespace NeuToDo.Services
 
         public bool IsInitialized { get; set; }
 
-        private string _baseUri;
+        // private string _baseUri;
 
+        private Uri _baseUri;
         // public static readonly string TargetDirectory = AppInfo.Name;
 
         public void Initiate(Account account)
@@ -30,7 +32,7 @@ namespace NeuToDo.Services
             };
 
             _client = new WebDavClient(clientParams);
-            _baseUri = account.BaseUri;
+            _baseUri = new Uri(account.BaseUri);
             IsInitialized = true;
         }
 
@@ -44,7 +46,7 @@ namespace NeuToDo.Services
         public async Task UploadFile(string destPath, string sourcePath)
         {
             var stream = File.OpenRead(sourcePath);
-            var res = await _client.PutFile(_baseUri + destPath, new StreamContent(stream));
+            var res = await _client.PutFile(new Uri(_baseUri, destPath), new StreamContent(stream));
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
         }
 
@@ -54,25 +56,36 @@ namespace NeuToDo.Services
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
         }
 
-
-        public async Task<List<string>> GetFilesAsync(string sourcePath, string searchPattern = null)
+        public async Task<List<RecoveryFile>> GetFilesAsync(string sourcePath, string searchPattern = null)
         {
-            var fileNames = new List<string>();
             if (!IsInitialized) throw new Exception("WebDAV未初始化");
-            var res = await _client.Propfind(_baseUri + sourcePath);
+            var webFiles = new List<WebDavResource>();
+            var res = await _client.Propfind(new Uri(_baseUri, sourcePath));
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
             var files = res.Resources.ToList();
             if (searchPattern == null)
-                fileNames = files.ConvertAll(x => x.DisplayName);
+                webFiles = files;
             else
             {
-                fileNames.AddRange(from file in files
+                webFiles.AddRange(from file in files
                     let match = Regex.Match(file.DisplayName, searchPattern)
                     where match.Success
-                    select file.DisplayName);
+                    select file);
             }
 
-            return fileNames;
+            return webFiles.ConvertAll(x => new RecoveryFile
+            {
+                FileName = x.DisplayName, FilePath = new Uri(_baseUri, x.Uri).AbsoluteUri,
+                FileSource = FileSource.Server
+            });
+        }
+
+        public async Task<Stream> GetFileAsync(string uri)
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var res = await _client.GetRawFile(uri);
+            if(!res.IsSuccessful) throw new HttpRequestException(res.Description);
+            return res.Stream;
         }
     }
 }
