@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<popup:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                 xmlns:popup="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+                 xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
+                 mc:Ignorable="d"
+                 x:Class="NeuToDo.Views.Popup.SemesterEditPage"
+                 BackgroundInputTransparent="False"
+                 BindingContext="{Binding ToDoViewModel,Source={StaticResource ViewModelLocator}}">
+    <StackLayout Padding="50">
+        <Frame
+            BackgroundColor="White"
+            VerticalOptions="CenterAndExpand"
+            HorizontalOptions="CenterAndExpand">
+            <StackLayout>
+                <Label Text="编辑当前学期" HorizontalOptions="CenterAndExpand" FontAttributes="Bold" FontSize="20" />
+
+                <Label x:Name="DateLabel" HorizontalOptions="EndAndExpand" FontAttributes="Italic" TextColor="Black"
+                       FontSize="18" />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.2*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Label Grid.Row="0" Grid.Column="0" Text="学年: " VerticalOptions="CenterAndExpand" />
+                    <lc:CustomEntry Grid.Row="0" Grid.Column="1" Placeholder="20xx-20xx"
+                                    VerticalOptions="CenterAndExpand"
+                                    Text="{Binding EditSemester.SchoolYear}" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="学期: " VerticalOptions="CenterAndExpand" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Placeholder="春季/秋季/..."
+                                    VerticalOptions="CenterAndExpand"
+                                    Text="{Binding EditSemester.Season}" />
+                    <Label Grid.Row="2" Grid.Column="0" Text="周数: " VerticalOptions="CenterAndExpand" />
+                    <lc:CustomEntry Grid.Row="2" Grid.Column="1" Placeholder="请输入周数" VerticalOptions="CenterAndExpand"
+                                    Text="{Binding EditWeekNo}" Keyboard="Numeric" />
+                </Grid>
+
+                <Button BackgroundColor="#455399" Text="新增学期" TextColor="White"
+                        Command="{Binding AddSemesterCommand}" />
+                <Button BackgroundColor="#BF4779" Text="取消编辑" TextColor="White"
+                        Command="{Binding CancelEdit}" />
+            </StackLayout>
+        </Frame>
+    </StackLayout>
+</popup:PopupPage>

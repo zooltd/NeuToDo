@@ -17,5 +17,9 @@ namespace NeuToDo.Services
         Task<List<Semester>> GetAllOrderedByBaseDateAsync();
 
         Task<List<Semester>> GetAllAsync();
+
+        Task<int> GetCountAsync();
+
+        Task InsertAsync(Semester semester);
     }
 }

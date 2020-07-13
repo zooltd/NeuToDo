@@ -30,5 +30,11 @@ namespace NeuToDo.Services
 
         public async Task<List<Semester>> GetAllAsync()
             => await _connection.Table<Semester>().ToListAsync();
+
+        public async Task<int> GetCountAsync()
+            => await _connection.Table<Semester>().CountAsync();
+
+        public async Task InsertAsync(Semester semester)
+            => await _connection.InsertAsync(semester);
     }
 }

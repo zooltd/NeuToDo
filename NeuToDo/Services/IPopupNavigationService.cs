@@ -56,6 +56,11 @@ namespace NeuToDo.Services
         public const string SyncLoginPage = nameof(Views.Popup.SyncLoginPage);
 
         /// <summary>
+        /// 学期编辑页
+        /// </summary>
+        public const string SemesterEditPage = nameof(Views.Popup.SemesterEditPage);
+
+        /// <summary>
         /// 页面键-页面类型字典。
         /// </summary>
         public static readonly Dictionary<string, Type> PageKeyTypeDictionary = new Dictionary<string, Type>
@@ -66,7 +71,8 @@ namespace NeuToDo.Services
             {ErrorPopupPage, typeof(ErrorPopupPage)},
             {SelectPopupPage, typeof(SelectPopupPage)},
             {WeekNoSelectPopupPage, typeof(WeekNoSelectPopupPage)},
-            {SyncLoginPage,typeof(SyncLoginPage)}
+            {SyncLoginPage, typeof(SyncLoginPage)},
+            {SemesterEditPage, typeof(SemesterEditPage)}
         };
     }
 }
