@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
@@ -18,7 +20,8 @@ namespace NeuToDo.ViewModels
         private readonly IDialogService _dialogService;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IContentPageNavigationService _contentPageNavigationService;
-        private static string AppName = "NeuToDo";
+        private readonly IFileAccessHelper _fileAccessHelper;
+        private const string AppName = "NeuToDo";
 
         // private bool _isConnected;
 
@@ -35,6 +38,7 @@ namespace NeuToDo.ViewModels
             _dialogService = dialogService;
             _dbStorageProvider = dbStorageProvider;
             _contentPageNavigationService = contentPageNavigationService;
+            _fileAccessHelper = DependencyService.Get<IFileAccessHelper>();
         }
 
         private RelayCommand _pageAppearingCommand;
@@ -56,7 +60,7 @@ namespace NeuToDo.ViewModels
             }
 
             _httpWebDavService.Initiate(ShowedAccount);
-            var res = await _httpWebDavService.TestConnection();
+            var res = await _httpWebDavService.TestConnection(); //TODO 超时
             ConnectionResponse.IsConnected = res;
             ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
             IsConnecting = false;
@@ -95,6 +99,59 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(ConnectionResponse), ref _connectionResponse, value);
         }
 
+        private List<string> _backUpFileNames;
+
+        public List<string> BackUpFileNames
+        {
+            get => _backUpFileNames;
+            set => Set(nameof(BackUpFileNames), ref _backUpFileNames, value);
+        }
+
+        /*-------------------------------------*/
+        private const double MaxOpacity = 1;
+
+        private double _expandedPercentage;
+
+        public double ExpandedPercentage
+        {
+            get => _expandedPercentage;
+            set
+            {
+                Set(nameof(ExpandedPercentage), ref _expandedPercentage, value);
+                OverlayOpacity = MaxOpacity < value ? MaxOpacity : value;
+            }
+        }
+
+        private bool _isExpanded;
+
+        public bool IsExpanded
+        {
+            get => _isExpanded;
+            set => Set(nameof(IsExpanded), ref _isExpanded, value);
+        }
+
+        private bool _isVisible;
+
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set => Set(nameof(IsVisible), ref _isVisible, value);
+        }
+
+        private double _overlayOpacity;
+
+        public double OverlayOpacity
+        {
+            get => _overlayOpacity;
+            set => Set(nameof(OverlayOpacity), ref _overlayOpacity, value);
+        }
+
+        private RelayCommand _backgroundClicked;
+
+        public RelayCommand BackgroundClicked =>
+            _backgroundClicked ??= new RelayCommand(() => { IsExpanded = false; });
+
+        /*-------------------------------------*/
         private RelayCommand _navigateToSyncLoginPage;
 
         public RelayCommand NavigateToSyncLoginPage =>
@@ -200,8 +257,7 @@ namespace NeuToDo.ViewModels
             //TODO check permission
             try
             {
-                var accessHelper = DependencyService.Get<IFileAccessHelper>();
-                var destDir = accessHelper.GetBackUpDirectory();
+                var destDir = _fileAccessHelper.GetBackUpDirectory();
                 var fileName = $"{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm_ss}_{DbStorageProvider.DbName}";
                 var destPath = Path.Combine(destDir, fileName);
                 File.Copy(DbStorageProvider.DbPath, destPath);
@@ -213,6 +269,19 @@ namespace NeuToDo.ViewModels
             }
         }
 
+
+        private RelayCommand _importCommand;
+
+        public RelayCommand ImportCommand =>
+            _importCommand ??= new RelayCommand(async () => await ImportCommandFunction());
+
+        private async Task ImportCommandFunction()
+        {
+            IsVisible = true;
+            BackUpFileNames = await Task.Run(async () => await GetBackupFiles());
+        }
+
+
         private RelayCommand _helpCommand;
 
         public RelayCommand HelpCommand =>
@@ -220,6 +289,22 @@ namespace NeuToDo.ViewModels
             {
                 await _contentPageNavigationService.PushAsync(ContentNavigationConstants.HelpPage);
             });
+
+
+        private async Task<List<string>> GetBackupFiles()
+        {
+            var fileList = new List<string>();
+            var localDir = _fileAccessHelper.GetBackUpDirectory();
+            var files = Directory.GetFiles(localDir, "*_*.sqlite3");
+            fileList.AddRange(files.Select(s => new FileInfo(s)).Select(fi => fi.Name));
+
+            if (ConnectionResponse.IsConnected)
+            {
+                fileList.AddRange(await _httpWebDavService.GetFilesAsync($"{AppName}", @"(.*)_events.sqlite3"));
+            }
+
+            return fileList;
+        }
     }
 
     public class ConnectionResponse : ObservableObject

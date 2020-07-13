@@ -1,8 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
+    [Obsolete]
     public interface IBackupService
     {
         Task ImportAsync(List<FileType> allowedTypes = null);

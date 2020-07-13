@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
@@ -13,5 +14,7 @@ namespace NeuToDo.Services
         Task UploadFile(string destPath, string sourcePath);
 
         Task CreateFolder(string folderName);
+
+        Task<List<string>> GetFilesAsync(string sourcePath, string searchPattern = null);
     }
 }

@@ -22,91 +22,62 @@
         </b:EventHandlerBehavior>
     </ContentPage.Behaviors>
 
+    <RelativeLayout>
 
-    <ScrollView>
-        <StackLayout>
-            <Grid>
-                <Grid HorizontalOptions="Start"
-                      BackgroundColor="#455399"
-                      Padding="16,8,16,8"
-                      Margin="0,12,0,0">
-                    <Label Text="WebDAV"
-                           TextColor="White"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           HeightRequest="32" />
+        <StackLayout Padding="16">
+            <lc:RippleStackLayout touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
+                <Label Text="{Binding ShowedAccount.Remarks}"
+                       d:Text="我的坚果云"
+                       FontSize="16"
+                       TextColor="#455399"
+                       FontAttributes="Bold"
+                       HorizontalTextAlignment="Start"
+                       VerticalTextAlignment="Center" />
+                <StackLayout>
+                    <Label Text="{Binding ShowedAccount.BaseUri, StringFormat='服务器地址: {0}'}"
+                           d:Text="https://esafaffaf.f.fsafsf.sa"
+                           VerticalOptions="End" />
+                    <Label Text="{Binding ShowedAccount.UserName, StringFormat='用户名: {0}'}"
+                           d:Text="A long word"
+                           VerticalOptions="End" />
+                </StackLayout>
+            </lc:RippleStackLayout>
+
+            <ActivityIndicator IsRunning="{Binding IsConnecting}" IsVisible="{Binding IsConnecting}"
+                               x:Name="Indicator" HeightRequest="20" />
+
+            <lc:RippleStackLayout touch:TouchEff.Command="{Binding RetryLogin}" Margin="0,5">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*" />
+                        <ColumnDefinition Width="0.8*" />
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="{Binding ConnectionResponse.PictureSource}"
+                           HeightRequest="20"
+                           WidthRequest="20"
+                           IsVisible="False">
+                        <Image.Triggers>
+                            <DataTrigger TargetType="Image"
+                                         Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
+                                         Value="False">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </Image.Triggers>
+                    </Image>
+                    <Label Grid.Column="1" Text="{Binding ConnectionResponse.Reason}" IsVisible="False">
+                        <Label.Triggers>
+                            <DataTrigger TargetType="Label"
+                                         Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
+                                         Value="False">
+                                <Setter Property="IsVisible" Value="True" />
+                            </DataTrigger>
+                        </Label.Triggers>
+                    </Label>
                 </Grid>
-            </Grid>
-            <StackLayout Padding="16">
-                <lc:RippleStackLayout touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
-                    <Label Text="{Binding ShowedAccount.Remarks}"
-                           d:Text="我的坚果云"
-                           FontSize="16"
-                           TextColor="#455399"
-                           FontAttributes="Bold"
-                           HorizontalTextAlignment="Start"
-                           VerticalTextAlignment="Center" />
-                    <StackLayout>
-                        <Label Text="{Binding ShowedAccount.BaseUri, StringFormat='服务器地址: {0}'}"
-                               d:Text="https://esafaffaf.f.fsafsf.sa"
-                               VerticalOptions="End" />
-                        <Label Text="{Binding ShowedAccount.UserName, StringFormat='用户名: {0}'}"
-                               d:Text="A long word"
-                               VerticalOptions="End" />
-                    </StackLayout>
-                </lc:RippleStackLayout>
+            </lc:RippleStackLayout>
 
-                <ActivityIndicator IsRunning="{Binding IsConnecting}" x:Name="Indicator" />
 
-                <lc:RippleStackLayout touch:TouchEff.Command="{Binding RetryLogin}">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition />
-                            <ColumnDefinition />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.Column="0" Source="{Binding ConnectionResponse.PictureSource}"
-                               HeightRequest="20"
-                               WidthRequest="20"
-                               IsVisible="False">
-                            <Image.Triggers>
-                                <DataTrigger TargetType="Image"
-                                             Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
-                                             Value="False">
-                                    <Setter Property="IsVisible" Value="True" />
-                                </DataTrigger>
-                            </Image.Triggers>
-                        </Image>
-                        <Label Grid.Column="1" Text="{Binding ConnectionResponse.Reason}" IsVisible="False">
-                            <Label.Triggers>
-                                <DataTrigger TargetType="Label"
-                                             Binding="{Binding Source={x:Reference Indicator},Path=IsRunning}"
-                                             Value="False">
-                                    <Setter Property="IsVisible" Value="True" />
-                                </DataTrigger>
-                            </Label.Triggers>
-                        </Label>
-                    </Grid>
-                </lc:RippleStackLayout>
-            </StackLayout>
-
-            <Grid>
-                <Grid HorizontalOptions="Start"
-                      BackgroundColor="#455399"
-                      Padding="16,8,16,8"
-                      Margin="0,12,0,0">
-                    <Label Text="备份与恢复"
-                           TextColor="White"
-                           FontSize="20"
-                           FontAttributes="Bold"
-                           HorizontalTextAlignment="Center"
-                           VerticalTextAlignment="Center"
-                           HeightRequest="32" />
-                </Grid>
-            </Grid>
-
-            <StackLayout Padding="16" Spacing="15">
+            <StackLayout Spacing="15">
 
                 <lc:RippleStackLayout touch:TouchEff.Command="{Binding ExportToLocal}">
                     <Label Text="导出到本地存储空间" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
@@ -121,7 +92,7 @@
                         Text="如果您已设置WebDAV, 备份文件将被保存到您的云端服务器WebDAV目录下/NeuToDo/DeviceName_DateTime_events.sqlite3" />
                 </lc:RippleStackLayout>
 
-                <lc:RippleStackLayout>
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding ImportCommand}">
                     <Label Text="恢复备份" TextColor="#BF4779" FontAttributes="Bold" FontSize="16" />
                     <Label Text="待恢复文件列表将从本地存储空间和WebDAV服务器中读取,可从中选择需要恢复的数据库记录，覆盖本地数据" />
                 </lc:RippleStackLayout>
@@ -133,28 +104,74 @@
 
             </StackLayout>
 
-
-            <drawer:BottomDrawer Padding="0"
-                                 BackgroundColor="White"
-                                 ExpandedPercentage="{Binding ExpandedPercentage}"
-                                 IsExpanded="{Binding IsExpanded}"
-                                 IsVisible="{Binding IsVisible}"
-                                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                       Property=Height,
-                                                                       Factor=1,
-                                                                       Constant=0}"
-                                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                      Property=Width,
-                                                                      Factor=1,
-                                                                      Constant=0}"
-                                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
-                                                                  Property=Height,
-                                                                  Factor=1,
-                                                                  Constant=-65}" />
         </StackLayout>
 
 
-    </ScrollView>
+        <ContentView
+            BackgroundColor="#222222"
+            IsVisible="{Binding IsExpanded}"
+            Opacity="{Binding OverlayOpacity}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}">
+            <ContentView.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding BackgroundClicked}" />
+            </ContentView.GestureRecognizers>
+        </ContentView>
+
+        <drawer:BottomDrawer
+            Padding="0"
+            BackgroundColor="WhiteSmoke"
+            ExpandedPercentage="{Binding ExpandedPercentage}"
+            IsExpanded="{Binding IsExpanded}"
+            IsVisible="{Binding IsVisible}"
+            RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                       Property=Height,
+                                                                       Factor=1,
+                                                                       Constant=0}"
+            RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                      Property=Width,
+                                                                      Factor=1,
+                                                                      Constant=0}"
+            RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent,
+                                                                  Property=Height,
+                                                                  Factor=1,
+                                                                  Constant=-65}">
+
+            <StackLayout Spacing="6">
+                <BoxView
+                    Margin="20,16,20,-5"
+                    BackgroundColor="Gray"
+                    CornerRadius="2"
+                    HeightRequest="3"
+                    HorizontalOptions="Center"
+                    WidthRequest="80" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label Text="选择备份文件"
+                           Margin="16"
+                           FontAttributes="Bold"
+                           FontSize="18"
+                           TextColor="#003154" />
+                </Grid>
+
+                <ScrollView>
+                    <StackLayout BindableLayout.ItemsSource="{Binding BackUpFileNames}">
+                        <Label Text="{Binding}"></Label>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </drawer:BottomDrawer>
 
 
+        <!-- </AbsoluteLayout> -->
+    </RelativeLayout>
 </ContentPage>

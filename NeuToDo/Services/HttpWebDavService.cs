@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using WebDav;
 using Xamarin.Essentials;
@@ -16,7 +19,7 @@ namespace NeuToDo.Services
 
         private string _baseUri;
 
-        public static readonly string TargetDirectory = AppInfo.Name;
+        // public static readonly string TargetDirectory = AppInfo.Name;
 
         public void Initiate(Account account)
         {
@@ -52,10 +55,24 @@ namespace NeuToDo.Services
         }
 
 
-        public async Task GetAll()
+        public async Task<List<string>> GetFilesAsync(string sourcePath, string searchPattern = null)
         {
+            var fileNames = new List<string>();
             if (!IsInitialized) throw new Exception("WebDAV未初始化");
-            var result = await _client.Propfind($"{_baseUri}/{TargetDirectory}");
+            var res = await _client.Propfind(_baseUri + sourcePath);
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+            var files = res.Resources.ToList();
+            if (searchPattern == null)
+                fileNames = files.ConvertAll(x => x.DisplayName);
+            else
+            {
+                fileNames.AddRange(from file in files
+                    let match = Regex.Match(file.DisplayName, searchPattern)
+                    where match.Success
+                    select file.DisplayName);
+            }
+
+            return fileNames;
         }
     }
 }
