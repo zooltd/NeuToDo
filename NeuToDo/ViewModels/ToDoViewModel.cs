@@ -70,11 +70,9 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await _userStorage.GetAllAsync());
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
-            // _semesters = await _semesterStorage.GetAllOrderedByBaseDateAsync();
-
-            UpdateCalendarData();
             await UpdateSemester();
             UpdateListData();
+            UpdateCalendarData();
         }
 
         /// <summary>
