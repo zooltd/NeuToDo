@@ -5,7 +5,7 @@ namespace NeuToDo.Components
 {
     public class RippleStackLayout : StackLayout
     {
-        public RippleStackLayout():base()
+        public RippleStackLayout()
         {
             SetValue(TouchEff.RegularBackgroundColorProperty, Color.Transparent);
             SetValue(TouchEff.PressedBackgroundColorProperty, Color.Gray);

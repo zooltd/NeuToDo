@@ -171,9 +171,13 @@
                     <StackLayout BindableLayout.ItemsSource="{Binding RecoveryFiles}" Spacing="15">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <Grid
-                                    touch:TouchEff.Command="{Binding BindingContext.ImportFile,Source={x:Reference ThisPage}}"
-                                    touch:TouchEff.CommandParameter="{Binding}">
+                                <Grid touch:TouchEff.RegularBackgroundColor="Transparent"
+                                      touch:TouchEff.PressedBackgroundColor="Gray"
+                                      touch:TouchEff.RippleCount="1"
+                                      touch:TouchEff.PressedAnimationDuration="100"
+                                      touch:TouchEff.RegularAnimationDuration="100"
+                                      touch:TouchEff.Command="{Binding BindingContext.ImportFile,Source={x:Reference ThisPage}}"
+                                      touch:TouchEff.CommandParameter="{Binding}">
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="0.8*" />
                                         <ColumnDefinition Width="0.2*" />
