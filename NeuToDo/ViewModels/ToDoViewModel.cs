@@ -111,7 +111,7 @@ namespace NeuToDo.ViewModels
                 cnt += WeeklyAgenda[i].EventList.Count;
             }
 
-            WeeklySummary = $"你本周有{cnt}个ToDo事项, 所谓债多不压身";
+            WeeklySummary = $"本周有{cnt}个ToDo事项, 所谓债多不压身";
         }
 
         #endregion
@@ -283,6 +283,16 @@ namespace NeuToDo.ViewModels
                 SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false,
                 Time = DateTime.Today
             });
+        }
+
+        private RelayCommand _semesterEditCommand;
+
+        public RelayCommand SemesterEditCommand =>
+            _semesterEditCommand ??= new RelayCommand(async () => await SemesterEditCommandFunction());
+
+        private async Task SemesterEditCommandFunction()
+        {
+            throw new NotImplementedException();
         }
 
         #endregion

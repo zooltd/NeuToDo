@@ -23,7 +23,7 @@
 
 
     <ScrollView x:Name="ScrollView">
-        <Grid BackgroundColor="#F3F5F9" RowSpacing="0" HorizontalOptions="FillAndExpand"
+        <Grid RowSpacing="0" HorizontalOptions="FillAndExpand"
               VerticalOptions="FillAndExpand">
             <Grid.RowDefinitions>
                 <RowDefinition Height="603" x:Name="FirstRow" />
@@ -31,8 +31,25 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Grid BackgroundColor="#455399" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-                <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
+            <Grid Grid.Row="0" BackgroundColor="#455399" HorizontalOptions="FillAndExpand"
+                  VerticalOptions="FillAndExpand">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <StackLayout Grid.Row="0" Padding="25,25" Orientation="Horizontal" HorizontalOptions="End"
+                             VerticalOptions="Start">
+                    <Image Source="search.png"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="CenterAndExpand"
+                           HeightRequest="25"
+                           WidthRequest="25" />
+
+                </StackLayout>
+
+                <StackLayout Grid.Row="1" HorizontalOptions="Center" VerticalOptions="Center">
                     <Label TextColor="White" HorizontalTextAlignment="Center" FontSize="25">
                         <Label.FormattedText>
                             <FormattedString>
@@ -44,10 +61,29 @@
                             </FormattedString>
                         </Label.FormattedText>
                     </Label>
-                    <Label Text="{Binding Semester}" TextColor="White" FontSize="18" HorizontalTextAlignment="Center" />
-                    <Label Text="{Binding WeeklySummary}" TextColor="White" FontSize="18"
+                    <Label Text="{Binding Semester}" TextColor="White" FontSize="18"
                            HorizontalTextAlignment="Center" />
+                    <Label Text="{Binding WeeklySummary}" TextColor="White" FontSize="18"
+                           Margin="0,5" HorizontalTextAlignment="Center" />
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SemesterEditCommand}"></TapGestureRecognizer>
+                    </StackLayout.GestureRecognizers>
                 </StackLayout>
+
+                <!-- <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" -->
+                <!--              VerticalOptions="CenterAndExpand"> -->
+                <!--     <Image Source="location.png" -->
+                <!--            HorizontalOptions="StartAndExpand" -->
+                <!--            VerticalOptions="CenterAndExpand" -->
+                <!--            HeightRequest="30" -->
+                <!--            WidthRequest="30" /> -->
+                <!--     <Label Text="浑南" -->
+                <!--            TextColor="White" -->
+                <!--            HorizontalOptions="EndAndExpand" -->
+                <!--            VerticalOptions="CenterAndExpand" -->
+                <!--            FontSize="18" /> -->
+                <!-- </StackLayout> -->
+
             </Grid>
 
             <Grid Grid.Row="1" HeightRequest="60" Margin="0,-30,0,0">

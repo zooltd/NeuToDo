@@ -125,6 +125,7 @@
     </Content>
     <Content Include="list.png" />
     <Content Include="ListAdd.png" />
+    <Content Include="location.png" />
     <Content Include="minimize.png" />
     <Content Include="MoocPic.png" />
     <Content Include="NeuEventAdd.png" />
@@ -162,6 +163,7 @@
     <Content Include="right.png">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="search.png" />
     <Content Include="semester.png" />
     <Content Include="settings.png" />
     <Content Include="success.png" />
