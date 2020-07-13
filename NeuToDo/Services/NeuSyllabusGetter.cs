@@ -183,7 +183,7 @@ namespace NeuToDo.Services
 
                 string campusName = roomName.Split('(', ')')[1];
 
-                Campus campus = (campusName == "浑南校区") ? Campus.Hunnan : Campus.Nanhu; //TODO
+                Campus campus = (campusName == "浑南校区") ? Campus.浑南 : Campus.南湖; //TODO
 
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;

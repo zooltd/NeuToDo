@@ -230,7 +230,7 @@
 //                 return;
 //             }
 //
-//             var campus = await _campusStorageService.GetCampus();
+//             var campus = await _campusStorageService.GetOrSelectCampus();
 //             var newList = new List<NeuEvent>();
 //             foreach (var eventGroup in EventGroupList)
 //             {

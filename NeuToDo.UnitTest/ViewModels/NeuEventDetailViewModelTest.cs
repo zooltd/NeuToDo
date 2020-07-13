@@ -37,7 +37,7 @@ namespace NeuToDo.UnitTest.ViewModels
             {
                 SelectedEvent = new NeuEvent {Code = "A101", SemesterId = 31}
             };
-            // campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
+            // campusStorageServiceMock.Setup(x => x.GetOrSelectCampus()).ReturnsAsync(Campus.浑南);
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
             var semesterStorage = storageProvider.GetSemesterStorage();
             await neuStorage.InsertAllAsync(new List<NeuEvent>
@@ -154,7 +154,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockCampusStorageService = campusStorageServiceMock.Object;
             var eventDetailViewModel = new NeuEventDetailViewModel(storageProvider, mockPopupNavigationService,
                 mockAlertService, mockEventDetailNavigationService, mockCampusStorageService);
-            campusStorageServiceMock.Setup(x => x.GetCampus()).ReturnsAsync(Campus.Hunnan);
+            campusStorageServiceMock.Setup(x => x.GetOrSelectCampus()).ReturnsAsync(Campus.浑南);
 
             eventDetailViewModel.SelectedEvent = new NeuEvent {Code = "A101", Title = ""};
             eventDetailViewModel.NeuEventDetail = new NeuEventWrapper(eventDetailViewModel.SelectedEvent)

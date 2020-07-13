@@ -2,7 +2,8 @@
 {
     public enum Campus
     {
-        Hunnan,
-        Nanhu
+        浑南,
+        南湖,
+        暂未设置
     }
 }

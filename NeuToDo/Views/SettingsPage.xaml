@@ -125,6 +125,29 @@
 
             </StackLayout>
 
+            <Grid>
+                <Grid HorizontalOptions="Start"
+                      BackgroundColor="#455399"
+                      Padding="16,8,16,8">
+                    <Label Text="校历编辑"
+                           TextColor="White"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HeightRequest="32" />
+                </Grid>
+            </Grid>
+
+            <StackLayout Margin="0,-5"
+                         Spacing="28"
+                         Padding="16">
+                <lc:RippleStackLayout
+                    touch:TouchEff.Command="{Binding SelectCampus}">
+                    <Label Text="选择校区" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
+                    <Label Text="{Binding Campus,StringFormat='当前校区: {0}'}" />
+                </lc:RippleStackLayout>
+            </StackLayout>
 
             <!-- <StackLayout Margin="0,-5" -->
             <!--              Spacing="28" -->

@@ -5,7 +5,9 @@ namespace NeuToDo.Services
 {
     public interface ICampusStorageService
     {
-        Task<Campus> GetCampus();
+        Task<Campus> GetOrSelectCampus();
+
+        Campus GetCampus();
 
         Task UpdateCampus();
 

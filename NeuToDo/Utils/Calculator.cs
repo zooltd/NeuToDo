@@ -8,7 +8,7 @@ namespace NeuToDo.Utils
         public static DateTime CalculateClassTime(DayOfWeek day, int weekNo, int classNo, Campus campus,
             DateTime baseDate)
         {
-            var classTimeDict = campus == Campus.Hunnan ? ClassTime.HunnanClassTimeDict : ClassTime.NanhuClassTimeDict;
+            var classTimeDict = campus == Campus.浑南 ? ClassTime.HunnanClassTimeDict : ClassTime.NanhuClassTimeDict;
 
             return baseDate.AddDays((int) day + weekNo * 7) + classTimeDict[classNo];
         }

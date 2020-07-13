@@ -1,4 +1,5 @@
-﻿using NeuToDo.Models;
+﻿using System;
+using NeuToDo.Models;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -17,7 +18,9 @@ namespace NeuToDo.Services
 
         private Campus? _campus;
 
-        public async Task<Campus> GetCampus()
+        public Campus GetCampus() => (Campus) _preferenceStorageProvider.Get(nameof(Campus), (int) Campus.暂未设置);
+
+        public async Task<Campus> GetOrSelectCampus()
         {
             return _campus ??= await GetCampusFromPreferenceStorage();
         }
@@ -25,15 +28,16 @@ namespace NeuToDo.Services
         private async Task<Campus> GetCampusFromPreferenceStorage()
         {
             return _preferenceStorageProvider.ContainsKey(nameof(Campus))
-                ? (Campus)_preferenceStorageProvider.Get(nameof(Campus), (int)Campus.Hunnan)
+                ? (Campus) _preferenceStorageProvider.Get(nameof(Campus), (int) Campus.暂未设置)
                 : await GetCampusFromDialog();
         }
 
         private async Task<Campus> GetCampusFromDialog()
         {
-            var res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, "浑南", "南湖");
-            var campus = res == "浑南" ? Campus.Hunnan : Campus.Nanhu;
-            _preferenceStorageProvider.Set(nameof(Campus), (int)campus);
+            var res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, Campus.浑南.ToString(),
+                Campus.南湖.ToString());
+            var campus = (Campus) Enum.Parse(typeof(Campus), res);
+            _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
             return campus;
         }
 
@@ -46,7 +50,7 @@ namespace NeuToDo.Services
 
         public void SaveCampus(Campus campus)
         {
-            _preferenceStorageProvider.Set(nameof(Campus), (int)campus);
+            _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
             _campus = campus;
         }
     }

@@ -21,13 +21,15 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IContentPageNavigationService _contentPageNavigationService;
+        private readonly ICampusStorageService _campusStorageService;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
             IDbStorageProvider dbStorageProvider,
             IDialogService dialogService,
             IBackupService backupService,
-            IContentPageNavigationService contentPageNavigationService)
+            IContentPageNavigationService contentPageNavigationService,
+            ICampusStorageService campusStorageService)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
@@ -37,6 +39,7 @@ namespace NeuToDo.ViewModels
             _dialogService = dialogService;
             _backupService = backupService;
             _contentPageNavigationService = contentPageNavigationService;
+            _campusStorageService = campusStorageService;
             ServerPlatforms = ServerPlatform.ServerPlatforms;
         }
 
@@ -52,6 +55,7 @@ namespace NeuToDo.ViewModels
         private void PageAppearingCommandFunction()
         {
             if (_isInit) return;
+            Campus = _campusStorageService.GetCampus();
             foreach (var platform in ServerPlatforms.Where(platform =>
                 _accountStorageService.AccountExist(platform.ServerType)))
             {
@@ -153,6 +157,23 @@ namespace NeuToDo.ViewModels
             _navigateToSyncPageCommand ??= new RelayCommand(async () =>
                 await _contentPageNavigationService.PushAsync(ContentNavigationConstants.SyncPage));
 
+        private RelayCommand _selectCampus;
+
+        public RelayCommand SelectCampus =>
+            _selectCampus ??= new RelayCommand(async () => await SelectCampusFunction());
+
+        private async Task SelectCampusFunction()
+        {
+            var res = await _dialogService.DisplayActionSheet("选择校区", "取消", null, "南湖", "浑南");
+            if (res != Campus.ToString())
+            {
+                Campus = (Campus) Enum.Parse(typeof(Campus), res);
+                _campusStorageService.SaveCampus(Campus);
+            }
+
+            _dialogService.DisplayAlert("提示", "已保存", "OK");
+        }
+
         #endregion
 
         #region 绑定属性
@@ -163,6 +184,14 @@ namespace NeuToDo.ViewModels
         {
             get => _serverPlatforms;
             set => Set(nameof(ServerPlatforms), ref _serverPlatforms, value);
+        }
+
+        private Campus _campus;
+
+        public Campus Campus
+        {
+            get => _campus;
+            set => Set(nameof(Campus), ref _campus, value);
         }
 
         #endregion
