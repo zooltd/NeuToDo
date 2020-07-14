@@ -71,9 +71,6 @@
                            HorizontalTextAlignment="Center" />
                     <Label Text="{Binding WeeklySummary}" TextColor="White" FontSize="18"
                            Margin="0,5" HorizontalTextAlignment="Center" />
-                    <StackLayout.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding SemesterEditCommand}" />
-                    </StackLayout.GestureRecognizers>
                 </StackLayout>
 
                 <!-- <StackLayout Grid.Row="2" Orientation="Horizontal" HorizontalOptions="CenterAndExpand" -->

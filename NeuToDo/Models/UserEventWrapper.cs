@@ -19,7 +19,7 @@ namespace NeuToDo.Models
             EventPeriods = new ObservableCollection<UserEventPeriod>();
         }
 
-        public IEnumerable<UserEvent> GetUserEvents()
+        public List<UserEvent> GetUserEvents()
         {
             var userEvents = new List<UserEvent>();
 
@@ -31,7 +31,7 @@ namespace NeuToDo.Models
             }
             else
             {
-                if (EventPeriods.Count == 0) return null;
+                if (EventPeriods.Count == 0) return new List<UserEvent>();
                 foreach (var period in EventPeriods)
                 {
                     for (var time = period.StartDate + period.TimeOfDay;

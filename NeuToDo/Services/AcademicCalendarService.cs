@@ -10,7 +10,7 @@ namespace NeuToDo.Services
     {
         private readonly ISemesterStorage _semesterStorage;
 
-        private static readonly Semester EmptySemester = new Semester
+        public static readonly Semester EmptySemester = new Semester
             {SchoolYear = "未知的时间裂缝", Season = "请关联教务处", SemesterId = 0};
 
         public AcademicCalendarService(IDbStorageProvider dbStorageProvider)
@@ -34,6 +34,9 @@ namespace NeuToDo.Services
             var semesters = await GetOrderedSemesters();
             return semesters.First;
         }
+
+        public void Reset()
+            => _semesters = null;
 
         public async Task<(Semester semester, int weekNo)> GetCurrentSemester()
         {

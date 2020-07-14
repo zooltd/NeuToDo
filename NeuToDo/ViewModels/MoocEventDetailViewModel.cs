@@ -1,8 +1,10 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Forms;
 
 namespace NeuToDo.ViewModels
 {
@@ -44,7 +46,13 @@ namespace NeuToDo.ViewModels
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有课程/作业/测试信息？", "Yes", "No");
             if (!toDelete) return;
-            await _moocStorage.DeleteAllAsync(e => e.Code == MoocEventDetail.Code);
+            var oldList = await _moocStorage.GetAllAsync(x => x.Code == MoocEventDetail.Code && !x.IsDeleted);
+            oldList.ForEach(x =>
+            {
+                x.IsDeleted = true;
+                x.LastModified = DateTime.Now;
+            });
+            await _moocStorage.UpdateAllAsync(oldList);
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -58,7 +66,10 @@ namespace NeuToDo.ViewModels
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除本事件？", "Yes", "No");
             if (!toDelete) return;
-            await _moocStorage.DeleteAsync(SelectedEvent);
+            var newEvent = SelectedEvent;
+            newEvent.IsDeleted = true;
+            newEvent.LastModified=DateTime.Now;
+            await _moocStorage.UpdateAsync(newEvent);
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
@@ -72,8 +83,11 @@ namespace NeuToDo.ViewModels
         public async Task SaveThisEventFunction()
         {
             MoocEventDetail.Time = MoocEventDetail.EventDate + MoocEventDetail.EventTime;
-            var newMoocEvent = new MoocEvent(MoocEventDetail);
-            await _moocStorage.InsertOrReplaceAsync(newMoocEvent);
+            var newEvent = new MoocEvent(MoocEventDetail);
+            newEvent.Uuid = Guid.NewGuid().ToString();
+            newEvent.IsDeleted = true; 
+            newEvent.LastModified=DateTime.Now;
+            await _moocStorage.UpdateAsync(newEvent);
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();

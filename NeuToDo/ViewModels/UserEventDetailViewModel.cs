@@ -31,7 +31,7 @@ namespace NeuToDo.ViewModels
         {
             UserEventDetail = new UserEventWrapper(SelectedEvent);
             if (!UserEventDetail.IsRepeat) return;
-            var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code);
+            var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
             var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
                 .OrderBy(x => x.Key.StartDate).ToList();
             foreach (var group in userEventGroupList)
@@ -57,7 +57,14 @@ namespace NeuToDo.ViewModels
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
             if (!toDelete) return;
-            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
+            var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
+            oldList.ForEach(x =>
+            {
+                x.IsDeleted = true;
+                x.LastModified = DateTime.Now;
+            });
+            await _userStorage.UpdateAllAsync(oldList);
+
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -71,7 +78,7 @@ namespace NeuToDo.ViewModels
         {
             UserEventDetail.EventPeriods.Add(new UserEventPeriod
             {
-                StartDate = DateTime.Today, EndDate = DateTime.Today.AddDays(7),
+                StartDate = DateTime.Today, EndDate = DateTime.Today.AddMonths(1),
                 TimeOfDay = TimeSpan.Zero, DaySpan = 1
             });
         }
@@ -89,16 +96,27 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            var userEvents = UserEventDetail.GetUserEvents();
+            var newList = UserEventDetail.GetUserEvents();
+            newList.ForEach(x =>
+            {
+                x.Uuid = Guid.NewGuid().ToString();
+                x.LastModified = DateTime.Now;
+            });
 
-            if (userEvents == null)
+            if (newList.Count == 0)
             {
                 _dialogService.DisplayAlert("警告", "请至少添加一个时间段", "OK");
                 return;
             }
 
-            await _userStorage.DeleteAllAsync(e => e.Code == UserEventDetail.Code);
-            await _userStorage.InsertAllAsync(userEvents);
+            var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
+            oldList.ForEach(x =>
+            {
+                x.IsDeleted = true;
+                x.LastModified = DateTime.Now;
+            });
+            await _userStorage.UpdateAllAsync(oldList);
+            await _userStorage.InsertAllAsync(newList);
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();

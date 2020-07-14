@@ -59,7 +59,7 @@
                                     VerticalOptions="Center" HorizontalOptions="FillAndExpand" />
                     <Image Grid.Row="1" Grid.Column="0" Source="semester.png"
                            WidthRequest="25" HeightRequest="25" />
-                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding NeuEventDetail.EventSemester}" IsReadOnly="True" />
+                    <lc:CustomEntry Grid.Row="1" Grid.Column="1" Text="{Binding Semester}" IsReadOnly="True" />
                 </Grid>
             </Frame>
 

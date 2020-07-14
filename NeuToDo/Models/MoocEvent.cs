@@ -1,4 +1,6 @@
-﻿namespace NeuToDo.Models
+﻿using System.Net.Mail;
+
+namespace NeuToDo.Models
 {
     [SQLite.Table(nameof(MoocEvent))]
     public class MoocEvent : EventModel
@@ -11,6 +13,9 @@
             Detail = moocEvent.Detail;
             Time = moocEvent.Time;
             IsDone = moocEvent.IsDone;
+            Uuid = moocEvent.Uuid;
+            IsDeleted = moocEvent.IsDeleted;
+            LastModified = moocEvent.LastModified;
         }
 
         public MoocEvent()

@@ -30,6 +30,21 @@ namespace NeuToDo.Services
         public static List<MoocEvent> EventList;
         public static List<Course> CourseList;
 
+        public MoocInfoGetter()
+        {
+            _token = string.Empty;
+            _client = new HttpClient(new HttpClientHandler
+            {
+                AllowAutoRedirect = true,
+                UseCookies = true,
+                CookieContainer = new CookieContainer()
+            });
+            _client.DefaultRequestHeaders.Add("User-Agent",
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
+            EventList = new List<MoocEvent>();
+            CourseList = new List<Course>();
+        }
+
         /// <summary>
         /// 获取token。
         /// </summary>
@@ -53,12 +68,11 @@ namespace NeuToDo.Services
         {
             try
             {
-                Dictionary<string, string> postParams =
-                    new Dictionary<string, string>();
-                postParams.Add("saveLogin", "true");
-                postParams.Add("oauthType", "");
-                postParams.Add("username", userName);
-                postParams.Add("passwd", password);
+                var postParams =
+                    new Dictionary<string, string>
+                    {
+                        {"saveLogin", "true"}, {"oauthType", ""}, {"username", userName}, {"passwd", password}
+                    };
 
                 var response = await _client.PostAsync(LoginUrl,
                     new FormUrlEncodedContent(postParams));
@@ -80,7 +94,7 @@ namespace NeuToDo.Services
             }
         }
 
-        private static async Task<Dictionary<string, string>> GetOnGoingCourses(
+        private static async Task GetOnGoingCourses(
             string token)
         {
             var postParams = new Dictionary<string, string>
@@ -99,36 +113,27 @@ namespace NeuToDo.Services
 
             Root root = JsonConvert.DeserializeObject<Root>(json);
 
-            var length = root.result.result.Count;
+            // var length = root.result.result.Count;
 
             var courses = new Dictionary<string, string>();
-            for (int i = 0; i < length; i++)
+
+            foreach (var course in root.result.result)
             {
-                courses.Add(root.result.result[i].termPanel.id.ToString(),
-                    root.result.result[i].name);
+                // courses.Add(course.termPanel.courseId.ToString(), course.name);
                 CourseList.Add(new Course
                 {
-                    Code = root.result.result[i].termPanel.id.ToString(),
-                    ImgUrl = root.result.result[i].imgUrl,
+                    Code = course.termPanel.courseId.ToString(),
+                    TermId = course.termPanel.id.ToString(),
+                    ImgUrl = course.imgUrl,
                     IsSelected = false,
-                    Name = root.result.result[i].name,
-                    School = root.result.result[i].schoolPanel.name
+                    Name = course.name,
+                    School = course.schoolPanel.name
                 });
             }
-
-            // var courses = new string[length];
-            // for (int i = 0; i < length; i++) {
-            //     courses[i] = CourseDetailUrl +
-            //         root.result.result[i].schoolPanel.shortName + "-" +
-            //         root.result.result[i].termPanel.courseId + "?tid=" +
-            //         root.result.result[i].termPanel.id;
-            // }
-
-            return courses;
         }
 
         private static async Task GetTestInfo(
-            KeyValuePair<string, string> course)
+            Course course)
         {
             var postParams = new Dictionary<string, string>
             {
@@ -138,7 +143,7 @@ namespace NeuToDo.Services
                 {"c0-scriptName", "CourseBean"},
                 {"c0-methodName", "getLastLearnedMocTermDto"},
                 {"c0-id", "0"},
-                {"c0-param0", course.Key},
+                {"c0-param0", course.TermId},
                 {"batchId", "0"}
             };
 
@@ -162,7 +167,7 @@ namespace NeuToDo.Services
                 quizPattern = num + @".name="".*""";
                 var match = Regex.Match(dwr, quizPattern).Value.Split('\"')[1];
                 var name = Regex.Unescape(match);
-                if (name.Contains("测验"))
+                if (name.Contains("测验") || name.Contains("测试"))
                 {
                     quizName.Add(name);
                     Console.WriteLine(name);
@@ -258,11 +263,14 @@ namespace NeuToDo.Services
             {
                 EventList.Add(new MoocEvent
                 {
-                    Title = "Mooc " + course.Value,
+                    Title = "Mooc " + course.Name,
                     Detail = quizName[i],
-                    Code = course.Key,
+                    Code = course.Code,
                     Time = quizDeadline[i],
-                    IsDone = false
+                    IsDone = false,
+                    Uuid = course.Code + "_" + quizNumList[i],
+                    IsDeleted = false,
+                    LastModified = DateTime.Now
                 });
             }
 
@@ -270,11 +278,14 @@ namespace NeuToDo.Services
             {
                 EventList.Add(new MoocEvent
                 {
-                    Title = "Mooc " + course.Value,
+                    Title = "Mooc " + course.Name,
                     Detail = homeworkName[i],
-                    Code = course.Key,
+                    Code = course.Code,
                     Time = homeworkDeadline[i],
-                    IsDone = false
+                    IsDone = false,
+                    Uuid = course.Code + "_" + quizNumList[i],
+                    IsDeleted = false,
+                    LastModified = DateTime.Now
                 });
             }
         }
@@ -282,28 +293,13 @@ namespace NeuToDo.Services
         public async Task WebCrawler(string userName, string password)
         {
             await Login(userName, password);
-            var courses = await GetOnGoingCourses(_token);
-            foreach (var course in courses)
+            await GetOnGoingCourses(_token);
+            foreach (var course in CourseList)
             {
                 await GetTestInfo(course);
             }
 
             _client.Dispose();
-        }
-
-        public MoocInfoGetter()
-        {
-            _token = string.Empty;
-            _client = new HttpClient(new HttpClientHandler
-            {
-                AllowAutoRedirect = true,
-                UseCookies = true,
-                CookieContainer = new CookieContainer()
-            });
-            _client.DefaultRequestHeaders.Add("User-Agent",
-                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
-            EventList = new List<MoocEvent>();
-            CourseList = new List<Course>();
         }
     }
 }

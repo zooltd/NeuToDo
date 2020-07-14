@@ -21,5 +21,7 @@ namespace NeuToDo.Services
         Task<int> GetCountAsync();
 
         Task InsertAsync(Semester semester);
+
+        Task UpdateAsync(Semester semester);
     }
 }

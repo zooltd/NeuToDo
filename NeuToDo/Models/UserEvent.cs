@@ -28,6 +28,13 @@ namespace NeuToDo.Models
             Time = userEvent.Time;
             IsDone = userEvent.IsDone;
             IsRepeat = userEvent.IsRepeat;
+            StartDate = userEvent.StartDate;
+            EndDate = userEvent.EndDate;
+            TimeOfDay = userEvent.TimeOfDay;
+            DaySpan = userEvent.DaySpan;
+            Uuid = userEvent.Uuid;
+            IsDeleted = userEvent.IsDeleted;
+            LastModified = userEvent.LastModified;
         }
 
         public UserEvent(UserEvent userEvent, UserEventPeriod userEventPeriod)
@@ -39,10 +46,16 @@ namespace NeuToDo.Models
             Time = userEvent.Time;
             IsDone = userEvent.IsDone;
             IsRepeat = userEvent.IsRepeat;
+            Uuid = userEvent.Uuid;
+            IsDeleted = userEvent.IsDeleted;
+            LastModified = userEvent.LastModified;
             StartDate = userEventPeriod.StartDate;
             EndDate = userEventPeriod.EndDate;
             TimeOfDay = userEventPeriod.TimeOfDay;
             DaySpan = userEventPeriod.DaySpan;
+            Uuid = userEvent.Uuid;
+            IsDeleted = userEvent.IsDeleted;
+            LastModified = userEvent.LastModified;
         }
 
         public UserEvent()

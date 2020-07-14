@@ -68,9 +68,9 @@ namespace NeuToDo.ViewModels
         private async Task LoadData()
         {
             var totalEventList = new List<EventModel>();
-            totalEventList.AddRange(await _neuStorage.GetAllAsync());
-            totalEventList.AddRange(await _moocStorage.GetAllAsync());
-            totalEventList.AddRange(await _userStorage.GetAllAsync());
+            totalEventList.AddRange(await _neuStorage.GetAllAsync(x=>!x.IsDeleted));
+            totalEventList.AddRange(await _moocStorage.GetAllAsync(x=>!x.IsDeleted));
+            totalEventList.AddRange(await _userStorage.GetAllAsync(x=>!x.IsDeleted));
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
 
             await UpdateSemester();
@@ -93,9 +93,10 @@ namespace NeuToDo.ViewModels
         /// </summary>
         private async Task UpdateSemester()
         {
+            _academicCalendarService.Reset();
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
-            (Semester, WeekNo) = await _academicCalendarService.GetCurrentSemester();
+            (Semester, WeekNo) = await _academicCalendarService.GetCurrentSemester();//TODO
         }
 
         /// <summary>
@@ -288,69 +289,69 @@ namespace NeuToDo.ViewModels
             });
         }
 
-        private RelayCommand _semesterEditCommand;
+        // private RelayCommand _semesterEditCommand;
+        //
+        // public RelayCommand SemesterEditCommand =>
+        //     _semesterEditCommand ??= new RelayCommand(async () => await SemesterEditCommandFunction());
 
-        public RelayCommand SemesterEditCommand =>
-            _semesterEditCommand ??= new RelayCommand(async () => await SemesterEditCommandFunction());
-
-        private async Task SemesterEditCommandFunction()
-        {
-            EditSemester = new Semester
-            {
-                SchoolYear = Semester.SchoolYear, Season = Semester.Season, BaseDate = Semester.BaseDate,
-                SemesterId = Semester.SemesterId
-            };
-            EditWeekNo = WeekNo;
-            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SemesterEditPage);
-        }
-
-        #endregion
-
-        #region SemesterEditPage绑定属性
-
-        private Semester _editSemester;
-
-        public Semester EditSemester
-        {
-            get => _editSemester;
-            set => Set(nameof(EditSemester), ref _editSemester, value);
-        }
-
-        private int _editWeekNo;
-
-        public int EditWeekNo
-        {
-            get => _editWeekNo;
-            set => Set(nameof(EditWeekNo), ref _editWeekNo, value);
-        }
+        // private async Task SemesterEditCommandFunction()
+        // {
+        //     EditSemester = new Semester
+        //     {
+        //         SchoolYear = Semester.SchoolYear, Season = Semester.Season, BaseDate = Semester.BaseDate,
+        //         SemesterId = Semester.SemesterId
+        //     };
+        //     EditWeekNo = WeekNo;
+        //     await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SemesterEditPage);
+        // }
 
         #endregion
 
-        #region SemesterEditPage绑定命令
-
-        private RelayCommand _cancelEdit;
-
-        public RelayCommand CancelEdit =>
-            _cancelEdit ??= new RelayCommand(async () => await _popupNavigationService.PopAllAsync());
-
-        private RelayCommand _addSemesterCommand;
-
-        public RelayCommand AddSemesterCommand =>
-            _addSemesterCommand ??= new RelayCommand(async () => await AddSemesterCommandFunction());
-
-        private async Task AddSemesterCommandFunction()
-        {
-            var semesterStorage = _dbStorageProvider.GetSemesterStorage();
-            EditSemester.BaseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - 7 * EditWeekNo);
-            var count = await semesterStorage.GetCountAsync();
-            EditSemester.SemesterId = -count - 1;
-            await semesterStorage.InsertAsync(EditSemester);
-            await UpdateSemester();
-            await _popupNavigationService.PopAllAsync();
-            _dialogService.DisplayAlert("提示", "新增成功", "Ok");
-        }
-
-        #endregion
+        // #region SemesterEditPage绑定属性
+        //
+        // private Semester _editSemester;
+        //
+        // public Semester EditSemester
+        // {
+        //     get => _editSemester;
+        //     set => Set(nameof(EditSemester), ref _editSemester, value);
+        // }
+        //
+        // private int _editWeekNo;
+        //
+        // public int EditWeekNo
+        // {
+        //     get => _editWeekNo;
+        //     set => Set(nameof(EditWeekNo), ref _editWeekNo, value);
+        // }
+        //
+        // #endregion
+        //
+        // #region SemesterEditPage绑定命令
+        //
+        // private RelayCommand _cancelEdit;
+        //
+        // public RelayCommand CancelEdit =>
+        //     _cancelEdit ??= new RelayCommand(async () => await _popupNavigationService.PopAllAsync());
+        //
+        // private RelayCommand _addSemesterCommand;
+        //
+        // public RelayCommand AddSemesterCommand =>
+        //     _addSemesterCommand ??= new RelayCommand(async () => await AddSemesterCommandFunction());
+        //
+        // private async Task AddSemesterCommandFunction()
+        // {
+        //     var semesterStorage = _dbStorageProvider.GetSemesterStorage();
+        //     EditSemester.BaseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - 7 * EditWeekNo);
+        //     var count = await semesterStorage.GetCountAsync();
+        //     EditSemester.SemesterId = -count - 1;
+        //     await semesterStorage.InsertAsync(EditSemester);
+        //     await UpdateSemester();
+        //     await _popupNavigationService.PopAllAsync();
+        //     _dialogService.DisplayAlert("提示", "新增成功", "Ok");
+        // }
+        //
+        // #endregion
 
         #region Calendar绑定属性
 

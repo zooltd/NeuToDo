@@ -37,7 +37,7 @@ namespace NeuToDo.Services
             await _connection.UpdateAsync(t);
         }
 
-        public async Task UpdateAll(IEnumerable<T> eventList)
+        public async Task UpdateAllAsync(IEnumerable<T> eventList)
         {
             await _connection.UpdateAllAsync(eventList);
         }
@@ -49,7 +49,7 @@ namespace NeuToDo.Services
 
         public async Task DeleteAsync(T t)
         {
-            await _connection.DeleteAsync(t);
+            await _connection.ExecuteAsync("");
         }
 
         public async Task ClearTableAsync()

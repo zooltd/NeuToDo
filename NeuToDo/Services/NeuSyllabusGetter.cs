@@ -158,7 +158,10 @@ namespace NeuToDo.Services
                 BaseDate = DateTime.Today.AddDays(-(int) DateTime.Today.DayOfWeek - termIndex * 7),
                 SemesterId = semesterId,
                 SchoolYear = currSemester.schoolYear,
-                Season = currSemester.name
+                Season = currSemester.name,
+                Uuid = semesterId.ToString(),
+                IsDeleted = false,
+                LastModified = DateTime.Now
             };
         }
 
@@ -183,7 +186,7 @@ namespace NeuToDo.Services
 
                 string campusName = roomName.Split('(', ')')[1];
 
-                Campus campus = (campusName == "浑南校区") ? Campus.浑南 : Campus.南湖; //TODO
+                var campus = (campusName == "浑南校区") ? Campus.浑南 : Campus.南湖; //TODO
 
                 string teacherName = GetTeacherName(teacherInfo);
                 string weeks = textSegmentGroups[6].Value;
@@ -206,7 +209,10 @@ namespace NeuToDo.Services
                     Week = weekIndex,
                     ClassNo = firstClass,
                     SemesterId = semester.SemesterId,
-                    IsUserGenerated = false
+                    IsUserGenerated = false,
+                    Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + day + "_" + firstClass,
+                    IsDeleted = false,
+                    LastModified = DateTime.Now
                 }));
             }
 

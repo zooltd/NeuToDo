@@ -16,10 +16,12 @@ namespace NeuToDo.Services
 
         Task UpdateAsync(T t);
 
-        Task UpdateAll(IEnumerable<T> eventList);
+        Task UpdateAllAsync(IEnumerable<T> eventList);
 
+        [Obsolete]
         Task DeleteAllAsync(Expression<Func<T, bool>> predExpr);
 
+        [Obsolete]
         Task DeleteAsync(T t);
 
         Task ClearTableAsync();
@@ -29,6 +31,7 @@ namespace NeuToDo.Services
         Task<List<T>> GetAllAsync(Expression<Func<T, bool>> predExpr);
 
         Task<bool> ExistAsync(Expression<Func<T, bool>> predExpr);
+
         /// <summary>
         /// Do not call me
         /// </summary>

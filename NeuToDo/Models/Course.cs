@@ -19,5 +19,7 @@ namespace NeuToDo.Models
         /// 课程编号
         /// </summary>
         public string Code { get; set; }
+
+        public string TermId { get; set; }
     }
 }

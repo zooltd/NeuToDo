@@ -4,9 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using ICSharpCode.SharpZipLib.Core;
+using ICSharpCode.SharpZipLib.Zip;
 using NeuToDo.ViewModels;
+using Newtonsoft.Json;
 using WebDav;
 using Xamarin.Essentials;
 
@@ -84,8 +88,36 @@ namespace NeuToDo.Services
         {
             if (!IsInitialized) throw new Exception("WebDAV未初始化");
             var res = await _client.GetRawFile(uri);
-            if(!res.IsSuccessful) throw new HttpRequestException(res.Description);
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
             return res.Stream;
+        }
+
+
+        public async Task UploadFileAsZip(string destPath, string fileName, IList<object> objectLists)
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var json = JsonConvert.SerializeObject(objectLists);
+            var fileStream = new MemoryStream();
+            var zipStream = new ZipOutputStream(fileStream);
+
+            zipStream.SetLevel(3);
+
+            var newEntry = new ZipEntry(fileName) {DateTime = DateTime.Now};
+            zipStream.PutNextEntry(newEntry);
+
+            var jsonStream = new MemoryStream(Encoding.UTF8.GetBytes(json));
+            await Task.Run(() => StreamUtils.Copy(jsonStream, zipStream, new byte[1024]));
+            jsonStream.Close();
+            zipStream.CloseEntry();
+
+            zipStream.IsStreamOwner = false;
+            zipStream.Close();
+
+            fileStream.Position = 0;
+
+            await _client.Delete(destPath);
+            var res = await _client.PutFile(destPath, fileStream);
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
         }
     }
 }

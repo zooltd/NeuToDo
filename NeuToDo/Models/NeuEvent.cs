@@ -18,6 +18,9 @@ namespace NeuToDo.Models
             SemesterId = neuEvent.SemesterId;
             ClassNo = neuEvent.ClassNo;
             IsUserGenerated = neuEvent.IsUserGenerated;
+            Uuid = neuEvent.Uuid;
+            IsDeleted = neuEvent.IsDeleted;
+            LastModified = neuEvent.LastModified;
         }
 
         public NeuEvent()

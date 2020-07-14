@@ -16,9 +16,15 @@ namespace NeuToDo.Models
 
         [Column(nameof(BaseDate))] public DateTime BaseDate { get; set; }
 
+        [Column(nameof(Uuid))] public string Uuid { get; set; }
+
+        [Column(nameof(IsDeleted))] public bool IsDeleted { get; set; }
+
+        [Column(nameof(LastModified))] public DateTime LastModified { get; set; }
+
         public override string ToString()
         {
-            return SchoolYear + "，" + Season;
+            return SchoolYear + ", " + Season;
         }
     }
 }

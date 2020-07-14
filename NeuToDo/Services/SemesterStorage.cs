@@ -22,11 +22,11 @@ namespace NeuToDo.Services
         public async Task<Semester> GetAsync(int id)
             => await _connection.GetAsync<Semester>(id);
 
-        public async Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate)
-            => await _connection.Table<Semester>().Where(predicate).ToListAsync();
+        public async Task<List<Semester>> GetAllAsync(Expression<Func<Semester, bool>> predicate) =>
+            await _connection.Table<Semester>().Where(predicate).ToListAsync();
 
-        public async Task<List<Semester>> GetAllOrderedByBaseDateAsync()
-            => await _connection.Table<Semester>().OrderByDescending(x => x.BaseDate).ToListAsync();
+        public async Task<List<Semester>> GetAllOrderedByBaseDateAsync() =>
+            await _connection.Table<Semester>().OrderByDescending(x => x.BaseDate).ToListAsync();
 
         public async Task<List<Semester>> GetAllAsync()
             => await _connection.Table<Semester>().ToListAsync();
@@ -36,5 +36,8 @@ namespace NeuToDo.Services
 
         public async Task InsertAsync(Semester semester)
             => await _connection.InsertAsync(semester);
+
+        public async Task UpdateAsync(Semester semester)
+            => await _connection.UpdateAsync(semester);
     }
 }

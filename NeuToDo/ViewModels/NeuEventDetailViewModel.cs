@@ -49,7 +49,8 @@ namespace NeuToDo.ViewModels
         {
             NeuEventDetail = new NeuEventWrapper(SelectedEvent);
             NeuEventDetail.EventSemester = await _semesterStorage.GetAsync(NeuEventDetail.SemesterId);
-            var courses = await _neuStorage.GetAllAsync(e => e.Code == NeuEventDetail.Code);
+            Semester = NeuEventDetail.EventSemester;
+            var courses = await _neuStorage.GetAllAsync(e => e.Code == NeuEventDetail.Code && !e.IsDeleted);
             var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
                 .OrderBy(p => p.Key.Day);
             foreach (var group in courseGroupList)
@@ -93,7 +94,13 @@ namespace NeuToDo.ViewModels
         {
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!toDelete) return;
-            await _neuStorage.DeleteAllAsync(e => e.Code == NeuEventDetail.Code);
+            var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
+            oldList.ForEach(x =>
+            {
+                x.IsDeleted = true;
+                x.LastModified = DateTime.Now;
+            });
+            await _neuStorage.UpdateAllAsync(oldList);
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -138,11 +145,21 @@ namespace NeuToDo.ViewModels
                     Week = weekNo,
                     ClassNo = eventGroup.ClassIndex,
                     SemesterId = NeuEventDetail.EventSemester.SemesterId,
+                    Uuid = Guid.NewGuid().ToString(),
+                    IsDeleted = false,
+                    LastModified = DateTime.Now
                 }));
             }
 
-            await _neuStorage.DeleteAllAsync(e => e.Code == NeuEventDetail.Code);
+            var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
+            oldList.ForEach(x =>
+            {
+                x.IsDeleted = true;
+                x.LastModified = DateTime.Now;
+            });
+            await _neuStorage.UpdateAllAsync(oldList);
             await _neuStorage.InsertAllAsync(newList);
+
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -200,6 +217,13 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
+        private Semester _semester;
+
+        public Semester Semester
+        {
+            get => _semester;
+            set => Set(nameof(Semester), ref _semester, value);
+        }
         public NeuEventPeriod SelectEventGroup { get; set; }
 
         #endregion

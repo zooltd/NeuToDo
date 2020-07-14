@@ -22,5 +22,11 @@ namespace NeuToDo.Models
         public bool IsDone { get; set; }
 
         [Column(nameof(Code))] public string Code { get; set; }
+
+        [Column(nameof(Uuid))] public string Uuid { get; set; }
+
+        [Column(nameof(IsDeleted))] public bool IsDeleted { get; set; }
+
+        [Column(nameof(LastModified))] public DateTime LastModified { get; set; }
     }
 }
