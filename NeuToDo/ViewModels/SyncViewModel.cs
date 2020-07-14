@@ -21,6 +21,7 @@ namespace NeuToDo.ViewModels
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IContentPageNavigationService _contentPageNavigationService;
         private readonly IFileAccessHelper _fileAccessHelper;
+        private readonly ISyncService _syncService;
         private const string AppName = "NeuToDo";
 
         // private bool _isConnected;
@@ -30,7 +31,8 @@ namespace NeuToDo.ViewModels
             IHttpWebDavService httpWebDavService,
             IDialogService dialogService,
             IDbStorageProvider dbStorageProvider,
-            IContentPageNavigationService contentPageNavigationService)
+            IContentPageNavigationService contentPageNavigationService,
+            ISyncService syncService)
         {
             _accountStorageService = accountStorageService;
             _popupNavigationService = popupNavigationService;
@@ -38,6 +40,7 @@ namespace NeuToDo.ViewModels
             _dialogService = dialogService;
             _dbStorageProvider = dbStorageProvider;
             _contentPageNavigationService = contentPageNavigationService;
+            _syncService = syncService;
             _fileAccessHelper = DependencyService.Get<IFileAccessHelper>();
         }
 
@@ -242,7 +245,7 @@ namespace NeuToDo.ViewModels
                     var destPath =
                         $"{AppName}/{DeviceInfo.Name}_{DateTime.Now:yyyy_MM_dd_HH_mm}_{DbStorageProvider.DbName}";
                     await _httpWebDavService.CreateFolder($"{AppName}");
-                    await _httpWebDavService.UploadFile(destPath, DbStorageProvider.DbPath);
+                    await _httpWebDavService.UploadFileAsync(destPath, DbStorageProvider.DbPath);
                     _dialogService.DisplayAlert("提示", $"已保存文件至{destPath}", "OK");
                 }
                 catch (Exception e)
@@ -347,6 +350,27 @@ namespace NeuToDo.ViewModels
             int read;
             while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
                 output.Write(buffer, 0, read);
+        }
+
+
+        private RelayCommand _syncCommand;
+
+        public RelayCommand SyncCommand =>
+            _syncCommand ??= new RelayCommand(async () => await SyncCommandFunction());
+
+        private async Task SyncCommandFunction()
+        {
+            if (_httpWebDavService.IsInitialized && ConnectionResponse.IsConnected)
+            {
+                try
+                {
+                    await _syncService.SyncAsync($"{AppName}/{AppName}.zip");
+                }
+                catch (Exception e)
+                {
+                    _dialogService.DisplayAlert("错误", e.ToString(), "OK");
+                }
+            }
         }
     }
 

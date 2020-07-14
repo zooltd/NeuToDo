@@ -118,9 +118,15 @@
                          Spacing="28"
                          Padding="16">
                 <lc:RippleStackLayout
-                    touch:TouchEff.Command="{Binding NavigateToSyncPageCommand}">
+                    touch:TouchEff.Command="{Binding NavigateToBackupPageCommand}">
                     <Label Text="本地/云端备份" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="设备本地空间/云端服务器备份数据库文件" />
+                </lc:RippleStackLayout>
+
+                <lc:RippleStackLayout
+                    touch:TouchEff.Command="{Binding NavigateToSyncPageCommand}">
+                    <Label Text="多平台同步" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
+                    <Label Text="同步各平台数据库" />
                 </lc:RippleStackLayout>
 
             </StackLayout>

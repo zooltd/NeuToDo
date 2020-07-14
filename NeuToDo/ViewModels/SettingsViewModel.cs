@@ -151,6 +151,13 @@ namespace NeuToDo.ViewModels
             p.IsBound = false;
         }
 
+        private RelayCommand _navigateToBackupPageCommand;
+
+        public RelayCommand NavigateToBackupPageCommand =>
+            _navigateToBackupPageCommand ??= new RelayCommand(async () =>
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.BackupPage));
+
+
         private RelayCommand _navigateToSyncPageCommand;
 
         public RelayCommand NavigateToSyncPageCommand =>
@@ -178,11 +185,10 @@ namespace NeuToDo.ViewModels
         private RelayCommand _updateSemester;
 
         public RelayCommand UpdateSemester =>
-            _updateSemester ??= new RelayCommand(async() => await UpdateSemesterFunction());
+            _updateSemester ??= new RelayCommand(async () => await UpdateSemesterFunction());
 
         private async Task UpdateSemesterFunction()
         {
-            throw new NotImplementedException();
         }
 
         #endregion

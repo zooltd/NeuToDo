@@ -37,9 +37,11 @@ namespace NeuToDo.Services
     /// </summary>
     public static class ContentNavigationConstants
     {
-        public const string SyncPage = nameof(Views.SyncPage);
+        public const string BackupPage = nameof(Views.BackupPage);
 
         public const string HelpPage = nameof(Views.HelpPage);
+
+        public const string SyncPage = nameof(Views.SyncPage);
 
         /// <summary>
         /// 页面键-页面类型字典。
@@ -50,8 +52,9 @@ namespace NeuToDo.Services
                 {nameof(NeuEvent), typeof(NeuEventDetailPage)},
                 {nameof(MoocEvent), typeof(MoocEventDetailPage)},
                 {nameof(UserEvent), typeof(UserEventDetailPage)},
-                {SyncPage, typeof(SyncPage)},
+                {BackupPage, typeof(BackupPage)},
                 {HelpPage, typeof(HelpPage)},
+                {SyncPage,typeof(SyncPage)}
             };
     }
 }

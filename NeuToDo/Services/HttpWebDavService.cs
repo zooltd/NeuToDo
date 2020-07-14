@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
+using NeuToDo.Models;
 using NeuToDo.ViewModels;
 using Newtonsoft.Json;
 using WebDav;
@@ -47,15 +48,24 @@ namespace NeuToDo.Services
             return result.IsSuccessful;
         }
 
-        public async Task UploadFile(string destPath, string sourcePath)
+        public async Task UploadFileAsync(string destPath, string sourcePath)
         {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
             var stream = File.OpenRead(sourcePath);
-            var res = await _client.PutFile(new Uri(_baseUri, destPath), new StreamContent(stream));
+            var res = await _client.PutFile(new Uri(_baseUri, destPath), stream);
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+        }
+
+        public async Task UploadFileAsync(string destPath, Stream stream)
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var res = await _client.PutFile(new Uri(_baseUri, destPath), stream);
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
         }
 
         public async Task CreateFolder(string folderName)
         {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
             var res = await _client.Mkcol(folderName);
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
         }
@@ -92,8 +102,17 @@ namespace NeuToDo.Services
             return res.Stream;
         }
 
+        public async Task<Stream> GetFileStreamAsync(string destPath)
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var res = await _client.GetRawFile(new Uri(_baseUri, destPath));
+            if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+            return res.Stream;
+        }
 
-        public async Task UploadFileAsZip(string destPath, string fileName, IList<object> objectLists)
+
+        public async Task UploadFileAsZip<T>(string fileName, string destPath, IList<T> objectLists)
+            where T : EventModel
         {
             if (!IsInitialized) throw new Exception("WebDAV未初始化");
             var json = JsonConvert.SerializeObject(objectLists);
@@ -118,6 +137,37 @@ namespace NeuToDo.Services
             await _client.Delete(destPath);
             var res = await _client.PutFile(destPath, fileStream);
             if (!res.IsSuccessful) throw new HttpRequestException(res.Description);
+        }
+
+
+        public async Task<IList<T>> DownLoadFileAsEventModelList<T>(string destPath) where T : EventModel
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var fileStream = await GetFileAsync(new Uri(_baseUri, destPath).AbsoluteUri);
+
+            var zipStream = new ZipInputStream(fileStream);
+            var zipEntry = zipStream.GetNextEntry();
+
+            if (zipEntry == null)
+            {
+                return new List<T>();
+            }
+
+            var jsonStream = new MemoryStream();
+            await Task.Run(() =>
+                StreamUtils.Copy(zipStream, jsonStream, new byte[1024]));
+            zipStream.Close();
+            fileStream.Close();
+
+            jsonStream.Position = 0;
+            var jsonReader = new StreamReader(jsonStream);
+            var favoriteList =
+                JsonConvert.DeserializeObject<IList<T>>(
+                    await jsonReader.ReadToEndAsync());
+            jsonReader.Close();
+            jsonStream.Close();
+
+            return favoriteList ?? new List<T>();
         }
     }
 }
