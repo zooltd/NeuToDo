@@ -13,14 +13,14 @@ namespace NeuToDo.ViewModels
 
         public LoginViewModel LoginViewModel => SimpleIoc.Default.GetInstance<LoginViewModel>();
 
-        public NeuEventDetailViewModel NeuEventDetailViewModel =>
-            SimpleIoc.Default.GetInstance<NeuEventDetailViewModel>();
+        public NeuEventDetailViewModel NeuEventDetailViewModel
+            => SimpleIoc.Default.GetInstance<NeuEventDetailViewModel>();
 
-        public MoocEventDetailViewModel MoocEventDetailViewModel =>
-            SimpleIoc.Default.GetInstance<MoocEventDetailViewModel>();
+        public MoocEventDetailViewModel MoocEventDetailViewModel
+            => SimpleIoc.Default.GetInstance<MoocEventDetailViewModel>();
 
-        public UserEventDetailViewModel UserEventDetailViewModel =>
-            SimpleIoc.Default.GetInstance<UserEventDetailViewModel>();
+        public UserEventDetailViewModel UserEventDetailViewModel
+            => SimpleIoc.Default.GetInstance<UserEventDetailViewModel>();
 
         public SyncViewModel SyncViewModel => SimpleIoc.Default.GetInstance<SyncViewModel>();
 
@@ -47,7 +47,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
-            SimpleIoc.Default.Register<IHttpWebDavService,HttpWebDavService>();
+            SimpleIoc.Default.Register<IHttpWebDavService, HttpWebDavService>();
         }
     }
 }

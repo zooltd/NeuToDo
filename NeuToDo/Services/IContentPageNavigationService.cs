@@ -51,7 +51,7 @@ namespace NeuToDo.Services
                 {nameof(MoocEvent), typeof(MoocEventDetailPage)},
                 {nameof(UserEvent), typeof(UserEventDetailPage)},
                 {SyncPage, typeof(SyncPage)},
-                {HelpPage, typeof(HelpPage)}
+                {HelpPage, typeof(HelpPage)},
             };
     }
 }

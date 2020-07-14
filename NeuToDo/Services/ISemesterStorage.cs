@@ -18,10 +18,20 @@ namespace NeuToDo.Services
 
         Task<List<Semester>> GetAllAsync();
 
+        [Obsolete]
         Task<int> GetCountAsync();
 
         Task InsertAsync(Semester semester);
 
+        Task InsertAllAsync(IList<Semester> semesters);
+
+        [Obsolete]
         Task UpdateAsync(Semester semester);
+
+        [Obsolete]
+        Task UpdateAllAsync(IList<Semester> semesters);
+
+
+        Task<bool> ExistAsync(Expression<Func<Semester, bool>> predExpr);
     }
 }

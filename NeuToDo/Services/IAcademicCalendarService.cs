@@ -14,5 +14,8 @@ namespace NeuToDo.Services
         Task<(Semester semester, int weekNo, DateTime sunday)> ToLastWeekSemester();
 
         Task<(Semester semester, int weekNo, DateTime sunday)> ToNextWeekSemester();
+
+        event EventHandler UpdateSemester;
+        void OnUpdateSemester();
     }
 }

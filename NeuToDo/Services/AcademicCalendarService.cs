@@ -18,6 +18,14 @@ namespace NeuToDo.Services
             _semesterStorage = dbStorageProvider.GetSemesterStorage();
         }
 
+
+        public event EventHandler UpdateSemester;
+
+        public void OnUpdateSemester()
+        {
+            UpdateSemester?.Invoke(this, EventArgs.Empty);
+        }
+
         private LinkedList<Semester> _semesters;
 
         private async Task<LinkedList<Semester>> GetOrderedSemesters()
@@ -101,5 +109,7 @@ namespace NeuToDo.Services
 
             return (_thisSemesterNode?.Value, _thisWeekNo, _thisSunday);
         }
+
+        public event EventHandler UpdateData;
     }
 }

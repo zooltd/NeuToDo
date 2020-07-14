@@ -1,7 +1,8 @@
-﻿using NeuToDo.Views.Popup;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using NeuToDo.Views;
+using NeuToDo.Views.Popup;
 
 namespace NeuToDo.Services
 {
@@ -55,10 +56,6 @@ namespace NeuToDo.Services
         /// </summary>
         public const string SyncLoginPage = nameof(Views.Popup.SyncLoginPage);
 
-        /// <summary>
-        /// 学期编辑页
-        /// </summary>
-        public const string SemesterEditPage = nameof(Views.Popup.SemesterEditPage);
 
         /// <summary>
         /// 页面键-页面类型字典。
@@ -72,7 +69,6 @@ namespace NeuToDo.Services
             {SelectPopupPage, typeof(SelectPopupPage)},
             {WeekNoSelectPopupPage, typeof(WeekNoSelectPopupPage)},
             {SyncLoginPage, typeof(SyncLoginPage)},
-            {SemesterEditPage, typeof(SemesterEditPage)}
         };
     }
 }

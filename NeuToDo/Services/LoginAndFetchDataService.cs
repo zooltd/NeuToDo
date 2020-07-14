@@ -35,8 +35,16 @@ namespace NeuToDo.Services
 
                         await _semesterStorage.InsertOrReplaceAsync(semester);
 
-                        await _neuStorage.DeleteAllAsync(x => x.SemesterId == semester.SemesterId);
-                        await _neuStorage.InsertAllAsync(neuCourses);
+                        foreach (var course in neuCourses)
+                        {
+                            if (!await _neuStorage.ExistAsync(x => x.Uuid == course.Uuid))
+                                await _neuStorage.InsertAsync(course);
+                        }
+
+                        // await _semesterStorage.InsertOrReplaceAsync(semester);
+
+                        // await _neuStorage.DeleteAllAsync(x => x.SemesterId == semester.SemesterId);
+                        // await _neuStorage.InsertAllAsync(neuCourses);
 
                         _dbStorageProvider.OnUpdateData();
                         return true;

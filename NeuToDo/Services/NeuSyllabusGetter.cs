@@ -159,9 +159,6 @@ namespace NeuToDo.Services
                 SemesterId = semesterId,
                 SchoolYear = currSemester.schoolYear,
                 Season = currSemester.name,
-                Uuid = semesterId.ToString(),
-                IsDeleted = false,
-                LastModified = DateTime.Now
             };
         }
 
