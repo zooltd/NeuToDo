@@ -165,6 +165,7 @@ namespace NeuToDo.ViewModels
         private async Task SelectCampusFunction()
         {
             var res = await _dialogService.DisplayActionSheet("选择校区", "取消", null, "南湖", "浑南");
+            if (res == "取消" || res == null) return;
             if (res != Campus.ToString())
             {
                 Campus = (Campus) Enum.Parse(typeof(Campus), res);
