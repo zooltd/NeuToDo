@@ -31,9 +31,8 @@ namespace NeuToDo.Services
 
                     try
                     {
-                        var (semester, neuCourses) = await neuGetter.LoginAndFetchData(userId, password);
+                        var (_, neuCourses) = await neuGetter.LoginAndFetchData(userId, password);
 
-                        await _semesterStorage.InsertOrReplaceAsync(semester);
 
                         foreach (var course in neuCourses)
                         {

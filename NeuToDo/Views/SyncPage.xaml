@@ -6,10 +6,21 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:lc="clr-namespace:NeuToDo.Components;assembly=NeuToDo"
              xmlns:touch="clr-namespace:TouchEffect;assembly=TouchEffect"
+             xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SyncPage"
              BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
-        <StackLayout Padding="16">
+        
+    
+    <ContentPage.Behaviors>
+        <behaviors:EventHandlerBehavior EventName="Appearing">
+            <behaviors:ActionCollection>
+                <behaviors:InvokeCommandAction Command="{Binding PageAppearingCommand}" />
+            </behaviors:ActionCollection>
+        </behaviors:EventHandlerBehavior>
+    </ContentPage.Behaviors>
+
+    <StackLayout Padding="16">
             <lc:RippleStackLayout touch:TouchEff.Command="{Binding NavigateToSyncLoginPage}">
                 <Label Text="{Binding ShowedAccount.Remarks}"
                        d:Text="我的坚果云"

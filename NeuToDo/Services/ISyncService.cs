@@ -4,6 +4,7 @@ namespace NeuToDo.Services
 {
     public interface ISyncService
     {
-        Task SyncAsync(string remoteFilePath);
+        Task SyncSyllabusAsync();
+        Task SyncEventModelsAsync(string remoteFilePath);
     }
 }

@@ -360,61 +360,23 @@ namespace NeuToDo.ViewModels
 
         private async Task SyncCommandFunction()
         {
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
             if (_httpWebDavService.IsInitialized && ConnectionResponse.IsConnected)
             {
                 try
                 {
-                    await _syncService.SyncAsync($"{AppName}/{AppName}.zip");
+                    await _syncService.SyncEventModelsAsync($"{AppName}/{AppName}.zip");
+                    _dbStorageProvider.OnUpdateData();
+                    await _popupNavigationService.PopAllAsync();
+                    _dialogService.DisplayAlert("成功", "已同步", "OK");
+
                 }
                 catch (Exception e)
                 {
+                    await _popupNavigationService.PopAllAsync();
                     _dialogService.DisplayAlert("错误", e.ToString(), "OK");
                 }
             }
-        }
-    }
-
-    public class RecoveryFile
-    {
-        public FileSource FileSource { get; set; }
-        public string FileName { get; set; }
-        public string FilePath { get; set; }
-    }
-
-    public enum FileSource
-    {
-        Local,
-        Server
-    }
-
-    public class ConnectionResponse : ObservableObject
-    {
-        private bool _isConnected;
-
-        public bool IsConnected
-        {
-            get => _isConnected;
-            set
-            {
-                _isConnected = value;
-                PictureSource = IsConnected ? "success.png" : "failure.png";
-            }
-        }
-
-        private string _reason;
-
-        public string Reason
-        {
-            get => _reason;
-            set => Set(nameof(Reason), ref _reason, value);
-        }
-
-        private string _pictureSource;
-
-        public string PictureSource
-        {
-            get => _pictureSource;
-            set => Set(nameof(PictureSource), ref _pictureSource, value);
         }
     }
 }

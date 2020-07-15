@@ -283,7 +283,7 @@ namespace NeuToDo.Services
                     Code = course.Code,
                     Time = homeworkDeadline[i],
                     IsDone = false,
-                    Uuid = course.Code + "_" + quizNumList[i],
+                    Uuid = course.Code + "_" + homeworkNumList[i],
                     IsDeleted = false,
                     LastModified = DateTime.Now
                 });

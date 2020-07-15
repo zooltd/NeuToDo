@@ -13,59 +13,81 @@ namespace NeuToDo.Services
 {
     public class SyncService : ISyncService
     {
-        private readonly IDbStorageProvider _localDbStorageProvider;
         private readonly IHttpWebDavService _remoteDbStorage;
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IEventModelStorage<UserEvent> _userStorage;
+        private readonly IRemoteSemesterStorage _remoteSemesterStorage;
+        private readonly ISemesterStorage _localSemesterStorage;
 
         public SyncService(IDbStorageProvider localDbStorageProvider,
-            IHttpWebDavService remoteDbStorage)
+            IHttpWebDavService remoteDbStorage,
+            IRemoteSemesterStorage remoteSemesterStorage)
         {
-            _localDbStorageProvider = localDbStorageProvider;
             _remoteDbStorage = remoteDbStorage;
+            _remoteSemesterStorage = remoteSemesterStorage;
+            _localSemesterStorage = localDbStorageProvider.GetSemesterStorage();
             _neuStorage = localDbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = localDbStorageProvider.GetEventModelStorage<MoocEvent>();
             _userStorage = localDbStorageProvider.GetEventModelStorage<UserEvent>();
         }
 
+
+        public async Task SyncSyllabusAsync()
+        {
+            var semesterList = await _remoteSemesterStorage.GetSemesterListAsync();
+            if (semesterList.Count == 0) return;
+            foreach (var semester in semesterList)
+            {
+                await _localSemesterStorage.InsertOrReplaceAsync(semester);
+            }
+        }
+
+
         /// <summary>
         /// 同步。
         /// </summary>
-        public async Task SyncAsync(string remoteFilePath)
+        public async Task SyncEventModelsAsync(string remoteFilePath)
         {
-            var fileStream = await _remoteDbStorage.GetFileStreamAsync(remoteFilePath);
-
             List<NeuEvent> remoteNeuEvents = null;
             List<MoocEvent> remoteMoocEvents = null;
             List<UserEvent> remoteUserEvents = null;
-            using (var zipInputStream = new ZipInputStream(fileStream))
+
+            if (await _remoteDbStorage.FileExist(remoteFilePath))
             {
-                ZipEntry entry;
-                while ((entry = zipInputStream.GetNextEntry()) != null)
+                var fileStream = await _remoteDbStorage.GetFileStreamAsync(remoteFilePath);
+
+                using (var zipInputStream = new ZipInputStream(fileStream))
                 {
-                    using var jsonStream = new MemoryStream();
-                    StreamUtils.Copy(zipInputStream, jsonStream, new byte[2048]);
-                    jsonStream.Position = 0;
-                    using var jsonReader = new StreamReader(jsonStream);
-                    switch (entry.Name)
+                    ZipEntry entry;
+                    while ((entry = zipInputStream.GetNextEntry()) != null)
                     {
-                        case nameof(NeuEvent) + ".json":
-                            remoteNeuEvents =
-                                JsonConvert.DeserializeObject<List<NeuEvent>>(
+                        using var jsonStream = new MemoryStream();
+                        StreamUtils.Copy(zipInputStream, jsonStream, new byte[2048]);
+                        jsonStream.Position = 0;
+                        using var jsonReader = new StreamReader(jsonStream);
+                        switch (entry.Name)
+                        {
+                            case nameof(NeuEvent) + ".json":
+                                remoteNeuEvents =
+                                    JsonConvert.DeserializeObject<List<NeuEvent>>(
+                                        await jsonReader.ReadToEndAsync());
+                                break;
+                            case nameof(MoocEvent) + ".json":
+                                remoteMoocEvents = JsonConvert.DeserializeObject<List<MoocEvent>>(
                                     await jsonReader.ReadToEndAsync());
-                            break;
-                        case nameof(MoocEvent) + ".json":
-                            remoteMoocEvents = JsonConvert.DeserializeObject<List<MoocEvent>>(
-                                await jsonReader.ReadToEndAsync());
-                            break;
-                        case nameof(UserEvent) + ".json":
-                            remoteUserEvents = JsonConvert.DeserializeObject<List<UserEvent>>(
-                                await jsonReader.ReadToEndAsync());
-                            break;
+                                break;
+                            case nameof(UserEvent) + ".json":
+                                remoteUserEvents = JsonConvert.DeserializeObject<List<UserEvent>>(
+                                    await jsonReader.ReadToEndAsync());
+                                break;
+                        }
                     }
                 }
+
+                fileStream.Close();
             }
+
 
             remoteNeuEvents ??= new List<NeuEvent>();
             remoteMoocEvents ??= new List<MoocEvent>();
@@ -75,8 +97,6 @@ namespace NeuToDo.Services
             var localMoocEvents = await _moocStorage.GetAllAsync();
             var localUserEvents = await _userStorage.GetAllAsync();
 
-
-            var sourceList = await _neuStorage.GetAllAsync();
 
             // 将远程收藏项合并到本地。
             var newLocalNeuEvents = await GetEventList(remoteNeuEvents, localNeuEvents);
@@ -108,6 +128,7 @@ namespace NeuToDo.Services
             using (var newJsonStream = new MemoryStream(Encoding.UTF8.GetBytes(neuJson)))
                 await Task.Run(() => StreamUtils.Copy(newJsonStream, zipOutputStream, new byte[2048]));
 
+
             var moocEntry = new ZipEntry(nameof(MoocEvent) + ".json") {DateTime = DateTime.Now};
             zipOutputStream.PutNextEntry(moocEntry);
             using (var newJsonStream = new MemoryStream(Encoding.UTF8.GetBytes(moocJson)))
@@ -118,8 +139,12 @@ namespace NeuToDo.Services
             using (var newJsonStream = new MemoryStream(Encoding.UTF8.GetBytes(userJson)))
                 await Task.Run(() => StreamUtils.Copy(newJsonStream, zipOutputStream, new byte[2048]));
 
+            zipOutputStream.CloseEntry();
+            zipOutputStream.IsStreamOwner = false;
+            zipOutputStream.Close();
 
-            await _remoteDbStorage.UploadFileAsync(remoteFilePath, zipOutputStream);
+            outputStream.Position = 0;
+            await _remoteDbStorage.UploadFileAsync(remoteFilePath, outputStream);
         }
 
 

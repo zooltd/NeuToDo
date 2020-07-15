@@ -207,7 +207,7 @@ namespace NeuToDo.Services
                     ClassNo = firstClass,
                     SemesterId = semester.SemesterId,
                     IsUserGenerated = false,
-                    Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + day + "_" + firstClass,
+                    Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + (int)day + "_" + firstClass,
                     IsDeleted = false,
                     LastModified = DateTime.Now
                 }));

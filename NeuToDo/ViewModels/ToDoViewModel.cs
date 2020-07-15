@@ -18,7 +18,7 @@ namespace NeuToDo.ViewModels
             IContentPageNavigationService contentPageNavigationService,
             IDialogService dialogService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService)
+            IPopupNavigationService popupNavigationService,ISyncService syncService)
         {
             _dbStorageProvider = dbStorageProvider;
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -28,8 +28,8 @@ namespace NeuToDo.ViewModels
             _contentPageNavigationService = contentPageNavigationService;
             _dialogService = dialogService;
             _popupNavigationService = popupNavigationService;
+            _syncService = syncService;
             dbStorageProvider.UpdateData += OnGetData;
-            academicCalendarService.UpdateSemester += OnUpdateSemester;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
             ThisSaturday = ThisSunday.AddDays(6);
@@ -45,6 +45,7 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<UserEvent> _userStorage;
         private readonly IAcademicCalendarService _academicCalendarService;
         private readonly IPopupNavigationService _popupNavigationService;
+        private readonly ISyncService _syncService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -62,10 +63,6 @@ namespace NeuToDo.ViewModels
             await LoadData();
         }
 
-        private async void OnUpdateSemester(object sender, EventArgs e)
-        {
-            await UpdateSemester();
-        }
 
         /// <summary>
         /// 从DB中读取数据到EventDict和_semesters, 并更新两个视图的绑定属性
@@ -78,7 +75,7 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await _moocStorage.GetAllAsync(x => !x.IsDeleted));
             totalEventList.AddRange(await _userStorage.GetAllAsync(x => !x.IsDeleted));
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-
+            
             UpdateListData();
             UpdateCalendarData();
         }
@@ -162,6 +159,7 @@ namespace NeuToDo.ViewModels
         {
             if (_isLoaded) return;
             await _dbStorageProvider.CheckInitialization(); //TODO
+            await _syncService.SyncSyllabusAsync();
             await UpdateSemester();
             await LoadData();
             _isLoaded = true;

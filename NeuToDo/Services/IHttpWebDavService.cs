@@ -28,6 +28,9 @@ namespace NeuToDo.Services
 
         Task<Stream> GetFileStreamAsync(string destPath);
 
+        Task<bool> FileExist(string destPath);
+
+        [Obsolete]
         Task UploadFileAsZip<T>(string fileName, string destPath, IList<T> objectLists) where T : EventModel;
 
         [Obsolete]

@@ -110,6 +110,13 @@ namespace NeuToDo.Services
             return res.Stream;
         }
 
+        public async Task<bool> FileExist(string destPath)
+        {
+            if (!IsInitialized) throw new Exception("WebDAV未初始化");
+            var res = await _client.Propfind(new Uri(_baseUri, destPath));
+            return res.IsSuccessful;
+        }
+
 
         public async Task UploadFileAsZip<T>(string fileName, string destPath, IList<T> objectLists)
             where T : EventModel
