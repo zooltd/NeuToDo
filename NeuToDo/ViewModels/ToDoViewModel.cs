@@ -137,12 +137,7 @@ namespace NeuToDo.ViewModels
         /// ToDoList, ToDoCalendar视图中Event点击命令，触发导航
         /// </summary>
         public RelayCommand<EventModel> EventTappedCommand => _eventTappedCommand ??= new RelayCommand<EventModel>(
-            async e => await EventTappedCommandFunction(e));
-
-        public async Task EventTappedCommandFunction(EventModel e)
-        {
-            await _contentPageNavigationService.PushAsync(e);
-        }
+            async e => await _contentPageNavigationService.PushAsync(e));
 
         /// <summary>
         /// 页面显示命令
@@ -359,6 +354,67 @@ namespace NeuToDo.ViewModels
         {
             get => _weeklySummary;
             set => Set(nameof(WeeklySummary), ref _weeklySummary, value);
+        }
+
+        #endregion
+
+        #region SearchPage绑定属性
+
+        private bool _searchStatus;
+
+        public bool SearchStatus
+        {
+            get => _searchStatus;
+            set => Set(nameof(SearchStatus), ref _searchStatus, value);
+        }
+
+        private string _queryString;
+
+        public string QueryString
+        {
+            get => _queryString;
+            set => Set(nameof(QueryString), ref _queryString, value);
+        }
+
+        private List<EventModel> _searchResult;
+
+        public List<EventModel> SearchResult
+        {
+            get => _searchResult ??= new List<EventModel>();
+            set => Set(nameof(SearchResult), ref _searchResult, value);
+        }
+
+        #endregion
+
+        #region SearchPage绑定命令
+
+        private RelayCommand _searchCommand;
+
+        public RelayCommand SearchCommand =>
+            _searchCommand ??= new RelayCommand(SearchCommandFunction);
+
+        private void SearchCommandFunction()
+        {
+            SearchStatus = true;
+            SearchResult.Clear();
+            var eventList = EventDict.Values.ToList();
+
+            if (eventList.Count == 0)
+            {
+                SearchResult = new List<EventModel>();
+                SearchStatus = false;
+                return;
+            }
+
+            foreach (var dailyEventList in eventList)
+            foreach (var eventModel in dailyEventList)
+                if (eventModel.Title.ToLower().Contains(QueryString.ToLower()) ||
+                    eventModel.Detail.ToLower().Contains(QueryString.ToLower()))
+                    SearchResult.Add(eventModel);
+
+            SearchResult = SearchResult.OrderByDescending(x => x.Time).ToList();
+
+            SearchStatus = false;
         }
 
         #endregion

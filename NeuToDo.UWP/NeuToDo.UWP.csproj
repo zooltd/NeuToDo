@@ -165,6 +165,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="search.png" />
+    <Content Include="search_white.png" />
     <Content Include="semester.png" />
     <Content Include="settings.png" />
     <Content Include="success.png" />

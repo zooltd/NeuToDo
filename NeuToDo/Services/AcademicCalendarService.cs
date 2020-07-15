@@ -102,6 +102,5 @@ namespace NeuToDo.Services
             return (_thisSemesterNode?.Value, _thisWeekNo, _thisSunday);
         }
 
-        public event EventHandler UpdateData;
     }
 }
