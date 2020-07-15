@@ -182,15 +182,6 @@ namespace NeuToDo.ViewModels
             _dialogService.DisplayAlert("提示", "已保存", "OK");
         }
 
-        private RelayCommand _updateSemester;
-
-        public RelayCommand UpdateSemester =>
-            _updateSemester ??= new RelayCommand(async () => await UpdateSemesterFunction());
-
-        private async Task UpdateSemesterFunction()
-        {
-        }
-
         #endregion
 
         #region 绑定属性

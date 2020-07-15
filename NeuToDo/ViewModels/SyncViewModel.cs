@@ -360,22 +360,25 @@ namespace NeuToDo.ViewModels
 
         private async Task SyncCommandFunction()
         {
-            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
             if (_httpWebDavService.IsInitialized && ConnectionResponse.IsConnected)
             {
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
                 try
                 {
                     await _syncService.SyncEventModelsAsync($"{AppName}/{AppName}.zip");
                     _dbStorageProvider.OnUpdateData();
                     await _popupNavigationService.PopAllAsync();
                     _dialogService.DisplayAlert("成功", "已同步", "OK");
-
                 }
                 catch (Exception e)
                 {
                     await _popupNavigationService.PopAllAsync();
                     _dialogService.DisplayAlert("错误", e.ToString(), "OK");
                 }
+            }
+            else
+            {
+                _dialogService.DisplayAlert("警告", "请先登录", "OK");
             }
         }
     }

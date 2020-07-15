@@ -153,11 +153,6 @@
                     <Label Text="选择校区" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="{Binding Campus,StringFormat='当前校区: {0}'}" />
                 </lc:RippleStackLayout>
-                <lc:RippleStackLayout
-                    touch:TouchEff.Command="{Binding UpdateSemester}">
-                    <Label Text="更新校历" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
-                    <Label Text="点击后自动更新校历" />
-                </lc:RippleStackLayout>
             </StackLayout>
 
             <!-- <StackLayout Margin="0,-5" -->

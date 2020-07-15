@@ -18,7 +18,7 @@ namespace NeuToDo.ViewModels
             IContentPageNavigationService contentPageNavigationService,
             IDialogService dialogService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService,ISyncService syncService)
+            IPopupNavigationService popupNavigationService, ISyncService syncService)
         {
             _dbStorageProvider = dbStorageProvider;
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -75,7 +75,7 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await _moocStorage.GetAllAsync(x => !x.IsDeleted));
             totalEventList.AddRange(await _userStorage.GetAllAsync(x => !x.IsDeleted));
             EventDict = totalEventList.GroupBy(e => e.Time.Date).ToDictionary(g => g.Key, g => g.ToList());
-            
+
             UpdateListData();
             UpdateCalendarData();
         }
@@ -211,6 +211,44 @@ namespace NeuToDo.ViewModels
                 SelectedDate = DateTime.Today;
             }));
 
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
+        private RelayCommand _navigateToNewUserEventPage;
+
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
+        public RelayCommand NavigateToNewUserEventPage =>
+            _navigateToNewUserEventPage ??= new RelayCommand(async () => await NavigateToNewUserEventPageFunction());
+
+        private async Task NavigateToNewUserEventPageFunction()
+        {
+            await _contentPageNavigationService.PushAsync(new UserEvent
+                {Code = Calculator.CalculateUniqueUserEventCode(), IsDone = false, Time = DateTime.Today});
+        }
+
+
+        /// <summary>
+        /// 导航到新自定义事件编辑页面
+        /// </summary>
+        private RelayCommand _navigateToNewNeuEventPage;
+
+        /// <summary>
+        /// 导航到新课程编辑页面
+        /// </summary>
+        public RelayCommand NavigateToNewNeuEventPage =>
+            _navigateToNewNeuEventPage ??= new RelayCommand(async () => await NavigateToNewNeuEventPageFunction());
+
+        private async Task NavigateToNewNeuEventPageFunction()
+        {
+            await _contentPageNavigationService.PushAsync(new NeuEvent
+            {
+                SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false,
+                Time = DateTime.Today
+            });
+        }
+
         #endregion
 
         #region List绑定命令
@@ -249,49 +287,11 @@ namespace NeuToDo.ViewModels
             UpdateListData();
         }
 
-        /// <summary>
-        /// 导航到新自定义事件编辑页面
-        /// </summary>
-        private RelayCommand _navigateToNewUserEventPage;
+        private RelayCommand _navigateToSearchPage;
 
-        /// <summary>
-        /// 导航到新自定义事件编辑页面
-        /// </summary>
-        public RelayCommand NavigateToNewUserEventPage =>
-            _navigateToNewUserEventPage ??= new RelayCommand(async () => await NavigateToNewUserEventPageFunction());
-
-        private async Task NavigateToNewUserEventPageFunction()
-        {
-            await _contentPageNavigationService.PushAsync(new UserEvent
-                {Code = Calculator.CalculateUniqueUserEventCode(), IsDone = false, Time = DateTime.Today});
-        }
-
-
-        /// <summary>
-        /// 导航到新自定义事件编辑页面
-        /// </summary>
-        private RelayCommand _navigateToNewNeuEventPage;
-
-        /// <summary>
-        /// 导航到新课程编辑页面
-        /// </summary>
-        public RelayCommand NavigateToNewNeuEventPage =>
-            _navigateToNewNeuEventPage ??= new RelayCommand(async () => await NavigateToNewNeuEventPageFunction());
-
-        private async Task NavigateToNewNeuEventPageFunction()
-        {
-            if (Semester.SemesterId == 0)
-            {
-                _dialogService.DisplayAlert("提示", "当前学期不明，请关联东北大学(设置=>关联)", "OK");
-                return;
-            }
-
-            await _contentPageNavigationService.PushAsync(new NeuEvent
-            {
-                SemesterId = Semester.SemesterId, Code = Calculator.CalculateUniqueNeuEventCode(), IsDone = false,
-                Time = DateTime.Today
-            });
-        }
+        public RelayCommand NavigateToSearchPage =>
+            _navigateToSearchPage ??= new RelayCommand(async () =>
+                await _contentPageNavigationService.PushAsync(ContentNavigationConstants.SearchPage));
 
         #endregion
 

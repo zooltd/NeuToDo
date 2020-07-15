@@ -9,7 +9,8 @@
              xmlns:behaviors="clr-namespace:Behaviors;assembly=Behaviors"
              mc:Ignorable="d"
              x:Class="NeuToDo.Views.SyncPage"
-             BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}">
+             BindingContext="{Binding SyncViewModel, Source={StaticResource ViewModelLocator}}"
+             Title="多平台同步">
         
     
     <ContentPage.Behaviors>
