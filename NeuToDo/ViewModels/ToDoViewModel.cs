@@ -18,7 +18,7 @@ namespace NeuToDo.ViewModels
             IContentPageNavigationService contentPageNavigationService,
             IDialogService dialogService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService, ISyncService syncService)
+            IPopupNavigationService popupNavigationService, IFetchSemesterDataService fetchSemesterDataService)
         {
             _dbStorageProvider = dbStorageProvider;
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -28,7 +28,7 @@ namespace NeuToDo.ViewModels
             _contentPageNavigationService = contentPageNavigationService;
             _dialogService = dialogService;
             _popupNavigationService = popupNavigationService;
-            _syncService = syncService;
+            _fetchSemesterDataService = fetchSemesterDataService;
             dbStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
             ThisSunday = _today.AddDays(-(int) _today.DayOfWeek); //本周日
@@ -45,7 +45,7 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<UserEvent> _userStorage;
         private readonly IAcademicCalendarService _academicCalendarService;
         private readonly IPopupNavigationService _popupNavigationService;
-        private readonly ISyncService _syncService;
+        private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
@@ -154,7 +154,7 @@ namespace NeuToDo.ViewModels
         {
             if (_isLoaded) return;
             await _dbStorageProvider.CheckInitialization(); //TODO
-            await _syncService.SyncSyllabusAsync();
+            await _fetchSemesterDataService.FetchSemesterAsync();
             await UpdateSemester();
             await LoadData();
             _isLoaded = true;

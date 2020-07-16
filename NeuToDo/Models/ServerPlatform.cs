@@ -3,63 +3,27 @@ using GalaSoft.MvvmLight;
 
 namespace NeuToDo.Models
 {
-    public class ServerPlatform : ObservableObject
+    public class ServerPlatform
     {
-        private string _name;
+        public string Name { get; set; }
 
-        public string Name
-        {
-            get => _name;
-            set => Set(nameof(Name), ref _name, value);
-        }
 
-        private string _userName;
+        public string UserName { get; set; }
 
-        public string UserName
-        {
-            get => _userName;
-            set => Set(nameof(UserName), ref _userName, value);
-        }
 
-        private string _lastUpdateTime;
+        public string LastUpdateTime { get; set; }
 
-        public string LastUpdateTime
-        {
-            get => _lastUpdateTime;
-            set => Set(nameof(LastUpdateTime), ref _lastUpdateTime, value);
-        }
 
-        private string _button1Text;
+        public string Button1Text { get; set; }
 
-        public string Button1Text
-        {
-            get => _button1Text;
-            set => Set(nameof(Button1Text), ref _button1Text, value);
-        }
 
-        private bool _isBound;
+        public bool IsBound { get; set; }
 
-        public bool IsBound
-        {
-            get => _isBound;
-            set => Set(nameof(IsBound), ref _isBound, value);
-        }
 
-        private ServerType _serverType;
+        public ServerType ServerType { get; set; }
 
-        public ServerType ServerType
-        {
-            get => _serverType;
-            set => Set(nameof(ServerType), ref _serverType, value);
-        }
 
-        private string _picUrl;
-
-        public string PicUrl
-        {
-            get => _picUrl;
-            set => Set(nameof(PicUrl), ref _picUrl, value);
-        }
+        public string PicUrl { get; set; }
 
         public static List<ServerPlatform> ServerPlatforms { get; } = new List<ServerPlatform>
         {

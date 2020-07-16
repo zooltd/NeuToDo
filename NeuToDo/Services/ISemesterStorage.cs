@@ -18,6 +18,9 @@ namespace NeuToDo.Services
 
         Task<List<Semester>> GetAllAsync();
 
+        Task DeleteAllAsync();
+
+
         [Obsolete]
         Task<int> GetCountAsync();
 

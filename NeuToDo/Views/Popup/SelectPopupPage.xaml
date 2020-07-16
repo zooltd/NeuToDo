@@ -25,19 +25,19 @@
     <ScrollView HorizontalOptions="Center"
                 VerticalOptions="Center">
         <Frame x:Name="FrameContainer"
-                   Margin="15"
-                   HorizontalOptions="Center"
-                   BackgroundColor="White">
+               Margin="15"
+               HorizontalOptions="Center"
+               BackgroundColor="White">
             <StackLayout>
                 <Label Text="请选择您想要关联的课程："
-                           FontAttributes="Bold"
-                           HorizontalOptions="Start"
-                           FontSize="Medium"
-                           x:Name="HintLabel" />
+                       FontAttributes="Bold"
+                       HorizontalOptions="Start"
+                       FontSize="Medium"
+                       x:Name="HintLabel" />
                 <CollectionView x:Name="CollectionView"
-                                    ItemsSource="{Binding Courses}"
-                                    SelectionMode="Multiple"
-                                    SelectedItems="{Binding SelectedCourses}">
+                                ItemsSource="{Binding Courses}"
+                                SelectionMode="Multiple"
+                                SelectedItems="{Binding SelectedCourses}">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="10">
@@ -50,36 +50,36 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <Image Grid.RowSpan="2"
-                                           Source="{Binding ImgUrl}"
-                                           Aspect="AspectFill"
-                                           HeightRequest="60"
-                                           WidthRequest="106.5" />
+                                       Source="{Binding ImgUrl}"
+                                       Aspect="AspectFill"
+                                       HeightRequest="60"
+                                       WidthRequest="106.5" />
                                 <Label Grid.Column="1"
-                                           Text="{Binding Name}"
-                                           FontAttributes="Bold"
-                                           HorizontalOptions="Center" />
+                                       Text="{Binding Name}"
+                                       FontAttributes="Bold"
+                                       HorizontalOptions="Center" />
                                 <Label Grid.Row="1"
-                                           Grid.Column="1"
-                                           Text="{Binding School}"
-                                           FontAttributes="Italic"
-                                           VerticalOptions="End" />
+                                       Grid.Column="1"
+                                       Text="{Binding School}"
+                                       FontAttributes="Italic"
+                                       VerticalOptions="End" />
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Button Text="完成"
-                            BackgroundColor="#7dbbe6"
-                            HorizontalOptions="Fill"
-                            x:Name="SaveButton"
-                            Command="{Binding SaveSelectedCoursesCommand}">
+                        BackgroundColor="#455399"
+                        HorizontalOptions="Fill"
+                        x:Name="SaveButton"
+                        Command="{Binding SaveSelectedCoursesCommand}">
                     <Button.HeightRequest>
                         <OnPlatform x:TypeArguments="x:Double">
                             <On Platform="iOS"
-                                    Value="30" />
+                                Value="30" />
                             <On Platform="Android"
-                                    Value="40" />
+                                Value="40" />
                             <On Platform="UWP"
-                                    Value="40" />
+                                Value="40" />
                         </OnPlatform>
                     </Button.HeightRequest>
                 </Button>

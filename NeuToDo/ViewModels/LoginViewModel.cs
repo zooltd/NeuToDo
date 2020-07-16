@@ -13,26 +13,28 @@ namespace NeuToDo.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
-        private readonly ILoginAndFetchDataService _loginAndFetchDataService;
+        private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
         private readonly IPopupNavigationService _popupNavigationService;
 
         private readonly IAccountStorageService _accountStorageService;
 
+        private readonly IEventModelStorage<NeuEvent> _neuStorage;
+
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
 
         private readonly IDbStorageProvider _dbStorageProvider;
 
-        private string _currTime;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
-            ILoginAndFetchDataService loginAndFetchDataService,
+            IFetchSemesterDataService fetchSemesterDataService,
             IAccountStorageService accountStorageService,
             IDbStorageProvider dbStorageProvider)
         {
+            _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _popupNavigationService = popupNavigationService;
-            _loginAndFetchDataService = loginAndFetchDataService;
+            _fetchSemesterDataService = fetchSemesterDataService;
             _accountStorageService = accountStorageService;
             _dbStorageProvider = dbStorageProvider;
         }
@@ -48,8 +50,8 @@ namespace NeuToDo.ViewModels
         public async Task PageAppearingCommandFunction()
         {
             if (ServerPlatform == null) return;
-            UserName = _accountStorageService.GetUserName(ServerPlatform.ServerType);
-            Password = await _accountStorageService.GetPasswordAsync(ServerPlatform.ServerType);
+            Account = await _accountStorageService.GetAccountAsync(ServerPlatform.ServerType);
+            Account ??= new Account();
         }
 
 
@@ -60,43 +62,49 @@ namespace NeuToDo.ViewModels
 
         public async Task OnLoginFunction()
         {
-            await _popupNavigationService.PushAsync(PopupPageNavigationConstants
-                .LoadingPopupPage);
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
 
-            var res =
-                await _loginAndFetchDataService.LoginAndFetchDataAsync(
-                    ServerPlatform.ServerType, UserName, Password);
-
-            if (res)
+            try
             {
-                _currTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
-                await _accountStorageService.SaveAccountAsync(ServerPlatform.ServerType, UserName, Password, _currTime);
-                ServerPlatform.UserName = UserName;
-                ServerPlatform.LastUpdateTime = _currTime;
-                ServerPlatform.Button1Text = "更新";
-                ServerPlatform.IsBound = true;
-                if (ServerPlatform.ServerType == ServerType.Mooc)
+                switch (ServerPlatform.ServerType)
                 {
-                    Courses = MoocInfoGetter.CourseList;
-                    if (Courses.Any())
+                    case ServerType.Neu:
                     {
+                        var webCrawler = new NeuEventsGetter();
+                        await webCrawler.Login(Account.UserName, Account.Password);
+                        var eventList = await webCrawler.GetEventList();
+
+
+                        //更新本地数据库
+                        foreach (var course in eventList)
+                            if (!await _neuStorage.ExistAsync(x => x.Uuid == course.Uuid))
+                                await _neuStorage.InsertAsync(course);
+                        _dbStorageProvider.OnUpdateData();
+
+                        //更新账号存储
+                        Account.LastUpdateTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+                        await _accountStorageService.SaveAccountAsync(ServerType.Neu, Account);
+                        _accountStorageService.OnUpdateData();
+
+                        await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
+                        await Task.Delay(1500);
+                        await _popupNavigationService.PopAllAsync();
+                        break;
+                    }
+                    case ServerType.Mooc:
+                    {
+                        var webCrawler = new MoocEventsGetter();
+                        await webCrawler.Login(Account.UserName, Account.Password);
+                        (Courses, EventList) = await webCrawler.GetEventList();
                         SelectedCourses = new ObservableCollection<object>();
-                        await _popupNavigationService.PushAsync(
-                            PopupPageNavigationConstants.SelectPopupPage);
+                        await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SelectPopupPage);
+                        break;
                     }
                 }
-                else
-                {
-                    await _popupNavigationService.PushAsync(
-                        PopupPageNavigationConstants.SuccessPopupPage);
-                    await Task.Delay(1500);
-                    await _popupNavigationService.PopAllAsync();
-                }
             }
-            else
+            catch (Exception e)
             {
-                await _popupNavigationService.PushAsync(
-                    PopupPageNavigationConstants.ErrorPopupPage);
+                await _popupNavigationService.PushAsync(PopupPageNavigationConstants.ErrorPopupPage);
                 await Task.Delay(1500);
                 await _popupNavigationService.PopAllAsync();
             }
@@ -107,6 +115,7 @@ namespace NeuToDo.ViewModels
         #region 绑定属性
 
         public List<Course> Courses { get; private set; }
+
 
         private static ObservableCollection<object> _selectedCourses;
 
@@ -124,21 +133,15 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(ServerPlatform), ref _serverPlatform, value);
         }
 
-        private static string _userName;
+        private Account _account;
 
-        public string UserName
+        public Account Account
         {
-            get => _userName;
-            set => Set(nameof(UserName), ref _userName, value);
+            get => _account;
+            set => Set(nameof(Account), ref _account, value);
         }
 
-        private string _password;
-
-        public string Password
-        {
-            get => _password;
-            set => Set(nameof(Password), ref _password, value);
-        }
+        public List<MoocEvent> EventList { get; set; }
 
         #endregion
 
@@ -159,21 +162,22 @@ namespace NeuToDo.ViewModels
         public async Task SaveSelectedCoursesCommandFunction()
         {
             var resultList = (from Course course in SelectedCourses
-                from moocEvent in MoocInfoGetter.EventList
+                from moocEvent in EventList
                 where moocEvent.Code == course.Code
                 select moocEvent).ToList();
 
-            var dictionary = resultList.GroupBy(x => x.Code).ToDictionary(x => x.Key, x => x.ToList());
-            
-            foreach (var group in dictionary)
-            {
-                await _moocStorage.DeleteAllAsync(x => x.Code == group.Key);
-                await _moocStorage.InsertAllAsync(group.Value);
-            }
+            //更新本地数据库
+            foreach (var moocEvent in resultList)
+                if (!await _moocStorage.ExistAsync(x => x.Uuid == moocEvent.Uuid))
+                    await _moocStorage.InsertAsync(moocEvent);
 
-            // await _moocStorage.MergeAsync(resultList);
-            await _popupNavigationService.PushAsync(PopupPageNavigationConstants
-                .SuccessPopupPage);
+
+            //更新账号存储
+            Account.LastUpdateTime = DateTime.Now.ToString(CultureInfo.CurrentCulture);
+            await _accountStorageService.SaveAccountAsync(ServerType.Mooc, Account);
+            _accountStorageService.OnUpdateData();
+
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.SuccessPopupPage);
             await Task.Delay(1500);
             await _popupNavigationService.PopAllAsync();
             _dbStorageProvider.OnUpdateData();

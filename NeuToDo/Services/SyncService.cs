@@ -33,17 +33,6 @@ namespace NeuToDo.Services
         }
 
 
-        public async Task SyncSyllabusAsync()
-        {
-            var semesterList = await _remoteSemesterStorage.GetSemesterListAsync();
-            if (semesterList.Count == 0) return;
-            foreach (var semester in semesterList)
-            {
-                await _localSemesterStorage.InsertOrReplaceAsync(semester);
-            }
-        }
-
-
         /// <summary>
         /// 同步。
         /// </summary>

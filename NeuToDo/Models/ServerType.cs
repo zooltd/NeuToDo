@@ -4,8 +4,6 @@
     {
         Neu,
         Mooc,
-        Bb,
-        WebDav,
-        Github
+        WebDav
     }
 }

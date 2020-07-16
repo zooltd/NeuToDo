@@ -36,7 +36,6 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SyncViewModel>();
             SimpleIoc.Default.Register<IAcademicCalendarService, AcademicCalendarService>();
             SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
-            SimpleIoc.Default.Register<IBackupService, BackupService>();
             SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
             SimpleIoc.Default.Register<IContentPageActivationService, ContentPageActivationService>();
             SimpleIoc.Default.Register<IContentPageNavigationService, ContentPageNavigationService>();
@@ -44,7 +43,7 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
             SimpleIoc.Default.Register<IDbStorageProvider, DbStorageProvider>();
-            SimpleIoc.Default.Register<ILoginAndFetchDataService, LoginAndFetchDataService>();
+            SimpleIoc.Default.Register<IFetchSemesterDataService, FetchSemesterDataService>();
             SimpleIoc.Default.Register<IRemoteSemesterStorage,RemoteSemesterStorage>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<ISyncService, SyncService>();

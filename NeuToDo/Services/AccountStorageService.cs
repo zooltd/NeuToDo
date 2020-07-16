@@ -30,9 +30,14 @@ namespace NeuToDo.Services
 
         public void RemoveAccountHistory(ServerType serverType)
         {
-            _preferenceStorageProvider.Remove(serverType + "Id");
-            _secureStorageProvider.Remove(serverType + "Pd");
-            _preferenceStorageProvider.Remove(serverType + "Time");
+            _preferenceStorageProvider.Remove(serverType + nameof(Account.UserName));
+            _secureStorageProvider.Remove(serverType + nameof(Account.Password));
+            _preferenceStorageProvider.Remove(serverType + nameof(Account.LastUpdateTime));
+            if (serverType == ServerType.WebDav)
+            {
+                _preferenceStorageProvider.Remove(serverType + nameof(Account.BaseUri));
+                _preferenceStorageProvider.Remove(serverType + nameof(Account.Remarks));
+            }
         }
 
         public async Task SaveAccountAsync(ServerType serverType, string userName, string password, string updateTime)
@@ -76,16 +81,16 @@ namespace NeuToDo.Services
             };
         }
 
-        public static Account DefaultAccount = new Account
-            {Remarks = "我的私有云盘", BaseUri = "我的服务器地址", UserName = "我的用户名"};
-    }
 
-    public class Account
-    {
-        public string UserName { get; set; }
-        public string Password { get; set; }
-        public string LastUpdateTime { get; set; }
-        public string BaseUri { get; set; }
-        public string Remarks { get; set; }
+        public event EventHandler UpdateData;
+
+        public virtual void OnUpdateData()
+        {
+            UpdateData?.Invoke(this, EventArgs.Empty);
+        }
+
+
+        public static readonly Account DefaultAccount = new Account
+            {Remarks = "我的私有云盘", BaseUri = "我的服务器地址", UserName = "我的用户名"};
     }
 }

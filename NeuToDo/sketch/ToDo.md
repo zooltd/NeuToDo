@@ -4,14 +4,14 @@
 3. ~~ToDoListPage 第0周再点击上一周 此时点击下一周时就是第一周（应为第0周)~~
 4. ~~SecureStorage添加已有key是否报错~~
 5. ~~第0周时显示`请关联教务处显示教学周`~~
-6. ToDo事项勾选后删除线
+6. ~~ToDo事项勾选后删除线~~
 7. ~~浑南/南湖时区~~
 8. mooc进行中课程为空时，报错
 9. ~~抽出账号管理Service~~
-10. LoginVM, LoginAndFechDataService重构
-11. Mooc crud
-12. User crud
-13. Semester管理?
+10. ~~LoginVM, LoginAndFechDataService重构~~
+11. ~~Mooc crud~~
+12. ~~User crud~~
+13. ~~Semester管理?~~
 
 ### 重要:
 1. ~~非本学期课程归档（无法编辑），考虑新增`学期`字段~~

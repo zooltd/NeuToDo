@@ -7,6 +7,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Plugin.FilePicker;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 
@@ -262,9 +263,9 @@ namespace NeuToDo.ViewModels
         private RelayCommand _exportToLocal;
 
         public RelayCommand ExportToLocal =>
-            _exportToLocal ??= new RelayCommand(async () => await ExportToLocalFunction());
+            _exportToLocal ??= new RelayCommand(ExportToLocalFunction);
 
-        private async Task ExportToLocalFunction()
+        private void ExportToLocalFunction()
         {
             //TODO check permission
             try
@@ -380,6 +381,25 @@ namespace NeuToDo.ViewModels
             {
                 _dialogService.DisplayAlert("警告", "请先登录", "OK");
             }
+        }
+
+
+        //
+        public async Task ImportAsync()
+        {
+            var pickedFile = await CrossFilePicker.Current.PickFile();
+
+            if (pickedFile == null)
+                throw new Exception($"导入文件名应为\"{DbStorageProvider.DbName}\"");
+
+            if (pickedFile.FileName != DbStorageProvider.DbName)
+                throw new Exception($"导入文件名应为\"{DbStorageProvider.DbName}\"");
+
+            await _dbStorageProvider.CloseConnectionAsync();
+
+            var stream = pickedFile.GetStream();
+            using var fileStream = File.Create(DbStorageProvider.DbPath);
+            CopyStream(stream, fileStream);
         }
     }
 }

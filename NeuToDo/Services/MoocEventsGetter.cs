@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {
-    public class MoocInfoGetter
+    public class MoocEventsGetter
     {
         private const string LoginUrl = "https://www.icourse163.org/passport/reg/icourseLogin.do";
 
@@ -25,12 +25,14 @@ namespace NeuToDo.Services
             "https://www.icourse163.org/dwr/call/plaincall/CourseBean.getLastLearnedMocTermDto.dwr";
 
         private static HttpClient _client;
+
         private static string _token;
 
-        public static List<MoocEvent> EventList;
-        public static List<Course> CourseList;
+        private static List<MoocEvent> _eventList;
 
-        public MoocInfoGetter()
+        private static List<Course> _courseList;
+
+        public MoocEventsGetter()
         {
             _token = string.Empty;
             _client = new HttpClient(new HttpClientHandler
@@ -41,8 +43,37 @@ namespace NeuToDo.Services
             });
             _client.DefaultRequestHeaders.Add("User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
-            EventList = new List<MoocEvent>();
-            CourseList = new List<Course>();
+            _eventList = new List<MoocEvent>();
+            _courseList = new List<Course>();
+        }
+
+
+        /// <summary>
+        /// 登录。
+        /// </summary>
+        /// <param name="userName">用户名。</param>
+        /// <param name="password">密码</param>
+        /// <returns></returns>
+        public async Task Login(string userName, string password)
+        {
+            var postParams =
+                new Dictionary<string, string>
+                {
+                    {"saveLogin", "true"}, {"oauthType", ""}, {"username", userName}, {"passwd", password}
+                };
+
+            var response = await _client.PostAsync(LoginUrl,
+                new FormUrlEncodedContent(postParams));
+            response.EnsureSuccessStatusCode();
+
+            response = await _client.GetAsync(GetTokenUrl);
+            var token = GetToken(response);
+            _token = token;
+            // var doc = new HtmlDocument();
+            // doc.LoadHtml(response.Content.ToString());
+            // var node = doc.DocumentNode.SelectSingleNode(
+            //     "//div[@class='m-slideTop-personFunc']//span['f-thide']");
+            // Console.WriteLine(node.InnerText);
         }
 
         /// <summary>
@@ -58,40 +89,18 @@ namespace NeuToDo.Services
             return token;
         }
 
-        /// <summary>
-        /// 登录。
-        /// </summary>
-        /// <param name="userName">用户名。</param>
-        /// <param name="password">密码</param>
-        /// <returns></returns>
-        private static async Task Login(string userName, string password)
+        public async Task<(List<Course> courseList, List<MoocEvent> eventList)> GetEventList()
         {
-            try
-            {
-                var postParams =
-                    new Dictionary<string, string>
-                    {
-                        {"saveLogin", "true"}, {"oauthType", ""}, {"username", userName}, {"passwd", password}
-                    };
+            await GetOnGoingCourses(_token);
 
-                var response = await _client.PostAsync(LoginUrl,
-                    new FormUrlEncodedContent(postParams));
-                response.EnsureSuccessStatusCode();
-
-                response = await _client.GetAsync(GetTokenUrl);
-                var token = GetToken(response);
-                _token = token;
-                // var doc = new HtmlDocument();
-                // doc.LoadHtml(response.Content.ToString());
-                // var node = doc.DocumentNode.SelectSingleNode(
-                //     "//div[@class='m-slideTop-personFunc']//span['f-thide']");
-                // Console.WriteLine(node.InnerText);
-            }
-            catch (WebException we)
+            foreach (var course in _courseList)
             {
-                string msg = we.Message;
-                Console.WriteLine(msg);
+                await GetTestInfo(course);
             }
+
+            _client.Dispose();
+
+            return (_courseList, _eventList);
         }
 
         private static async Task GetOnGoingCourses(
@@ -120,7 +129,7 @@ namespace NeuToDo.Services
             foreach (var course in root.result.result)
             {
                 // courses.Add(course.termPanel.courseId.ToString(), course.name);
-                CourseList.Add(new Course
+                _courseList.Add(new Course
                 {
                     Code = course.termPanel.courseId.ToString(),
                     TermId = course.termPanel.id.ToString(),
@@ -261,7 +270,7 @@ namespace NeuToDo.Services
             //向EventList赋值
             for (var i = 0; i < quizName.Count; i++)
             {
-                EventList.Add(new MoocEvent
+                _eventList.Add(new MoocEvent
                 {
                     Title = "Mooc " + course.Name,
                     Detail = quizName[i],
@@ -276,7 +285,7 @@ namespace NeuToDo.Services
 
             for (var i = 0; i < homeworkName.Count; i++)
             {
-                EventList.Add(new MoocEvent
+                _eventList.Add(new MoocEvent
                 {
                     Title = "Mooc " + course.Name,
                     Detail = homeworkName[i],
@@ -288,18 +297,6 @@ namespace NeuToDo.Services
                     LastModified = DateTime.Now
                 });
             }
-        }
-
-        public async Task WebCrawler(string userName, string password)
-        {
-            await Login(userName, password);
-            await GetOnGoingCourses(_token);
-            foreach (var course in CourseList)
-            {
-                await GetTestInfo(course);
-            }
-
-            _client.Dispose();
         }
     }
 }

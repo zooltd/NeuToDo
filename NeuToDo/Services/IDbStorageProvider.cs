@@ -14,7 +14,6 @@ namespace NeuToDo.Services
 
         Task CloseConnectionAsync();
 
-        //TODO 抽离成新的Service?
         public event EventHandler UpdateData;
 
         public void OnUpdateData();

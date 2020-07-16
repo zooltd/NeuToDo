@@ -18,7 +18,6 @@ namespace NeuToDo.Services
         [Obsolete]
         Task<string> GetPasswordAsync(ServerType serverType);
 
-        [Obsolete]
         void RemoveAccountHistory(ServerType serverType);
 
         [Obsolete]
@@ -27,10 +26,15 @@ namespace NeuToDo.Services
         Task SaveAccountAsync(ServerType serverType, Account account);
 
         /// <summary>
-        /// Get the specific account ot the server type; Return null if it does not exist
+        /// Get the specific account of the server type; Return null if it does not exist
         /// </summary>
         /// <param name="serverType"></param>
         /// <returns></returns>
         Task<Account> GetAccountAsync(ServerType serverType);
+
+
+        public event EventHandler UpdateData;
+
+        public void OnUpdateData();
     }
 }

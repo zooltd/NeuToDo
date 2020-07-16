@@ -8,10 +8,11 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Xamarin.Forms.Internals;
 
 namespace NeuToDo.Services
 {
-    public class NeuSyllabusGetter
+    public class NeuEventsGetter
     {
         private static HttpClient _client;
         private Semester _semester;
@@ -21,7 +22,7 @@ namespace NeuToDo.Services
         private int _semesterId;
         private int _ids;
 
-        public NeuSyllabusGetter()
+        public NeuEventsGetter()
         {
             _client = new HttpClient(new HttpClientHandler
             {
@@ -39,7 +40,7 @@ namespace NeuToDo.Services
         public async Task<(Semester semester, List<NeuEvent> neuCourses)> LoginAndFetchData(string userName,
             string password)
         {
-            await LoginDeanOfStudentsOffice(userName, password);
+            await Login(userName, password);
 
             await GetQueryData();
 
@@ -54,13 +55,14 @@ namespace NeuToDo.Services
             return (_semester, _neuCourses);
         }
 
+
         /// <summary>
         /// 登陆教务处
         /// </summary>
         /// <param name="userName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        private async Task LoginDeanOfStudentsOffice(string userName, string password)
+        public async Task Login(string userName, string password)
         {
             var res = await _client.GetAsync(_baseUri);
             res.EnsureSuccessStatusCode();
@@ -97,7 +99,22 @@ namespace NeuToDo.Services
             deanResponse.EnsureSuccessStatusCode();
         }
 
-        public async Task GetQueryData()
+        public async Task<List<NeuEvent>> GetEventList()
+        {
+            await GetQueryData();
+
+            var semestersResponseBody = await GetSemesterInfoResponseBody();
+
+            _semester = ParseSemesters(semestersResponseBody);
+
+            var coursesResponseBody = await GetCourseInfoResponseBody();
+
+            _neuCourses = ParseCourses(coursesResponseBody, _semester);
+
+            return _neuCourses;
+        }
+
+        private async Task GetQueryData()
         {
             var res = await _client.GetAsync(_deanUri + "courseTableForStd.action?");
             res.EnsureSuccessStatusCode();
@@ -207,7 +224,7 @@ namespace NeuToDo.Services
                     ClassNo = firstClass,
                     SemesterId = semester.SemesterId,
                     IsUserGenerated = false,
-                    Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + (int)day + "_" + firstClass,
+                    Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + (int) day + "_" + firstClass,
                     IsDeleted = false,
                     LastModified = DateTime.Now
                 }));
