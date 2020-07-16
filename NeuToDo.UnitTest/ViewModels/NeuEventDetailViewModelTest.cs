@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace NeuToDo.UnitTest.ViewModels
@@ -122,19 +123,12 @@ namespace NeuToDo.UnitTest.ViewModels
                 }
             });
             var dbData = await neuStorage.GetAllAsync();
-            Assert.AreEqual(dbData.Count, 4);
+            Assert.AreEqual(0, dbData.Count(x => x.IsDeleted));
             alertServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No"))
                 .ReturnsAsync(true);
             await eventDetailViewModel.DeleteAllFunction();
             dbData = await neuStorage.GetAllAsync();
-            Assert.AreEqual(dbData.Count, 1);
-
-            alertServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No"))
-                .ReturnsAsync(false);
-            eventDetailViewModel.SelectedEvent.Code = "B101";
-            await eventDetailViewModel.DeleteAllFunction();
-            dbData = await neuStorage.GetAllAsync();
-            Assert.AreEqual(dbData.Count, 1);
+            Assert.AreEqual(3, dbData.Count(x => x.IsDeleted));
 
             await storageProvider.CloseConnectionAsync();
         }

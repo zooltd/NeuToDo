@@ -23,7 +23,7 @@
                 <ContentView HeightRequest="20" />
             </StackLayout>
             <ActivityIndicator IsRunning="{Binding SearchStatus}" />
-            <StackLayout Padding="20" BindableLayout.ItemsSource="{Binding SearchResult}" Spacing="15">
+            <StackLayout Padding="20" Margin="0,-40" BindableLayout.ItemsSource="{Binding SearchResult}" Spacing="15">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <StackLayout>

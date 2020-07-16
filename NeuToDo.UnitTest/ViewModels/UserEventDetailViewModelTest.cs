@@ -144,7 +144,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var dbData = await userStorage.GetAllAsync();
             Assert.AreEqual(5, dbData.Count);
 
-            userEventDetailViewModel.SelectedEvent = new UserEvent {IsRepeat = true, Code = "A101",Title = "A101"};
+            userEventDetailViewModel.SelectedEvent = new UserEvent {IsRepeat = true, Code = "A101", Title = "A101"};
             await userEventDetailViewModel.PageAppearingCommandFunction();
             Assert.AreEqual(2, userEventDetailViewModel.UserEventDetail.EventPeriods.Count);
 
@@ -156,16 +156,20 @@ namespace NeuToDo.UnitTest.ViewModels
 
             userEventDetailViewModel.UserEventDetail.EventPeriods.Add(new UserEventPeriod
             {
-                StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today, TimeOfDay = TimeSpan.Zero, DaySpan = 1
+                StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today, TimeOfDay = TimeSpan.Zero,
+                DaySpan = 1
             });
+
             await userEventDetailViewModel.EditDoneFunction();
             dbData = await userStorage.GetAllAsync();
-            Assert.AreEqual(5 + 2, dbData.Count);
+            Assert.AreEqual(5 + 2 + 4, dbData.Count);
+            Assert.AreEqual(4, dbData.Count(x => x.IsDeleted));
+
 
             dialogServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No")).ReturnsAsync(true);
             await userEventDetailViewModel.DeleteAllFunction();
             dbData = await userStorage.GetAllAsync();
-            Assert.AreEqual(1, dbData.Count);
+            Assert.AreEqual(4 + 6, dbData.Count(x => x.IsDeleted));
 
             await dbStorageProvider.CloseConnectionAsync();
         }

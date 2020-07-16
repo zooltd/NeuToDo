@@ -18,5 +18,16 @@ namespace NeuToDo.Views.Popup
             InitializeComponent();
         }
 
+        protected override bool OnBackgroundClicked()
+        {
+            CloseAllPopup();
+
+            return false;
+        }
+
+        private async void CloseAllPopup()
+        {
+            await PopupNavigation.Instance.PopAllAsync();
+        }
     }
 }

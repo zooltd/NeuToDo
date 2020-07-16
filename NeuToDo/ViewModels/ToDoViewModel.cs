@@ -16,9 +16,9 @@ namespace NeuToDo.ViewModels
     {
         public ToDoViewModel(IDbStorageProvider dbStorageProvider,
             IContentPageNavigationService contentPageNavigationService,
-            IDialogService dialogService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService, IFetchSemesterDataService fetchSemesterDataService)
+            IPopupNavigationService popupNavigationService, 
+            IFetchSemesterDataService fetchSemesterDataService)
         {
             _dbStorageProvider = dbStorageProvider;
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
@@ -26,8 +26,6 @@ namespace NeuToDo.ViewModels
             _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
             _academicCalendarService = academicCalendarService;
             _contentPageNavigationService = contentPageNavigationService;
-            _dialogService = dialogService;
-            _popupNavigationService = popupNavigationService;
             _fetchSemesterDataService = fetchSemesterDataService;
             dbStorageProvider.UpdateData += OnGetData;
             _today = DateTime.Today;
@@ -38,13 +36,11 @@ namespace NeuToDo.ViewModels
         #region 私有变量
 
         private readonly IContentPageNavigationService _contentPageNavigationService;
-        private readonly IDialogService _dialogService;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IEventModelStorage<UserEvent> _userStorage;
         private readonly IAcademicCalendarService _academicCalendarService;
-        private readonly IPopupNavigationService _popupNavigationService;
         private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
         private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
@@ -167,6 +163,7 @@ namespace NeuToDo.ViewModels
 
         private async Task CheckCommandFunction(EventModel eventModel)
         {
+            eventModel.LastModified = DateTime.Now;
             switch (eventModel)
             {
                 case NeuEvent neuEvent:

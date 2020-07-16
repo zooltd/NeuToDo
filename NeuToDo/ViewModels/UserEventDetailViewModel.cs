@@ -97,17 +97,19 @@ namespace NeuToDo.ViewModels
             }
 
             var newList = UserEventDetail.GetUserEvents();
-            newList.ForEach(x =>
-            {
-                x.Uuid = Guid.NewGuid().ToString();
-                x.LastModified = DateTime.Now;
-            });
 
             if (newList.Count == 0)
             {
                 _dialogService.DisplayAlert("警告", "请至少添加一个时间段", "OK");
                 return;
             }
+
+            newList.ForEach(x =>
+            {
+                x.Uuid = Guid.NewGuid().ToString();
+                x.LastModified = DateTime.Now;
+            });
+
 
             var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
             oldList.ForEach(x =>

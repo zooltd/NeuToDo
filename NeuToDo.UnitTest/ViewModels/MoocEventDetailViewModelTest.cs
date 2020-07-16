@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Moq;
 using NeuToDo.Models;
@@ -48,7 +49,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var now = DateTime.Now;
             var temp = new MoocEvent
             {
-                Id = 1, Code = "A101", Title = "A101", Detail = "C101", IsDone = false,
+                Id = 1, Code = "A101", Title = "A101", Detail = "ToBeDeleted", IsDone = false,
                 Time = DateTime.Today
             };
             var moocEventDetailViewModel = new MoocEventDetailViewModel(dbStorageProvider, mockDialogService,
@@ -57,11 +58,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             await moocStorage.InsertAllAsync(new List<MoocEvent>
             {
-                new MoocEvent
-                {
-                    Id = 1, Code = "A101", Title = "A101", Detail = "C101", IsDone = false,
-                    Time = DateTime.Today
-                },
+                temp,
                 new MoocEvent
                 {
                     Id = 2, Code = "A101", Title = "A101", Detail = "C101", IsDone = false,
@@ -84,21 +81,27 @@ namespace NeuToDo.UnitTest.ViewModels
             dialogServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除本事件？", "Yes", "No")).ReturnsAsync(true);
             await moocEventDetailViewModel.DeleteThisEventFunction();
             dbData = await moocStorage.GetAllAsync();
-            Assert.AreEqual(3, dbData.Count);
+            Assert.AreEqual(4, dbData.Count);
+            var theEvent = dbData.FirstOrDefault(x => x.Detail == "ToBeDeleted");
+            Assert.AreEqual(true, theEvent?.IsDeleted);
 
             dialogServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本课程的所有课程/作业/测试信息？", "Yes", "No"))
                 .ReturnsAsync(true);
             await moocEventDetailViewModel.DeleteAllFunction();
             dbData = await moocStorage.GetAllAsync();
-            Assert.AreEqual(1, dbData.Count);
+            Assert.AreEqual(4, dbData.Count);
+            Assert.AreEqual(3, dbData.Count(x => x.IsDeleted));
 
-            moocEventDetailViewModel.SelectedEvent = new MoocEvent{Id = 5, Code = "C101", Title = "C101", Detail = "C101", IsDone = false,
-                Time = DateTime.Today.AddDays(-2)};
+            moocEventDetailViewModel.SelectedEvent = new MoocEvent
+            {
+                Id = 5, Code = "C101", Title = "C101", Detail = "C101", IsDone = false,
+                Time = DateTime.Today.AddDays(-2)
+            };
 
             moocEventDetailViewModel.PageAppearingCommandFunction();
             await moocEventDetailViewModel.SaveThisEventFunction();
             dbData = await moocStorage.GetAllAsync();
-            Assert.AreEqual(2, dbData.Count);
+            Assert.AreEqual(1, dbData.Count(x => !x.IsDeleted));
 
             await dbStorageProvider.CloseConnectionAsync();
         }

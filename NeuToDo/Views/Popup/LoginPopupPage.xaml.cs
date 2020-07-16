@@ -99,10 +99,10 @@ namespace NeuToDo.Views.Popup
             await taskSource.Task;
         }
 
-        private void OnCloseButtonTapped(object sender, EventArgs e)
-        {
-            CloseAllPopup();
-        }
+        // private void OnCloseButtonTapped(object sender, EventArgs e)
+        // {
+        //     CloseAllPopup();
+        // }
 
         protected override bool OnBackgroundClicked()
         {
