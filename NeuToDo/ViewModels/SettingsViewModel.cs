@@ -1,7 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
-using NeuToDo.Models.SettingsModels;
 using NeuToDo.Services;
 using System;
 using System.Collections.Generic;

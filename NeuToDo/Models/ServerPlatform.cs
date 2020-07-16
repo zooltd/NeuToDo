@@ -1,7 +1,7 @@
-﻿using GalaSoft.MvvmLight;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using GalaSoft.MvvmLight;
 
-namespace NeuToDo.Models.SettingsModels
+namespace NeuToDo.Models
 {
     public class ServerPlatform : ObservableObject
     {
@@ -82,16 +82,6 @@ namespace NeuToDo.Models.SettingsModels
                 IsBound = false,
                 ServerType = ServerType.Mooc,
                 PicUrl = "MoocPic.png"
-            },
-            new ServerPlatform
-            {
-                Name = "东北大学Blackboard",
-                UserName = string.Empty,
-                LastUpdateTime = string.Empty,
-                Button1Text = "关联",
-                IsBound = false,
-                ServerType = ServerType.Bb,
-                PicUrl = "BbPic.png"
             }
         };
     }

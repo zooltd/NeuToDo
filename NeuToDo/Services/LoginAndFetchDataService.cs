@@ -72,6 +72,12 @@ namespace NeuToDo.Services
                         return false;
                     }
                 case ServerType.Bb:
+
+                    var bbInfoGetter = new BbInfoGetter();
+                    await bbInfoGetter.LoginAndFetchData(userId, password);
+
+
+
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(serverType), serverType, null);

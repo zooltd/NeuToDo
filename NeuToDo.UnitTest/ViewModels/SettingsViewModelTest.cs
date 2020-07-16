@@ -1,5 +1,5 @@
 ﻿using Moq;
-using NeuToDo.Models.SettingsModels;
+using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.ViewModels;
 using NUnit.Framework;
