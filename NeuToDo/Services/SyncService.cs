@@ -17,16 +17,11 @@ namespace NeuToDo.Services
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IEventModelStorage<UserEvent> _userStorage;
-        private readonly IRemoteSemesterStorage _remoteSemesterStorage;
-        private readonly ISemesterStorage _localSemesterStorage;
 
         public SyncService(IDbStorageProvider localDbStorageProvider,
-            IHttpWebDavService remoteDbStorage,
-            IRemoteSemesterStorage remoteSemesterStorage)
+            IHttpWebDavService remoteDbStorage)
         {
             _remoteDbStorage = remoteDbStorage;
-            _remoteSemesterStorage = remoteSemesterStorage;
-            _localSemesterStorage = localDbStorageProvider.GetSemesterStorage();
             _neuStorage = localDbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = localDbStorageProvider.GetEventModelStorage<MoocEvent>();
             _userStorage = localDbStorageProvider.GetEventModelStorage<UserEvent>();
@@ -58,9 +53,8 @@ namespace NeuToDo.Services
                         switch (entry.Name)
                         {
                             case nameof(NeuEvent) + ".json":
-                                remoteNeuEvents =
-                                    JsonConvert.DeserializeObject<List<NeuEvent>>(
-                                        await jsonReader.ReadToEndAsync());
+                                remoteNeuEvents = JsonConvert.DeserializeObject<List<NeuEvent>>(
+                                    await jsonReader.ReadToEndAsync());
                                 break;
                             case nameof(MoocEvent) + ".json":
                                 remoteMoocEvents = JsonConvert.DeserializeObject<List<MoocEvent>>(
