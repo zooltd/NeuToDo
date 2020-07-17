@@ -15,6 +15,8 @@ namespace NeuToDo.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
     {
+        #region 构造函数
+
         private readonly IPopupNavigationService _popupNavigationService;
         private readonly IAccountStorageService _accountStorageService;
         private readonly IDialogService _dialogService;
@@ -44,6 +46,8 @@ namespace NeuToDo.ViewModels
             accountStorageService.UpdateData += OnUpdateAccount;
         }
 
+        #endregion
+
         private async void OnUpdateAccount(object sender, EventArgs e)
         {
             await LoadPlatforms();
@@ -53,8 +57,14 @@ namespace NeuToDo.ViewModels
 
         #region 绑定方法
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         private RelayCommand _pageAppearingCommand;
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
             new RelayCommand(async () => await PageAppearingCommandFunction());
 
@@ -69,6 +79,10 @@ namespace NeuToDo.ViewModels
             _isInit = true;
         }
 
+        /// <summary>
+        /// 加载平台。
+        /// </summary>
+        /// <returns></returns>
         private async Task LoadPlatforms()
         {
             var defaultPlatforms = ServerPlatform.ServerPlatforms;
@@ -132,6 +146,9 @@ namespace NeuToDo.ViewModels
             _accountStorageService.OnUpdateData();
         }
 
+        /// <summary>
+        /// 导航到备份页命令。
+        /// </summary>
         private RelayCommand _navigateToBackupPageCommand;
 
         public RelayCommand NavigateToBackupPageCommand =>
@@ -139,14 +156,23 @@ namespace NeuToDo.ViewModels
                 await _contentPageNavigationService.PushAsync(ContentNavigationConstants.BackupPage));
 
 
+        /// <summary>
+        /// 导航到同步页命令。
+        /// </summary>
         private RelayCommand _navigateToSyncPageCommand;
 
         public RelayCommand NavigateToSyncPageCommand =>
             _navigateToSyncPageCommand ??= new RelayCommand(async () =>
                 await _contentPageNavigationService.PushAsync(ContentNavigationConstants.SyncPage));
 
+        /// <summary>
+        /// 选择校区命令。
+        /// </summary>
         private RelayCommand _selectCampus;
 
+        /// <summary>
+        /// 选择校区命令。
+        /// </summary>
         public RelayCommand SelectCampus =>
             _selectCampus ??= new RelayCommand(async () => await SelectCampusFunction());
 
@@ -163,8 +189,14 @@ namespace NeuToDo.ViewModels
             _dialogService.DisplayAlert("提示", "已保存", "OK");
         }
 
+        /// <summary>
+        /// 导出到本地日历命令。
+        /// </summary>
         private RelayCommand _exportToLocalCalendar;
 
+        /// <summary>
+        /// 导出到本地日历命令。
+        /// </summary>
         public RelayCommand ExportToLocalCalendar =>
             _exportToLocalCalendar ??= new RelayCommand(async () => await ExportToLocalCalendarFunction());
 
@@ -215,8 +247,14 @@ namespace NeuToDo.ViewModels
             // await CrossCalendars.Current.AddOrUpdateEventAsync(selectedCalendar, calendarEvent);
         }
 
+        /// <summary>
+        /// 删除本地日历命令。
+        /// </summary>
         private RelayCommand _deleteLocalCalendar;
 
+        /// <summary>
+        /// 删除本地日历命令。
+        /// </summary>
         public RelayCommand DeleteLocalCalendar =>
             _deleteLocalCalendar ??= new RelayCommand(async () => await DeleteLocalCalendarFunction());
 
@@ -234,6 +272,10 @@ namespace NeuToDo.ViewModels
             _dialogService.DisplayAlert("提示", "删除日历成功", "OK");
         }
 
+        /// <summary>
+        /// 检查日历权限。
+        /// </summary>
+        /// <returns></returns>
         private async Task<bool> CheckCalendarPermission()
         {
             var writeStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
@@ -247,6 +289,10 @@ namespace NeuToDo.ViewModels
             return readStatus == PermissionStatus.Granted && writeStatus == PermissionStatus.Granted;
         }
 
+        /// <summary>
+        /// 删除应用日历。
+        /// </summary>
+        /// <returns></returns>
         private async Task DeleteAppCalendar()
         {
             var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
@@ -260,16 +306,28 @@ namespace NeuToDo.ViewModels
 
         #region 绑定属性
 
+        /// <summary>
+        /// 平台。
+        /// </summary>
         private List<ServerPlatform> _serverPlatforms;
 
+        /// <summary>
+        /// 平台。
+        /// </summary>
         public List<ServerPlatform> ServerPlatforms
         {
             get => _serverPlatforms;
             set => Set(nameof(ServerPlatforms), ref _serverPlatforms, value);
         }
 
+        /// <summary>
+        /// 校区。
+        /// </summary>
         private Campus _campus;
 
+        /// <summary>
+        /// 校区。
+        /// </summary>
         public Campus Campus
         {
             get => _campus;

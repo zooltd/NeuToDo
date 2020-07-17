@@ -13,6 +13,8 @@ namespace NeuToDo.ViewModels
 {
     public class NeuEventDetailViewModel : ViewModelBase
     {
+        #region 构造函数
+
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly ISemesterStorage _semesterStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
@@ -36,11 +38,18 @@ namespace NeuToDo.ViewModels
             _campusStorageService = campusStorageService;
         }
 
+        #endregion
 
         #region 绑定命令
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         private RelayCommand _pageAppearingCommand;
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction());
@@ -66,15 +75,24 @@ namespace NeuToDo.ViewModels
             }
         }
 
+        /// <summary>
+        /// 添加时间段命令。
+        /// </summary>
         private RelayCommand _addPeriod;
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand(AddPeriodFunction);
 
+        /// <summary>
+        /// 添加时间段命令。
+        /// </summary>
         public void AddPeriodFunction()
         {
             NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>()});
         }
 
+        /// <summary>
+        /// 移除时间段命令。
+        /// </summary>
         private RelayCommand<NeuEventPeriod> _removePeriod;
 
         public RelayCommand<NeuEventPeriod> RemovePeriod =>
@@ -85,6 +103,9 @@ namespace NeuToDo.ViewModels
             NeuEventDetail.EventPeriods.Remove(period);
         }
 
+        /// <summary>
+        /// 删除所有命令。
+        /// </summary>
         private RelayCommand _deleteAll;
 
         public RelayCommand DeleteAll =>
@@ -105,8 +126,14 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+        /// <summary>
+        /// 编辑已完成命令。
+        /// </summary>
         private RelayCommand _editDone;
 
+        /// <summary>
+        /// 编辑已完成命令。
+        /// </summary>
         public RelayCommand EditDone => _editDone ??= new RelayCommand((async () => await EditDoneFunction()));
 
         public async Task EditDoneFunction()
@@ -164,6 +191,9 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+        /// <summary>
+        /// 周选中命令。
+        /// </summary>
         private RelayCommand<NeuEventPeriod> _weekNoSelect;
 
         public RelayCommand<NeuEventPeriod> WeekNoSelect =>
@@ -188,12 +218,12 @@ namespace NeuToDo.ViewModels
         public List<int> ClassIndexItems => Enumerable.Range(1, 12).ToList();
 
         /// <summary>
-        /// Navigation Parameter
+        /// 被选中日程。
         /// </summary>
         private NeuEvent _selectedEvent;
 
         /// <summary>
-        /// Navigation Parameter
+        /// 被选中日程。
         /// </summary>
         public NeuEvent SelectedEvent
         {
@@ -201,24 +231,42 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
+        /// <summary>
+        /// 教务处日程详情。
+        /// </summary>
         private NeuEventWrapper _neuEventDetail;
 
+        /// <summary>
+        /// 教务处日程详情。
+        /// </summary>
         public NeuEventWrapper NeuEventDetail
         {
             get => _neuEventDetail;
             set => Set(nameof(NeuEventDetail), ref _neuEventDetail, value);
         }
 
+        /// <summary>
+        /// 选择页的周索引。
+        /// </summary>
         private ObservableCollection<int> _weekIndexInSelectionPage;
 
+        /// <summary>
+        /// 选择页的周索引。
+        /// </summary>
         public ObservableCollection<int> WeekIndexInSelectionPage
         {
             get => _weekIndexInSelectionPage;
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
+        /// <summary>
+        /// 学期。
+        /// </summary>
         private Semester _semester;
 
+        /// <summary>
+        /// 学期。
+        /// </summary>
         public Semester Semester
         {
             get => _semester;

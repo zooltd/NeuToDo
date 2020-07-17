@@ -10,6 +10,8 @@ namespace NeuToDo.ViewModels
 {
     public class MoocEventDetailViewModel : ViewModelBase
     {
+        #region 构造函数
+
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IDialogService _dialogService;
@@ -25,10 +27,19 @@ namespace NeuToDo.ViewModels
             _contentPageNavigationService = contentPageNavigationService;
         }
 
+        #endregion
+
+
         #region 绑定命令
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         private RelayCommand _pageAppearingCommand;
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(PageAppearingCommandFunction);
 
@@ -37,8 +48,14 @@ namespace NeuToDo.ViewModels
             MoocEventDetail = new MoocEventWrapper(SelectedEvent);
         }
 
+        /// <summary>
+        /// 删除所有命令。
+        /// </summary>
         private RelayCommand _deleteAll;
 
+        /// <summary>
+        /// 删除所有命令。
+        /// </summary>
         public RelayCommand DeleteAll =>
             _deleteAll ??= new RelayCommand((async () => await DeleteAllFunction()));
 
@@ -57,8 +74,14 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+        /// <summary>
+        /// 删除该日程命令。
+        /// </summary>
         private RelayCommand _deleteThisEvent;
 
+        /// <summary>
+        /// 删除该日程命令。
+        /// </summary>
         public RelayCommand DeleteThisEvent =>
             _deleteThisEvent ??= new RelayCommand(async () => await DeleteThisEventFunction());
 
@@ -75,8 +98,14 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+        /// <summary>
+        /// 保存该日程命令。
+        /// </summary>
         private RelayCommand _saveThisEvent;
 
+        /// <summary>
+        /// 保存该日程命令。
+        /// </summary>
         public RelayCommand SaveThisEvent =>
             _saveThisEvent ??= new RelayCommand(async () => await SaveThisEventFunction());
 
@@ -98,16 +127,28 @@ namespace NeuToDo.ViewModels
 
         #region 绑定属性
 
+        /// <summary>
+        /// 被选中日程。
+        /// </summary>
         private MoocEvent _selectedEvent;
 
+        /// <summary>
+        /// 被选中日程。
+        /// </summary>
         public MoocEvent SelectedEvent
         {
             get => _selectedEvent;
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
+        /// <summary>
+        /// 慕课日程详情。
+        /// </summary>
         private MoocEventWrapper _moocEventDetail;
 
+        /// <summary>
+        /// 慕课日程详情。
+        /// </summary>
         public MoocEventWrapper MoocEventDetail
         {
             get => _moocEventDetail;
