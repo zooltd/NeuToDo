@@ -129,12 +129,39 @@
                     <Label Text="同步各平台数据库" />
                 </lc:RippleStackLayout>
 
+            </StackLayout>
+
+
+            <Grid>
+                <Grid HorizontalOptions="Start"
+                      BackgroundColor="#455399"
+                      Padding="16,8,16,8">
+                    <Label Text="日历导出"
+                           TextColor="White"
+                           FontSize="20"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center"
+                           VerticalTextAlignment="Center"
+                           HeightRequest="32" />
+                </Grid>
+            </Grid>
+
+            <StackLayout Margin="0,-5"
+                         Spacing="28"
+                         Padding="16">
+
                 <lc:RippleStackLayout touch:TouchEff.Command="{Binding ExportToLocalCalendar}">
                     <Label Text="导出至本机日历" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
                     <Label Text="将在本机创建新的日历，导入本APP内的ToDo事件(注: 将覆盖该日历)" />
                 </lc:RippleStackLayout>
 
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding DeleteLocalCalendar}">
+                    <Label Text="删除应用日历" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
+                    <Label Text="将删除本应用创建的日历" />
+                </lc:RippleStackLayout>
+
             </StackLayout>
+
 
             <Grid>
                 <Grid HorizontalOptions="Start"

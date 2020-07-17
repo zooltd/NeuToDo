@@ -170,38 +170,19 @@ namespace NeuToDo.ViewModels
 
         private async Task ExportToLocalCalendarFunction()
         {
-            var writeStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
-            if (writeStatus != PermissionStatus.Granted)
-            {
-                writeStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
-            }
-
-            var readStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
-            if (readStatus != PermissionStatus.Granted)
-            {
-                readStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
-            }
-
-            if (readStatus != PermissionStatus.Granted || writeStatus != PermissionStatus.Granted)
+            if (!await CheckCalendarPermission())
             {
                 _dialogService.DisplayAlert("错误", "日历读写授权失败", "OK");
                 return;
             }
 
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
-
-            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
-
-            foreach (var deviceCalendar in deviceCalendars)
-            {
-                if (deviceCalendar.Name == "NeuToDo")
-                    await CrossCalendars.Current.DeleteCalendarAsync(deviceCalendar);
-            }
+            await DeleteAppCalendar();
 
             await CrossCalendars.Current.AddOrUpdateCalendarAsync(new Calendar
                 {AccountName = "Device", Color = "#BF4779", Name = "NeuToDo"});
 
-            deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
+            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
 
             var myCalendar = deviceCalendars.FirstOrDefault(x => x.Name == "NeuToDo");
 
@@ -232,6 +213,47 @@ namespace NeuToDo.ViewModels
 
 
             // await CrossCalendars.Current.AddOrUpdateEventAsync(selectedCalendar, calendarEvent);
+        }
+
+        private RelayCommand _deleteLocalCalendar;
+
+        public RelayCommand DeleteLocalCalendar =>
+            _deleteLocalCalendar ??= new RelayCommand(async () => await DeleteLocalCalendarFunction());
+
+        private async Task DeleteLocalCalendarFunction()
+        {
+            if (!await CheckCalendarPermission())
+            {
+                _dialogService.DisplayAlert("错误", "日历读写授权失败", "OK");
+                return;
+            }
+
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
+            await DeleteAppCalendar();
+            await _popupNavigationService.PopAllAsync();
+            _dialogService.DisplayAlert("提示", "删除日历成功", "OK");
+        }
+
+        private async Task<bool> CheckCalendarPermission()
+        {
+            var writeStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
+            if (writeStatus != PermissionStatus.Granted)
+                writeStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
+
+            var readStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
+            if (readStatus != PermissionStatus.Granted)
+                readStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
+
+            return readStatus == PermissionStatus.Granted && writeStatus == PermissionStatus.Granted;
+        }
+
+        private async Task DeleteAppCalendar()
+        {
+            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
+
+            foreach (var deviceCalendar in deviceCalendars)
+                if (deviceCalendar.Name == "NeuToDo")
+                    await CrossCalendars.Current.DeleteCalendarAsync(deviceCalendar);
         }
 
         #endregion
