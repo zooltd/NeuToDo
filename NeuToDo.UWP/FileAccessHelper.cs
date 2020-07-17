@@ -17,10 +17,5 @@ namespace NeuToDo.UWP
             _storageFolder ??= ApplicationData.Current.LocalFolder;
             return _storageFolder.Path;
         }
-
-        public async Task<bool> CheckPermission()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }
