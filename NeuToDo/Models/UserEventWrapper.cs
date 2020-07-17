@@ -50,7 +50,8 @@ namespace NeuToDo.Models
                             EndDate = period.EndDate,
                             DaySpan = period.DaySpan,
                             TimeOfDay = period.TimeOfDay,
-                            Uuid = Guid.NewGuid().ToString()
+                            Uuid = Guid.NewGuid().ToString(),
+                            LastModified = DateTime.Now
                         });
                     }
                 }
