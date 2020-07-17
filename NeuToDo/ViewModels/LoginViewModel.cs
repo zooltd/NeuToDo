@@ -13,6 +13,8 @@ namespace NeuToDo.ViewModels
 {
     public class LoginViewModel : ViewModelBase
     {
+        #region 构造函数
+
         private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
         private readonly IPopupNavigationService _popupNavigationService;
@@ -24,7 +26,6 @@ namespace NeuToDo.ViewModels
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
 
         private readonly IDbStorageProvider _dbStorageProvider;
-
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
             IFetchSemesterDataService fetchSemesterDataService,
@@ -39,10 +40,18 @@ namespace NeuToDo.ViewModels
             _dbStorageProvider = dbStorageProvider;
         }
 
+        #endregion
+
         #region 绑定方法
 
+        /// <summary>
+        /// 页面显示命令。
+        /// </summary>
         private RelayCommand _pageAppearingCommand;
 
+        /// <summary>
+        /// 页面显示命令
+        /// </summary>
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction());
@@ -54,12 +63,21 @@ namespace NeuToDo.ViewModels
             Account ??= new Account();
         }
 
-
+        /// <summary>
+        /// 登录时命令。
+        /// </summary>
         private RelayCommand _onLogin;
 
+        /// <summary>
+        /// 登陆时命令。
+        /// </summary>
         public RelayCommand OnLogin =>
             _onLogin ??= new RelayCommand((async () => { await OnLoginFunction(); }));
 
+        /// <summary>
+        /// 登录时函数。
+        /// </summary>
+        /// <returns></returns>
         public async Task OnLoginFunction()
         {
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
@@ -114,33 +132,56 @@ namespace NeuToDo.ViewModels
 
         #region 绑定属性
 
+        /// <summary>
+        /// 课程列表。
+        /// </summary>
         public List<Course> Courses { get; private set; }
 
-
+        /// <summary>
+        /// 被选中课程。
+        /// </summary>
         private static ObservableCollection<object> _selectedCourses;
 
+        /// <summary>
+        /// 被选中课程。
+        /// </summary>
         public ObservableCollection<object> SelectedCourses
         {
             get => _selectedCourses;
             set => Set(nameof(SelectedCourses), ref _selectedCourses, value);
         }
 
+        /// <summary>
+        /// 平台。
+        /// </summary>
         private ServerPlatform _serverPlatform;
 
+        /// <summary>
+        /// 平台。
+        /// </summary>
         public ServerPlatform ServerPlatform
         {
             get => _serverPlatform;
             set => Set(nameof(ServerPlatform), ref _serverPlatform, value);
         }
 
+        /// <summary>
+        /// 账户。
+        /// </summary>
         private Account _account;
 
+        /// <summary>
+        /// 账户。
+        /// </summary>
         public Account Account
         {
             get => _account;
             set => Set(nameof(Account), ref _account, value);
         }
 
+        /// <summary>
+        /// 慕课日程列表。
+        /// </summary>
         public List<MoocEvent> EventList { get; set; }
 
         #endregion
