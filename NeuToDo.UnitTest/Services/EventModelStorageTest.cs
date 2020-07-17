@@ -46,9 +46,9 @@ namespace NeuToDo.UnitTest.Services
 
             var eventListFromStorage = await neuEventModelStorage.GetAllAsync();
 
-            Assert.AreEqual(eventListFromStorage.Count, eventList.Count + 1);
+            Assert.AreEqual(2 + 1, eventListFromStorage.Count);
 
-            await neuEventModelStorage.ClearTableAsync();
+            await neuEventModelStorage.DeleteAllAsync();
 
             eventListFromStorage = await neuEventModelStorage.GetAllAsync();
 
@@ -85,116 +85,6 @@ namespace NeuToDo.UnitTest.Services
 
             var res = await neuEventModelStorage.ExistAsync(x => x.Code == "A101");
             Assert.AreEqual(true, res);
-
-            await neuEventModelStorage.DeleteAllAsync(x => x.Code == "A101");
-
-            eventListFromStorage = await neuEventModelStorage.GetAllAsync();
-
-            Assert.AreEqual(eventListFromStorage.Count, 0);
-
-            res = await neuEventModelStorage.ExistAsync(x => x.Code == "A101");
-            Assert.AreEqual(false, res);
-
-            await storageProvider.CloseConnectionAsync();
-        }
-
-        [Test]
-        public async Task MergeTest()
-        {
-            var storageProvider = new DbStorageProvider();
-            await storageProvider.CheckInitialization();
-
-            var neuEventModelStorage = storageProvider.GetEventModelStorage<NeuEvent>();
-
-            var neuEventList = new List<NeuEvent>
-            {
-                new NeuEvent
-                {
-                    Id = 1, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new NeuEvent
-                {
-                    Id = 2, Code = "A102", Title = "A102", Detail = "A102", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-            };
-
-
-            await neuEventModelStorage.InsertAllAsync(neuEventList);
-
-            var newNeuEventList = new List<NeuEvent>
-            {
-                new NeuEvent
-                {
-                    Id = 0, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new NeuEvent
-                {
-                    Id = 0, Code = "A102", Title = "B102", Detail = "B102", IsDone = true,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new NeuEvent
-                {
-                    Id = 0, Code = "A103", Title = "A103", Detail = "A103", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                }
-            };
-
-            await neuEventModelStorage.MergeAsync(newNeuEventList);
-
-            var neuEventListFromStorage = await neuEventModelStorage.GetAllAsync();
-
-            Assert.AreEqual(neuEventListFromStorage.Count, 3);
-
-
-            var moocEventModelStorage = storageProvider.GetEventModelStorage<MoocEvent>();
-
-            var moocEventList = new List<MoocEvent>
-            {
-                new MoocEvent()
-                {
-                    Id = 1, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new MoocEvent()
-                {
-                    Id = 2, Code = "A102", Title = "A102", Detail = "A102", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-            };
-            await moocEventModelStorage.InsertAllAsync(moocEventList);
-
-            var newMoocEventList = new List<MoocEvent>
-            {
-                new MoocEvent
-                {
-                    Id = 0, Code = "A101", Title = "A101", Detail = "A101", IsDone = false,
-                    Time = new DateTime(2020, 7, 28)
-                },
-                new MoocEvent
-                {
-                    Id = 0, Code = "A102", Title = "B102", Detail = "B102", IsDone = true,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new MoocEvent
-                {
-                    Id = 0, Code = "A103", Title = "A103", Detail = "A103", IsDone = false,
-                    Time = new DateTime(2020, 6, 28)
-                },
-                new MoocEvent
-                {
-                    Id = 0, Code = "A103", Title = "A103", Detail = "A103", IsDone = true,
-                    Time = new DateTime(2020, 6, 28)
-                }
-            };
-
-            await moocEventModelStorage.MergeAsync(newMoocEventList);
-
-            var moocEventListFromStorage = await moocEventModelStorage.GetAllAsync();
-
-            Assert.AreEqual(moocEventListFromStorage.Count, 5);
 
             await storageProvider.CloseConnectionAsync();
         }

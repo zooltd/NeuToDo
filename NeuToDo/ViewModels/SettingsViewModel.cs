@@ -118,11 +118,11 @@ namespace NeuToDo.ViewModels
             switch (itemType)
             {
                 case ServerType.Neu:
-                    await _neuStorage.ClearTableAsync();
+                    await _neuStorage.DeleteAllAsync();
                     _dbStorageProvider.OnUpdateData();
                     break;
                 case ServerType.Mooc:
-                    await _moocStorage.ClearTableAsync();
+                    await _moocStorage.DeleteAllAsync();
                     _dbStorageProvider.OnUpdateData();
                     break;
                 default:

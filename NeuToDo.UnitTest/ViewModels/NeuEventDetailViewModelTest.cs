@@ -158,12 +158,12 @@ namespace NeuToDo.UnitTest.ViewModels
                     new NeuEventPeriod
                     {
                         ClassIndex = 5, Day = DayOfWeek.Sunday, Detail = "5-8, someone, 信息A101(浑南校区)",
-                        WeekNo = new List<int> {2, 3, 4}
+                        WeekNo = new List<int> {2, 3, 4}, PeriodId = 0
                     },
                     new NeuEventPeriod
                     {
                         ClassIndex = 5, Day = DayOfWeek.Saturday, Detail = "5-8, someone, 信息A101(浑南校区)",
-                        WeekNo = new List<int> {1, 2, 3, 7, 8}
+                        WeekNo = new List<int> {1, 2, 3, 7, 8}, PeriodId = 1
                     }
                 },
                 EventSemester = new Semester
@@ -173,7 +173,7 @@ namespace NeuToDo.UnitTest.ViewModels
             await eventDetailViewModel.EditDoneFunction();
             var neuStorage = storageProvider.GetEventModelStorage<NeuEvent>();
             var dbData = await neuStorage.GetAllAsync();
-            Assert.AreEqual(dbData.Count, 0);
+            Assert.AreEqual(0, dbData.Count);
 
             eventDetailViewModel.NeuEventDetail.Title = "A101";
             eventDetailViewModel.NeuEventDetail.EventPeriods.Add(new NeuEventPeriod
@@ -181,7 +181,8 @@ namespace NeuToDo.UnitTest.ViewModels
                 ClassIndex = 0,
                 Day = DayOfWeek.Monday,
                 Detail = null,
-                WeekNo = new List<int>()
+                WeekNo = new List<int>(),
+                PeriodId = 2
             });
             await eventDetailViewModel.EditDoneFunction();
             dbData = await neuStorage.GetAllAsync();
