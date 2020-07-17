@@ -15,8 +15,6 @@ namespace NeuToDo.ViewModels
     {
         #region 构造函数
 
-        private readonly IFetchSemesterDataService _fetchSemesterDataService;
-
         private readonly IPopupNavigationService _popupNavigationService;
 
         private readonly IAccountStorageService _accountStorageService;
@@ -28,14 +26,12 @@ namespace NeuToDo.ViewModels
         private readonly IDbStorageProvider _dbStorageProvider;
 
         public LoginViewModel(IPopupNavigationService popupNavigationService,
-            IFetchSemesterDataService fetchSemesterDataService,
             IAccountStorageService accountStorageService,
             IDbStorageProvider dbStorageProvider)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
             _popupNavigationService = popupNavigationService;
-            _fetchSemesterDataService = fetchSemesterDataService;
             _accountStorageService = accountStorageService;
             _dbStorageProvider = dbStorageProvider;
         }
