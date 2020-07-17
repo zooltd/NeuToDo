@@ -26,8 +26,7 @@ namespace NeuToDo.Models
             //保存单个
             if (!IsRepeat)
             {
-                Time = EventDate + EventTime;
-                userEvents.Add(new UserEvent(this));
+                userEvents.Add(new UserEvent(this) {Time = EventDate + EventTime});
             }
             else
             {
@@ -39,7 +38,11 @@ namespace NeuToDo.Models
                         time = time.AddDays(period.DaySpan))
                     {
                         Time = time;
-                        userEvents.Add(new UserEvent(this, period));
+                        userEvents.Add(new UserEvent(this)
+                        {
+                            Time = time, PeriodId = period.PeriodId, StartDate = period.StartDate,
+                            EndDate = period.EndDate, DaySpan = period.DaySpan, TimeOfDay = period.TimeOfDay
+                        });
                     }
                 }
             }

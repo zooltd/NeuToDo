@@ -13,6 +13,7 @@ namespace NeuToDo.Models
             Detail = neuEvent.Detail;
             Time = neuEvent.Time;
             IsDone = neuEvent.IsDone;
+            PeriodId = neuEvent.PeriodId;
             Day = neuEvent.Day;
             Week = neuEvent.Week;
             SemesterId = neuEvent.SemesterId;
@@ -26,6 +27,8 @@ namespace NeuToDo.Models
         public NeuEvent()
         {
         }
+
+        [Column(nameof(PeriodId))] public int PeriodId { get; set; }
 
         [Column(nameof(Day))] public int Day { get; set; }
 

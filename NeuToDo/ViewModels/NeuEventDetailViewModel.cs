@@ -8,6 +8,7 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.Utils;
+using Xamarin.Forms.Internals;
 
 namespace NeuToDo.ViewModels
 {
@@ -49,15 +50,17 @@ namespace NeuToDo.ViewModels
         {
             NeuEventDetail = new NeuEventWrapper(SelectedEvent);
             NeuEventDetail.EventSemester = await _semesterStorage.GetAsync(NeuEventDetail.SemesterId);
+            NeuEventDetail.Campus = await _campusStorageService.GetOrSelectCampus();
             Semester = NeuEventDetail.EventSemester;
             var courses = await _neuStorage.GetAllAsync(e => e.Code == NeuEventDetail.Code && !e.IsDeleted);
-            var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
+            var courseGroupList = courses.GroupBy(c => new {c.PeriodId, c.Day, c.ClassNo, c.Detail})
                 .OrderBy(p => p.Key.Day);
             foreach (var group in courseGroupList)
             {
                 NeuEventDetail.EventPeriods.Add(
                     new NeuEventPeriod
                     {
+                        PeriodId = group.Key.PeriodId,
                         Day = (DayOfWeek) group.Key.Day,
                         Detail = group.Key.Detail,
                         ClassIndex = group.Key.ClassNo,
@@ -72,7 +75,8 @@ namespace NeuToDo.ViewModels
 
         public void AddPeriodFunction()
         {
-            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>()});
+            var maxPeriodId = NeuEventDetail.EventPeriods.Max(x => x.PeriodId);
+            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>(), PeriodId = maxPeriodId + 1});
         }
 
         private RelayCommand<NeuEventPeriod> _removePeriod;
@@ -95,12 +99,17 @@ namespace NeuToDo.ViewModels
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!toDelete) return;
             var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
+
             oldList.ForEach(x =>
             {
+                x.Code = null;
+                x.Title = null;
+                x.Detail = null;
                 x.IsDeleted = true;
                 x.LastModified = DateTime.Now;
             });
             await _neuStorage.UpdateAllAsync(oldList);
+
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
@@ -129,40 +138,43 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            var campus = await _campusStorageService.GetOrSelectCampus();
-            var newList = new List<NeuEvent>();
-            foreach (var eventGroup in NeuEventDetail.EventPeriods)
-            {
-                newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
-                {
-                    Title = NeuEventDetail.Title,
-                    Code = NeuEventDetail.Code,
-                    Day = (int) eventGroup.Day,
-                    IsDone = false,
-                    Detail = eventGroup.Detail,
-                    Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, campus,
-                        NeuEventDetail.EventSemester.BaseDate),
-                    Week = weekNo,
-                    ClassNo = eventGroup.ClassIndex,
-                    SemesterId = NeuEventDetail.EventSemester.SemesterId,
-                    Uuid = Guid.NewGuid().ToString(),
-                    IsDeleted = false,
-                    LastModified = DateTime.Now
-                }));
-            }
+            var newList = NeuEventDetail.GetNeuEvents();
 
             var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
-            oldList.ForEach(x =>
+
+            var oldDict = oldList.ToDictionary(x => new {x.PeriodId, x.Week}, x => x);
+
+            foreach (var newEvent in newList)
             {
-                x.IsDeleted = true;
-                x.LastModified = DateTime.Now;
-            });
-            await _neuStorage.UpdateAllAsync(oldList);
-            await _neuStorage.InsertAllAsync(newList);
+                oldDict.TryGetValue(new {newEvent.PeriodId, newEvent.Week}, out var theEvent);
+                if (theEvent == null)
+                {
+                    await _neuStorage.InsertAsync(newEvent);
+                }
+                else
+                {
+                    newEvent.Uuid = theEvent.Uuid;
+                    newEvent.Id = theEvent.Id;
+                    newEvent.IsDone = theEvent.IsDone;
+                    await _neuStorage.InsertOrReplaceAsync(newEvent);
+                }
+            }
+
+
+            var newDict = newList.ToDictionary(x => new {x.PeriodId, x.Week}, x => x);
+
+            foreach (var oldEvent in oldList.Where(oldEvent =>
+                !newDict.ContainsKey(new {oldEvent.PeriodId, oldEvent.Week})))
+            {
+                oldEvent.IsDeleted = true;
+                oldEvent.LastModified = DateTime.Now;
+                await _neuStorage.UpdateAsync(oldEvent);
+            }
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
+
 
         private RelayCommand<NeuEventPeriod> _weekNoSelect;
 
@@ -224,6 +236,7 @@ namespace NeuToDo.ViewModels
             get => _semester;
             set => Set(nameof(Semester), ref _semester, value);
         }
+
         public NeuEventPeriod SelectEventGroup { get; set; }
 
         #endregion

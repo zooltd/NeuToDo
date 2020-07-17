@@ -187,6 +187,7 @@ namespace NeuToDo.Services
                 "(var teachers =[\\s\\S]*?;)[\\s\\S]*?TaskActivity\\(actTeacherId.join\\(','\\),actTeacherName.join\\(','\\),\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",\"(.*)\",null,null,assistantName,\"\",\"\"\\);((?:\\s*index =\\d+\\*unitCount\\+\\d+;\\s*.*\\s)*)";
 
             // var currDate = DateTime.Today;
+            var courseIdToPeriodIdDict = new Dictionary<string, int>();
 
             foreach (Match textSegment in Regex.Matches(responseBody,
                 textSplitPattern))
@@ -212,6 +213,10 @@ namespace NeuToDo.Services
                 var classTimeStr = classTime.classTimeStr;
                 string eventDetail = classTimeStr + ", " + teacherName + ", " + roomName;
 
+                var periodId = courseIdToPeriodIdDict.ContainsKey(courseId) ? ++courseIdToPeriodIdDict[courseId] : 0;
+                courseIdToPeriodIdDict[courseId] = periodId;
+
+
                 eventList.AddRange(weekIndexes.Select(weekIndex => new NeuEvent
                 {
                     Title = courseName,
@@ -226,9 +231,11 @@ namespace NeuToDo.Services
                     IsUserGenerated = false,
                     Uuid = courseId + "_" + semester.SemesterId + "_" + weekIndex + "_" + (int) day + "_" + firstClass,
                     IsDeleted = false,
-                    LastModified = DateTime.Now
+                    LastModified = DateTime.Now,
+                    PeriodId = periodId
                 }));
             }
+
 
             return eventList;
         }

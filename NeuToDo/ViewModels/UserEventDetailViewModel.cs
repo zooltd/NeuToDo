@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Forms.Internals;
 
 namespace NeuToDo.ViewModels
 {
@@ -32,12 +33,14 @@ namespace NeuToDo.ViewModels
             UserEventDetail = new UserEventWrapper(SelectedEvent);
             if (!UserEventDetail.IsRepeat) return;
             var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
-            var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
+            var userEventGroupList = userEvents
+                .GroupBy(x => new {x.PeriodId, x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
                 .OrderBy(x => x.Key.StartDate).ToList();
             foreach (var group in userEventGroupList)
             {
                 UserEventDetail.EventPeriods.Add(new UserEventPeriod
                 {
+                    PeriodId = group.Key.PeriodId,
                     StartDate = group.Key.StartDate,
                     EndDate = group.Key.EndDate,
                     TimeOfDay = group.Key.TimeOfDay,
@@ -58,15 +61,24 @@ namespace NeuToDo.ViewModels
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
             if (!toDelete) return;
             var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
+
+            await MarkDeleted(oldList);
+
+            _dbStorageProvider.OnUpdateData();
+            await _contentPageNavigationService.PopToRootAsync();
+        }
+
+        private async Task MarkDeleted(IList<UserEvent> oldList)
+        {
             oldList.ForEach(x =>
             {
+                x.Title = null;
+                x.Detail = null;
+                x.Code = null;
                 x.IsDeleted = true;
                 x.LastModified = DateTime.Now;
             });
             await _userStorage.UpdateAllAsync(oldList);
-
-            _dbStorageProvider.OnUpdateData();
-            await _contentPageNavigationService.PopToRootAsync();
         }
 
         private RelayCommand _addPeriod;
@@ -76,10 +88,11 @@ namespace NeuToDo.ViewModels
 
         public void AddPeriodFunction()
         {
+            var maxPeriodId = UserEventDetail.EventPeriods.Max(x => x.PeriodId);
             UserEventDetail.EventPeriods.Add(new UserEventPeriod
             {
                 StartDate = DateTime.Today, EndDate = DateTime.Today.AddMonths(1),
-                TimeOfDay = TimeSpan.Zero, DaySpan = 1
+                TimeOfDay = TimeSpan.Zero, DaySpan = 1, PeriodId = maxPeriodId + 1
             });
         }
 
@@ -97,6 +110,7 @@ namespace NeuToDo.ViewModels
             }
 
             var newList = UserEventDetail.GetUserEvents();
+
 
             if (newList.Count == 0)
             {
