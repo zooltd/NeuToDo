@@ -7,6 +7,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NeuToDo.Views;
+using Plugin.Calendars;
+using Plugin.Calendars.Abstractions;
+using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
 {
@@ -17,6 +20,7 @@ namespace NeuToDo.ViewModels
         private readonly IDialogService _dialogService;
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly IEventModelStorage<MoocEvent> _moocStorage;
+        private readonly IEventModelStorage<UserEvent> _userStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IContentPageNavigationService _contentPageNavigationService;
         private readonly ICampusStorageService _campusStorageService;
@@ -30,6 +34,7 @@ namespace NeuToDo.ViewModels
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
+            _userStorage = dbStorageProvider.GetEventModelStorage<UserEvent>();
             _popupNavigationService = popupNavigationService;
             _accountStorageService = accountStorageService;
             _dbStorageProvider = dbStorageProvider;
@@ -156,6 +161,77 @@ namespace NeuToDo.ViewModels
             }
 
             _dialogService.DisplayAlert("提示", "已保存", "OK");
+        }
+
+        private RelayCommand _exportToLocalCalendar;
+
+        public RelayCommand ExportToLocalCalendar =>
+            _exportToLocalCalendar ??= new RelayCommand(async () => await ExportToLocalCalendarFunction());
+
+        private async Task ExportToLocalCalendarFunction()
+        {
+            var writeStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
+            if (writeStatus != PermissionStatus.Granted)
+            {
+                writeStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
+            }
+
+            var readStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
+            if (readStatus != PermissionStatus.Granted)
+            {
+                readStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
+            }
+
+            if (readStatus != PermissionStatus.Granted || writeStatus != PermissionStatus.Granted)
+            {
+                _dialogService.DisplayAlert("错误", "日历读写授权失败", "OK");
+                return;
+            }
+
+            await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
+
+            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
+
+            foreach (var deviceCalendar in deviceCalendars)
+            {
+                if (deviceCalendar.Name == "NeuToDo")
+                    await CrossCalendars.Current.DeleteCalendarAsync(deviceCalendar);
+            }
+
+            await CrossCalendars.Current.AddOrUpdateCalendarAsync(new Calendar
+                {AccountName = "Device", Color = "#BF4779", Name = "NeuToDo"});
+
+            deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
+
+            var myCalendar = deviceCalendars.FirstOrDefault(x => x.Name == "NeuToDo");
+
+            if (myCalendar == null)
+            {
+                _dialogService.DisplayAlert("错误", "创建日历失败", "OK");
+                await _popupNavigationService.PopAllAsync();
+                return;
+            }
+
+            var totalEventList = new List<EventModel>();
+            totalEventList.AddRange(await _neuStorage.GetAllAsync(x => !x.IsDeleted));
+            totalEventList.AddRange(await _moocStorage.GetAllAsync(x => !x.IsDeleted));
+            totalEventList.AddRange(await _userStorage.GetAllAsync(x => !x.IsDeleted));
+            var calendarEvents = totalEventList.ConvertAll(x => new CalendarEvent
+            {
+                Name = x.Title, Description = x.Detail, Start = x.Time, End = x.Time,
+                Reminders = new List<CalendarEventReminder>()
+            });
+
+            foreach (var calendarEvent in calendarEvents)
+            {
+                await CrossCalendars.Current.AddOrUpdateEventAsync(myCalendar, calendarEvent);
+            }
+
+            await _popupNavigationService.PopAllAsync();
+            _dialogService.DisplayAlert("提示", "导出日历成功", "OK");
+
+
+            // await CrossCalendars.Current.AddOrUpdateEventAsync(selectedCalendar, calendarEvent);
         }
 
         #endregion

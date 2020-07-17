@@ -129,6 +129,11 @@
                     <Label Text="同步各平台数据库" />
                 </lc:RippleStackLayout>
 
+                <lc:RippleStackLayout touch:TouchEff.Command="{Binding ExportToLocalCalendar}">
+                    <Label Text="导出至本机日历" TextColor="#455399" FontAttributes="Bold" FontSize="16" />
+                    <Label Text="将在本机创建新的日历，导入本APP内的ToDo事件(注: 将覆盖该日历)" />
+                </lc:RippleStackLayout>
+
             </StackLayout>
 
             <Grid>

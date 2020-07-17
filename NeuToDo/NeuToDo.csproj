@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <PackageReference Include="Behaviors.Forms" Version="1.4.0" />
+    <PackageReference Include="CClarke.Plugin.Calendars" Version="1.0.14" />
     <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
     <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
     <PackageReference Include="MvvmLightLibsStd10" Version="5.4.1.1" />

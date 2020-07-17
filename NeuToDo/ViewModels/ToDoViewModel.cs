@@ -17,7 +17,7 @@ namespace NeuToDo.ViewModels
         public ToDoViewModel(IDbStorageProvider dbStorageProvider,
             IContentPageNavigationService contentPageNavigationService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService, 
+            IPopupNavigationService popupNavigationService,
             IFetchSemesterDataService fetchSemesterDataService)
         {
             _dbStorageProvider = dbStorageProvider;
@@ -43,7 +43,7 @@ namespace NeuToDo.ViewModels
         private readonly IAcademicCalendarService _academicCalendarService;
         private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
-        private Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
+        private static Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
 
         private bool _isLoaded;
