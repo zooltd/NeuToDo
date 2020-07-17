@@ -112,7 +112,8 @@
                     <Image Grid.Row="2" Grid.Column="0" Source="repeat.png" WidthRequest="30" HeightRequest="30"
                            VerticalOptions="Center" />
                     <!-- 绑定命令 UserEventDetail.EventPeriods.Clear() -->
-                    <Switch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" />
+                    <lc:CustomSwitch Grid.Row="2" Grid.Column="1" IsToggled="{Binding UserEventDetail.IsRepeat}" x:Name="Switch" 
+                                     ToggleCommand="{Binding ToggleCommand}"/>
                 </Grid>
             </Frame>
 

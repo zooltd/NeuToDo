@@ -75,8 +75,10 @@ namespace NeuToDo.ViewModels
 
         public void AddPeriodFunction()
         {
-            var maxPeriodId = NeuEventDetail.EventPeriods.Max(x => x.PeriodId);
-            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>(), PeriodId = maxPeriodId + 1});
+            var nextPeriodId = NeuEventDetail.EventPeriods.Count == 0
+                ? 0
+                : NeuEventDetail.EventPeriods.Max(x => x.PeriodId) + 1;
+            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>(), PeriodId = nextPeriodId});
         }
 
         private RelayCommand<NeuEventPeriod> _removePeriod;

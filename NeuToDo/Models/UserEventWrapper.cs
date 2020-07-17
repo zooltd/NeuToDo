@@ -38,10 +38,19 @@ namespace NeuToDo.Models
                         time = time.AddDays(period.DaySpan))
                     {
                         Time = time;
-                        userEvents.Add(new UserEvent(this)
+                        userEvents.Add(new UserEvent
                         {
-                            Time = time, PeriodId = period.PeriodId, StartDate = period.StartDate,
-                            EndDate = period.EndDate, DaySpan = period.DaySpan, TimeOfDay = period.TimeOfDay
+                            Title = Title,
+                            Code = Code,
+                            Detail = Detail,
+                            IsRepeat = IsRepeat,
+                            Time = time,
+                            PeriodId = period.PeriodId,
+                            StartDate = period.StartDate,
+                            EndDate = period.EndDate,
+                            DaySpan = period.DaySpan,
+                            TimeOfDay = period.TimeOfDay,
+                            Uuid = Guid.NewGuid().ToString()
                         });
                     }
                 }

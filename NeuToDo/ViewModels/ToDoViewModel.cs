@@ -163,6 +163,7 @@ namespace NeuToDo.ViewModels
 
         private async Task CheckCommandFunction(EventModel eventModel)
         {
+            if (!_isLoaded) return;
             eventModel.LastModified = DateTime.Now;
             switch (eventModel)
             {
