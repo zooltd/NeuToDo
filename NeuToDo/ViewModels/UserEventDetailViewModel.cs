@@ -6,6 +6,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
+using Xamarin.Forms.Internals;
 
 namespace NeuToDo.ViewModels
 {
@@ -32,12 +33,14 @@ namespace NeuToDo.ViewModels
             UserEventDetail = new UserEventWrapper(SelectedEvent);
             if (!UserEventDetail.IsRepeat) return;
             var userEvents = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
-            var userEventGroupList = userEvents.GroupBy(x => new {x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
+            var userEventGroupList = userEvents
+                .GroupBy(x => new {x.PeriodId, x.StartDate, x.EndDate, x.TimeOfDay, x.DaySpan})
                 .OrderBy(x => x.Key.StartDate).ToList();
             foreach (var group in userEventGroupList)
             {
                 UserEventDetail.EventPeriods.Add(new UserEventPeriod
                 {
+                    PeriodId = group.Key.PeriodId,
                     StartDate = group.Key.StartDate,
                     EndDate = group.Key.EndDate,
                     TimeOfDay = group.Key.TimeOfDay,
@@ -58,8 +61,12 @@ namespace NeuToDo.ViewModels
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No");
             if (!toDelete) return;
             var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
+
             oldList.ForEach(x =>
             {
+                x.Title = null;
+                x.Detail = null;
+                x.Code = null;
                 x.IsDeleted = true;
                 x.LastModified = DateTime.Now;
             });
@@ -69,6 +76,7 @@ namespace NeuToDo.ViewModels
             await _contentPageNavigationService.PopToRootAsync();
         }
 
+
         private RelayCommand _addPeriod;
 
         public RelayCommand AddPeriod =>
@@ -76,10 +84,13 @@ namespace NeuToDo.ViewModels
 
         public void AddPeriodFunction()
         {
+            var nextPeriodId = UserEventDetail.EventPeriods.Count == 0
+                ? 0
+                : UserEventDetail.EventPeriods.Max(x => x.PeriodId) + 1;
             UserEventDetail.EventPeriods.Add(new UserEventPeriod
             {
                 StartDate = DateTime.Today, EndDate = DateTime.Today.AddMonths(1),
-                TimeOfDay = TimeSpan.Zero, DaySpan = 1
+                TimeOfDay = TimeSpan.Zero, DaySpan = 1, PeriodId = nextPeriodId
             });
         }
 
@@ -98,27 +109,42 @@ namespace NeuToDo.ViewModels
 
             var newList = UserEventDetail.GetUserEvents();
 
-            if (newList.Count == 0)
-            {
-                _dialogService.DisplayAlert("警告", "请至少添加一个时间段", "OK");
-                return;
-            }
 
-            newList.ForEach(x =>
-            {
-                x.Uuid = Guid.NewGuid().ToString();
-                x.LastModified = DateTime.Now;
-            });
-
+            // if (newList.Count == 0)
+            // {
+            //     _dialogService.DisplayAlert("警告", "请至少添加一个时间段", "OK");
+            //     return;
+            // }
 
             var oldList = await _userStorage.GetAllAsync(x => x.Code == UserEventDetail.Code && !x.IsDeleted);
-            oldList.ForEach(x =>
+
+            var oldDict = oldList.ToDictionary(x => new {x.PeriodId, x.Time}, x => x);
+
+            foreach (var newEvent in newList)
             {
-                x.IsDeleted = true;
-                x.LastModified = DateTime.Now;
-            });
-            await _userStorage.UpdateAllAsync(oldList);
-            await _userStorage.InsertAllAsync(newList);
+                oldDict.TryGetValue(new {newEvent.PeriodId, newEvent.Time}, out var theEvent);
+                if (theEvent == null)
+                {
+                    await _userStorage.InsertAsync(newEvent);
+                }
+                else
+                {
+                    newEvent.Uuid = theEvent.Uuid;
+                    newEvent.Id = theEvent.Id;
+                    newEvent.IsDone = theEvent.IsDone;
+                    await _userStorage.InsertOrReplaceAsync(newEvent);
+                }
+            }
+
+            var newDict = newList.ToDictionary(x => new {x.PeriodId, x.Time}, x => x);
+
+            foreach (var oldEvent in oldList.Where(oldEvent =>
+                !newDict.ContainsKey(new {oldEvent.PeriodId, oldEvent.Time})))
+            {
+                oldEvent.IsDeleted = true;
+                oldEvent.LastModified = DateTime.Now;
+                await _userStorage.UpdateAsync(oldEvent);
+            }
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
@@ -134,16 +160,16 @@ namespace NeuToDo.ViewModels
             UserEventDetail.EventPeriods.Remove(p);
         }
 
-        // private RelayCommand _toggleCommand;
-        //
-        // public RelayCommand ToggleCommand =>
-        //     _toggleCommand ??= new RelayCommand(ToggleCommandFunction);
-        //
-        // private void ToggleCommandFunction()
-        // {
-        //     if (!UserEventDetail.IsRepeat)
-        //         UserEventDetail.EventPeriods.Clear();
-        // }
+        private RelayCommand _toggleCommand;
+        
+        public RelayCommand ToggleCommand =>
+            _toggleCommand ??= new RelayCommand(ToggleCommandFunction);
+        
+        private void ToggleCommandFunction()
+        {
+            if (!UserEventDetail.IsRepeat)
+                UserEventDetail.EventPeriods.Clear();
+        }
 
         #endregion
 

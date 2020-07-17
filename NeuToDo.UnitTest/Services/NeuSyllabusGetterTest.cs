@@ -1,9 +1,7 @@
-﻿using Moq;
-using NeuToDo.Models;
+﻿using NeuToDo.Models;
 using NeuToDo.Services;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 

@@ -8,13 +8,12 @@ using GalaSoft.MvvmLight.Command;
 using NeuToDo.Models;
 using NeuToDo.Services;
 using NeuToDo.Utils;
+using Xamarin.Forms.Internals;
 
 namespace NeuToDo.ViewModels
 {
     public class NeuEventDetailViewModel : ViewModelBase
     {
-        #region 构造函数
-
         private readonly IEventModelStorage<NeuEvent> _neuStorage;
         private readonly ISemesterStorage _semesterStorage;
         private readonly IDbStorageProvider _dbStorageProvider;
@@ -38,18 +37,11 @@ namespace NeuToDo.ViewModels
             _campusStorageService = campusStorageService;
         }
 
-        #endregion
 
         #region 绑定命令
 
-        /// <summary>
-        /// 页面显示命令。
-        /// </summary>
         private RelayCommand _pageAppearingCommand;
 
-        /// <summary>
-        /// 页面显示命令。
-        /// </summary>
         public RelayCommand PageAppearingCommand =>
             _pageAppearingCommand ??= new RelayCommand(async () =>
                 await PageAppearingCommandFunction());
@@ -58,15 +50,17 @@ namespace NeuToDo.ViewModels
         {
             NeuEventDetail = new NeuEventWrapper(SelectedEvent);
             NeuEventDetail.EventSemester = await _semesterStorage.GetAsync(NeuEventDetail.SemesterId);
+            NeuEventDetail.Campus = await _campusStorageService.GetOrSelectCampus();
             Semester = NeuEventDetail.EventSemester;
             var courses = await _neuStorage.GetAllAsync(e => e.Code == NeuEventDetail.Code && !e.IsDeleted);
-            var courseGroupList = courses.GroupBy(c => new {c.Day, c.ClassNo, c.Detail})
+            var courseGroupList = courses.GroupBy(c => new {c.PeriodId, c.Day, c.ClassNo, c.Detail})
                 .OrderBy(p => p.Key.Day);
             foreach (var group in courseGroupList)
             {
                 NeuEventDetail.EventPeriods.Add(
                     new NeuEventPeriod
                     {
+                        PeriodId = group.Key.PeriodId,
                         Day = (DayOfWeek) group.Key.Day,
                         Detail = group.Key.Detail,
                         ClassIndex = group.Key.ClassNo,
@@ -75,24 +69,18 @@ namespace NeuToDo.ViewModels
             }
         }
 
-        /// <summary>
-        /// 添加时间段命令。
-        /// </summary>
         private RelayCommand _addPeriod;
 
         public RelayCommand AddPeriod => _addPeriod ??= new RelayCommand(AddPeriodFunction);
 
-        /// <summary>
-        /// 添加时间段命令。
-        /// </summary>
         public void AddPeriodFunction()
         {
-            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>()});
+            var nextPeriodId = NeuEventDetail.EventPeriods.Count == 0
+                ? 0
+                : NeuEventDetail.EventPeriods.Max(x => x.PeriodId) + 1;
+            NeuEventDetail.EventPeriods.Add(new NeuEventPeriod {WeekNo = new List<int>(), PeriodId = nextPeriodId});
         }
 
-        /// <summary>
-        /// 移除时间段命令。
-        /// </summary>
         private RelayCommand<NeuEventPeriod> _removePeriod;
 
         public RelayCommand<NeuEventPeriod> RemovePeriod =>
@@ -103,9 +91,6 @@ namespace NeuToDo.ViewModels
             NeuEventDetail.EventPeriods.Remove(period);
         }
 
-        /// <summary>
-        /// 删除所有命令。
-        /// </summary>
         private RelayCommand _deleteAll;
 
         public RelayCommand DeleteAll =>
@@ -116,24 +101,23 @@ namespace NeuToDo.ViewModels
             var toDelete = await _dialogService.DisplayAlert("警告", "确定删除有关本课程的所有时间段？", "Yes", "No");
             if (!toDelete) return;
             var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
+
             oldList.ForEach(x =>
             {
+                x.Code = null;
+                x.Title = null;
+                x.Detail = null;
                 x.IsDeleted = true;
                 x.LastModified = DateTime.Now;
             });
             await _neuStorage.UpdateAllAsync(oldList);
+
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
 
-        /// <summary>
-        /// 编辑已完成命令。
-        /// </summary>
         private RelayCommand _editDone;
 
-        /// <summary>
-        /// 编辑已完成命令。
-        /// </summary>
         public RelayCommand EditDone => _editDone ??= new RelayCommand((async () => await EditDoneFunction()));
 
         public async Task EditDoneFunction()
@@ -156,44 +140,44 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            var campus = await _campusStorageService.GetOrSelectCampus();
-            var newList = new List<NeuEvent>();
-            foreach (var eventGroup in NeuEventDetail.EventPeriods)
-            {
-                newList.AddRange(eventGroup.WeekNo.Select(weekNo => new NeuEvent
-                {
-                    Title = NeuEventDetail.Title,
-                    Code = NeuEventDetail.Code,
-                    Day = (int) eventGroup.Day,
-                    IsDone = false,
-                    Detail = eventGroup.Detail,
-                    Time = Calculator.CalculateClassTime(eventGroup.Day, weekNo, eventGroup.ClassIndex, campus,
-                        NeuEventDetail.EventSemester.BaseDate),
-                    Week = weekNo,
-                    ClassNo = eventGroup.ClassIndex,
-                    SemesterId = NeuEventDetail.EventSemester.SemesterId,
-                    Uuid = Guid.NewGuid().ToString(),
-                    IsDeleted = false,
-                    LastModified = DateTime.Now
-                }));
-            }
+            var newList = NeuEventDetail.GetNeuEvents();
 
             var oldList = await _neuStorage.GetAllAsync(x => x.Code == NeuEventDetail.Code && !x.IsDeleted);
-            oldList.ForEach(x =>
+
+            var oldDict = oldList.ToDictionary(x => new {x.PeriodId, x.Week}, x => x);
+
+            foreach (var newEvent in newList)
             {
-                x.IsDeleted = true;
-                x.LastModified = DateTime.Now;
-            });
-            await _neuStorage.UpdateAllAsync(oldList);
-            await _neuStorage.InsertAllAsync(newList);
+                oldDict.TryGetValue(new {newEvent.PeriodId, newEvent.Week}, out var theEvent);
+                if (theEvent == null)
+                {
+                    await _neuStorage.InsertAsync(newEvent);
+                }
+                else
+                {
+                    newEvent.Uuid = theEvent.Uuid;
+                    newEvent.Id = theEvent.Id;
+                    newEvent.IsDone = theEvent.IsDone;
+                    await _neuStorage.InsertOrReplaceAsync(newEvent);
+                }
+            }
+
+
+            var newDict = newList.ToDictionary(x => new {x.PeriodId, x.Week}, x => x);
+
+            foreach (var oldEvent in oldList.Where(oldEvent =>
+                !newDict.ContainsKey(new {oldEvent.PeriodId, oldEvent.Week})))
+            {
+                oldEvent.IsDeleted = true;
+                oldEvent.LastModified = DateTime.Now;
+                await _neuStorage.UpdateAsync(oldEvent);
+            }
 
             _dbStorageProvider.OnUpdateData();
             await _contentPageNavigationService.PopToRootAsync();
         }
 
-        /// <summary>
-        /// 周选中命令。
-        /// </summary>
+
         private RelayCommand<NeuEventPeriod> _weekNoSelect;
 
         public RelayCommand<NeuEventPeriod> WeekNoSelect =>
@@ -218,12 +202,12 @@ namespace NeuToDo.ViewModels
         public List<int> ClassIndexItems => Enumerable.Range(1, 12).ToList();
 
         /// <summary>
-        /// 被选中日程。
+        /// Navigation Parameter
         /// </summary>
         private NeuEvent _selectedEvent;
 
         /// <summary>
-        /// 被选中日程。
+        /// Navigation Parameter
         /// </summary>
         public NeuEvent SelectedEvent
         {
@@ -231,47 +215,30 @@ namespace NeuToDo.ViewModels
             set => Set(nameof(SelectedEvent), ref _selectedEvent, value);
         }
 
-        /// <summary>
-        /// 教务处日程详情。
-        /// </summary>
         private NeuEventWrapper _neuEventDetail;
 
-        /// <summary>
-        /// 教务处日程详情。
-        /// </summary>
         public NeuEventWrapper NeuEventDetail
         {
             get => _neuEventDetail;
             set => Set(nameof(NeuEventDetail), ref _neuEventDetail, value);
         }
 
-        /// <summary>
-        /// 选择页的周索引。
-        /// </summary>
         private ObservableCollection<int> _weekIndexInSelectionPage;
 
-        /// <summary>
-        /// 选择页的周索引。
-        /// </summary>
         public ObservableCollection<int> WeekIndexInSelectionPage
         {
             get => _weekIndexInSelectionPage;
             set => Set(nameof(WeekIndexInSelectionPage), ref _weekIndexInSelectionPage, value);
         }
 
-        /// <summary>
-        /// 学期。
-        /// </summary>
         private Semester _semester;
 
-        /// <summary>
-        /// 学期。
-        /// </summary>
         public Semester Semester
         {
             get => _semester;
             set => Set(nameof(Semester), ref _semester, value);
         }
+
         public NeuEventPeriod SelectEventGroup { get; set; }
 
         #endregion

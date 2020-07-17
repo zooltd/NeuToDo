@@ -105,40 +105,50 @@ namespace NeuToDo.UnitTest.ViewModels
                     Id = 1, Code = "A101", Title = "A101", Detail = "A101",
                     StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today.AddDays(3),
                     TimeOfDay = TimeSpan.Zero,
+                    Time = DateTime.Today.AddDays(-1).Add(TimeSpan.Zero),
                     DaySpan = 2,
-                    IsRepeat = true
+                    IsRepeat = true,
+                    PeriodId = 0
                 },
                 new UserEvent
                 {
                     Id = 2, Code = "A101", Title = "A101", Detail = "A101",
                     StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today.AddDays(3),
                     TimeOfDay = TimeSpan.Zero,
+                    Time = DateTime.Today.AddDays(-1).Add(TimeSpan.Zero).AddDays(2),
                     DaySpan = 2,
-                    IsRepeat = true
+                    IsRepeat = true,
+                    PeriodId = 0
                 },
                 new UserEvent
                 {
                     Id = 3, Code = "A101", Title = "A101", Detail = "A101",
                     StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today.AddDays(3),
                     TimeOfDay = TimeSpan.Zero,
+                    Time = DateTime.Today.AddDays(-1).Add(TimeSpan.Zero).AddDays(2).AddDays(2),
                     DaySpan = 2,
-                    IsRepeat = true
+                    IsRepeat = true,
+                    PeriodId = 0
                 },
                 new UserEvent
                 {
                     Id = 4, Code = "A101", Title = "A101", Detail = "A101",
                     StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today,
                     TimeOfDay = TimeSpan.Zero,
+                    Time = DateTime.Today.AddDays(-1).Add(TimeSpan.Zero),
                     DaySpan = 3,
-                    IsRepeat = true
+                    IsRepeat = true,
+                    PeriodId = 1
                 },
                 new UserEvent
                 {
                     Id = 5, Code = "B101", Title = "B101", Detail = "B101",
                     StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today.AddDays(7),
                     TimeOfDay = TimeSpan.Zero,
+                    Time = DateTime.Today.AddDays(-1).Add(TimeSpan.Zero),
                     DaySpan = 2,
-                    IsRepeat = false
+                    IsRepeat = false,
+                    PeriodId = 0
                 }
             });
             var dbData = await userStorage.GetAllAsync();
@@ -157,19 +167,17 @@ namespace NeuToDo.UnitTest.ViewModels
             userEventDetailViewModel.UserEventDetail.EventPeriods.Add(new UserEventPeriod
             {
                 StartDate = DateTime.Today.AddDays(-1), EndDate = DateTime.Today, TimeOfDay = TimeSpan.Zero,
-                DaySpan = 1
+                DaySpan = 1,PeriodId = 2
             });
 
             await userEventDetailViewModel.EditDoneFunction();
             dbData = await userStorage.GetAllAsync();
-            Assert.AreEqual(5 + 2 + 4, dbData.Count);
-            Assert.AreEqual(4, dbData.Count(x => x.IsDeleted));
-
+            Assert.AreEqual(7, dbData.Count);
 
             dialogServiceMock.Setup(x => x.DisplayAlert("警告", "确定删除有关本事件的所有时间段？", "Yes", "No")).ReturnsAsync(true);
             await userEventDetailViewModel.DeleteAllFunction();
             dbData = await userStorage.GetAllAsync();
-            Assert.AreEqual(4 + 6, dbData.Count(x => x.IsDeleted));
+            Assert.AreEqual(6, dbData.Count(x => x.IsDeleted));
 
             await dbStorageProvider.CloseConnectionAsync();
         }
