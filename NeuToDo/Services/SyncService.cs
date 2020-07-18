@@ -111,7 +111,6 @@ namespace NeuToDo.Services
             using (var newJsonStream = new MemoryStream(Encoding.UTF8.GetBytes(neuJson)))
                 await Task.Run(() => StreamUtils.Copy(newJsonStream, zipOutputStream, new byte[2048]));
 
-
             var moocEntry = new ZipEntry(nameof(MoocEvent) + ".json") {DateTime = DateTime.Now};
             zipOutputStream.PutNextEntry(moocEntry);
             using (var newJsonStream = new MemoryStream(Encoding.UTF8.GetBytes(moocJson)))

@@ -17,7 +17,6 @@ namespace NeuToDo.ViewModels
         public ToDoViewModel(IDbStorageProvider dbStorageProvider,
             IContentPageNavigationService contentPageNavigationService,
             IAcademicCalendarService academicCalendarService,
-            IPopupNavigationService popupNavigationService,
             IFetchSemesterDataService fetchSemesterDataService)
         {
             _dbStorageProvider = dbStorageProvider;

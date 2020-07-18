@@ -366,6 +366,7 @@ namespace NeuToDo.ViewModels
                 await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
                 try
                 {
+                    await _httpWebDavService.CreateFolder($"{AppName}");
                     await _syncService.SyncEventModelsAsync($"{AppName}/{AppName}.zip");
                     _dbStorageProvider.OnUpdateData();
                     await _popupNavigationService.PopAllAsync();
