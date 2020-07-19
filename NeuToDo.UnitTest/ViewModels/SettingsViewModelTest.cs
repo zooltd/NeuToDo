@@ -18,6 +18,7 @@ namespace NeuToDo.UnitTest.ViewModels
             var alertServiceMock = new Mock<IDialogService>();
             var contentPageNavigationServiceMock = new Mock<IContentPageNavigationService>();
             var campusStorageServiceMock = new Mock<ICampusStorageService>();
+            var calendarStorageProviderMock = new Mock<ICalendarStorageProvider>();
 
             var mockPopupNavigation = popupNavigationMock.Object;
             var mockEventModelStorageProvider = eventModelStorageProviderMock.Object;
@@ -25,11 +26,12 @@ namespace NeuToDo.UnitTest.ViewModels
             var mockAlertService = alertServiceMock.Object;
             var mockContentPageNavigationService = contentPageNavigationServiceMock.Object;
             var mockCampusStorageService = campusStorageServiceMock.Object;
+            var mockCalendarStorageProvider = calendarStorageProviderMock.Object;
 
             var item = new ServerPlatform();
             var settingsViewModel = new SettingsViewModel(mockPopupNavigation, mockAccountStorageService,
                 mockEventModelStorageProvider, mockAlertService, mockContentPageNavigationService,
-                mockCampusStorageService);
+                mockCampusStorageService, mockCalendarStorageProvider);
             settingsViewModel.Command1Function(item);
             popupNavigationMock.Verify(p => p.PushAsync(PopupPageNavigationConstants.LoginPopupPage, item), Times.Once);
         }

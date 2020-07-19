@@ -4,11 +4,7 @@ using NeuToDo.Models;
 using NeuToDo.Services;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using NeuToDo.Views;
-using Plugin.Calendars;
-using Plugin.Calendars.Abstractions;
 using Xamarin.Essentials;
 
 namespace NeuToDo.ViewModels
@@ -26,13 +22,15 @@ namespace NeuToDo.ViewModels
         private readonly IDbStorageProvider _dbStorageProvider;
         private readonly IContentPageNavigationService _contentPageNavigationService;
         private readonly ICampusStorageService _campusStorageService;
+        private readonly ICalendarStorageProvider _calendarStorageProvider;
 
         public SettingsViewModel(IPopupNavigationService popupNavigationService,
             IAccountStorageService accountStorageService,
             IDbStorageProvider dbStorageProvider,
             IDialogService dialogService,
             IContentPageNavigationService contentPageNavigationService,
-            ICampusStorageService campusStorageService)
+            ICampusStorageService campusStorageService,
+            ICalendarStorageProvider calendarStorageProvider)
         {
             _neuStorage = dbStorageProvider.GetEventModelStorage<NeuEvent>();
             _moocStorage = dbStorageProvider.GetEventModelStorage<MoocEvent>();
@@ -43,6 +41,7 @@ namespace NeuToDo.ViewModels
             _dialogService = dialogService;
             _contentPageNavigationService = contentPageNavigationService;
             _campusStorageService = campusStorageService;
+            _calendarStorageProvider = calendarStorageProvider;
             accountStorageService.UpdateData += OnUpdateAccount;
         }
 
@@ -202,21 +201,20 @@ namespace NeuToDo.ViewModels
 
         private async Task ExportToLocalCalendarFunction()
         {
-            if (!await CheckCalendarPermission())
+            var res = await _calendarStorageProvider.CheckPermissionsAsync();
+            if (!res)
             {
-                _dialogService.DisplayAlert("错误", "日历读写授权失败", "OK");
+                _dialogService.DisplayAlert("错误", "日历读写授权失败，请至系统设置内授予读写日历权限", "OK");
                 return;
             }
 
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
-            await DeleteAppCalendar();
 
-            await CrossCalendars.Current.AddOrUpdateCalendarAsync(new Calendar
-                {AccountName = "Device", Color = "#BF4779", Name = "NeuToDo"});
+            await _calendarStorageProvider.DeleteCalendarsAsync(AppInfo.Name, "NeuToDo");
 
-            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
+            await _calendarStorageProvider.AddCalendarAsync(AppInfo.Name, "NeuToDo");
 
-            var myCalendar = deviceCalendars.FirstOrDefault(x => x.Name == "NeuToDo");
+            var myCalendar = await _calendarStorageProvider.GetCalendarsAsync("NeuToDo");
 
             if (myCalendar == null)
             {
@@ -229,22 +227,16 @@ namespace NeuToDo.ViewModels
             totalEventList.AddRange(await _neuStorage.GetAllAsync(x => !x.IsDeleted));
             totalEventList.AddRange(await _moocStorage.GetAllAsync(x => !x.IsDeleted));
             totalEventList.AddRange(await _userStorage.GetAllAsync(x => !x.IsDeleted));
-            var calendarEvents = totalEventList.ConvertAll(x => new CalendarEvent
-            {
-                Name = x.Title, Description = x.Detail, Start = x.Time, End = x.Time,
-                Reminders = new List<CalendarEventReminder>()
-            });
+
+            var calendarEvents = _calendarStorageProvider.ToDoEventsToCalenderEvents(totalEventList);
 
             foreach (var calendarEvent in calendarEvents)
             {
-                await CrossCalendars.Current.AddOrUpdateEventAsync(myCalendar, calendarEvent);
+                await _calendarStorageProvider.AddOrUpdateEventAsync(myCalendar, calendarEvent);
             }
 
             await _popupNavigationService.PopAllAsync();
             _dialogService.DisplayAlert("提示", "导出日历成功", "OK");
-
-
-            // await CrossCalendars.Current.AddOrUpdateEventAsync(selectedCalendar, calendarEvent);
         }
 
         /// <summary>
@@ -260,47 +252,19 @@ namespace NeuToDo.ViewModels
 
         private async Task DeleteLocalCalendarFunction()
         {
-            if (!await CheckCalendarPermission())
+            var res = await _calendarStorageProvider.CheckPermissionsAsync();
+            if (!res)
             {
-                _dialogService.DisplayAlert("错误", "日历读写授权失败", "OK");
+                _dialogService.DisplayAlert("错误", "日历读写授权失败，请至系统设置内授予读写日历权限", "OK");
                 return;
             }
 
             await _popupNavigationService.PushAsync(PopupPageNavigationConstants.LoadingPopupPage);
-            await DeleteAppCalendar();
+            await _calendarStorageProvider.DeleteCalendarsAsync(AppInfo.Name, "NeuToDo");
             await _popupNavigationService.PopAllAsync();
             _dialogService.DisplayAlert("提示", "删除日历成功", "OK");
         }
 
-        /// <summary>
-        /// 检查日历权限。
-        /// </summary>
-        /// <returns></returns>
-        private async Task<bool> CheckCalendarPermission()
-        {
-            var writeStatus = await Permissions.CheckStatusAsync<Permissions.CalendarWrite>();
-            if (writeStatus != PermissionStatus.Granted)
-                writeStatus = await Permissions.RequestAsync<Permissions.CalendarWrite>();
-
-            var readStatus = await Permissions.CheckStatusAsync<Permissions.CalendarRead>();
-            if (readStatus != PermissionStatus.Granted)
-                readStatus = await Permissions.RequestAsync<Permissions.CalendarRead>();
-
-            return readStatus == PermissionStatus.Granted && writeStatus == PermissionStatus.Granted;
-        }
-
-        /// <summary>
-        /// 删除应用日历。
-        /// </summary>
-        /// <returns></returns>
-        private async Task DeleteAppCalendar()
-        {
-            var deviceCalendars = await CrossCalendars.Current.GetCalendarsAsync();
-
-            foreach (var deviceCalendar in deviceCalendars)
-                if (deviceCalendar.Name == "NeuToDo")
-                    await CrossCalendars.Current.DeleteCalendarAsync(deviceCalendar);
-        }
 
         #endregion
 

@@ -289,7 +289,13 @@ namespace NeuToDo.ViewModels
 
         #region Calendar绑定属性
 
-        public EventCollection EventCollection { get; } = new EventCollection();
+        private EventCollection _eventCollection;
+
+        public EventCollection EventCollection
+        {
+            get => _eventCollection ??= new EventCollection();
+            set => Set(nameof(EventCollection), ref _eventCollection, value);
+        }
 
         private DateTime _selectedDate = DateTime.Today;
 

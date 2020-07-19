@@ -36,19 +36,20 @@ namespace NeuToDo.ViewModels
             SimpleIoc.Default.Register<SyncViewModel>();
             SimpleIoc.Default.Register<IAcademicCalendarService, AcademicCalendarService>();
             SimpleIoc.Default.Register<IAccountStorageService, AccountStorageService>();
+            SimpleIoc.Default.Register<ICalendarStorageProvider, CalendarStorageProvider>();
             SimpleIoc.Default.Register<ICampusStorageService, CampusStorageService>();
             SimpleIoc.Default.Register<IContentPageActivationService, ContentPageActivationService>();
             SimpleIoc.Default.Register<IContentPageNavigationService, ContentPageNavigationService>();
+            SimpleIoc.Default.Register<IDbStorageProvider, DbStorageProvider>();
             SimpleIoc.Default.Register<IDialogService, DialogService>();
+            SimpleIoc.Default.Register<IFetchSemesterDataService, FetchSemesterDataService>();
+            SimpleIoc.Default.Register<IHttpWebDavService, HttpWebDavService>();
             SimpleIoc.Default.Register<IPopupNavigationService, PopupNavigationService>();
             SimpleIoc.Default.Register<IPopupActivationService, PopupActivationService>();
-            SimpleIoc.Default.Register<IDbStorageProvider, DbStorageProvider>();
-            SimpleIoc.Default.Register<IFetchSemesterDataService, FetchSemesterDataService>();
-            SimpleIoc.Default.Register<IRemoteSemesterStorage,RemoteSemesterStorage>();
+            SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
+            SimpleIoc.Default.Register<IRemoteSemesterStorage, RemoteSemesterStorage>();
             SimpleIoc.Default.Register<ISecureStorageProvider, SecureStorageProvider>();
             SimpleIoc.Default.Register<ISyncService, SyncService>();
-            SimpleIoc.Default.Register<IPreferenceStorageProvider, PreferenceStorageProvider>();
-            SimpleIoc.Default.Register<IHttpWebDavService, HttpWebDavService>();
         }
     }
 }
