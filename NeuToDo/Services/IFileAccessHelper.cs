@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace NeuToDo.Services
+﻿namespace NeuToDo.Services
 {
     public interface IFileAccessHelper
     {

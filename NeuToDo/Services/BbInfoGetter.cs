@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -11,7 +10,7 @@ using HtmlAgilityPack;
 namespace NeuToDo.Services
 {
     /// <summary>
-    /// 做不了，没有时间，不做了
+    /// BB时间可能时间
     /// </summary>
     public class BbInfoGetter
     {

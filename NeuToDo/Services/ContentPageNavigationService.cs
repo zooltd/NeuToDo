@@ -18,6 +18,11 @@ namespace NeuToDo.Services
 
         public MainPage MainPage => _mainPage ??= Application.Current.MainPage as MainPage;
 
+        /// <summary>
+        /// 跳转到事件编辑页面，同时传递参数
+        /// </summary>
+        /// <param name="e">选定事件</param>
+        /// <returns></returns>
         public async Task PushAsync(EventModel e)
         {
             var page = _contentPageActivationService.Activate(e.GetType().Name);

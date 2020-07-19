@@ -26,10 +26,6 @@ namespace NeuToDo.Services
         public async Task<List<Semester>> GetSemesterListAsync()
         {
             var responseBody = await _client.GetStringAsync(RemoteUri);
-            // var modificationDescription =
-            //     JsonConvert.DeserializeAnonymousType(responseBody, new {lastModifiedTime = new DateTime()});
-            // var lastModifiedTime = modificationDescription.lastModifiedTime;
-
 
             var jObj = JObject.Parse(responseBody);
             

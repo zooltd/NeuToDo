@@ -1,11 +1,4 @@
-﻿using GalaSoft.MvvmLight.Ioc;
-using NeuToDo.Models;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Globalization;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace NeuToDo.Services
 {

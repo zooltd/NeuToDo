@@ -10,10 +10,8 @@ using System.Threading.Tasks;
 using ICSharpCode.SharpZipLib.Core;
 using ICSharpCode.SharpZipLib.Zip;
 using NeuToDo.Models;
-using NeuToDo.ViewModels;
 using Newtonsoft.Json;
 using WebDav;
-using Xamarin.Essentials;
 
 namespace NeuToDo.Services
 {

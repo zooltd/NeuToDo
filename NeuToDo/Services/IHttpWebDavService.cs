@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using NeuToDo.Models;
-using NeuToDo.ViewModels;
-using WebDav;
 
 namespace NeuToDo.Services
 {

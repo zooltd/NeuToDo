@@ -37,6 +37,7 @@ namespace NeuToDo.Services
             List<MoocEvent> remoteMoocEvents = null;
             List<UserEvent> remoteUserEvents = null;
 
+            //获取远程压缩包内数据
             if (await _remoteDbStorage.FileExist(remoteFilePath))
             {
                 var fileStream = await _remoteDbStorage.GetFileStreamAsync(remoteFilePath);
@@ -76,32 +77,33 @@ namespace NeuToDo.Services
             remoteMoocEvents ??= new List<MoocEvent>();
             remoteUserEvents ??= new List<UserEvent>();
 
+            //获取本地数据
             var localNeuEvents = await _neuStorage.GetAllAsync();
             var localMoocEvents = await _moocStorage.GetAllAsync();
             var localUserEvents = await _userStorage.GetAllAsync();
 
-
             // 将远程收藏项合并到本地。
-            var newLocalNeuEvents = await GetEventList(remoteNeuEvents, localNeuEvents);
+            var newLocalNeuEvents = await MergeEventLists(remoteNeuEvents, localNeuEvents);
             foreach (var neuEvent in newLocalNeuEvents)
                 await _neuStorage.InsertOrReplaceAsync(neuEvent);
-            var newLocalMoocEvents = await GetEventList(remoteMoocEvents, localMoocEvents);
+            var newLocalMoocEvents = await MergeEventLists(remoteMoocEvents, localMoocEvents);
             foreach (var moocEvent in newLocalMoocEvents)
                 await _moocStorage.InsertOrReplaceAsync(moocEvent);
-            var newLocalUserEvents = await GetEventList(remoteUserEvents, localUserEvents);
+            var newLocalUserEvents = await MergeEventLists(remoteUserEvents, localUserEvents);
             foreach (var userEvent in newLocalUserEvents)
                 await _userStorage.InsertOrReplaceAsync(userEvent);
 
             // 将本地收藏项合并到远程。
-            var newRemoteNeuEvents = await GetEventList(localNeuEvents, remoteNeuEvents);
+            var newRemoteNeuEvents = await MergeEventLists(localNeuEvents, remoteNeuEvents);
             var neuJson = JsonConvert.SerializeObject(newRemoteNeuEvents);
 
-            var newRemoteMoocEvents = await GetEventList(localMoocEvents, remoteMoocEvents);
+            var newRemoteMoocEvents = await MergeEventLists(localMoocEvents, remoteMoocEvents);
             var moocJson = JsonConvert.SerializeObject(newRemoteMoocEvents);
 
-            var newRemoteUserEvents = await GetEventList(localUserEvents, remoteUserEvents);
+            var newRemoteUserEvents = await MergeEventLists(localUserEvents, remoteUserEvents);
             var userJson = JsonConvert.SerializeObject(newRemoteUserEvents);
 
+            //内存中打包
             using var outputStream = new MemoryStream();
             using var zipOutputStream = new ZipOutputStream(outputStream);
             zipOutputStream.SetLevel(3);
@@ -126,108 +128,114 @@ namespace NeuToDo.Services
             zipOutputStream.Close();
 
             outputStream.Position = 0;
+            //上传压缩包
             await _remoteDbStorage.UploadFileAsync(remoteFilePath, outputStream);
         }
 
-
-        private async Task<List<NeuEvent>> GetEventList(List<NeuEvent> sourceList, List<NeuEvent> destList)
+        /// <summary>
+        /// 根据更新时间，合并两个eventList
+        /// </summary>
+        /// <param name="sourceList"></param>
+        /// <param name="destList"></param>
+        /// <returns></returns>
+        private async Task<IList<NeuEvent>> MergeEventLists(IList<NeuEvent> sourceList, IList<NeuEvent> destList)
         {
-            var localDictionary = new Dictionary<string, NeuEvent>();
+            var destDict = new Dictionary<string, NeuEvent>();
 
             await Task.Run((() =>
             {
-                localDictionary = destList.ToDictionary(x => x.Uuid, x => x);
-                foreach (var remoteItem in sourceList)
+                destDict = destList.ToDictionary(x => x.Uuid, x => x);
+                foreach (var sourceItem in sourceList)
                 {
-                    //local item exists
-                    if (localDictionary.TryGetValue(remoteItem.Uuid, out var localItem))
+                    //source item exists
+                    if (destDict.TryGetValue(sourceItem.Uuid, out var destItem))
                     {
-                        if (remoteItem.LastModified <= localItem.LastModified) continue;
-                        localItem.Title = remoteItem.Title;
-                        localItem.Detail = remoteItem.Detail;
-                        localItem.Time = remoteItem.Time;
-                        localItem.IsDone = remoteItem.IsDone;
-                        localItem.IsDeleted = remoteItem.IsDeleted;
-                        localItem.Day = remoteItem.Day;
-                        localItem.Week = remoteItem.Week;
-                        localItem.ClassNo = remoteItem.ClassNo;
+                        if (sourceItem.LastModified <= destItem.LastModified) continue;
+                        destItem.Title = sourceItem.Title;
+                        destItem.Detail = sourceItem.Detail;
+                        destItem.Time = sourceItem.Time;
+                        destItem.IsDone = sourceItem.IsDone;
+                        destItem.IsDeleted = sourceItem.IsDeleted;
+                        destItem.Day = sourceItem.Day;
+                        destItem.Week = sourceItem.Week;
+                        destItem.ClassNo = sourceItem.ClassNo;
                     }
-                    else //local item not exists
+                    else //source item not exists
                     {
-                        localDictionary[remoteItem.Uuid] = remoteItem;
+                        destDict[sourceItem.Uuid] = sourceItem;
                     }
                 }
             }));
-            var neuEvents = localDictionary.Values.ToList();
+            var neuEvents = destDict.Values.ToList();
             neuEvents.ForEach(x => x.LastModified = DateTime.Now);
             return neuEvents;
         }
 
 
-        private async Task<List<MoocEvent>> GetEventList(List<MoocEvent> sourceList, List<MoocEvent> destList)
+        private async Task<IList<MoocEvent>> MergeEventLists(IList<MoocEvent> sourceList, IList<MoocEvent> destList)
         {
-            var localDictionary = new Dictionary<string, MoocEvent>();
+            var destDict = new Dictionary<string, MoocEvent>();
 
             await Task.Run((() =>
             {
-                localDictionary = destList.ToDictionary(x => x.Uuid, x => x);
-                foreach (var remoteItem in sourceList)
+                destDict = destList.ToDictionary(x => x.Uuid, x => x);
+                foreach (var sourceItem in sourceList)
                 {
                     //local item exists
-                    if (localDictionary.TryGetValue(remoteItem.Uuid, out var localItem))
+                    if (destDict.TryGetValue(sourceItem.Uuid, out var destItem))
                     {
-                        if (remoteItem.LastModified <= localItem.LastModified) continue;
-                        localItem.Title = remoteItem.Title;
-                        localItem.Detail = remoteItem.Detail;
-                        localItem.Time = remoteItem.Time;
-                        localItem.IsDone = remoteItem.IsDone;
-                        localItem.IsDeleted = remoteItem.IsDeleted;
+                        if (sourceItem.LastModified <= destItem.LastModified) continue;
+                        destItem.Title = sourceItem.Title;
+                        destItem.Detail = sourceItem.Detail;
+                        destItem.Time = sourceItem.Time;
+                        destItem.IsDone = sourceItem.IsDone;
+                        destItem.IsDeleted = sourceItem.IsDeleted;
                     }
                     else //local item not exists
                     {
-                        localDictionary[remoteItem.Uuid] = remoteItem;
+                        destDict[sourceItem.Uuid] = sourceItem;
                     }
                 }
             }));
 
-            var moocEvents = localDictionary.Values.ToList();
+            var moocEvents = destDict.Values.ToList();
             moocEvents.ForEach(x => x.LastModified = DateTime.Now);
             return moocEvents;
         }
 
 
-        private async Task<List<UserEvent>> GetEventList(List<UserEvent> sourceList, List<UserEvent> destList)
+        private async Task<IList<UserEvent>> MergeEventLists(IList<UserEvent> sourceList, IList<UserEvent> destList)
         {
-            var localDictionary = new Dictionary<string, UserEvent>();
+            var destDict = new Dictionary<string, UserEvent>();
 
             await Task.Run((() =>
             {
-                localDictionary = destList.ToDictionary(x => x.Uuid, x => x);
-                foreach (var remoteItem in sourceList)
+                destDict = destList.ToDictionary(x => x.Uuid, x => x);
+                foreach (var sourceItem in sourceList)
                 {
                     //local item exists
-                    if (localDictionary.TryGetValue(remoteItem.Uuid, out var localItem))
+                    if (destDict.TryGetValue(sourceItem.Uuid, out var destItem))
                     {
-                        if (remoteItem.LastModified <= localItem.LastModified) continue;
-                        localItem.Title = remoteItem.Title;
-                        localItem.Detail = remoteItem.Detail;
-                        localItem.Time = remoteItem.Time;
-                        localItem.IsDone = remoteItem.IsDone;
-                        localItem.IsDeleted = remoteItem.IsDeleted;
-                        localItem.StartDate = remoteItem.StartDate;
-                        localItem.EndDate = remoteItem.EndDate;
-                        localItem.DaySpan = remoteItem.DaySpan;
-                        localItem.TimeOfDay = remoteItem.TimeOfDay;
-                        localItem.IsRepeat = remoteItem.IsRepeat;
+                        if (sourceItem.LastModified <= destItem.LastModified) continue;
+                        destItem.Title = sourceItem.Title;
+                        destItem.Detail = sourceItem.Detail;
+                        destItem.Time = sourceItem.Time;
+                        destItem.IsDone = sourceItem.IsDone;
+                        destItem.IsDeleted = sourceItem.IsDeleted;
+                        destItem.StartDate = sourceItem.StartDate;
+                        destItem.EndDate = sourceItem.EndDate;
+                        destItem.DaySpan = sourceItem.DaySpan;
+                        destItem.TimeOfDay = sourceItem.TimeOfDay;
+                        destItem.IsRepeat = sourceItem.IsRepeat;
                     }
                     else //local item not exists
                     {
-                        localDictionary[remoteItem.Uuid] = remoteItem;
+                        destDict[sourceItem.Uuid] = sourceItem;
                     }
                 }
             }));
 
-            var userEvents = localDictionary.Values.ToList();
+            var userEvents = destDict.Values.ToList();
             userEvents.ForEach(x => x.LastModified = DateTime.Now);
             return userEvents;
         }
