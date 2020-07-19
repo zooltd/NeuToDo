@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Plugin.Calendar.Models;
+using EventCollection = Xamarin.Plugin.Calendar.Models.EventCollection;
 
 namespace NeuToDo.ViewModels
 {
@@ -317,7 +318,13 @@ namespace NeuToDo.ViewModels
 
         #region List绑定属性
 
-        public ObservableCollection<DailyAgenda> WeeklyAgenda { get; } = new ObservableCollection<DailyAgenda>();
+        private WeeklyAgenda _weeklyAgenda;
+
+        public WeeklyAgenda WeeklyAgenda
+        {
+            get => _weeklyAgenda ??= new WeeklyAgenda();
+            set => Set(nameof(WeeklyAgenda), ref _weeklyAgenda, value);
+        }
 
         private DateTime _thisSunday;
 
