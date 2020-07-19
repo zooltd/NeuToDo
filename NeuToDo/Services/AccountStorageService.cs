@@ -16,17 +16,20 @@ namespace NeuToDo.Services
             _secureStorageProvider = secureStorageProvider;
         }
 
+        public static readonly Account DefaultAccount = new Account
+            {Remarks = "我的私有云盘", BaseUri = "我的服务器地址", UserName = "我的用户名"};
+
         public bool AccountExist(ServerType serverType)
-            => _preferenceStorageProvider.ContainsKey(serverType + "Id");
+            => _preferenceStorageProvider.ContainsKey(serverType + nameof(Account.UserName));
 
         public string GetUserName(ServerType serverType)
-            => _preferenceStorageProvider.Get(serverType + "Id", string.Empty);
+            => _preferenceStorageProvider.Get(serverType + nameof(Account.UserName), string.Empty);
 
         public string GetUpdateTime(ServerType serverType)
-            => _preferenceStorageProvider.Get(serverType + "Time", "未知的时间");
+            => _preferenceStorageProvider.Get(serverType + nameof(Account.LastUpdateTime), "未知的时间");
 
         public async Task<string> GetPasswordAsync(ServerType serverType)
-            => await _secureStorageProvider.TryGetAsync(serverType + "Pd", string.Empty);
+            => await _secureStorageProvider.TryGetAsync(serverType + nameof(Account.Password), string.Empty);
 
         public void RemoveAccountHistory(ServerType serverType)
         {
@@ -42,9 +45,9 @@ namespace NeuToDo.Services
 
         public async Task SaveAccountAsync(ServerType serverType, string userName, string password, string updateTime)
         {
-            _preferenceStorageProvider.Set(serverType + "Id", userName);
-            await _secureStorageProvider.SetAsync(serverType + "Pd", password);
-            _preferenceStorageProvider.Set(serverType + "Time", updateTime);
+            _preferenceStorageProvider.Set(serverType + nameof(Account.UserName), userName);
+            await _secureStorageProvider.SetAsync(serverType + nameof(Account.Password), password);
+            _preferenceStorageProvider.Set(serverType + nameof(Account.LastUpdateTime), updateTime);
         }
 
 
@@ -88,9 +91,5 @@ namespace NeuToDo.Services
         {
             UpdateData?.Invoke(this, EventArgs.Empty);
         }
-
-
-        public static readonly Account DefaultAccount = new Account
-            {Remarks = "我的私有云盘", BaseUri = "我的服务器地址", UserName = "我的用户名"};
     }
 }
