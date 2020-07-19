@@ -6,22 +6,8 @@ namespace NeuToDo.Services
 {
     public interface IAccountStorageService
     {
-        [Obsolete]
-        bool AccountExist(ServerType serverType);
-
-        [Obsolete]
-        string GetUserName(ServerType serverType);
-
-        [Obsolete]
-        string GetUpdateTime(ServerType serverType);
-
-        [Obsolete]
-        Task<string> GetPasswordAsync(ServerType serverType);
-
         void RemoveAccountHistory(ServerType serverType);
 
-        [Obsolete]
-        Task SaveAccountAsync(ServerType serverType, string userName, string password, string updateTime);
 
         Task SaveAccountAsync(ServerType serverType, Account account);
 
