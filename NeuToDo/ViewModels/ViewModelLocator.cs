@@ -5,8 +5,6 @@ namespace NeuToDo.ViewModels
 {
     public class ViewModelLocator
     {
-        public MainPageViewModel MainPageViewModel => SimpleIoc.Default.GetInstance<MainPageViewModel>();
-
         public ToDoViewModel ToDoViewModel => SimpleIoc.Default.GetInstance<ToDoViewModel>();
 
         public SettingsViewModel SettingsViewModel => SimpleIoc.Default.GetInstance<SettingsViewModel>();
@@ -26,7 +24,6 @@ namespace NeuToDo.ViewModels
 
         public ViewModelLocator()
         {
-            SimpleIoc.Default.Register<MainPageViewModel>();
             SimpleIoc.Default.Register<ToDoViewModel>();
             SimpleIoc.Default.Register<SettingsViewModel>();
             SimpleIoc.Default.Register<LoginViewModel>();

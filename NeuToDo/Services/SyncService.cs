@@ -138,7 +138,7 @@ namespace NeuToDo.Services
         /// <param name="sourceList"></param>
         /// <param name="destList"></param>
         /// <returns></returns>
-        private async Task<IList<NeuEvent>> MergeEventLists(IList<NeuEvent> sourceList, IList<NeuEvent> destList)
+        public async Task<List<NeuEvent>> MergeEventLists(IList<NeuEvent> sourceList, IList<NeuEvent> destList)
         {
             var destDict = new Dictionary<string, NeuEvent>();
 
@@ -172,7 +172,7 @@ namespace NeuToDo.Services
         }
 
 
-        private async Task<IList<MoocEvent>> MergeEventLists(IList<MoocEvent> sourceList, IList<MoocEvent> destList)
+        public async Task<List<MoocEvent>> MergeEventLists(IList<MoocEvent> sourceList, IList<MoocEvent> destList)
         {
             var destDict = new Dictionary<string, MoocEvent>();
 
@@ -204,7 +204,7 @@ namespace NeuToDo.Services
         }
 
 
-        private async Task<IList<UserEvent>> MergeEventLists(IList<UserEvent> sourceList, IList<UserEvent> destList)
+        public async Task<List<UserEvent>> MergeEventLists(IList<UserEvent> sourceList, IList<UserEvent> destList)
         {
             var destDict = new Dictionary<string, UserEvent>();
 
