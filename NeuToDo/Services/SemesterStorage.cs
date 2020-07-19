@@ -34,22 +34,7 @@ namespace NeuToDo.Services
         public async Task DeleteAllAsync()
             => await _connection.DeleteAllAsync<Semester>();
 
-        public async Task<int> GetCountAsync()
-            => await _connection.Table<Semester>().CountAsync();
-
-        public async Task InsertAsync(Semester semester)
-            => await _connection.InsertAsync(semester);
-
         public async Task InsertAllAsync(IList<Semester> semesters)
             => await _connection.InsertAllAsync(semesters);
-
-        public async Task UpdateAsync(Semester semester)
-            => await _connection.UpdateAsync(semester);
-
-        public async Task UpdateAllAsync(IList<Semester> semesters)
-            => await _connection.UpdateAllAsync(semesters);
-
-        public async Task<bool> ExistAsync(Expression<Func<Semester, bool>> predExpr)
-            => await _connection.Table<Semester>().Where(predExpr).CountAsync() > 0;
     }
 }

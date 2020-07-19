@@ -43,12 +43,6 @@ namespace NeuToDo.Services
             return campus;
         }
 
-        public async Task UpdateCampus()
-        {
-            _campus = null;
-            _preferenceStorageProvider.Remove(nameof(Campus));
-            await GetCampusFromDialog();
-        }
 
         public void SaveCampus(Campus campus)
         {
