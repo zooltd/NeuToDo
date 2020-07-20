@@ -5,10 +5,8 @@ using NeuToDo.Services;
 using NeuToDo.Utils;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using Xamarin.Plugin.Calendar.Models;
 using EventCollection = Xamarin.Plugin.Calendar.Models.EventCollection;
 
 namespace NeuToDo.ViewModels
@@ -43,7 +41,7 @@ namespace NeuToDo.ViewModels
         private readonly IAcademicCalendarService _academicCalendarService;
         private readonly IFetchSemesterDataService _fetchSemesterDataService;
 
-        private static Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
+        public Dictionary<DateTime, List<EventModel>> EventDict { get; set; } =
             new Dictionary<DateTime, List<EventModel>>();
 
         private bool _isLoaded;
@@ -146,7 +144,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand PageAppearingCommand => _pageAppearingCommand ??=
             new RelayCommand(async () => await PageAppearingCommandFunction());
 
-        private async Task PageAppearingCommandFunction()
+        public async Task PageAppearingCommandFunction()
         {
             if (_isLoaded) return;
             await _dbStorageProvider.CheckInitialization(); //TODO
@@ -408,7 +406,7 @@ namespace NeuToDo.ViewModels
         public RelayCommand SearchCommand =>
             _searchCommand ??= new RelayCommand(SearchCommandFunction);
 
-        private void SearchCommandFunction()
+        public void SearchCommandFunction()
         {
             SearchStatus = true;
             SearchResult.Clear();
@@ -421,13 +419,16 @@ namespace NeuToDo.ViewModels
                 return;
             }
 
-            foreach (var dailyEventList in eventList)
-            foreach (var eventModel in dailyEventList)
-                if (eventModel.Title.ToLower().Contains(QueryString.ToLower()) ||
-                    eventModel.Detail.ToLower().Contains(QueryString.ToLower()))
-                    SearchResult.Add(eventModel);
+            Task.Run(() =>
+            {
+                foreach (var dailyEventList in eventList)
+                foreach (var eventModel in dailyEventList)
+                    if (eventModel.Title.ToLower().Contains(QueryString.ToLower()) ||
+                        eventModel.Detail.ToLower().Contains(QueryString.ToLower()))
+                        SearchResult.Add(eventModel);
+                SearchResult = SearchResult.OrderByDescending(x => x.Time).ToList();
+            });
 
-            SearchResult = SearchResult.OrderByDescending(x => x.Time).ToList();
 
             SearchStatus = false;
         }
