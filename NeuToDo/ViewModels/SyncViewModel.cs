@@ -64,9 +64,20 @@ namespace NeuToDo.ViewModels
             }
 
             _httpWebDavService.Initiate(ShowedAccount);
-            var res = await _httpWebDavService.TestConnection(); //TODO 超时
-            ConnectionResponse.IsConnected = res;
-            ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
+
+            try
+            {
+                var res = await _httpWebDavService.TestConnection();
+                ConnectionResponse.IsConnected = res;
+                ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
+            }
+            catch (Exception e)
+            {
+                ConnectionResponse.IsConnected = false;
+                ConnectionResponse.Reason = e.Message;
+            }
+
+
             IsConnecting = false;
         }
 
@@ -186,14 +197,22 @@ namespace NeuToDo.ViewModels
             IsConnecting = true;
             //TODO Validation
             _httpWebDavService.Initiate(LoginAccount);
-            var res = await _httpWebDavService.TestConnection();
-            IsConnecting = false;
-            ConnectionResponse.IsConnected = res;
-            ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
-            if (res)
+            try
             {
-                ShowedAccount = LoginAccount;
-                await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+                var res = await _httpWebDavService.TestConnection();
+                IsConnecting = false;
+                ConnectionResponse.IsConnected = res;
+                ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
+                if (res)
+                {
+                    ShowedAccount = LoginAccount;
+                    await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+                }
+            }
+            catch (Exception e)
+            {
+                ConnectionResponse.IsConnected = false;
+                ConnectionResponse.Reason = e.Message;
             }
 
             await _popupNavigationService.PopAllAsync();
@@ -209,18 +228,26 @@ namespace NeuToDo.ViewModels
             IsConnecting = true;
             if (_httpWebDavService.IsInitialized)
             {
-                var res = await _httpWebDavService.TestConnection();
-                if (res == ConnectionResponse.IsConnected) //与上次结果相同，不做改变
+                try
                 {
-                    IsConnecting = false;
-                    return;
-                }
+                    var res = await _httpWebDavService.TestConnection();
+                    if (res == ConnectionResponse.IsConnected) //与上次结果相同，不做改变
+                    {
+                        IsConnecting = false;
+                        return;
+                    }
 
-                ConnectionResponse.IsConnected = true; //记录本次结果
-                ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
-                ShowedAccount = LoginAccount;
-                if (res) //不成功=>成功
-                    await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+                    ConnectionResponse.IsConnected = true; //记录本次结果
+                    ConnectionResponse.Reason = res ? "已成功连接服务器" : "连接服务器失败,请检查网络或登录账户";
+                    ShowedAccount = LoginAccount;
+                    if (res) //不成功=>成功
+                        await _accountStorageService.SaveAccountAsync(ServerType.WebDav, LoginAccount);
+                }
+                catch (Exception e)
+                {
+                    ConnectionResponse.IsConnected = false;
+                    ConnectionResponse.Reason = e.Message;
+                }
             }
             else
             {
@@ -251,7 +278,7 @@ namespace NeuToDo.ViewModels
                 }
                 catch (Exception e)
                 {
-                    _dialogService.DisplayAlert("警告", e.ToString(), "OK");
+                    _dialogService.DisplayAlert("警告", e.Message, "OK");
                 }
             }
             else
@@ -278,7 +305,7 @@ namespace NeuToDo.ViewModels
             }
             catch (Exception e)
             {
-                _dialogService.DisplayAlert("警告", e.ToString(), "Ok");
+                _dialogService.DisplayAlert("警告", e.Message, "Ok");
             }
         }
 
@@ -314,7 +341,17 @@ namespace NeuToDo.ViewModels
                 {FileName = fi.Name, FilePath = fi.FullName, FileSource = FileSource.Local}).ToList();
 
             if (!ConnectionResponse.IsConnected) return fileList;
-            var webFiles = await _httpWebDavService.GetFilesAsync($"{AppName}", @"(.*)_events.sqlite3");
+            List<RecoveryFile> webFiles;
+            try
+            {
+                webFiles = await _httpWebDavService.GetFilesAsync($"{AppName}", @"(.*)_events.sqlite3");
+            }
+            catch (Exception e)
+            {
+                webFiles = new List<RecoveryFile>();
+                _dialogService.DisplayAlert("警告", e.Message, "Ok");
+            }
+
             fileList.AddRange(webFiles);
             return fileList;
         }
@@ -375,7 +412,7 @@ namespace NeuToDo.ViewModels
                 catch (Exception e)
                 {
                     await _popupNavigationService.PopAllAsync();
-                    _dialogService.DisplayAlert("错误", e.ToString(), "OK");
+                    _dialogService.DisplayAlert("错误", e.Message, "OK");
                 }
             }
             else
@@ -385,7 +422,6 @@ namespace NeuToDo.ViewModels
         }
 
 
-        //
         public async Task ImportAsync()
         {
             var pickedFile = await CrossFilePicker.Current.PickFile();

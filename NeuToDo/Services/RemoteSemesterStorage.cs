@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -25,14 +26,23 @@ namespace NeuToDo.Services
 
         public async Task<List<Semester>> GetSemesterListAsync()
         {
-            var responseBody = await _client.GetStringAsync(RemoteUri);
+            string responseBody;
+            try
+            {
+                responseBody = await _client.GetStringAsync(RemoteUri);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e);
+                return new List<Semester>();
+            }
 
             var jObj = JObject.Parse(responseBody);
-            
+
             var remoteLastModifiedTime = jObj["lastModifiedTime"]?.ToObject<DateTime>();
             var localModifiedTime = _preferenceStorageProvider.Get("LocalSemesterModifiedTime", DateTime.MinValue);
             if (remoteLastModifiedTime < localModifiedTime) return new List<Semester>();
-            
+
             var objList = jObj["semesters"]?.Children().ToList();
             var semesterList = objList?.ConvertAll(x => x.ToObject<Semester>());
             _preferenceStorageProvider.Set("LocalSemesterModifiedTime", DateTime.Now);

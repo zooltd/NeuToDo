@@ -8,7 +8,6 @@ using System.Net;
 using System.Net.Http;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using Xamarin.Forms.Internals;
 
 namespace NeuToDo.Services
 {
@@ -32,6 +31,7 @@ namespace NeuToDo.Services
             });
             _client.DefaultRequestHeaders.Add("User-Agent",
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.116 Safari/537.36 Edg/83.0.478.58");
+            _client.Timeout = TimeSpan.FromSeconds(40);
             _semester = new Semester();
             _neuCourses = new List<NeuEvent>();
             _baseUri = "https://webvpn.neu.edu.cn";
@@ -51,6 +51,8 @@ namespace NeuToDo.Services
             var coursesResponseBody = await GetCourseInfoResponseBody();
 
             _neuCourses = ParseCourses(coursesResponseBody, _semester);
+
+            _client.Dispose();
 
             return (_semester, _neuCourses);
         }
