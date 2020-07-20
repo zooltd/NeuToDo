@@ -36,7 +36,10 @@ namespace NeuToDo.Services
         }
 
         public void Reset()
-            => _semesters = null;
+        {
+            _semesters = null;
+            _thisSemesterNode = null;
+        }
 
         public async Task<(Semester semester, int weekNo)> GetCurrentSemester()
         {
@@ -101,6 +104,5 @@ namespace NeuToDo.Services
 
             return (_thisSemesterNode?.Value, _thisWeekNo, _thisSunday);
         }
-
     }
 }

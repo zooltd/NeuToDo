@@ -286,6 +286,11 @@ namespace NeuToDo.ViewModels
             _navigateToSearchPage ??= new RelayCommand(async () =>
                 await _contentPageNavigationService.PushAsync(ContentNavigationConstants.SearchPage));
 
+        private RelayCommand _toCurrentTime;
+
+        public RelayCommand ToCurrentTime =>
+            _toCurrentTime ??= new RelayCommand(async () => await UpdateSemester());
+
         #endregion
 
         #region Calendar绑定属性
