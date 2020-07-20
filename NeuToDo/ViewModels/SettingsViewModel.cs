@@ -43,14 +43,16 @@ namespace NeuToDo.ViewModels
             _campusStorageService = campusStorageService;
             _calendarStorageProvider = calendarStorageProvider;
             accountStorageService.UpdateData += OnUpdateAccount;
+            campusStorageService.UpdateCampus += OnUpdateCampus;
         }
 
         #endregion
 
         private async void OnUpdateAccount(object sender, EventArgs e)
-        {
-            await LoadPlatforms();
-        }
+            => await LoadPlatforms();
+
+        private void OnUpdateCampus(object sender, EventArgs e)
+            => LoadCampus();
 
         private bool _isInit;
 
@@ -71,11 +73,18 @@ namespace NeuToDo.ViewModels
         {
             if (_isInit) return;
 
-            Campus = _campusStorageService.GetCampus();
-
+            LoadCampus();
             await LoadPlatforms();
 
             _isInit = true;
+        }
+
+        /// <summary>
+        /// 加载校区
+        /// </summary>
+        private void LoadCampus()
+        {
+            Campus = _campusStorageService.GetCampus();
         }
 
         /// <summary>
@@ -264,7 +273,6 @@ namespace NeuToDo.ViewModels
             await _popupNavigationService.PopAllAsync();
             _dialogService.DisplayAlert("提示", "删除日历成功", "OK");
         }
-
 
         #endregion
 

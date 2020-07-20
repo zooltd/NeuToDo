@@ -18,7 +18,8 @@ namespace NeuToDo.Services
 
         private Campus? _campus;
 
-        public Campus GetCampus() => (Campus) _preferenceStorageProvider.Get(nameof(Campus), (int) Campus.暂未设置);
+        public Campus GetCampus()
+            => (Campus) _preferenceStorageProvider.Get(nameof(Campus), (int) Campus.暂未设置);
 
         public async Task<Campus> GetOrSelectCampus()
         {
@@ -43,6 +44,7 @@ namespace NeuToDo.Services
 
             var campus = (Campus) Enum.Parse(typeof(Campus), res);
             _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
+            OnUpdateCampus();
             return campus;
         }
 
@@ -52,5 +54,10 @@ namespace NeuToDo.Services
             _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
             _campus = campus;
         }
+
+        public event EventHandler UpdateCampus;
+
+        public void OnUpdateCampus()
+            => UpdateCampus?.Invoke(this, EventArgs.Empty);
     }
 }

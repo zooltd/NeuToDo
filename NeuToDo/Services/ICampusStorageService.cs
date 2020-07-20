@@ -1,4 +1,5 @@
-﻿using NeuToDo.Models;
+﻿using System;
+using NeuToDo.Models;
 using System.Threading.Tasks;
 
 namespace NeuToDo.Services
@@ -22,5 +23,9 @@ namespace NeuToDo.Services
         /// </summary>
         /// <param name="campus"></param>
         void SaveCampus(Campus campus);
+
+        event EventHandler UpdateCampus;
+
+        void OnUpdateCampus();
     }
 }

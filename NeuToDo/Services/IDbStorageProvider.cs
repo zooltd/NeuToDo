@@ -14,8 +14,8 @@ namespace NeuToDo.Services
 
         Task CloseConnectionAsync();
 
-        public event EventHandler UpdateData;
+        event EventHandler UpdateData;
 
-        public void OnUpdateData();
+        void OnUpdateData();
     }
 }
