@@ -34,10 +34,13 @@ namespace NeuToDo.Services
 
         private async Task<Campus> GetCampusFromDialog()
         {
-            var res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, Campus.浑南.ToString(),
-                Campus.南湖.ToString());
-            if (res == "Cancel" || res == null)
-                await GetCampusFromDialog();
+            string res;
+            do
+            {
+                res = await _dialogService.DisplayActionSheet("请选择校区", "Cancel", null, Campus.浑南.ToString(),
+                    Campus.南湖.ToString());
+            } while (res == null || res == "Cancel");
+
             var campus = (Campus) Enum.Parse(typeof(Campus), res);
             _preferenceStorageProvider.Set(nameof(Campus), (int) campus);
             return campus;

@@ -67,6 +67,7 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
                 <Button Text="完成"
+                        TextColor="White"
                         BackgroundColor="#455399"
                         HorizontalOptions="Fill"
                         x:Name="SaveButton"

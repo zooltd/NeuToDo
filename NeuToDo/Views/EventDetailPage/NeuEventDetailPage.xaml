@@ -42,7 +42,7 @@
     <!-- </ScrollView> -->
 
     <ScrollView x:Name="ThisPage">
-        <StackLayout Padding="30" Spacing="15">
+        <StackLayout Padding="15" Spacing="15">
             <Frame>
                 <Grid VerticalOptions="Center">
                     <Grid.RowDefinitions>
@@ -145,9 +145,9 @@
             <Frame>
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="4*" />
+                        <ColumnDefinition Width="5*" />
+                        <ColumnDefinition Width="4*" />
                     </Grid.ColumnDefinitions>
                     <Button Grid.Column="0" Text="删除课程"
                             TextColor="#f84681" BackgroundColor="Transparent" FontAttributes="Bold"
