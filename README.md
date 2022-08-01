@@ -1,15 +1,15 @@
-### Neu To Do
+# NeuToDo (RIP)
 
-clone到本地后请另开分支
-
-2020/06/03效果图:
-
-![Image text](./screenshot/0603.png)
-
-2020/06/12效果图:
-
-![Image text](./screenshot/0612_1.png)
-
-![Image text](./screenshot/0612_2.png)
-
-![Image text](./screenshot/0612_3.png)
+### Planner View
+![Planner View](screenshot\Android-Planner.png)
+### Calendar View
+![Calendar View](screenshot\Android-Calendar.png)
+### Settings View
+![Settings View](screenshot\Android-Settings-1.png)
+### Editing View
+#### Course Evevt
+![Course Evevt](screenshot\Android-Editing-Course.png)
+#### Mooc Evevt
+![Mooc Evevt](screenshot\Android-Editing-Mooc.png)
+#### Customized Evevt
+![Customized Evevt](screenshot\Android-Editing-Customized.png)
